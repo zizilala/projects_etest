@@ -1,0 +1,260 @@
+BUILD: [Thrd:Sequence:Type  ] Message
+BUILD: [00:0000000000:PROGC ] Build started with parameters:
+BUILD: [00:0000000001:PROGC ] Build started in directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX
+BUILD: [00:0000000002:PROGC ] Checking for C:\WINCE600\sdk\bin\i386\srccheck.exe.
+BUILD: [00:0000000003:PROGC ] Running passes WCEFILES0, MIDL, MC, ASN, THUNK, PRECOMPHEADER, COMPILE, LIB, LINK, MANAGEDRESX, MANAGEDMOD, MANAGEDDLL, MANAGEDEXE, MANAGEDWIN for ARM.
+BUILD: [00:0000000004:PROGC ] Loading database "C:\WINCE600\PLATFORM\COMMON\Build.dat".
+BUILD: [00:0000000005:PROGC ] Done.
+BUILD: [00:0000000006:PROGC ] Computing include file dependencies:
+BUILD: [00:0000000007:PROGC ] Checking for SDK include directory: C:\WINCE600\sdk\CE\inc.
+BUILD: [00:0000000008:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MISC\
+BUILD: [00:0000000009:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\
+BUILD: [00:0000000010:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\
+BUILD: [00:0000000011:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\
+BUILD: [00:0000000012:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\DRIVER\
+BUILD: [00:0000000013:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MADC\
+BUILD: [00:0000000014:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\WAVE\
+BUILD: [00:0000000015:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\KEYPAD\
+BUILD: [00:0000000016:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\
+BUILD: [00:0000000017:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\BCI\
+BUILD: [00:0000000018:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\USBOTG\
+BUILD: [00:0000000019:PROGC ] Saving C:\WINCE600\PLATFORM\COMMON\Build.dat.
+BUILD: [00:0000000020:INFO  ] Done.
+BUILD: [00:0000000021:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\tps659xx_gpio.cpp because target: obj\ARMV4I\retail\tps659xx_gpio.obj is out of date.
+BUILD: [00:0000000022:PROGC ] Building COMPILE Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\ directory.
+BUILD: [00:0000000023:PROG  ] 'NMAKE.EXE TargetCompilePass  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON NOLINK=1 NOPASS0=1'
+BUILD: [01:0000000024:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000025:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000026:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000027:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\sources
+BUILD: [01:0000000028:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000029:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL
+BUILD: [01:0000000030:INFO  ] TARGETNAME: tps659xx_oal_gpio
+BUILD: [01:0000000031:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000032:PROGC ] Compiling ..\tps659xx_gpio.cpp
+BUILD: [01:0000000033:INFO  ] cl -nologo    /Gy -Foobj\ARMV4I\retail\tps659xx_gpio.obj -c -IARM\ -I. -IC:\WINCE600\platform\common\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_gpio.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -Dproject_cebase -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DOAL -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\tps659xx_gpio.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4    /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return  /GS C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\..\tps659xx_gpio.cpp
+BUILD: [01:0000000034:INFO  ] tps659xx_gpio.cpp
+BUILD: [00:0000000035:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\tps659xx_gpio.cpp because target: obj\ARMV4I\retail\tps659xx_gpio.obj is out of date.
+BUILD: [00:0000000036:PROGC ] Building COMPILE Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\ directory.
+BUILD: [00:0000000037:PROG  ] 'NMAKE.EXE TargetCompilePass  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON NOLINK=1 NOPASS0=1'
+BUILD: [01:0000000038:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000039:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000040:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000041:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\sources
+BUILD: [01:0000000042:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000043:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE
+BUILD: [01:0000000044:INFO  ] TARGETNAME: tps659xx_device_gpio
+BUILD: [01:0000000045:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000046:PROGC ] Compiling ..\tps659xx_gpio.cpp
+BUILD: [01:0000000047:INFO  ] cl -nologo    /Gy -Foobj\ARMV4I\retail\tps659xx_gpio.obj -c -IARM\ -I. -IC:\WINCE600\platform\common\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_device_gpio.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -Dproject_cebase -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DDEVICE -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\tps659xx_gpio.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4    /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return  /GS C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\..\tps659xx_gpio.cpp
+BUILD: [01:0000000048:INFO  ] tps659xx_gpio.cpp
+BUILD: [00:0000000049:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\rtc.c because target: obj\ARMV4I\retail\rtc.obj is out of date.
+BUILD: [00:0000000050:PROGC ] Building COMPILE Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\ directory.
+BUILD: [00:0000000051:PROG  ] 'NMAKE.EXE TargetCompilePass  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON NOLINK=1 NOPASS0=1'
+BUILD: [01:0000000052:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000053:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000054:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000055:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\sources
+BUILD: [01:0000000056:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000057:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC
+BUILD: [01:0000000058:INFO  ] TARGETNAME: tps659xx_oal_rtc
+BUILD: [01:0000000059:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000060:PROGC ] Compiling .\rtc.c
+BUILD: [01:0000000061:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\rtc.obj -c -IARM\ -I. -IC:\WINCE600\platform\common\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_rtc.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -Dproject_cebase -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\rtc.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4    /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return  /GS C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\.\rtc.c
+BUILD: [01:0000000062:INFO  ] rtc.c
+BUILD: [00:0000000063:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\tled.cpp because target: obj\ARMV4I\retail\tled.obj is out of date.
+BUILD: [00:0000000064:PROGC ] Building COMPILE Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\ directory.
+BUILD: [00:0000000065:PROG  ] 'NMAKE.EXE TargetCompilePass  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON NOLINK=1 NOPASS0=1'
+BUILD: [01:0000000066:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000067:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000068:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000069:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\sources
+BUILD: [01:0000000070:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000071:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED
+BUILD: [01:0000000072:INFO  ] TARGETNAME: tps659xx_tled
+BUILD: [01:0000000073:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000074:PROGC ] Compiling .\tled.cpp
+BUILD: [01:0000000075:INFO  ] cl -nologo    /Gy -Foobj\ARMV4I\retail\tled.obj -c -IARM\ -I. -IC:\WINCE600\platform\common\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_tled.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -Dproject_cebase -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\tled.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4    /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return  /GS C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\.\tled.cpp
+BUILD: [01:0000000076:INFO  ] tled.cpp
+BUILD: [00:0000000077:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MISC\obj\ARMV4I\retail\misc.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_misc.lib is missing.
+BUILD: [00:0000000078:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MISC\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_misc.lib is missing.
+BUILD: [00:0000000079:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MISC\ directory.
+BUILD: [00:0000000080:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000081:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000082:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000083:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000084:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MISC\sources
+BUILD: [01:0000000085:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000086:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MISC
+BUILD: [01:0000000087:INFO  ] TARGETNAME: tps659xx_misc
+BUILD: [01:0000000088:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000089:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_misc.lib
+BUILD: [01:0000000090:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_misc.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C5D.tmp
+BUILD: [00:0000000091:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\obj\ARMV4I\retail\tps659xx_gpio.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_gpio.lib is missing.
+BUILD: [00:0000000092:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_gpio.lib is missing.
+BUILD: [00:0000000093:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\ directory.
+BUILD: [00:0000000094:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000095:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000096:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000097:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000098:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL\sources
+BUILD: [01:0000000099:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000100:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\OAL
+BUILD: [01:0000000101:INFO  ] TARGETNAME: tps659xx_oal_gpio
+BUILD: [01:0000000102:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000103:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_gpio.lib
+BUILD: [01:0000000104:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_gpio.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C5E.tmp
+BUILD: [00:0000000105:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\obj\ARMV4I\retail\tps659xx_gpio.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_device_gpio.lib is missing.
+BUILD: [00:0000000106:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_device_gpio.lib is missing.
+BUILD: [00:0000000107:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\ directory.
+BUILD: [00:0000000108:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000109:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000110:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000111:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000112:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE\sources
+BUILD: [01:0000000113:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000114:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\GPIO\DEVICE
+BUILD: [01:0000000115:INFO  ] TARGETNAME: tps659xx_device_gpio
+BUILD: [01:0000000116:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000117:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_device_gpio.lib
+BUILD: [01:0000000118:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_device_gpio.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C5F.tmp
+BUILD: [00:0000000119:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\obj\ARMV4I\retail\rtc.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_rtc.lib is missing.
+BUILD: [00:0000000120:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_rtc.lib is missing.
+BUILD: [00:0000000121:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\ directory.
+BUILD: [00:0000000122:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000123:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000124:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000125:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000126:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC\sources
+BUILD: [01:0000000127:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000128:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\OALRTC
+BUILD: [01:0000000129:INFO  ] TARGETNAME: tps659xx_oal_rtc
+BUILD: [01:0000000130:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000131:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_rtc.lib
+BUILD: [01:0000000132:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_oal_rtc.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C60.tmp
+BUILD: [00:0000000133:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\DRIVER\obj\ARMV4I\retail\tps659xx.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_lib.lib is missing.
+BUILD: [00:0000000134:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\DRIVER\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_lib.lib is missing.
+BUILD: [00:0000000135:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\DRIVER\ directory.
+BUILD: [00:0000000136:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000137:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000138:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000139:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000140:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\DRIVER\sources
+BUILD: [01:0000000141:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000142:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\DRIVER
+BUILD: [01:0000000143:INFO  ] TARGETNAME: tps659xx_lib
+BUILD: [01:0000000144:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000145:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_lib.lib
+BUILD: [01:0000000146:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_lib.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C61.tmp
+BUILD: [00:0000000147:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MADC\obj\ARMV4I\retail\madc.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_madc.lib is missing.
+BUILD: [00:0000000148:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MADC\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_madc.lib is missing.
+BUILD: [00:0000000149:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MADC\ directory.
+BUILD: [00:0000000150:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000151:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000152:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000153:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000154:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MADC\sources
+BUILD: [01:0000000155:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000156:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\MADC
+BUILD: [01:0000000157:INFO  ] TARGETNAME: tps659xx_madc
+BUILD: [01:0000000158:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000159:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_madc.lib
+BUILD: [01:0000000160:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_madc.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C62.tmp
+BUILD: [00:0000000161:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\WAVE\obj\ARMV4I\retail\debug.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_wave.lib is missing.
+BUILD: [00:0000000162:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\WAVE\obj\ARMV4I\retail\tps659xx_audio.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_wave.lib is missing.
+BUILD: [00:0000000163:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\WAVE\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_wave.lib is missing.
+BUILD: [00:0000000164:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\WAVE\ directory.
+BUILD: [00:0000000165:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000166:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000167:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000168:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000169:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\WAVE\sources
+BUILD: [01:0000000170:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000171:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\WAVE
+BUILD: [01:0000000172:INFO  ] TARGETNAME: tps659xx_wave
+BUILD: [01:0000000173:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000174:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_wave.lib
+BUILD: [01:0000000175:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_wave.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C63.tmp
+BUILD: [00:0000000176:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\KEYPAD\obj\ARMV4I\retail\keypad.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_keypad.lib is missing.
+BUILD: [00:0000000177:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\KEYPAD\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_keypad.lib is missing.
+BUILD: [00:0000000178:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\KEYPAD\ directory.
+BUILD: [00:0000000179:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000180:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000181:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000182:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000183:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\KEYPAD\sources
+BUILD: [01:0000000184:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000185:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\KEYPAD
+BUILD: [01:0000000186:INFO  ] TARGETNAME: tps659xx_keypad
+BUILD: [01:0000000187:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000188:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_keypad.lib
+BUILD: [01:0000000189:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_keypad.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C64.tmp
+BUILD: [00:0000000190:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\obj\ARMV4I\retail\tled.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_tled.lib is missing.
+BUILD: [00:0000000191:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_tled.lib is missing.
+BUILD: [00:0000000192:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\ directory.
+BUILD: [00:0000000193:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000194:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000195:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000196:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000197:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED\sources
+BUILD: [01:0000000198:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000199:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\TLED
+BUILD: [01:0000000200:INFO  ] TARGETNAME: tps659xx_tled
+BUILD: [01:0000000201:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000202:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_tled.lib
+BUILD: [01:0000000203:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_tled.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C65.tmp
+BUILD: [00:0000000204:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\BCI\obj\ARMV4I\retail\bci.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_bci.lib is missing.
+BUILD: [00:0000000205:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\BCI\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_bci.lib is missing.
+BUILD: [00:0000000206:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\BCI\ directory.
+BUILD: [00:0000000207:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000208:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000209:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000210:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000211:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\BCI\sources
+BUILD: [01:0000000212:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000213:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\BCI
+BUILD: [01:0000000214:INFO  ] TARGETNAME: tps659xx_bci
+BUILD: [01:0000000215:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000216:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_bci.lib
+BUILD: [01:0000000217:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_bci.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C66.tmp
+BUILD: [00:0000000218:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\USBOTG\obj\ARMV4I\retail\tps659xx_musb.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_usbotg.lib is missing.
+BUILD: [00:0000000219:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\USBOTG\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_usbotg.lib is missing.
+BUILD: [00:0000000220:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\USBOTG\ directory.
+BUILD: [00:0000000221:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000222:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000223:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000224:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000225:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\USBOTG\sources
+BUILD: [01:0000000226:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000227:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TPS659XX\USBOTG
+BUILD: [01:0000000228:INFO  ] TARGETNAME: tps659xx_usbotg
+BUILD: [01:0000000229:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000230:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_usbotg.lib
+BUILD: [01:0000000231:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\tps659xx_usbotg.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C67.tmp
+BUILD: [00:0000000232:PROGC ] Saving C:\WINCE600\PLATFORM\COMMON\Build.dat.
+BUILD: [00:0000000233:INFO  ] Done.
+BUILD: [00:0000000234:PROGC ] Done.
+BUILD: [00:0000000235:PROGC ]                        Files  Warnings  Errors
+BUILD: [00:0000000236:PROGC ] Midl                       0         0       0
+BUILD: [00:0000000237:PROGC ] Message                    0         0       0
+BUILD: [00:0000000238:PROGC ] Precomp Header             0         0       0
+BUILD: [00:0000000239:PROGC ] Resource                   0         0       0
+BUILD: [00:0000000240:PROGC ] MASM                       0         0       0
+BUILD: [00:0000000241:PROGC ] SHASM                      0         0       0
+BUILD: [00:0000000242:PROGC ] ARMASM                     0         0       0
+BUILD: [00:0000000243:PROGC ] MIPSASM                    0         0       0
+BUILD: [00:0000000244:PROGC ] C++                        3         0       0
+BUILD: [00:0000000245:PROGC ] C                          1         0       0
+BUILD: [00:0000000246:PROGC ] Static Libraries          11         0       0
+BUILD: [00:0000000247:PROGC ] Exe's                      0         0       0
+BUILD: [00:0000000248:PROGC ] Dll's                      0         0       0
+BUILD: [00:0000000249:PROGC ] Preprocess deffile         0         0       0
+BUILD: [00:0000000250:PROGC ] Resx                       0         0       0
+BUILD: [00:0000000251:PROGC ] CSharp Compile             0         0       0
+BUILD: [00:0000000252:PROGC ] Other                      0         0       0
+BUILD: [00:0000000253:PROGC ] 
+BUILD: [00:0000000254:PROGC ] Total                     15         0       0
+BUILD: [00:0000000255:PROGC ] 
+BUILD: [00:0000000256:PROGC ] 0 Warnings,  0 Errors
+BUILD: [00:0000000257:PROGC ] GetSystemTimes (seconds): Idle: 17    Kernel: 20    User: 3    
+BUILD: [00:0000000258:PROGC ] Elapsed  time  (seconds): 5    

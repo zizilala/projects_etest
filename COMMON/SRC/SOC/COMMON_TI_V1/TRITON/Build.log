@@ -1,0 +1,68 @@
+BUILD: [Thrd:Sequence:Type  ] Message
+BUILD: [00:0000000000:PROGC ] Build started with parameters:
+BUILD: [00:0000000001:PROGC ] Build started in directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON
+BUILD: [00:0000000002:PROGC ] Checking for C:\WINCE600\sdk\bin\i386\srccheck.exe.
+BUILD: [00:0000000003:PROGC ] Running passes WCEFILES0, MIDL, MC, ASN, THUNK, PRECOMPHEADER, COMPILE, LIB, LINK, MANAGEDRESX, MANAGEDMOD, MANAGEDDLL, MANAGEDEXE, MANAGEDWIN for ARM.
+BUILD: [00:0000000004:PROGC ] Loading database "C:\WINCE600\PLATFORM\COMMON\Build.dat".
+BUILD: [00:0000000005:PROGC ] Done.
+BUILD: [00:0000000006:PROGC ] Computing include file dependencies:
+BUILD: [00:0000000007:PROGC ] Checking for SDK include directory: C:\WINCE600\sdk\CE\inc.
+BUILD: [00:0000000008:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\OAL\
+BUILD: [00:0000000009:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\DEVICE\
+BUILD: [00:0000000010:PROGC ] Saving C:\WINCE600\PLATFORM\COMMON\Build.dat.
+BUILD: [00:0000000011:INFO  ] Done.
+BUILD: [00:0000000012:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\OAL\obj\ARMV4I\retail\twl_access.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_oal.lib is missing.
+BUILD: [00:0000000013:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\OAL\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_oal.lib is missing.
+BUILD: [00:0000000014:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\OAL\ directory.
+BUILD: [00:0000000015:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000016:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000017:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000018:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000019:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\OAL\sources
+BUILD: [01:0000000020:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000021:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\OAL
+BUILD: [01:0000000022:INFO  ] TARGETNAME: triton_oal
+BUILD: [01:0000000023:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000024:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_oal.lib
+BUILD: [01:0000000025:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_oal.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C69.tmp
+BUILD: [00:0000000026:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\DEVICE\obj\ARMV4I\retail\twl_access.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_device.lib is missing.
+BUILD: [00:0000000027:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\DEVICE\ because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_device.lib is missing.
+BUILD: [00:0000000028:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\DEVICE\ directory.
+BUILD: [00:0000000029:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000030:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000031:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000032:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000033:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\DEVICE\sources
+BUILD: [01:0000000034:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000035:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\TRITON\TWL\DEVICE
+BUILD: [01:0000000036:INFO  ] TARGETNAME: triton_device
+BUILD: [01:0000000037:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000038:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_device.lib
+BUILD: [01:0000000039:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\triton_device.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1C6A.tmp
+BUILD: [00:0000000040:PROGC ] Saving C:\WINCE600\PLATFORM\COMMON\Build.dat.
+BUILD: [00:0000000041:INFO  ] Done.
+BUILD: [00:0000000042:PROGC ] Done.
+BUILD: [00:0000000043:PROGC ]                        Files  Warnings  Errors
+BUILD: [00:0000000044:PROGC ] Midl                       0         0       0
+BUILD: [00:0000000045:PROGC ] Message                    0         0       0
+BUILD: [00:0000000046:PROGC ] Precomp Header             0         0       0
+BUILD: [00:0000000047:PROGC ] Resource                   0         0       0
+BUILD: [00:0000000048:PROGC ] MASM                       0         0       0
+BUILD: [00:0000000049:PROGC ] SHASM                      0         0       0
+BUILD: [00:0000000050:PROGC ] ARMASM                     0         0       0
+BUILD: [00:0000000051:PROGC ] MIPSASM                    0         0       0
+BUILD: [00:0000000052:PROGC ] C++                        0         0       0
+BUILD: [00:0000000053:PROGC ] C                          0         0       0
+BUILD: [00:0000000054:PROGC ] Static Libraries           2         0       0
+BUILD: [00:0000000055:PROGC ] Exe's                      0         0       0
+BUILD: [00:0000000056:PROGC ] Dll's                      0         0       0
+BUILD: [00:0000000057:PROGC ] Preprocess deffile         0         0       0
+BUILD: [00:0000000058:PROGC ] Resx                       0         0       0
+BUILD: [00:0000000059:PROGC ] CSharp Compile             0         0       0
+BUILD: [00:0000000060:PROGC ] Other                      0         0       0
+BUILD: [00:0000000061:PROGC ] 
+BUILD: [00:0000000062:PROGC ] Total                      2         0       0
+BUILD: [00:0000000063:PROGC ] 
+BUILD: [00:0000000064:PROGC ] 0 Warnings,  0 Errors
+BUILD: [00:0000000065:PROGC ] GetSystemTimes (seconds): Idle: 1     Kernel: 2     User: 0    
+BUILD: [00:0000000066:PROGC ] Elapsed  time  (seconds): 0    

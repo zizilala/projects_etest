@@ -1,0 +1,163 @@
+BUILD: [Thrd:Sequence:Type  ] Message
+BUILD: [00:0000000000:PROGC ] Build started with parameters:
+BUILD: [00:0000000001:PROGC ] Build started in directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL
+BUILD: [00:0000000002:PROGC ] Checking for C:\WINCE600\sdk\bin\i386\srccheck.exe.
+BUILD: [00:0000000003:PROGC ] Running passes WCEFILES0, MIDL, MC, ASN, THUNK, PRECOMPHEADER, COMPILE, LIB, LINK, MANAGEDRESX, MANAGEDMOD, MANAGEDDLL, MANAGEDEXE, MANAGEDWIN for ARM.
+BUILD: [00:0000000004:PROGC ] Loading database "C:\WINCE600\PLATFORM\COMMON\Build.dat".
+BUILD: [00:0000000005:PROGC ] Done.
+BUILD: [00:0000000006:PROGC ] Computing include file dependencies:
+BUILD: [00:0000000007:PROGC ] Checking for SDK include directory: C:\WINCE600\sdk\CE\inc.
+BUILD: [00:0000000008:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_DEBUGSERIAL\
+BUILD: [00:0000000009:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_OALI2C\
+BUILD: [00:0000000010:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_NEON\
+BUILD: [00:0000000011:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_INTR\
+BUILD: [00:0000000012:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\
+BUILD: [00:0000000013:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\
+BUILD: [00:0000000014:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_GTP_TIMER\PROFILER\
+BUILD: [00:0000000015:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_GTP_TIMER\TIMER\
+BUILD: [00:0000000016:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_ALLOC\
+BUILD: [00:0000000017:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\S35390_OALRTC\
+BUILD: [00:0000000018:WARNS ] Directory: C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\AM3517\inc\ does not exist.
+BUILD: [00:0000000019:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_POWER\
+BUILD: [00:0000000020:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_OALPADCFG\
+BUILD: [00:0000000021:PROGC ] Scan C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_WATCHDOG\
+BUILD: [00:0000000022:PROGC ] Saving C:\WINCE600\PLATFORM\COMMON\Build.dat.
+BUILD: [00:0000000023:INFO  ] Done.
+BUILD: [00:0000000024:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\reboot.c because target: obj\ARMV4I\retail\reboot.obj is missing.
+BUILD: [00:0000000025:PROGC ] Building COMPILE Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\ directory.
+BUILD: [00:0000000026:PROG  ] 'NMAKE.EXE TargetCompilePass  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON NOLINK=1 NOPASS0=1'
+BUILD: [01:0000000027:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000028:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000029:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000030:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\sources
+BUILD: [01:0000000031:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000032:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL
+BUILD: [01:0000000033:INFO  ] TARGETNAME: common_ti_ioctl
+BUILD: [01:0000000034:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000035:PROGC ] Compiling .\reboot.c
+BUILD: [01:0000000036:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\reboot.obj -c -IARM\ -I. -IC:\WINCE600\platform\common\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -Dproject_cebase -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DOAL_BSP_CALLBACKS -DOAL_ILTIMING -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\reboot.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4    /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return  /GS C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\.\reboot.c
+BUILD: [01:0000000037:INFO  ] reboot.c
+BUILD: [00:0000000038:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_DEBUGSERIAL\obj\ARMV4I\retail\debugserial.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_debugserial.lib is out of date.
+BUILD: [00:0000000039:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_DEBUGSERIAL\ directory.
+BUILD: [00:0000000040:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000041:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000042:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000043:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000044:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_DEBUGSERIAL\sources
+BUILD: [01:0000000045:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000046:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_DEBUGSERIAL
+BUILD: [01:0000000047:INFO  ] TARGETNAME: common_ti_debugserial
+BUILD: [01:0000000048:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000049:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_debugserial.lib
+BUILD: [01:0000000050:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_debugserial.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm35A.tmp
+BUILD: [00:0000000051:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_OALI2C\obj\ARMV4I\retail\oali2c.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_oali2c.lib is out of date.
+BUILD: [00:0000000052:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_OALI2C\ directory.
+BUILD: [00:0000000053:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000054:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000055:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000056:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000057:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_OALI2C\sources
+BUILD: [01:0000000058:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000059:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_OALI2C
+BUILD: [01:0000000060:INFO  ] TARGETNAME: common_ti_oali2c
+BUILD: [01:0000000061:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000062:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_oali2c.lib
+BUILD: [01:0000000063:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_oali2c.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm35B.tmp
+BUILD: [00:0000000064:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_NEON\obj\ARMV4I\retail\vfphandler.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_vfpneon.lib is out of date.
+BUILD: [00:0000000065:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_NEON\obj\ARMV4I\retail\vfp.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_vfpneon.lib is out of date.
+BUILD: [00:0000000066:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_NEON\ directory.
+BUILD: [00:0000000067:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000068:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000069:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000070:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000071:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_NEON\sources
+BUILD: [01:0000000072:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000073:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_NEON
+BUILD: [01:0000000074:INFO  ] TARGETNAME: common_ti_vfpneon
+BUILD: [01:0000000075:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000076:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_vfpneon.lib
+BUILD: [01:0000000077:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_vfpneon.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm35C.tmp
+BUILD: [00:0000000078:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_INTR\obj\ARMV4I\retail\map.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_intr.lib is out of date.
+BUILD: [00:0000000079:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_INTR\obj\ARMV4I\retail\intr.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_intr.lib is out of date.
+BUILD: [00:0000000080:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_INTR\obj\ARMV4I\retail\oem.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_intr.lib is out of date.
+BUILD: [00:0000000081:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_INTR\ directory.
+BUILD: [00:0000000082:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000083:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000084:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000085:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000086:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_INTR\sources
+BUILD: [01:0000000087:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000088:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_INTR
+BUILD: [01:0000000089:INFO  ] TARGETNAME: common_ti_intr
+BUILD: [01:0000000090:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000091:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_intr.lib
+BUILD: [01:0000000092:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_intr.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm35D.tmp
+BUILD: [00:0000000093:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\init.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000094:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\attrib.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000095:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\flush.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000096:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\cacheid.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000097:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\cachemode.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000098:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\icache.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000099:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\dcache.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000100:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\obj\ARMV4I\retail\tlb.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib is out of date.
+BUILD: [00:0000000101:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\ directory.
+BUILD: [00:0000000102:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000103:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000104:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000105:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000106:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE\sources
+BUILD: [01:0000000107:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000108:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\CORTEXA8_CACHE
+BUILD: [01:0000000109:INFO  ] TARGETNAME: common_ti_cortexA8_cache
+BUILD: [01:0000000110:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000111:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib
+BUILD: [01:0000000112:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_cortexA8_cache.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm35E.tmp
+BUILD: [01:0000000113:INFO  ] 系統找不到指定的檔案。
+BUILD: [01:0000000114:INFO  ] 檔案不可以複製到檔案本身。
+BUILD: [01:0000000115:INFO  ] 複製了         0 個檔案。
+BUILD: [00:0000000116:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\obj\ARMV4I\retail\hwentropy.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.lib is out of date.
+BUILD: [00:0000000117:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\obj\ARMV4I\retail\reboot.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.lib is out of date.
+BUILD: [00:0000000118:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\obj\ARMV4I\retail\rndismac.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.lib is out of date.
+BUILD: [00:0000000119:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\obj\ARMV4I\retail\format.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.lib is out of date.
+BUILD: [00:0000000120:INFO  ] Will Build C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\obj\ARMV4I\retail\ioctlex.obj because target: C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.lib is out of date.
+BUILD: [00:0000000121:PROGC ] Building LIB Pass in C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\ directory.
+BUILD: [00:0000000122:PROG  ] 'NMAKE.EXE TargetLibFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\COMMON LINKONLY=1 NOPASS0=1'
+BUILD: [01:0000000123:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.default
+BUILD: [01:0000000124:INFO  ] makefile.def: BUILDROOT is C:\WINCE600\PLATFORM\COMMON
+BUILD: [01:0000000125:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\sources.cmn
+BUILD: [01:0000000126:INFO  ] makefile.def: Including C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL\sources
+BUILD: [01:0000000127:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\Sources.CE
+BUILD: [01:0000000128:INFO  ] Directory: C:\WINCE600\PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\OAL\OMAP_IOCTL
+BUILD: [01:0000000129:INFO  ] TARGETNAME: common_ti_ioctl
+BUILD: [01:0000000130:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORMCOMMON
+BUILD: [01:0000000131:PROGC ] Linking C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.lib
+BUILD: [01:0000000132:INFO  ] 	link -lib -out:C:\WINCE600\platform\common\lib\ARMV4I\retail\common_ti_ioctl.lib -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm35F.tmp
+BUILD: [01:0000000133:INFO  ] 檔案不可以複製到檔案本身。
+BUILD: [01:0000000134:INFO  ] 複製了         0 個檔案。
+BUILD: [00:0000000135:PROGC ] Saving C:\WINCE600\PLATFORM\COMMON\Build.dat.
+BUILD: [00:0000000136:INFO  ] Done.
+BUILD: [00:0000000137:PROGC ] Done.
+BUILD: [00:0000000138:PROGC ]                        Files  Warnings  Errors
+BUILD: [00:0000000139:PROGC ] Midl                       0         0       0
+BUILD: [00:0000000140:PROGC ] Message                    0         0       0
+BUILD: [00:0000000141:PROGC ] Precomp Header             0         0       0
+BUILD: [00:0000000142:PROGC ] Resource                   0         0       0
+BUILD: [00:0000000143:PROGC ] MASM                       0         0       0
+BUILD: [00:0000000144:PROGC ] SHASM                      0         0       0
+BUILD: [00:0000000145:PROGC ] ARMASM                     0         0       0
+BUILD: [00:0000000146:PROGC ] MIPSASM                    0         0       0
+BUILD: [00:0000000147:PROGC ] C++                        0         0       0
+BUILD: [00:0000000148:PROGC ] C                          1         0       0
+BUILD: [00:0000000149:PROGC ] Static Libraries           6         0       0
+BUILD: [00:0000000150:PROGC ] Exe's                      0         0       0
+BUILD: [00:0000000151:PROGC ] Dll's                      0         0       0
+BUILD: [00:0000000152:PROGC ] Preprocess deffile         0         0       0
+BUILD: [00:0000000153:PROGC ] Resx                       0         0       0
+BUILD: [00:0000000154:PROGC ] CSharp Compile             0         0       0
+BUILD: [00:0000000155:PROGC ] Other                      0         1       0
+BUILD: [00:0000000156:PROGC ] 
+BUILD: [00:0000000157:PROGC ] Total                      7         1       0
+BUILD: [00:0000000158:PROGC ] 
+BUILD: [00:0000000159:PROGC ] 1 Warnings,  0 Errors
+BUILD: [00:0000000160:PROGC ] GetSystemTimes (seconds): Idle: 7     Kernel: 8     User: 1    
+BUILD: [00:0000000161:PROGC ] Elapsed  time  (seconds): 2    
