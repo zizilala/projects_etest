@@ -179,13 +179,9 @@
   00004	e24dd018	 sub         sp, sp, #0x18
   00008		 |$M44096|
 
-; 92   :     DWORD   dwCacheType,
-; 93   :             dwCacheLevelID,
-; 94   :             dwCacheSize;
-; 95   : 
-; 96   :     OALMSG(OAL_CACHE&&OAL_VERBOSE, (
-; 97   :         L"+OALCacheGlobalsInit()\r\n"
-; 98   :     ));
+; 92   :     DWORD dwCacheType, dwCacheLevelID, dwCacheSize;
+; 93   : 
+; 94   :     OALMSG(OAL_CACHE&&OAL_VERBOSE, (L"+OALCacheGlobalsInit()\r\n"));
 
   00008	e59fa280	 ldr         r10, [pc, #0x280]
   0000c	e59a3440	 ldr         r3, [r10, #0x440]
@@ -194,10 +190,9 @@
   00018	159f026c	 ldrne       r0, [pc, #0x26C]
   0001c	1b000000	 blne        NKDbgPrintfW
 
-; 99   : 
-; 100  : 
-; 101  :     //  Initialize WinCE cache info struct
-; 102  :     memset( &g_oalCacheInfo, 0 , sizeof(g_oalCacheInfo) );
+; 95   : 
+; 96   :     //  Initialize WinCE cache info struct
+; 97   :     memset( &g_oalCacheInfo, 0 , sizeof(g_oalCacheInfo) );
 
   00020	e59f9260	 ldr         r9, [pc, #0x260]
   00024	e3a02048	 mov         r2, #0x48
@@ -205,25 +200,24 @@
   0002c	e1a00009	 mov         r0, r9
   00030	eb000000	 bl          memset
 
-; 103  : 
-; 104  : 
-; 105  :     //  Get cache type
-; 106  :     dwCacheType = OALGetCacheType();
+; 98   : 
+; 99   :     //  Get cache type
+; 100  :     dwCacheType = OALGetCacheType();
 
   00034	eb000000	 bl          OALGetCacheType
   00038	e1a0b000	 mov         r11, r0
 
-; 107  : 
-; 108  :     //  Get cache info
-; 109  :     dwCacheLevelID = OALGetCacheLevelID();
+; 101  : 
+; 102  :     //  Get cache info
+; 103  :     dwCacheLevelID = OALGetCacheLevelID();
 
   0003c	eb000000	 bl          OALGetCacheLevelID
   00040	e1a05000	 mov         r5, r0
 
-; 110  : 
-; 111  : 
-; 112  :     //  Set L1 cache properties
-; 113  :     g_oalCacheInfo.L1Flags |= ((dwCacheLevelID & ARMV7_CACHEID_MASK) == ARMV7_CACHEID_UCACHE) ? CF_UNIFIED : 0;
+; 104  : 
+; 105  : 
+; 106  :     //  Set L1 cache properties
+; 107  :     g_oalCacheInfo.L1Flags |= ((dwCacheLevelID & ARMV7_CACHEID_MASK) == ARMV7_CACHEID_UCACHE) ? CF_UNIFIED : 0;
 
   00044	e2053007	 and         r3, r5, #7
   00048	e3530004	 cmp         r3, #4
@@ -231,22 +225,22 @@
   00050	03a02001	 moveq       r2, #1
   00054	13a02000	 movne       r2, #0
 
-; 114  : 
-; 115  :     //  L1 data
-; 116  :     dwCacheSize = OALGetCacheSizeID(ARMV7_CACHESIZE_SEL_L1|ARMV7_CACHESIZE_SEL_DATA);
+; 108  : 
+; 109  :     //  L1 data
+; 110  :     dwCacheSize = OALGetCacheSizeID(ARMV7_CACHESIZE_SEL_L1|ARMV7_CACHESIZE_SEL_DATA);
 
   00058	e1823003	 orr         r3, r2, r3
   0005c	e3a00000	 mov         r0, #0
   00060	e5893000	 str         r3, [r9]
   00064	eb000000	 bl          OALGetCacheSizeID
 
-; 117  : 
-; 118  :     g_oalCacheInfo.L1DLineSize    = 1 << (((dwCacheSize & ARMV7_CACHESIZE_LINESIZE_MASK) >> ARMV7_CACHESIZE_LINESIZE_SHIFT) + 4);
-; 119  :     g_oalCacheInfo.L1DNumWays     = ((dwCacheSize & ARMV7_CACHESIZE_ASSOCIATIVITY_MASK) >> ARMV7_CACHESIZE_ASSOCIATIVITY_SHIFT) + 1;
+; 111  : 
+; 112  :     g_oalCacheInfo.L1DLineSize    = 1 << (((dwCacheSize & ARMV7_CACHESIZE_LINESIZE_MASK) >> ARMV7_CACHESIZE_LINESIZE_SHIFT) + 4);
+; 113  :     g_oalCacheInfo.L1DNumWays     = ((dwCacheSize & ARMV7_CACHESIZE_ASSOCIATIVITY_MASK) >> ARMV7_CACHESIZE_ASSOCIATIVITY_SHIFT) + 1;
 
   00068	e1a03980	 mov         r3, r0, lsl #19
 
-; 120  :     g_oalCacheInfo.L1DSetsPerWay  = ((dwCacheSize & ARMV7_CACHESIZE_NUMSETS_MASK) >> ARMV7_CACHESIZE_NUMSETS_SHIFT) + 1;
+; 114  :     g_oalCacheInfo.L1DSetsPerWay  = ((dwCacheSize & ARMV7_CACHESIZE_NUMSETS_MASK) >> ARMV7_CACHESIZE_NUMSETS_SHIFT) + 1;
 
   0006c	e1a02200	 mov         r2, r0, lsl #4
   00070	e1a03b23	 mov         r3, r3, lsr #22
@@ -257,14 +251,14 @@
   00084	e2824001	 add         r4, r2, #1
   00088	e3a01001	 mov         r1, #1
 
-; 121  :     g_oalCacheInfo.L1DSize        = g_oalCacheInfo.L1DLineSize * g_oalCacheInfo.L1DNumWays * g_oalCacheInfo.L1DSetsPerWay;
+; 115  :     g_oalCacheInfo.L1DSize        = g_oalCacheInfo.L1DLineSize * g_oalCacheInfo.L1DNumWays * g_oalCacheInfo.L1DSetsPerWay;
 
   0008c	e0020e94	 mul         r2, r4, lr
   00090	e1a03311	 mov         r3, r1, lsl r3
 
-; 122  : 
-; 123  :     //  L1 instruction
-; 124  :     dwCacheSize = OALGetCacheSizeID(ARMV7_CACHESIZE_SEL_L1|ARMV7_CACHESIZE_SEL_INSTRUCTION);
+; 116  : 
+; 117  :     //  L1 instruction
+; 118  :     dwCacheSize = OALGetCacheSizeID(ARMV7_CACHESIZE_SEL_L1|ARMV7_CACHESIZE_SEL_INSTRUCTION);
 
   00094	e3a00001	 mov         r0, #1
   00098	e0010392	 mul         r1, r2, r3
@@ -274,13 +268,13 @@
   000a8	e5891020	 str         r1, [r9, #0x20]
   000ac	eb000000	 bl          OALGetCacheSizeID
 
-; 125  : 
-; 126  :     g_oalCacheInfo.L1ILineSize    = 1 << (((dwCacheSize & ARMV7_CACHESIZE_LINESIZE_MASK) >> ARMV7_CACHESIZE_LINESIZE_SHIFT) + 4);
-; 127  :     g_oalCacheInfo.L1INumWays     = ((dwCacheSize & ARMV7_CACHESIZE_ASSOCIATIVITY_MASK) >> ARMV7_CACHESIZE_ASSOCIATIVITY_SHIFT) + 1;
+; 119  : 
+; 120  :     g_oalCacheInfo.L1ILineSize    = 1 << (((dwCacheSize & ARMV7_CACHESIZE_LINESIZE_MASK) >> ARMV7_CACHESIZE_LINESIZE_SHIFT) + 4);
+; 121  :     g_oalCacheInfo.L1INumWays     = ((dwCacheSize & ARMV7_CACHESIZE_ASSOCIATIVITY_MASK) >> ARMV7_CACHESIZE_ASSOCIATIVITY_SHIFT) + 1;
 
   000b0	e1a03980	 mov         r3, r0, lsl #19
 
-; 128  :     g_oalCacheInfo.L1ISetsPerWay  = ((dwCacheSize & ARMV7_CACHESIZE_NUMSETS_MASK) >> ARMV7_CACHESIZE_NUMSETS_SHIFT) + 1;
+; 122  :     g_oalCacheInfo.L1ISetsPerWay  = ((dwCacheSize & ARMV7_CACHESIZE_NUMSETS_MASK) >> ARMV7_CACHESIZE_NUMSETS_SHIFT) + 1;
 
   000b4	e1a02200	 mov         r2, r0, lsl #4
   000b8	e1a03b23	 mov         r3, r3, lsr #22
@@ -291,23 +285,23 @@
   000cc	e282e001	 add         lr, r2, #1
   000d0	e3a01001	 mov         r1, #1
 
-; 129  :     g_oalCacheInfo.L1ISize        = g_oalCacheInfo.L1ILineSize * g_oalCacheInfo.L1INumWays * g_oalCacheInfo.L1ISetsPerWay;
+; 123  :     g_oalCacheInfo.L1ISize        = g_oalCacheInfo.L1ILineSize * g_oalCacheInfo.L1INumWays * g_oalCacheInfo.L1ISetsPerWay;
 
   000d4	e002009e	 mul         r2, lr, r0
   000d8	e1a03311	 mov         r3, r1, lsl r3
 
-; 130  : 
-; 131  : 
-; 132  : 
-; 133  :     //  Set L2 cache properties
-; 134  :     dwCacheLevelID >>= 3;
+; 124  : 
+; 125  : 
+; 126  : 
+; 127  :     //  Set L2 cache properties
+; 128  :     dwCacheLevelID >>= 3;
 
   000dc	e1a041a5	 mov         r4, r5, lsr #3
   000e0	e0010392	 mul         r1, r2, r3
   000e4	e589300c	 str         r3, [r9, #0xC]
   000e8	e5890008	 str         r0, [r9, #8]
 
-; 135  :     g_oalCacheInfo.L2Flags |= ((dwCacheLevelID & ARMV7_CACHEID_MASK) == ARMV7_CACHEID_UCACHE) ? CF_UNIFIED : 0;
+; 129  :     g_oalCacheInfo.L2Flags |= ((dwCacheLevelID & ARMV7_CACHEID_MASK) == ARMV7_CACHEID_UCACHE) ? CF_UNIFIED : 0;
 
   000ec	e2043007	 and         r3, r4, #7
   000f0	e589e004	 str         lr, [r9, #4]
@@ -317,22 +311,22 @@
   00100	03a02001	 moveq       r2, #1
   00104	13a02000	 movne       r2, #0
 
-; 136  : 
-; 137  :     //  L2 unified cache
-; 138  :     dwCacheSize = OALGetCacheSizeID(ARMV7_CACHESIZE_SEL_L2|ARMV7_CACHESIZE_SEL_DATA);
+; 130  : 
+; 131  :     //  L2 unified cache
+; 132  :     dwCacheSize = OALGetCacheSizeID(ARMV7_CACHESIZE_SEL_L2|ARMV7_CACHESIZE_SEL_DATA);
 
   00108	e1823003	 orr         r3, r2, r3
   0010c	e3a00002	 mov         r0, #2
   00110	e5893024	 str         r3, [r9, #0x24]
   00114	eb000000	 bl          OALGetCacheSizeID
 
-; 139  : 
-; 140  :     g_oalCacheInfo.L2DLineSize    = 1 << (((dwCacheSize & ARMV7_CACHESIZE_LINESIZE_MASK) >> ARMV7_CACHESIZE_LINESIZE_SHIFT) + 4);
-; 141  :     g_oalCacheInfo.L2DNumWays     = ((dwCacheSize & ARMV7_CACHESIZE_ASSOCIATIVITY_MASK) >> ARMV7_CACHESIZE_ASSOCIATIVITY_SHIFT) + 1;
+; 133  : 
+; 134  :     g_oalCacheInfo.L2DLineSize    = 1 << (((dwCacheSize & ARMV7_CACHESIZE_LINESIZE_MASK) >> ARMV7_CACHESIZE_LINESIZE_SHIFT) + 4);
+; 135  :     g_oalCacheInfo.L2DNumWays     = ((dwCacheSize & ARMV7_CACHESIZE_ASSOCIATIVITY_MASK) >> ARMV7_CACHESIZE_ASSOCIATIVITY_SHIFT) + 1;
 
   00118	e1a03980	 mov         r3, r0, lsl #19
 
-; 142  :     g_oalCacheInfo.L2DSetsPerWay  = ((dwCacheSize & ARMV7_CACHESIZE_NUMSETS_MASK) >> ARMV7_CACHESIZE_NUMSETS_SHIFT) + 1;
+; 136  :     g_oalCacheInfo.L2DSetsPerWay  = ((dwCacheSize & ARMV7_CACHESIZE_NUMSETS_MASK) >> ARMV7_CACHESIZE_NUMSETS_SHIFT) + 1;
 
   0011c	e1a02200	 mov         r2, r0, lsl #4
   00120	e1a03b23	 mov         r3, r3, lsr #22
@@ -343,34 +337,34 @@
   00134	e2813004	 add         r3, r1, #4
   00138	e3a02001	 mov         r2, #1
 
-; 143  :     g_oalCacheInfo.L2DSize        = g_oalCacheInfo.L2DLineSize * g_oalCacheInfo.L2DNumWays * g_oalCacheInfo.L2DSetsPerWay;
+; 137  :     g_oalCacheInfo.L2DSize        = g_oalCacheInfo.L2DLineSize * g_oalCacheInfo.L2DNumWays * g_oalCacheInfo.L2DSetsPerWay;
 
   0013c	e1a07312	 mov         r7, r2, lsl r3
 
+; 138  : 
+; 139  :     g_oalCacheInfo.L2ILineSize    = g_oalCacheInfo.L2DLineSize;
+; 140  :     g_oalCacheInfo.L2INumWays     = g_oalCacheInfo.L2DNumWays;
+; 141  :     g_oalCacheInfo.L2ISetsPerWay  = g_oalCacheInfo.L2DSetsPerWay;
+; 142  :     g_oalCacheInfo.L2ISize        = g_oalCacheInfo.L2DSize;
+; 143  : 
 ; 144  : 
-; 145  :     g_oalCacheInfo.L2ILineSize    = g_oalCacheInfo.L2DLineSize;
-; 146  :     g_oalCacheInfo.L2INumWays     = g_oalCacheInfo.L2DNumWays;
-; 147  :     g_oalCacheInfo.L2ISetsPerWay  = g_oalCacheInfo.L2DSetsPerWay;
-; 148  :     g_oalCacheInfo.L2ISize        = g_oalCacheInfo.L2DSize;
-; 149  : 
-; 150  : 
-; 151  :     //  Compute cache range limit
-; 152  :     /*
-; 153  :     g_dwRangeLimit = g_oalCacheInfo.L1DLineSize*(
-; 154  :                         g_oalCacheInfo.L1DSetsPerWay*g_oalCacheInfo.L1DNumWays +
-; 155  :                         g_oalCacheInfo.L2DSetsPerWay*g_oalCacheInfo.L2DNumWays);
-; 156  :     */
-; 157  :     g_dwRangeLimit = g_oalCacheInfo.L2DSize;
+; 145  :     //  Compute cache range limit
+; 146  :     /*
+; 147  :     g_dwRangeLimit = g_oalCacheInfo.L1DLineSize*(
+; 148  :                         g_oalCacheInfo.L1DSetsPerWay*g_oalCacheInfo.L1DNumWays +
+; 149  :                         g_oalCacheInfo.L2DSetsPerWay*g_oalCacheInfo.L2DNumWays);
+; 150  :     */
+; 151  :     g_dwRangeLimit = g_oalCacheInfo.L2DSize;
 
   00140	e59f313c	 ldr         r3, [pc, #0x13C]
   00144	e0010596	 mul         r1, r6, r5
 
-; 158  : 
-; 159  : 
-; 160  :     OALMSG(OAL_CACHE&&OAL_VERBOSE,
-; 161  :             (TEXT("CacheType = %x   CacheLevelID = %x\r\n"),
-; 162  :              dwCacheType,
-; 163  :              dwCacheLevelID));
+; 152  : 
+; 153  : 
+; 154  :     OALMSG(OAL_CACHE&&OAL_VERBOSE,
+; 155  :             (TEXT("CacheType = %x   CacheLevelID = %x\r\n"),
+; 156  :              dwCacheType,
+; 157  :              dwCacheLevelID));
 
   00148	e0080791	 mul         r8, r1, r7
   0014c	e5897040	 str         r7, [r9, #0x40]
@@ -398,14 +392,14 @@
   001a4	e5996038	 ldr         r6, [r9, #0x38]
   001a8		 |$LN9@OALCacheGl|
 
-; 164  : 
-; 165  :     OALMSG(OAL_CACHE&&OAL_VERBOSE, 
-; 166  :             (TEXT("L1 cache details:\r\n flags %x\r\nI: %d sets/way, %d ways, %d line size, %d size\r\nD: %d sets/way, %d ways, %d line size, %d size\r\n"),
-; 167  :              g_oalCacheInfo.L1Flags,
-; 168  :              g_oalCacheInfo.L1ISetsPerWay, g_oalCacheInfo.L1INumWays,
-; 169  :              g_oalCacheInfo.L1ILineSize, g_oalCacheInfo.L1ISize,
-; 170  :              g_oalCacheInfo.L1DSetsPerWay, g_oalCacheInfo.L1DNumWays,
-; 171  :              g_oalCacheInfo.L1DLineSize, g_oalCacheInfo.L1DSize));
+; 158  : 
+; 159  :     OALMSG(OAL_CACHE&&OAL_VERBOSE, 
+; 160  :             (TEXT("L1 cache details:\r\n flags %x\r\nI: %d sets/way, %d ways, %d line size, %d size\r\nD: %d sets/way, %d ways, %d line size, %d size\r\n"),
+; 161  :              g_oalCacheInfo.L1Flags,
+; 162  :              g_oalCacheInfo.L1ISetsPerWay, g_oalCacheInfo.L1INumWays,
+; 163  :              g_oalCacheInfo.L1ILineSize, g_oalCacheInfo.L1ISize,
+; 164  :              g_oalCacheInfo.L1DSetsPerWay, g_oalCacheInfo.L1DNumWays,
+; 165  :              g_oalCacheInfo.L1DLineSize, g_oalCacheInfo.L1DSize));
 
   001a8	e3100020	 tst         r0, #0x20
   001ac	0a000017	 beq         |$LN11@OALCacheGl|
@@ -435,14 +429,14 @@
   0020c	e5996038	 ldr         r6, [r9, #0x38]
   00210		 |$LN11@OALCacheGl|
 
-; 172  : 
-; 173  :     OALMSG(OAL_CACHE&&OAL_VERBOSE, 
-; 174  :             (TEXT("L2 cache details:\r\n flags %x\r\nI: %d sets/way, %d ways, %d line size, %d size\r\nD: %d sets/way, %d ways, %d line size, %d size\r\n"),
-; 175  :              g_oalCacheInfo.L2Flags,
-; 176  :              g_oalCacheInfo.L2ISetsPerWay, g_oalCacheInfo.L2INumWays,
-; 177  :              g_oalCacheInfo.L2ILineSize, g_oalCacheInfo.L2ISize,
-; 178  :              g_oalCacheInfo.L2DSetsPerWay, g_oalCacheInfo.L2DNumWays,
-; 179  :              g_oalCacheInfo.L2DLineSize, g_oalCacheInfo.L2DSize));
+; 166  : 
+; 167  :     OALMSG(OAL_CACHE&&OAL_VERBOSE, 
+; 168  :             (TEXT("L2 cache details:\r\n flags %x\r\nI: %d sets/way, %d ways, %d line size, %d size\r\nD: %d sets/way, %d ways, %d line size, %d size\r\n"),
+; 169  :              g_oalCacheInfo.L2Flags,
+; 170  :              g_oalCacheInfo.L2ISetsPerWay, g_oalCacheInfo.L2INumWays,
+; 171  :              g_oalCacheInfo.L2ILineSize, g_oalCacheInfo.L2ISize,
+; 172  :              g_oalCacheInfo.L2DSetsPerWay, g_oalCacheInfo.L2DNumWays,
+; 173  :              g_oalCacheInfo.L2DLineSize, g_oalCacheInfo.L2DSize));
 
   00210	e3100020	 tst         r0, #0x20
   00214	0a00000f	 beq         |$LN13@OALCacheGl|
@@ -464,16 +458,16 @@
   00254	e59a0440	 ldr         r0, [r10, #0x440]
   00258		 |$LN13@OALCacheGl|
 
-; 180  : 
-; 181  : 
-; 182  :     OALMSG(OAL_CACHE&&OAL_VERBOSE, (L"-OALCacheGlobalsInit\r\n"));
+; 174  : 
+; 175  : 
+; 176  :     OALMSG(OAL_CACHE&&OAL_VERBOSE, (L"-OALCacheGlobalsInit\r\n"));
 
   00258	e3100020	 tst         r0, #0x20
   0025c	13100902	 tstne       r0, #2, 18
   00260	159f000c	 ldrne       r0, [pc, #0xC]
   00264	1b000000	 blne        NKDbgPrintfW
 
-; 183  : }
+; 177  : }
 
   00268	e28dd018	 add         sp, sp, #0x18
   0026c	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}

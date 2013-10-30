@@ -65,8 +65,7 @@ typedef struct {
 //
 __inline
 HANDLE 
-TLEDOpen(
-    )
+TLEDOpen()
 {
     HANDLE hDevice;
     DEVICE_CONTEXT_TLED *pContext = NULL;
@@ -75,26 +74,24 @@ TLEDOpen(
     if (hDevice == INVALID_HANDLE_VALUE) goto cleanUp;
 
     // Allocate memory for our handler...
-    pContext = (DEVICE_CONTEXT_TLED*)LocalAlloc(
-        LPTR, sizeof(DEVICE_CONTEXT_TLED)
-        );
+    pContext = (DEVICE_CONTEXT_TLED*)LocalAlloc(LPTR, sizeof(DEVICE_CONTEXT_TLED));
     if (pContext == NULL)
-        {
+	{
         CloseHandle(hDevice);
         goto cleanUp;
-        }
+	}
 
     // Get function pointers, fail when IOCTL isn't supported...
     if (!DeviceIoControl(
             hDevice, IOCTL_DDK_GET_DRIVER_IFC, (VOID*)&DEVICE_IFC_TLED_GUID,
             sizeof(DEVICE_IFC_TLED_GUID), &pContext->ifc, sizeof(DEVICE_IFC_TLED),
             NULL, NULL))
-        {
+	{
         CloseHandle(hDevice);
         LocalFree(pContext);
         pContext = NULL;
         goto cleanUp;
-        }
+	}
 
     // Save device handle
     pContext->hDevice = hDevice;
@@ -129,15 +126,11 @@ TLEDSetChannel(
     
 __inline
 BOOL 
-TLEDSetDutyCycle(
-    HANDLE hContext, 
-    DWORD value
-    )
+TLEDSetDutyCycle(HANDLE hContext, DWORD value)
 {
     DEVICE_CONTEXT_TLED *pContext = (DEVICE_CONTEXT_TLED*)hContext;
-    return pContext->ifc.pfnSetDutyCycle(
-        pContext->ifc.context, value
-        );
+    
+    return pContext->ifc.pfnSetDutyCycle(pContext->ifc.context, value);
 }
 
 

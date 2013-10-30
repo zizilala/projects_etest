@@ -12,7 +12,7 @@
 ; File c:\wince600\public\common\oak\inc\pkfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37252| DCD	|$LN5@CeSetMemor|
+|$T37260| DCD	|$LN5@CeSetMemor|
 	DCD	0x40001002
 ; Function compile flags: /Ogspy
 
@@ -25,7 +25,7 @@
   00000		 |$LN5@CeSetMemor|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M37249|
+  00008		 |$M37257|
   00008	e1a04003	 mov         r4, r3
   0000c	e1a03002	 mov         r3, r2
   00010	e1a02000	 mov         r2, r0
@@ -47,7 +47,7 @@
   00034	e28dd00c	 add         sp, sp, #0xC
   00038	e8bd4010	 ldmia       sp!, {r4, lr}
   0003c	e12fff1e	 bx          lr
-  00040		 |$M37250|
+  00040		 |$M37258|
 
 			 ENDP  ; |CeSetMemoryAttributes|
 
@@ -64,7 +64,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37262| DCD	|$LN5@OMAPSurfac|
+|$T37270| DCD	|$LN5@OMAPSurfac|
 	DCD	0x40000500
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -89,10 +89,10 @@
 
   00000		 |??0OMAPSurface@@QAA@XZ| PROC		; OMAPSurface::OMAPSurface
 
-; 738  :     OMAPSurface() {};
+; 743  :     OMAPSurface() {};
 
   00000		 |$LN5@OMAPSurfac|
-  00000		 |$M37259|
+  00000		 |$M37267|
   00000	e1a02000	 mov         r2, r0
   00004	e59f3004	 ldr         r3, [pc, #4]
   00008	e5823000	 str         r3, [r2]
@@ -100,14 +100,14 @@
   00010		 |$LN6@OMAPSurfac|
   00010		 |$LN7@OMAPSurfac|
   00010	00000000	 DCD         |??_7OMAPSurface@@6B@|
-  00014		 |$M37260|
+  00014		 |$M37268|
 
 			 ENDP  ; |??0OMAPSurface@@QAA@XZ|, OMAPSurface::OMAPSurface
 
 	EXPORT	|??1OMAPSurface@@UAA@XZ|		; OMAPSurface::~OMAPSurface
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37272| DCD	|$LN5@OMAPSurfac@2|
+|$T37280| DCD	|$LN5@OMAPSurfac@2|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -115,24 +115,24 @@
 
   00000		 |??1OMAPSurface@@UAA@XZ| PROC		; OMAPSurface::~OMAPSurface
 
-; 745  :     ~OMAPSurface() {};
+; 750  :     ~OMAPSurface() {};
 
   00000		 |$LN5@OMAPSurfac@2|
-  00000		 |$M37269|
+  00000		 |$M37277|
   00000	e59f3004	 ldr         r3, [pc, #4]
   00004	e5803000	 str         r3, [r0]
   00008	e12fff1e	 bx          lr
   0000c		 |$LN6@OMAPSurfac@2|
   0000c		 |$LN7@OMAPSurfac@2|
   0000c	00000000	 DCD         |??_7OMAPSurface@@6B@|
-  00010		 |$M37270|
+  00010		 |$M37278|
 
 			 ENDP  ; |??1OMAPSurface@@UAA@XZ|, OMAPSurface::~OMAPSurface
 
 	IMPORT	|??3@YAXPAX@Z|				; operator delete
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37288| DCD	|$LN8@scalar|
+|$T37296| DCD	|$LN8@scalar|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -141,7 +141,7 @@
   00000		 |??_GOMAPSurface@@UAAPAXI@Z| PROC	; OMAPSurface::`scalar deleting destructor'
   00000		 |$LN8@scalar|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37285|
+  00004		 |$M37293|
   00004	e1a04000	 mov         r4, r0
   00008	e59f3014	 ldr         r3, [pc, #0x14]
   0000c	e3110001	 tst         r1, #1
@@ -153,7 +153,7 @@
   00024		 |$LN9@scalar|
   00024		 |$LN10@scalar|
   00024	00000000	 DCD         |??_7OMAPSurface@@6B@|
-  00028		 |$M37286|
+  00028		 |$M37294|
 
 			 ENDP  ; |??_GOMAPSurface@@UAAPAXI@Z|, OMAPSurface::`scalar deleting destructor'
 
@@ -162,7 +162,7 @@
 	IMPORT	|??_EOMAPSurfaceManager@@UAAPAXI@Z|, WEAK |??_GOMAPSurfaceManager@@UAAPAXI@Z| ; OMAPSurfaceManager::`vector deleting destructor', OMAPSurfaceManager::`scalar deleting destructor'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37300| DCD	|$LN5@OMAPSurfac@3|
+|$T37308| DCD	|$LN5@OMAPSurfac@3|
 	DCD	0x40000500
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -185,10 +185,10 @@
 
   00000		 |??0OMAPSurfaceManager@@QAA@XZ| PROC	; OMAPSurfaceManager::OMAPSurfaceManager
 
-; 955  :     OMAPSurfaceManager() {};
+; 960  :     OMAPSurfaceManager() {};
 
   00000		 |$LN5@OMAPSurfac@3|
-  00000		 |$M37297|
+  00000		 |$M37305|
   00000	e1a02000	 mov         r2, r0
   00004	e59f3004	 ldr         r3, [pc, #4]
   00008	e5823000	 str         r3, [r2]
@@ -196,14 +196,14 @@
   00010		 |$LN6@OMAPSurfac@3|
   00010		 |$LN7@OMAPSurfac@3|
   00010	00000000	 DCD         |??_7OMAPSurfaceManager@@6B@|
-  00014		 |$M37298|
+  00014		 |$M37306|
 
 			 ENDP  ; |??0OMAPSurfaceManager@@QAA@XZ|, OMAPSurfaceManager::OMAPSurfaceManager
 
 	EXPORT	|??1OMAPSurfaceManager@@UAA@XZ|		; OMAPSurfaceManager::~OMAPSurfaceManager
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37310| DCD	|$LN5@OMAPSurfac@4|
+|$T37318| DCD	|$LN5@OMAPSurfac@4|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -211,23 +211,23 @@
 
   00000		 |??1OMAPSurfaceManager@@UAA@XZ| PROC	; OMAPSurfaceManager::~OMAPSurfaceManager
 
-; 962  :     ~OMAPSurfaceManager() {};
+; 967  :     ~OMAPSurfaceManager() {};
 
   00000		 |$LN5@OMAPSurfac@4|
-  00000		 |$M37307|
+  00000		 |$M37315|
   00000	e59f3004	 ldr         r3, [pc, #4]
   00004	e5803000	 str         r3, [r0]
   00008	e12fff1e	 bx          lr
   0000c		 |$LN6@OMAPSurfac@4|
   0000c		 |$LN7@OMAPSurfac@4|
   0000c	00000000	 DCD         |??_7OMAPSurfaceManager@@6B@|
-  00010		 |$M37308|
+  00010		 |$M37316|
 
 			 ENDP  ; |??1OMAPSurfaceManager@@UAA@XZ|, OMAPSurfaceManager::~OMAPSurfaceManager
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37326| DCD	|$LN8@scalar@2|
+|$T37334| DCD	|$LN8@scalar@2|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -236,7 +236,7 @@
   00000		 |??_GOMAPSurfaceManager@@UAAPAXI@Z| PROC ; OMAPSurfaceManager::`scalar deleting destructor'
   00000		 |$LN8@scalar@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37323|
+  00004		 |$M37331|
   00004	e1a04000	 mov         r4, r0
   00008	e59f3014	 ldr         r3, [pc, #0x14]
   0000c	e3110001	 tst         r1, #1
@@ -248,7 +248,7 @@
   00024		 |$LN9@scalar@2|
   00024		 |$LN10@scalar@2|
   00024	00000000	 DCD         |??_7OMAPSurfaceManager@@6B@|
-  00028		 |$M37324|
+  00028		 |$M37332|
 
 			 ENDP  ; |??_GOMAPSurfaceManager@@UAAPAXI@Z|, OMAPSurfaceManager::`scalar deleting destructor'
 
@@ -256,7 +256,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\heap.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37338| DCD	|$LN5@NodeSize|
+|$T37346| DCD	|$LN5@NodeSize|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -267,17 +267,17 @@
 ; 75   :     DWORD       NodeSize(){ return m_nSize; }
 
   00000		 |$LN5@NodeSize|
-  00000		 |$M37335|
+  00000		 |$M37343|
   00000	e590000c	 ldr         r0, [r0, #0xC]
   00004	e12fff1e	 bx          lr
-  00008		 |$M37336|
+  00008		 |$M37344|
 
 			 ENDP  ; |?NodeSize@Heap@@QAAKXZ|, Heap::NodeSize
 
 	EXPORT	|?Address@Heap@@QAAKXZ|			; Heap::Address
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37348| DCD	|$LN5@Address|
+|$T37356| DCD	|$LN5@Address|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -288,10 +288,10 @@
 ; 76   :     DWORD       Address() { return m_pStart; }
 
   00000		 |$LN5@Address|
-  00000		 |$M37345|
+  00000		 |$M37353|
   00000	e5900008	 ldr         r0, [r0, #8]
   00004	e12fff1e	 bx          lr
-  00008		 |$M37346|
+  00008		 |$M37354|
 
 			 ENDP  ; |?Address@Heap@@QAAKXZ|, Heap::Address
 
@@ -309,7 +309,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37361| DCD	|$LN7@OMAPFlatSu|
+|$T37369| DCD	|$LN7@OMAPFlatSu|
 	DCD	0x40000d00
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -338,7 +338,7 @@
 ; 41   : {
 
   00000		 |$LN7@OMAPFlatSu|
-  00000		 |$M37358|
+  00000		 |$M37366|
   00000	e59f3028	 ldr         r3, [pc, #0x28]
 
 ; 42   :     m_hHeap = NULL;    
@@ -378,7 +378,7 @@
   00030		 |$LN8@OMAPFlatSu|
   00030		 |$LN9@OMAPFlatSu|
   00030	00000000	 DCD         |??_7OMAPFlatSurface@@6B@|
-  00034		 |$M37359|
+  00034		 |$M37367|
 
 			 ENDP  ; |??0OMAPFlatSurface@@QAA@XZ|, OMAPFlatSurface::OMAPFlatSurface
 
@@ -387,7 +387,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37375| DCD	|$LN8@OMAPFlatSu@2|
+|$T37383| DCD	|$LN8@OMAPFlatSu@2|
 	DCD	0x40000e01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -400,7 +400,7 @@
 
   00000		 |$LN8@OMAPFlatSu@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37372|
+  00004		 |$M37380|
   00004	e1a04000	 mov         r4, r0
 
 ; 54   :     Heap    *pHeap = (Heap*) m_hHeap;
@@ -429,7 +429,7 @@
   00030	00000000	 DCD         |??_7OMAPSurface@@6B@|
   00034		 |$LN11@OMAPFlatSu@2|
   00034	00000000	 DCD         |??_7OMAPFlatSurface@@6B@|
-  00038		 |$M37373|
+  00038		 |$M37381|
 
 			 ENDP  ; |??1OMAPFlatSurface@@UAA@XZ|, OMAPFlatSurface::~OMAPFlatSurface
 
@@ -440,7 +440,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\heap.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37414| DCD	|$LN21@Allocate|
+|$T37422| DCD	|$LN21@Allocate|
 	DCD	0x40004601
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -453,7 +453,7 @@
 
   00000		 |$LN21@Allocate|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M37411|
+  00004		 |$M37419|
   00004	e1a07003	 mov         r7, r3
   00008	e1a08002	 mov         r8, r2
   0000c	e1a06000	 mov         r6, r0
@@ -595,7 +595,7 @@
 ; 125  :     return (pSurfHeap != NULL);
 
   00100	e3a00001	 mov         r0, #1
-  00104		 |$cleanUp$36786|
+  00104		 |$cleanUp$36794|
 
 ; 126  : }
 
@@ -614,14 +614,14 @@
 
   00110	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   00114	e12fff1e	 bx          lr
-  00118		 |$M37412|
+  00118		 |$M37420|
 
 			 ENDP  ; |?Allocate@OMAPFlatSurface@@QAAHW4OMAP_DSS_PIXELFORMAT@@KKPAXK@Z|, OMAPFlatSurface::Allocate
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\heap.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37428| DCD	|$LN9@VirtualAdd|
+|$T37436| DCD	|$LN9@VirtualAdd|
 	DCD	0x40001501
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -634,7 +634,7 @@
 
   00000		 |$LN9@VirtualAdd|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37425|
+  00004		 |$M37433|
 
 ; 132  :     Heap*   pHeap;
 ; 133  :     if ((m_bUseResizer) && (m_eSurfaceType == OMAP_SURFACE_NORMAL) && (m_pAssocSurface))
@@ -680,14 +680,14 @@
 
   0004c	e49de004	 ldr         lr, [sp], #4
   00050	e12fff1e	 bx          lr
-  00054		 |$M37426|
+  00054		 |$M37434|
 
 			 ENDP  ; |?VirtualAddr@OMAPFlatSurface@@UAAPAXXZ|, OMAPFlatSurface::VirtualAddr
 
 	IMPORT	|__rt_udiv|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37442| DCD	|$LN11@Width|
+|$T37450| DCD	|$LN11@Width|
 	DCD	0x40001501
 ; Function compile flags: /Ogspy
 
@@ -699,7 +699,7 @@
 
   00000		 |$LN11@Width|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37439|
+  00004		 |$M37447|
   00004	e3510000	 cmp         r1, #0
 
 ; 150  :     DWORD   dwWidth;
@@ -767,13 +767,13 @@
 
   0004c	e49de004	 ldr         lr, [sp], #4
   00050	e12fff1e	 bx          lr
-  00054		 |$M37440|
+  00054		 |$M37448|
 
 			 ENDP  ; |?Width@OMAPFlatSurface@@UAAKW4OMAP_DSS_ROTATION@@@Z|, OMAPFlatSurface::Width
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37455| DCD	|$LN11@Height|
+|$T37463| DCD	|$LN11@Height|
 	DCD	0x40001501
 ; Function compile flags: /Ogspy
 
@@ -785,7 +785,7 @@
 
   00000		 |$LN11@Height|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37452|
+  00004		 |$M37460|
   00004	e3510000	 cmp         r1, #0
 
 ; 182  :     DWORD   dwHeight;
@@ -853,13 +853,13 @@
 
   0004c	e49de004	 ldr         lr, [sp], #4
   00050	e12fff1e	 bx          lr
-  00054		 |$M37453|
+  00054		 |$M37461|
 
 			 ENDP  ; |?Height@OMAPFlatSurface@@UAAKW4OMAP_DSS_ROTATION@@@Z|, OMAPFlatSurface::Height
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37468| DCD	|$LN11@Stride|
+|$T37476| DCD	|$LN11@Stride|
 	DCD	0x40001400
 ; Function compile flags: /Ogspy
 
@@ -870,7 +870,7 @@
 ; 213  : {
 
   00000		 |$LN11@Stride|
-  00000		 |$M37465|
+  00000		 |$M37473|
   00000	e3510000	 cmp         r1, #0
 
 ; 214  :     DWORD   dwStride;
@@ -938,13 +938,13 @@
 ; 238  : }
 
   0004c	e12fff1e	 bx          lr
-  00050		 |$M37466|
+  00050		 |$M37474|
 
 			 ENDP  ; |?Stride@OMAPFlatSurface@@UAAKW4OMAP_DSS_ROTATION@@@Z|, OMAPFlatSurface::Stride
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37486| DCD	|$LN28@PhysicalAd|
+|$T37494| DCD	|$LN28@PhysicalAd|
 	DCD	0x40005401
 ; Function compile flags: /Ogspy
 
@@ -956,7 +956,7 @@
 
   00000		 |$LN28@PhysicalAd|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37483|
+  00004		 |$M37491|
   00004	e3530000	 cmp         r3, #0
   00008	e1a04000	 mov         r4, r0
 
@@ -1221,13 +1221,13 @@
 
   00148	e8bd4010	 ldmia       sp!, {r4, lr}
   0014c	e12fff1e	 bx          lr
-  00150		 |$M37484|
+  00150		 |$M37492|
 
 			 ENDP  ; |?PhysicalAddr@OMAPFlatSurface@@UAAKW4OMAP_DSS_ROTATION@@HW4OMAP_ASSOC_SURF_USAGE@@@Z|, OMAPFlatSurface::PhysicalAddr
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37505| DCD	|$LN27@PixelIncr|
+|$T37513| DCD	|$LN27@PixelIncr|
 	DCD	0x40003300
 ; Function compile flags: /Ogspy
 
@@ -1238,7 +1238,7 @@
 ; 364  : {
 
   00000		 |$LN27@PixelIncr|
-  00000		 |$M37502|
+  00000		 |$M37510|
   00000	e3520000	 cmp         r2, #0
 
 ; 365  :     DWORD   dwIncr;
@@ -1418,13 +1418,13 @@
 ; 438  : }
 
   000c8	e12fff1e	 bx          lr
-  000cc		 |$M37503|
+  000cc		 |$M37511|
 
 			 ENDP  ; |?PixelIncr@OMAPFlatSurface@@UAAKW4OMAP_DSS_ROTATION@@H@Z|, OMAPFlatSurface::PixelIncr
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37527| DCD	|$LN31@RowIncr|
+|$T37535| DCD	|$LN31@RowIncr|
 	DCD	0x40009301
 ; Function compile flags: /Ogspy
 
@@ -1436,7 +1436,7 @@
 
   00000		 |$LN31@RowIncr|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37524|
+  00004		 |$M37532|
   00004	e1a05000	 mov         r5, r0
 
 ; 447  :     DWORD   dwIncr;
@@ -1795,13 +1795,13 @@
 
   00244	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00248	e12fff1e	 bx          lr
-  0024c		 |$M37525|
+  0024c		 |$M37533|
 
 			 ENDP  ; |?RowIncr@OMAPFlatSurface@@UAAKW4OMAP_DSS_ROTATION@@H@Z|, OMAPFlatSurface::RowIncr
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37540| DCD	|$LN7@SetOrienta|
+|$T37548| DCD	|$LN7@SetOrienta|
 	DCD	0x40002101
 ; Function compile flags: /Ogspy
 
@@ -1813,7 +1813,7 @@
 
   00000		 |$LN7@SetOrienta|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M37537|
+  00004		 |$M37545|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -1885,7 +1885,7 @@
 
   0007c	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   00080	e12fff1e	 bx          lr
-  00084		 |$M37538|
+  00084		 |$M37546|
 
 			 ENDP  ; |?SetOrientation@OMAPFlatSurface@@UAAHW4OMAP_SURF_ORIENTATION@@@Z|, OMAPFlatSurface::SetOrientation
 
@@ -1907,7 +1907,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37553| DCD	|$LN7@OMAPFlatSu@3|
+|$T37561| DCD	|$LN7@OMAPFlatSu@3|
 	DCD	0x40000c00
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1934,7 +1934,7 @@
 ; 614  : {
 
   00000		 |$LN7@OMAPFlatSu@3|
-  00000		 |$M37550|
+  00000		 |$M37558|
   00000	e59f3024	 ldr         r3, [pc, #0x24]
 
 ; 615  :     //  Initialize properties
@@ -1975,14 +1975,14 @@
   0002c		 |$LN8@OMAPFlatSu@3|
   0002c		 |$LN9@OMAPFlatSu@3|
   0002c	00000000	 DCD         |??_7OMAPFlatSurfaceManager@@6B@|
-  00030		 |$M37551|
+  00030		 |$M37559|
 
 			 ENDP  ; |??0OMAPFlatSurfaceManager@@QAA@XZ|, OMAPFlatSurfaceManager::OMAPFlatSurfaceManager
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37564| DCD	|$LN5@SupportsRo|
+|$T37572| DCD	|$LN5@SupportsRo|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1990,13 +1990,13 @@
 
   00000		 |?SupportsRotation@OMAPFlatSurfaceManager@@UAAHXZ| PROC ; OMAPFlatSurfaceManager::SupportsRotation
 
-; 1226 :     BOOL        SupportsRotation() { return TRUE; }
+; 1231 :     BOOL        SupportsRotation() { return TRUE; }
 
   00000		 |$LN5@SupportsRo|
-  00000		 |$M37561|
+  00000		 |$M37569|
   00000	e3a00001	 mov         r0, #1
   00004	e12fff1e	 bx          lr
-  00008		 |$M37562|
+  00008		 |$M37570|
 
 			 ENDP  ; |?SupportsRotation@OMAPFlatSurfaceManager@@UAAHXZ|, OMAPFlatSurfaceManager::SupportsRotation
 
@@ -2004,7 +2004,7 @@
 	IMPORT	|VirtualFree|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37577| DCD	|$LN11@OMAPFlatSu@4|
+|$T37585| DCD	|$LN11@OMAPFlatSu@4|
 	DCD	0x40001e01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -2017,7 +2017,7 @@
 
   00000		 |$LN11@OMAPFlatSu@4|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37574|
+  00004		 |$M37582|
   00004	e1a04000	 mov         r4, r0
 
 ; 629  :     Heap*   pHeap = (Heap*) m_hHeap;
@@ -2089,7 +2089,7 @@
   00070	00000000	 DCD         |??_7OMAPSurfaceManager@@6B@|
   00074		 |$LN14@OMAPFlatSu@4|
   00074	00000000	 DCD         |??_7OMAPFlatSurfaceManager@@6B@|
-  00078		 |$M37575|
+  00078		 |$M37583|
 
 			 ENDP  ; |??1OMAPFlatSurfaceManager@@UAA@XZ|, OMAPFlatSurfaceManager::~OMAPFlatSurfaceManager
 
@@ -2101,7 +2101,7 @@
 ; File c:\wince600\public\common\oak\inc\pkfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37621| DCD	|$LN34@Initialize|
+|$T37629| DCD	|$LN34@Initialize|
 	DCD	0x40007d02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -2115,7 +2115,7 @@
   00000		 |$LN34@Initialize|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M37618|
+  00008		 |$M37626|
   00008	e1a06001	 mov         r6, r1
   0000c	e1a05000	 mov         r5, r0
 
@@ -2133,7 +2133,7 @@
 
 ; 661  :     if( !bResult )
 
-  00020	0a00006f	 beq         |$cleanUp$36968|
+  00020	0a00006f	 beq         |$cleanUp$36976|
 
 ; 662  :     {
 ; 663  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: Unable to get video memory attributes\n"));
@@ -2162,7 +2162,7 @@
 
 ; 674  :     if( !m_pVirtualDisplayBuffer )
 
-  00048	0a000065	 beq         |$cleanUp$36968|
+  00048	0a000065	 beq         |$cleanUp$36976|
 
 ; 675  :     {
 ; 676  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: Unable to allocate display buffer\n"));
@@ -2199,7 +2199,7 @@
 ; 750  : 
 ; 751  : cleanUp:
 
-  00088	ea000055	 b           |$cleanUp$36968|
+  00088	ea000055	 b           |$cleanUp$36976|
   0008c		 |$LN13@Initialize|
 
 ; 685  :         goto cleanUp;
@@ -2277,7 +2277,7 @@
 ; 750  : 
 ; 751  : cleanUp:
 
-  00114	ea000032	 b           |$cleanUp$36968|
+  00114	ea000032	 b           |$cleanUp$36976|
   00118		 |$LN9@Initialize|
 
 ; 704  :         goto cleanUp;
@@ -2293,7 +2293,7 @@
 ; 711  :     if( dwOffscreenMemory > 0 )
 
   0011c	e3560000	 cmp         r6, #0
-  00120	0a00002f	 beq         |$cleanUp$36968|
+  00120	0a00002f	 beq         |$cleanUp$36976|
 
 ; 712  :     {
 ; 713  :         BYTE*   pOffscreenPtr = (BYTE*) m_pVirtualDisplayBuffer;
@@ -2401,7 +2401,7 @@
 ; 750  : 
 ; 751  : cleanUp:
 
-  001dc	ea000000	 b           |$cleanUp$36968|
+  001dc	ea000000	 b           |$cleanUp$36976|
   001e0		 |$LN2@Initialize|
 
 ; 745  :             goto cleanUp;
@@ -2410,7 +2410,7 @@
 ; 748  :         m_hOffscreenHeap = (HANDLE) pHeap;
 
   001e0	e5850014	 str         r0, [r5, #0x14]
-  001e4		 |$cleanUp$36968|
+  001e4		 |$cleanUp$36976|
 
 ; 752  :     //  Retrun result
 ; 753  :     return bResult;
@@ -2420,13 +2420,13 @@
   001e8	e28dd00c	 add         sp, sp, #0xC
   001ec	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   001f0	e12fff1e	 bx          lr
-  001f4		 |$M37619|
+  001f4		 |$M37627|
 
 			 ENDP  ; |?Initialize@OMAPFlatSurfaceManager@@UAAHK@Z|, OMAPFlatSurfaceManager::Initialize
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37631| DCD	|$LN5@TotalMemor|
+|$T37639| DCD	|$LN5@TotalMemor|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2437,7 +2437,7 @@
 ; 759  : {
 
   00000		 |$LN5@TotalMemor|
-  00000		 |$M37628|
+  00000		 |$M37636|
 
 ; 760  :     //  Return total display memory size
 ; 761  :     return m_dwDisplayBufferSize;
@@ -2447,14 +2447,14 @@
 ; 762  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37629|
+  00008		 |$M37637|
 
 			 ENDP  ; |?TotalMemorySize@OMAPFlatSurfaceManager@@UAAKXZ|, OMAPFlatSurfaceManager::TotalMemorySize
 
 	IMPORT	|?TotalFree@Heap@@QAAKXZ|		; Heap::TotalFree
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37642| DCD	|$LN5@FreeMemory|
+|$T37650| DCD	|$LN5@FreeMemory|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -2466,7 +2466,7 @@
 
   00000		 |$LN5@FreeMemory|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37639|
+  00004		 |$M37647|
 
 ; 768  :     Heap*   pHeap = (Heap*) m_hHeap;
 
@@ -2482,13 +2482,13 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M37640|
+  00014		 |$M37648|
 
 			 ENDP  ; |?FreeMemorySize@OMAPFlatSurfaceManager@@UAAKXZ|, OMAPFlatSurfaceManager::FreeMemorySize
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37652| DCD	|$LN5@VirtualBas|
+|$T37660| DCD	|$LN5@VirtualBas|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2499,7 +2499,7 @@
 ; 777  : {
 
   00000		 |$LN5@VirtualBas|
-  00000		 |$M37649|
+  00000		 |$M37657|
 
 ; 778  :     //  Return base address of display memory
 ; 779  :     return m_pVirtualDisplayBuffer;
@@ -2509,13 +2509,13 @@
 ; 780  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37650|
+  00008		 |$M37658|
 
 			 ENDP  ; |?VirtualBaseAddr@OMAPFlatSurfaceManager@@UAAPAXXZ|, OMAPFlatSurfaceManager::VirtualBaseAddr
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37661| DCD	|$LN5@NumPhysica|
+|$T37669| DCD	|$LN5@NumPhysica|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2526,7 +2526,7 @@
 ; 785  : {
 
   00000		 |$LN5@NumPhysica|
-  00000		 |$M37658|
+  00000		 |$M37666|
 
 ; 786  :     //  Flat memory manager has only a single physical memory segment
 ; 787  :     return 1;
@@ -2536,13 +2536,13 @@
 ; 788  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37659|
+  00008		 |$M37667|
 
 			 ENDP  ; |?NumPhysicalAddr@OMAPFlatSurfaceManager@@UAAKXZ|, OMAPFlatSurfaceManager::NumPhysicalAddr
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37673| DCD	|$LN6@PhysicalLe|
+|$T37681| DCD	|$LN6@PhysicalLe|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -2553,7 +2553,7 @@
 ; 793  : {
 
   00000		 |$LN6@PhysicalLe|
-  00000		 |$M37670|
+  00000		 |$M37678|
   00000	e3510000	 cmp         r1, #0
   00004	e1a03000	 mov         r3, r0
 
@@ -2574,13 +2574,13 @@
 ; 802  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M37671|
+  00014		 |$M37679|
 
 			 ENDP  ; |?PhysicalLen@OMAPFlatSurfaceManager@@UAAKK@Z|, OMAPFlatSurfaceManager::PhysicalLen
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37685| DCD	|$LN6@PhysicalAd@2|
+|$T37693| DCD	|$LN6@PhysicalAd@2|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -2591,7 +2591,7 @@
 ; 807  : {
 
   00000		 |$LN6@PhysicalAd@2|
-  00000		 |$M37682|
+  00000		 |$M37690|
   00000	e3510000	 cmp         r1, #0
   00004	e1a03000	 mov         r3, r0
 
@@ -2612,13 +2612,13 @@
 ; 816  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M37683|
+  00014		 |$M37691|
 
 			 ENDP  ; |?PhysicalAddr@OMAPFlatSurfaceManager@@UAAKK@Z|, OMAPFlatSurfaceManager::PhysicalAddr
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37697| DCD	|$LN7@SupportsOf|
+|$T37705| DCD	|$LN7@SupportsOf|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -2629,7 +2629,7 @@
 ; 821  : {
 
   00000		 |$LN7@SupportsOf|
-  00000		 |$M37694|
+  00000		 |$M37702|
 
 ; 822  :     //  If offscreen heap allocated, return TRUE
 ; 823  :     return( m_hOffscreenHeap != NULL );
@@ -2642,14 +2642,14 @@
 ; 824  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M37695|
+  00014		 |$M37703|
 
 			 ENDP  ; |?SupportsOffscreenSurfaces@OMAPFlatSurfaceManager@@UAAHXZ|, OMAPFlatSurfaceManager::SupportsOffscreenSurfaces
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37734| DCD	|$LN24@Allocate@2|
+|$T37742| DCD	|$LN24@Allocate@2|
 	DCD	0x40003902
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -2663,7 +2663,7 @@
   00000		 |$LN24@Allocate@2|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M37731|
+  00008		 |$M37739|
   00008	e1a07003	 mov         r7, r3
   0000c	e1a08002	 mov         r8, r2
   00010	e1a09001	 mov         r9, r1
@@ -2766,7 +2766,7 @@
 ; 869  :     *ppSurface = pFlatSurface;            
 
   000bc	e5854000	 str         r4, [r5]
-  000c0		 |$cleanUp$37051|
+  000c0		 |$cleanUp$37059|
   000c0		 |$LN15@Allocate@2|
 
 ; 870  :     
@@ -2790,7 +2790,7 @@
   000e0		 |$LN25@Allocate@2|
   000e0		 |$LN26@Allocate@2|
   000e0	00000000	 DCD         |??_7OMAPFlatSurface@@6B@|
-  000e4		 |$M37732|
+  000e4		 |$M37740|
 
 			 ENDP  ; |?Allocate@OMAPFlatSurfaceManager@@UAAHW4OMAP_DSS_PIXELFORMAT@@KKPAPAVOMAPSurface@@@Z|, OMAPFlatSurfaceManager::Allocate
 
@@ -2799,7 +2799,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37774| DCD	|$LN24@Allocate@3|
+|$T37782| DCD	|$LN24@Allocate@3|
 	DCD	0x40004002
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -2813,7 +2813,7 @@
   00000		 |$LN24@Allocate@3|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M37771|
+  00008		 |$M37779|
   00008	e1a07003	 mov         r7, r3
   0000c	e1a08002	 mov         r8, r2
   00010	e1a09001	 mov         r9, r1
@@ -2933,7 +2933,7 @@
 ; 926  :     *ppAssocSurface = pFlatSurface; 
 
   000d8	e5854000	 str         r4, [r5]
-  000dc		 |$cleanUp$37077|
+  000dc		 |$cleanUp$37085|
   000dc		 |$LN15@Allocate@3|
 
 ; 927  :     
@@ -2957,14 +2957,14 @@
   000fc		 |$LN25@Allocate@3|
   000fc		 |$LN26@Allocate@3|
   000fc	00000000	 DCD         |??_7OMAPFlatSurface@@6B@|
-  00100		 |$M37772|
+  00100		 |$M37780|
 
 			 ENDP  ; |?Allocate@OMAPFlatSurfaceManager@@UAAHW4OMAP_DSS_PIXELFORMAT@@KKPAPAVOMAPSurface@@PAV3@@Z|, OMAPFlatSurfaceManager::Allocate
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37813| DCD	|$LN26@AllocateGD|
+|$T37821| DCD	|$LN26@AllocateGD|
 	DCD	0x40003b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\dssai\surfmgr_flat.cpp
@@ -2978,7 +2978,7 @@
   00000		 |$LN26@AllocateGD|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M37810|
+  00008		 |$M37818|
   00008	e1a08003	 mov         r8, r3
   0000c	e1a09002	 mov         r9, r2
   00010	e1a0a001	 mov         r10, r1
@@ -3092,7 +3092,7 @@
 ; 983  :     *ppSurface = pFlatSurface;            
 
   000c4	e5854000	 str         r4, [r5]
-  000c8		 |$cleanUp$37102|
+  000c8		 |$cleanUp$37110|
   000c8		 |$LN17@AllocateGD|
 
 ; 984  :     
@@ -3116,13 +3116,13 @@
   000e8		 |$LN27@AllocateGD|
   000e8		 |$LN28@AllocateGD|
   000e8	00000000	 DCD         |??_7OMAPFlatSurface@@6B@|
-  000ec		 |$M37811|
+  000ec		 |$M37819|
 
 			 ENDP  ; |?AllocateGDI@OMAPFlatSurfaceManager@@UAAHW4OMAP_DSS_PIXELFORMAT@@KKPAPAVOMAPSurface@@@Z|, OMAPFlatSurfaceManager::AllocateGDI
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37826| DCD	|$LN6@scalar@3|
+|$T37834| DCD	|$LN6@scalar@3|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -3131,7 +3131,7 @@
   00000		 |??_GOMAPFlatSurface@@UAAPAXI@Z| PROC	; OMAPFlatSurface::`scalar deleting destructor'
   00000		 |$LN6@scalar@3|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37823|
+  00004		 |$M37831|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
   0000c	eb000000	 bl          |??1OMAPFlatSurface@@UAA@XZ|
@@ -3141,13 +3141,13 @@
   0001c	e1a00005	 mov         r0, r5
   00020	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00024	e12fff1e	 bx          lr
-  00028		 |$M37824|
+  00028		 |$M37832|
 
 			 ENDP  ; |??_GOMAPFlatSurface@@UAAPAXI@Z|, OMAPFlatSurface::`scalar deleting destructor'
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37837| DCD	|$LN6@scalar@4|
+|$T37845| DCD	|$LN6@scalar@4|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -3156,7 +3156,7 @@
   00000		 |??_GOMAPFlatSurfaceManager@@UAAPAXI@Z| PROC ; OMAPFlatSurfaceManager::`scalar deleting destructor'
   00000		 |$LN6@scalar@4|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37834|
+  00004		 |$M37842|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
   0000c	eb000000	 bl          |??1OMAPFlatSurfaceManager@@UAA@XZ|
@@ -3166,7 +3166,7 @@
   0001c	e1a00005	 mov         r0, r5
   00020	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00024	e12fff1e	 bx          lr
-  00028		 |$M37835|
+  00028		 |$M37843|
 
 			 ENDP  ; |??_GOMAPFlatSurfaceManager@@UAAPAXI@Z|, OMAPFlatSurfaceManager::`scalar deleting destructor'
 

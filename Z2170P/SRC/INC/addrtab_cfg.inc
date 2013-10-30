@@ -29,10 +29,10 @@
         
 ;------------------------------------------------------------------------------
 ;  Table format: cached address, physical address, size
-
+; XXX
 g_oalAddressTable
 
-    DCD     0x80000000, 0x80000000, 128     ; SDRAM  
+    DCD     0x00000000, 0x80000000, 128     ; SDRAM  
     IF BSP_SDRAM_BANK1_ENABLE
         DCD     0x88000000, 0xA0000000, 128     ; SDRAM
     ENDIF
@@ -49,12 +49,10 @@ g_oalAddressTable
     DCD     0x9C300000, 0x08000000,   1     ; NAND Registers (FIFO)
     DCD     0x00000000, 0x00000000,   0     ; end of table
 
+; VVV
 g_oalAddressTableHynix
 
-
-    DCD     0x80000000, 0x80000000, 256     ; SDRAM           
-    DCD     0x94000000, 0x11000000,  16     ; CS2, NOR flash 
-    DCD     0x95000000, 0x15000000,  16     ; CS5, LAN9115
+    DCD     0x80000000, 0x80000000, 256     ; SDRAM
     DCD     0x96000000, 0x48000000,  16     ; L4 Core/Wakeup registers
     DCD     0x97000000, 0x49000000,   1     ; L4 Peripheral
     DCD     0x97100000, 0x68000000,  16     ; L3 registers

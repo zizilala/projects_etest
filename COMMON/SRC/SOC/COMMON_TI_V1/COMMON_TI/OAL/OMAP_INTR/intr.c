@@ -66,6 +66,13 @@ UINT32 g_oalSmartReflex2 = (UINT32) OAL_INTR_IRQ_UNDEFINED;
 //  This value contains virtual uncached address of interrupt controller
 //  unit registers.
 //
+// \COMMON_TI\INC\interrupt_struct.h
+//	typedef struct {
+//		OMAP_INTC_MPU_REGS  *pICLRegs;	Interrupt Controller Register(12.6) - omap_intc_regs.h
+//    	DWORD               nbGpioBank;
+//    	INTR_GPIO_CTXT      *pGpioCtxt;
+//	} OMAP_INTR_CONTEXT;
+
 static OMAP_INTR_CONTEXT  s_intr;
 
 //------------------------------------------------------------------------------
@@ -204,6 +211,7 @@ BOOL OALIntrInit()
     {        
         s_intr.nbGpioBank++; 
     }
+    
     s_intr.pGpioCtxt = OALLocalAlloc(LPTR,sizeof(INTR_GPIO_CTXT)*s_intr.nbGpioBank);
     if (s_intr.pGpioCtxt == NULL)
     {
@@ -218,6 +226,15 @@ BOOL OALIntrInit()
         s_intr.pGpioCtxt[i].irq_start = BSPGetGpioIrq(i*32);
         s_intr.pGpioCtxt[i].bank_irq = GetIrqByDevice(device,NULL);
         s_intr.pGpioCtxt[i].padWakeupEvent = 0;
+    }
+    for (i=0;i<s_intr.nbGpioBank;i++)
+    {
+    	OALMSG(OAL_INTR&&OAL_FUNC, (L"GpioBank = %d\r\n",i));
+    	OALMSG(OAL_INTR&&OAL_FUNC, (L"irq_start = %d\r\n",s_intr.pGpioCtxt[i].irq_start));
+    	OALMSG(OAL_INTR&&OAL_FUNC, (L"bank_irq = %d\r\n",s_intr.pGpioCtxt[i].bank_irq));
+    	OALMSG(OAL_INTR&&OAL_FUNC, (L"irq_end = %d\r\n",s_intr.pGpioCtxt[i].irq_end));
+    	OALMSG(OAL_INTR&&OAL_FUNC, (L"device = %d\r\n",s_intr.pGpioCtxt[i].device));
+    	OALMSG(OAL_INTR&&OAL_FUNC, (L"pRegs = 0x%x\r\n",s_intr.pGpioCtxt[i].pRegs));
     }
 
     //Reset the MPU INTC and wait until reset is complete
@@ -265,11 +282,11 @@ BOOL OALIntrInit()
     INREG32(&s_intr.pICLRegs->INTC_SIR_IRQ);
     INREG32(&s_intr.pICLRegs->INTC_SIR_FIQ);
     //Initialize interrupt routing, level and priority
-    for (i = 0; i < 96; i++)
+    for (i = 0; i < 96; i++)	// (Table 12-4,P2391)
     {
         OUTREG32(&s_intr.pICLRegs->INTC_ILR[i], g_BSP_icL1Level[i]);
     }
-    //Call board specific initializatrion
+    //Call board specific initialization
     rc = BSPIntrInit();
 
     //// disable gpio clocks
@@ -401,16 +418,15 @@ OALIntrEnableIrqs(
     BOOL rc = FALSE;
     UINT32 irq, i;
 
-    OALMSG(OAL_INTR&&OAL_VERBOSE, (
-        L"+OALntrEnableIrqs(%d, 0x%08x)\r\n", count, pIrqs
-        ));
+    OALMSG(OAL_INTR&&OAL_VERBOSE, (L"+OALIntrEnableIrqs(%d, 0x%08x)\r\n", count, *pIrqs));
 
     for (i = 0; i < count; i++)
     {
-        irq = pIrqs[i];
-
+        irq = pIrqs[i];		
+		
         if (irq != OAL_INTR_IRQ_UNDEFINED)
         {
+        	OALMSG(OAL_INTR&&OAL_VERBOSE, (L" OALIntrEnableIrqs: irq = %d\r\n", irq));
             if (irq < 32)
             {
                 OUTREG32(&s_intr.pICLRegs->INTC_MIR_CLEAR0, 1 << irq);
@@ -504,9 +520,7 @@ OALIntrDoneIrqs(
     BOOL rc = FALSE;
     UINT32 irq, i;
 
-    OALMSG(OAL_INTR&&OAL_VERBOSE, (
-        L"+OALIntrDoneIrqs(%d, 0x%08x)\r\n", count, pIrqs
-        ));
+    //OALMSG(OAL_INTR&&OAL_VERBOSE, (L"+OALIntrDoneIrqs(%d, 0x%08x)\r\n", count, pIrqs ));
 
     for (i = 0; i < count; i++)
     {
@@ -539,7 +553,7 @@ OALIntrDoneIrqs(
         }
     }
 
-    OALMSG(OAL_INTR&&OAL_VERBOSE, (L"-OALIntrDoneIrqs\r\n"));
+    //OALMSG(OAL_INTR&&OAL_VERBOSE, (L"-OALIntrDoneIrqs\r\n"));
 }
 
 
@@ -602,8 +616,8 @@ OEMInterruptHandler(
         if (g_oalILT.active) 
             g_oalILT.interrupts ++;        
 #endif
-
-    OALMSG(OAL_INTR, (L"OEMInterruptHandler(Irq %d)\r\n", irq));
+	//if( irq != 37 )
+    //	OALMSG(OAL_INTR, (L"OEMInterruptHandler(Irq %d)\r\n", irq));
 
     irq = OALGPIOIntrHandler(irq); //Check if this is a GPIO irq. In so, then translate the irq number
     if (irq < 32) 

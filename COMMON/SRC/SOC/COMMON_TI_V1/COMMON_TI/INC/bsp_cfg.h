@@ -57,12 +57,12 @@ const NAND_INFO* BSPGetNandInfo(DWORD manufacturer,DWORD device);
 // GPIO
 //------------------------------------------------------------------------
 typedef struct {
-    DWORD       	cookie;
-    int         	nbGpioGrp;
-    UINT        	*rgRanges;
-    HANDLE      	*rgHandles;
+    DWORD       cookie;
+    int         nbGpioGrp;
+    UINT        *rgRanges;
+    HANDLE      *rgHandles;
     DEVICE_IFC_GPIO **rgGpioTbls;
-    WCHAR       	**name;
+    WCHAR       **name;
 } GpioDevice_t;
 
 void BSPGpioInit();
@@ -77,60 +77,22 @@ DWORD BSPGetGpioIrq(DWORD id);
 typedef enum OMAP_LCD_DVI_RES {
     OMAP_LCD_DEFAULT=0,
     OMAP_DVI_640W_480H,
-    OMAP_DVI_640W_480H_72HZ,
-    OMAP_DVI_800W_480H,
     OMAP_DVI_800W_600H,
-    OMAP_DVI_800W_600H_56HZ,
     OMAP_DVI_1024W_768H,
     OMAP_DVI_1280W_720H,
-    OMAP_RES_INVALID=8
+    OMAP_RES_INVALID=5
 }OMAP_LCD_DVI_RES;
 //------------------------------------------------------------------------
-//Backlight enum Ray 13-07-26
-//------------------------------------------------------------------------
-typedef enum OMAP_LCM_BACKLIGHT {
-     BACKLIGHT_ON=0,
-	 BACKLIGHT_OFF,
-	 BACKLIGHT_BRIGHTNESS,
-	 BACKLIGHT_EXIT=3
-}OMAP_LCM_BACKLIGHT;
 
-//------------------------------------------------------------------------
-//SD to Flash enum Ray 13-09-10
-//------------------------------------------------------------------------
-typedef enum OMAP_SD_TO_FLASH{
-	READING=0,
-	WRITING,
-	SHOW_DATA,
-	FLASH_EXIT=3
-}OMAP_SD_TO_FLASH; 
+typedef enum OMAP_HOTKEY_COLD_RESET{
+    Hotkey_F1 = 0,
+    Hotkey_F2,
+    Hotkey_F3,
+    Hotkey_F4,
+    Hotkey_EXIT = 4
+}OMAP_HOTKEY_COLD_RESET;
 
-//------------------------------------------------------------------------
-//Backlight Brightness enum Ray 13-09-18
-//------------------------------------------------------------------------
-typedef enum OMAP_LCM_BACKLIGHT_BN{
-	PLUS=0,
-	MINUS,
-	BN_EXIT=2
-}OMAP_LCM_BACKLIGHT_BN;
 
-//------------------------------------------------------------------------
-//LCM Initial Ray 13-09-24
-//------------------------------------------------------------------------
-typedef enum OMAP_LCM_Initial{
-	LCM_HIGH=0,
-	LCM_LOW,
-	LCM_EXIT=2
-}OMAP_LCM_Initial;
-
-//------------------------------------------------------------------------
-//LCM Initial Ray 13-10-07
-//------------------------------------------------------------------------
-typedef enum OMAP_FuelGaugeWithBattery{
-	BATTERY_INIT_IC2=0,
-	BATTERY_STATUS,
-	BATTERY_EXIT=2
-}OMAP_FuelGaugeWithBattery;
 
 //------------------------------------------------------------------------
 //  Triton Access

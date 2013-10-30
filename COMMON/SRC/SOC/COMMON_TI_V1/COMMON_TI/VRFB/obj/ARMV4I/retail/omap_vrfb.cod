@@ -251,7 +251,7 @@
 ; File c:\wince600\public\common\oak\inc\pkfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45714| DCD	|$LN5@CeSetMemor|
+|$T45715| DCD	|$LN5@CeSetMemor|
 	DCD	0x40001002
 ; Function compile flags: /Ogspy
 
@@ -264,7 +264,7 @@
   00000		 |$LN5@CeSetMemor|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M45711|
+  00008		 |$M45712|
   00008	e1a04003	 mov         r4, r3
   0000c	e1a03002	 mov         r3, r2
   00010	e1a02000	 mov         r2, r0
@@ -286,7 +286,7 @@
   00034	e28dd00c	 add         sp, sp, #0xC
   00038	e8bd4010	 ldmia       sp!, {r4, lr}
   0003c	e12fff1e	 bx          lr
-  00040		 |$M45712|
+  00040		 |$M45713|
 
 			 ENDP  ; |CeSetMemoryAttributes|
 
@@ -295,7 +295,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45723| DCD	|$LN5@GetCurrent|
+|$T45724| DCD	|$LN5@GetCurrent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -307,7 +307,7 @@
 
   00000		 |$LN5@GetCurrent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45720|
+  00004		 |$M45721|
 
 ; 374  :     return __GetUserKData (SYSHANDLE_OFFSET + (SH_CURPROC * sizeof(HANDLE)));
 
@@ -318,7 +318,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M45721|
+  00014		 |$M45722|
 
 			 ENDP  ; |GetCurrentProcessId|
 
@@ -331,7 +331,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\vrfb\omap_vrfb.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45734| DCD	|$LN10@VRF_Deinit|
+|$T45735| DCD	|$LN10@VRF_Deinit|
 	DCD	0x40002601
 ; Function compile flags: /Ogspy
 
@@ -343,7 +343,7 @@
 
   00000		 |$LN10@VRF_Deinit|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45731|
+  00004		 |$M45732|
   00004	e1b04000	 movs        r4, r0
 
 ; 365  :     BOOL rc = FALSE;
@@ -357,11 +357,11 @@
 ; 370  :     // Check if we get correct context
 ; 371  :     if ((pDevice == NULL) || (pDevice->cookie != VRFB_DEVICE_COOKIE))
 
-  0000c	0a00001e	 beq         |$cleanUp$45085|
+  0000c	0a00001e	 beq         |$cleanUp$45086|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f3078	 ldr         r3, [pc, #0x78]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a00001a	 bne         |$cleanUp$45085|
+  0001c	1a00001a	 bne         |$cleanUp$45086|
 
 ; 372  :         {
 ; 373  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: VRF_Deinit: "
@@ -375,7 +375,7 @@
 
   00020	e594301c	 ldr         r3, [r4, #0x1C]
   00024	e3530000	 cmp         r3, #0
-  00028	ca000017	 bgt         |$cleanUp$45085|
+  00028	ca000017	 bgt         |$cleanUp$45086|
 
 ; 381  :         {
 ; 382  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: VRF_Deinit: "
@@ -452,7 +452,7 @@
 ; 413  :     rc = TRUE;
 
   00088	e3a00001	 mov         r0, #1
-  0008c		 |$cleanUp$45085|
+  0008c		 |$cleanUp$45086|
 
 ; 414  : 
 ; 415  : cleanUp:
@@ -465,7 +465,7 @@
   00094		 |$LN11@VRF_Deinit|
   00094		 |$LN12@VRF_Deinit|
   00094	76726644	 DCD         0x76726644
-  00098		 |$M45732|
+  00098		 |$M45733|
 
 			 ENDP  ; |VRF_Deinit|
 
@@ -474,7 +474,7 @@
 	IMPORT	|LocalAlloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45748| DCD	|$LN8@VRF_Open|
+|$T45749| DCD	|$LN8@VRF_Open|
 	DCD	0x40001b01
 ; Function compile flags: /Ogspy
 
@@ -486,7 +486,7 @@
 
   00000		 |$LN8@VRF_Open|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M45745|
+  00004		 |$M45746|
   00004	e1b06000	 movs        r6, r0
 
 ; 433  :     DWORD rc = (DWORD)NULL;
@@ -506,11 +506,11 @@
 ; 444  :     // Check if we get correct context
 ; 445  :     if ((pDevice == NULL) || (pDevice->cookie != VRFB_DEVICE_COOKIE))
 
-  0000c	0a000011	 beq         |$cleanUp$45116|
+  0000c	0a000011	 beq         |$cleanUp$45117|
   00010	e5962000	 ldr         r2, [r6]
   00014	e59f304c	 ldr         r3, [pc, #0x4C]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a00000d	 bne         |$cleanUp$45116|
+  0001c	1a00000d	 bne         |$cleanUp$45117|
 
 ; 446  :         {
 ; 447  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: VRF_Open: "
@@ -529,7 +529,7 @@
 
 ; 455  :     if (pInstance == NULL)
 
-  00030	0a000008	 beq         |$cleanUp$45116|
+  00030	0a000008	 beq         |$cleanUp$45117|
 
 ; 456  :         {
 ; 457  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRF_Open: "
@@ -567,7 +567,7 @@
 ; 477  :     rc = (DWORD)pInstance;
 
   00054	e1a05004	 mov         r5, r4
-  00058		 |$cleanUp$45116|
+  00058		 |$cleanUp$45117|
 
 ; 478  : 
 ; 479  : cleanUp:
@@ -583,7 +583,7 @@
   00064	76726649	 DCD         0x76726649
   00068		 |$LN11@VRF_Open|
   00068	76726644	 DCD         0x76726644
-  0006c		 |$M45746|
+  0006c		 |$M45747|
 
 			 ENDP  ; |VRF_Open|
 
@@ -591,7 +591,7 @@
 	IMPORT	|InterlockedDecrement|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45762| DCD	|$LN7@VRF_Close|
+|$T45763| DCD	|$LN7@VRF_Close|
 	DCD	0x40001101
 ; Function compile flags: /Ogspy
 
@@ -603,7 +603,7 @@
 
   00000		 |$LN7@VRF_Close|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45759|
+  00004		 |$M45760|
   00004	e1b04000	 movs        r4, r0
 
 ; 495  :     BOOL rc = FALSE;
@@ -618,11 +618,11 @@
 ; 501  :     // Check if we get correct context
 ; 502  :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  0000c	0a000009	 beq         |$cleanUp$45139|
+  0000c	0a000009	 beq         |$cleanUp$45140|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f3024	 ldr         r3, [pc, #0x24]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000005	 bne         |$cleanUp$45139|
+  0001c	1a000005	 bne         |$cleanUp$45140|
 
 ; 503  :         {
 ; 504  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: VRF_Read: "
@@ -656,7 +656,7 @@
 ; 523  :     rc = TRUE;
 
   00034	e3a00001	 mov         r0, #1
-  00038		 |$cleanUp$45139|
+  00038		 |$cleanUp$45140|
 
 ; 524  : 
 ; 525  : cleanUp:
@@ -669,7 +669,7 @@
   00040		 |$LN8@VRF_Close|
   00040		 |$LN9@VRF_Close|
   00040	76726649	 DCD         0x76726649
-  00044		 |$M45760|
+  00044		 |$M45761|
 
 			 ENDP  ; |VRF_Close|
 
@@ -677,7 +677,7 @@
 	IMPORT	|FreePhysMem|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45777| DCD	|$LN11@VRFB_Relea|
+|$T45778| DCD	|$LN11@VRFB_Relea|
 	DCD	0x40002e01
 ; Function compile flags: /Ogspy
 
@@ -689,7 +689,7 @@
 
   00000		 |$LN11@VRFB_Relea|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M45774|
+  00004		 |$M45775|
   00004	e1b0e000	 movs        lr, r0
 
 ; 972  :     BOOL        bResult = FALSE;
@@ -708,11 +708,11 @@
 ; 982  :     // Check if we get correct context
 ; 983  :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  0000c	0a000025	 beq         |$cleanUp$45384|
+  0000c	0a000025	 beq         |$cleanUp$45385|
   00010	e59e2000	 ldr         r2, [lr]
   00014	e59f3098	 ldr         r3, [pc, #0x98]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000021	 bne         |$cleanUp$45384|
+  0001c	1a000021	 bne         |$cleanUp$45385|
 
 ; 984  :         {
 ; 985  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_ReleaseView: "
@@ -733,7 +733,7 @@
   00024	e2412206	 sub         r2, r1, #6, 4
   00028	e5933004	 ldr         r3, [r3, #4]
   0002c	e1520003	 cmp         r2, r3
-  00030	3a00001c	 bcc         |$cleanUp$45384|
+  00030	3a00001c	 bcc         |$cleanUp$45385|
 
 ; 998  :     {
 ; 999  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_ReleaseView: "
@@ -747,12 +747,12 @@
 ; 1007 :     if( index < VRFB_ROTATION_CONTEXTS && g_VrfbContextList[index].bInUse )
 
   00034	e352000c	 cmp         r2, #0xC
-  00038	2a00001a	 bcs         |$cleanUp$45384|
+  00038	2a00001a	 bcs         |$cleanUp$45385|
   0003c	e59f106c	 ldr         r1, [pc, #0x6C]
   00040	e1a05282	 mov         r5, r2, lsl #5
   00044	e7b53001	 ldr         r3, [r5, +r1]!
   00048	e3530000	 cmp         r3, #0
-  0004c	0a000015	 beq         |$cleanUp$45384|
+  0004c	0a000015	 beq         |$cleanUp$45385|
 
 ; 1008 :     {
 ; 1009 :         //  Release the mapping to the VRFB context
@@ -820,7 +820,7 @@
 ; 1028 :         bResult = TRUE;
 
   000a4	e3a00001	 mov         r0, #1
-  000a8		 |$cleanUp$45384|
+  000a8		 |$cleanUp$45385|
 
 ; 1029 :     }
 ; 1030 :     else
@@ -844,7 +844,7 @@
   000b0	00000000	 DCD         |g_VrfbContextList|
   000b4		 |$LN14@VRFB_Relea|
   000b4	76726649	 DCD         0x76726649
-  000b8		 |$M45775|
+  000b8		 |$M45776|
 
 			 ENDP  ; |VRFB_ReleaseView|
 
@@ -852,7 +852,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45801| DCD	|$LN19@VRFB_GetVi|
+|$T45802| DCD	|$LN19@VRFB_GetVi|
 	DCD	0x40005b01
 ; Function compile flags: /Ogspy
 
@@ -864,7 +864,7 @@
 
   00000		 |$LN19@VRFB_GetVi|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M45798|
+  00004		 |$M45799|
   00004	e1a06002	 mov         r6, r2
   00008	e1b02000	 movs        r2, r0
   0000c	e1a08001	 mov         r8, r1
@@ -880,11 +880,11 @@
 ; 1057 :     // Check if we get correct context
 ; 1058 :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  00014	0a000050	 beq         |$cleanUp$45413|
+  00014	0a000050	 beq         |$cleanUp$45414|
   00018	e592e000	 ldr         lr, [r2]
   0001c	e59f3144	 ldr         r3, [pc, #0x144]
   00020	e15e0003	 cmp         lr, r3
-  00024	1a00004c	 bne         |$cleanUp$45413|
+  00024	1a00004c	 bne         |$cleanUp$45414|
 
 ; 1059 :         {
 ; 1060 :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_GetViewInfo: "
@@ -906,11 +906,11 @@
 
   0002c	e5929004	 ldr         r9, [r2, #4]
   00030	e355000c	 cmp         r5, #0xC
-  00034	2a000048	 bcs         |$cleanUp$45413|
+  00034	2a000048	 bcs         |$cleanUp$45414|
   00038	e59f2124	 ldr         r2, [pc, #0x124]
   0003c	e7923285	 ldr         r3, [r2, +r5, lsl #5]
   00040	e3530000	 cmp         r3, #0
-  00044	0a000044	 beq         |$cleanUp$45413|
+  00044	0a000044	 beq         |$cleanUp$45414|
 
 ; 1073 :     {
 ; 1074 :         DWORD   offset = 0;
@@ -1059,7 +1059,7 @@
   00150	e586101c	 str         r1, [r6, #0x1C]
   00154	e5862020	 str         r2, [r6, #0x20]
   00158	e586303c	 str         r3, [r6, #0x3C]
-  0015c		 |$cleanUp$45413|
+  0015c		 |$cleanUp$45414|
 
 ; 1119 :     }    
 ; 1120 :     else
@@ -1082,7 +1082,7 @@
   00164	00000000	 DCD         |g_VrfbContextList|
   00168		 |$LN22@VRFB_GetVi|
   00168	76726649	 DCD         0x76726649
-  0016c		 |$M45799|
+  0016c		 |$M45800|
 
 			 ENDP  ; |VRFB_GetViewInfo|
 
@@ -1091,7 +1091,7 @@
 ; File c:\wince600\public\common\oak\inc\pkfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45826| DCD	|$LN20@VRFB_Rotat|
+|$T45827| DCD	|$LN20@VRFB_Rotat|
 	DCD	0x40004502
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\vrfb\omap_vrfb.c
@@ -1105,7 +1105,7 @@
   00000		 |$LN20@VRFB_Rotat|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M45823|
+  00008		 |$M45824|
   00008	e1a05002	 mov         r5, r2
   0000c	e3500000	 cmp         r0, #0
 
@@ -1129,11 +1129,11 @@
 ; 1152 :     // Check if we get correct context
 ; 1153 :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  00018	0a000037	 beq         |$cleanUp$45452|
+  00018	0a000037	 beq         |$cleanUp$45453|
   0001c	e5900000	 ldr         r0, [r0]
   00020	e59f30e8	 ldr         r3, [pc, #0xE8]
   00024	e1500003	 cmp         r0, r3
-  00028	1a000033	 bne         |$cleanUp$45452|
+  00028	1a000033	 bne         |$cleanUp$45453|
 
 ; 1154 :         {
 ; 1155 :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_RotateView: "
@@ -1155,11 +1155,11 @@
 ; 1168 :     if( index < VRFB_ROTATION_CONTEXTS && g_VrfbContextList[index].bInUse )
 
   00030	e352000c	 cmp         r2, #0xC
-  00034	2a000030	 bcs         |$cleanUp$45452|
+  00034	2a000030	 bcs         |$cleanUp$45453|
   00038	e59f10cc	 ldr         r1, [pc, #0xCC]
   0003c	e7913282	 ldr         r3, [r1, +r2, lsl #5]
   00040	e3530000	 cmp         r3, #0
-  00044	0a00002c	 beq         |$cleanUp$45452|
+  00044	0a00002c	 beq         |$cleanUp$45453|
 
 ; 1169 :     {
 ; 1170 :         //  If the rotation angle is the same as currently set, do nothing
@@ -1173,7 +1173,7 @@
 ; 1173 :             bResult = TRUE;
 
   00054	03a0e001	 moveq       lr, #1
-  00058	0a000027	 beq         |$cleanUp$45452|
+  00058	0a000027	 beq         |$cleanUp$45453|
 
 ; 1174 :             goto cleanUp;
 ; 1175 :         }
@@ -1246,7 +1246,7 @@
 ; 1203 : 
 ; 1204 :         if( bResult == FALSE )
 
-  000bc	0a00000e	 beq         |$cleanUp$45452|
+  000bc	0a00000e	 beq         |$cleanUp$45453|
 
 ; 1205 :         {
 ; 1206 :             DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_RotateView: "
@@ -1285,7 +1285,7 @@
 ; 1223 :         g_VrfbContextList[index].dwRotationAngle = dwRotateAngle;
 
   000f8	1586500c	 strne       r5, [r6, #0xC]
-  000fc		 |$cleanUp$45452|
+  000fc		 |$cleanUp$45453|
 
 ; 1224 :     }
 ; 1225 :     else
@@ -1311,14 +1311,14 @@
   0010c	00000000	 DCD         |g_VrfbContextList|
   00110		 |$LN23@VRFB_Rotat|
   00110	76726649	 DCD         0x76726649
-  00114		 |$M45824|
+  00114		 |$M45825|
 
 			 ENDP  ; |VRFB_RotateView|
 
 	EXPORT	|VRFB_NumDisplayViews|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45840| DCD	|$LN7@VRFB_NumDi|
+|$T45841| DCD	|$LN7@VRFB_NumDi|
 	DCD	0x40000a00
 ; Function compile flags: /Ogspy
 
@@ -1329,7 +1329,7 @@
 ; 1347 : {
 
   00000		 |$LN7@VRFB_NumDi|
-  00000		 |$M45837|
+  00000		 |$M45838|
   00000	e1b01000	 movs        r1, r0
 
 ; 1348 :     DWORD       dwResult = 0;
@@ -1342,7 +1342,7 @@
 ; 1352 :     // Check if we get correct context
 ; 1353 :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  00008	0a000004	 beq         |$cleanUp$45536|
+  00008	0a000004	 beq         |$cleanUp$45537|
   0000c	e5912000	 ldr         r2, [r1]
   00010	e59f300c	 ldr         r3, [pc, #0xC]
   00014	e1520003	 cmp         r2, r3
@@ -1362,7 +1362,7 @@
 
   00018	05913004	 ldreq       r3, [r1, #4]
   0001c	05930004	 ldreq       r0, [r3, #4]
-  00020		 |$cleanUp$45536|
+  00020		 |$cleanUp$45537|
 
 ; 1366 :     
 ; 1367 : cleanUp:    
@@ -1374,14 +1374,14 @@
   00024		 |$LN8@VRFB_NumDi|
   00024		 |$LN9@VRFB_NumDi|
   00024	76726649	 DCD         0x76726649
-  00028		 |$M45838|
+  00028		 |$M45839|
 
 			 ENDP  ; |VRFB_NumDisplayViews|
 
 	EXPORT	|VRFB_GetDisplayView|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45854| DCD	|$LN8@VRFB_GetDi|
+|$T45855| DCD	|$LN8@VRFB_GetDi|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -1393,7 +1393,7 @@
 
   00000		 |$LN8@VRFB_GetDi|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45851|
+  00004		 |$M45852|
   00004	e1b0e000	 movs        lr, r0
 
 ; 1380 :     HANDLE      hView = NULL;
@@ -1406,11 +1406,11 @@
 ; 1384 :     // Check if we get correct context
 ; 1385 :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  0000c	0a000007	 beq         |$cleanUp$45551|
+  0000c	0a000007	 beq         |$cleanUp$45552|
   00010	e59e2000	 ldr         r2, [lr]
   00014	e59f301c	 ldr         r3, [pc, #0x1C]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000003	 bne         |$cleanUp$45551|
+  0001c	1a000003	 bne         |$cleanUp$45552|
 
 ; 1386 :         {
 ; 1387 :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_GetDisplayView: "
@@ -1434,7 +1434,7 @@
 ; 1400 :         hView = (HANDLE)(VRFB_VIEW_HANDLE_BASE + dwIndex);  
 
   0002c	32810206	 addcc       r0, r1, #6, 4
-  00030		 |$cleanUp$45551|
+  00030		 |$cleanUp$45552|
 
 ; 1401 :     }
 ; 1402 :     
@@ -1448,14 +1448,14 @@
   00038		 |$LN9@VRFB_GetDi|
   00038		 |$LN10@VRFB_GetDi|
   00038	76726649	 DCD         0x76726649
-  0003c		 |$M45852|
+  0003c		 |$M45853|
 
 			 ENDP  ; |VRFB_GetDisplayView|
 
 	EXPORT	|VRFB_GetDisplayViewInfo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45886| DCD	|$LN42@VRFB_GetDi@2|
+|$T45887| DCD	|$LN42@VRFB_GetDi@2|
 	DCD	0x40008801
 ; Function compile flags: /Ogspy
 
@@ -1467,7 +1467,7 @@
 
   00000		 |$LN42@VRFB_GetDi@2|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M45883|
+  00004		 |$M45884|
   00004	e1a0a003	 mov         r10, r3
   00008	e1a05002	 mov         r5, r2
   0000c	e1a08001	 mov         r8, r1
@@ -1484,11 +1484,11 @@
 ; 1421 :     // Check if we get correct context
 ; 1422 :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  00018	0a00007b	 beq         |$cleanUp$45573|
+  00018	0a00007b	 beq         |$cleanUp$45574|
   0001c	e5904000	 ldr         r4, [r0]
   00020	e59fe1f4	 ldr         lr, [pc, #0x1F4]
   00024	e154000e	 cmp         r4, lr
-  00028	1a000077	 bne         |$cleanUp$45573|
+  00028	1a000077	 bne         |$cleanUp$45574|
 
 ; 1423 :         {
 ; 1424 :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_GetDisplayViewInfo: "
@@ -1508,7 +1508,7 @@
 
   00030	e59b0004	 ldr         r0, [r11, #4]
   00034	e1580000	 cmp         r8, r0
-  00038	2a000073	 bcs         |$cleanUp$45573|
+  00038	2a000073	 bcs         |$cleanUp$45574|
 
 ; 1435 :     {
 ; 1436 :         DWORD   dwRotationOffset;
@@ -1798,7 +1798,7 @@
 ; 1533 :         bResult = TRUE;
 
   00208	e3a03001	 mov         r3, #1
-  0020c		 |$cleanUp$45573|
+  0020c		 |$cleanUp$45574|
 
 ; 1534 :     }    
 ; 1535 :     else
@@ -1822,14 +1822,14 @@
   00218	00000000	 DCD         |g_VrfbContextList|
   0021c		 |$LN45@VRFB_GetDi@2|
   0021c	76726649	 DCD         0x76726649
-  00220		 |$M45884|
+  00220		 |$M45885|
 
 			 ENDP  ; |VRFB_GetDisplayViewInfo|
 
 	EXPORT	|DebugPrintRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45898| DCD	|$LN5@DebugPrint|
+|$T45899| DCD	|$LN5@DebugPrint|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -1841,7 +1841,7 @@
 
   00000		 |$LN5@DebugPrint|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45895|
+  00004		 |$M45896|
 
 ; 1556 :     DWORD   dwControl,
 ; 1557 :             dwSize,
@@ -1869,7 +1869,7 @@
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M45896|
+  00024		 |$M45897|
 
 			 ENDP  ; |DebugPrintRegs|
 
@@ -1878,7 +1878,7 @@
 	IMPORT	|RegisterDbgZones|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45909| DCD	|$LN8@DllMain|
+|$T45910| DCD	|$LN8@DllMain|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -1890,7 +1890,7 @@
 
   00000		 |$LN8@DllMain|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45906|
+  00004		 |$M45907|
   00004	e1a04000	 mov         r4, r0
 
 ; 1585 :     UNREFERENCED_PARAMETER(pReserved);
@@ -1925,7 +1925,7 @@
   0002c		 |$LN9@DllMain|
   0002c		 |$LN10@DllMain|
   0002c	00000000	 DCD         |dpCurSettings|
-  00030		 |$M45907|
+  00030		 |$M45908|
 
 			 ENDP  ; |DllMain|
 
@@ -1939,7 +1939,7 @@
 ; File c:\wince600\public\common\oak\inc\pkfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45937| DCD	|$LN25@VRF_Init|
+|$T45938| DCD	|$LN25@VRF_Init|
 	DCD	0x40006b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\vrfb\omap_vrfb.c
@@ -1953,7 +1953,7 @@
   00000		 |$LN25@VRF_Init|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M45934|
+  00008		 |$M45935|
   00008	e1a05000	 mov         r5, r0
 
 ; 210  :     DWORD rc = (DWORD)NULL;
@@ -2240,7 +2240,7 @@
 ; 346  :     rc = (DWORD)pDevice;
 
   00180	e1a07004	 mov         r7, r4
-  00184		 |$cleanUp$45032|
+  00184		 |$cleanUp$45033|
 
 ; 347  :     
 ; 348  : cleanUp:
@@ -2267,7 +2267,7 @@
   001a4	00000000	 DCD         |s_deviceRegParams|
   001a8		 |$LN29@VRF_Init|
   001a8	76726644	 DCD         0x76726644
-  001ac		 |$M45935|
+  001ac		 |$M45936|
 
 			 ENDP  ; |VRF_Init|
 
@@ -2276,7 +2276,7 @@
 	IMPORT	|AllocPhysMem|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45996| DCD	|$LN49@VRFB_Alloc|
+|$T45997| DCD	|$LN49@VRFB_Alloc|
 	DCD	0x4000a104
 ; Function compile flags: /Ogspy
 
@@ -2291,7 +2291,7 @@
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5ff0	 stmdb       sp!, {r4 - r12, lr}
   0000c	e24dd018	 sub         sp, sp, #0x18
-  00010		 |$M45993|
+  00010		 |$M45994|
   00010	e1a09003	 mov         r9, r3
   00014	e1b03000	 movs        r3, r0
   00018	e1a08002	 mov         r8, r2
@@ -2654,7 +2654,7 @@
 ; 941  :         hView = (HANDLE)(VRFB_VIEW_HANDLE_BASE + index);  
 
   00244	e2954206	 adds        r4, r5, #6, 4
-  00248		 |$cleanUp$45320|
+  00248		 |$cleanUp$45321|
 
 ; 942  :     }
 ; 943  :     else
@@ -2716,14 +2716,14 @@
   0027c	00000000	 DCD         |g_VrfbContextList|
   00280		 |$LN52@VRFB_Alloc|
   00280	76726649	 DCD         0x76726649
-  00284		 |$M45994|
+  00284		 |$M45995|
 
 			 ENDP  ; |VRFB_AllocateView|
 
 	EXPORT	|VRFB_UpdateView|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46031| DCD	|$LN19@VRFB_Updat|
+|$T46032| DCD	|$LN19@VRFB_Updat|
 	DCD	0x40004b01
 ; Function compile flags: /Ogspy
 
@@ -2735,7 +2735,7 @@
 
   00000		 |$LN19@VRFB_Updat|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M46028|
+  00004		 |$M46029|
   00004	e1a05003	 mov         r5, r3
   00008	e1a06001	 mov         r6, r1
   0000c	e3500000	 cmp         r0, #0
@@ -2758,11 +2758,11 @@
 ; 1259 :     // Check if we get correct context
 ; 1260 :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  00014	0a00003f	 beq         |$cleanUp$45507|
+  00014	0a00003f	 beq         |$cleanUp$45508|
   00018	e5904000	 ldr         r4, [r0]
   0001c	e59fe104	 ldr         lr, [pc, #0x104]
   00020	e154000e	 cmp         r4, lr
-  00024	1a00003b	 bne         |$cleanUp$45507|
+  00024	1a00003b	 bne         |$cleanUp$45508|
 
 ; 1261 :         {
 ; 1262 :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_UpdateView: "
@@ -2785,7 +2785,7 @@
   00034	e3520001	 cmp         r2, #1
   00038	0a000001	 beq         |$LN6@VRFB_Updat|
   0003c	e3520002	 cmp         r2, #2
-  00040	1a000034	 bne         |$cleanUp$45507|
+  00040	1a000034	 bne         |$cleanUp$45508|
   00044		 |$LN6@VRFB_Updat|
 
 ; 1273 :         {
@@ -2824,11 +2824,11 @@
 ; 1288 :     if( index < VRFB_ROTATION_CONTEXTS && g_VrfbContextList[index].bInUse )
 
   00074	e356000c	 cmp         r6, #0xC
-  00078	2a000026	 bcs         |$cleanUp$45507|
+  00078	2a000026	 bcs         |$cleanUp$45508|
   0007c	e59f00a0	 ldr         r0, [pc, #0xA0]
   00080	e7903286	 ldr         r3, [r0, +r6, lsl #5]
   00084	e3530000	 cmp         r3, #0
-  00088	0a000022	 beq         |$cleanUp$45507|
+  00088	0a000022	 beq         |$cleanUp$45508|
 
 ; 1289 :     {
 ; 1290 :         //  Can't update parameters for views with internally allocated buffer memory
@@ -2837,7 +2837,7 @@
   0008c	e0800286	 add         r0, r0, r6, lsl #5
   00090	e590301c	 ldr         r3, [r0, #0x1C]
   00094	e3530000	 cmp         r3, #0
-  00098	1a00001e	 bne         |$cleanUp$45507|
+  00098	1a00001e	 bne         |$cleanUp$45508|
 
 ; 1292 :         {
 ; 1293 :             DEBUGMSG(ZONE_ERROR, (L"ERROR: VRFB_UpdateView: "
@@ -2918,7 +2918,7 @@
 ; 1324 :         bResult = TRUE;
 
   00114	e3a08001	 mov         r8, #1
-  00118		 |$cleanUp$45507|
+  00118		 |$cleanUp$45508|
 
 ; 1325 :     }
 ; 1326 :     else
@@ -2943,7 +2943,7 @@
   00124	00000000	 DCD         |g_VrfbContextList|
   00128		 |$LN22@VRFB_Updat|
   00128	76726649	 DCD         0x76726649
-  0012c		 |$M46029|
+  0012c		 |$M46030|
 
 			 ENDP  ; |VRFB_UpdateView|
 
@@ -2954,7 +2954,7 @@
 	IMPORT	|memcmp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46077| DCD	|$LN63@VRF_IOCont|
+|$T46078| DCD	|$LN63@VRF_IOCont|
 	DCD	0x4000e102
 ; Function compile flags: /Ogspy
 
@@ -2967,7 +2967,7 @@
   00000		 |$LN63@VRF_IOCont|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd02c	 sub         sp, sp, #0x2C
-  00008		 |$M46074|
+  00008		 |$M46075|
   00008	e1a06003	 mov         r6, r3
   0000c	e1a05002	 mov         r5, r2
   00010	e1b09000	 movs        r9, r0
@@ -2988,11 +2988,11 @@
 ; 558  :     // Check if we get correct context
 ; 559  :     if ((pInstance == NULL) || (pInstance->cookie != VRFB_INSTANCE_COOKIE))
 
-  00018	0a000074	 beq         |$cleanUp$45168|
+  00018	0a000074	 beq         |$cleanUp$45169|
   0001c	e5994000	 ldr         r4, [r9]
   00020	e59fe358	 ldr         lr, [pc, #0x358]
   00024	e154000e	 cmp         r4, lr
-  00028	1a000070	 bne         |$cleanUp$45168|
+  00028	1a000070	 bne         |$cleanUp$45169|
 
 ; 560  :         {
 ; 561  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: VRF_IOControl: "
@@ -3024,7 +3024,7 @@
   00064	0a000011	 beq         |$LN29@VRF_IOCont|
   00068	e59f3304	 ldr         r3, [pc, #0x304]
   0006c	e1510003	 cmp         r1, r3
-  00070	1a00005e	 bne         |$cleanUp$45168|
+  00070	1a00005e	 bne         |$cleanUp$45169|
 
 ; 652  :                     }
 ; 653  :             }
@@ -3078,7 +3078,7 @@
 ; 709  :                                           pViewInfo->dwPhysicalBufferAddr );
 
   000a8	e1a08000	 mov         r8, r0
-  000ac	ea00004f	 b           |$cleanUp$45168|
+  000ac	ea00004f	 b           |$cleanUp$45169|
   000b0		 |$LN29@VRF_IOCont|
 
 ; 638  :  
@@ -3122,7 +3122,7 @@
 ; 709  :                                           pViewInfo->dwPhysicalBufferAddr );
 
   000cc	e1a08000	 mov         r8, r0
-  000d0	ea000046	 b           |$cleanUp$45168|
+  000d0	ea000046	 b           |$cleanUp$45169|
   000d4		 |$LN33@VRF_IOCont|
 
 ; 607  :                 }
@@ -3184,7 +3184,7 @@
 ; 636  :             }
 ; 637  :             break;
 
-  00120	ea000032	 b           |$cleanUp$45168|
+  00120	ea000032	 b           |$cleanUp$45169|
   00124		 |$LN42@VRF_IOCont|
 
 ; 572  :         { 
@@ -3308,7 +3308,7 @@
   001e8	e3a00057	 mov         r0, #0x57
   001ec		 |$LN58@VRF_IOCont|
   001ec	eb000000	 bl          SetLastError
-  001f0		 |$cleanUp$45168|
+  001f0		 |$cleanUp$45169|
 
 ; 771  :                     }
 ; 772  :             }
@@ -3376,7 +3376,7 @@
 ; 709  :                                           pViewInfo->dwPhysicalBufferAddr );
 
   00220	e1a08000	 mov         r8, r0
-  00224	eafffff1	 b           |$cleanUp$45168|
+  00224	eafffff1	 b           |$cleanUp$45169|
   00228		 |$LN49@VRF_IOCont|
 
 ; 560  :         {
@@ -3403,7 +3403,7 @@
   00248	0a000014	 beq         |$LN9@VRF_IOCont|
   0024c	e59f30ec	 ldr         r3, [pc, #0xEC]
   00250	e1510003	 cmp         r1, r3
-  00254	1affffe5	 bne         |$cleanUp$45168|
+  00254	1affffe5	 bne         |$cleanUp$45169|
 
 ; 751  :  
 ; 752  :         case IOCTL_VRFB_GETDISPLAYVIEWINFO:
@@ -3445,7 +3445,7 @@
   00290	e58de000	 str         lr, [sp]
   00294	eb000000	 bl          VRFB_GetDisplayViewInfo
   00298	e1a08000	 mov         r8, r0
-  0029c	eaffffd3	 b           |$cleanUp$45168|
+  0029c	eaffffd3	 b           |$cleanUp$45169|
   002a0		 |$LN9@VRF_IOCont|
 
 ; 731  : 
@@ -3516,7 +3516,7 @@
 ; 726  :                     *pNumViews = VRFB_NumDisplayViews( hContext ); 
 
   002f0	e5993004	 ldr         r3, [r9, #4]
-  002f4		 |$cleanUp$46049|
+  002f4		 |$cleanUp$46050|
 
 ; 727  :                     rc = TRUE;
 
@@ -3528,7 +3528,7 @@
 ; 729  :             }
 ; 730  :             break;
 
-  00300	eaffffba	 b           |$cleanUp$45168|
+  00300	eaffffba	 b           |$cleanUp$45169|
   00304		 |$LN17@VRF_IOCont|
 
 ; 688  :                     }
@@ -3568,7 +3568,7 @@
   00330	e58de000	 str         lr, [sp]
   00334	eb000000	 bl          VRFB_UpdateView
   00338	e1a08000	 mov         r8, r0
-  0033c	eaffffab	 b           |$cleanUp$45168|
+  0033c	eaffffab	 b           |$cleanUp$45169|
   00340		 |$LN64@VRF_IOCont|
   00340		 |$LN65@VRF_IOCont|
   00340	00221c1c	 DCD         0x221c1c
@@ -3604,7 +3604,7 @@
   0037c	00221c0c	 DCD         0x221c0c
   00380		 |$LN81@VRF_IOCont|
   00380	76726649	 DCD         0x76726649
-  00384		 |$M46075|
+  00384		 |$M46076|
 
 			 ENDP  ; |VRF_IOControl|
 

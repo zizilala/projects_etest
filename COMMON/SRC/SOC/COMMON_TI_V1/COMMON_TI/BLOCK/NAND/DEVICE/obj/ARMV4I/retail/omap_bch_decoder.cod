@@ -18,18 +18,18 @@
 
   00000		 |mpy_mod_gf| PROC
 
-; 32   : {
+; 32   : ÿþ/
 
   00000		 |$LN13@mpy_mod_gf|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004		 |$M580|
   00004	e1a05000	 mov         r5, r0
 
-; 33   : 	unsigned int R = 0;
-; 34   : 	unsigned int R1 = 0;
-; 35   : 	unsigned int k = 0;
+; 33   : 
+; 34   : 
+; 35   : 
 ; 36   : 
-; 37   : 	for (k = 0; k < mm; k++) {
+; 37   : 
 
   00008	e3a03c0f	 mov         r3, #0xF, 24
   0000c	e38340ff	 orr         r4, r3, #0xFF
@@ -39,15 +39,15 @@
   0001c		 |$LL6@mpy_mod_gf|
 
 ; 38   : 
-; 39   : 		R = (R << 1) & 0x1FFE;
+; 39   : 
 
   0001c	e0003004	 and         r3, r0, r4
   00020	e1a00083	 mov         r0, r3, lsl #1
 
-; 40   : 		if (R1 == 1)
-; 41   : 			R ^= P;
+; 40   : 
+; 41   : 
 ; 42   : 
-; 43   : 		if (((a >> (POLY - k)) & 1) == 1)
+; 43   : 
 
   00024	e262300c	 rsb         r3, r2, #0xC
   00028	e1a03335	 mov         r3, r5, lsr r3
@@ -56,16 +56,16 @@
   00034	0220001b	 eoreq       r0, r0, #0x1B
   00038	e3530001	 cmp         r3, #1
 
-; 44   : 			R ^= b;
+; 44   : 
 
   0003c	00200001	 eoreq       r0, r0, r1
 
 ; 45   : 
-; 46   : 		if (k < POLY)
+; 46   : 
 
   00040	e352000c	 cmp         r2, #0xC
 
-; 47   : 			R1 = (R >> POLY) & 1;
+; 47   : 
 
   00044	31a03980	 movcc       r3, r0, lsl #19
   00048	e2822001	 add         r2, r2, #1
@@ -73,9 +73,9 @@
   00050	e352000d	 cmp         r2, #0xD
   00054	3afffff0	 bcc         |$LL6@mpy_mod_gf|
 
-; 48   : 	}
-; 49   : 	return R;
-; 50   : }
+; 48   : 
+; 49   : 
+; 50   : 
 
   00058	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0005c	e12fff1e	 bx          lr
@@ -93,7 +93,7 @@
 
   00000		 |chien| PROC
 
-; 65   : {
+; 65   : 
 
   00000		 |$LN26@chien|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
@@ -104,21 +104,21 @@
   00010	e1a09001	 mov         r9, r1
   00014	e1b0a000	 movs        r10, r0
 
-; 66   : 	int i, count; /* Number of dectected errors */
-; 67   : 	/* Contains accumulation of evaluation at x^i (i:1->8) */
-; 68   : 	unsigned int gammas[8] = {0};
-; 69   : 	unsigned int alpha;
-; 70   : 	unsigned int bit, ecc_bits;
-; 71   : 	unsigned int elp_sum;
+; 66   : 
+; 67   : 
+; 68   : 
+; 69   : 
+; 70   : 
+; 71   : 
 ; 72   : 
-; 73   : 	ecc_bits = (select_4_8 == 0) ? 52 : 104;
+; 73   : 
 
   00018	03a0e034	 moveq       lr, #0x34
 
 ; 74   : 
-; 75   : 	/* Start evaluation at Alpha**8192 and decreasing */
-; 76   : 	for (i = 0; i < 8; i++)
-; 77   : 		gammas[i] = err[i];
+; 75   : 
+; 76   : 
+; 77   : 
 
   0001c	e28d2024	 add         r2, sp, #0x24
   00020	13a0e068	 movne       lr, #0x68
@@ -130,7 +130,7 @@
   00034	1afffffb	 bne         |$LN20@chien|
 
 ; 78   : 
-; 79   : 	count = 0;
+; 79   : 
 
   00038	e59d3030	 ldr         r3, [sp, #0x30]
   0003c	e59d0040	 ldr         r0, [sp, #0x40]
@@ -155,17 +155,17 @@
   00088	e58d1020	 str         r1, [sp, #0x20]
   0008c		 |$LL8@chien|
 
-; 80   : 	for (i = 1; (i <= nn) && (count < err_nums); i++) {
+; 80   : 
 
   0008c	e1560009	 cmp         r6, r9
   00090	aa00006d	 bge         |$LN22@chien|
 
 ; 81   : 
-; 82   : 		/* Result of evaluation at root */
-; 83   : 		elp_sum = 1 ^ gammas[0] ^ gammas[1] ^
-; 84   : 				gammas[2] ^ gammas[3] ^
-; 85   : 				gammas[4] ^ gammas[5] ^
-; 86   : 				gammas[6] ^ gammas[7];
+; 82   : 
+; 83   : 
+; 84   : 
+; 85   : 
+; 86   : 
 
   00094	e0203002	 eor         r3, r0, r2
   00098	e59d2008	 ldr         r2, [sp, #8]
@@ -176,8 +176,8 @@
   000ac	e59d0018	 ldr         r0, [sp, #0x18]
 
 ; 87   : 
-; 88   : 		alpha = PPP >> 1;
-; 89   : 		gammas[0] = mpy_mod_gf(gammas[0], alpha);
+; 88   : 
+; 89   : 
 
   000b0	e3a04a01	 mov         r4, #1, 20
   000b4	e0233002	 eor         r3, r3, r2
@@ -188,20 +188,20 @@
   000c8	eb000000	 bl          mpy_mod_gf
   000cc	e58d0018	 str         r0, [sp, #0x18]
 
-; 90   : 		alpha = mpy_mod_gf(alpha, (PPP >> 1));		/* x alphha^-2 */
+; 90   : 
 
   000d0	e384000d	 orr         r0, r4, #0xD
   000d4	e384100d	 orr         r1, r4, #0xD
   000d8	eb000000	 bl          mpy_mod_gf
   000dc	e1a04000	 mov         r4, r0
 
-; 91   : 		gammas[1] = mpy_mod_gf(gammas[1], alpha);
+; 91   : 
 
   000e0	e59d0000	 ldr         r0, [sp]
   000e4	e1a01004	 mov         r1, r4
   000e8	eb000000	 bl          mpy_mod_gf
 
-; 92   : 		alpha = mpy_mod_gf(alpha, (PPP >> 1));		/* x alphha^-2 */
+; 92   : 
 
   000ec	e3a03a01	 mov         r3, #1, 20
   000f0	e58d0000	 str         r0, [sp]
@@ -210,13 +210,13 @@
   000fc	eb000000	 bl          mpy_mod_gf
   00100	e1a04000	 mov         r4, r0
 
-; 93   : 		gammas[2] = mpy_mod_gf(gammas[2], alpha);
+; 93   : 
 
   00104	e59d0004	 ldr         r0, [sp, #4]
   00108	e1a01004	 mov         r1, r4
   0010c	eb000000	 bl          mpy_mod_gf
 
-; 94   : 		alpha = mpy_mod_gf(alpha, (PPP >> 1));		/* x alphha^-3 */
+; 94   : 
 
   00110	e3a03a01	 mov         r3, #1, 20
   00114	e58d0004	 str         r0, [sp, #4]
@@ -225,13 +225,13 @@
   00120	eb000000	 bl          mpy_mod_gf
   00124	e1a04000	 mov         r4, r0
 
-; 95   : 		gammas[3] = mpy_mod_gf(gammas[3], alpha);
+; 95   : 
 
   00128	e59d0008	 ldr         r0, [sp, #8]
   0012c	e1a01004	 mov         r1, r4
   00130	eb000000	 bl          mpy_mod_gf
 
-; 96   : 		alpha = mpy_mod_gf(alpha, (PPP >> 1));		/* x alphha^-4 */
+; 96   : 
 
   00134	e3a03a01	 mov         r3, #1, 20
   00138	e58d0008	 str         r0, [sp, #8]
@@ -240,13 +240,13 @@
   00144	eb000000	 bl          mpy_mod_gf
   00148	e1a04000	 mov         r4, r0
 
-; 97   : 		gammas[4] = mpy_mod_gf(gammas[4], alpha);
+; 97   : 
 
   0014c	e59d0014	 ldr         r0, [sp, #0x14]
   00150	e1a01004	 mov         r1, r4
   00154	eb000000	 bl          mpy_mod_gf
 
-; 98   : 		alpha = mpy_mod_gf(alpha, (PPP >> 1));		/* x alphha^-5 */
+; 98   : 
 
   00158	e3a03a01	 mov         r3, #1, 20
   0015c	e58d0014	 str         r0, [sp, #0x14]
@@ -255,13 +255,13 @@
   00168	eb000000	 bl          mpy_mod_gf
   0016c	e1a04000	 mov         r4, r0
 
-; 99   : 		gammas[5] = mpy_mod_gf(gammas[5], alpha);
+; 99   : 
 
   00170	e59d0010	 ldr         r0, [sp, #0x10]
   00174	e1a01004	 mov         r1, r4
   00178	eb000000	 bl          mpy_mod_gf
 
-; 100  : 		alpha = mpy_mod_gf(alpha, (PPP >> 1));		/* x alphha^-6 */
+; 100  : 
 
   0017c	e3a03a01	 mov         r3, #1, 20
   00180	e58d0010	 str         r0, [sp, #0x10]
@@ -270,13 +270,13 @@
   0018c	eb000000	 bl          mpy_mod_gf
   00190	e1a04000	 mov         r4, r0
 
-; 101  : 		gammas[6] = mpy_mod_gf(gammas[6], alpha);
+; 101  : 
 
   00194	e59d000c	 ldr         r0, [sp, #0xC]
   00198	e1a01004	 mov         r1, r4
   0019c	eb000000	 bl          mpy_mod_gf
 
-; 102  : 		alpha = mpy_mod_gf(alpha, (PPP >> 1));		/* x alphha^-7 */
+; 102  : 
 
   001a0	e3a03a01	 mov         r3, #1, 20
   001a4	e58d000c	 str         r0, [sp, #0xC]
@@ -285,27 +285,27 @@
   001b0	eb000000	 bl          mpy_mod_gf
   001b4	e1a01000	 mov         r1, r0
 
-; 103  : 		gammas[7] = mpy_mod_gf(gammas[7], alpha);
+; 103  : 
 
   001b8	e59d001c	 ldr         r0, [sp, #0x1C]
   001bc	eb000000	 bl          mpy_mod_gf
   001c0	e58d001c	 str         r0, [sp, #0x1C]
 
 ; 104  : 
-; 105  : 		if (elp_sum == 0) {
+; 105  : 
 
   001c4	e3350001	 teq         r5, #1
   001c8	1a000015	 bne         |$LN7@chien|
 
-; 106  : 			/* calculate location */
-; 107  : 			bit = ((i-1) & ~7)|(7-((i-1) & 7));
+; 106  : 
+; 107  : 
 
   001cc	e2073007	 and         r3, r7, #7
   001d0	e2632007	 rsb         r2, r3, #7
   001d4	e3c73007	 bic         r3, r7, #7
   001d8	e1822003	 orr         r2, r2, r3
 
-; 108  : 			if ((select_4_8 == 0) && (i >= 2 * ecc_bits)) {
+; 108  : 
 
   001dc	e35a0000	 cmp         r10, #0
   001e0	1a000004	 bne         |$LN4@chien|
@@ -313,13 +313,13 @@
   001e8	e153000b	 cmp         r3, r11
   001ec	3a00000c	 bcc         |$LN7@chien|
 
-; 109  : 				location[count++] = kk_shorten - (bit - 2 * ecc_bits) - 1;
+; 109  : 
 
   001f0	e04b3002	 sub         r3, r11, r2
   001f4	ea000006	 b           |$LN23@chien|
   001f8		 |$LN4@chien|
 
-; 110  : 			} else if ((select_4_8 == 1) && (i >= 2 * ecc_bits)) {
+; 110  : 
 
   001f8	e35a0001	 cmp         r10, #1
   001fc	1a000008	 bne         |$LN7@chien|
@@ -328,7 +328,7 @@
   00208	e1530001	 cmp         r3, r1
   0020c	3a000004	 bcc         |$LN7@chien|
 
-; 111  : 				location[count++] = kk_shorten - (bit - 2 * ecc_bits) - 1;
+; 111  : 
 
   00210	e0413002	 sub         r3, r1, r2
   00214		 |$LN23@chien|
@@ -347,24 +347,24 @@
   00240	e59d200c	 ldr         r2, [sp, #0xC]
   00244	daffff90	 ble         |$LL8@chien|
 
-; 112  : 			}
-; 113  : 		}
-; 114  : 	}
+; 112  : 
+; 113  : 
+; 114  : 
 ; 115  : 
-; 116  : 	/* Failure: No. of detected errors != No. or corrected errors */
-; 117  : 	if (count != err_nums) {
+; 116  : 
+; 117  : 
 
   00248	e1560009	 cmp         r6, r9
   0024c		 |$LN22@chien|
 
-; 118  : 		count = -1;
+; 118  : 
 
   0024c	13e06000	 mvnne       r6, #0
 
-; 119  : 	}
-; 120  : 	
-; 121  : 	return count;
-; 122  : }
+; 119  : 
+; 120  : 
+; 121  : 
+; 122  : 
 
   00250	e1a00006	 mov         r0, r6
   00254	e28dd044	 add         sp, sp, #0x44
@@ -385,7 +385,7 @@
 
   00000		 |berlekamp| PROC
 
-; 130  : {
+; 130  : 
 
   00000		 |$LN57@berlekamp|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
@@ -397,16 +397,16 @@
   00014	e58db004	 str         r11, [sp, #4]
   00018	e1a04000	 mov         r4, r0
 
-; 131  : 	unsigned int loop, iteration;
-; 132  : 	unsigned int LL = 0;		/* Detected errors */
-; 133  : 	unsigned int d = 0;	/* Distance between Syndromes and ELP[n](z) */
-; 134  : 	unsigned int invd = 0;		/* Inverse of d */
-; 135  : 	/* Intermediate ELP[n](z).
-; 136  : 	 * Final ELP[n](z) is Error Location Polynomial
-; 137  : 	 */
-; 138  : 	unsigned int gammas[16] = {0};
-; 139  : 	/* Intermediate normalized ELP[n](z) : D[n](z) */
-; 140  : 	unsigned int D[16] = {0};
+; 131  : 
+; 132  : 
+; 133  : 
+; 134  : 
+; 135  : 
+; 136  : 
+; 137  : 
+; 138  : 
+; 139  : 
+; 140  : 
 
   0001c	e3a03000	 mov         r3, #0
   00020	e3a0203c	 mov         r2, #0x3C
@@ -415,21 +415,21 @@
   0002c	e58d3028	 str         r3, [sp, #0x28]
   00030	eb000000	 bl          memset
 
-; 141  : 	/* Temporary value that holds an ELP[n](z) coefficient */
-; 142  : 	unsigned int next_gamma = 0;
+; 141  : 
+; 142  : 
 ; 143  : 
-; 144  : 	int e = 0;
-; 145  : 	unsigned int sign = 0;
-; 146  : 	unsigned int u = 0;
-; 147  : 	unsigned int v = 0;
-; 148  : 	unsigned int C1 = 0, C2 = 0;
-; 149  : 	unsigned int ss = 0;
-; 150  : 	unsigned int tmp_v = 0, tmp_s = 0;
-; 151  : 	unsigned int tmp_poly;
+; 144  : 
+; 145  : 
+; 146  : 
+; 147  : 
+; 148  : 
+; 149  : 
+; 150  : 
+; 151  : 
 ; 152  : 
-; 153  : 	/*-------------- Step 0 ------------------*/
-; 154  : 	for (loop = 0; loop < 16; loop++)
-; 155  : 		gammas[loop] = 0;
+; 153  : 
+; 154  : 
+; 155  : 
 
   00034	e28d3068	 add         r3, sp, #0x68
   00038	e2830040	 add         r0, r3, #0x40
@@ -439,13 +439,13 @@
   00044	e1530000	 cmp         r3, r0
   00048	1afffffc	 bne         |$LN47@berlekamp|
 
-; 156  : 	gammas[0] = 1;
-; 157  : 	D[1] = 1;
+; 156  : 
+; 157  : 
 ; 158  : 
-; 159  : 	iteration = 0;
-; 160  : 	LL = 0;
-; 161  : 	while ((iteration < ((select_4_8+1)*2*4)) &&
-; 162  : 			(LL <= ((select_4_8+1)*4))) {
+; 159  : 
+; 160  : 
+; 161  : 
+; 162  : 
 
   0004c	e2843001	 add         r3, r4, #1
   00050	e1b03183	 movs        r3, r3, lsl #3
@@ -471,7 +471,7 @@
   0009c	8a000068	 bhi         |$LN52@berlekamp|
 
 ; 163  : 
-; 164  : 		d = 0;
+; 164  : 
 
   000a0	e3a0a000	 mov         r10, #0
   000a4	e28d4068	 add         r4, sp, #0x68
@@ -479,33 +479,33 @@
   000ac	e2858001	 add         r8, r5, #1
   000b0		 |$LL21@berlekamp|
 
-; 165  : 		/* Step: 0 */
-; 166  : 		for (loop = 0; loop <= LL; loop++) {
-; 167  : 			tmp_poly = mpy_mod_gf(
-; 168  : 					gammas[loop], synd[iteration - loop]);
+; 165  : 
+; 166  : 
+; 167  : 
+; 168  : 
 
   000b0	e4161004	 ldr         r1, [r6], #-4
   000b4	e4940004	 ldr         r0, [r4], #4
   000b8	eb000000	 bl          mpy_mod_gf
 
-; 169  : 			d ^= tmp_poly;
+; 169  : 
 
   000bc	e020a00a	 eor         r10, r0, r10
   000c0	e2588001	 subs        r8, r8, #1
   000c4	1afffff9	 bne         |$LL21@berlekamp|
 
-; 170  : 		}
+; 170  : 
 ; 171  : 
-; 172  : 		/* Step 1: 1 cycle only to perform inversion */
-; 173  : 		v = d << 1;
-; 174  : 		e = -1;
-; 175  : 		sign = 1;
-; 176  : 		ss = 0x2000;
+; 172  : 
+; 173  : 
+; 174  : 
+; 175  : 
+; 176  : 
 
   000c8	e3a04a02	 mov         r4, #2, 20
 
-; 177  : 		invd = 0;
-; 178  : 		u = PPP;
+; 177  : 
+; 178  : 
 
   000cc	e384301b	 orr         r3, r4, #0x1B
   000d0	e58d3024	 str         r3, [sp, #0x24]
@@ -516,36 +516,36 @@
   000e4	e3e02000	 mvn         r2, #0
   000e8	e58de010	 str         lr, [sp, #0x10]
 
-; 179  : 		for (loop = 0; (d != 0) && (loop <= (2 * POLY)); loop++) {
+; 179  : 
 
   000ec	e3a01000	 mov         r1, #0
   000f0	e35a0000	 cmp         r10, #0
   000f4	0a000022	 beq         |$LN16@berlekamp|
 
-; 181  : 			C2 = C1 & sign;
+; 181  : 
 
   000f8	e59d9024	 ldr         r9, [sp, #0x24]
 
 ; 249  : 
-; 250  : 		D[0] = 0;
+; 250  : 
 ; 251  : 
-; 252  : 		iteration++;
+; 252  : 
 
   000fc	e59d5014	 ldr         r5, [sp, #0x14]
   00100	e1a07003	 mov         r7, r3
   00104		 |$LL18@berlekamp|
 
-; 179  : 		for (loop = 0; (d != 0) && (loop <= (2 * POLY)); loop++) {
+; 179  : 
 
   00104	e3510018	 cmp         r1, #0x18
   00108	8a000018	 bhi         |$LN51@berlekamp|
 
-; 180  : 			C1 = (v >> 13) & 1;
+; 180  : 
 
   0010c	e1a03900	 mov         r3, r0, lsl #18
 
 ; 182  : 
-; 183  : 			sign ^= C2 ^ (e == 0);
+; 183  : 
 
   00110	e3520000	 cmp         r2, #0
   00114	e1a06fa3	 mov         r6, r3, lsr #31
@@ -556,48 +556,48 @@
   00128	e0233008	 eor         r3, r3, r8
 
 ; 184  : 
-; 185  : 			tmp_v = v;
-; 186  : 			tmp_s = ss;
+; 185  : 
+; 186  : 
 ; 187  : 
-; 188  : 			if (C1 == 1) {
+; 188  : 
 
   0012c	e3560001	 cmp         r6, #1
   00130	e1a08000	 mov         r8, r0
 
-; 189  : 				v ^= u;
+; 189  : 
 
   00134	00200009	 eoreq       r0, r0, r9
   00138	e0237007	 eor         r7, r3, r7
 
-; 190  : 				ss ^= invd;
-; 191  : 			}
-; 192  : 			v = (v << 1) & 0x3FFF;
+; 190  : 
+; 191  : 
+; 192  : 
 
   0013c	e0003005	 and         r3, r0, r5
   00140	e1a00083	 mov         r0, r3, lsl #1
 
-; 193  : 			if (C2 == 1) {
+; 193  : 
 
   00144	e59d3000	 ldr         r3, [sp]
   00148	e1a0b004	 mov         r11, r4
   0014c	0024400e	 eoreq       r4, r4, lr
   00150	e3530001	 cmp         r3, #1
 
-; 194  : 				u = tmp_v;
-; 195  : 				invd = tmp_s;
+; 194  : 
+; 195  : 
 
   00154	01a0e00b	 moveq       lr, r11
 
-; 196  : 				e = -e;
+; 196  : 
 
   00158	02622000	 rsbeq       r2, r2, #0
 
-; 197  : 			}
-; 198  : 			invd >>= 1;
+; 197  : 
+; 198  : 
 
   0015c	e1a0e0ae	 mov         lr, lr, lsr #1
 
-; 199  : 			e--;
+; 199  : 
 
   00160	e2422001	 sub         r2, r2, #1
   00164	01a09008	 moveq       r9, r8
@@ -605,15 +605,15 @@
   0016c	eaffffe4	 b           |$LL18@berlekamp|
   00170		 |$LN51@berlekamp|
 
-; 237  : 				/* If update finished */
-; 238  : 				LL = iteration - LL + 1;
+; 237  : 
+; 238  : 
 
   00170	e59d5008	 ldr         r5, [sp, #8]
 
 ; 249  : 
-; 250  : 		D[0] = 0;
+; 250  : 
 ; 251  : 
-; 252  : 		iteration++;
+; 252  : 
 
   00174	e59d700c	 ldr         r7, [sp, #0xC]
   00178	e59db004	 ldr         r11, [sp, #4]
@@ -624,34 +624,34 @@
   00188	e35a0000	 cmp         r10, #0
   0018c	0a00001c	 beq         |$LN11@berlekamp|
 
-; 156  : 	gammas[0] = 1;
-; 157  : 	D[1] = 1;
+; 156  : 
+; 157  : 
 ; 158  : 
-; 159  : 	iteration = 0;
-; 160  : 	LL = 0;
-; 161  : 	while ((iteration < ((select_4_8+1)*2*4)) &&
-; 162  : 			(LL <= ((select_4_8+1)*4))) {
+; 159  : 
+; 160  : 
+; 161  : 
+; 162  : 
 
   00190	e2876001	 add         r6, r7, #1
   00194		 |$LL13@berlekamp|
 
-; 200  : 		}
+; 200  : 
 ; 201  : 
-; 202  : 		for (loop = 0; (d != 0) && (loop <= (iteration + 1)); loop++) {
+; 202  : 
 
   00194	e1540006	 cmp         r4, r6
   00198	8a000018	 bhi         |$LN54@berlekamp|
   0019c	e28d3028	 add         r3, sp, #0x28
 
-; 203  : 			/* Step 2
-; 204  : 			 * Interleaved with Step 3, if L<(n-k)
-; 205  : 			 * invd: Update of ELP[n](z) = ELP[n-1](z) - d.D[n-1](z)
-; 206  : 			 */
+; 203  : 
+; 204  : 
+; 205  : 
+; 206  : 
 ; 207  : 
-; 208  : 			/* Holds value of ELP coefficient until precedent
-; 209  : 			 * value does not have to be used anymore
-; 210  : 			 */
-; 211  : 			tmp_poly = mpy_mod_gf(d, D[loop]);
+; 208  : 
+; 209  : 
+; 210  : 
+; 211  : 
 
   001a0	e7b31104	 ldr         r1, [r3, +r4, lsl #2]!
   001a4	e1a0000a	 mov         r0, r10
@@ -660,41 +660,41 @@
   001b0	e28d8068	 add         r8, sp, #0x68
 
 ; 212  : 
-; 213  : 			next_gamma = gammas[loop] ^ tmp_poly;
+; 213  : 
 
   001b4	e7b83104	 ldr         r3, [r8, +r4, lsl #2]!
 
-; 214  : 			if ((2 * LL) < (iteration + 1)) {
+; 214  : 
 
   001b8	e1560085	 cmp         r6, r5, lsl #1
   001bc	e023b000	 eor         r11, r3, r0
   001c0	8a000002	 bhi         |$LN8@berlekamp|
 
-; 215  : 				/* Interleaving with Step 3
-; 216  : 				 * for parallelized update of ELP(z) and D(z)
-; 217  : 				 */
-; 218  : 			} else {
-; 219  : 				/* Update of ELP(z) only -> stay in Step 2 */
-; 220  : 				gammas[loop] = next_gamma;
+; 215  : 
+; 216  : 
+; 217  : 
+; 218  : 
+; 219  : 
+; 220  : 
 
   001c4	e588b000	 str         r11, [r8]
 
-; 221  : 				if (loop == (iteration + 1)) {
+; 221  : 
 
   001c8	e1540006	 cmp         r4, r6
   001cc	0a00000b	 beq         |$LN54@berlekamp|
   001d0		 |$LN8@berlekamp|
 
-; 222  : 					/* to step 4 */
-; 223  : 					break;
-; 224  : 				}
-; 225  : 			}
+; 222  : 
+; 223  : 
+; 224  : 
+; 225  : 
 ; 226  : 
-; 227  : 			/* Step 3
-; 228  : 			 * Always interleaved with Step 2 (case when L<(n-k))
-; 229  : 			 * Update of D[n-1](z) = ELP[n-1](z)/d
-; 230  : 			 */
-; 231  : 			D[loop] = mpy_mod_gf(gammas[loop], invd);
+; 227  : 
+; 228  : 
+; 229  : 
+; 230  : 
+; 231  : 
 
   001d0	e5980000	 ldr         r0, [r8]
   001d4	e59d1010	 ldr         r1, [sp, #0x10]
@@ -702,10 +702,10 @@
   001dc	e59d3000	 ldr         r3, [sp]
 
 ; 232  : 
-; 233  : 			/* Can safely update ELP[n](z) */
-; 234  : 			gammas[loop] = next_gamma;
+; 233  : 
+; 234  : 
 ; 235  : 
-; 236  : 			if (loop == (iteration + 1)) {
+; 236  : 
 
   001e0	e1540006	 cmp         r4, r6
   001e4	e588b000	 str         r11, [r8]
@@ -713,8 +713,8 @@
   001ec	12844001	 addne       r4, r4, #1
   001f0	1affffe7	 bne         |$LL13@berlekamp|
 
-; 237  : 				/* If update finished */
-; 238  : 				LL = iteration - LL + 1;
+; 237  : 
+; 238  : 
 
   001f4	e0473005	 sub         r3, r7, r5
   001f8	e2835001	 add         r5, r3, #1
@@ -722,32 +722,32 @@
   00200		 |$LN54@berlekamp|
 
 ; 249  : 
-; 250  : 		D[0] = 0;
+; 250  : 
 ; 251  : 
-; 252  : 		iteration++;
+; 252  : 
 
   00200	e59db004	 ldr         r11, [sp, #4]
 
-; 237  : 				/* If update finished */
-; 238  : 				LL = iteration - LL + 1;
+; 237  : 
+; 238  : 
 
   00204		 |$LN11@berlekamp|
 
-; 239  : 				/* to step 4 */
-; 240  : 				break;
-; 241  : 			}
-; 242  : 			/* Else, interleaving to step 2*/
-; 243  : 		}
+; 239  : 
+; 240  : 
+; 241  : 
+; 242  : 
+; 243  : 
 ; 244  : 
-; 245  : 		/* Step 4: Update D(z): i:0->L */
-; 246  : 		/* Final update of D[n](z) = D[n](z).z*/
-; 247  : 		for (loop = 0; loop < 15; loop++) /* Left Shift */
+; 245  : 
+; 246  : 
+; 247  : 
 
   00204	e28d2060	 add         r2, sp, #0x60
   00208	e3a0100f	 mov         r1, #0xF
   0020c		 |$LL6@berlekamp|
 
-; 248  : 			D[15 - loop] = D[14 - loop];
+; 248  : 
 
   0020c	e5923000	 ldr         r3, [r2]
   00210	e2511001	 subs        r1, r1, #1
@@ -756,9 +756,9 @@
   0021c	1afffffa	 bne         |$LL6@berlekamp|
 
 ; 249  : 
-; 250  : 		D[0] = 0;
+; 250  : 
 ; 251  : 
-; 252  : 		iteration++;
+; 252  : 
 
   00220	e59d3020	 ldr         r3, [sp, #0x20]
   00224	e2877001	 add         r7, r7, #1
@@ -771,16 +771,16 @@
   00240	3affff94	 bcc         |$LL23@berlekamp|
   00244		 |$LN52@berlekamp|
 
-; 130  : {
+; 130  : 
 
   00244	e59d901c	 ldr         r9, [sp, #0x1C]
   00248		 |$LN22@berlekamp|
 
-; 253  : 	} /* while */
+; 253  : 
 ; 254  : 
-; 255  : 	/* Processing finished, copy ELP to final registers : 0->2t-1*/
-; 256  : 	for (loop = 0; loop < 8; loop++)
-; 257  : 		err[loop] = gammas[loop+1];
+; 255  : 
+; 256  : 
+; 257  : 
 
   00248	e28d206c	 add         r2, sp, #0x6C
   0024c	e2891020	 add         r1, r9, #0x20
@@ -791,8 +791,8 @@
   0025c	1afffffb	 bne         |$LN49@berlekamp|
 
 ; 258  : 
-; 259  : 	return LL;
-; 260  : }
+; 259  : 
+; 260  : 
 
   00260	e1a00005	 mov         r0, r5
   00264	e28dd0a8	 add         sp, sp, #0xA8
@@ -812,7 +812,7 @@
 
   00000		 |syndrome| PROC
 
-; 271  : {
+; 271  : 
 
   00000		 |$LN32@syndrome|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
@@ -823,20 +823,20 @@
   00010	e1a05002	 mov         r5, r2
   00014	e3500000	 cmp         r0, #0
 
-; 272  : 	unsigned int k, l, t;
-; 273  : 	unsigned int alpha_bit, R_bit;
-; 274  : 	int ecc_pos, ecc_min;
+; 272  : 
+; 273  : 
+; 274  : 
 ; 275  : 
-; 276  : 	/* 2t-1 = 15 (for t=8) minimal polynomials of the first 15 powers of a
-; 277  : 	 * primitive elemmants of GF(m); Even powers minimal polynomials are
-; 278  : 	 * duplicate of odd powers' minimal polynomials.
-; 279  : 	 * Odd powers of alpha (1 to 15)
-; 280  : 	 */
-; 281  : 	unsigned int pow_alpha[8] = {0x0002, 0x0008, 0x0020, 0x0080,
+; 276  : 
+; 277  : 
+; 278  : 
+; 279  : 
+; 280  : 
+; 281  : 
 
   00018	e3a00080	 mov         r0, #0x80
 
-; 282  : 				 0x0200, 0x0800, 0x001B, 0x006C};
+; 282  : 
 
   0001c	e3a0ec02	 mov         lr, #2, 24
   00020	e3a04b02	 mov         r4, #2, 22
@@ -845,36 +845,36 @@
 
 ; 283  : 
 ; 284  : 
-; 285  : 	if (select_4_8 == 0) {
-; 286  : 		t = 4;
-; 287  : 		ecc_pos = 55; /* bits(52-bits): 55->4 */
+; 285  : 
+; 286  : 
+; 287  : 
 
   0002c	03a00037	 moveq       r0, #0x37
 
-; 288  : 		ecc_min = 4;
+; 288  : 
 
   00030	03a0e004	 moveq       lr, #4
   00034	e3a02008	 mov         r2, #8
   00038	e58d4018	 str         r4, [sp, #0x18]
 
-; 289  : 	} else {
-; 290  : 		t = 8;
-; 291  : 		ecc_pos = 103; /* bits: 103->0 */
+; 289  : 
+; 290  : 
+; 291  : 
 
   0003c	13a00067	 movne       r0, #0x67
   00040	03a04004	 moveq       r4, #4
 
-; 292  : 		ecc_min = 0;
+; 292  : 
 
   00044	13a0e000	 movne       lr, #0
   00048	e58d2008	 str         r2, [sp, #8]
   0004c	13a04008	 movne       r4, #8
 
-; 293  : 	}
+; 293  : 
 ; 294  : 
-; 295  : 	/* total numbber of syndrom to be used is 2t */
-; 296  : 	/* Step1: calculate the odd syndrome(s) */
-; 297  : 	R_bit = ((ecc[ecc_pos/8] >> (7 - ecc_pos%8)) & 1);
+; 295  : 
+; 296  : 
+; 297  : 
 
   00050	e1b02000	 movs        r2, r0
   00054	e3a03002	 mov         r3, #2
@@ -886,7 +886,7 @@
   0006c	e2633007	 rsb         r3, r3, #7
   00070	e20330ff	 and         r3, r3, #0xFF
 
-; 298  : 	ecc_pos--;
+; 298  : 
 
   00074	e1a03332	 mov         r3, r2, lsr r3
   00078	e3a01020	 mov         r1, #0x20
@@ -895,7 +895,7 @@
   00084	e58d100c	 str         r1, [sp, #0xC]
   00088	e58d701c	 str         r7, [sp, #0x1C]
 
-; 299  : 	for (k = 0; k < t; k++)
+; 299  : 
 
   0008c	e2031001	 and         r1, r3, #1
   00090	e58d8020	 str         r8, [sp, #0x20]
@@ -906,7 +906,7 @@
   000a4	e1a02004	 mov         r2, r4
   000a8		 |$LL16@syndrome|
 
-; 300  : 		syn[2 * k] = R_bit;
+; 300  : 
 
   000a8	e4831008	 str         r1, [r3], #8
   000ac	e2522001	 subs        r2, r2, #1
@@ -914,7 +914,7 @@
   000b4		 |$LN22@syndrome|
 
 ; 301  : 
-; 302  : 	while (ecc_pos >= ecc_min) {
+; 302  : 
 
   000b4	e157000e	 cmp         r7, lr
   000b8	ba00002b	 blt         |$LN12@syndrome|
@@ -922,7 +922,7 @@
   000c0	e383b0ff	 orr         r11, r3, #0xFF
   000c4		 |$LL13@syndrome|
 
-; 303  : 		R_bit = ((ecc[ecc_pos/8] >> (7 - ecc_pos%8)) & 1);
+; 303  : 
 
   000c4	e1b02007	 movs        r2, r7
   000c8	42822007	 addmi       r2, r2, #7
@@ -932,13 +932,13 @@
   000d8	e2633007	 rsb         r3, r3, #7
   000dc	e20330ff	 and         r3, r3, #0xFF
 
-; 304  : 		ecc_pos--;
+; 304  : 
 
   000e0	e1a03332	 mov         r3, r2, lsr r3
   000e4	e2477001	 sub         r7, r7, #1
 
 ; 305  : 
-; 306  : 		for (k = 0; k < t; k++) {
+; 306  : 
 
   000e8	e203a001	 and         r10, r3, #1
   000ec	e3540000	 cmp         r4, #0
@@ -949,12 +949,12 @@
   00100	e1a09004	 mov         r9, r4
   00104		 |$LL11@syndrome|
 
-; 307  : 			/* Accumulate value of x^i at alpha^(2k+1) */
-; 308  : 			if (R_bit == 1)
+; 307  : 
+; 308  : 
 
   00104	e35a0001	 cmp         r10, #1
 
-; 309  : 				syn[2*k] ^= pow_alpha[k];
+; 309  : 
 
   00108	05912000	 ldreq       r2, [r1]
   0010c	05963000	 ldreq       r3, [r6]
@@ -962,8 +962,8 @@
   00114	05863000	 streq       r3, [r6]
 
 ; 310  : 
-; 311  : 			/* Compute a**(2k+1), using LSFR */
-; 312  : 			for (l = 0; l < (2 * k + 1); l++) {
+; 311  : 
+; 312  : 
 
   00118	e3500000	 cmp         r0, #0
   0011c	0a00000a	 beq         |$LN10@syndrome|
@@ -971,35 +971,35 @@
   00124	e1a08000	 mov         r8, r0
   00128		 |$LL7@syndrome|
 
-; 313  : 				alpha_bit = (pow_alpha[k] >> POLY) & 1;
+; 313  : 
 
   00128	e1a03982	 mov         r3, r2, lsl #19
   0012c	e1a03fa3	 mov         r3, r3, lsr #31
 
-; 314  : 				pow_alpha[k] = (pow_alpha[k] << 1) & 0x1FFF;
+; 314  : 
 
   00130	e002200b	 and         r2, r2, r11
 
-; 315  : 				if (alpha_bit == 1)
+; 315  : 
 
   00134	e3530001	 cmp         r3, #1
   00138	e1a02082	 mov         r2, r2, lsl #1
 
-; 316  : 					pow_alpha[k] ^= P;
+; 316  : 
 
   0013c	0222201b	 eoreq       r2, r2, #0x1B
   00140	e2588001	 subs        r8, r8, #1
   00144	1afffff7	 bne         |$LL7@syndrome|
 
 ; 310  : 
-; 311  : 			/* Compute a**(2k+1), using LSFR */
-; 312  : 			for (l = 0; l < (2 * k + 1); l++) {
+; 311  : 
+; 312  : 
 
   00148	e5812000	 str         r2, [r1]
   0014c		 |$LN10@syndrome|
 
 ; 305  : 
-; 306  : 		for (k = 0; k < t; k++) {
+; 306  : 
 
   0014c	e2866008	 add         r6, r6, #8
   00150	e2811004	 add         r1, r1, #4
@@ -1007,36 +1007,36 @@
   00158	e2599001	 subs        r9, r9, #1
   0015c	1affffe8	 bne         |$LL11@syndrome|
 
-; 271  : {
+; 271  : 
 
   00160	e59d6000	 ldr         r6, [sp]
   00164		 |$LN9@syndrome|
 
 ; 301  : 
-; 302  : 	while (ecc_pos >= ecc_min) {
+; 302  : 
 
   00164	e157000e	 cmp         r7, lr
   00168	aaffffd5	 bge         |$LL13@syndrome|
   0016c		 |$LN12@syndrome|
 
-; 317  : 			}
-; 318  : 		}
-; 319  : 	}
+; 317  : 
+; 318  : 
+; 319  : 
 ; 320  : 
-; 321  : 	/* Step2: calculate the even syndrome(s)
-; 322  : 	 * Compute S(a), where a is an even power of alpha
-; 323  : 	 * Evenry even power of primitive element has the same minimal
-; 324  : 	 * polynomial as some odd power of elemets.
-; 325  : 	 * And based on S(a^2) = S^2(a)
-; 326  : 	 */
-; 327  : 	for (k = 0; k < t; k++)
+; 321  : 
+; 322  : 
+; 323  : 
+; 324  : 
+; 325  : 
+; 326  : 
+; 327  : 
 
   0016c	e3540000	 cmp         r4, #0
   00170	0a000007	 beq         |$LN1@syndrome|
   00174	e1a06005	 mov         r6, r5
   00178		 |$LL3@syndrome|
 
-; 328  : 		syn[2*k+1] = mpy_mod_gf(syn[k], syn[k]);
+; 328  : 
 
   00178	e4960004	 ldr         r0, [r6], #4
   0017c	e1a01000	 mov         r1, r0
@@ -1048,7 +1048,7 @@
   00194		 |$LN1@syndrome|
 
 ; 329  : 
-; 330  : }
+; 330  : 
 
   00194	e28dd024	 add         sp, sp, #0x24
   00198	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
@@ -1068,7 +1068,7 @@
 
   00000		 |decode_bch| PROC
 
-; 346  : {
+; 346  : 
 
   00000		 |$LN6@decode_bch|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
@@ -1078,8 +1078,8 @@
   0000c	e1a04001	 mov         r4, r1
   00010	e1a05000	 mov         r5, r0
 
-; 347  : 	int no_of_err;
-; 348  : 	unsigned int syn[16] = {0,};	/* 16 Syndromes */
+; 347  : 
+; 348  : 
 
   00014	e3a03000	 mov         r3, #0
   00018	e3a0203c	 mov         r2, #0x3C
@@ -1088,7 +1088,7 @@
   00024	e58d3020	 str         r3, [sp, #0x20]
   00028	eb000000	 bl          memset
 
-; 349  : 	unsigned int err_poly[8] = {0,};
+; 349  : 
 
   0002c	e3a03000	 mov         r3, #0
   00030	e3a0201c	 mov         r2, #0x1C
@@ -1097,39 +1097,39 @@
   0003c	e58d3000	 str         r3, [sp]
   00040	eb000000	 bl          memset
 
-; 350  : 	/* Coefficients to the error polynomial
-; 351  : 	 * ELP(x) = 1 + err0.x + err1.x^2 + ... + err7.x^8
-; 352  : 	 */
+; 350  : 
+; 351  : 
+; 352  : 
 ; 353  : 
-; 354  : 	/* Decoting involes three steps
-; 355  : 	 * 1. Compute the syndrom from teh received codeword,
-; 356  : 	 * 2. Find the error location polynomial from a set of equations
-; 357  : 	 *     derived from the syndrome,
-; 358  : 	 * 3. Use the error location polynomial to identify errants bits,
-; 359  : 	 *
-; 360  : 	 * And correcttion done by bit flips using error locaiton and expected
-; 361  : 	 * to be outseide of this implementation.
-; 362  : 	 */
-; 363  : 	syndrome(select_4_8, ecc, syn);
+; 354  : 
+; 355  : 
+; 356  : 
+; 357  : 
+; 358  : 
+; 359  : 
+; 360  : 
+; 361  : 
+; 362  : 
+; 363  : 
 
   00044	e28d2020	 add         r2, sp, #0x20
   00048	e1a01004	 mov         r1, r4
   0004c	e1a00005	 mov         r0, r5
   00050	eb000000	 bl          syndrome
 
-; 364  : 	no_of_err = berlekamp(select_4_8, syn, err_poly);
+; 364  : 
 
   00054	e28d2000	 add         r2, sp, #0
   00058	e28d1020	 add         r1, sp, #0x20
   0005c	e1a00005	 mov         r0, r5
   00060	eb000000	 bl          berlekamp
 
-; 365  : 	if (no_of_err <= (4 << select_4_8))
+; 365  : 
 
   00064	e3a03004	 mov         r3, #4
   00068	e1500513	 cmp         r0, r3, lsl r5
 
-; 366  : 		no_of_err = chien(select_4_8, no_of_err, err_poly, err_loc);
+; 366  : 
 
   0006c	d1a01000	 movle       r1, r0
   00070	d1a00005	 movle       r0, r5
@@ -1138,8 +1138,8 @@
   0007c	db000000	 blle        chien
 
 ; 367  : 
-; 368  : 	return no_of_err;
-; 369  : }
+; 368  : 
+; 369  : 
 
   00080	e28dd060	 add         sp, sp, #0x60
   00084	e8bd4070	 ldmia       sp!, {r4 - r6, lr}

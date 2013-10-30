@@ -71,8 +71,8 @@ static ClockManagementRoutines s_rgClockManagementRoutines[] =
     {NULL /*MPU*/,              NULL,                       NULL,                       NULL                        },   // POWERDOMAIN_MPU
     {_PrcmDeviceEnableIClock_DSS,_PrcmDeviceEnableFClock_DSS,_PrcmDeviceEnableAutoIdle,  _PrcmDeviceSetSourceClock_DSS}, // POWERDOMAIN_DSS
     {NULL /*NEON*/,             NULL,                       NULL,                       NULL                        },   // POWERDOMAIN_NEON
-    {NULL,                      _PrcmDeviceEnableFClock,    NULL,                       NULL                        },   // POWERDOMAIN_IVA2
-    {_PrcmDeviceEnableIClock,   _PrcmDeviceEnableFClock ,   _PrcmDeviceEnableAutoIdle,  _PrcmDeviceSetSourceClock   },   // POWERDOMAIN_CAMERA
+    /*{NULL,                      _PrcmDeviceEnableFClock,    NULL,                       NULL                        },*/   // POWERDOMAIN_IVA2
+    /*{_PrcmDeviceEnableIClock,   _PrcmDeviceEnableFClock ,   _PrcmDeviceEnableAutoIdle,  _PrcmDeviceSetSourceClock   },*/   // POWERDOMAIN_CAMERA
     {_PrcmDeviceEnableIClock,   _PrcmDeviceEnableFClock ,   NULL,                       _PrcmDeviceSetSourceClock   },   // POWERDOMAIN_SGX
     {NULL /*EFUSE*/,            NULL,                       NULL,                       NULL                        },   // POWERDOMAIN_EFUSE
     {NULL /*SMARTREFLEX*/,      NULL,                       NULL,                       NULL                        },   // POWERDOMAIN_SMARTREFLEX
@@ -267,12 +267,12 @@ _PrcmUpdateDeviceClockSource(
     if (pSrcClocks == NULL) return;
 
     for (i = 0; i < pSrcClocks->size; ++i)
-        {
+	{
         ClockUpdateParentClock(pSrcClocks->rgSourceClocks[i], bEnable);
-        }
+	}
 
     if (!g_bSingleThreaded)
-        OALMSG(OAL_FUNC, (L"+_PrcmUpdateDeviceClockSource()\r\n"));
+        OALMSG(OAL_FUNC, (L"-_PrcmUpdateDeviceClockSource()\r\n"));
 }
 
 
@@ -1206,27 +1206,27 @@ PrcmDeviceEnableFClock(
         OALMSG(OAL_FUNC, (L" PrcmDeviceEnableFClock %supdate clocks\r\n", bUpdateClocks ? L"" : L"skip "));
     // update hardware if clock is being enabled and it's not a virtual bit
     if (bUpdateClocks == TRUE && s_rgDeviceLookupTable[devId].pfclk->bVirtual == FALSE)
-        {
+	{
         Lock(Mutex_DeviceClock);
         if (bEnable)
-            {
+		{
             SPECIAL_DEBUG_MESSAGE2(_PrcmUpdateDeviceClockSource enable, devId, bEnable)
             _PrcmUpdateDeviceClockSource(s_rgDeviceLookupTable[devId].pSrcClocks, bEnable);
-            }
+		}
         
         if (s_rgClockManagementRoutines[s_rgDeviceLookupTable[devId].powerDomain].PrcmDeviceEnableFClock)
-            {
+		{
             rc = s_rgClockManagementRoutines[s_rgDeviceLookupTable[devId].powerDomain].PrcmDeviceEnableFClock(devId, bEnable);
-            }
+		}
         
         if (!bEnable)
-            {
+		{
             SPECIAL_DEBUG_MESSAGE2(_PrcmUpdateDeviceClockSource disable, devId, bEnable)
             _PrcmUpdateDeviceClockSource(s_rgDeviceLookupTable[devId].pSrcClocks, bEnable);
-            }
+		}
         PrcmDomainUpdateRefCount(s_rgDeviceLookupTable[devId].powerDomain, bEnable);
         Unlock(Mutex_DeviceClock);
-        }
+	}
 
     SPECIAL_DEBUG_MESSAGE_DONE(PrcmDeviceEnableFClock, devId)
 
@@ -1418,50 +1418,50 @@ DeviceInitialize()
     volatile unsigned int *preg;
     
     if (!g_bSingleThreaded)
-        OALMSG(OAL_FUNC, (L"+DeviceInitialize()\r\n"));
+        OALMSG(1, (L"+DeviceInitialize()\r\n"));
 
     // iterate through all devices and update its state information
     for (i = 0; i < OMAP_DEVICE_COUNT - 1; ++i)
-        {
+	{
         pPrcmCm = GetCmRegisterSet(s_rgDeviceLookupTable[i].powerDomain);
 
         // update autoidle information
         if (s_rgDeviceLookupTable[i].pautoidle != NULL)
-            {
+		{
             preg = (volatile unsigned int*)((UCHAR*)pPrcmCm + s_rgDeviceLookupTable[i].pautoidle->offset);
             if (INREG32(preg) & s_rgDeviceLookupTable[i].pautoidle->mask)
-                {
+			{
                 PrcmDeviceEnableAutoIdle(i, TRUE);
-                }            
-            }
+			}            
+		}
         
         //Avoid reference counting DSS device to keep bootloader screen on all the way
         //to the display driver initialization
         if(i == OMAP_DEVICE_DSS || i == OMAP_DEVICE_DSS1 || i == OMAP_DEVICE_DSS2)
-            {
+		{
             continue;
-            }
+		}
 
         // update functional clock information
         if (s_rgDeviceLookupTable[i].pfclk != NULL)
-            {
+		{
             preg = (volatile unsigned int*)((UCHAR*)pPrcmCm + s_rgDeviceLookupTable[i].pfclk->offset);
             if (INREG32(preg) & s_rgDeviceLookupTable[i].pfclk->mask)
-                {
+			{
                 PrcmDeviceEnableFClock(i, TRUE);
-                }            
-            }
+			}            
+		}
 
         // update inteface clock information
         if (s_rgDeviceLookupTable[i].piclk != NULL)
-            {
+		{
             preg = (volatile unsigned int*)((UCHAR*)pPrcmCm + s_rgDeviceLookupTable[i].piclk->offset);
             if (INREG32(preg) & s_rgDeviceLookupTable[i].piclk->mask)
-                {
+			{
                 PrcmDeviceEnableIClock(i, TRUE);
-                }            
-            }
-        }
+			}            
+		}
+	}
 
 #if 0
     {   // Enable the save and restore mechanism for the USB Host device
@@ -1486,7 +1486,7 @@ DeviceInitialize()
     }
 #endif
     if (!g_bSingleThreaded)
-        OALMSG(OAL_FUNC, (L"-DeviceInitialize()\r\n"));
+        OALMSG(1, (L"-DeviceInitialize()\r\n"));
 
     return TRUE;
 }

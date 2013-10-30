@@ -144,48 +144,38 @@ SendKeyPadEvent(
     UCHAR vk_extra = 0, order;
     
     order = KEYPAD_EXTRASEQ_ORDER_NONE; // no extra key needed
-    
+    RETAILMSG(1, (L" SendKeyPadEvent: 0x%x %d %d %d\r\n", bVk,bScan,dwFlags,dwExtraInfo));
     // Remap for rotation angle
     bVk = RemapVKeyToScreenOrientation(bVk);
     
     // Check extra virtual key sequence table
     for (index = 0; index < g_keypadExtraSeq.count; index ++)
-        {
+	{
         if (g_keypadExtraSeq.pItem[index].vk_orig == bVk)
-            {
+		{
             vk_extra = g_keypadExtraSeq.pItem[index].vk_extra;
             order = g_keypadExtraSeq.pItem[index].order;
-            }
-        }
+		}
+	}
       
     // Check to send extra vk first  
     if (order == KEYPAD_EXTRASEQ_ORDER_EXTRAFIRST || 
         (order == KEYPAD_EXTRASEQ_ORDER_EXTRAORIG && (dwFlags & KEYEVENTF_KEYUP) == 0) )
-        {
-        keybd_event(
-            vk_extra,
-            0,
-            dwFlags | KEYEVENTF_SILENT,
-            dwExtraInfo);
-        }
+	{
+		RETAILMSG(1, (L" SendKeyPadEvent: 11111\r\n"));
+        keybd_event(vk_extra,0,dwFlags | KEYEVENTF_SILENT,dwExtraInfo);
+	}
           
     // Send original vk
-    keybd_event(
-        bVk,
-        bScan,
-        dwFlags,
-        dwExtraInfo);
-      
-   // Check to send extra key
-   if (order == KEYPAD_EXTRASEQ_ORDER_ORIGFIRST || 
+    keybd_event(bVk,bScan,dwFlags,dwExtraInfo);
+	
+	// Check to send extra key
+	if (order == KEYPAD_EXTRASEQ_ORDER_ORIGFIRST || 
        (order == KEYPAD_EXTRASEQ_ORDER_EXTRAORIG && (dwFlags & KEYEVENTF_KEYUP)))
-       {
-       keybd_event(
-           vk_extra,
-           0,
-           dwFlags | KEYEVENTF_SILENT,
-           dwExtraInfo);
-       }
+	{
+		RETAILMSG(1, (L" SendKeyPadEvent: 2222\r\n"));
+		keybd_event(vk_extra,0,dwFlags | KEYEVENTF_SILENT,dwExtraInfo);
+	}
 }
 
 //------------------------------------------------------------------------------
@@ -222,9 +212,7 @@ PressedReleasedKeys(
                     {
                     if ((vkNewState[ic] & mask) != 0)
                         {
-                        DEBUGMSG(PressedReleasedKeys, 
-                            (L" PressedReleasedKeys: Key Down: 0x%x\r\n", vk
-                            )); 
+                        RETAILMSG(1, (L" PressedReleasedKeys: Key Down: 0x%x\r\n", vk)); 
                         // Send key down event
                         if (vk != VK_OFF)
                             {
@@ -233,9 +221,7 @@ PressedReleasedKeys(
                         }
                     else
                         {
-                        DEBUGMSG(PressedReleasedKeys, 
-                            (L" PressedReleasedKeys: Key Up: 0x%x\r\n", vk
-                            ));
+                        RETAILMSG(1, (L" PressedReleasedKeys: Key Up: 0x%x\r\n", vk));
 
                         // Need to send the keydown as well as keyup for
                         // device to suspend under cebase.                          
@@ -257,10 +243,7 @@ PressedReleasedKeys(
                             case VK_OFF:
                                 // only disable interrupts if we are about to enter
                                 // a suspend state
-                                RETAILMSG(ZONE_IST, 
-                                    (L" PressedReleasedKeys: 0x%02X\r\n", 
-                                    vk
-                                    ));
+                                RETAILMSG(1, (L" PressedReleasedKeys: 0x%02X\r\n", vk));
                                 PowerPolicyNotify(PPN_SUSPENDKEYPRESSED, 0);
                                 break;
 
@@ -775,33 +758,33 @@ PhysicalStateToVirtualState(
     BOOL keyDown = FALSE;
     USHORT state;
     ULONG ik, ix, row, column;
-   
 
     for (row = 0, ik = 0; row < KEYPAD_ROWS; row++)
-        {
-
+	{
         // Get matrix state        
         ix = row;
         state = matrix[ix] & 0xFF;
 
         // If no-key is pressed continue with new rows
         if (state == 0) 
-            {
-            ik += KEYPAD_COLUMNS;
+		{
+            ik += KEYPAD_COLUMNS; // 8
             continue;
-            }
+		}
         
         for (column = 0; column < KEYPAD_COLUMNS; column++, ik++)
-            {
+		{
             if ((state & (1 << column)) != 0)
-                {
+			{
                 // g_keypadVK is defined by the platform
                 UINT8 vk = g_keypadVK[ik];
+                RETAILMSG(1, (L"PhysicalStateToVirtualState: [%d,%d] = 0x%x\r\n",row,column, vk));
+                RETAILMSG(1, (L"PhysicalStateToVirtualState: ik=%d ix=%d\r\n",ik,ix));
                 vkNewState[vk >> 5] |= 1 << (vk & 0x1F);
                 keyDown = TRUE;
-                }
-            }
-        }
+			}
+		}
+	}
 
     if (keyDown && (pKeyDown != NULL)) *pKeyDown = TRUE;
 }
@@ -825,7 +808,7 @@ VirtualKeyRemap(
     int ix;
     
     for (ix = 0; ix < g_keypadRemap.count; ix++)
-        {
+	{
         const KEYPAD_REMAP_ITEM *pItem = &g_keypadRemap.pItem[ix];
         KeypadRemapState_t *pState = &pRemapState[ix];
         DWORD state = 0;
@@ -835,35 +818,33 @@ VirtualKeyRemap(
         // Count number of keys down & save down/up state
         int ik;
         for (ik = 0; ik < pItem->keys; ik++)
-            {
+		{
             vk = pItem->pVKeys[ik];
             if ((vkNewState[vk >> 5] & (1 << (vk & 0x1F))) != 0)
-                {
+			{
                 state |= 1 << ik;
                 down++;
-                }
-            }
+			}
+		}
 
         // Depending on number of keys down
         if (down >= pItem->keys && pItem->keys > 1)
-            {
+		{
             // Clear all mapping keys
             for (ik = 0; ik < pItem->keys; ik++)
-                {
+			{
                 vk = pItem->pVKeys[ik];
                 vkNewState[vk >> 5] &= ~(1 << (vk & 0x1F));
-                }
+			}
             // All keys are down set final key
             vk = pItem->vkey;
             vkNewState[vk >> 5] |= 1 << (vk & 0x1F);
-            DEBUGMSG(ZONE_IST, (L" KPD_IntrThread: "
-                L"Mapped vkey: 0x%x\r\n", vk
-                ));
+            RETAILMSG(1, (L" KPD_IntrThread: "L"Mapped vkey: 0x%x\r\n", vk));
             // Clear remap pending flag
             pState->pending = FALSE;
             // Set remap processing flag
             pState->remapped = TRUE;
-            }
+		}
         else if ( down > 0 )
             {
             // If already remapping or remapping is not pending
@@ -886,44 +867,42 @@ VirtualKeyRemap(
                 }
             else if ( pState->remapped || 
                      (pItem->keys == 1 && (INT32)( time - pState->time ) >= 0) )
-                {
+			{
                 // This is press and hold key
-                DEBUGMSG(ZONE_IST, (L" KPD_IntrThread: "
-                    L"Mapped press and hold vkey: 0x%x\r\n", vk
-                    ));
+                RETAILMSG(1, (L" KPD_IntrThread: "L"Mapped press and hold vkey: 0x%x\r\n", vk));
                     
                 // Clear all mapping keys
                 for (ik = 0; ik < pItem->keys; ik++)
-                    {
+				{
                     vk = pItem->pVKeys[ik];
                     vkNewState[vk >> 5] &= ~( 1 << ( vk & 0x1F ) );
-                    }
+				}
                     
                 vk = pItem->vkey;
                 vkNewState[vk >> 5] |= 1 << (vk & 0x1F);
                 keyDown = TRUE;
                 pState->pending = FALSE;
                 pState->remapped = TRUE;
-                }
-            }
+			}
+		}
         else
-            {            
+		{            
             // All keys are up, if remapping was pending set keys
             if ( pState->pending )
                 {            
                 for (ik = 0; ik < pItem->keys; ik++)
-                    {
+				{
                     if ( ( pState->state & ( 1 << ik ) ) != 0 )
-                        {                        
+					{                        
                         vk = pItem->pVKeys[ik];
                         vkNewState[vk >> 5] |= 1 << (vk & 0x1F);
                         keyDown = TRUE;
-                        }
-                    }
+					}
+				}
                 pState->pending = FALSE;
-                }
+			}
             pState->remapped = FALSE;
-            }
+		}
         // Save key state
         pState->state = state;
         }
@@ -1061,10 +1040,8 @@ AutoRepeat(
                                (1 << (vkBlock & 0x1F))) != 0)
                             {
                             pState->blocked = TRUE;
-                            DEBUGMSG(ZONE_IST, (L" KPD_IntrThread: "
-                                L"Block repeat: 0x%x bcause of 0x%x\r\n",
-                                vk, vkBlock
-                                ));
+                            RETAILMSG(1, (L" KPD_IntrThread: "
+                                L"Block repeat: 0x%x bcause of 0x%x\r\n",vk, vkBlock));
                             break;
                             }
                         }
@@ -1073,9 +1050,7 @@ AutoRepeat(
                 // Repeat if not blocked
                 if (!pState->blocked)
                     {
-                    DEBUGMSG(ZONE_IST, (L" KPD_IntrThread: "
-                        L"Key Repeat: 0x%x\r\n", vk
-                        ));
+                    RETAILMSG(1, (L" KPD_IntrThread: "L"Key Repeat: 0x%x\r\n", vk));
                     SendKeyPadEvent(vk, 0, pItem->silent ? KEYEVENTF_SILENT : 0, 0);
                     }
                 // Set time for next repeat
@@ -1103,8 +1078,8 @@ DWORD KPD_IntrThread(VOID *pContext)
     KeypadDevice_t *pDevice = (KeypadDevice_t*)pContext;
     KeypadRemapState_t *pRemapState = NULL;
     KeypadRepeatState_t *pRepeatState = NULL;
-    UINT8 matrix[MATRIX_SIZE];
-    DWORD vkState[VK_KEYS/DWORD_BITS];
+    UINT8 matrix[MATRIX_SIZE]; // 8
+    DWORD vkState[VK_KEYS/DWORD_BITS]; // 256/32 = 8
     DWORD vkNewState[VK_KEYS/DWORD_BITS];
     DWORD timeout;
 
@@ -1163,13 +1138,13 @@ DWORD KPD_IntrThread(VOID *pContext)
 
         // read MATRIX_SIZE amount of rows..
         if (TWLReadRegs(pDevice->hTWL, TWL_LOGADDR_FULL_CODE_7_0, NULL, 0))
-            {
+		{
             TWLReadRegs(pDevice->hTWL, TWL_LOGADDR_FULL_CODE_7_0, matrix, sizeof(matrix));
-            }
+		}
         else
-            {
+		{
             memset(matrix, 0, sizeof(matrix));
-            }
+		}
        
         // Convert physical state to virtual keys state
         PhysicalStateToVirtualState(matrix, vkNewState, &keyDown);

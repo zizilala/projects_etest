@@ -42,6 +42,8 @@ extern "C" {
 #define OAL_ARGS_QUERY_DISP_RES         (BSP_ARGS_QUERY + 7)
 #define OAL_ARGS_QUERY_ECC_TYPE         (BSP_ARGS_QUERY + 8)
 #define OAL_ARGS_QUERY_OPP_MODE         (BSP_ARGS_QUERY + 9)
+#define OAL_ARGS_QUERY_CALIBRATE		(BSP_ARGS_QUERY + 10)
+#define OAL_ARGS_QUERY_SN				(BSP_ARGS_QUERY + 11)
 
 // must match the BOOT_CFG_OALFLAGS_... defines
 #define OAL_ARGS_OALFLAGS_RETAILMSG_ENABLE  (1 << 0)

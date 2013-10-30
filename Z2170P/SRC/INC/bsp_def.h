@@ -1,6 +1,3 @@
-// All rights reserved ADENEO EMBEDDED 2010
-// Copyright (c) 2007, 2008 BSQUARE Corporation. All rights reserved.
-
 //
 //=============================================================================
 //            Texas Instruments OMAP(TM) Platform Software
@@ -23,12 +20,10 @@
 extern "C" {
 #endif
 
-
 //------------------------------------------------------------------------------
 //
 //  Select initial XLDR CPU and IVA speed and VDD1 voltage using BSP_OPM_SELECT
 //
-
 #define OMAP35x_OPP_NUM    6
 #define OMAP37x_OPP_NUM    4
 
@@ -38,7 +33,7 @@ extern "C" {
 //
 //  This define is used as device name prefix when KITL creates device name.
 //
-#define BSP_DEVICE_37xx_PREFIX       "EVM3730-"
+#define BSP_DEVICE_37xx_PREFIX       "Z2170P-"
 #define BSP_DEVICE_35xx_PREFIX       "EVM3530-"
 
 //-----------------------------------------------------------------------------
@@ -89,7 +84,6 @@ extern "C" {
 #define BSP_PRM_VOLTSETUP1_OFF_MODE     (BSP_VOLTSETUP1_VDD2_OFF_MODE | \
                                          BSP_VOLTSETUP1_VDD1_OFF_MODE)
 
-
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_PRM_VOLTSETUP2
@@ -132,7 +126,6 @@ extern "C" {
 //
 #define BSP_PRM_CLKSEL                  (3)
 
-
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_CM_CLKSEL_CORE
@@ -141,20 +134,19 @@ extern "C" {
 //
 //  Allowed values:
 //
-#define BSP_CLKSEL_L3                  (2 << 0)    // L3 = CORE_CLK/2
-#define BSP_CLKSEL_L4                  (2 << 2)    // L4 = L3 / 2
-#define BSP_CLKSEL_GPT10               (0 << 6)    // GPT10 clk src = 32khz
-#define BSP_CLKSEL_GPT11               (0 << 7)    // GPT11 clk src = 32khz
-#define BSP_CLKSEL_SSI                 (3 << 8)    // SSI fclk src = COREX2_CLK / 3
-#define BSP_CLKSEL_96M               (1 << 12)   // reserved, must be 1
+#define BSP_CLKSEL_L3				(2 << 0)    // L3 = CORE_CLK/2
+#define BSP_CLKSEL_L4				(2 << 2)    // L4 = L3 / 2
+#define BSP_CLKSEL_GPT10			(0 << 6)    // GPT10 clk src = 32khz
+#define BSP_CLKSEL_GPT11			(0 << 7)    // GPT11 clk src = 32khz
+#define BSP_CLKSEL_SSI				(3 << 8)    // SSI fclk src = COREX2_CLK / 3
+#define BSP_CLKSEL_96M				(1 << 12)   // reserved, must be 1
 	
-#define BSP_CM_CLKSEL_CORE             (BSP_CLKSEL_96M | \
-                                        BSP_CLKSEL_L3 | \
-                                        BSP_CLKSEL_L4 | \
-                                        BSP_CLKSEL_GPT10 | \
-                                        BSP_CLKSEL_GPT11 | \
-                                        BSP_CLKSEL_SSI)
-
+#define BSP_CM_CLKSEL_CORE			(BSP_CLKSEL_96M | \
+									BSP_CLKSEL_L3 | \
+									BSP_CLKSEL_L4 | \
+									BSP_CLKSEL_GPT10 | \
+									BSP_CLKSEL_GPT11 | \
+									BSP_CLKSEL_SSI)
 
 //------------------------------------------------------------------------------
 //
@@ -183,8 +175,8 @@ extern "C" {
 #define BSP_PWRDN_96M                   (0 << 27)   // enable DPLL4_M2X2
 #define BSP_EN_PERIPH_DPLL_LPMODE       (0 << 26)   // disable DPLL4 LP mode
 
-#define BSP_PERIPH_DPLL_RAMPTIME    (0 << 24)   // disable DPLL4 ramptime
-#define BSP_PERIPH_DPLL_FREQSEL     (7 << 20)   // freqsel = 1.75-2.1 mhz
+#define BSP_PERIPH_DPLL_RAMPTIME		(0 << 24)   // disable DPLL4 ramptime
+#define BSP_PERIPH_DPLL_FREQSEL			(7 << 20)   // freqsel = 1.75-2.1 mhz
 	
 #define BSP_EN_PERIPH_DPLL_DRIFTGUARD   (1 << 19)   // enable DPLL4 driftguard
 #define BSP_EN_PERIPH_DPLL              (7 << 16)   // lock DPLL4
@@ -194,7 +186,7 @@ extern "C" {
 #define BSP_EN_CORE_DPLL_DRIFTGUARD     (1 << 3)    // enable DPLL3 driftguard
 #define BSP_EN_CORE_DPLL                (7 << 0)    // lock DPLL3
 
-#define BSP_CORE_DPLL_FREQSEL       (7 << 4)    // freqsel=1.75 MHz to 2.1 MHz
+#define BSP_CORE_DPLL_FREQSEL			(7 << 4)    // freqsel=1.75 MHz to 2.1 MHz
 
 #define BSP_CM_CLKEN_PLL                (BSP_PWRDN_EMU_PERIPH |         \
                                          BSP_PWRDN_CAM |                \
@@ -210,7 +202,6 @@ extern "C" {
                                          BSP_CORE_DPLL_RAMPTIME |       \
                                          BSP_CORE_DPLL_FREQSEL |        \
                                          BSP_EN_CORE_DPLL)
-
 
 //------------------------------------------------------------------------------
 //
@@ -238,12 +229,10 @@ extern "C" {
 #define BSP_EN_PERIPH2_DPLL_DRIFTGUARD  (1 << 3)    // enable DPLL4 driftguard
 #define BSP_EN_PERIPH2_DPLL             (7 << 0)    // lock DPLL5
 
-
 #define BSP_CM_CLKEN2_PLL               (BSP_EN_PERIPH2_DPLL_LPMODE |      \
                                          BSP_PERIPH2_DPLL_RAMPTIME |       \
                                          BSP_PERIPH2_DPLL_FREQSEL |        \
                                          BSP_EN_PERIPH2_DPLL)
-
 
 //------------------------------------------------------------------------------
 //
@@ -277,7 +266,6 @@ extern "C" {
                                         BSP_SOURCE_48M | \
                                         BSP_SOURCE_96M)
 
-
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_CM_CLKSEL2_PLL
@@ -287,15 +275,13 @@ extern "C" {
 //  Allowed values:
 //
 
-#define BSP_PERIPH_DPLL_MULT           (216 << 8)    // freq = 864MHz
+#define BSP_PERIPH_DPLL_MULT		(216 << 8)    // freq = 864MHz
 
 // in 37xx, DPLL4_M2 is 192MHz
-#define BSP_PERIPH_DPLL_MULT_37xx  (432 << 8)    // freq = 864MHz
-#define BSP_PERIPH_DPLL_DIV            (12 << 0)     //
+#define BSP_PERIPH_DPLL_MULT_37xx	(432 << 8)    // freq = 864MHz
+#define BSP_PERIPH_DPLL_DIV			(12 << 0)     //
 
-#define BSP_CM_CLKSEL2_PLL             (BSP_PERIPH_DPLL_MULT | \
-                                        BSP_PERIPH_DPLL_DIV)
-
+#define BSP_CM_CLKSEL2_PLL			(BSP_PERIPH_DPLL_MULT | BSP_PERIPH_DPLL_DIV)
 
 //------------------------------------------------------------------------------
 //
@@ -310,8 +296,6 @@ extern "C" {
 
 #define BSP_CM_CLKSEL3_PLL             (BSP_DIV_96M)
 
-
-
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_CM_CLKSEL4_PLL
@@ -323,9 +307,7 @@ extern "C" {
 #define BSP_PERIPH2_DPLL_MULT          (60 << 8)    // Multiplier
 #define BSP_PERIPH2_DPLL_DIV           (12  << 0)    // Divider
 
-#define BSP_CM_CLKSEL4_PLL             (BSP_PERIPH2_DPLL_MULT | \
-                                        BSP_PERIPH2_DPLL_DIV)
-
+#define BSP_CM_CLKSEL4_PLL             (BSP_PERIPH2_DPLL_MULT | BSP_PERIPH2_DPLL_DIV)
 
 //------------------------------------------------------------------------------
 //
@@ -339,7 +321,6 @@ extern "C" {
 
 #define BSP_CM_CLKSEL5_PLL             (BSP_DIV_120M)
 
-
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_CM_CLKSEL_CAM
@@ -351,7 +332,6 @@ extern "C" {
 #define BSP_CAM_CLKSEL_CAM             (4 << 0)     // DPLL4/4=216mhz
 
 #define BSP_CM_CLKSEL_CAM              (BSP_CAM_CLKSEL_CAM)
-
 
 //------------------------------------------------------------------------------
 //
@@ -399,7 +379,6 @@ extern "C" {
                                         BSP_EMU_TRACE_MUX_CTRL | \
                                         BSP_EMU_MUX_CTRL)
 
-
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_MPU_DPLL_FREQSEL
@@ -420,18 +399,15 @@ extern "C" {
 //      0xE: 15 MHz to 17.5 MHz
 //      0xF: 17.5 MHz to 21 MHz
 //
-#define BSP_EN_MPU_DPLL_LPMODE         (0 << 10)   // disable DPLL1 LP mode
-#define BSP_MPU_DPLL_RAMPTIME          (2 << 8)    // ramp time = 20us
-#define BSP_EN_MPU_DPLL_DRIFTGUARD     (1 << 3)    // enable DPLL1 driftguard
-#define BSP_EN_MPU_DPLL                (7 << 0)    // lock DPLL1
-#define MPU_DPLL_FREQSEL_500           (7 << 4)
-#define BSP_MPU_DPLL_FREQSEL       MPU_DPLL_FREQSEL_500
+#define BSP_EN_MPU_DPLL_LPMODE		(0 << 10)   // disable DPLL1 LP mode
+#define BSP_MPU_DPLL_RAMPTIME		(2 << 8)    // ramp time = 20us
+#define BSP_EN_MPU_DPLL_DRIFTGUARD	(1 << 3)    // enable DPLL1 driftguard
+#define BSP_EN_MPU_DPLL				(7 << 0)    // lock DPLL1
+#define MPU_DPLL_FREQSEL_500		(7 << 4)
+#define BSP_MPU_DPLL_FREQSEL		MPU_DPLL_FREQSEL_500
 	
-#define BSP_CM_CLKEN_PLL_MPU           (BSP_EN_MPU_DPLL_LPMODE |      \
-                                        BSP_MPU_DPLL_RAMPTIME |       \
-                                        BSP_MPU_DPLL_FREQSEL |        \
-                                        BSP_EN_MPU_DPLL)
-
+#define BSP_CM_CLKEN_PLL_MPU		(BSP_EN_MPU_DPLL_LPMODE | BSP_MPU_DPLL_RAMPTIME |       \
+									 BSP_MPU_DPLL_FREQSEL | BSP_EN_MPU_DPLL)
 
 //------------------------------------------------------------------------------
 //
@@ -577,21 +553,21 @@ extern "C" {
 //
 //  Allowed values:
 //
-#define BSP_HYNIX_RASWIDTH_0                 (3 << 24)     // 14 bits
-#define BSP_HYNIX_RAMSIZE_0                  (128<< 8)    // 256mb SDRAM on Hynix
+#define BSP_HYNIX_RASWIDTH_0		(3 << 24)     // 14 bits
+#define BSP_HYNIX_RAMSIZE_0			(128<< 8)    // 256mb SDRAM on Hynix
 
-#define BSP_MICRON_RASWIDTH_0                 (2 << 24)    // 13 bits
-#define BSP_MICRON_RAMSIZE_0                  (64 << 8)    // 128mb SDRAM on EVM3530
+#define BSP_MICRON_RASWIDTH_0		(2 << 24)    // 13 bits
+#define BSP_MICRON_RAMSIZE_0		(64 << 8)    // 128mb SDRAM on EVM3530
 
-#define BSP_CASWIDTH_0                 (5 << 20)
-#define BSP_ADDRMUXLEGACY_0            (1 << 19)    // flexible address mux
-#define BSP_BANKALLOCATION_0           (2 << 6)     // bank-row-column
-#define BSP_B32NOT16_0                 (1 << 4)     // Ext. SDRAM is x32 bit.
-#define BSP_DEEPPD_0                   (1 << 3)     // supports deep-power down
-#define BSP_DDRTYPE_0                  (0 << 2)     // SDRAM is MobileDDR
-#define BSP_RAMTYPE_0                  (1 << 0)     // SDRAM is DDR
+#define BSP_CASWIDTH_0				(5 << 20)
+#define BSP_ADDRMUXLEGACY_0			(1 << 19)    // flexible address mux
+#define BSP_BANKALLOCATION_0		(2 << 6)     // bank-row-column
+#define BSP_B32NOT16_0				(1 << 4)     // Ext. SDRAM is x32 bit.
+#define BSP_DEEPPD_0				(1 << 3)     // supports deep-power down
+#define BSP_DDRTYPE_0				(0 << 2)     // SDRAM is MobileDDR
+#define BSP_RAMTYPE_0				(1 << 0)     // SDRAM is DDR
 
-#define BSP_HYNIX_SDRC_MCFG_0                (BSP_HYNIX_RASWIDTH_0 | \
+#define BSP_HYNIX_SDRC_MCFG_0		(BSP_HYNIX_RASWIDTH_0 | \
                                         BSP_CASWIDTH_0 | \
                                         BSP_ADDRMUXLEGACY_0 | \
                                         BSP_HYNIX_RAMSIZE_0 | \
@@ -600,7 +576,17 @@ extern "C" {
                                         BSP_DEEPPD_0 | \
                                         BSP_DDRTYPE_0 | \
                                         BSP_RAMTYPE_0)
-
+                                        
+#define BSP_HYNIX_512_SDRC_MCFG_0	(BSP_HYNIX_RASWIDTH_0 | \
+                                        BSP_CASWIDTH_0 | \
+                                        BSP_ADDRMUXLEGACY_0 | \
+                                        BSP_HYNIX_RAMSIZE_0 | \
+                                        BSP_BANKALLOCATION_0 | \
+                                        BSP_B32NOT16_0 | \
+                                        BSP_DEEPPD_0 | \
+                                        BSP_DDRTYPE_0 | \
+                                        BSP_RAMTYPE_0)
+                                        
 #define BSP_MICRON_SDRC_MCFG_0                (BSP_MICRON_RASWIDTH_0 | \
                                         BSP_CASWIDTH_0 | \
                                         BSP_ADDRMUXLEGACY_0 | \
@@ -656,6 +642,16 @@ extern "C" {
                                         BSP_DDRTYPE_0 | \
                                         BSP_RAMTYPE_0)
 
+#define BSP_HYNIX_512_SDRC_MCFG_1                (BSP_HYNIX_RASWIDTH_0 | \
+                                        BSP_CASWIDTH_0 | \
+                                        BSP_ADDRMUXLEGACY_0 | \
+                                        BSP_HYNIX_RAMSIZE_1 | \
+                                        BSP_BANKALLOCATION_0 | \
+                                        BSP_B32NOT16_0 | \
+                                        BSP_DEEPPD_0 | \
+                                        BSP_DDRTYPE_0 | \
+                                        BSP_RAMTYPE_0)
+                                        
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_SDRC_SHARING
@@ -665,14 +661,11 @@ extern "C" {
 //
 //  Allowed values:
 //
-#define BSP_CS1MUXCFG                  (0 << 12)    // 32-bit SDRAM on [31:0]
-#define BSP_CS0MUXCFG                  (0 << 9)     // 32-bit SDRAM on [31:0]
-#define BSP_SDRCTRISTATE               (1 << 8)     // Normal mode
+#define BSP_CS1MUXCFG			(0 << 12)    // 32-bit SDRAM on [31:0]
+#define BSP_CS0MUXCFG			(0 << 9)     // 32-bit SDRAM on [31:0]
+#define BSP_SDRCTRISTATE		(1 << 8)     // Normal mode
 
-#define BSP_SDRC_SHARING               (BSP_CS1MUXCFG | \
-                                        BSP_CS0MUXCFG | \
-                                        BSP_SDRCTRISTATE)
-
+#define BSP_SDRC_SHARING		(BSP_CS1MUXCFG | BSP_CS0MUXCFG | BSP_SDRCTRISTATE)
 
 //------------------------------------------------------------------------------
 //
@@ -741,7 +734,15 @@ extern "C" {
                                         BSP_TWR_0 | \
                                         BSP_TDAL_0)
 
-
+#define BSP_HYNIX_512_SDRC_ACTIM_CTRLA_0         (BSP_HYNIX_TRFC_0 | \
+                                        BSP_HYNIX_TRC_0 | \
+                                        BSP_HYNIX_TRAS_0 | \
+                                        BSP_TRP_0 | \
+                                        BSP_TRCD_0 | \
+                                        BSP_TRRD_0 | \
+                                        BSP_TWR_0 | \
+                                        BSP_TDAL_0)
+                                        
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_SDRC_ACTIM_CTRLA_1
@@ -752,7 +753,7 @@ extern "C" {
 //
 #define BSP_MICRON_SDRC_ACTIM_CTRLA_1    BSP_MICRON_SDRC_ACTIM_CTRLA_0
 #define BSP_HYNIX_SDRC_ACTIM_CTRLA_1    BSP_HYNIX_SDRC_ACTIM_CTRLA_0
-
+#define BSP_HYNIX_512_SDRC_ACTIM_CTRLA_1    BSP_HYNIX_SDRC_ACTIM_CTRLA_0
 
 //------------------------------------------------------------------------------
 //
@@ -772,7 +773,10 @@ extern "C" {
                                         BSP_HYNIX_TXP_0 | \
                                         BSP_HYNIX_TXSR_0)
 
-
+#define BSP_HYNIX_512_SDRC_ACTIM_CTRLB_0         (BSP_HYNIX_TWTR_0 | \
+                                        BSP_HYNIX_TCKE_0 | \
+                                        BSP_HYNIX_TXP_0 | \
+                                        BSP_HYNIX_TXSR_0)
 
 
 #define BSP_MICRON_TWTR_0                     (0x1 << 16)  // 1-cycle write to read delay
@@ -793,7 +797,7 @@ extern "C" {
 //
 #define BSP_MICRON_SDRC_ACTIM_CTRLB_1          BSP_MICRON_SDRC_ACTIM_CTRLB_0
 #define BSP_HYNIX_SDRC_ACTIM_CTRLB_1            BSP_HYNIX_SDRC_ACTIM_CTRLB_0
-
+#define BSP_HYNIX_512_SDRC_ACTIM_CTRLB_1            BSP_HYNIX_SDRC_ACTIM_CTRLB_0
 
 //------------------------------------------------------------------------------
 //
@@ -818,7 +822,9 @@ extern "C" {
 
 #define BSP_HYNIX_SDRC_RFR_CTRL_0            (BSP_HYNIX_ARCV_0 | \
                                         BSP_ARE_0)
-
+                                        
+#define BSP_HYNIX_512_SDRC_RFR_CTRL_0            (BSP_HYNIX_ARCV_0 | \
+                                        BSP_ARE_0)
 //------------------------------------------------------------------------------
 //
 //  Define: BSP_SDRC_RFR_CTRL_1
@@ -829,7 +835,7 @@ extern "C" {
 //
 #define BSP_MICRON_SDRC_RFR_CTRL_1             BSP_MICRON_SDRC_RFR_CTRL_0
 #define BSP_HYNIX_SDRC_RFR_CTRL_1               BSP_HYNIX_SDRC_RFR_CTRL_0
-
+#define BSP_HYNIX_512_SDRC_RFR_CTRL_1               BSP_HYNIX_SDRC_RFR_CTRL_0
 
 //------------------------------------------------------------------------------
 //
@@ -1540,18 +1546,18 @@ extern "C" {
 #define VDD1_OPP4_ERRORGAIN     (0x18)
 #define VDD1_OPP5_ERRORGAIN     (0x18)
 
-#define VDD1_OPP50_ERRORGAIN   (0x0C)
-#define VDD1_OPP100_ERRORGAIN (0x16)
-#define VDD1_OPP130_ERRORGAIN (0x23)
-#define VDD1_OPP1G_ERRORGAIN   (0x27)
+#define VDD1_OPP50_ERRORGAIN	(0x0C)
+#define VDD1_OPP100_ERRORGAIN	(0x16)
+#define VDD1_OPP130_ERRORGAIN	(0x23)
+#define VDD1_OPP1G_ERRORGAIN	(0x27)
 
 #define VDD2_OPP1_ERRORGAIN     (0x0C)
 #define VDD2_OPP2_ERRORGAIN     (0x18)
 
-#define VDD2_OPP50_ERRORGAIN     (0x0C)
+#define VDD2_OPP50_ERRORGAIN	(0x0C)
 #define VDD2_OPP100_ERRORGAIN   (0x16)
 
-#define VDD_NO_ERROFFSET        (0x0)
+#define VDD_NO_ERROFFSET        (0x00)
 
 //------------------------------------------------------------------------------
 #define SR1_OPP1_ERRMINLIMIT    (0xF4)
@@ -1563,12 +1569,12 @@ extern "C" {
 #define SR2_OPP1_ERRMINLIMIT    (0xF4)
 #define SR2_OPP2_ERRMINLIMIT    (0xF9)
 
-#define SR1_OPP50_ERRMINLIMIT    (0xF4)
+#define SR1_OPP50_ERRMINLIMIT	(0xF4)
 #define SR1_OPP100_ERRMINLIMIT  (0xF9)
 #define SR1_OPP130_ERRMINLIMIT  (0xFA)
-#define SR1_OPP1G_ERRMINLIMIT    (0xFA)
+#define SR1_OPP1G_ERRMINLIMIT	(0xFA)
 
-#define SR2_OPP50_ERRMINLIMIT    (0xF4)
+#define SR2_OPP50_ERRMINLIMIT	(0xF4)
 #define SR2_OPP100_ERRMINLIMIT  (0xF9)
 
 //------------------------------------------------------------------------------
@@ -1586,55 +1592,58 @@ extern "C" {
 // BSP gpio table initialization
 BOOL BSPInsertGpioDevice(UINT range,void* fnTbl,WCHAR* name);
 
-
 //-----------------------------------------------------------------------------
 // GPIOs
 // Note : This must be in sync with the PAD configuration as well (in bsp_padcfg.h)
+//
+#define BT_EN_GPIO				(15)
+#define BCR_ENG_TRIG			(36)	// nENG_TRIG
+#define AUDIO_MUTE_GPIO			(37)	// nSPK_EN
+#define BCR_ENG_PWEN			(38)	// ENG_PWEN
+#define BATT_DCT_GPIO			(43)	// BATT_DCT
+#define BL_EN_SET_GPIO			(61)	// BL_EN
+#define AC_IN_GPIO				(142)	// AC_nPG
+#define LCD_RESB_GPIO       	(147)	// nLCM_RST
+#define ENG_SET1_GPIO			(152)	// ENG_SET1(IN)
+#define ENG_SET2_GPIO			(153)	// ENG_SET2(IN)
+#define LCD_POWER_GPIO      	(154)	// LCD_PWEN
+#define KEYPAD_LED_GPIO			(155)	// KP_LED
 
-#ifdef BSP_EVM2
-//-----------------------------------------------------------------------------
-// EMV2 GPIOs
-//#define AUDIO_MUTE_GPIO			TRITON_GPIO(6)
-#define AUDIO_MUTE_GPIO			(37)
-#define TPS659XX_MSECURE_GPIO   (64)
-#define nFULL_MODEM_EN_GPIO     (55)
-#define USB2_ROUTE_SELECT_GPIO  (61)
-#define USB_TRANSCEIVER_RESET   (21)
-#define VIDEO_CAPTURE_RESET     (98)
-#define VIDEO_CAPTURE_SELECT1   TRITON_GPIO(8)
-#define VIDEO_CAPTURE_SELECT2   (157)
-#define NEW_EVM2_CTRL_GPIO      TRITON_GPIO(2)
-#define LAN9115_RESET_GPIO      (7)   
-#define LAN9115_IRQ_GPIO        (176) 
+#define MMC1_CARDDET_GPIO       (TRITON_GPIO(0))     // Triton GPIO 0 
 
-#else
-//-----------------------------------------------------------------------------
-// EMV1 GPIOs
-#define LAN9115_RESET_GPIO       (64)
-#define LAN9115_IRQ_GPIO         (176)
-#endif
+
+//#define TPS659XX_MSECURE_GPIO   (64) // ???
+//#define nFULL_MODEM_EN_GPIO     (55)
+//#define USB2_ROUTE_SELECT_GPIO  (61)
+//#define USB_TRANSCEIVER_RESET   (21)
+//#define VIDEO_CAPTURE_RESET     (98)
+//#define VIDEO_CAPTURE_SELECT1   TRITON_GPIO(8)
+//#define VIDEO_CAPTURE_SELECT2   (157)
+//#define NEW_EVM2_CTRL_GPIO      TRITON_GPIO(2)
+//#define LAN9115_RESET_GPIO      (7)   
+//#define LAN9115_IRQ_GPIO        (176) 
 
 //SD card pin connection information
-#define MMC1_CARDDET_GPIO       (TRITON_GPIO(0))     // Triton GPIO 0 
-#define MMC2_CARDDET_GPIO       (TRITON_GPIO(1))     // Triton GPIO 1
+
+//#define MMC2_CARDDET_GPIO       (TRITON_GPIO(1))     // Triton GPIO 1  XX
 // LCD GPIOs
-#define BSP_LCD_POWER_GPIO      (154)
-#define BSP_LCD_RESB_GPIO       (147)
+//#define BSP_LCD_POWER_GPIO      (154)
+//#define BSP_LCD_RESB_GPIO       (147)
 //#define BSP_BL_EN_GPIO			(61)
 //#define BSP_LCD_INI_GPIO        (152)
 //#define BSP_LCD_LCD_QVGA_nVGA   (154)
 // Triton GPIO controlling DVI enable: 0 = disable, 1 = enable
-#define BSP_LCD_DVIENABLE_GPIO  (TRITON_GPIO(7))
-#define BSP_LCD_LEFT_RIGHT_GPIO	(2)
-#define BSP_LCD_UP_DOWN_GPIO	(3)
+//#define BSP_LCD_DVIENABLE_GPIO  (TRITON_GPIO(7))
+//#define BSP_LCD_LEFT_RIGHT_GPIO	(2)
+//#define BSP_LCD_UP_DOWN_GPIO	(3)
 
 // LED labelled "PROC_ACT"
 #define NOTIFICATION_LED_GPIO       (8)
 
 
 //-----------------------------------------------------------------------------
-// SYSINTR for the external LAN (required because NDIS doesn't support IRQ number greater than 255)
-#define SYSINTR_LAN9115   SYSINTR_FIRMWARE
+// SYSINTR for the Battery cover detect
+#define SYSINTR_POWER_SOURCE   SYSINTR_FIRMWARE
 
 //-----------------------------------------------------------------------------
 // Default Mac address (used when no settings found in flash and no MAC programmed into the ethernet device

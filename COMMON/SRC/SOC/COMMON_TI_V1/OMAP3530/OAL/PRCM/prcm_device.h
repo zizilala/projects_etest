@@ -465,7 +465,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
     {
 // core domain clocks    
 //-------------------
-        POWERDOMAIN_CORE,                   // OMAP_DEVICE_SSI
+        POWERDOMAIN_CORE,			//0 OMAP_DEVICE_SSI
         &_fclk_SSI,    
         &_iclk_SSI,
         NULL,
@@ -473,7 +473,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_SSI,     
         &_SSI_SourceClock
     }, {
-        POWERDOMAIN_CORE,                   // OMAP_DEVICE_SDRC
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_SDRC
         NULL,    
         &_iclk_SDRC,  
         NULL,
@@ -481,7 +481,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,     
         &_COREL3_SourceClock,   
     }, {
-        POWERDOMAIN_CORE,                   // OMAP_DEVICE_D2D
+        POWERDOMAIN_CORE,			//2 OMAP_DEVICE_D2D
         &_fclk_D2D,
         &_iclk_D2D,  
         &_wken_D2D,
@@ -489,7 +489,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_D2D,     
         NULL,                   
     }, {
-        POWERDOMAIN_CORE,                   // OMAP_DEVICE_HSOTGUSB
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_HSOTGUSB
         NULL,
         &_iclk_HSOTGUSB,
         &_wken_HSOTGUSB,
@@ -497,7 +497,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_HSOTGUSB,
         &_USBOTG_SourceClock,  
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_OMAPCTRL
+        POWERDOMAIN_CORE,			//4 OMAP_DEVICE_OMAPCTRL
         NULL,
         &_iclk_OMAPCTRL, 
         NULL,
@@ -505,7 +505,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_OMAPCTRL,
         &_COREL4_SourceClock,   
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MAILBOXES
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MAILBOXES
         NULL,
         &_iclk_MAILBOXES, 
         NULL,
@@ -513,7 +513,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MAILBOXES,        
         &_COREL4_SourceClock,   
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MCBSP1
+        POWERDOMAIN_CORE,			//6 OMAP_DEVICE_MCBSP1
         &_fclk_MCBSP1,
         &_iclk_MCBSP1,
         &_wken_MCBSP1,
@@ -521,7 +521,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCBSP1,
         &_MCBSP1_SourceClock,   
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MCBSP5
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MCBSP5
         &_fclk_MCBSP5,
         &_iclk_MCBSP5,
         &_wken_MCBSP5,
@@ -529,7 +529,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCBSP5,
         &_MCBSP5_SourceClock,   
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_GPTIMER10  //10
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_GPTIMER10  //10
         &_fclk_GPT10,
         &_iclk_GPT10,
         &_wken_GPT10,
@@ -537,7 +537,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT10,
         &_GPT10_SourceClock,    
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_GPTIMER11
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_GPTIMER11
         &_fclk_GPT11,
         &_iclk_GPT11,
         &_wken_GPT11,
@@ -545,7 +545,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT11,
         &_GPT11_SourceClock,    
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_UART1
+        POWERDOMAIN_CORE,			//10 OMAP_DEVICE_UART1
         &_fclk_UART1,
         &_iclk_UART1,
         &_wken_UART1,
@@ -553,7 +553,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_UART1,
         &_48M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_UART2
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_UART2
         &_fclk_UART2,
         &_iclk_UART2,
         &_wken_UART2,
@@ -561,7 +561,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_UART2,
         &_48M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_I2C1
+        POWERDOMAIN_CORE,			//12 OMAP_DEVICE_I2C1
         &_fclk_I2C1,
         &_iclk_I2C1,
         &_wken_I2C1,
@@ -569,7 +569,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_I2C1,
         &_96M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_I2C2
+        POWERDOMAIN_CORE,			//13 OMAP_DEVICE_I2C2
         &_fclk_I2C2,
         &_iclk_I2C2,
         &_wken_I2C2,
@@ -577,7 +577,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_I2C2,
         &_96M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_I2C3
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_I2C3
         &_fclk_I2C3,
         &_iclk_I2C3,
         &_wken_I2C3,
@@ -585,7 +585,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_I2C3,
         &_96M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MCSPI1
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MCSPI1
         &_fclk_MCSPI1,
         &_iclk_MCSPI1,
         &_wken_MCSPI1,
@@ -593,7 +593,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCSPI1,
         &_48M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MCSPI2
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MCSPI2
         &_fclk_MCSPI2,
         &_iclk_MCSPI2,
         &_wken_MCSPI2,
@@ -601,7 +601,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCSPI2,
         &_48M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MCSPI3
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MCSPI3
         &_fclk_MCSPI3,
         &_iclk_MCSPI3,
         &_wken_MCSPI3,
@@ -609,7 +609,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCSPI3,
         &_48M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MCSPI4 //20
+        POWERDOMAIN_CORE,			//18 OMAP_DEVICE_MCSPI4 //20
         &_fclk_MCSPI4,
         &_iclk_MCSPI4,
         &_wken_MCSPI4,
@@ -617,7 +617,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCSPI4,
         &_48M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_HDQ
+        POWERDOMAIN_CORE,			//19 OMAP_DEVICE_HDQ
         &_fclk_HDQ,
         &_iclk_HDQ,
         NULL,
@@ -625,7 +625,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_HDQ,
         &_12M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MSPRO
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MSPRO
         &_fclk_MSPRO,
         &_iclk_MSPRO,
         NULL,
@@ -633,7 +633,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MSPRO,
         &_96M_SourceClock,      
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MMC1
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MMC1
         &_fclk_MMC1,
         &_iclk_MMC1,
         &_wken_MMC1,
@@ -641,7 +641,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MMC1,
         &_MMC1_SourceClock,     
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MMC2
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MMC2
         &_fclk_MMC2,
         &_iclk_MMC2,
         &_wken_MMC2,
@@ -649,7 +649,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MMC2,
         &_MMC2_SourceClock,     
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_MMC3
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_MMC3
         &_fclk_MMC3,
         &_iclk_MMC3,
         &_wken_MMC3,
@@ -657,7 +657,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MMC3,
         &_MMC3_SourceClock,     
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_DES2
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_DES2
         NULL,
         &_iclk_DES2,
         NULL,
@@ -665,7 +665,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_DES2,
         NULL, 
     }, {
-        POWERDOMAIN_CORE,                       //OMAP_DEVICE_SHA12
+        POWERDOMAIN_CORE,			//25 OMAP_DEVICE_SHA12
         NULL,
         &_iclk_SHA12,
         NULL,
@@ -673,7 +673,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_SHA12,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_AES2
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_AES2
         NULL,    
         &_iclk_AES2,          
         NULL,
@@ -681,7 +681,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_AES2,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_ICR
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_ICR
         NULL,    
         &_iclk_ICR,    
         NULL,
@@ -689,7 +689,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_ICR,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_DES1  //30
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_DES1  //30
         NULL,    
         &_iclk_DES1,          
         NULL,
@@ -697,7 +697,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_DES1,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_SHA11
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_SHA11
         NULL,    
         &_iclk_SHA11,  
         NULL,
@@ -705,7 +705,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_SHA11,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_RNG
+        POWERDOMAIN_CORE,			//30 OMAP_DEVICE_RNG
         NULL,    
         &_iclk_RNG,    
         NULL,
@@ -713,7 +713,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_RNG,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_AES1
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_AES1
         NULL,    
         &_iclk_AES1,  
         NULL,
@@ -721,7 +721,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_AES1,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_PKA
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_PKA
         NULL,    
         &_iclk_PKA,   
         NULL,
@@ -729,7 +729,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_PKA,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_USBTLL
+        POWERDOMAIN_CORE,			// OMAP_DEVICE_USBTLL
         &_fclk_USBTLL,    
         &_iclk_USBTLL, 
         &_wken_USBTLL,
@@ -737,7 +737,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_USBTLL,
         &_120M_SourceClock,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_TS
+        POWERDOMAIN_CORE,			//34 OMAP_DEVICE_TS
         &_fclk_TS,    
         NULL,
         NULL,
@@ -745,7 +745,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         NULL,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_CLOCK_EFUSE
+        POWERDOMAIN_CORE,			// OMAP_CLOCK_EFUSE
         &_fclk_CPEFUSE,    
         NULL,
         NULL,
@@ -754,7 +754,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_CPEFUSE_SourceClock,
     }, {
 // WAKUP domain clocks    
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_GPTIMER1
+        POWERDOMAIN_WAKEUP,			//36 OMAP_DEVICE_GPTIMER1
         &_fclk_GPT1,    
         &_iclk_GPT1,
         &_wken_GPT1,
@@ -762,7 +762,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT1,
         &_GPT1_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_GPTIMER12
+        POWERDOMAIN_WAKEUP,			// OMAP_DEVICE_GPTIMER12
         NULL,    
         &_iclk_GPT12,  
         NULL,
@@ -770,7 +770,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT12,
         &_GPT12_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_32KSYNC //40
+        POWERDOMAIN_WAKEUP,			//38 OMAP_DEVICE_32KSYNC //40
         NULL,    
         &_iclk_32KSYNC, 
         NULL,
@@ -778,7 +778,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_32KSYNC,
         &_32K_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_WDT1
+        POWERDOMAIN_WAKEUP,			// OMAP_DEVICE_WDT1
         NULL,    
         &_iclk_WDT1,
         NULL,
@@ -786,7 +786,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_WDT1,
         &_32K_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_WDT2
+        POWERDOMAIN_WAKEUP,			//40 OMAP_DEVICE_WDT2
         &_fclk_WDT2,    
         &_iclk_WDT2,
         NULL,
@@ -794,7 +794,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_WDT2,
         &_32KWakeup_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_GPIO1
+        POWERDOMAIN_WAKEUP,			//41 OMAP_DEVICE_GPIO1
         &_fclk_GPIO1,    
         &_iclk_GPIO1,
         &_wken_GPIO1,
@@ -802,7 +802,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPIO1,
         &_32KWakeup_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_SR1
+        POWERDOMAIN_WAKEUP,			// OMAP_DEVICE_SR1
         &_fclk_SR1,    
         NULL,
         &_wken_SR1,
@@ -810,7 +810,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_SR_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_SR2
+        POWERDOMAIN_WAKEUP,			// OMAP_DEVICE_SR2
         &_fclk_SR2,    
         NULL,
         &_wken_SR2,
@@ -818,7 +818,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_SR_SourceClock,
     }, {
-        POWERDOMAIN_WAKEUP,                     // OMAP_DEVICE_USIM
+        POWERDOMAIN_WAKEUP,			//44 OMAP_DEVICE_USIM
         &_fclk_USIM,    
         &_iclk_USIM,
         &_wken_USIM,
@@ -827,7 +827,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_USIM_SourceClock,
     }, {
 // per domain clocks        
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPIO2    
+        POWERDOMAIN_PERIPHERAL,		//45 OMAP_DEVICE_GPIO2    
         &_fclk_GPIO2,    
         &_iclk_GPIO2,
         &_wken_GPIO2,
@@ -835,7 +835,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPIO2,
         &_PER_32K_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPIO3
+        POWERDOMAIN_PERIPHERAL,		//46 OMAP_DEVICE_GPIO3
         &_fclk_GPIO3,    
         &_iclk_GPIO3,
         &_wken_GPIO3,
@@ -843,7 +843,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPIO3,
         &_PER_32K_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPIO4
+        POWERDOMAIN_PERIPHERAL,		//47 OMAP_DEVICE_GPIO4
         &_fclk_GPIO4,    
         &_iclk_GPIO4,
         &_wken_GPIO4,
@@ -851,7 +851,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPIO4,
         &_PER_32K_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPIO5 //50
+        POWERDOMAIN_PERIPHERAL,		//48 OMAP_DEVICE_GPIO5 //50
         &_fclk_GPIO5,    
         &_iclk_GPIO5,
         &_wken_GPIO5,
@@ -859,7 +859,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPIO5,
         &_PER_32K_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPIO6
+        POWERDOMAIN_PERIPHERAL,		//49 OMAP_DEVICE_GPIO6
         &_fclk_GPIO6,    
         &_iclk_GPIO6,
         &_wken_GPIO6,
@@ -867,7 +867,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPIO6,
         &_PER_32K_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_MCBSP2
+        POWERDOMAIN_PERIPHERAL,		//50 OMAP_DEVICE_MCBSP2
         &_fclk_MCBSP2,    
         &_iclk_MCBSP2,
         &_wken_MCBSP2,
@@ -875,7 +875,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCBSP2,
         &_MCBSP2_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_MCBSP3
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_MCBSP3
         &_fclk_MCBSP3,    
         &_iclk_MCBSP3,
         &_wken_MCBSP3,
@@ -883,7 +883,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCBSP3,
         &_MCBSP3_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_MCBSP4
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_MCBSP4
         &_fclk_MCBSP4,    
         &_iclk_MCBSP4,
         &_wken_MCBSP4,
@@ -891,7 +891,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_MCBSP4,
         &_MCBSP4_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER2
+        POWERDOMAIN_PERIPHERAL,		//53 OMAP_DEVICE_GPTIMER2
         &_fclk_GPT2,    
         &_iclk_GPT2,
         &_wken_GPT2,
@@ -899,7 +899,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT2,
         &_GPT2_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER3
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_GPTIMER3
         &_fclk_GPT3,    
         &_iclk_GPT3,
         &_wken_GPT3,
@@ -907,7 +907,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT3,
         &_GPT3_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER4
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_GPTIMER4
         &_fclk_GPT4,    
         &_iclk_GPT4,
         &_wken_GPT4,
@@ -915,7 +915,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT4,
         &_GPT4_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER5
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_GPTIMER5
         &_fclk_GPT5,    
         &_iclk_GPT5,
         &_wken_GPT5,
@@ -923,7 +923,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT5,
         &_GPT5_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER6
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_GPTIMER6
         &_fclk_GPT6,    
         &_iclk_GPT6,
         &_wken_GPT6,
@@ -931,7 +931,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT6,
         &_GPT6_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER7 //60
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_GPTIMER7 
         &_fclk_GPT7,    
         &_iclk_GPT7,
         &_wken_GPT7,
@@ -939,7 +939,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT7,
         &_GPT7_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER8
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_GPTIMER8
         &_fclk_GPT8,    
         &_iclk_GPT8,
         &_wken_GPT8,
@@ -947,7 +947,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT8,
         &_GPT8_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_GPTIMER9
+        POWERDOMAIN_PERIPHERAL,		//60 OMAP_DEVICE_GPTIMER9
         &_fclk_GPT9,    
         &_iclk_GPT9,
         &_wken_GPT9,
@@ -955,7 +955,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_GPT9,
         &_GPT9_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_UART3
+        POWERDOMAIN_PERIPHERAL,		//61 OMAP_DEVICE_UART3
         &_fclk_UART3,    
         &_iclk_UART3,
         &_wken_UART3,
@@ -963,7 +963,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_UART3,
         &_PER_48M_SourceClock,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_WDT3
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_WDT3
         &_fclk_WDT3,    
         &_iclk_WDT3,
         NULL,
@@ -972,7 +972,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_PER_32K_SourceClock,
     }, {
 // DSS domain clocks    
-        POWERDOMAIN_DSS,                        // OMAP_DEVICE_DSS
+        POWERDOMAIN_DSS,			//63 OMAP_DEVICE_DSS
         &_fclk_DSS,    
         &_iclk_DSS,
         &_wken_DSS,
@@ -980,7 +980,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_DSS,
         &_DSS_SourceClock,
     }, {
-        POWERDOMAIN_DSS,                        // OMAP_DEVICE_DSS1
+        POWERDOMAIN_DSS,			// OMAP_DEVICE_DSS1
         &_fclk_DSS1,    
         &_iclk_DSS,                             
         NULL,
@@ -988,7 +988,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_DSS1_SourceClock,
     }, {
-        POWERDOMAIN_DSS,                        // OMAP_DEVICE_DSS2
+        POWERDOMAIN_DSS,			// OMAP_DEVICE_DSS2
         &_fclk_DSS2,    
         &_iclk_DSS,                             
         NULL,
@@ -996,7 +996,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_DSS2_SourceClock,
     }, {
-        POWERDOMAIN_DSS,                        // OMAP_DEVICE_TVOUT
+        POWERDOMAIN_DSS,			//66 OMAP_DEVICE_TVOUT
         &_fclk_TVOUT,    
         &_iclk_DSS,
         NULL,                                   //&_wken_DSS,
@@ -1005,7 +1005,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_TV_SourceClock,
     }, {
 // CAMERA domain clocks    
-        POWERDOMAIN_CAMERA,                     // OMAP_DEVICE_CAMERA
+        POWERDOMAIN_CAMERA,			// OMAP_DEVICE_CAMERA
         &_fclk_CAM,
         &_iclk_CAM,
         NULL,
@@ -1013,7 +1013,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_CAM,
         &_CAM_SourceClock,
     }, {
-        POWERDOMAIN_CAMERA,                     // OMAP_DEVICE_CSI2
+        POWERDOMAIN_CAMERA,			// OMAP_DEVICE_CSI2
         &_fclk_CSI2,
         &_iclk_CAM,
         NULL,
@@ -1022,7 +1022,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_CSI2_SourceClock,
     }, {
 // IVA domain clocks    
-        POWERDOMAIN_IVA2,                       // OMAP_DEVICE_DSP
+        POWERDOMAIN_PERIPHERAL,//POWERDOMAIN_IVA2,			// OMAP_DEVICE_DSP
         &_fclk_IVA2,    
         &_iclk_IVA2,
         NULL,
@@ -1031,7 +1031,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
     }, {
 // GFX domain clocks    
-        POWERDOMAIN_SGX,                        // OMAP_DEVICE_2D    // UNDONE need to remove
+        POWERDOMAIN_SGX,			//70 OMAP_DEVICE_2D    // UNDONE need to remove
         NULL,    
         NULL,
         NULL,
@@ -1039,7 +1039,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         NULL,
     }, {
-        POWERDOMAIN_SGX,                        // OMAP_DEVICE_3D
+        POWERDOMAIN_SGX,			// OMAP_DEVICE_3D
         &_fclk_3D,    
         &_iclk_SGX,
         NULL,
@@ -1047,7 +1047,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         NULL,
     }, {
-        POWERDOMAIN_SGX,                        // OMAP_DEVICE_SGX
+        POWERDOMAIN_SGX,			// OMAP_DEVICE_SGX
         &_fclk_SGX,    
         &_iclk_SGX,
         NULL,
@@ -1055,7 +1055,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_SGX_SourceClock,
     }, {
-        POWERDOMAIN_USBHOST,                    // OMAP_DEVICE_HSUSB1
+        POWERDOMAIN_USBHOST,		// OMAP_DEVICE_HSUSB1
         &_fclk_HSUSB1,    
         &_iclk_USBHOST,
         &_wken_USBHOST,
@@ -1063,7 +1063,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         &_autoIdle_USBHOST,
         NULL,
     }, {
-        POWERDOMAIN_USBHOST,                    // OMAP_DEVICE_HSUSB2
+        POWERDOMAIN_USBHOST,		//74 OMAP_DEVICE_HSUSB2
         &_fclk_HSUSB2,    
         NULL,
         NULL,
@@ -1071,7 +1071,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         NULL,
     }, {
-        POWERDOMAIN_USBHOST,                    // OMAP_DEVICE_USBHOST1
+        POWERDOMAIN_USBHOST,		// OMAP_DEVICE_USBHOST1
         &_fclk_USBHOST1,    
         &_iclk_USBHOST1,
         NULL,
@@ -1079,7 +1079,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_USBHOST1_SourceClock,
     }, {
-        POWERDOMAIN_USBHOST,                    // OMAP_DEVICE_USBHOST2
+        POWERDOMAIN_USBHOST,		// OMAP_DEVICE_USBHOST2
         &_fclk_USBHOST2,    
         &_iclk_USBHOST2,
         NULL,
@@ -1087,7 +1087,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_USBHOST2_SourceClock,
     }, {
-        POWERDOMAIN_USBHOST,                    // OMAP_DEVICE_USBHOST3
+        POWERDOMAIN_USBHOST,		// OMAP_DEVICE_USBHOST3
         &_fclk_USBHOST3,    
         &_iclk_USBHOST3,
         NULL,
@@ -1095,7 +1095,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         &_USBHOST3_SourceClock,
     }, {
-        POWERDOMAIN_CORE,                       // OMAP_DEVICE_VRFB
+        POWERDOMAIN_CORE,			//78 OMAP_DEVICE_VRFB
         NULL,    
         &_iclk_VRFB,
         NULL,
@@ -1103,7 +1103,7 @@ DeviceLookupEntry s_rgDeviceLookupTable[] =
         NULL,
         NULL,
     }, {
-        POWERDOMAIN_PERIPHERAL,                 // OMAP_DEVICE_UART4 (37xx only)
+        POWERDOMAIN_PERIPHERAL,		// OMAP_DEVICE_UART4 (37xx only)
         &_fclk_UART4,    
         &_iclk_UART4,
         &_wken_UART4,
@@ -1124,7 +1124,7 @@ static UINT s_rgActiveDomainDeviceCount[POWERDOMAIN_COUNT] =
     0,      // POWERDOMAIN_MPU
     0,      // POWERDOMAIN_DSS
     0,      // POWERDOMAIN_NEON
-    0,      // POWERDOMAIN_IVA2
+//	0,      // POWERDOMAIN_IVA2
     0,      // POWERDOMAIN_CAMERA
     0,      // POWERDOMAIN_SGX
     0,      // POWERDOMAIN_EFUSE

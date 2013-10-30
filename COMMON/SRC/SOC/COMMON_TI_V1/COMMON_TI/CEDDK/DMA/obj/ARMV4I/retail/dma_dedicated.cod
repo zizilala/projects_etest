@@ -86,7 +86,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\ceddk\dma\dma_dedicated.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44320| DCD	|$LN13@DmaDealloc|
+|$T44321| DCD	|$LN13@DmaDealloc|
 	DCD	0x40004702
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -155,7 +155,7 @@
   00000		 |$LN13@DmaDealloc|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M44317|
+  00008		 |$M44318|
   00008	e1b04000	 movs        r4, r0
 
 ; 258  :     if(pContext)
@@ -324,7 +324,7 @@
   00114	01da0420	 DCD         0x1da0420
   00118		 |$LN21@DmaDealloc|
   00118	00000000	 DCD         |g_hDmaDrv|
-  0011c		 |$M44318|
+  0011c		 |$M44319|
 
 			 ENDP  ; |DmaDeallocateContext|
 
@@ -338,15 +338,15 @@
 	IMPORT	|__C_specific_handler|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44361| DCD	|$LN33@DmaDiDmaFr|
+|$T44362| DCD	|$LN33@DmaDiDmaFr|
 	DCD	0xc0007a04
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44363| DCD	|$LN18@DmaDiDmaFr|
+|$T44364| DCD	|$LN18@DmaDiDmaFr|
 	DCD	0x40000a01
 
   00000			 AREA	 |.xdata|, DATA
-|$T44359| DCD	0x1
+|$T44360| DCD	0x1
 	DCD	|$LN22@DmaDiDmaFr|
 	DCD	|$LN23@DmaDiDmaFr|
 	DCD	|$LN18@DmaDiDmaFr|
@@ -390,7 +390,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T44359|
+  00004	00000000	 DCD         |$T44360|
 
   00008		 |DmaDiDmaFreeInterrupt| PROC
 
@@ -464,7 +464,7 @@
 
 ; 355  :             goto cleanUp;
 
-  00088	ea000054	 b           |$cleanUp$44162|
+  00088	ea000054	 b           |$cleanUp$44163|
   0008c		 |$LN9@DmaDiDmaFr|
 
 ; 356  :             }
@@ -607,7 +607,7 @@
 
 ; 395  :         }
 
-  0017c	ea000017	 b           |$cleanUp$44162|
+  0017c	ea000017	 b           |$cleanUp$44163|
   00180		 |$LN19@DmaDiDmaFr|
 
 ; 397  :         {
@@ -630,7 +630,7 @@
   001a0	e3830028	 orr         r0, r3, #0x28
   001a4	eb000000	 bl          SetLastError
   001a8	e51b5034	 ldr         r5, [r11, #-0x34]
-  001ac	ea00000b	 b           |$cleanUp$44162|
+  001ac	ea00000b	 b           |$cleanUp$44163|
   001b0		 |$LN30@DmaDiDmaFr|
 
 ; 403  :         }
@@ -639,7 +639,7 @@
 ; 406  :     return rc; 
 
   001b0	e51b5038	 ldr         r5, [r11, #-0x38]
-  001b4	ea000009	 b           |$cleanUp$44162|
+  001b4	ea000009	 b           |$cleanUp$44163|
   001b8		 |$LN11@DmaDiDmaFr|
 
 ; 339  :         {
@@ -660,7 +660,7 @@
 
   001d8	e383005a	 orr         r0, r3, #0x5A
   001dc	eb000000	 bl          SetLastError
-  001e0		 |$cleanUp$44162|
+  001e0		 |$cleanUp$44163|
 
 ; 407  : }
 
@@ -705,15 +705,15 @@
 	EXPORT	|??_C@_1HA@JDNHJBFB@?$AAD?$AAm?$AAa?$AAD?$AAi?$AAF?$AAi?$AAn?$AAd?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AAB?$AAy?$AAI?$AAn?$AAd?$AAe?$AAx@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44405| DCD	|$LN29@DmaDiFindI|
+|$T44406| DCD	|$LN29@DmaDiFindI|
 	DCD	0xc0004704
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44407| DCD	|$LN14@DmaDiFindI|
+|$T44408| DCD	|$LN14@DmaDiFindI|
 	DCD	0x40000a01
 
   00000			 AREA	 |.xdata|, DATA
-|$T44403| DCD	0x1
+|$T44404| DCD	0x1
 	DCD	|$LN18@DmaDiFindI|
 	DCD	|$LN19@DmaDiFindI|
 	DCD	|$LN14@DmaDiFindI|
@@ -766,7 +766,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T44403|
+  00004	00000000	 DCD         |$T44404|
 
   00008		 |DmaDiFindInterruptChannelByIndex| PROC
 
@@ -833,7 +833,7 @@
 
 ; 444  :             goto cleanUp;
 
-  0007c	ea000024	 b           |$cleanUp$44197|
+  0007c	ea000024	 b           |$cleanUp$44198|
   00080		 |$LN5@DmaDiFindI|
 
 ; 445  :             }
@@ -881,7 +881,7 @@
 
 ; 455  :         }
 
-  000c4	ea000012	 b           |$cleanUp$44197|
+  000c4	ea000012	 b           |$cleanUp$44198|
   000c8		 |$LN15@DmaDiFindI|
 
 ; 457  :         {
@@ -898,7 +898,7 @@
   000d4	e3830028	 orr         r0, r3, #0x28
   000d8	eb000000	 bl          SetLastError
   000dc	e51b4020	 ldr         r4, [r11, #-0x20]
-  000e0	ea00000b	 b           |$cleanUp$44197|
+  000e0	ea00000b	 b           |$cleanUp$44198|
   000e4		 |$LN25@DmaDiFindI|
 
 ; 462  :         }
@@ -908,7 +908,7 @@
 ; 466  :     return RetVal;
 
   000e4	e51b4018	 ldr         r4, [r11, #-0x18]
-  000e8	ea000009	 b           |$cleanUp$44197|
+  000e8	ea000009	 b           |$cleanUp$44198|
   000ec		 |$LN7@DmaDiFindI|
 
 ; 428  :         {
@@ -929,7 +929,7 @@
 
   0010c	e383005a	 orr         r0, r3, #0x5A
   00110	eb000000	 bl          SetLastError
-  00114		 |$cleanUp$44197|
+  00114		 |$cleanUp$44198|
 
 ; 467  : }
 
@@ -975,15 +975,15 @@
 	EXPORT	|??_C@_1HC@KFHMPDBB@?$AAD?$AAm?$AAa?$AAD?$AAi?$AAC?$AAl?$AAe?$AAa?$AAr?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AAB?$AAy?$AAI?$AAn?$AAd?$AAe@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44446| DCD	|$LN25@DmaDiClear|
+|$T44447| DCD	|$LN25@DmaDiClear|
 	DCD	0xc0005404
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44448| DCD	|$LN12@DmaDiClear|
+|$T44449| DCD	|$LN12@DmaDiClear|
 	DCD	0x40000b01
 
   00000			 AREA	 |.xdata|, DATA
-|$T44444| DCD	0x1
+|$T44445| DCD	0x1
 	DCD	|$LN16@DmaDiClear|
 	DCD	|$LN17@DmaDiClear|
 	DCD	|$LN12@DmaDiClear|
@@ -1050,7 +1050,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T44444|
+  00004	00000000	 DCD         |$T44445|
 
   00008		 |DmaDiClearInterruptChannelByIndex| PROC
 
@@ -1117,7 +1117,7 @@
 
 ; 505  :             goto cleanUp;
 
-  00080	ea000030	 b           |$cleanUp$44219|
+  00080	ea000030	 b           |$cleanUp$44220|
   00084		 |$LN3@DmaDiClear|
 
 ; 506  :             }
@@ -1150,7 +1150,7 @@
 
 ; 515  :             goto cleanUp;
 
-  000b8	ea000022	 b           |$cleanUp$44219|
+  000b8	ea000022	 b           |$cleanUp$44220|
   000bc		 |$LN2@DmaDiClear|
 
 ; 516  :             }
@@ -1186,7 +1186,7 @@
 
 ; 531  :         }
 
-  000e8	ea000016	 b           |$cleanUp$44219|
+  000e8	ea000016	 b           |$cleanUp$44220|
   000ec		 |$LN13@DmaDiClear|
 
 ; 533  :         {
@@ -1209,7 +1209,7 @@
   0010c	e3830028	 orr         r0, r3, #0x28
   00110	eb000000	 bl          SetLastError
   00114	e51b5020	 ldr         r5, [r11, #-0x20]
-  00118	ea00000a	 b           |$cleanUp$44219|
+  00118	ea00000a	 b           |$cleanUp$44220|
   0011c		 |$LN22@DmaDiClear|
 
 ; 539  :         }
@@ -1219,7 +1219,7 @@
 ; 543  :     return rc;
 
   0011c	e51b501c	 ldr         r5, [r11, #-0x1C]
-  00120	ea000008	 b           |$cleanUp$44219|
+  00120	ea000008	 b           |$cleanUp$44220|
   00124		 |$LN5@DmaDiClear|
 
 ; 489  :         {
@@ -1239,7 +1239,7 @@
 
   00140	e383005a	 orr         r0, r3, #0x5A
   00144	eb000000	 bl          SetLastError
-  00148		 |$cleanUp$44219|
+  00148		 |$cleanUp$44220|
 
 ; 544  : }
 
@@ -1287,15 +1287,15 @@
 	IMPORT	|InterruptDone|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44487| DCD	|$LN23@DmaDiInter|
+|$T44488| DCD	|$LN23@DmaDiInter|
 	DCD	0xc0004004
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44489| DCD	|$LN10@DmaDiInter|
+|$T44490| DCD	|$LN10@DmaDiInter|
 	DCD	0x40000a01
 
   00000			 AREA	 |.xdata|, DATA
-|$T44485| DCD	0x1
+|$T44486| DCD	0x1
 	DCD	|$LN14@DmaDiInter|
 	DCD	|$LN15@DmaDiInter|
 	DCD	|$LN10@DmaDiInter|
@@ -1339,7 +1339,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T44485|
+  00004	00000000	 DCD         |$T44486|
 
   00008		 |DmaDiInterruptDone| PROC
 
@@ -1405,7 +1405,7 @@
 
 ; 582  :             goto cleanUp;
 
-  00078	ea00001e	 b           |$cleanUp$44239|
+  00078	ea00001e	 b           |$cleanUp$44240|
   0007c		 |$LN1@DmaDiInter|
 
 ; 583  :             }
@@ -1429,7 +1429,7 @@
 ; 588  : 
 ; 589  :         }
 
-  00094	ea000017	 b           |$cleanUp$44239|
+  00094	ea000017	 b           |$cleanUp$44240|
   00098		 |$LN11@DmaDiInter|
 
 ; 591  :         {
@@ -1452,7 +1452,7 @@
   000b8	e3830028	 orr         r0, r3, #0x28
   000bc	eb000000	 bl          SetLastError
   000c0	e51b401c	 ldr         r4, [r11, #-0x1C]
-  000c4	ea00000b	 b           |$cleanUp$44239|
+  000c4	ea00000b	 b           |$cleanUp$44240|
   000c8		 |$LN20@DmaDiInter|
 
 ; 597  :         }
@@ -1462,7 +1462,7 @@
 ; 601  :     return rc;
 
   000c8	e51b4018	 ldr         r4, [r11, #-0x18]
-  000cc	ea000009	 b           |$cleanUp$44239|
+  000cc	ea000009	 b           |$cleanUp$44240|
   000d0		 |$LN3@DmaDiInter|
 
 ; 566  :         {
@@ -1483,7 +1483,7 @@
 
   000f0	e383005a	 orr         r0, r3, #0x5A
   000f4	eb000000	 bl          SetLastError
-  000f8		 |$cleanUp$44239|
+  000f8		 |$cleanUp$44240|
 
 ; 602  : }
 
@@ -1539,7 +1539,7 @@
 	IMPORT	|LocalAlloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44533| DCD	|$LN37@DmaDiAlloc|
+|$T44534| DCD	|$LN37@DmaDiAlloc|
 	DCD	0x4000e904
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1645,7 +1645,7 @@
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d53f0	 stmdb       sp!, {r4 - r9, r12, lr}
   0000c	e24dd01c	 sub         sp, sp, #0x1C
-  00010		 |$M44530|
+  00010		 |$M44531|
   00010	e1a07002	 mov         r7, r2
   00014	e1a06001	 mov         r6, r1
   00018	e58d003c	 str         r0, [sp, #0x3C]
@@ -2158,7 +2158,7 @@
 
   0034c	e3a00000	 mov         r0, #0
   00350		 |$LN30@DmaDiAlloc|
-  00350		 |$cleanUp$44068|
+  00350		 |$cleanUp$44069|
   00350	eb000000	 bl          SetLastError
 
 ; 246  :         pContext = NULL;
@@ -2207,7 +2207,7 @@
   0039c	00000000	 DCD         |??_C@_1GI@NOOLDBAN@?$AAD?$AAm?$AAa?$AAD?$AAi?$AAA?$AAl?$AAl?$AAo?$AAc?$AAa?$AAt?$AAe?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?3?$AA?5?$AAV?$AAa?$AAl?$AAi?$AAd?$AAa?$AAt?$AAe@|
   003a0		 |$LN54@DmaDiAlloc|
   003a0	00000000	 DCD         |g_hDmaDrv|
-  003a4		 |$M44531|
+  003a4		 |$M44532|
 
 			 ENDP  ; |DmaDiAllocateInterrupt|
 

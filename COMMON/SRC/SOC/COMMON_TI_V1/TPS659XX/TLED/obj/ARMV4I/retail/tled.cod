@@ -110,14 +110,12 @@
 	DCD	0x24
 	DCD	0x4
 	DCD	0x7f
-|s_PWMAOffset| DCD 0x200f0
-	DCD	0x200f2
 	EXPORT	|GetCurrentProcessId|
 	IMPORT	|__GetUserKData|
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36285| DCD	|$LN5@GetCurrent|
+|$T36290| DCD	|$LN5@GetCurrent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -129,7 +127,7 @@
 
   00000		 |$LN5@GetCurrent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36282|
+  00004		 |$M36287|
 
 ; 374  :     return __GetUserKData (SYSHANDLE_OFFSET + (SH_CURPROC * sizeof(HANDLE)));
 
@@ -140,7 +138,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M36283|
+  00014		 |$M36288|
 
 			 ENDP  ; |GetCurrentProcessId|
 
@@ -149,7 +147,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36299| DCD	|$LN7@IsEqualGUI|
+|$T36304| DCD	|$LN7@IsEqualGUI|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -161,7 +159,7 @@
 
   00000		 |$LN7@IsEqualGUI|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36296|
+  00004		 |$M36301|
 
 ; 494  :     return !memcmp(&rguid1, &rguid2, sizeof(GUID));
 
@@ -182,352 +180,163 @@
 
   0001c	149de004	 ldrne       lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M36297|
+  00024		 |$M36302|
 
 			 ENDP  ; |IsEqualGUID|
 
-	EXPORT	|?DisableLed@@YAHPAUDevice_t@@K@Z|	; DisableLed
-	EXPORT	|??_C@_1IG@HIEGLENJ@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1IE@MBDJMFHI@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd@| [ DATA ] ; `string'
+	EXPORT	|?DisableLed@@YAHPAUDevice_t@@@Z|	; DisableLed
+	EXPORT	|??_C@_1CG@GFMABIIA@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CL?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|NKDbgPrintfW|
-	IMPORT	|TWLWriteRegs|
-	IMPORT	|TWLReadRegs|
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\tled\tled.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36317| DCD	|$LN14@DisableLed|
-	DCD	0x40003202
+|$T36315| DCD	|$LN7@DisableLed|
+	DCD	0x40000701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1IG@HIEGLENJ@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd@| DCB "T"
-	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, "!", 0x0, "E"
-	DCB	0x0, "R", 0x0, "R", 0x0, "O", 0x0, "R", 0x0, "(", 0x0, "D"
+|??_C@_1CG@GFMABIIA@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CL?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, "+", 0x0, "D"
 	DCB	0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e"
-	DCB	0x0, "L", 0x0, "e", 0x0, "d", 0x0, ")", 0x0, " ", 0x0, "-"
-	DCB	0x0, " ", 0x0, "f", 0x0, "a", 0x0, "i", 0x0, "l", 0x0, "e"
-	DCB	0x0, "d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "w"
-	DCB	0x0, "r", 0x0, "i", 0x0, "t", 0x0, "e", 0x0, " ", 0x0, "t"
-	DCB	0x0, "r", 0x0, "i", 0x0, "t", 0x0, "o", 0x0, "n", 0x0, " "
-	DCB	0x0, "r", 0x0, "e", 0x0, "g", 0x0, "i", 0x0, "s", 0x0, "t"
-	DCB	0x0, "e", 0x0, "r", 0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%"
-	DCB	0x0, "0", 0x0, "8", 0x0, "X", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
+	DCB	0x0, "L", 0x0, "e", 0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
 	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1IE@MBDJMFHI@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd@| DCB "T"
-	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, "!", 0x0, "E"
-	DCB	0x0, "R", 0x0, "R", 0x0, "O", 0x0, "R", 0x0, "(", 0x0, "D"
-	DCB	0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e"
-	DCB	0x0, "L", 0x0, "e", 0x0, "d", 0x0, ")", 0x0, " ", 0x0, "-"
-	DCB	0x0, " ", 0x0, "f", 0x0, "a", 0x0, "i", 0x0, "l", 0x0, "e"
-	DCB	0x0, "d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "r"
-	DCB	0x0, "e", 0x0, "a", 0x0, "d", 0x0, " ", 0x0, "t", 0x0, "r"
-	DCB	0x0, "i", 0x0, "t", 0x0, "o", 0x0, "n", 0x0, " ", 0x0, "r"
-	DCB	0x0, "e", 0x0, "g", 0x0, "i", 0x0, "s", 0x0, "t", 0x0, "e"
-	DCB	0x0, "r", 0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0"
-	DCB	0x0, "8", 0x0, "X", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |?DisableLed@@YAHPAUDevice_t@@K@Z| PROC ; DisableLed
+  00000		 |?DisableLed@@YAHPAUDevice_t@@@Z| PROC	; DisableLed
 
-; 139  : {
+; 136  : {  
 
-  00000		 |$LN14@DisableLed|
-  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M36314|
-  00008	e1a06001	 mov         r6, r1
-  0000c	e1a05000	 mov         r5, r0
+  00000		 |$LN7@DisableLed|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M36312|
 
-; 140  :     DEBUGMSG(ZONE_FUNCTION, (
-; 141  :         L"TLD: +DisableLed(0x%08x, 0x%08x)\r\n", 
-; 142  :         pDevice, channel
-; 143  :         ));
-; 144  :     
-; 145  :     // the channel should be always less than the channelCount
-; 146  :     ASSERT(channel < pDevice->channelCount);
-; 147  :         
-; 148  :     UINT8 val;
-; 149  :     BOOL rc = FALSE;
-; 150  : 
-; 151  :     if (TWLReadRegs(pDevice->hTWL, TWL_LEDEN, &val, sizeof(val)) == FALSE)
+; 137  :     // the channel should be always less than the channelCount
+; 138  :     //ASSERT(channel < pDevice->channelCount);
+; 139  :         
+; 140  :     //UINT8 val;
+; 141  :     BOOL rc = FALSE;
+; 142  : 
+; 143  : 	UNREFERENCED_PARAMETER(pDevice);
+; 144  : 	RETAILMSG(1, (L"TLD: +DisableLed\r\n"));
 
-  00010	e5950018	 ldr         r0, [r5, #0x18]
-  00014	e3a07802	 mov         r7, #2, 16
-  00018	e38710ee	 orr         r1, r7, #0xEE
-  0001c	e3a03001	 mov         r3, #1
-  00020	e28d2000	 add         r2, sp, #0
-  00024	e3a04000	 mov         r4, #0
-  00028	eb000000	 bl          TWLReadRegs
-  0002c	e3500000	 cmp         r0, #0
-  00030	1a000005	 bne         |$LN4@DisableLed|
+  00004	e59f000c	 ldr         r0, [pc, #0xC]
+  00008	eb000000	 bl          NKDbgPrintfW
 
-; 152  :         {
-; 153  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(DisableLed) - "
-; 154  :             L"failed to read triton register 0x%08X\r\n", TWL_LEDEN
-; 155  :             ));
+; 145  :     //val = 0x00;
+; 146  :     // VMProcessPageFault Error
+; 147  :     //if (TWLWriteRegs(pDevice->hTWL, TWL_GPBR1, &val, sizeof(val)) == FALSE)
+; 148  : 	//{
+; 149  :     //    RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(DisableLed) - failed to write TWL_GPBR1 register\r\n"));
+; 150  :     //    goto cleanUp;
+; 151  : 	//}
+; 152  : 
+; 153  :     rc = TRUE;
+; 154  :     
+; 155  : //cleanUp:
+; 156  : 	
+; 157  :     //RETAILMSG(1, (L"TLD: -DisableLed(0x%08x, 0x%08x) == %d\r\n", pDevice, val, rc));
+; 158  :     
+; 159  :     return rc;
 
-  00034	e59f3084	 ldr         r3, [pc, #0x84]
-  00038	e5933440	 ldr         r3, [r3, #0x440]
-  0003c	e3130001	 tst         r3, #1
-  00040	0a000019	 beq         |$cleanUp$35992|
-  00044	e59f0078	 ldr         r0, [pc, #0x78]
+  0000c	e3a00001	 mov         r0, #1
 
-; 156  :         goto cleanUp;
+; 160  : }
 
-  00048	ea000013	 b           |$LN11@DisableLed|
-  0004c		 |$LN4@DisableLed|
+  00010	e49de004	 ldr         lr, [sp], #4
+  00014	e12fff1e	 bx          lr
+  00018		 |$LN8@DisableLed|
+  00018		 |$LN9@DisableLed|
+  00018	00000000	 DCD         |??_C@_1CG@GFMABIIA@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CL?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  0001c		 |$M36313|
 
-; 157  :         }
-; 158  : 
-; 159  :     val &= ~(LEDEN_LEDON(channel) | LEDEN_LEDPWM(channel));
+			 ENDP  ; |?DisableLed@@YAHPAUDevice_t@@@Z|, DisableLed
 
-  0004c	e2863004	 add         r3, r6, #4
-  00050	e3a02001	 mov         r2, #1
-  00054	e1a03312	 mov         r3, r2, lsl r3
-  00058	e3a02001	 mov         r2, #1
-  0005c	e1832612	 orr         r2, r3, r2, lsl r6
-  00060	e5dd3000	 ldrb        r3, [sp]
-
-; 160  : 
-; 161  :     if (TWLWriteRegs(pDevice->hTWL, TWL_LEDEN, &val, sizeof(val)) == FALSE)
-
-  00064	e5950018	 ldr         r0, [r5, #0x18]
-  00068	e38710ee	 orr         r1, r7, #0xEE
-  0006c	e1c33002	 bic         r3, r3, r2
-  00070	e5cd3000	 strb        r3, [sp]
-  00074	e3a03001	 mov         r3, #1
-  00078	e28d2000	 add         r2, sp, #0
-  0007c	eb000000	 bl          TWLWriteRegs
-  00080	e3500000	 cmp         r0, #0
-  00084	1a000007	 bne         |$LN2@DisableLed|
-
-; 162  :         {
-; 163  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(DisableLed) - "
-; 164  :             L"failed to write triton register 0x%08X\r\n", TWL_LEDEN
-; 165  :             ));
-
-  00088	e59f3030	 ldr         r3, [pc, #0x30]
-  0008c	e5933440	 ldr         r3, [r3, #0x440]
-  00090	e3130001	 tst         r3, #1
-  00094	0a000004	 beq         |$cleanUp$35992|
-  00098	e59f001c	 ldr         r0, [pc, #0x1C]
-  0009c		 |$LN11@DisableLed|
-  0009c	e38710ee	 orr         r1, r7, #0xEE
-  000a0	eb000000	 bl          NKDbgPrintfW
-
-; 170  :     
-; 171  : cleanUp:
-
-  000a4	ea000000	 b           |$cleanUp$35992|
-  000a8		 |$LN2@DisableLed|
-
-; 166  :         goto cleanUp;
-; 167  :         }
-; 168  : 
-; 169  :     rc = TRUE;
-
-  000a8	e3a04001	 mov         r4, #1
-  000ac		 |$cleanUp$35992|
-
-; 172  : 
-; 173  :     DEBUGMSG(ZONE_FUNCTION, (
-; 174  :         L"TLD: -DisableLed(0x%08x, 0x%08x) == %d\r\n", 
-; 175  :         pDevice, channel, rc
-; 176  :         ));
-; 177  :     
-; 178  :     return rc;
-; 179  : }
-
-  000ac	e1a00004	 mov         r0, r4
-  000b0	e28dd004	 add         sp, sp, #4
-  000b4	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  000b8	e12fff1e	 bx          lr
-  000bc		 |$LN15@DisableLed|
-  000bc		 |$LN16@DisableLed|
-  000bc	00000000	 DCD         |??_C@_1IG@HIEGLENJ@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd@|
-  000c0		 |$LN17@DisableLed|
-  000c0	00000000	 DCD         |dpCurSettings|
-  000c4		 |$LN18@DisableLed|
-  000c4	00000000	 DCD         |??_C@_1IE@MBDJMFHI@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd@|
-  000c8		 |$M36315|
-
-			 ENDP  ; |?DisableLed@@YAHPAUDevice_t@@K@Z|, DisableLed
-
-	EXPORT	|?EnableLed@@YAHPAUDevice_t@@K@Z|	; EnableLed
-	EXPORT	|??_C@_1IE@OKJIPLH@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1IC@LINKGABF@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5@| [ DATA ] ; `string'
+	EXPORT	|?EnableLed@@YAHPAUDevice_t@@@Z|	; EnableLed
+	EXPORT	|??_C@_1CG@LCLELBFN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36338| DCD	|$LN14@EnableLed|
-	DCD	0x40003202
+|$T36328| DCD	|$LN7@EnableLed|
+	DCD	0x40000701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1IE@OKJIPLH@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5@| DCB "T"
-	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, "!", 0x0, "E"
-	DCB	0x0, "R", 0x0, "R", 0x0, "O", 0x0, "R", 0x0, "(", 0x0, "E"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, "L"
-	DCB	0x0, "e", 0x0, "d", 0x0, ")", 0x0, " ", 0x0, "-", 0x0, " "
-	DCB	0x0, "f", 0x0, "a", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "d"
-	DCB	0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "w", 0x0, "r"
-	DCB	0x0, "i", 0x0, "t", 0x0, "e", 0x0, " ", 0x0, "t", 0x0, "r"
-	DCB	0x0, "i", 0x0, "t", 0x0, "o", 0x0, "n", 0x0, " ", 0x0, "r"
-	DCB	0x0, "e", 0x0, "g", 0x0, "i", 0x0, "s", 0x0, "t", 0x0, "e"
-	DCB	0x0, "r", 0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0"
-	DCB	0x0, "8", 0x0, "X", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1IC@LINKGABF@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5@| DCB "T"
-	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, "!", 0x0, "E"
-	DCB	0x0, "R", 0x0, "R", 0x0, "O", 0x0, "R", 0x0, "(", 0x0, "E"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, "L"
-	DCB	0x0, "e", 0x0, "d", 0x0, ")", 0x0, " ", 0x0, "-", 0x0, " "
-	DCB	0x0, "f", 0x0, "a", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "d"
-	DCB	0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "r", 0x0, "e"
-	DCB	0x0, "a", 0x0, "d", 0x0, " ", 0x0, "t", 0x0, "r", 0x0, "i"
-	DCB	0x0, "t", 0x0, "o", 0x0, "n", 0x0, " ", 0x0, "r", 0x0, "e"
-	DCB	0x0, "g", 0x0, "i", 0x0, "s", 0x0, "t", 0x0, "e", 0x0, "r"
-	DCB	0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8"
-	DCB	0x0, "X", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+|??_C@_1CG@LCLELBFN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "+"
+	DCB	0x0, "E", 0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e"
+	DCB	0x0, "L", 0x0, "e", 0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
+	DCB	0x0					; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |?EnableLed@@YAHPAUDevice_t@@K@Z| PROC	; EnableLed
+  00000		 |?EnableLed@@YAHPAUDevice_t@@@Z| PROC	; EnableLed
 
-; 191  : {
+; 168  : {
 
-  00000		 |$LN14@EnableLed|
-  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M36335|
-  00008	e1a06001	 mov         r6, r1
-  0000c	e1a05000	 mov         r5, r0
+  00000		 |$LN7@EnableLed|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M36325|
 
-; 192  :     DEBUGMSG(ZONE_FUNCTION, (
-; 193  :         L"TLD:  +EnableLed(0x%08x, 0x%08x)\r\n", 
-; 194  :         pDevice, channel
-; 195  :         ));
-; 196  :     
-; 197  :     // the channel should be always less than the channelCount
-; 198  :     ASSERT(channel < pDevice->channelCount);
-; 199  :         
-; 200  :     UINT8 val;
-; 201  :     BOOL rc = FALSE;
-; 202  : 
-; 203  :     if (TWLReadRegs(pDevice->hTWL, TWL_LEDEN, &val, sizeof(val)) == FALSE)
+; 169  :     // the channel should be always less than the channelCount
+; 170  :     //ASSERT(channel < pDevice->channelCount);
+; 171  :         
+; 172  :     UINT8 val;
+; 173  :     BOOL rc = FALSE;
+; 174  : 	
+; 175  : 	UNREFERENCED_PARAMETER(pDevice);
+; 176  : 	RETAILMSG(1, (L"TLD:  +EnableLed\r\n"));
 
-  00010	e5950018	 ldr         r0, [r5, #0x18]
-  00014	e3a07802	 mov         r7, #2, 16
-  00018	e38710ee	 orr         r1, r7, #0xEE
-  0001c	e3a03001	 mov         r3, #1
-  00020	e28d2000	 add         r2, sp, #0
-  00024	e3a04000	 mov         r4, #0
-  00028	eb000000	 bl          TWLReadRegs
-  0002c	e3500000	 cmp         r0, #0
-  00030	1a000005	 bne         |$LN4@EnableLed|
+  00004	e59f000c	 ldr         r0, [pc, #0xC]
+  00008	eb000000	 bl          NKDbgPrintfW
 
-; 204  :         {
-; 205  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(EnableLed) - "
-; 206  :             L"failed to read triton register 0x%08X\r\n", TWL_LEDEN
-; 207  :             ));
+; 177  : 	val = 0x05; // PWM0_ENABLE & PWM0_CLK_ENABLE
+; 178  : 	// VMProcessPageFault Error
+; 179  :     //if (TWLWriteRegs(pDevice->hTWL, TWL_GPBR1, &val, sizeof(val)) == FALSE)
+; 180  : 	//{
+; 181  :     //    RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(EnableLed) - failed to write TWL_GPBR1 register\r\n"));
+; 182  :     //    goto cleanUp;
+; 183  : 	//}
+; 184  : 
+; 185  :     rc = TRUE;
+; 186  :     
+; 187  : //cleanUp:
+; 188  : 	
+; 189  :     //RETAILMSG(1, (L"TLD:  -EnableLed(0x%08x, 0x%08x) == %d\r\n", pDevice, val, rc));
+; 190  :     
+; 191  :     return rc;
 
-  00034	e59f3084	 ldr         r3, [pc, #0x84]
-  00038	e5933440	 ldr         r3, [r3, #0x440]
-  0003c	e3130001	 tst         r3, #1
-  00040	0a000019	 beq         |$cleanUp$36008|
-  00044	e59f0078	 ldr         r0, [pc, #0x78]
+  0000c	e3a00001	 mov         r0, #1
 
-; 208  :         goto cleanUp;
+; 192  : }
 
-  00048	ea000013	 b           |$LN11@EnableLed|
-  0004c		 |$LN4@EnableLed|
+  00010	e49de004	 ldr         lr, [sp], #4
+  00014	e12fff1e	 bx          lr
+  00018		 |$LN8@EnableLed|
+  00018		 |$LN9@EnableLed|
+  00018	00000000	 DCD         |??_C@_1CG@LCLELBFN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  0001c		 |$M36326|
 
-; 209  :         }
-; 210  : 
-; 211  :     val |= (LEDEN_LEDON(channel) | LEDEN_LEDPWM(channel));
-
-  0004c	e2863004	 add         r3, r6, #4
-  00050	e3a02001	 mov         r2, #1
-  00054	e1a03312	 mov         r3, r2, lsl r3
-  00058	e5dd2000	 ldrb        r2, [sp]
-  0005c	e3a01001	 mov         r1, #1
-  00060	e1833611	 orr         r3, r3, r1, lsl r6
-
-; 212  : 
-; 213  :     if (TWLWriteRegs(pDevice->hTWL, TWL_LEDEN, &val, sizeof(val)) == FALSE)
-
-  00064	e5950018	 ldr         r0, [r5, #0x18]
-  00068	e1833002	 orr         r3, r3, r2
-  0006c	e5cd3000	 strb        r3, [sp]
-  00070	e3a03001	 mov         r3, #1
-  00074	e28d2000	 add         r2, sp, #0
-  00078	e38710ee	 orr         r1, r7, #0xEE
-  0007c	eb000000	 bl          TWLWriteRegs
-  00080	e3500000	 cmp         r0, #0
-  00084	1a000007	 bne         |$LN2@EnableLed|
-
-; 214  :         {
-; 215  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(EnableLed) - "
-; 216  :             L"failed to write triton register 0x%08X\r\n", TWL_LEDEN
-; 217  :             ));
-
-  00088	e59f3030	 ldr         r3, [pc, #0x30]
-  0008c	e5933440	 ldr         r3, [r3, #0x440]
-  00090	e3130001	 tst         r3, #1
-  00094	0a000004	 beq         |$cleanUp$36008|
-  00098	e59f001c	 ldr         r0, [pc, #0x1C]
-  0009c		 |$LN11@EnableLed|
-  0009c	e38710ee	 orr         r1, r7, #0xEE
-  000a0	eb000000	 bl          NKDbgPrintfW
-
-; 222  :     
-; 223  : cleanUp:
-
-  000a4	ea000000	 b           |$cleanUp$36008|
-  000a8		 |$LN2@EnableLed|
-
-; 218  :         goto cleanUp;
-; 219  :         }
-; 220  : 
-; 221  :     rc = TRUE;
-
-  000a8	e3a04001	 mov         r4, #1
-  000ac		 |$cleanUp$36008|
-
-; 224  : 
-; 225  :     DEBUGMSG(ZONE_FUNCTION, (
-; 226  :         L"TLD:  -EnableLed(0x%08x, 0x%08x) == %d\r\n", 
-; 227  :         pDevice, channel, rc
-; 228  :         ));
-; 229  :     
-; 230  :     return rc;
-; 231  : }
-
-  000ac	e1a00004	 mov         r0, r4
-  000b0	e28dd004	 add         sp, sp, #4
-  000b4	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  000b8	e12fff1e	 bx          lr
-  000bc		 |$LN15@EnableLed|
-  000bc		 |$LN16@EnableLed|
-  000bc	00000000	 DCD         |??_C@_1IE@OKJIPLH@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5@|
-  000c0		 |$LN17@EnableLed|
-  000c0	00000000	 DCD         |dpCurSettings|
-  000c4		 |$LN18@EnableLed|
-  000c4	00000000	 DCD         |??_C@_1IC@LINKGABF@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAL?$AAe?$AAd?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5@|
-  000c8		 |$M36336|
-
-			 ENDP  ; |?EnableLed@@YAHPAUDevice_t@@K@Z|, EnableLed
+			 ENDP  ; |?EnableLed@@YAHPAUDevice_t@@@Z|, EnableLed
 
 	EXPORT	|?SetChannel@@YAHKK@Z|			; SetChannel
+	EXPORT	|??_C@_1FE@KPHHIKFB@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?9?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HA@KJJINLKN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo?$AAr?$AAr@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1FI@OGEMEIDB@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAv?$AAa?$AAl?$AAi@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1EI@FGMHDLBO@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36359| DCD	|$LN15@SetChannel|
-	DCD	0x40002201
+|$T36351| DCD	|$LN19@SetChannel|
+	DCD	0x40002f01
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1FE@KPHHIKFB@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?9?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "-"
+	DCB	0x0, "S", 0x0, "e", 0x0, "t", 0x0, "C", 0x0, "h", 0x0, "a"
+	DCB	0x0, "n", 0x0, "n", 0x0, "e", 0x0, "l", 0x0, "(", 0x0, "0"
+	DCB	0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x", 0x0, ","
+	DCB	0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8"
+	DCB	0x0, "x", 0x0, ")", 0x0, " ", 0x0, "=", 0x0, "=", 0x0, " "
+	DCB	0x0, "%", 0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HA@KJJINLKN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo?$AAr?$AAr@| DCB "T"
@@ -552,125 +361,157 @@
 	DCB	0x0, "i", 0x0, "d", 0x0, " ", 0x0, "c", 0x0, "h", 0x0, "a"
 	DCB	0x0, "n", 0x0, "n", 0x0, "e", 0x0, "l", 0x0, 0xd, 0x0, 0xa
 	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1EI@FGMHDLBO@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "+"
+	DCB	0x0, "S", 0x0, "e", 0x0, "t", 0x0, "C", 0x0, "h", 0x0, "a"
+	DCB	0x0, "n", 0x0, "n", 0x0, "e", 0x0, "l", 0x0, "(", 0x0, "0"
+	DCB	0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x", 0x0, ","
+	DCB	0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8"
+	DCB	0x0, "x", 0x0, ")", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |?SetChannel@@YAHKK@Z| PROC		; SetChannel
 
-; 243  : {
+; 201  : {
 
-  00000		 |$LN15@SetChannel|
-  00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36356|
-  00004	e3500000	 cmp         r0, #0
+  00000		 |$LN19@SetChannel|
+  00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
+  00004		 |$M36348|
+  00004	e1a05001	 mov         r5, r1
+  00008	e1a04000	 mov         r4, r0
 
-; 244  :     DEBUGMSG(ZONE_FUNCTION, (
-; 245  :         L"TLD:  +SetChannel(0x%08x, 0x%08x)\r\n", 
-; 246  :         context, channel
-; 247  :         ));
-; 248  :         
-; 249  :     BOOL rc = FALSE;
+; 202  :     RETAILMSG(1, (L"TLD:  +SetChannel(0x%08x, 0x%08x)\r\n", context, channel));
 
-  00008	e3a04000	 mov         r4, #0
+  0000c	e59f00a4	 ldr         r0, [pc, #0xA4]
+  00010	e1a02005	 mov         r2, r5
+  00014	e1a01004	 mov         r1, r4
+  00018	eb000000	 bl          NKDbgPrintfW
 
-; 250  :     Instance_t *pInstance = (Instance_t*)context;
-; 251  :     
-; 252  :     // do some sanity checks
-; 253  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
+; 203  :         
+; 204  :     BOOL rc = FALSE;
 
-  0000c	0a000010	 beq         |$LN4@SetChannel|
-  00010	e5902000	 ldr         r2, [r0]
-  00014	e59f3068	 ldr         r3, [pc, #0x68]
-  00018	e1520003	 cmp         r2, r3
-  0001c	1a00000c	 bne         |$LN4@SetChannel|
+  0001c	e3a06000	 mov         r6, #0
 
-; 258  :         goto cleanUp;
-; 259  :         }
-; 260  : 
-; 261  :     Device_t *pDevice = pInstance->pDevice;
-; 262  :     if (channel >= pDevice->channelCount)
+; 205  :     Instance_t *pInstance = (Instance_t*)context;
+; 206  :     
+; 207  :     // do some sanity checks
+; 208  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
 
-  00020	e5903004	 ldr         r3, [r0, #4]
-  00024	e5933028	 ldr         r3, [r3, #0x28]
-  00028	e1510003	 cmp         r1, r3
-  0002c	3a000005	 bcc         |$LN2@SetChannel|
+  00020	e3540000	 cmp         r4, #0
+  00024	0a000010	 beq         |$LN4@SetChannel|
+  00028	e5942000	 ldr         r2, [r4]
+  0002c	e59f3080	 ldr         r3, [pc, #0x80]
+  00030	e1520003	 cmp         r2, r3
+  00034	1a00000c	 bne         |$LN4@SetChannel|
 
-; 263  :         {
-; 264  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetChannel) - "
-; 265  :             L"Invalid channel\r\n"
-; 266  :             ));
+; 211  :         goto cleanUp;
+; 212  : 	}
+; 213  : 
+; 214  :     Device_t *pDevice = pInstance->pDevice;
+; 215  :     if (channel >= pDevice->channelCount)
 
-  00030	e59f3044	 ldr         r3, [pc, #0x44]
-  00034	e5933440	 ldr         r3, [r3, #0x440]
-  00038	e3130001	 tst         r3, #1
-  0003c	0a00000a	 beq         |$cleanUp$36025|
-  00040	e59f0038	 ldr         r0, [pc, #0x38]
+  00038	e5943004	 ldr         r3, [r4, #4]
+  0003c	e5933028	 ldr         r3, [r3, #0x28]
+  00040	e1550003	 cmp         r5, r3
+  00044	3a000005	 bcc         |$LN2@SetChannel|
 
-; 272  :     
-; 273  : cleanUp:
+; 216  : 	{
+; 217  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetChannel) - Invalid channel\r\n"));
 
-  00044	ea000007	 b           |$LN12@SetChannel|
-  00048		 |$LN2@SetChannel|
+  00048	e59f305c	 ldr         r3, [pc, #0x5C]
+  0004c	e5933440	 ldr         r3, [r3, #0x440]
+  00050	e3130001	 tst         r3, #1
+  00054	0a00000a	 beq         |$cleanUp$36003|
+  00058	e59f0050	 ldr         r0, [pc, #0x50]
 
-; 267  :         goto cleanUp;
-; 268  :         }
-; 269  : 
-; 270  :     pInstance->channel = channel;
+; 223  :     
+; 224  : cleanUp:
 
-  00048	e5801008	 str         r1, [r0, #8]
+  0005c	ea000007	 b           |$LN16@SetChannel|
+  00060		 |$LN2@SetChannel|
 
-; 271  :     rc = TRUE;
+; 218  :         goto cleanUp;
+; 219  : 	}
+; 220  : 
+; 221  :     pInstance->channel = channel;
 
-  0004c	e3a04001	 mov         r4, #1
-  00050	ea000005	 b           |$cleanUp$36025|
-  00054		 |$LN4@SetChannel|
+  00060	e5845008	 str         r5, [r4, #8]
 
-; 254  :         {
-; 255  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetChannel) - "
-; 256  :             L"Incorrect context parameter\r\n"
-; 257  :             ));
+; 222  :     rc = TRUE;
 
-  00054	e59f3020	 ldr         r3, [pc, #0x20]
-  00058	e5933440	 ldr         r3, [r3, #0x440]
-  0005c	e3130001	 tst         r3, #1
-  00060	0a000001	 beq         |$cleanUp$36025|
-  00064	e59f000c	 ldr         r0, [pc, #0xC]
-  00068		 |$LN12@SetChannel|
-  00068	eb000000	 bl          NKDbgPrintfW
-  0006c		 |$cleanUp$36025|
+  00064	e3a06001	 mov         r6, #1
+  00068	ea000005	 b           |$cleanUp$36003|
+  0006c		 |$LN4@SetChannel|
 
-; 274  : 
-; 275  :     DEBUGMSG(ZONE_FUNCTION, (
-; 276  :         L"TLD:  -SetChannel(0x%08x, 0x%08x) == %d\r\n", 
-; 277  :         context, channel, rc
-; 278  :         ));
-; 279  :     return rc;
-; 280  : }
+; 209  : 	{
+; 210  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetChannel) - Incorrect context parameter\r\n"));
 
-  0006c	e1a00004	 mov         r0, r4
-  00070	e8bd4010	 ldmia       sp!, {r4, lr}
-  00074	e12fff1e	 bx          lr
-  00078		 |$LN16@SetChannel|
-  00078		 |$LN17@SetChannel|
-  00078	00000000	 DCD         |??_C@_1HA@KJJINLKN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo?$AAr?$AAr@|
-  0007c		 |$LN18@SetChannel|
-  0007c	00000000	 DCD         |dpCurSettings|
-  00080		 |$LN19@SetChannel|
-  00080	00000000	 DCD         |??_C@_1FI@OGEMEIDB@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAv?$AAa?$AAl?$AAi@|
-  00084		 |$LN20@SetChannel|
-  00084	746c6449	 DCD         0x746c6449
-  00088		 |$M36357|
+  0006c	e59f3038	 ldr         r3, [pc, #0x38]
+  00070	e5933440	 ldr         r3, [r3, #0x440]
+  00074	e3130001	 tst         r3, #1
+  00078	0a000001	 beq         |$cleanUp$36003|
+  0007c	e59f0024	 ldr         r0, [pc, #0x24]
+  00080		 |$LN16@SetChannel|
+  00080	eb000000	 bl          NKDbgPrintfW
+  00084		 |$cleanUp$36003|
+
+; 225  : 
+; 226  :     RETAILMSG(1, (L"TLD:  -SetChannel(0x%08x, 0x%08x) == %d\r\n", context, channel, rc));
+
+  00084	e59f0018	 ldr         r0, [pc, #0x18]
+  00088	e1a03006	 mov         r3, r6
+  0008c	e1a02005	 mov         r2, r5
+  00090	e1a01004	 mov         r1, r4
+  00094	eb000000	 bl          NKDbgPrintfW
+
+; 227  :     return rc;
+; 228  : }
+
+  00098	e1a00006	 mov         r0, r6
+  0009c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
+  000a0	e12fff1e	 bx          lr
+  000a4		 |$LN20@SetChannel|
+  000a4		 |$LN21@SetChannel|
+  000a4	00000000	 DCD         |??_C@_1FE@KPHHIKFB@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?9?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx@|
+  000a8		 |$LN22@SetChannel|
+  000a8	00000000	 DCD         |??_C@_1HA@KJJINLKN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo?$AAr?$AAr@|
+  000ac		 |$LN23@SetChannel|
+  000ac	00000000	 DCD         |dpCurSettings|
+  000b0		 |$LN24@SetChannel|
+  000b0	00000000	 DCD         |??_C@_1FI@OGEMEIDB@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAv?$AAa?$AAl?$AAi@|
+  000b4		 |$LN25@SetChannel|
+  000b4	746c6449	 DCD         0x746c6449
+  000b8		 |$LN26@SetChannel|
+  000b8	00000000	 DCD         |??_C@_1EI@FGMHDLBO@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAS?$AAe?$AAt?$AAC?$AAh?$AAa?$AAn?$AAn?$AAe?$AAl?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx@|
+  000bc		 |$M36349|
 
 			 ENDP  ; |?SetChannel@@YAHKK@Z|, SetChannel
 
 	EXPORT	|?SetDutyCycle@@YAHKK@Z|		; SetDutyCycle
+	EXPORT	|??_C@_1FG@EHNAOLKP@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?9?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HE@MFHCMAHK@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1EO@MFCBLLLH@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CI?$AAo?$AAf?$AAf?$AAT?$AAi?$AAc?$AAk?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HG@DMKAMPOG@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAi?$AAn?$AAv?$AAa@| [ DATA ] ; `string'
+	IMPORT	|TWLWriteRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36381| DCD	|$LN18@SetDutyCyc|
-	DCD	0x40003b02
+|$T36381| DCD	|$LN22@SetDutyCyc|
+	DCD	0x40003d02
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1FG@EHNAOLKP@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?9?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, "-", 0x0, "S"
+	DCB	0x0, "e", 0x0, "t", 0x0, "D", 0x0, "u", 0x0, "t", 0x0, "y"
+	DCB	0x0, "C", 0x0, "y", 0x0, "c", 0x0, "l", 0x0, "e", 0x0, "("
+	DCB	0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x"
+	DCB	0x0, ",", 0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0"
+	DCB	0x0, "8", 0x0, "x", 0x0, ")", 0x0, " ", 0x0, "=", 0x0, "="
+	DCB	0x0, " ", 0x0, "%", 0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
+	DCB	0x0					; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HE@MFHCMAHK@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo@| DCB "T"
@@ -684,6 +525,16 @@
 	DCB	0x0, "x", 0x0, "t", 0x0, " ", 0x0, "p", 0x0, "a", 0x0, "r"
 	DCB	0x0, "a", 0x0, "m", 0x0, "e", 0x0, "t", 0x0, "e", 0x0, "r"
 	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1EO@MFCBLLLH@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CI?$AAo?$AAf?$AAf?$AAT?$AAi?$AAc?$AAk?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "S"
+	DCB	0x0, "e", 0x0, "t", 0x0, "D", 0x0, "u", 0x0, "t", 0x0, "y"
+	DCB	0x0, "C", 0x0, "y", 0x0, "c", 0x0, "l", 0x0, "e", 0x0, "("
+	DCB	0x0, "o", 0x0, "f", 0x0, "f", 0x0, "T", 0x0, "i", 0x0, "c"
+	DCB	0x0, "k", 0x0, " ", 0x0, "=", 0x0, " ", 0x0, "0", 0x0, "x"
+	DCB	0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x", 0x0, ")", 0x0, 0xd
+	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HG@DMKAMPOG@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAi?$AAn?$AAv?$AAa@| DCB "T"
@@ -703,184 +554,215 @@
 
   00000		 |?SetDutyCycle@@YAHKK@Z| PROC		; SetDutyCycle
 
-; 292  : {
+; 237  : {
 
-  00000		 |$LN18@SetDutyCyc|
+  00000		 |$LN22@SetDutyCyc|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd004	 sub         sp, sp, #4
   00008		 |$M36378|
   00008	e1a04001	 mov         r4, r1
   0000c	e1b05000	 movs        r5, r0
 
-; 293  :     DEBUGMSG(ZONE_FUNCTION, (
-; 294  :         L"TLD: +SetDutyCycle(0x%08x, 0x%08x)\r\n", 
-; 295  :         context, value
-; 296  :         ));
-; 297  :     
-; 298  :     DWORD offTick;
-; 299  :     BOOL rc = FALSE;
+; 238  :     DWORD offTick;
+; 239  :     BOOL rc = FALSE;
 
   00010	e3a06000	 mov         r6, #0
 
-; 300  :     Instance_t *pInstance = (Instance_t*)context;
-; 301  :     
-; 302  :     // do some sanity checks
-; 303  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
+; 240  :     Instance_t *pInstance = (Instance_t*)context;
+; 241  :     
+; 242  :     //RETAILMSG(1, (L"TLD: +SetDutyCycle(0x%08x, 0x%08x)\r\n", context, value));
+; 243  :     // do some sanity checks
+; 244  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
 
-  00014	0a000026	 beq         |$LN8@SetDutyCyc|
+  00014	0a000022	 beq         |$LN7@SetDutyCyc|
   00018	e5952000	 ldr         r2, [r5]
-  0001c	e59f30c4	 ldr         r3, [pc, #0xC4]
+  0001c	e59f30cc	 ldr         r3, [pc, #0xCC]
   00020	e1520003	 cmp         r2, r3
-  00024	1a000022	 bne         |$LN8@SetDutyCyc|
+  00024	1a00001e	 bne         |$LN7@SetDutyCyc|
 
-; 308  :         goto cleanUp;
-; 309  :         }
-; 310  :     
-; 311  :     // check for valid value
-; 312  :     // duty cycle value is normalized to be between [0, 100] : 0 == off
-; 313  :     if (value > MAX_DUTYCYCLE)
+; 247  :         goto cleanUp;
+; 248  : 	}
+; 249  :     
+; 250  :     // check for valid value
+; 251  :     // duty cycle value is normalized to be between [0, 100] : 0 == off
+; 252  :     if (value > MAX_DUTYCYCLE)
 
   00028	e3540064	 cmp         r4, #0x64
-  0002c	9a000006	 bls         |$LN6@SetDutyCyc|
+  0002c	9a000005	 bls         |$LN5@SetDutyCyc|
 
-; 314  :         {
-; 315  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetDutyCycle) - "
-; 316  :             L"invalid duty cycle value(%d)\r\n", value
-; 317  :             ));
+; 253  : 	{
+; 254  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetDutyCycle) - invalid duty cycle value(%d)\r\n", value));
 
-  00030	e59f30a4	 ldr         r3, [pc, #0xA4]
+  00030	e59f30ac	 ldr         r3, [pc, #0xAC]
   00034	e5933440	 ldr         r3, [r3, #0x440]
   00038	e3130001	 tst         r3, #1
-  0003c	0a000021	 beq         |$cleanUp$36044|
-  00040	e59f009c	 ldr         r0, [pc, #0x9C]
-  00044	eb000000	 bl          NKDbgPrintfW
+  0003c	0a00001d	 beq         |$cleanUp$36021|
+  00040	e59f00a4	 ldr         r0, [pc, #0xA4]
 
-; 347  :     
-; 348  : cleanUp:    
+; 283  :     //TWLWriteByteReg(pDevice->hTWL, TWL_PWM0ON, (BYTE)value);
+; 284  :     
+; 285  :     // enable led channel
+; 286  :     //EnableLed(pInstance->pDevice, pInstance->channel);
+; 287  :     
+; 288  : cleanUp:    
 
-  00048	ea00001e	 b           |$cleanUp$36044|
-  0004c		 |$LN6@SetDutyCyc|
+  00044	ea000013	 b           |$LN19@SetDutyCyc|
+  00048		 |$LN5@SetDutyCyc|
 
-; 318  :         goto cleanUp;
-; 319  :         }
-; 320  : 
-; 321  :     // if we got here everything is okay
-; 322  :     rc = TRUE;
-; 323  : 
-; 324  :     // check if the duty cycle matches current duty cycle
-; 325  :     if (pInstance->dutyCycle == value)
+; 255  :         goto cleanUp;
+; 256  : 	}
+; 257  : 
+; 258  :     // if we got here everything is okay
+; 259  :     rc = TRUE;
+; 260  : 
+; 261  :     // check if the duty cycle matches current duty cycle
+; 262  :     if (pInstance->dutyCycle == value)
 
-  0004c	e595300c	 ldr         r3, [r5, #0xC]
-  00050	e3a06001	 mov         r6, #1
-  00054	e1530004	 cmp         r3, r4
-  00058	0a00001a	 beq         |$cleanUp$36044|
+  00048	e595300c	 ldr         r3, [r5, #0xC]
+  0004c	e3a06001	 mov         r6, #1
+  00050	e1530004	 cmp         r3, r4
+  00054	0a000017	 beq         |$cleanUp$36021|
 
-; 326  :         {
-; 327  :         goto cleanUp;
-; 328  :         }
-; 329  : 
-; 330  :     // disable led channel, if value is zero then leave led off and exit
-; 331  :     pInstance->dutyCycle = value;
-; 332  :     Device_t *pDevice = pInstance->pDevice;
+; 263  : 	{
+; 264  :         goto cleanUp;
+; 265  : 	}
+; 266  : 
+; 267  :     // disable led channel, if value is zero then leave led off and exit
+; 268  :     pInstance->dutyCycle = value;
+; 269  :     Device_t *pDevice = pInstance->pDevice;
 
-  0005c	e5957004	 ldr         r7, [r5, #4]
+  00058	e595e004	 ldr         lr, [r5, #4]
+  0005c	e585400c	 str         r4, [r5, #0xC]
 
-; 333  :     DisableLed(pDevice, pInstance->channel);
+; 270  :     //DisableLed(pDevice, pInstance->channel);
+; 271  :     if (value == 0)
 
-  00060	e5951008	 ldr         r1, [r5, #8]
-  00064	e585400c	 str         r4, [r5, #0xC]
-  00068	e1a00007	 mov         r0, r7
-  0006c	eb000000	 bl          |?DisableLed@@YAHPAUDevice_t@@K@Z|
+  00060	e3540000	 cmp         r4, #0
 
-; 334  :     if (value == 0)
+; 272  : 	{
+; 273  :         value = 2;
+; 274  : 	}
+; 275  : 
+; 276  :     // calculate on/off period based on requested duty cycle,
+; 277  :     // channelIncrement is a fixed point 16.16 number 
+; 278  :     offTick = (pDevice->channelIncrement * value) >> 16;
 
-  00070	e3540000	 cmp         r4, #0
-  00074	0a000013	 beq         |$cleanUp$36044|
+  00064	e59e2020	 ldr         r2, [lr, #0x20]
+  00068	03a04002	 moveq       r4, #2
+  0006c	e3a07802	 mov         r7, #2, 16
 
-; 335  :         {
-; 336  :         goto cleanUp;
-; 337  :         }
-; 338  : 
-; 339  :     // calculate on/off period based on requested duty cycle,
-; 340  :     // channelIncrement is a fixed point 16.16 number 
-; 341  :     offTick = (pDevice->channelIncrement * value) >> 16;
+; 279  :     TWLWriteRegs(pDevice->hTWL, TWL_PWM0OFF,&offTick, 1);
 
-  00078	e5973020	 ldr         r3, [r7, #0x20]
+  00070	e0010492	 mul         r1, r2, r4
+  00074	e3a03001	 mov         r3, #1
+  00078	e1a00821	 mov         r0, r1, lsr #16
+  0007c	e28d2000	 add         r2, sp, #0
+  00080	e58d0000	 str         r0, [sp]
+  00084	e59e0018	 ldr         r0, [lr, #0x18]
+  00088	e38710f9	 orr         r1, r7, #0xF9
+  0008c	eb000000	 bl          TWLWriteRegs
 
-; 342  :     TWLWriteRegs(pDevice->hTWL, s_PWMAOffset[pInstance->channel],
-; 343  :         &offTick, 1);
+; 280  :     //offTick = ((125 * (100 - value))/100) + 1;
+; 281  :     value = offTick;
+; 282  :     RETAILMSG(1, (L"TLD:  SetDutyCycle(offTick = 0x%08x)\r\n", value));
 
-  0007c	e5950008	 ldr         r0, [r5, #8]
-  00080	e59f1058	 ldr         r1, [pc, #0x58]
-  00084	e0020493	 mul         r2, r3, r4
-  00088	e3a03001	 mov         r3, #1
-  0008c	e1a02822	 mov         r2, r2, lsr #16
-  00090	e7911100	 ldr         r1, [r1, +r0, lsl #2]
-  00094	e58d2000	 str         r2, [sp]
-  00098	e5970018	 ldr         r0, [r7, #0x18]
-  0009c	e28d2000	 add         r2, sp, #0
-  000a0	eb000000	 bl          TWLWriteRegs
+  00090	e59f0050	 ldr         r0, [pc, #0x50]
+  00094	e59d4000	 ldr         r4, [sp]
+  00098		 |$LN19@SetDutyCyc|
+  00098	e1a01004	 mov         r1, r4
+  0009c	eb000000	 bl          NKDbgPrintfW
 
-; 344  :     
-; 345  :     // enable led channel
-; 346  :     EnableLed(pInstance->pDevice, pInstance->channel);
+; 283  :     //TWLWriteByteReg(pDevice->hTWL, TWL_PWM0ON, (BYTE)value);
+; 284  :     
+; 285  :     // enable led channel
+; 286  :     //EnableLed(pInstance->pDevice, pInstance->channel);
+; 287  :     
+; 288  : cleanUp:    
 
-  000a4	e5951008	 ldr         r1, [r5, #8]
-  000a8	e5950004	 ldr         r0, [r5, #4]
-  000ac	eb000000	 bl          |?EnableLed@@YAHPAUDevice_t@@K@Z|
-  000b0	ea000004	 b           |$cleanUp$36044|
-  000b4		 |$LN8@SetDutyCyc|
+  000a0	ea000004	 b           |$cleanUp$36021|
+  000a4		 |$LN7@SetDutyCyc|
 
-; 304  :         {
-; 305  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetDutyCycle) - "
-; 306  :             L"Incorrect context parameter\r\n"
-; 307  :             ));
+; 245  : 	{
+; 246  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(SetDutyCycle) - Incorrect context parameter\r\n"));
 
-  000b4	e59f3020	 ldr         r3, [pc, #0x20]
-  000b8	e5933440	 ldr         r3, [r3, #0x440]
-  000bc	e3130001	 tst         r3, #1
-  000c0	159f0010	 ldrne       r0, [pc, #0x10]
-  000c4	1b000000	 blne        NKDbgPrintfW
-  000c8		 |$cleanUp$36044|
+  000a4	e59f3038	 ldr         r3, [pc, #0x38]
+  000a8	e5933440	 ldr         r3, [r3, #0x440]
+  000ac	e3130001	 tst         r3, #1
+  000b0	159f0028	 ldrne       r0, [pc, #0x28]
+  000b4	1b000000	 blne        NKDbgPrintfW
+  000b8		 |$cleanUp$36021|
 
-; 349  :     DEBUGMSG(ZONE_FUNCTION, (
-; 350  :         L"TLD: -SetDutyCycle(0x%08x, 0x%08x) == %d\r\n", 
-; 351  :         context, value, rc
-; 352  :         ));
-; 353  : 
-; 354  :     return rc;
-; 355  : }
+; 289  :     //RETAILMSG(1, (L"TLD: -SetDutyCycle(0x%08x, 0x%08x) == %d\r\n", offTick, value, rc));
+; 290  :     RETAILMSG(1, (L"TLD: -SetDutyCycle(0x%08x, 0x%08x) == %d\r\n", context, value, rc));
 
-  000c8	e1a00006	 mov         r0, r6
-  000cc	e28dd004	 add         sp, sp, #4
-  000d0	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  000d4	e12fff1e	 bx          lr
-  000d8		 |$LN19@SetDutyCyc|
-  000d8		 |$LN20@SetDutyCyc|
-  000d8	00000000	 DCD         |??_C@_1HE@MFHCMAHK@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo@|
-  000dc		 |$LN21@SetDutyCyc|
-  000dc	00000000	 DCD         |dpCurSettings|
-  000e0		 |$LN22@SetDutyCyc|
-  000e0	00000000	 DCD         |s_PWMAOffset|
-  000e4		 |$LN23@SetDutyCyc|
-  000e4	00000000	 DCD         |??_C@_1HG@DMKAMPOG@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAi?$AAn?$AAv?$AAa@|
-  000e8		 |$LN24@SetDutyCyc|
-  000e8	746c6449	 DCD         0x746c6449
-  000ec		 |$M36379|
+  000b8	e59f001c	 ldr         r0, [pc, #0x1C]
+  000bc	e1a03006	 mov         r3, r6
+  000c0	e1a02004	 mov         r2, r4
+  000c4	e1a01005	 mov         r1, r5
+  000c8	eb000000	 bl          NKDbgPrintfW
+
+; 291  : 
+; 292  :     return rc;
+; 293  : }
+
+  000cc	e1a00006	 mov         r0, r6
+  000d0	e28dd004	 add         sp, sp, #4
+  000d4	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  000d8	e12fff1e	 bx          lr
+  000dc		 |$LN23@SetDutyCyc|
+  000dc		 |$LN24@SetDutyCyc|
+  000dc	00000000	 DCD         |??_C@_1FG@EHNAOLKP@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?9?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8@|
+  000e0		 |$LN25@SetDutyCyc|
+  000e0	00000000	 DCD         |??_C@_1HE@MFHCMAHK@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAc?$AAo@|
+  000e4		 |$LN26@SetDutyCyc|
+  000e4	00000000	 DCD         |dpCurSettings|
+  000e8		 |$LN27@SetDutyCyc|
+  000e8	00000000	 DCD         |??_C@_1EO@MFCBLLLH@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CI?$AAo?$AAf?$AAf?$AAT?$AAi?$AAc?$AAk?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF@|
+  000ec		 |$LN28@SetDutyCyc|
+  000ec	00000000	 DCD         |??_C@_1HG@DMKAMPOG@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAS?$AAe?$AAt?$AAD?$AAu?$AAt?$AAy?$AAC?$AAy?$AAc?$AAl?$AAe?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAi?$AAn?$AAv?$AAa@|
+  000f0		 |$LN29@SetDutyCyc|
+  000f0	746c6449	 DCD         0x746c6449
+  000f4		 |$M36379|
 
 			 ENDP  ; |?SetDutyCycle@@YAHKK@Z|, SetDutyCycle
 
 	EXPORT	|?InitializeDevice@@YAHPAUDevice_t@@@Z|	; InitializeDevice
-	EXPORT	|??_C@_1IE@MCMOOGII@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1IE@LFFADEHI@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1EE@EBEIDAHP@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?9?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1IA@BAKIJADM@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAF@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1IE@KLPPJOD@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1IC@MDIIBOKL@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HK@OPLBNBPM@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1EE@MDGFIIN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36405| DCD	|$LN18@Initialize|
-	DCD	0x40004502
+|$T36412| DCD	|$LN26@Initialize|
+	DCD	0x40006102
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1IE@MCMOOGII@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| DCB "T"
+|??_C@_1EE@EBEIDAHP@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?9?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "-"
+	DCB	0x0, "I", 0x0, "n", 0x0, "i", 0x0, "t", 0x0, "i", 0x0, "a"
+	DCB	0x0, "l", 0x0, "i", 0x0, "z", 0x0, "e", 0x0, "D", 0x0, "e"
+	DCB	0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e", 0x0, "(", 0x0, "0"
+	DCB	0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x", 0x0, ")"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1IA@BAKIJADM@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAF@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, "!", 0x0, "E"
+	DCB	0x0, "R", 0x0, "R", 0x0, "O", 0x0, "R", 0x0, " ", 0x0, "-"
+	DCB	0x0, " ", 0x0, "I", 0x0, "n", 0x0, "i", 0x0, "t", 0x0, "i"
+	DCB	0x0, "a", 0x0, "l", 0x0, "i", 0x0, "z", 0x0, "e", 0x0, "D"
+	DCB	0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e", 0x0, " "
+	DCB	0x0, "F", 0x0, "a", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "d"
+	DCB	0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "i", 0x0, "n"
+	DCB	0x0, "i", 0x0, "t", 0x0, "i", 0x0, "a", 0x0, "l", 0x0, "i"
+	DCB	0x0, "z", 0x0, "e", 0x0, " ", 0x0, "T", 0x0, "W", 0x0, "L"
+	DCB	0x0, "_", 0x0, "G", 0x0, "P", 0x0, "B", 0x0, "R", 0x0, "1"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1IE@KLPPJOD@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| DCB "T"
 	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "!"
 	DCB	0x0, "E", 0x0, "R", 0x0, "R", 0x0, "O", 0x0, "R", 0x0, " "
 	DCB	0x0, "-", 0x0, " ", 0x0, "I", 0x0, "n", 0x0, "i", 0x0, "t"
@@ -890,11 +772,11 @@
 	DCB	0x0, "d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "i"
 	DCB	0x0, "n", 0x0, "i", 0x0, "t", 0x0, "i", 0x0, "a", 0x0, "l"
 	DCB	0x0, "i", 0x0, "z", 0x0, "e", 0x0, " ", 0x0, "T", 0x0, "W"
-	DCB	0x0, "L", 0x0, "_", 0x0, "P", 0x0, "W", 0x0, "M", 0x0, "B"
+	DCB	0x0, "L", 0x0, "_", 0x0, "P", 0x0, "W", 0x0, "M", 0x0, "0"
 	DCB	0x0, "O", 0x0, "N", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1IE@LFFADEHI@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| DCB "T"
+|??_C@_1IC@MDIIBOKL@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| DCB "T"
 	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "!"
 	DCB	0x0, "E", 0x0, "R", 0x0, "R", 0x0, "O", 0x0, "R", 0x0, " "
 	DCB	0x0, "-", 0x0, " ", 0x0, "I", 0x0, "n", 0x0, "i", 0x0, "t"
@@ -904,8 +786,8 @@
 	DCB	0x0, "d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "i"
 	DCB	0x0, "n", 0x0, "i", 0x0, "t", 0x0, "i", 0x0, "a", 0x0, "l"
 	DCB	0x0, "i", 0x0, "z", 0x0, "e", 0x0, " ", 0x0, "T", 0x0, "W"
-	DCB	0x0, "L", 0x0, "_", 0x0, "P", 0x0, "W", 0x0, "M", 0x0, "A"
-	DCB	0x0, "O", 0x0, "N", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+	DCB	0x0, "L", 0x0, "_", 0x0, "P", 0x0, "M", 0x0, "B", 0x0, "R"
+	DCB	0x0, "1", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HK@OPLBNBPM@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@| DCB "T"
@@ -920,200 +802,270 @@
 	DCB	0x0, "i", 0x0, "z", 0x0, "e", 0x0, " ", 0x0, "L", 0x0, "E"
 	DCB	0x0, "D", 0x0, "E", 0x0, "N", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
 	DCB	0x0					; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1EE@MDGFIIN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "+"
+	DCB	0x0, "I", 0x0, "n", 0x0, "i", 0x0, "t", 0x0, "i", 0x0, "a"
+	DCB	0x0, "l", 0x0, "i", 0x0, "z", 0x0, "e", 0x0, "D", 0x0, "e"
+	DCB	0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e", 0x0, "(", 0x0, "0"
+	DCB	0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x", 0x0, ")"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |?InitializeDevice@@YAHPAUDevice_t@@@Z| PROC ; InitializeDevice
 
-; 367  : {
+; 304  : {
 
-  00000		 |$LN18@Initialize|
+  00000		 |$LN26@Initialize|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M36402|
+  00008		 |$M36409|
   00008	e1a04000	 mov         r4, r0
 
-; 368  :     DEBUGMSG(ZONE_FUNCTION, (
-; 369  :         L"TLD:  +InitializeDevice(0x%08x)\r\n", pDevice
-; 370  :         ));
-; 371  : 
-; 372  :     BOOL rc = FALSE;
-; 373  :     UINT8 val;
-; 374  : 
-; 375  :     // disable all leds
-; 376  :     val = 0;
-; 377  :     if (TWLWriteRegs(pDevice->hTWL, TWL_LEDEN, &val, 1) == FALSE)
+; 305  :     BOOL rc = FALSE;
+; 306  :     UINT8 val;
+; 307  : 
+; 308  : 	RETAILMSG(1, (L"TLD:  +InitializeDevice(0x%08x)\r\n", pDevice));
 
-  0000c	e5940018	 ldr         r0, [r4, #0x18]
-  00010	e3a03802	 mov         r3, #2, 16
-  00014	e38310ee	 orr         r1, r3, #0xEE
-  00018	e3a0e000	 mov         lr, #0
-  0001c	e3a03001	 mov         r3, #1
-  00020	e28d2000	 add         r2, sp, #0
-  00024	e3a05000	 mov         r5, #0
-  00028	e5cde000	 strb        lr, [sp]
-  0002c	eb000000	 bl          TWLWriteRegs
-  00030	e3500000	 cmp         r0, #0
-  00034	1a000006	 bne         |$LN6@Initialize|
+  0000c	e59f016c	 ldr         r0, [pc, #0x16C]
+  00010	e1a01004	 mov         r1, r4
+  00014	e3a05000	 mov         r5, #0
+  00018	eb000000	 bl          NKDbgPrintfW
 
-; 378  :         {
-; 379  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice "
-; 380  :             L"Failed to initialize LEDEN\r\n"
-; 381  :             ));
+; 309  :     // disable all leds
+; 310  :     val = 0;
+; 311  :     if (TWLWriteRegs(pDevice->hTWL, TWL_LEDEN, &val, 1) == FALSE)
 
-  00038	e59f30c8	 ldr         r3, [pc, #0xC8]
-  0003c	e5933440	 ldr         r3, [r3, #0x440]
-  00040	e3130001	 tst         r3, #1
-  00044	0a000029	 beq         |$cleanUp$36063|
-  00048	e59f00c0	 ldr         r0, [pc, #0xC0]
+  0001c	e5940018	 ldr         r0, [r4, #0x18]
+  00020	e3a03802	 mov         r3, #2, 16
+  00024	e38310ee	 orr         r1, r3, #0xEE
+  00028	e3a0e000	 mov         lr, #0
+  0002c	e3a03001	 mov         r3, #1
+  00030	e28d2000	 add         r2, sp, #0
+  00034	e5cde000	 strb        lr, [sp]
+  00038	eb000000	 bl          TWLWriteRegs
+  0003c	e3500000	 cmp         r0, #0
+  00040	1a000006	 bne         |$LN8@Initialize|
 
-; 398  :         {
-; 399  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice "
-; 400  :             L"Failed to initialize TWL_PWMBON\r\n"
-; 401  :             ));
+; 312  : 	{
+; 313  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice Failed to initialize LEDEN\r\n"));
 
-  0004c	eb000000	 bl          NKDbgPrintfW
+  00044	e59f3124	 ldr         r3, [pc, #0x124]
+  00048	e5933440	 ldr         r3, [r3, #0x440]
+  0004c	e3130001	 tst         r3, #1
+  00050	0a00003c	 beq         |$cleanUp$36040|
+  00054	e59f0120	 ldr         r0, [pc, #0x120]
 
-; 410  : 
-; 411  : cleanUp:
+; 341  : 	{
+; 342  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR - InitializeDevice Failed to initialize TWL_GPBR1\r\n"));
 
-  00050	ea000026	 b           |$cleanUp$36063|
-  00054		 |$LN6@Initialize|
+  00058	eb000000	 bl          NKDbgPrintfW
 
-; 382  :         goto cleanUp;
-; 383  :         }
-; 384  : 
-; 385  :     // leds are always enabled on first tick and use 128 clock
-; 386  :     val = 1;
-; 387  :     if (TWLWriteRegs(pDevice->hTWL, TWL_PWMAON, 
-; 388  :             &val, 1) == FALSE)
+; 357  : 
+; 358  : cleanUp:
 
-  00054	e5940018	 ldr         r0, [r4, #0x18]
-  00058	e3a03802	 mov         r3, #2, 16
-  0005c	e38310ef	 orr         r1, r3, #0xEF
-  00060	e3a0e001	 mov         lr, #1
-  00064	e3a03001	 mov         r3, #1
-  00068	e28d2000	 add         r2, sp, #0
-  0006c	e5cde000	 strb        lr, [sp]
-  00070	eb000000	 bl          TWLWriteRegs
-  00074	e3500000	 cmp         r0, #0
-  00078	1a000006	 bne         |$LN4@Initialize|
+  0005c	ea000039	 b           |$cleanUp$36040|
+  00060		 |$LN8@Initialize|
 
-; 389  :         {
-; 390  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice "
-; 391  :             L"Failed to initialize TWL_PWMAON\r\n"
-; 392  :             ));
+; 314  :         goto cleanUp;
+; 315  : 	}
+; 316  : 
+; 317  :     val = 0x04; // set GPIO.6 to PWM0
+; 318  :     if (TWLWriteRegs(pDevice->hTWL, TWL_PMBR1, &val, 1) == FALSE)
 
-  0007c	e59f3084	 ldr         r3, [pc, #0x84]
-  00080	e5933440	 ldr         r3, [r3, #0x440]
-  00084	e3130001	 tst         r3, #1
-  00088	0a000018	 beq         |$cleanUp$36063|
-  0008c	e59f0078	 ldr         r0, [pc, #0x78]
+  00060	e5940018	 ldr         r0, [r4, #0x18]
+  00064	e3a03801	 mov         r3, #1, 16
+  00068	e3831092	 orr         r1, r3, #0x92
+  0006c	e3a0e004	 mov         lr, #4
+  00070	e3a03001	 mov         r3, #1
+  00074	e28d2000	 add         r2, sp, #0
+  00078	e5cde000	 strb        lr, [sp]
+  0007c	eb000000	 bl          TWLWriteRegs
+  00080	e3500000	 cmp         r0, #0
+  00084	1a000006	 bne         |$LN6@Initialize|
 
-; 398  :         {
-; 399  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice "
-; 400  :             L"Failed to initialize TWL_PWMBON\r\n"
-; 401  :             ));
+; 319  : 	{
+; 320  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice Failed to initialize TWL_PMBR1\r\n"));
 
-  00090	eb000000	 bl          NKDbgPrintfW
+  00088	e59f30e0	 ldr         r3, [pc, #0xE0]
+  0008c	e5933440	 ldr         r3, [r3, #0x440]
+  00090	e3130001	 tst         r3, #1
+  00094	0a00002b	 beq         |$cleanUp$36040|
+  00098	e59f00d8	 ldr         r0, [pc, #0xD8]
 
-; 410  : 
-; 411  : cleanUp:
+; 341  : 	{
+; 342  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR - InitializeDevice Failed to initialize TWL_GPBR1\r\n"));
 
-  00094	ea000015	 b           |$cleanUp$36063|
-  00098		 |$LN4@Initialize|
+  0009c	eb000000	 bl          NKDbgPrintfW
 
-; 393  :         goto cleanUp;
-; 394  :         }
-; 395  : 
-; 396  :     if (TWLWriteRegs(pDevice->hTWL, TWL_PWMBON, 
-; 397  :             &val, 1) == FALSE)
+; 357  : 
+; 358  : cleanUp:
 
-  00098	e5940018	 ldr         r0, [r4, #0x18]
-  0009c	e3a03802	 mov         r3, #2, 16
-  000a0	e38310f1	 orr         r1, r3, #0xF1
-  000a4	e3a03001	 mov         r3, #1
-  000a8	e28d2000	 add         r2, sp, #0
-  000ac	eb000000	 bl          TWLWriteRegs
-  000b0	e3500000	 cmp         r0, #0
-  000b4	1a000006	 bne         |$LN2@Initialize|
+  000a0	ea000028	 b           |$cleanUp$36040|
+  000a4		 |$LN6@Initialize|
 
-; 398  :         {
-; 399  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice "
-; 400  :             L"Failed to initialize TWL_PWMBON\r\n"
-; 401  :             ));
+; 321  :         goto cleanUp;
+; 322  : 	}
+; 323  : /*	val = 0x7F;
+; 324  :     if (TWLWriteRegs(pDevice->hTWL, TWL_PWM0OFF, &val, 1) == FALSE)
+; 325  : 	{
+; 326  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice "
+; 327  :             L"Failed to initialize TWL_PWMBON\r\n"));
+; 328  :         goto cleanUp;
+; 329  : 	}*/
+; 330  : 
+; 331  :     // leds are always enabled on first tick and use 128 clock
+; 332  :     val = 1;
+; 333  :     if (TWLWriteRegs(pDevice->hTWL, TWL_PWM0ON, &val, 1) == FALSE)
 
-  000b8	e59f3048	 ldr         r3, [pc, #0x48]
-  000bc	e5933440	 ldr         r3, [r3, #0x440]
-  000c0	e3130001	 tst         r3, #1
-  000c4	0a000009	 beq         |$cleanUp$36063|
-  000c8	e59f0034	 ldr         r0, [pc, #0x34]
-  000cc	eb000000	 bl          NKDbgPrintfW
+  000a4	e5940018	 ldr         r0, [r4, #0x18]
+  000a8	e3a03802	 mov         r3, #2, 16
+  000ac	e38310f8	 orr         r1, r3, #0xF8
+  000b0	e3a0e001	 mov         lr, #1
+  000b4	e3a03001	 mov         r3, #1
+  000b8	e28d2000	 add         r2, sp, #0
+  000bc	e5cde000	 strb        lr, [sp]
+  000c0	eb000000	 bl          TWLWriteRegs
+  000c4	e3500000	 cmp         r0, #0
+  000c8	1a000006	 bne         |$LN4@Initialize|
 
-; 410  : 
-; 411  : cleanUp:
+; 334  : 	{
+; 335  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice Failed to initialize TWL_PWM0ON\r\n"));
 
-  000d0	ea000006	 b           |$cleanUp$36063|
-  000d4		 |$LN2@Initialize|
+  000cc	e59f309c	 ldr         r3, [pc, #0x9C]
+  000d0	e5933440	 ldr         r3, [r3, #0x440]
+  000d4	e3130001	 tst         r3, #1
+  000d8	0a00001a	 beq         |$cleanUp$36040|
+  000dc	e59f0090	 ldr         r0, [pc, #0x90]
 
-; 402  :         goto cleanUp;
-; 403  :         }
-; 404  : 
-; 405  :     // calculate how much the incremental value for led channels 
-; 406  :     // as 16.16 fixed point value
-; 407  :     pDevice->channelIncrement = (pDevice->maxChannelValue << 16) / 100;
+; 341  : 	{
+; 342  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR - InitializeDevice Failed to initialize TWL_GPBR1\r\n"));
 
-  000d4	e5943024	 ldr         r3, [r4, #0x24]
-  000d8	e59f2020	 ldr         r2, [pc, #0x20]
+  000e0	eb000000	 bl          NKDbgPrintfW
 
-; 408  : 
-; 409  :     rc = TRUE;
+; 357  : 
+; 358  : cleanUp:
 
-  000dc	e3a05001	 mov         r5, #1
-  000e0	e1a01803	 mov         r1, r3, lsl #16
-  000e4	e0832291	 umull       r2, r3, r1, r2
-  000e8	e1a032a3	 mov         r3, r3, lsr #5
-  000ec	e5843020	 str         r3, [r4, #0x20]
-  000f0		 |$cleanUp$36063|
+  000e4	ea000017	 b           |$cleanUp$36040|
+  000e8		 |$LN4@Initialize|
 
-; 412  : 
-; 413  :     DEBUGMSG(ZONE_FUNCTION, (
-; 414  :         L"TLD:  -InitializeDevice(0x%08x)\r\n", pDevice
-; 415  :         ));
-; 416  : 
-; 417  :     return rc;
-; 418  : }
+; 336  :         goto cleanUp;
+; 337  : 	}
+; 338  : 	
+; 339  : 	val = 0x05; // PWM0_ENABLE & PWM0_CLK_ENABLE
+; 340  :     if (TWLWriteRegs(pDevice->hTWL, TWL_GPBR1, &val, sizeof(val)) == FALSE)
 
-  000f0	e1a00005	 mov         r0, r5
-  000f4	e28dd004	 add         sp, sp, #4
-  000f8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  000fc	e12fff1e	 bx          lr
-  00100		 |$LN19@Initialize|
-  00100		 |$LN20@Initialize|
-  00100	51eb851f	 DCD         0x51eb851f
-  00104		 |$LN21@Initialize|
-  00104	00000000	 DCD         |??_C@_1IE@MCMOOGII@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@|
-  00108		 |$LN22@Initialize|
-  00108	00000000	 DCD         |dpCurSettings|
-  0010c		 |$LN23@Initialize|
-  0010c	00000000	 DCD         |??_C@_1IE@LFFADEHI@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@|
-  00110		 |$LN24@Initialize|
-  00110	00000000	 DCD         |??_C@_1HK@OPLBNBPM@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@|
-  00114		 |$M36403|
+  000e8	e5940018	 ldr         r0, [r4, #0x18]
+  000ec	e3a03801	 mov         r3, #1, 16
+  000f0	e3831091	 orr         r1, r3, #0x91
+  000f4	e3a0e005	 mov         lr, #5
+  000f8	e3a03001	 mov         r3, #1
+  000fc	e28d2000	 add         r2, sp, #0
+  00100	e5cde000	 strb        lr, [sp]
+  00104	eb000000	 bl          TWLWriteRegs
+  00108	e3500000	 cmp         r0, #0
+  0010c	1a000006	 bne         |$LN2@Initialize|
+
+; 341  : 	{
+; 342  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR - InitializeDevice Failed to initialize TWL_GPBR1\r\n"));
+
+  00110	e59f3058	 ldr         r3, [pc, #0x58]
+  00114	e5933440	 ldr         r3, [r3, #0x440]
+  00118	e3130001	 tst         r3, #1
+  0011c	0a000009	 beq         |$cleanUp$36040|
+  00120	e59f0044	 ldr         r0, [pc, #0x44]
+  00124	eb000000	 bl          NKDbgPrintfW
+
+; 357  : 
+; 358  : cleanUp:
+
+  00128	ea000006	 b           |$cleanUp$36040|
+  0012c		 |$LN2@Initialize|
+
+; 343  :         goto cleanUp;
+; 344  : 	}
+; 345  : 	
+; 346  : /*    if (TWLWriteRegs(pDevice->hTWL, TWL_PWMBON, &val, 1) == FALSE)
+; 347  : 	{
+; 348  :         RETAILMSG(ZONE_ERROR, (L"TLD:  !ERROR - InitializeDevice Failed to initialize TWL_PWMBON\r\n"));
+; 349  :         goto cleanUp;
+; 350  : 	}*/
+; 351  :         
+; 352  :     // calculate how much the incremental value for led channels 
+; 353  :     // as 16.16 fixed point value
+; 354  :     pDevice->channelIncrement = (pDevice->maxChannelValue << 16) / 100;
+
+  0012c	e5943024	 ldr         r3, [r4, #0x24]
+  00130	e59f2030	 ldr         r2, [pc, #0x30]
+
+; 355  : 
+; 356  :     rc = TRUE;
+
+  00134	e3a05001	 mov         r5, #1
+  00138	e1a01803	 mov         r1, r3, lsl #16
+  0013c	e0832291	 umull       r2, r3, r1, r2
+  00140	e1a032a3	 mov         r3, r3, lsr #5
+  00144	e5843020	 str         r3, [r4, #0x20]
+  00148		 |$cleanUp$36040|
+
+; 359  : 
+; 360  :     RETAILMSG(1, (L"TLD:  -InitializeDevice(0x%08x)\r\n", pDevice));
+
+  00148	e59f0014	 ldr         r0, [pc, #0x14]
+  0014c	e1a01004	 mov         r1, r4
+  00150	eb000000	 bl          NKDbgPrintfW
+
+; 361  : 
+; 362  :     return rc;
+; 363  : }
+
+  00154	e1a00005	 mov         r0, r5
+  00158	e28dd004	 add         sp, sp, #4
+  0015c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
+  00160	e12fff1e	 bx          lr
+  00164		 |$LN27@Initialize|
+  00164		 |$LN28@Initialize|
+  00164	00000000	 DCD         |??_C@_1EE@EBEIDAHP@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?9?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@|
+  00168		 |$LN29@Initialize|
+  00168	51eb851f	 DCD         0x51eb851f
+  0016c		 |$LN30@Initialize|
+  0016c	00000000	 DCD         |??_C@_1IA@BAKIJADM@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAF@|
+  00170		 |$LN31@Initialize|
+  00170	00000000	 DCD         |dpCurSettings|
+  00174		 |$LN32@Initialize|
+  00174	00000000	 DCD         |??_C@_1IE@KLPPJOD@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@|
+  00178		 |$LN33@Initialize|
+  00178	00000000	 DCD         |??_C@_1IC@MDIIBOKL@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@|
+  0017c		 |$LN34@Initialize|
+  0017c	00000000	 DCD         |??_C@_1HK@OPLBNBPM@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?5?$AA?9?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5@|
+  00180		 |$LN35@Initialize|
+  00180	00000000	 DCD         |??_C@_1EE@MDGFIIN@?$AAT?$AAL?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CL?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@|
+  00184		 |$M36410|
 
 			 ENDP  ; |?InitializeDevice@@YAHPAUDevice_t@@@Z|, InitializeDevice
 
 	EXPORT	|?TLD_Deinit@@YAHK@Z|			; TLD_Deinit
+	EXPORT	|??_C@_1CO@MICKMIJI@?$AA?9?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1JM@HHLGIFC@?$AAT?$AAW?$AAL?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAC?$AAa?$AAn?$AA?8?$AAt?$AA?5@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CM@OJJDFLCC@?$AA?$CL?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|LocalFree|
 	IMPORT	|DeleteCriticalSection|
 	IMPORT	|CloseHandle|
 	IMPORT	|InterlockedIncrement|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36424| DCD	|$LN13@TLD_Deinit|
-	DCD	0x40002601
+|$T36438| DCD	|$LN17@TLD_Deinit|
+	DCD	0x40002f01
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CO@MICKMIJI@?$AA?9?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "-"
+	DCB	0x0, "T", 0x0, "L", 0x0, "D", 0x0, "_", 0x0, "D", 0x0, "e"
+	DCB	0x0, "i", 0x0, "n", 0x0, "i", 0x0, "t", 0x0, "(", 0x0, "r"
+	DCB	0x0, "c", 0x0, " ", 0x0, "=", 0x0, " ", 0x0, "%", 0x0, "d"
+	DCB	0x0, ")", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1JM@HHLGIFC@?$AAT?$AAW?$AAL?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAC?$AAa?$AAn?$AA?8?$AAt?$AA?5@| DCB "T"
@@ -1130,129 +1082,149 @@
 	DCB	0x0, "e", 0x0, " ", 0x0, "r", 0x0, "e", 0x0, "f", 0x0, "C"
 	DCB	0x0, "o", 0x0, "u", 0x0, "n", 0x0, "t", 0x0, " ", 0x0, "i"
 	DCB	0x0, "s", 0x0, " ", 0x0, "%", 0x0, "d", 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CM@OJJDFLCC@?$AA?$CL?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "+"
+	DCB	0x0, "T", 0x0, "L", 0x0, "D", 0x0, "_", 0x0, "D", 0x0, "e"
+	DCB	0x0, "i", 0x0, "n", 0x0, "i", 0x0, "t", 0x0, "(", 0x0, "0"
+	DCB	0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x", 0x0, ")"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |?TLD_Deinit@@YAHK@Z| PROC		; TLD_Deinit
 
-; 511  : {
+; 451  : {
 
-  00000		 |$LN13@TLD_Deinit|
+  00000		 |$LN17@TLD_Deinit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M36421|
-  00004	e1b04000	 movs        r4, r0
+  00004		 |$M36435|
+  00004	e1a04000	 mov         r4, r0
 
-; 512  :     BOOL rc = FALSE;
+; 452  :     BOOL rc = FALSE;
+; 453  :     Device_t *pDevice = (Device_t*)context;
+; 454  : 
+; 455  :     RETAILMSG(1, (L"+TLD_Deinit(0x%08x)\r\n", context));
 
-  00008	e3a05000	 mov         r5, #0
+  00008	e59f00a8	 ldr         r0, [pc, #0xA8]
+  0000c	e1a01004	 mov         r1, r4
+  00010	e3a05000	 mov         r5, #0
+  00014	eb000000	 bl          NKDbgPrintfW
 
-; 513  :     Device_t *pDevice = (Device_t*)context;
-; 514  : 
-; 515  :     DEBUGMSG(ZONE_FUNCTION, (L"+TLD_Deinit(0x%08x)\r\n", context));
-; 516  : 
-; 517  :     // Check if we get correct context
-; 518  :     if ((pDevice == NULL) || (pDevice->cookie != TLED_DEVICE_COOKIE))
+; 456  : 
+; 457  :     // Check if we get correct context
+; 458  :     if ((pDevice == NULL) || (pDevice->cookie != TLED_DEVICE_COOKIE))
 
-  0000c	0a00001b	 beq         |$cleanUp$36109|
-  00010	e5942000	 ldr         r2, [r4]
-  00014	e59f3078	 ldr         r3, [pc, #0x78]
-  00018	e1520003	 cmp         r2, r3
-  0001c	1a000017	 bne         |$cleanUp$36109|
+  00018	e3540000	 cmp         r4, #0
+  0001c	0a00001b	 beq         |$cleanUp$36089|
+  00020	e5942000	 ldr         r2, [r4]
+  00024	e59f3088	 ldr         r3, [pc, #0x88]
+  00028	e1520003	 cmp         r2, r3
+  0002c	1a000017	 bne         |$cleanUp$36089|
 
-; 519  :         {
-; 520  :         DEBUGMSG (ZONE_ERROR, (L"TLD: !ERROR(TLD_Deinit) - "
-; 521  :             L"Incorrect context parameter\r\n"
-; 522  :             ));
-; 523  :         goto cleanUp;
-; 524  :         }
-; 525  : 
-; 526  :     if (InterlockedIncrement(&pDevice->refCount) != 0)
+; 459  :         {
+; 460  :         DEBUGMSG (ZONE_ERROR, (L"TLD: !ERROR(TLD_Deinit) - "
+; 461  :             L"Incorrect context parameter\r\n"
+; 462  :             ));
+; 463  :         goto cleanUp;
+; 464  :         }
+; 465  : 
+; 466  :     if (InterlockedIncrement(&pDevice->refCount) != 0)
 
-  00020	e284001c	 add         r0, r4, #0x1C
-  00024	eb000000	 bl          InterlockedIncrement
-  00028	e3500000	 cmp         r0, #0
-  0002c	0a000007	 beq         |$LN3@TLD_Deinit|
+  00030	e284001c	 add         r0, r4, #0x1C
+  00034	eb000000	 bl          InterlockedIncrement
+  00038	e3500000	 cmp         r0, #0
+  0003c	0a000007	 beq         |$LN3@TLD_Deinit|
 
-; 527  :         {
-; 528  :         RETAILMSG(ZONE_WARN, (L"TWL: !ERROR(TLD_Deinit) - "
-; 529  :             L"Can't delete Triton Led device since refCount is %d",
-; 530  :             pDevice->refCount
-; 531  :             ));
+; 467  :         {
+; 468  :         RETAILMSG(ZONE_WARN, (L"TWL: !ERROR(TLD_Deinit) - "
+; 469  :             L"Can't delete Triton Led device since refCount is %d",
+; 470  :             pDevice->refCount
+; 471  :             ));
 
-  00030	e59f3058	 ldr         r3, [pc, #0x58]
-  00034	e5933440	 ldr         r3, [r3, #0x440]
-  00038	e3130002	 tst         r3, #2
-  0003c	0a00000f	 beq         |$cleanUp$36109|
-  00040	e594101c	 ldr         r1, [r4, #0x1C]
-  00044	e59f0040	 ldr         r0, [pc, #0x40]
-  00048	eb000000	 bl          NKDbgPrintfW
+  00040	e59f3068	 ldr         r3, [pc, #0x68]
+  00044	e5933440	 ldr         r3, [r3, #0x440]
+  00048	e3130002	 tst         r3, #2
+  0004c	0a00000f	 beq         |$cleanUp$36089|
+  00050	e594101c	 ldr         r1, [r4, #0x1C]
+  00054	e59f0050	 ldr         r0, [pc, #0x50]
+  00058	eb000000	 bl          NKDbgPrintfW
 
-; 550  : 
-; 551  : cleanUp:
+; 490  : 
+; 491  : cleanUp:
 
-  0004c	ea00000b	 b           |$cleanUp$36109|
-  00050		 |$LN3@TLD_Deinit|
+  0005c	ea00000b	 b           |$cleanUp$36089|
+  00060		 |$LN3@TLD_Deinit|
 
-; 532  :         goto cleanUp;
-; 533  :         }
-; 534  : 
-; 535  :     //Close handle to TWL driver
-; 536  :     if (pDevice->hTWL != NULL)
+; 472  :         goto cleanUp;
+; 473  :         }
+; 474  : 
+; 475  :     //Close handle to TWL driver
+; 476  :     if (pDevice->hTWL != NULL)
 
-  00050	e5943018	 ldr         r3, [r4, #0x18]
-  00054	e3530000	 cmp         r3, #0
-  00058	0a000003	 beq         |$LN1@TLD_Deinit|
+  00060	e5943018	 ldr         r3, [r4, #0x18]
+  00064	e3530000	 cmp         r3, #0
+  00068	0a000003	 beq         |$LN1@TLD_Deinit|
 
-; 537  :         {
-; 538  :         CloseHandle(pDevice->hTWL);
+; 477  :         {
+; 478  :         CloseHandle(pDevice->hTWL);
 
-  0005c	e1a00003	 mov         r0, r3
-  00060	eb000000	 bl          CloseHandle
+  0006c	e1a00003	 mov         r0, r3
+  00070	eb000000	 bl          CloseHandle
 
-; 539  :         pDevice->hTWL = NULL;
+; 479  :         pDevice->hTWL = NULL;
 
-  00064	e3a03000	 mov         r3, #0
-  00068	e5843018	 str         r3, [r4, #0x18]
-  0006c		 |$LN1@TLD_Deinit|
+  00074	e3a03000	 mov         r3, #0
+  00078	e5843018	 str         r3, [r4, #0x18]
+  0007c		 |$LN1@TLD_Deinit|
 
-; 540  :         }
-; 541  : 
-; 542  :     // Delete critical sections
-; 543  :     DeleteCriticalSection(&pDevice->cs);
+; 480  :         }
+; 481  : 
+; 482  :     // Delete critical sections
+; 483  :     DeleteCriticalSection(&pDevice->cs);
 
-  0006c	e2840004	 add         r0, r4, #4
-  00070	eb000000	 bl          DeleteCriticalSection
+  0007c	e2840004	 add         r0, r4, #4
+  00080	eb000000	 bl          DeleteCriticalSection
 
-; 544  : 
-; 545  :     // Free device structure
-; 546  :     LocalFree(pDevice);
+; 484  : 
+; 485  :     // Free device structure
+; 486  :     LocalFree(pDevice);
 
-  00074	e1a00004	 mov         r0, r4
-  00078	eb000000	 bl          LocalFree
+  00084	e1a00004	 mov         r0, r4
+  00088	eb000000	 bl          LocalFree
 
-; 547  : 
-; 548  :     // Done
-; 549  :     rc = TRUE;
+; 487  : 
+; 488  :     // Done
+; 489  :     rc = TRUE;
 
-  0007c	e3a05001	 mov         r5, #1
-  00080		 |$cleanUp$36109|
+  0008c	e3a05001	 mov         r5, #1
+  00090		 |$cleanUp$36089|
 
-; 552  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_Deinit(rc = %d)\r\n", rc));
-; 553  :     return rc;
-; 554  : }
+; 492  :     RETAILMSG(1, (L"-TLD_Deinit(rc = %d)\r\n", rc));
 
-  00080	e1a00005	 mov         r0, r5
-  00084	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00088	e12fff1e	 bx          lr
-  0008c		 |$LN14@TLD_Deinit|
-  0008c		 |$LN15@TLD_Deinit|
-  0008c	00000000	 DCD         |??_C@_1JM@HHLGIFC@?$AAT?$AAW?$AAL?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAC?$AAa?$AAn?$AA?8?$AAt?$AA?5@|
-  00090		 |$LN16@TLD_Deinit|
-  00090	00000000	 DCD         |dpCurSettings|
-  00094		 |$LN17@TLD_Deinit|
-  00094	746c6444	 DCD         0x746c6444
-  00098		 |$M36422|
+  00090	e59f0010	 ldr         r0, [pc, #0x10]
+  00094	e1a01005	 mov         r1, r5
+  00098	eb000000	 bl          NKDbgPrintfW
+
+; 493  :     return rc;
+; 494  : }
+
+  0009c	e1a00005	 mov         r0, r5
+  000a0	e8bd4030	 ldmia       sp!, {r4, r5, lr}
+  000a4	e12fff1e	 bx          lr
+  000a8		 |$LN18@TLD_Deinit|
+  000a8		 |$LN19@TLD_Deinit|
+  000a8	00000000	 DCD         |??_C@_1CO@MICKMIJI@?$AA?9?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  000ac		 |$LN20@TLD_Deinit|
+  000ac	00000000	 DCD         |??_C@_1JM@HHLGIFC@?$AAT?$AAW?$AAL?$AA?3?$AA?5?$AA?$CB?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CI?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CJ?$AA?5?$AA?9?$AA?5?$AAC?$AAa?$AAn?$AA?8?$AAt?$AA?5@|
+  000b0		 |$LN21@TLD_Deinit|
+  000b0	00000000	 DCD         |dpCurSettings|
+  000b4		 |$LN22@TLD_Deinit|
+  000b4	746c6444	 DCD         0x746c6444
+  000b8		 |$LN23@TLD_Deinit|
+  000b8	00000000	 DCD         |??_C@_1CM@OJJDFLCC@?$AA?$CL?$AAT?$AAL?$AAD?$AA_?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  000bc		 |$M36436|
 
 			 ENDP  ; |?TLD_Deinit@@YAHK@Z|, TLD_Deinit
 
@@ -1261,7 +1233,7 @@
 	IMPORT	|LocalAlloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36442| DCD	|$LN12@TLD_Open|
+|$T36458| DCD	|$LN12@TLD_Open|
 	DCD	0x40002301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1284,110 +1256,106 @@
 
   00000		 |?TLD_Open@@YAKKKK@Z| PROC		; TLD_Open
 
-; 568  : {
+; 508  : {
 
   00000		 |$LN12@TLD_Open|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M36439|
+  00004		 |$M36455|
   00004	e1b05000	 movs        r5, r0
 
-; 569  :     DEBUGMSG(ZONE_FUNCTION, (L"+TLD_Open(0x%08x, 0x%08x, 0x%08x)\r\n", 
-; 570  :         context, accessCode, shareMode
-; 571  :         ));
-; 572  : 
-; 573  :     UNREFERENCED_PARAMETER(accessCode);
-; 574  :     UNREFERENCED_PARAMETER(shareMode);
-; 575  : 
-; 576  :     DWORD dw = 0;
+; 509  :     DEBUGMSG(ZONE_FUNCTION, (L"+TLD_Open(0x%08x, 0x%08x, 0x%08x)\r\n", 
+; 510  :         context, accessCode, shareMode));
+; 511  : 
+; 512  :     UNREFERENCED_PARAMETER(accessCode);
+; 513  :     UNREFERENCED_PARAMETER(shareMode);
+; 514  : 
+; 515  :     DWORD dw = 0;
 
   00008	e3a04000	 mov         r4, #0
 
-; 577  :     Instance_t *pInstance;
-; 578  :     Device_t *pDevice = (Device_t*)context;
-; 579  :     if ((pDevice == NULL) || (pDevice->cookie != TLED_DEVICE_COOKIE))
+; 516  :     Instance_t *pInstance;
+; 517  :     Device_t *pDevice = (Device_t*)context;
+; 518  :     if ((pDevice == NULL) || (pDevice->cookie != TLED_DEVICE_COOKIE))
 
-  0000c	0a000017	 beq         |$cleanUp$36129|
+  0000c	0a000017	 beq         |$cleanUp$36109|
   00010	e5952000	 ldr         r2, [r5]
   00014	e59f306c	 ldr         r3, [pc, #0x6C]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000013	 bne         |$cleanUp$36129|
+  0001c	1a000013	 bne         |$cleanUp$36109|
 
-; 580  :         {
-; 581  :         DEBUGMSG (ZONE_ERROR, (L"TLD: !ERROR(TLD_Open) - "
-; 582  :             L"Incorrect context parameter\r\n"
-; 583  :             ));
-; 584  :         goto cleanUp;
-; 585  :         }
-; 586  : 
-; 587  :     // Create device structure
-; 588  :     pInstance = (Instance_t *)LocalAlloc(LPTR, sizeof(Instance_t));
+; 519  : 	{
+; 520  :         DEBUGMSG (ZONE_ERROR, (L"TLD: !ERROR(TLD_Open) - "
+; 521  :             L"Incorrect context parameter\r\n"));
+; 522  :         goto cleanUp;
+; 523  : 	}
+; 524  : 
+; 525  :     // Create device structure
+; 526  :     pInstance = (Instance_t *)LocalAlloc(LPTR, sizeof(Instance_t));
 
   00020	e3a01010	 mov         r1, #0x10
   00024	e3a00040	 mov         r0, #0x40
   00028	eb000000	 bl          LocalAlloc
   0002c	e1b06000	 movs        r6, r0
 
-; 589  :     if (pInstance == NULL)
+; 527  :     if (pInstance == NULL)
 
   00030	1a000006	 bne         |$LN2@TLD_Open|
 
-; 590  :         {
-; 591  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(TLD_Open) - "
-; 592  :             L"Failed allocate Triton LED instance structure\r\n"
-; 593  :             ));
+; 528  : 	{
+; 529  :         RETAILMSG(ZONE_ERROR, (L"TLD: !ERROR(TLD_Open) - "
+; 530  :             L"Failed allocate Triton LED instance structure\r\n"));
 
   00034	e59f3048	 ldr         r3, [pc, #0x48]
   00038	e5933440	 ldr         r3, [r3, #0x440]
   0003c	e3130001	 tst         r3, #1
-  00040	0a00000a	 beq         |$cleanUp$36129|
+  00040	0a00000a	 beq         |$cleanUp$36109|
   00044	e59f0034	 ldr         r0, [pc, #0x34]
   00048	eb000000	 bl          NKDbgPrintfW
 
-; 608  : 
-; 609  : cleanUp:
+; 545  : 
+; 546  : cleanUp:
 
-  0004c	ea000007	 b           |$cleanUp$36129|
+  0004c	ea000007	 b           |$cleanUp$36109|
   00050		 |$LN2@TLD_Open|
 
-; 594  : 
-; 595  :         goto cleanUp;
-; 596  :         }
-; 597  : 
-; 598  :     // increment device refCount
-; 599  :     InterlockedIncrement(&pDevice->refCount);
+; 531  : 
+; 532  :         goto cleanUp;
+; 533  : 	}
+; 534  : 
+; 535  :     // increment device refCount
+; 536  :     InterlockedIncrement(&pDevice->refCount);
 
   00050	e285001c	 add         r0, r5, #0x1C
   00054	eb000000	 bl          InterlockedIncrement
 
-; 600  : 
-; 601  :     // initialize data structure
-; 602  :     pInstance->cookie = TLED_INSTANCE_COOKIE;
+; 537  : 
+; 538  :     // initialize data structure
+; 539  :     pInstance->cookie = TLED_INSTANCE_COOKIE;
 
   00058	e59f301c	 ldr         r3, [pc, #0x1C]
 
-; 603  :     pInstance->pDevice = pDevice;
-; 604  :     pInstance->channel = (DWORD) -1;
+; 540  :     pInstance->pDevice = pDevice;
+; 541  :     pInstance->channel = (DWORD) -1;
 
   0005c	e3e02000	 mvn         r2, #0
   00060	e5862008	 str         r2, [r6, #8]
   00064	e8860028	 stmia       r6, {r3, r5}
 
-; 605  :     pInstance->dutyCycle = (DWORD) -1;
+; 542  :     pInstance->dutyCycle = (DWORD) -1;
 
   00068	e586200c	 str         r2, [r6, #0xC]
 
-; 606  : 
-; 607  :     dw = (DWORD)pInstance;
+; 543  : 
+; 544  :     dw = (DWORD)pInstance;
 
   0006c	e1a04006	 mov         r4, r6
-  00070		 |$cleanUp$36129|
+  00070		 |$cleanUp$36109|
 
-; 610  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_Open(0x%08x, 0x%08x, 0x%08x) == %d\r\n", 
-; 611  :         context, accessCode, shareMode, dw
-; 612  :         ));
-; 613  : 
-; 614  :     return dw;
-; 615  : }
+; 547  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_Open(0x%08x, 0x%08x, 0x%08x) == %d\r\n", 
+; 548  :         context, accessCode, shareMode, dw));
+; 549  : 
+; 550  :     return dw;
+; 551  : }
 
   00070	e1a00004	 mov         r0, r4
   00074	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
@@ -1401,7 +1369,7 @@
   00084	00000000	 DCD         |dpCurSettings|
   00088		 |$LN17@TLD_Open|
   00088	746c6444	 DCD         0x746c6444
-  0008c		 |$M36440|
+  0008c		 |$M36456|
 
 			 ENDP  ; |?TLD_Open@@YAKKKK@Z|, TLD_Open
 
@@ -1410,7 +1378,7 @@
 	IMPORT	|InterlockedDecrement|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36460| DCD	|$LN10@TLD_Close|
+|$T36476| DCD	|$LN10@TLD_Close|
 	DCD	0x40001701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1433,71 +1401,71 @@
 
   00000		 |?TLD_Close@@YAHK@Z| PROC		; TLD_Close
 
-; 627  : {
+; 563  : {
 
   00000		 |$LN10@TLD_Close|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36457|
+  00004		 |$M36473|
 
-; 628  :     DEBUGMSG(ZONE_FUNCTION, (L"+TLD_Close(0x%08x)\r\n", 
-; 629  :         context
-; 630  :         ));
-; 631  : 
-; 632  :     Instance_t *pInstance = (Instance_t*)context;
-; 633  :     Device_t *pDevice = pInstance->pDevice;
-; 634  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
+; 564  :     DEBUGMSG(ZONE_FUNCTION, (L"+TLD_Close(0x%08x)\r\n", 
+; 565  :         context
+; 566  :         ));
+; 567  : 
+; 568  :     Instance_t *pInstance = (Instance_t*)context;
+; 569  :     Device_t *pDevice = pInstance->pDevice;
+; 570  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
 
   00004	e5902000	 ldr         r2, [r0]
   00008	e59f3048	 ldr         r3, [pc, #0x48]
   0000c	e5904004	 ldr         r4, [r0, #4]
   00010	e1520003	 cmp         r2, r3
-  00014	1a00000a	 bne         |$cleanUp$36150|
+  00014	1a00000a	 bne         |$cleanUp$36130|
 
-; 635  :         {
-; 636  :         DEBUGMSG (ZONE_ERROR, (L"TLD: !ERROR(TLD_Close) - "
-; 637  :             L"Incorrect context parameter\r\n"
-; 638  :             ));
-; 639  :         goto cleanUp;
-; 640  :         }
-; 641  : 
-; 642  :     // release memory
-; 643  :     LocalFree(pInstance);
+; 571  :         {
+; 572  :         DEBUGMSG (ZONE_ERROR, (L"TLD: !ERROR(TLD_Close) - "
+; 573  :             L"Incorrect context parameter\r\n"
+; 574  :             ));
+; 575  :         goto cleanUp;
+; 576  :         }
+; 577  : 
+; 578  :     // release memory
+; 579  :     LocalFree(pInstance);
 
   00018	eb000000	 bl          LocalFree
 
-; 644  : 
-; 645  :     // decrement device refCount
-; 646  :     InterlockedDecrement(&pDevice->refCount);
+; 580  : 
+; 581  :     // decrement device refCount
+; 582  :     InterlockedDecrement(&pDevice->refCount);
 
   0001c	e284001c	 add         r0, r4, #0x1C
   00020	eb000000	 bl          InterlockedDecrement
 
-; 647  : 
-; 648  :     RETAILMSG(ZONE_ERROR && !pDevice->refCount, (L"TLD: !ERROR(TLD_Close) - "
-; 649  :         L"refCount is zero on close of instance handle\r\n"
-; 650  :         ));
+; 583  : 
+; 584  :     RETAILMSG(ZONE_ERROR && !pDevice->refCount, (L"TLD: !ERROR(TLD_Close) - "
+; 585  :         L"refCount is zero on close of instance handle\r\n"
+; 586  :         ));
 
   00024	e59f3028	 ldr         r3, [pc, #0x28]
   00028	e5933440	 ldr         r3, [r3, #0x440]
   0002c	e3130001	 tst         r3, #1
-  00030	0a000003	 beq         |$cleanUp$36150|
+  00030	0a000003	 beq         |$cleanUp$36130|
   00034	e594301c	 ldr         r3, [r4, #0x1C]
   00038	e3530000	 cmp         r3, #0
   0003c	059f000c	 ldreq       r0, [pc, #0xC]
   00040	0b000000	 bleq        NKDbgPrintfW
-  00044		 |$cleanUp$36150|
+  00044		 |$cleanUp$36130|
 
-; 651  : 
-; 652  : cleanUp:
-; 653  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_Close(0x%08x)\r\n", 
-; 654  :         context
-; 655  :         ));
-; 656  : 
-; 657  :     return TRUE;
+; 587  : 
+; 588  : cleanUp:
+; 589  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_Close(0x%08x)\r\n", 
+; 590  :         context
+; 591  :         ));
+; 592  : 
+; 593  :     return TRUE;
 
   00044	e3a00001	 mov         r0, #1
 
-; 658  : }
+; 594  : }
 
   00048	e8bd4010	 ldmia       sp!, {r4, lr}
   0004c	e12fff1e	 bx          lr
@@ -1508,7 +1476,7 @@
   00054	00000000	 DCD         |dpCurSettings|
   00058		 |$LN14@TLD_Close|
   00058	746c6449	 DCD         0x746c6449
-  0005c		 |$M36458|
+  0005c		 |$M36474|
 
 			 ENDP  ; |?TLD_Close@@YAHK@Z|, TLD_Close
 
@@ -1521,7 +1489,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36496| DCD	|$LN31@TLD_IOCont|
+|$T36512| DCD	|$LN31@TLD_IOCont|
 	DCD	0x40005202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1565,31 +1533,30 @@
 
   00000		 |?TLD_IOControl@@YAHKKPAEK0KPAK@Z| PROC ; TLD_IOControl
 
-; 673  : {
+; 609  : {
 
   00000		 |$LN31@TLD_IOCont|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M36493|
+  00008		 |$M36509|
   00008	e1a07003	 mov         r7, r3
   0000c	e1a06002	 mov         r6, r2
   00010	e1b08000	 movs        r8, r0
 
-; 674  :     BOOL rc = FALSE;
+; 610  :     BOOL rc = FALSE;
 
   00014	e3a05000	 mov         r5, #0
 
-; 675  :     DEVICE_IFC_TLED ifc;
-; 676  :     Instance_t *pInstance = (Instance_t*)context;
-; 677  :     
-; 678  : 
-; 679  :     DEBUGMSG(ZONE_FUNCTION, (
-; 680  :         L"+TLD_IOControl(0x%08x, 0x%08x, 0x%08x, %d, 0x%08x, %d, 0x%08x)\r\n",
-; 681  :         context, code, pInBuffer, inSize, pOutBuffer, outSize, pOutSize
-; 682  :         ));
-; 683  : 
-; 684  :     // Check if we get correct context
-; 685  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
+; 611  :     DEVICE_IFC_TLED ifc;
+; 612  :     Instance_t *pInstance = (Instance_t*)context;
+; 613  :     
+; 614  : 
+; 615  :     DEBUGMSG(ZONE_FUNCTION, (
+; 616  :         L"+TLD_IOControl(0x%08x, 0x%08x, 0x%08x, %d, 0x%08x, %d, 0x%08x)\r\n",
+; 617  :         context, code, pInBuffer, inSize, pOutBuffer, outSize, pOutSize));
+; 618  : 
+; 619  :     // Check if we get correct context
+; 620  :     if ((pInstance == NULL) || (pInstance->cookie != TLED_INSTANCE_COOKIE))
 
   00018	0a00003a	 beq         |$LN13@TLD_IOCont|
   0001c	e5984000	 ldr         r4, [r8]
@@ -1598,19 +1565,19 @@
   00028	1a000036	 bne         |$LN13@TLD_IOCont|
   0002c	e3a03822	 mov         r3, #0x22, 16
 
-; 690  :         goto cleanUp;
-; 691  :         }
-; 692  : 
-; 693  :     switch (code)
+; 624  :         goto cleanUp;
+; 625  : 	}
+; 626  : 
+; 627  :     switch (code)
 
   00030	e383eb01	 orr         lr, r3, #1, 22
   00034	e151000e	 cmp         r1, lr
-  00038	1a000037	 bne         |$cleanUp$36171|
+  00038	1a000037	 bne         |$cleanUp$36151|
 
-; 694  :         {
-; 695  :         case IOCTL_DDK_GET_DRIVER_IFC:
-; 696  :             // We can give interface only to our peer in device process
-; 697  :             if (GetCurrentProcessId() != (DWORD)GetCallerProcess())
+; 628  : 	{
+; 629  :         case IOCTL_DDK_GET_DRIVER_IFC:
+; 630  :             // We can give interface only to our peer in device process
+; 631  :             if (GetCurrentProcessId() != (DWORD)GetCallerProcess())
 
   0003c	e3a0000c	 mov         r0, #0xC
   00040	eb000000	 bl          __GetUserKData
@@ -1619,12 +1586,12 @@
   0004c	e1540000	 cmp         r4, r0
   00050	0a00000a	 beq         |$LN8@TLD_IOCont|
 
-; 698  :                 {
-; 699  :                 RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_IOControl: "
-; 700  :                     L"IOCTL_DDK_GET_DRIVER_IFC can be called only from "
-; 701  :                     L"device process (caller process id 0x%08x)\r\n",
-; 702  :                     GetCallerProcess()
-; 703  :                     ));
+; 632  :                 {
+; 633  :                 RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_IOControl: "
+; 634  :                     L"IOCTL_DDK_GET_DRIVER_IFC can be called only from "
+; 635  :                     L"device process (caller process id 0x%08x)\r\n",
+; 636  :                     GetCallerProcess()
+; 637  :                     ));
 
   00054	e59f30d4	 ldr         r3, [pc, #0xD4]
   00058	e5933440	 ldr         r3, [r3, #0x440]
@@ -1636,39 +1603,39 @@
   00070	eb000000	 bl          NKDbgPrintfW
   00074		 |$LN19@TLD_IOCont|
 
-; 704  :                 SetLastError(ERROR_ACCESS_DENIED);
+; 638  :                 SetLastError(ERROR_ACCESS_DENIED);
 
   00074	e3a00005	 mov         r0, #5
 
-; 709  :                 {
-; 710  :                 SetLastError(ERROR_INVALID_PARAMETER);
+; 643  :                 {
+; 644  :                 SetLastError(ERROR_INVALID_PARAMETER);
 
   00078	eb000000	 bl          SetLastError
 
-; 730  :                 break;
-; 731  :                 }
-; 732  :             SetLastError(ERROR_INVALID_PARAMETER);
-; 733  :             break;
-; 734  :         }
-; 735  : 
-; 736  : cleanUp:
+; 664  :                 break;
+; 665  :                 }
+; 666  :             SetLastError(ERROR_INVALID_PARAMETER);
+; 667  :             break;
+; 668  : 	}
+; 669  : 
+; 670  : cleanUp:
 
-  0007c	ea000026	 b           |$cleanUp$36171|
+  0007c	ea000026	 b           |$cleanUp$36151|
   00080		 |$LN8@TLD_IOCont|
 
-; 705  :                 break;
-; 706  :                 }
-; 707  :             // Check input parameters
-; 708  :             if ((pInBuffer == NULL) || (inSize < sizeof(GUID)))
+; 639  :                 break;
+; 640  :                 }
+; 641  :             // Check input parameters
+; 642  :             if ((pInBuffer == NULL) || (inSize < sizeof(GUID)))
 
   00080	e3560000	 cmp         r6, #0
   00084	0a00001c	 beq         |$LN6@TLD_IOCont|
   00088	e3570010	 cmp         r7, #0x10
   0008c	3a00001a	 bcc         |$LN6@TLD_IOCont|
 
-; 711  :                 break;
-; 712  :                 }
-; 713  :             if (IsEqualGUID(*(GUID*)pInBuffer, DEVICE_IFC_TLED_GUID))
+; 645  :                 break;
+; 646  :                 }
+; 647  :             if (IsEqualGUID(*(GUID*)pInBuffer, DEVICE_IFC_TLED_GUID))
 
   00090	e59f10a4	 ldr         r1, [pc, #0xA4]
   00094	e3a02010	 mov         r2, #0x10
@@ -1677,12 +1644,12 @@
   000a0	e3500000	 cmp         r0, #0
   000a4	1a000014	 bne         |$LN6@TLD_IOCont|
 
-; 714  :                 {
-; 715  :                 if (pOutSize != NULL) *pOutSize = sizeof(DEVICE_IFC_TLED);
+; 648  :                 {
+; 649  :                 if (pOutSize != NULL) *pOutSize = sizeof(DEVICE_IFC_TLED);
 
   000a8	e59d302c	 ldr         r3, [sp, #0x2C]
 
-; 716  :                 if (pOutBuffer == NULL || outSize < sizeof(DEVICE_IFC_TLED))
+; 650  :                 if (pOutBuffer == NULL || outSize < sizeof(DEVICE_IFC_TLED))
 
   000ac	e59d0024	 ldr         r0, [sp, #0x24]
   000b0	e3530000	 cmp         r3, #0
@@ -1694,18 +1661,18 @@
   000c8	e353000c	 cmp         r3, #0xC
   000cc	3a00000a	 bcc         |$LN6@TLD_IOCont|
 
-; 717  :                     {
-; 718  :                     SetLastError(ERROR_INVALID_PARAMETER);
-; 719  :                     break;
-; 720  :                     }
-; 721  :                 ifc.context = context;
-; 722  :                 ifc.pfnSetChannel = SetChannel;
-; 723  :                 ifc.pfnSetDutyCycle = SetDutyCycle;
+; 651  :                     {
+; 652  :                     SetLastError(ERROR_INVALID_PARAMETER);
+; 653  :                     break;
+; 654  :                     }
+; 655  :                 ifc.context = context;
+; 656  :                 ifc.pfnSetChannel = SetChannel;
+; 657  :                 ifc.pfnSetDutyCycle = SetDutyCycle;
 
   000d0	e59f1060	 ldr         r1, [pc, #0x60]
   000d4	e59f3058	 ldr         r3, [pc, #0x58]
 
-; 724  :                 if (!CeSafeCopyMemory(pOutBuffer, &ifc, sizeof(DEVICE_IFC_TLED)))
+; 658  :                 if (!CeSafeCopyMemory(pOutBuffer, &ifc, sizeof(DEVICE_IFC_TLED)))
 
   000d8	e3a0200c	 mov         r2, #0xC
   000dc	e58d1008	 str         r1, [sp, #8]
@@ -1715,49 +1682,48 @@
   000ec	eb000000	 bl          CeSafeCopyMemory
   000f0	e3500000	 cmp         r0, #0
 
-; 725  :                     {
-; 726  :                     SetLastError(ERROR_INVALID_PARAMETER);
-; 727  :                     break;
-; 728  :                     }
-; 729  :                 rc = TRUE;
+; 659  :                     {
+; 660  :                     SetLastError(ERROR_INVALID_PARAMETER);
+; 661  :                     break;
+; 662  :                     }
+; 663  :                 rc = TRUE;
 
   000f4	13a05001	 movne       r5, #1
-  000f8	1a000007	 bne         |$cleanUp$36171|
+  000f8	1a000007	 bne         |$cleanUp$36151|
   000fc		 |$LN6@TLD_IOCont|
 
-; 709  :                 {
-; 710  :                 SetLastError(ERROR_INVALID_PARAMETER);
+; 643  :                 {
+; 644  :                 SetLastError(ERROR_INVALID_PARAMETER);
 
   000fc	e3a00057	 mov         r0, #0x57
   00100	eb000000	 bl          SetLastError
 
-; 730  :                 break;
-; 731  :                 }
-; 732  :             SetLastError(ERROR_INVALID_PARAMETER);
-; 733  :             break;
-; 734  :         }
-; 735  : 
-; 736  : cleanUp:
+; 664  :                 break;
+; 665  :                 }
+; 666  :             SetLastError(ERROR_INVALID_PARAMETER);
+; 667  :             break;
+; 668  : 	}
+; 669  : 
+; 670  : cleanUp:
 
-  00104	ea000004	 b           |$cleanUp$36171|
+  00104	ea000004	 b           |$cleanUp$36151|
   00108		 |$LN13@TLD_IOCont|
 
-; 686  :         {
-; 687  :         RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_IOControl: "
-; 688  :             L"Incorrect context parameter\r\n"
-; 689  :             ));
+; 621  : 	{
+; 622  :         RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_IOControl: "
+; 623  :             L"Incorrect context parameter\r\n"));
 
   00108	e59f3020	 ldr         r3, [pc, #0x20]
   0010c	e5933440	 ldr         r3, [r3, #0x440]
   00110	e3130001	 tst         r3, #1
   00114	159f0010	 ldrne       r0, [pc, #0x10]
   00118	1b000000	 blne        NKDbgPrintfW
-  0011c		 |$cleanUp$36171|
+  0011c		 |$cleanUp$36151|
 
-; 737  : 
-; 738  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_IOControl(rc = %d)\r\n", rc));
-; 739  :     return rc;
-; 740  : }
+; 671  : 
+; 672  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_IOControl(rc = %d)\r\n", rc));
+; 673  :     return rc;
+; 674  : }
 
   0011c	e1a00005	 mov         r0, r5
   00120	e28dd00c	 add         sp, sp, #0xC
@@ -1778,16 +1744,107 @@
   00140	00000000	 DCD         |??_C@_1OG@JPDIKJHA@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAO?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AA?3?$AA?5?$AAI?$AAO?$AAC?$AAT?$AAL?$AA_?$AAD?$AAD?$AAK?$AA_@|
   00144		 |$LN39@TLD_IOCont|
   00144	746c6449	 DCD         0x746c6449
-  00148		 |$M36494|
+  00148		 |$M36510|
 
 			 ENDP  ; |?TLD_IOControl@@YAHKKPAEK0KPAK@Z|, TLD_IOControl
+
+	EXPORT	|?TLD_PowerUp@@YAXK@Z|			; TLD_PowerUp
+	EXPORT	|??_C@_1CC@DHEJEDNO@?$AAT?$AAL?$AAD?$AA_?$AAP?$AAo?$AAw?$AAe?$AAr?$AAU?$AAp?$AA?$CI?$AA?$CJ?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T36529| DCD	|$LN7@TLD_PowerU|
+	DCD	0x40000601
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CC@DHEJEDNO@?$AAT?$AAL?$AAD?$AA_?$AAP?$AAo?$AAw?$AAe?$AAr?$AAU?$AAp?$AA?$CI?$AA?$CJ?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, "_", 0x0, "P", 0x0, "o", 0x0, "w"
+	DCB	0x0, "e", 0x0, "r", 0x0, "U", 0x0, "p", 0x0, "(", 0x0, ")"
+	DCB	0x0, ".", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |?TLD_PowerUp@@YAXK@Z| PROC		; TLD_PowerUp
+
+; 678  : {
+
+  00000		 |$LN7@TLD_PowerU|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M36526|
+
+; 679  : 	UNREFERENCED_PARAMETER(context);
+; 680  : 	//Instance_t *pInstance = (Instance_t*)context;
+; 681  : 	
+; 682  :     RETAILMSG(1, (TEXT("TLD_PowerUp().\r\n")));
+
+  00004	e59f0008	 ldr         r0, [pc, #8]
+  00008	eb000000	 bl          NKDbgPrintfW
+
+; 683  :     
+; 684  :     
+; 685  :     //EnableLed(pInstance->pDevice);
+; 686  : }
+
+  0000c	e49de004	 ldr         lr, [sp], #4
+  00010	e12fff1e	 bx          lr
+  00014		 |$LN8@TLD_PowerU|
+  00014		 |$LN9@TLD_PowerU|
+  00014	00000000	 DCD         |??_C@_1CC@DHEJEDNO@?$AAT?$AAL?$AAD?$AA_?$AAP?$AAo?$AAw?$AAe?$AAr?$AAU?$AAp?$AA?$CI?$AA?$CJ?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
+  00018		 |$M36527|
+
+			 ENDP  ; |?TLD_PowerUp@@YAXK@Z|, TLD_PowerUp
+
+	EXPORT	|?TLD_PowerDown@@YAXK@Z|		; TLD_PowerDown
+	EXPORT	|??_C@_1CE@GOKMJBIM@?$AAT?$AAL?$AAD?$AA_?$AAP?$AAo?$AAw?$AAe?$AAr?$AAD?$AAo?$AAw?$AAn?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T36540| DCD	|$LN7@TLD_PowerD|
+	DCD	0x40000601
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CE@GOKMJBIM@?$AAT?$AAL?$AAD?$AA_?$AAP?$AAo?$AAw?$AAe?$AAr?$AAD?$AAo?$AAw?$AAn?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "T"
+	DCB	0x0, "L", 0x0, "D", 0x0, "_", 0x0, "P", 0x0, "o", 0x0, "w"
+	DCB	0x0, "e", 0x0, "r", 0x0, "D", 0x0, "o", 0x0, "w", 0x0, "n"
+	DCB	0x0, "(", 0x0, ")", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |?TLD_PowerDown@@YAXK@Z| PROC		; TLD_PowerDown
+
+; 690  : {
+
+  00000		 |$LN7@TLD_PowerD|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M36537|
+
+; 691  : 	UNREFERENCED_PARAMETER(context);
+; 692  : 	//Instance_t *pInstance = (Instance_t*)context;
+; 693  : 	
+; 694  :     RETAILMSG(1, (TEXT("TLD_PowerDown()\r\n")));
+
+  00004	e59f0008	 ldr         r0, [pc, #8]
+  00008	eb000000	 bl          NKDbgPrintfW
+
+; 695  :     
+; 696  :     //DisableLed(pInstance->pDevice);
+; 697  : }
+
+  0000c	e49de004	 ldr         lr, [sp], #4
+  00010	e12fff1e	 bx          lr
+  00014		 |$LN8@TLD_PowerD|
+  00014		 |$LN9@TLD_PowerD|
+  00014	00000000	 DCD         |??_C@_1CE@GOKMJBIM@?$AAT?$AAL?$AAD?$AA_?$AAP?$AAo?$AAw?$AAe?$AAr?$AAD?$AAo?$AAw?$AAn?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  00018		 |$M36538|
+
+			 ENDP  ; |?TLD_PowerDown@@YAXK@Z|, TLD_PowerDown
 
 	EXPORT	|DllMain|
 	IMPORT	|DisableThreadLibraryCalls|
 	IMPORT	|RegisterDbgZones|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36515| DCD	|$LN8@DllMain|
+|$T36553| DCD	|$LN8@DllMain|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -1795,59 +1852,68 @@
 
   00000		 |DllMain| PROC
 
-; 751  : {
+; 706  : {
 
   00000		 |$LN8@DllMain|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36512|
+  00004		 |$M36550|
   00004	e1a04000	 mov         r4, r0
 
-; 752  :     UNREFERENCED_PARAMETER(pReserved);
-; 753  :     switch(Reason) 
+; 707  :     UNREFERENCED_PARAMETER(pReserved);
+; 708  :     switch(Reason) 
 
   00008	e3510001	 cmp         r1, #1
   0000c	1a000003	 bne         |$LN2@DllMain|
 
-; 754  :         {
-; 755  :         case DLL_PROCESS_ATTACH:
-; 756  :             RETAILREGISTERZONES((HMODULE)hDLL);
+; 709  :         {
+; 710  :         case DLL_PROCESS_ATTACH:
+; 711  :             RETAILREGISTERZONES((HMODULE)hDLL);
 
   00010	e59f1014	 ldr         r1, [pc, #0x14]
   00014	eb000000	 bl          RegisterDbgZones
 
-; 757  :             DisableThreadLibraryCalls((HMODULE)hDLL);
+; 712  :             DisableThreadLibraryCalls((HMODULE)hDLL);
 
   00018	e1a00004	 mov         r0, r4
   0001c	eb000000	 bl          DisableThreadLibraryCalls
   00020		 |$LN2@DllMain|
 
-; 758  :             break;
-; 759  :         }
-; 760  :     return TRUE;
+; 713  :             break;
+; 714  :         }
+; 715  :     return TRUE;
 
   00020	e3a00001	 mov         r0, #1
 
-; 761  : }
+; 716  : }
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
   0002c		 |$LN9@DllMain|
   0002c		 |$LN10@DllMain|
   0002c	00000000	 DCD         |dpCurSettings|
-  00030		 |$M36513|
+  00030		 |$M36551|
 
 			 ENDP  ; |DllMain|
 
 	EXPORT	|?TLD_Init@@YAKPBGPBX@Z|		; TLD_Init
+	EXPORT	|??_C@_1CI@EECKNKAE@?$AA?9?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GI@OFBLHIJO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAo?$AAp?$AAe?$AAn?$AA?5?$AAT?$AAr?$AAi@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HO@KHCEBHIB@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAa?$AAl?$AAl?$AAo?$AAc?$AAa?$AAt?$AAe@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DA@GLLBLDJ@?$AA?$CL?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AA?$CF?$AAs?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|TWLOpen|
 	IMPORT	|InitializeCriticalSection|
 	IMPORT	|GetDeviceRegistryParams|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36535| DCD	|$LN20@TLD_Init|
-	DCD	0x40003501
+|$T36578| DCD	|$LN24@TLD_Init|
+	DCD	0x40003e01
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CI@EECKNKAE@?$AA?9?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "-"
+	DCB	0x0, "T", 0x0, "L", 0x0, "D", 0x0, "_", 0x0, "I", 0x0, "n"
+	DCB	0x0, "i", 0x0, "t", 0x0, "(", 0x0, "r", 0x0, "c", 0x0, " "
+	DCB	0x0, "=", 0x0, " ", 0x0, "%", 0x0, "d", 0x0, 0xd, 0x0, 0xa
+	DCB	0x0, 0x0, 0x0				; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GI@OFBLHIJO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAo?$AAp?$AAe?$AAn?$AA?5?$AAT?$AAr?$AAi@| DCB "E"
@@ -1874,183 +1940,200 @@
 	DCB	0x0, "r", 0x0, " ", 0x0, "s", 0x0, "t", 0x0, "r", 0x0, "u"
 	DCB	0x0, "c", 0x0, "t", 0x0, "u", 0x0, "r", 0x0, "e", 0x0, 0xd
 	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DA@GLLBLDJ@?$AA?$CL?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AA?$CF?$AAs?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "+"
+	DCB	0x0, "T", 0x0, "L", 0x0, "D", 0x0, "_", 0x0, "I", 0x0, "n"
+	DCB	0x0, "i", 0x0, "t", 0x0, "(", 0x0, "%", 0x0, "s", 0x0, ","
+	DCB	0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8"
+	DCB	0x0, "x", 0x0, ")", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |?TLD_Init@@YAKPBGPBX@Z| PROC		; TLD_Init
 
-; 431  : {
+; 376  : {
 
-  00000		 |$LN20@TLD_Init|
+  00000		 |$LN24@TLD_Init|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M36532|
-  00004	e1a06000	 mov         r6, r0
+  00004		 |$M36575|
+  00004	e1a02001	 mov         r2, r1
+  00008	e1a06000	 mov         r6, r0
 
-; 432  :     DWORD rc = (DWORD)NULL;
-; 433  :     Device_t *pDevice;
-; 434  : 
-; 435  :     UNREFERENCED_PARAMETER(pBusContext);
+; 377  :     DWORD rc = (DWORD)NULL;
+; 378  :     Device_t *pDevice;
+; 379  : 
+; 380  :     UNREFERENCED_PARAMETER(pBusContext);
+; 381  : 
+; 382  :     RETAILMSG(1, (L"+TLD_Init(%s, 0x%08x)\r\n", szContext, pBusContext));
+
+  0000c	e59f00e0	 ldr         r0, [pc, #0xE0]
+  00010	e1a01006	 mov         r1, r6
+  00014	e3a05000	 mov         r5, #0
+  00018	eb000000	 bl          NKDbgPrintfW
+
+; 383  : 
+; 384  :     // Create device structure
+; 385  :     pDevice = (Device_t *)LocalAlloc(LPTR, sizeof(Device_t));
+
+  0001c	e3a0102c	 mov         r1, #0x2C
+  00020	e3a00040	 mov         r0, #0x40
+  00024	eb000000	 bl          LocalAlloc
+  00028	e1b04000	 movs        r4, r0
+
+; 386  :     if (pDevice == NULL)
+
+  0002c	1a00000d	 bne         |$LN9@TLD_Init|
+
+; 387  : 	{
+; 388  :         RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_Init: "
+; 389  :             L"Failed allocate Triton LED driver structure\r\n"));
+
+  00030	e59f30a8	 ldr         r3, [pc, #0xA8]
+  00034	e5933440	 ldr         r3, [r3, #0x440]
+  00038	e3130001	 tst         r3, #1
+  0003c	0a000001	 beq         |$LN20@TLD_Init|
+  00040	e59f00a8	 ldr         r0, [pc, #0xA8]
+  00044		 |$LN21@TLD_Init|
+  00044	eb000000	 bl          NKDbgPrintfW
+  00048		 |$LN20@TLD_Init|
+
+; 435  :     if (rc == 0) TLD_Deinit((DWORD)pDevice);
+
+  00048	e1a00004	 mov         r0, r4
+  0004c	eb000000	 bl          |?TLD_Deinit@@YAHK@Z|
+  00050		 |$LN1@TLD_Init|
+
 ; 436  : 
-; 437  :     DEBUGMSG(ZONE_FUNCTION, (
-; 438  :         L"+TLD_Init(%s, 0x%08x)\r\n", szContext, pBusContext
-; 439  :         ));
-; 440  : 
-; 441  :     // Create device structure
-; 442  :     pDevice = (Device_t *)LocalAlloc(LPTR, sizeof(Device_t));
+; 437  :     RETAILMSG(1, (L"-TLD_Init(rc = %d\r\n", rc));
 
-  00008	e3a0102c	 mov         r1, #0x2C
-  0000c	e3a00040	 mov         r0, #0x40
-  00010	e3a05000	 mov         r5, #0
-  00014	eb000000	 bl          LocalAlloc
-  00018	e1b04000	 movs        r4, r0
+  00050	e59f0094	 ldr         r0, [pc, #0x94]
+  00054	e1a01005	 mov         r1, r5
+  00058	eb000000	 bl          NKDbgPrintfW
 
-; 443  :     if (pDevice == NULL)
+; 438  :     return rc;
+; 439  : }
 
-  0001c	1a00000a	 bne         |$LN9@TLD_Init|
+  0005c	e1a00005	 mov         r0, r5
+  00060	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
+  00064	e12fff1e	 bx          lr
+  00068		 |$LN9@TLD_Init|
 
-; 444  :         {
-; 445  :         RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_Init: "
-; 446  :             L"Failed allocate Triton LED driver structure\r\n"
-; 447  :             ));
+; 390  : 
+; 391  :         goto cleanUp;
+; 392  : 	}
+; 393  : 
+; 394  :     // Read device parameters
+; 395  :     if (GetDeviceRegistryParams(
+; 396  :             szContext, pDevice, dimof(s_deviceRegParams), s_deviceRegParams
+; 397  :             ) != ERROR_SUCCESS)
 
-  00020	e59f309c	 ldr         r3, [pc, #0x9C]
-  00024	e5933440	 ldr         r3, [r3, #0x440]
-  00028	e3130001	 tst         r3, #1
-  0002c	0a000001	 beq         |$LN16@TLD_Init|
-  00030	e59f0098	 ldr         r0, [pc, #0x98]
-  00034		 |$LN17@TLD_Init|
-  00034	eb000000	 bl          NKDbgPrintfW
-  00038		 |$LN16@TLD_Init|
+  00068	e59f3078	 ldr         r3, [pc, #0x78]
+  0006c	e3a02002	 mov         r2, #2
+  00070	e1a01004	 mov         r1, r4
+  00074	e1a00006	 mov         r0, r6
+  00078	eb000000	 bl          GetDeviceRegistryParams
+  0007c	e3500000	 cmp         r0, #0
+  00080	1afffff0	 bne         |$LN20@TLD_Init|
 
-; 495  :     if (rc == 0) TLD_Deinit((DWORD)pDevice);
+; 398  : 	{
+; 399  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: TLD_Init: "
+; 400  :             L"Failed read Triton LED register values\r\n"));
+; 401  :         goto cleanUp;
+; 402  : 	}
+; 403  : 
+; 404  :     // Set cookie
+; 405  :     pDevice->cookie = TLED_DEVICE_COOKIE;
 
-  00038	e1a00004	 mov         r0, r4
-  0003c	eb000000	 bl          |?TLD_Deinit@@YAHK@Z|
-  00040		 |$LN1@TLD_Init|
+  00084	e59f3058	 ldr         r3, [pc, #0x58]
 
-; 496  : 
-; 497  :     DEBUGMSG(ZONE_FUNCTION, (L"-TLD_Init(rc = %d\r\n", rc));
-; 498  :     return rc;
-; 499  : }
+; 406  : 
+; 407  :     // new instance always starts with a refCount of 1
+; 408  :     pDevice->refCount = 1;
 
-  00040	e1a00005	 mov         r0, r5
-  00044	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  00048	e12fff1e	 bx          lr
-  0004c		 |$LN9@TLD_Init|
+  00088	e3a02001	 mov         r2, #1
 
-; 448  : 
-; 449  :         goto cleanUp;
-; 450  :         }
-; 451  : 
-; 452  :     // Read device parameters
-; 453  :     if (GetDeviceRegistryParams(
-; 454  :             szContext, pDevice, dimof(s_deviceRegParams), s_deviceRegParams
-; 455  :             ) != ERROR_SUCCESS)
+; 409  : 
+; 410  :     // Initialize critical sections
+; 411  :     InitializeCriticalSection(&pDevice->cs);
 
-  0004c	e59f3078	 ldr         r3, [pc, #0x78]
-  00050	e3a02002	 mov         r2, #2
-  00054	e1a01004	 mov         r1, r4
-  00058	e1a00006	 mov         r0, r6
-  0005c	eb000000	 bl          GetDeviceRegistryParams
-  00060	e3500000	 cmp         r0, #0
-  00064	1afffff3	 bne         |$LN16@TLD_Init|
+  0008c	e2840004	 add         r0, r4, #4
+  00090	e5843000	 str         r3, [r4]
+  00094	e584201c	 str         r2, [r4, #0x1C]
+  00098	eb000000	 bl          InitializeCriticalSection
 
-; 456  :         {
-; 457  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: TLD_Init: "
-; 458  :             L"Failed read Triton LED register values\r\n"
-; 459  :             ));
-; 460  :         goto cleanUp;
-; 461  :         }
-; 462  : 
-; 463  :     // Set cookie
-; 464  :     pDevice->cookie = TLED_DEVICE_COOKIE;
+; 412  : 
+; 413  :     // Open Triton device driver
+; 414  :     pDevice->hTWL = TWLOpen();
 
-  00068	e59f3058	 ldr         r3, [pc, #0x58]
+  0009c	eb000000	 bl          TWLOpen
+  000a0	e3500000	 cmp         r0, #0
+  000a4	e5840018	 str         r0, [r4, #0x18]
 
-; 465  : 
-; 466  :     // new instance always starts with a refCount of 1
-; 467  :     pDevice->refCount = 1;
+; 415  :     if ( pDevice->hTWL == NULL )
 
-  0006c	e3a02001	 mov         r2, #1
+  000a8	1a000005	 bne         |$LN5@TLD_Init|
 
-; 468  : 
-; 469  :     // Initialize critical sections
-; 470  :     InitializeCriticalSection(&pDevice->cs);
+; 416  : 	{
+; 417  :         RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_Init: "
+; 418  :             L"Failed open Triton device driver\r\n"));
 
-  00070	e2840004	 add         r0, r4, #4
-  00074	e5843000	 str         r3, [r4]
-  00078	e584201c	 str         r2, [r4, #0x1C]
-  0007c	eb000000	 bl          InitializeCriticalSection
+  000ac	e59f302c	 ldr         r3, [pc, #0x2C]
+  000b0	e5933440	 ldr         r3, [r3, #0x440]
+  000b4	e3130001	 tst         r3, #1
+  000b8	0affffe2	 beq         |$LN20@TLD_Init|
+  000bc	e59f0018	 ldr         r0, [pc, #0x18]
 
-; 471  : 
-; 472  :     // Open Triton device driver
-; 473  :     pDevice->hTWL = TWLOpen();
+; 433  : 
+; 434  : cleanUp:
 
-  00080	eb000000	 bl          TWLOpen
-  00084	e3500000	 cmp         r0, #0
-  00088	e5840018	 str         r0, [r4, #0x18]
+  000c0	eaffffdf	 b           |$LN21@TLD_Init|
+  000c4		 |$LN5@TLD_Init|
 
-; 474  :     if ( pDevice->hTWL == NULL )
+; 419  :         goto cleanUp;
+; 420  : 	}
+; 421  : 
+; 422  :     // initialize device with registry settings
+; 423  :     if (InitializeDevice(pDevice) == FALSE)
 
-  0008c	1a000005	 bne         |$LN5@TLD_Init|
+  000c4	e1a00004	 mov         r0, r4
+  000c8	eb000000	 bl          |?InitializeDevice@@YAHPAUDevice_t@@@Z|
+  000cc	e3500000	 cmp         r0, #0
+  000d0	0affffdc	 beq         |$LN20@TLD_Init|
 
-; 475  :         {
-; 476  :         RETAILMSG(ZONE_ERROR, (L"ERROR: TLD_Init: "
-; 477  :             L"Failed open Triton device driver\r\n"
-; 478  :             ));
+; 424  : 	{
+; 425  :         DEBUGMSG( ZONE_ERROR, (L"ERROR: TLD_Init: "
+; 426  :             L"Failed to initilialize Triton LED device\r\n"
+; 427  :             ));
+; 428  :         goto cleanUp;
+; 429  : 	}
+; 430  : 
+; 431  :     // Return non-null value
+; 432  :     rc = (DWORD)pDevice;
 
-  00090	e59f302c	 ldr         r3, [pc, #0x2C]
-  00094	e5933440	 ldr         r3, [r3, #0x440]
-  00098	e3130001	 tst         r3, #1
-  0009c	0affffe5	 beq         |$LN16@TLD_Init|
-  000a0	e59f0018	 ldr         r0, [pc, #0x18]
+  000d4	e1a05004	 mov         r5, r4
+  000d8		 |$cleanUp$36064|
 
-; 493  : 
-; 494  : cleanUp:
+; 435  :     if (rc == 0) TLD_Deinit((DWORD)pDevice);
 
-  000a4	eaffffe2	 b           |$LN17@TLD_Init|
-  000a8		 |$LN5@TLD_Init|
-
-; 479  :         goto cleanUp;
-; 480  :         }
-; 481  : 
-; 482  :     // initialize device with registry settings
-; 483  :     if (InitializeDevice(pDevice) == FALSE)
-
-  000a8	e1a00004	 mov         r0, r4
-  000ac	eb000000	 bl          |?InitializeDevice@@YAHPAUDevice_t@@@Z|
-  000b0	e3500000	 cmp         r0, #0
-  000b4	0affffdf	 beq         |$LN16@TLD_Init|
-
-; 484  :         {
-; 485  :         DEBUGMSG( ZONE_ERROR, (L"ERROR: TLD_Init: "
-; 486  :             L"Failed to initilialize Triton LED device\r\n"
-; 487  :             ));
-; 488  :         goto cleanUp;
-; 489  :         }
-; 490  : 
-; 491  :     // Return non-null value
-; 492  :     rc = (DWORD)pDevice;
-
-  000b8	e1a05004	 mov         r5, r4
-  000bc		 |$cleanUp$36084|
-
-; 495  :     if (rc == 0) TLD_Deinit((DWORD)pDevice);
-
-  000bc	eaffffdf	 b           |$LN1@TLD_Init|
-  000c0		 |$LN21@TLD_Init|
-  000c0		 |$LN22@TLD_Init|
-  000c0	00000000	 DCD         |??_C@_1GI@OFBLHIJO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAo?$AAp?$AAe?$AAn?$AA?5?$AAT?$AAr?$AAi@|
-  000c4		 |$LN23@TLD_Init|
-  000c4	00000000	 DCD         |dpCurSettings|
-  000c8		 |$LN24@TLD_Init|
-  000c8	746c6444	 DCD         0x746c6444
-  000cc		 |$LN25@TLD_Init|
-  000cc	00000000	 DCD         |s_deviceRegParams|
-  000d0		 |$LN26@TLD_Init|
-  000d0	00000000	 DCD         |??_C@_1HO@KHCEBHIB@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAa?$AAl?$AAl?$AAo?$AAc?$AAa?$AAt?$AAe@|
-  000d4		 |$M36533|
+  000d8	eaffffdc	 b           |$LN1@TLD_Init|
+  000dc		 |$LN25@TLD_Init|
+  000dc		 |$LN26@TLD_Init|
+  000dc	00000000	 DCD         |??_C@_1GI@OFBLHIJO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAo?$AAp?$AAe?$AAn?$AA?5?$AAT?$AAr?$AAi@|
+  000e0		 |$LN27@TLD_Init|
+  000e0	00000000	 DCD         |dpCurSettings|
+  000e4		 |$LN28@TLD_Init|
+  000e4	746c6444	 DCD         0x746c6444
+  000e8		 |$LN29@TLD_Init|
+  000e8	00000000	 DCD         |s_deviceRegParams|
+  000ec		 |$LN30@TLD_Init|
+  000ec	00000000	 DCD         |??_C@_1CI@EECKNKAE@?$AA?9?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  000f0		 |$LN31@TLD_Init|
+  000f0	00000000	 DCD         |??_C@_1HO@KHCEBHIB@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAa?$AAl?$AAl?$AAo?$AAc?$AAa?$AAt?$AAe@|
+  000f4		 |$LN32@TLD_Init|
+  000f4	00000000	 DCD         |??_C@_1DA@GLLBLDJ@?$AA?$CL?$AAT?$AAL?$AAD?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AA?$CF?$AAs?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  000f8		 |$M36576|
 
 			 ENDP  ; |?TLD_Init@@YAKPBGPBX@Z|, TLD_Init
 

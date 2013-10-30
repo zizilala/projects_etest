@@ -83,23 +83,19 @@ TWLClose(
 }
 
 
-BOOL
-TWLReadRegs(
-    HANDLE hContext, 
-    DWORD address,
-    VOID *pBuffer,
-    DWORD size
-    )
+BOOL TWLReadRegs( HANDLE hContext, 
+                  DWORD address,
+                  VOID *pBuffer,
+                  DWORD size)
 {
     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+ 
     if (pContext->ifc.pfnReadRegs != NULL)
-        {
+    {
         return pContext->ifc.pfnReadRegs(
             pContext->ifc.context, address, pBuffer, size
             );
-        }
-    else
-        {
+    }else{
         DWORD dwCount = 0;
         if (pContext->seekAddress != address)
             {
@@ -112,13 +108,10 @@ TWLReadRegs(
 }
 
 
-BOOL 
-TWLWriteRegs(
-    HANDLE hContext, 
-    DWORD address,
-    const VOID *pBuffer,
-    DWORD size
-    )
+BOOL TWLWriteRegs(  HANDLE hContext, 
+                    DWORD address,
+                    const VOID *pBuffer,
+                    DWORD size )
 {
     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
     if (pContext->ifc.pfnWriteRegs != NULL)

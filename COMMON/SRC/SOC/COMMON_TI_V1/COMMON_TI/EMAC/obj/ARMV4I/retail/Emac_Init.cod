@@ -81,7 +81,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\emac\emac_init.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T51776| DCD	|$LN6@EmacAllocA|
+|$T51777| DCD	|$LN6@EmacAllocA|
 	DCD	0x40002202
 ; Function compile flags: /Ogspy
 
@@ -94,7 +94,7 @@
   00000		 |$LN6@EmacAllocA|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M51773|
+  00008		 |$M51774|
   00008	e1a05000	 mov         r5, r0
 
 ; 38   :     PMINIPORT_ADAPTER     pTempAdapter;
@@ -183,7 +183,7 @@
   00084		 |$LN7@EmacAllocA|
   00084		 |$LN8@EmacAllocA|
   00084	00000000	 DCD         |g_HighestAcceptedMax|
-  00088		 |$M51774|
+  00088		 |$M51775|
 
 			 ENDP  ; |EmacAllocAdapterBlock|
 
@@ -199,7 +199,7 @@
 	IMPORT	|NdisMDeregisterInterrupt|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T51796| DCD	|$LN29@EmacFreeAd|
+|$T51797| DCD	|$LN29@EmacFreeAd|
 	DCD	0x40008b01
 ; Function compile flags: /Ogspy
 
@@ -211,7 +211,7 @@
 
   00000		 |$LN29@EmacFreeAd|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M51793|
+  00004		 |$M51794|
   00004	e1a05000	 mov         r5, r0
 
 ; 90   :     PEMAC_RXPKTS    pNextPkt;
@@ -611,7 +611,7 @@
   00228		 |$LN30@EmacFreeAd|
   00228		 |$LN31@EmacFreeAd|
   00228	00000000	 DCD         |g_EmacMemLayout|
-  0022c		 |$M51794|
+  0022c		 |$M51795|
 
 			 ENDP  ; |EmacFreeAdapter|
 
@@ -626,11 +626,11 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T51815| DCD	|$LN6@EmacReadEE|
+|$T51816| DCD	|$LN6@EmacReadEE|
 	DCD	0xc0003e02
 
   00000			 AREA	 |.xdata|, DATA
-|$T51811| DCD	0xffffffd8
+|$T51812| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HC@GJGDDJAL@?$AAA?$AAd?$AAa?$AAp?$AAt?$AAe?$AAr?$AA?8?$AAs?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAi?$AAs?$AA?5?$AA?$CF?$AA0?$AA2?$AAX?$AA?3?$AA?$CF?$AA0@| DCB "A"
@@ -657,7 +657,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T51811|
+  00004	00000000	 DCD         |$T51812|
 
   00008		 |EmacReadEEProm| PROC
 
@@ -666,7 +666,7 @@
   00008		 |$LN6@EmacReadEE|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd01c	 sub         sp, sp, #0x1C
-  00010		 |$M51812|
+  00010		 |$M51813|
   00010	e1a08000	 mov         r8, r0
   00014	e59f30e0	 ldr         r3, [pc, #0xE0]
   00018	e5933000	 ldr         r3, [r3]
@@ -772,7 +772,7 @@
   000f8	01011020	 DCD         0x1011020
   000fc		 |$LN11@EmacReadEE|
   000fc	00000000	 DCD         |__security_cookie|
-  00100		 |$M51813|
+  00100		 |$M51814|
 
 			 ENDP  ; |EmacReadEEProm|
 
@@ -790,7 +790,7 @@
 	IMPORT	|NdisOpenConfiguration|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T51836| DCD	|$LN13@NICReadAda|
+|$T51837| DCD	|$LN13@NICReadAda|
 	DCD	0x40006b02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -824,7 +824,7 @@
   00000		 |$LN13@NICReadAda|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd024	 sub         sp, sp, #0x24
-  00008		 |$M51833|
+  00008		 |$M51834|
   00008	e1a02001	 mov         r2, r1
   0000c	e1a05000	 mov         r5, r0
 
@@ -1134,14 +1134,14 @@
   001a4	00000000	 DCD         |??_C@_1BG@JNLHMBE@?$AAE?$AAm?$AAa?$AAc?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@|
   001a8		 |$LN19@NICReadAda|
   001a8	00000000	 DCD         |??_C@_1BO@FEBAGMNM@?$AAE?$AAM?$AAA?$AAC?$AAB?$AAu?$AAf?$AAf?$AAe?$AAr?$AAB?$AAa?$AAs?$AAe?$AA?$AA@|
-  001ac		 |$M51834|
+  001ac		 |$M51835|
 
 			 ENDP  ; |NICReadAdapterInfo|
 
 	EXPORT	|NICSelfTest|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T51851| DCD	|$LN5@NICSelfTes|
+|$T51852| DCD	|$LN5@NICSelfTes|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1152,7 +1152,7 @@
 ; 452  : {
 
   00000		 |$LN5@NICSelfTes|
-  00000		 |$M51848|
+  00000		 |$M51849|
 
 ; 453  :     /* TBD */
 ; 454  : 
@@ -1163,7 +1163,7 @@
 ; 456  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M51849|
+  00008		 |$M51850|
 
 			 ENDP  ; |NICSelfTest|
 
@@ -1186,7 +1186,7 @@
 	IMPORT	|NdisMSetAttributesEx|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T51876| DCD	|$LN36@Emac_Minip|
+|$T51877| DCD	|$LN36@Emac_Minip|
 	DCD	0x40008b02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1285,7 +1285,7 @@
   00000		 |$LN36@Emac_Minip|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M51873|
+  00008		 |$M51874|
   00008	e3530000	 cmp         r3, #0
 
 ; 492  :     NDIS_STATUS       Status;
@@ -1735,7 +1735,7 @@
   00224	00000000	 DCD         |??_C@_1HA@PNDOGDJ@?$AAE?$AAm?$AAa?$AAc?$AA_?$AAM?$AAi?$AAn?$AAi?$AAp?$AAo?$AAr?$AAt?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?3?$AA?5?$AAN?$AAI?$AAC?$AAM?$AAa?$AAp?$AAA@|
   00228		 |$LN44@Emac_Minip|
   00228	00000000	 DCD         |??_C@_1HC@KJACGMBF@?$AAE?$AAm?$AAa?$AAc?$AA_?$AAM?$AAi?$AAn?$AAi?$AAp?$AAo?$AAr?$AAt?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?3?$AA?5?$AAN?$AAI?$AAC?$AAR?$AAe?$AAa?$AAd@|
-  0022c		 |$M51874|
+  0022c		 |$M51875|
 
 			 ENDP  ; |Emac_MiniportInitialize|
 

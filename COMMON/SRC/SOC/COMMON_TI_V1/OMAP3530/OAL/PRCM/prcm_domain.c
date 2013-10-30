@@ -83,13 +83,13 @@ ClockDomainInfo_t _NeonClockDomain = {
         }
     }};
 
-ClockDomainInfo_t _Iva2ClockDomain = { 
+/*ClockDomainInfo_t _Iva2ClockDomain = { 
     1, 
     {
         {
         CLOCKDOMAIN_IVA2, CLKSTCTRL_DISABLED >> CLKSTCTRL_SHIFT,  0
         }
-    }};
+    }};*/
 
 ClockDomainInfo_t _CameraClockDomain = { 
     1, 
@@ -109,10 +109,10 @@ ClockDomainInfo_t _SgxClockDomain = {
 
 //-----------------------------------------------------------------------------
 PowerDomainState_t _WakeupPowerDomain = {
-    POWERSTATE_ON >> POWERSTATE_SHIFT,
-    LOGICRETSTATE_LOGICRET_DOMAINRET,
-    0,
-    0
+    POWERSTATE_ON >> POWERSTATE_SHIFT,	// powerState
+    LOGICRETSTATE_LOGICRET_DOMAINRET,	// logicState
+    0,	// sleepDependency
+    0	// wakeDependency
     };
 
 PowerDomainState_t _CorePowerDomain = {
@@ -181,14 +181,14 @@ PowerDomainState_t _SgxPowerDomain = {
 //-----------------------------------------------------------------------------
 DomainMap s_DomainTable = {
     {   // POWERDOMAIN_WAKEUP
-        0,                  
-        0,  
-        &_WakeupPowerDomain,        
-        NULL,
-        { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }
+        0,											// refCount
+        0,											// ffValidationMask
+        &_WakeupPowerDomain,						// Power Domain state
+        NULL,										// Clock Domain state
+        { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }		// rgDeviceContextState
         
     }, {// POWERDOMAIN_CORE
-        0,  
+        0,
         DOMAIN_UPDATE_POWERSTATE | DOMAIN_UPDATE_CLOCKSTATE,
         &_CorePowerDomain,          
         &_CoreClockDomain ,
@@ -236,13 +236,13 @@ DomainMap s_DomainTable = {
         &_NeonClockDomain,
         { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }  
         
-    }, {// POWERDOMAIN_IVA2
+/*brian    }, {// POWERDOMAIN_IVA2
         0,  
         DOMAIN_UPDATE_POWERSTATE | DOMAIN_UPDATE_CLOCKSTATE | DOMAIN_UPDATE_WKUPDEP,
         &_Iva2PowerDomain,          
         &_Iva2ClockDomain,
         { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }  
-        
+        */
     }, {// POWERDOMAIN_CAMERA      
         0,  
         DOMAIN_UPDATE_ALL,
@@ -284,10 +284,10 @@ _DomainInitialize(
     )
 {
     BOOL rc = TRUE;
-    OALMSG(OAL_FUNC, (L"+_DomainInitialize("
+    OALMSG(1, (L"+_DomainInitialize("
         L"pDomain=0x%08X, pm_pwstctrl=0x%08X"
         L"pm_wkdep=0x%08X, cm_sleepdep=0x%08X)\r\n", 
-        pDomain, pm_pwstctrl, cm_sleepdep)
+        pDomain, pm_pwstctrl, pm_wkdep, cm_sleepdep)
         );
 
     // all values are normalized and then cached in SDRAM
@@ -301,7 +301,12 @@ _DomainInitialize(
     pDomain->sleepDependency = (cm_sleepdep & SLEEPDEP_MASK) >> SLEEPDEP_SHIFT;
 
 cleanUp:
-    OALMSG(OAL_FUNC, (L"-_DomainInitialize()=%d\r\n", rc));
+    OALMSG(1, (L"-_DomainInitialize()=%d\r\n", rc));
+	/*OALMSG(1, (L"-_DomainInitialize("
+        L"powerState=0x%08X, wakeDependency=0x%08X"
+        L"sleepDependency=0x%08X)\r\n", 
+        pDomain->powerState, pDomain->wakeDependency, pDomain->sleepDependency)
+        );*/
     return rc;    
 }
 
@@ -364,9 +369,9 @@ _DomainClockRestore(
                     }
                 }
             break;
-        case POWERDOMAIN_IVA2:
+        /*case POWERDOMAIN_IVA2:
             PrcmClockRestoreDpllState(kDPLL2);
-           break;
+           break;*/
         }
 
     return TRUE;
@@ -383,22 +388,21 @@ _PrcmDomainClockInitialize(
     UINT i;
     UINT temp;
     BOOL rc = TRUE;
-    OALMSG(OAL_FUNC, (L"+_PrcmDomainClockInitialize("
+    OALMSG(1, (L"+_PrcmDomainClockInitialize("
         L"pClockStates=0x%08X, cm_clkstctrl=0x%08X\r\n", 
-        pClockStates,  cm_clkstctrl)
-        );
+        pClockStates,  cm_clkstctrl));
 
     // all values are normalized and then cached in SDRAM
     if (pClockStates == NULL) goto cleanUp;
 
     for (i = 0; i < pClockStates->count; ++i)
-        {  
+	{  
         temp = cm_clkstctrl >> pClockStates->rgClockDomains[i].clockShift;        
         pClockStates->rgClockDomains[i].clockState = (temp & CLKSTCTRL_MASK) >> CLKSTCTRL_SHIFT; 
-        }
+	}
     
 cleanUp:
-    OALMSG(OAL_FUNC, (L"-_PrcmDomainClockInitialize()=%d\r\n", rc));
+    OALMSG(1, (L"-_PrcmDomainClockInitialize()=%d\r\n", rc));
     return rc;    
 }
 
@@ -592,50 +596,45 @@ DomainInitialize()
     UINT            cm_sleepdep;
     OMAP_CM_REGS   *pCmRegs;
     OMAP_PRM_REGS  *pPrmRegs;
-    
-    
-    OALMSG(OAL_FUNC, (L"+DomainInitialize()\r\n"));
+
+    OALMSG(1, (L"+DomainInitialize()\r\n"));
 
     for (i = 0; i < POWERDOMAIN_COUNT; ++i)
-        {        
+	{        
         pCmRegs = GetCmRegisterSet(i);
         pPrmRegs = GetPrmRegisterSet(i);
 
         pm_wkdep = 0;
         if (s_DomainTable[i].ffValidationMask & DOMAIN_UPDATE_WKUPDEP)
-            {
+		{
             pm_wkdep = INREG32(&pPrmRegs->PM_WKDEP_xxx);
-            }
+		}
 
         cm_sleepdep = 0;
         if (s_DomainTable[i].ffValidationMask & DOMAIN_UPDATE_SLEEPDEP)
-            {
+		{
             cm_sleepdep = INREG32(&pCmRegs->CM_SLEEPDEP_xxx);
-            }
+		}
 
         pm_pwstctrl = 0;
         cm_clkstctrl = 0;
         if (s_DomainTable[i].ffValidationMask & DOMAIN_UPDATE_POWERSTATE)
-            {
+		{
             pm_pwstctrl = INREG32(&pPrmRegs->PM_PWSTCTRL_xxx);
-            }
+		}
 
         if (s_DomainTable[i].ffValidationMask & DOMAIN_UPDATE_CLOCKSTATE)
-            {
+		{
             cm_clkstctrl = INREG32(&pCmRegs->CM_CLKSTCTRL_xxx);
-            }
+		}
 
-        _DomainInitialize(s_DomainTable[i].pDomainState, 
-            pm_pwstctrl, pm_wkdep, cm_sleepdep
-            );
+        _DomainInitialize(s_DomainTable[i].pDomainState, pm_pwstctrl, pm_wkdep, cm_sleepdep);
 
-        _PrcmDomainClockInitialize(s_DomainTable[i].pClockStates, 
-            cm_clkstctrl
-            );
-        }
+        _PrcmDomainClockInitialize(s_DomainTable[i].pClockStates, cm_clkstctrl);
+	}
 
-
-    OALMSG(OAL_FUNC, (L"-DomainInitialize()=%d\r\n", rc));
+    OALMSG(1, (L"-DomainInitialize()=%d\r\n", rc));
+    
     return rc;    
 }
 
@@ -656,13 +655,13 @@ PrcmRestoreDomain(
     OMAP_PRM_REGS  *pPrmRegs;
     ClockDomainInfo_t  *pClockStates;    
     PowerDomainState_t *pDomainState;
-    
+
     // initialize variables
     pCmRegs = GetCmRegisterSet(powerDomain);
     pPrmRegs = GetPrmRegisterSet(powerDomain);
     pClockStates = s_DomainTable[powerDomain].pClockStates;
     pDomainState = s_DomainTable[powerDomain].pDomainState;
-        
+
     // restore clk src dividers
     _DomainClockRestore(powerDomain);
 
@@ -912,16 +911,12 @@ cleanUp:
 }
 
 //-----------------------------------------------------------------------------
-BOOL
-PrcmDomainSetMemoryState(
-    UINT        powerDomain,
-    UINT        memoryState,
-    UINT        memoryStateMask
-    )
+BOOL PrcmDomainSetMemoryState(UINT powerDomain, UINT memoryState, UINT memoryStateMask)
 {
     UINT val;    
     BOOL rc = FALSE;
     OMAP_PRM_REGS *pPrmRegs;
+    
     OALMSG(OAL_FUNC, (L"+PrcmDomainSetMemoryState"
         L"(powerDomain=%d, memoryState=0x%08X, memoryStateMask=0x%08X)\r\n", 
         powerDomain, memoryState, memoryStateMask));
@@ -932,9 +927,9 @@ PrcmDomainSetMemoryState(
     Lock(Mutex_Domain);
     // update cached logic state
     if (memoryStateMask & LOGICRETSTATE)
-        {
+	{
         s_DomainTable[powerDomain].pDomainState->logicState = memoryState & LOGICRETSTATE_MASK;
-        }
+	}
     
     memoryState &= memoryStateMask;
     val = INREG32(&pPrmRegs->PM_PWSTCTRL_xxx) & ~memoryStateMask;
@@ -1107,14 +1102,14 @@ PrcmProcessPostMpuWakeup()
         }
 
     // IVA2
-    val = INREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->PM_PREPWSTST_IVA2);
+    /*val = INREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->PM_PREPWSTST_IVA2);
     if ((val & POWERSTATE_MASK) == POWERSTATE_OFF)
         {
         // clear domain device context state
         s_DomainTable[POWERDOMAIN_IVA2].rgDeviceContextState[0] = 0;
         s_DomainTable[POWERDOMAIN_IVA2].rgDeviceContextState[1] = 0;
         s_DomainTable[POWERDOMAIN_IVA2].rgDeviceContextState[2] = 0;
-        }
+        }*/
 
 }
 
@@ -1135,8 +1130,8 @@ PrcmDomainClearReset()
     OUTREG32(&g_pPrcmPrm->pOMAP_PER_PRM->RM_RSTST_PER,
             INREG32(&g_pPrcmPrm->pOMAP_PER_PRM->RM_RSTST_PER)); 
 
-    OUTREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2,
-            INREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2)); 
+    /*OUTREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2,
+            INREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2)); */
 
     OUTREG32(&g_pPrcmPrm->pOMAP_SGX_PRM->RM_RSTST_SGX,
             INREG32(&g_pPrcmPrm->pOMAP_SGX_PRM->RM_RSTST_SGX)); 
@@ -1144,8 +1139,8 @@ PrcmDomainClearReset()
     OUTREG32(&g_pPrcmPrm->pOMAP_DSS_PRM->RM_RSTST_DSS,
             INREG32(&g_pPrcmPrm->pOMAP_DSS_PRM->RM_RSTST_DSS)); 
 
-    OUTREG32(&g_pPrcmPrm->pOMAP_CAM_PRM->RM_RSTST_CAM,
-            INREG32(&g_pPrcmPrm->pOMAP_CAM_PRM->RM_RSTST_CAM)); 
+    /*OUTREG32(&g_pPrcmPrm->pOMAP_CAM_PRM->RM_RSTST_CAM,
+            INREG32(&g_pPrcmPrm->pOMAP_CAM_PRM->RM_RSTST_CAM)); */
 
     OUTREG32(&g_pPrcmPrm->pOMAP_NEON_PRM->RM_RSTST_NEON,
             INREG32(&g_pPrcmPrm->pOMAP_NEON_PRM->RM_RSTST_NEON)); 

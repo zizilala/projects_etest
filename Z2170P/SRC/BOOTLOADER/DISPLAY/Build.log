@@ -21,7 +21,7 @@ BUILD: [01:0000000018:INFO  ] Directory: C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOA
 BUILD: [01:0000000019:INFO  ] TARGETNAME: bsp_display
 BUILD: [01:0000000020:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORM
 BUILD: [01:0000000021:PROGC ] Compiling .\bsp_logo.c
-BUILD: [01:0000000022:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\bsp_logo.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\DSS\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\keypad -I	..\EBOOT\ -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\bsp_display.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\bsp_logo.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return  /GS C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\.\bsp_logo.c
+BUILD: [01:0000000022:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\bsp_logo.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\Z2170P\src\inc\OEMDefs -I	..\EBOOT\ -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\bsp_display.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\bsp_logo.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return  /GS C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\.\bsp_logo.c
 BUILD: [01:0000000023:INFO  ] bsp_logo.c
 BUILD: [00:0000000024:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\obj\ARMV4I\retail\bsp_logo.obj because target: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\bsp_display.lib is missing.
 BUILD: [00:0000000025:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\ because target: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\bsp_display.lib is missing.
@@ -36,7 +36,7 @@ BUILD: [01:0000000033:INFO  ] Directory: C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOA
 BUILD: [01:0000000034:INFO  ] TARGETNAME: bsp_display
 BUILD: [01:0000000035:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORM
 BUILD: [01:0000000036:PROGC ] Linking C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\bsp_display.lib
-BUILD: [01:0000000037:INFO  ] 	link -lib -out:C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\bsp_display.lib -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nmA30.tmp
+BUILD: [01:0000000037:INFO  ] 	link -lib -out:C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\bsp_display.lib -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm68.tmp
 BUILD: [00:0000000038:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
 BUILD: [00:0000000039:INFO  ] Done.
 BUILD: [00:0000000040:PROGC ] Done.
@@ -62,5 +62,5 @@ BUILD: [00:0000000059:PROGC ]
 BUILD: [00:0000000060:PROGC ] Total                      2         0       0
 BUILD: [00:0000000061:PROGC ] 
 BUILD: [00:0000000062:PROGC ] 0 Warnings,  0 Errors
-BUILD: [00:0000000063:PROGC ] GetSystemTimes (seconds): Idle: 4     Kernel: 8     User: 1    
-BUILD: [00:0000000064:PROGC ] Elapsed  time  (seconds): 4    
+BUILD: [00:0000000063:PROGC ] GetSystemTimes (seconds): Idle: 16    Kernel: 19    User: 1    
+BUILD: [00:0000000064:PROGC ] Elapsed  time  (seconds): 10   

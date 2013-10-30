@@ -70,7 +70,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42584| DCD	|$LN5@Stride|
+|$T42592| DCD	|$LN5@Stride|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -81,7 +81,7 @@
 ; 177  :     {
 
   00000		 |$LN5@Stride|
-  00000		 |$M42581|
+  00000		 |$M42589|
 
 ; 178  :         return m_nStrideBytes;
 
@@ -90,14 +90,14 @@
 ; 179  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42582|
+  00008		 |$M42590|
 
 			 ENDP  ; |?Stride@GPESurf@@QAAHXZ|, GPESurf::Stride
 
 	EXPORT	|?BytesPerPixel@GPESurf@@QAAHXZ|	; GPESurf::BytesPerPixel
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42594| DCD	|$LN5@BytesPerPi|
+|$T42602| DCD	|$LN5@BytesPerPi|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -108,7 +108,7 @@
 ; 183  :     {
 
   00000		 |$LN5@BytesPerPi|
-  00000		 |$M42591|
+  00000		 |$M42599|
 
 ; 184  :         return m_BytesPixel;
 
@@ -117,7 +117,7 @@
 ; 185  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42592|
+  00008		 |$M42600|
 
 			 ENDP  ; |?BytesPerPixel@GPESurf@@QAAHXZ|, GPESurf::BytesPerPixel
 
@@ -125,7 +125,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42604| DCD	|$LN5@OmapSurfac|
+|$T42612| DCD	|$LN5@OmapSurfac|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -136,10 +136,10 @@
 ; 102  :     OMAPSurface*        OmapSurface() { return m_pSurface; }
 
   00000		 |$LN5@OmapSurfac|
-  00000		 |$M42601|
+  00000		 |$M42609|
   00000	e590007c	 ldr         r0, [r0, #0x7C]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42602|
+  00008		 |$M42610|
 
 			 ENDP  ; |?OmapSurface@OMAPDDGPESurface@@QAAPAVOMAPSurface@@XZ|, OMAPDDGPESurface::OmapSurface
 
@@ -149,7 +149,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42620| DCD	|$LN9@DmaConfigu|
+|$T42628| DCD	|$LN9@DmaConfigu|
 	DCD	0x40003901
 ; Function compile flags: /Ogspy
 
@@ -161,7 +161,7 @@
 
   00000		 |$LN9@DmaConfigu|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M42617|
+  00004		 |$M42625|
   00004	e1a04003	 mov         r4, r3
   00008	e1a09002	 mov         r9, r2
   0000c	e1a06001	 mov         r6, r1
@@ -176,9 +176,9 @@
 
 ; 169  :     if (pDmaLcReg == NULL || pConfigInfo == NULL)
 
-  00020	0a00002c	 beq         |$cleanUp$42114|
+  00020	0a00002c	 beq         |$cleanUp$42122|
   00024	e3560000	 cmp         r6, #0
-  00028	0a00002a	 beq         |$cleanUp$42114|
+  00028	0a00002a	 beq         |$cleanUp$42122|
 
 ; 170  :         {
 ; 171  :         goto cleanUp;
@@ -302,7 +302,7 @@
   000cc	e5873030	 str         r3, [r7, #0x30]
   000d0	e5963028	 ldr         r3, [r6, #0x28]
   000d4	e5873008	 str         r3, [r7, #8]
-  000d8		 |$cleanUp$42114|
+  000d8		 |$cleanUp$42122|
 
 ; 233  : 
 ; 234  : cleanUp:
@@ -312,14 +312,14 @@
   000d8	e1a00008	 mov         r0, r8
   000dc	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000e0	e12fff1e	 bx          lr
-  000e4		 |$M42618|
+  000e4		 |$M42626|
 
 			 ENDP  ; |DmaConfigure|
 
 	EXPORT	|DmaSetDstBuffer|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42630| DCD	|$LN6@DmaSetDstB|
+|$T42638| DCD	|$LN6@DmaSetDstB|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -330,7 +330,7 @@
 ; 330  : {
 
   00000		 |$LN6@DmaSetDstB|
-  00000		 |$M42627|
+  00000		 |$M42635|
 
 ; 331  :     // save values
 ; 332  :     //
@@ -360,14 +360,14 @@
 ; 343  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M42628|
+  00020		 |$M42636|
 
 			 ENDP  ; |DmaSetDstBuffer|
 
 	EXPORT	|DmaSetSrcBuffer|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42640| DCD	|$LN6@DmaSetSrcB|
+|$T42648| DCD	|$LN6@DmaSetSrcB|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -378,7 +378,7 @@
 ; 358  : {
 
   00000		 |$LN6@DmaSetSrcB|
-  00000		 |$M42637|
+  00000		 |$M42645|
 
 ; 359  :     // save values
 ; 360  :     //
@@ -408,14 +408,14 @@
 ; 371  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M42638|
+  00020		 |$M42646|
 
 			 ENDP  ; |DmaSetSrcBuffer|
 
 	EXPORT	|DmaSetElementAndFrameCount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42650| DCD	|$LN5@DmaSetElem|
+|$T42658| DCD	|$LN5@DmaSetElem|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -426,7 +426,7 @@
 ; 386  : {
 
   00000		 |$LN5@DmaSetElem|
-  00000		 |$M42647|
+  00000		 |$M42655|
 
 ; 387  :     // setup frame and element count for destination side
 ; 388  :     //
@@ -443,14 +443,14 @@
 ; 391  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M42648|
+  00014		 |$M42656|
 
 			 ENDP  ; |DmaSetElementAndFrameCount|
 
 	EXPORT	|IsDmaEnable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42660| DCD	|$LN8@IsDmaEnabl|
+|$T42668| DCD	|$LN8@IsDmaEnabl|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -462,7 +462,7 @@
 
   00000		 |$LN8@IsDmaEnabl|
   00000	e24dd004	 sub         sp, sp, #4
-  00004		 |$M42657|
+  00004		 |$M42665|
   00004	e3500000	 cmp         r0, #0
 
 ; 405  :     volatile ULONG ulCCR;
@@ -499,14 +499,14 @@
 
   00028	028dd004	 addeq       sp, sp, #4
   0002c	e12fff1e	 bx          lr
-  00030		 |$M42658|
+  00030		 |$M42666|
 
 			 ENDP  ; |IsDmaEnable|
 
 	EXPORT	|IsDmaActive|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42670| DCD	|$LN8@IsDmaActiv|
+|$T42678| DCD	|$LN8@IsDmaActiv|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -518,7 +518,7 @@
 
   00000		 |$LN8@IsDmaActiv|
   00000	e24dd004	 sub         sp, sp, #4
-  00004		 |$M42667|
+  00004		 |$M42675|
 
 ; 429  :     volatile ULONG ulCCR;
 ; 430  : 
@@ -553,14 +553,14 @@
 
   0002c	128dd004	 addne       sp, sp, #4
   00030	e12fff1e	 bx          lr
-  00034		 |$M42668|
+  00034		 |$M42676|
 
 			 ENDP  ; |IsDmaActive|
 
 	EXPORT	|DmaStart|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42678| DCD	|$LN5@DmaStart|
+|$T42686| DCD	|$LN5@DmaStart|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -571,7 +571,7 @@
 ; 487  : {
 
   00000		 |$LN5@DmaStart|
-  00000		 |$M42675|
+  00000		 |$M42683|
 
 ; 488  :     // enable the dma channel
 ; 489  :     //
@@ -585,14 +585,14 @@
 ; 491  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M42676|
+  00014		 |$M42684|
 
 			 ENDP  ; |DmaStart|
 
 	EXPORT	|DmaSetColor|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42688| DCD	|$LN5@DmaSetColo|
+|$T42696| DCD	|$LN5@DmaSetColo|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -604,7 +604,7 @@
 
   00000		 |$LN5@DmaSetColo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42685|
+  00004		 |$M42693|
 
 ; 666  :     SETREG32(&pDataInfo->pDmaLcReg->CCR, dwFlag);
 
@@ -622,14 +622,14 @@
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M42686|
+  00024		 |$M42694|
 
 			 ENDP  ; |DmaSetColor|
 
 	EXPORT	|?IsBusy@OMAPDDGPE@@UAAHXZ|		; OMAPDDGPE::IsBusy
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42732| DCD	|$LN31@IsBusy|
+|$T42740| DCD	|$LN31@IsBusy|
 	DCD	0x40003201
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_dmablt.cpp
@@ -642,7 +642,7 @@
 
   00000		 |$LN31@IsBusy|
   00000	e24dd004	 sub         sp, sp, #4
-  00004		 |$M42729|
+  00004		 |$M42737|
 
 ; 45   :     int result = 0;
 ; 46   :     
@@ -741,14 +741,14 @@
   000c4		 |$LN32@IsBusy|
   000c4		 |$LN33@IsBusy|
   000c4	00000000	 DCD         |?g_tDmaDataInfo1@@3UDmaDataInfo_t@@A|
-  000c8		 |$M42730|
+  000c8		 |$M42738|
 
 			 ENDP  ; |?IsBusy@OMAPDDGPE@@UAAHXZ|, OMAPDDGPE::IsBusy
 
 	EXPORT	|?WaitForNotBusy@OMAPDDGPE@@UAAXXZ|	; OMAPDDGPE::WaitForNotBusy
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42743| DCD	|$LN8@WaitForNot|
+|$T42751| DCD	|$LN8@WaitForNot|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -760,7 +760,7 @@
 
   00000		 |$LN8@WaitForNot|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M42740|
+  00004		 |$M42748|
   00004	e1a04000	 mov         r4, r0
   00008		 |$LL2@WaitForNot|
 
@@ -780,7 +780,7 @@
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
-  0002c		 |$M42741|
+  0002c		 |$M42749|
 
 			 ENDP  ; |?WaitForNotBusy@OMAPDDGPE@@UAAXXZ|, OMAPDDGPE::WaitForNotBusy
 
@@ -795,7 +795,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42799| DCD	|$LN36@DMAFill|
+|$T42807| DCD	|$LN36@DMAFill|
 	DCD	0x4000ab02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_dmablt.cpp
@@ -809,7 +809,7 @@
   00000		 |$LN36@DMAFill|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd038	 sub         sp, sp, #0x38
-  00008		 |$M42796|
+  00008		 |$M42804|
   00008	e1a07001	 mov         r7, r1
   0000c	e1a0a000	 mov         r10, r0
 
@@ -1143,7 +1143,7 @@
   002a4	00000000	 DCD         |?g_Globals@@3VOMAPDDGPEGlobals@@A|
   002a8		 |$LN41@DMAFill|
   002a8	00000000	 DCD         |?g_tDmaDataInfo1@@3UDmaDataInfo_t@@A|
-  002ac		 |$M42797|
+  002ac		 |$M42805|
 
 			 ENDP  ; |?DMAFill@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::DMAFill
 
@@ -1151,7 +1151,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42936| DCD	|$LN83@DMASrcCopy|
+|$T42944| DCD	|$LN83@DMASrcCopy|
 	DCD	0x40015a02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_dmablt.cpp
@@ -1165,7 +1165,7 @@
   00000		 |$LN83@DMASrcCopy|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M42933|
+  00008		 |$M42941|
   00008	e1a06001	 mov         r6, r1
   0000c	e1a09000	 mov         r9, r0
 
@@ -1886,7 +1886,7 @@
   00560	00000000	 DCD         |?g_Globals@@3VOMAPDDGPEGlobals@@A|
   00564		 |$LN88@DMASrcCopy|
   00564	00000000	 DCD         |?g_tDmaDataInfo1@@3UDmaDataInfo_t@@A|
-  00568		 |$M42934|
+  00568		 |$M42942|
 
 			 ENDP  ; |?DMASrcCopy@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::DMASrcCopy
 

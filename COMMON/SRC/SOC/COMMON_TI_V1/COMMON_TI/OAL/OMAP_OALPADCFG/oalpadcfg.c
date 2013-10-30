@@ -33,7 +33,6 @@ BOOL OALPadCfgInit()
     g_NbPads = SortPadInfoArray(g_bspPadInfo); //sort the array to have better lookup performances
     if (g_bspPadInfo)
     {
-
         return TRUE;
     }
     else

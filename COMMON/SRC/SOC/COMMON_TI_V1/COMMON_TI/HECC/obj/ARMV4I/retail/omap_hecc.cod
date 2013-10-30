@@ -187,7 +187,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37809| DCD	|$LN5@SetEvent|
+|$T37810| DCD	|$LN5@SetEvent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -199,7 +199,7 @@
 
   00000		 |$LN5@SetEvent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37806|
+  00004		 |$M37807|
 
 ; 236  : 	return EventModify(h,EVENT_SET);
 
@@ -210,14 +210,14 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M37807|
+  00014		 |$M37808|
 
 			 ENDP  ; |SetEvent|
 
 	EXPORT	|GetCurrentProcess|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37818| DCD	|$LN5@GetCurrent|
+|$T37819| DCD	|$LN5@GetCurrent|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -228,7 +228,7 @@
 ; 361  : _inline HANDLE GetCurrentProcess(void) {
 
   00000		 |$LN5@GetCurrent|
-  00000		 |$M37815|
+  00000		 |$M37816|
 
 ; 362  : 	return ((HANDLE)(SH_CURPROC+SYS_HANDLE_BASE));
 
@@ -237,14 +237,14 @@
 ; 363  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37816|
+  00008		 |$M37817|
 
 			 ENDP  ; |GetCurrentProcess|
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\hecc\omap_hecc.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37828| DCD	|$LN5@NextElemen|
+|$T37829| DCD	|$LN5@NextElemen|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -255,7 +255,7 @@
 ; 86   : {
 
   00000		 |$LN5@NextElemen|
-  00000		 |$M37825|
+  00000		 |$M37826|
 
 ; 87   :     return pSle->pNext;
 
@@ -264,13 +264,13 @@
 ; 88   : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37826|
+  00008		 |$M37827|
 
 			 ENDP  ; |?NextElement@@YAPAU_SLE@@PAU1@@Z|, NextElement
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37844| DCD	|$LN12@PushElemen|
+|$T37845| DCD	|$LN12@PushElemen|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -282,7 +282,7 @@
 
   00000		 |$LN12@PushElemen|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37841|
+  00004		 |$M37842|
 
 ; 92   :     PSLE current;
 ; 93   :     PSLE previous;
@@ -332,13 +332,13 @@
 
   00034	e49de004	 ldr         lr, [sp], #4
   00038	e12fff1e	 bx          lr
-  0003c		 |$M37842|
+  0003c		 |$M37843|
 
 			 ENDP  ; |?PushElement@@YAXPAPAU_SLE@@PAU1@@Z|, PushElement
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37865| DCD	|$LN18@RemoveElem|
+|$T37866| DCD	|$LN18@RemoveElem|
 	DCD	0x40001100
 ; Function compile flags: /Ogspy
 
@@ -349,7 +349,7 @@
 ; 111  : {
 
   00000		 |$LN18@RemoveElem|
-  00000		 |$M37862|
+  00000		 |$M37863|
 
 ; 112  :     PSLE current;
 ; 113  :     PSLE next;
@@ -417,13 +417,13 @@
 ; 134  : }
 
   00040	e12fff1e	 bx          lr
-  00044		 |$M37863|
+  00044		 |$M37864|
 
 			 ENDP  ; |?RemoveElement@@YAXPAPAU_SLE@@PAU1@@Z|, RemoveElement
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37877| DCD	|$LN10@IDequal|
+|$T37878| DCD	|$LN10@IDequal|
 	DCD	0x40001300
 ; Function compile flags: /Ogspy
 
@@ -434,7 +434,7 @@
 ; 279  : {
 
   00000		 |$LN10@IDequal|
-  00000		 |$M37874|
+  00000		 |$M37875|
 
 ; 280  :     if (id1.s_standard.extended)
 
@@ -490,14 +490,14 @@
 ; 295  : }
 
   00048	e12fff1e	 bx          lr
-  0004c		 |$M37875|
+  0004c		 |$M37876|
 
 			 ENDP  ; |?IDequal@@YAHTCAN_ID@@0@Z|, IDequal
 
 	EXPORT	|?IDtoCANMID@@YAITCAN_ID@@@Z|		; IDtoCANMID
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37887| DCD	|$LN7@IDtoCANMID|
+|$T37888| DCD	|$LN7@IDtoCANMID|
 	DCD	0x40000700
 ; Function compile flags: /Ogspy
 
@@ -508,7 +508,7 @@
 ; 297  : {
 
   00000		 |$LN7@IDtoCANMID|
-  00000		 |$M37884|
+  00000		 |$M37885|
 
 ; 298  :     if (id.s_extended.extended)
 
@@ -533,14 +533,14 @@
 ; 306  : }
 
   00018	e12fff1e	 bx          lr
-  0001c		 |$M37885|
+  0001c		 |$M37886|
 
 			 ENDP  ; |?IDtoCANMID@@YAITCAN_ID@@@Z|, IDtoCANMID
 
 	EXPORT	|?CANMIDtoCANID@@YAXIPATCAN_ID@@@Z|	; CANMIDtoCANID
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37897| DCD	|$LN8@CANMIDtoCA|
+|$T37898| DCD	|$LN8@CANMIDtoCA|
 	DCD	0x40001301
 ; Function compile flags: /Ogspy
 
@@ -552,7 +552,7 @@
 
   00000		 |$LN8@CANMIDtoCA|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37894|
+  00004		 |$M37895|
   00004	e1a0e001	 mov         lr, r1
 
 ; 310  :     if (canmid & CANMID_EXTENDED)
@@ -590,14 +590,14 @@
 
   00044	e49de004	 ldr         lr, [sp], #4
   00048	e12fff1e	 bx          lr
-  0004c		 |$M37895|
+  0004c		 |$M37896|
 
 			 ENDP  ; |?CANMIDtoCANID@@YAXIPATCAN_ID@@@Z|, CANMIDtoCANID
 
 	EXPORT	|?MaskToCANLAM@@YAITCAN_ID@@@Z|		; MaskToCANLAM
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37907| DCD	|$LN7@MaskToCANL|
+|$T37908| DCD	|$LN7@MaskToCANL|
 	DCD	0x40000b00
 ; Function compile flags: /Ogspy
 
@@ -608,7 +608,7 @@
 ; 324  : {
 
   00000		 |$LN7@MaskToCANL|
-  00000		 |$M37904|
+  00000		 |$M37905|
 
 ; 325  :     if (id.s_extended.extended)
 
@@ -637,7 +637,7 @@
 ; 333  : }
 
   00028	e12fff1e	 bx          lr
-  0002c		 |$M37905|
+  0002c		 |$M37906|
 
 			 ENDP  ; |?MaskToCANLAM@@YAITCAN_ID@@@Z|, MaskToCANLAM
 
@@ -646,7 +646,7 @@
 	IMPORT	|GPIOClrBit|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37918| DCD	|$LN9@StrobeActi|
+|$T37919| DCD	|$LN9@StrobeActi|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -658,7 +658,7 @@
 
   00000		 |$LN9@StrobeActi|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37915|
+  00004		 |$M37916|
 
 ; 337  :     if (fActive ^ (pDevice->StrobePinPolarity != ACTIVE_LOW))
 
@@ -695,7 +695,7 @@
 
   00034	e49de004	 ldr         lr, [sp], #4
   00038	e12fff1e	 bx          lr
-  0003c		 |$M37916|
+  0003c		 |$M37917|
 
 			 ENDP  ; |?StrobeActive@@YAXPAUT_CAN_DEVICE@@H@Z|, StrobeActive
 
@@ -706,7 +706,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37934| DCD	|$LN12@CreateMsgQ|
+|$T37935| DCD	|$LN12@CreateMsgQ|
 	DCD	0x40002502
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\hecc\omap_hecc.cpp
@@ -720,7 +720,7 @@
   00000		 |$LN12@CreateMsgQ|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M37931|
+  00008		 |$M37932|
   00008	e1a05002	 mov         r5, r2
   0000c	e1b06001	 movs        r6, r1
 
@@ -813,7 +813,7 @@
   00088	e28dd014	 add         sp, sp, #0x14
   0008c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00090	e12fff1e	 bx          lr
-  00094		 |$M37932|
+  00094		 |$M37933|
 
 			 ENDP  ; |?CreateMsgQueuePair@@YAHPAGPAPAX1KKK@Z|, CreateMsgQueuePair
 
@@ -830,7 +830,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37949| DCD	|$LN14@CAN_Deinit|
+|$T37950| DCD	|$LN14@CAN_Deinit|
 	DCD	0x40003d02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\hecc\omap_hecc.cpp
@@ -844,7 +844,7 @@
   00000		 |$LN14@CAN_Deinit|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M37946|
+  00008		 |$M37947|
   00008	e1b04000	 movs        r4, r0
 
 ; 560  :     BOOL rc = FALSE;
@@ -855,7 +855,7 @@
 ; 562  : 
 ; 563  :     if (pDevice == NULL)
 
-  00010	0a000033	 beq         |$cleanUp$36860|
+  00010	0a000033	 beq         |$cleanUp$36861|
 
 ; 564  :     {
 ; 565  :         goto cleanUp;
@@ -987,7 +987,7 @@
 ; 601  :     rc = TRUE;
 
   000e0	e3a00001	 mov         r0, #1
-  000e4		 |$cleanUp$36860|
+  000e4		 |$cleanUp$36861|
 
 ; 602  : 
 ; 603  : cleanUp:
@@ -1001,7 +1001,7 @@
   000f0		 |$LN15@CAN_Deinit|
   000f0		 |$LN16@CAN_Deinit|
   000f0	010100d8	 DCD         0x10100d8
-  000f4		 |$M37947|
+  000f4		 |$M37948|
 
 			 ENDP  ; |?CAN_Deinit@@YAHK@Z|, CAN_Deinit
 
@@ -1010,7 +1010,7 @@
 	IMPORT	|EnterCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37962| DCD	|$LN5@ConfigureT|
+|$T37963| DCD	|$LN5@ConfigureT|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -1022,7 +1022,7 @@
 
   00000		 |$LN5@ConfigureT|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37959|
+  00004		 |$M37960|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -1062,7 +1062,7 @@
 
   00054	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M37960|
+  0005c		 |$M37961|
 
 			 ENDP  ; |?ConfigureTxMailbox@@YAHPAUT_CAN_DEVICE@@K@Z|, ConfigureTxMailbox
 
@@ -1070,7 +1070,7 @@
 	IMPORT	|malloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37974| DCD	|$LN8@CAN_Open|
+|$T37975| DCD	|$LN8@CAN_Open|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -1082,7 +1082,7 @@
 
   00000		 |$LN8@CAN_Open|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37971|
+  00004		 |$M37972|
   00004	e1b05000	 movs        r5, r0
 
 ; 631  :     T_CAN_DEVICE *pDevice = (T_CAN_DEVICE *)context;
@@ -1133,14 +1133,14 @@
   0003c	e1a00004	 mov         r0, r4
   00040	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00044	e12fff1e	 bx          lr
-  00048		 |$M37972|
+  00048		 |$M37973|
 
 			 ENDP  ; |?CAN_Open@@YAKKKK@Z|, CAN_Open
 
 	EXPORT	|?CAN_Close@@YAHK@Z|			; CAN_Close
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37985| DCD	|$LN7@CAN_Close|
+|$T37986| DCD	|$LN7@CAN_Close|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -1152,7 +1152,7 @@
 
   00000		 |$LN7@CAN_Close|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37982|
+  00004		 |$M37983|
   00004	e1b05000	 movs        r5, r0
 
 ; 661  :     T_CAN_OPEN_CTXT *pCtxt = (T_CAN_OPEN_CTXT*) context;
@@ -1205,14 +1205,14 @@
 
   00040	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00044	e12fff1e	 bx          lr
-  00048		 |$M37983|
+  00048		 |$M37984|
 
 			 ENDP  ; |?CAN_Close@@YAHK@Z|, CAN_Close
 
 	EXPORT	|?CAN_PowerUp@@YAXK@Z|			; CAN_PowerUp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37992| DCD	|$LN5@CAN_PowerU|
+|$T37993| DCD	|$LN5@CAN_PowerU|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1223,20 +1223,20 @@
 ; 688  : {
 
   00000		 |$LN5@CAN_PowerU|
-  00000		 |$M37989|
+  00000		 |$M37990|
 
 ; 689  :     UNREFERENCED_PARAMETER(context);
 ; 690  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37990|
+  00004		 |$M37991|
 
 			 ENDP  ; |?CAN_PowerUp@@YAXK@Z|, CAN_PowerUp
 
 	EXPORT	|?CAN_PowerDown@@YAXK@Z|		; CAN_PowerDown
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37999| DCD	|$LN5@CAN_PowerD|
+|$T38000| DCD	|$LN5@CAN_PowerD|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1247,20 +1247,20 @@
 ; 702  : {
 
   00000		 |$LN5@CAN_PowerD|
-  00000		 |$M37996|
+  00000		 |$M37997|
 
 ; 703  :     UNREFERENCED_PARAMETER(context);
 ; 704  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37997|
+  00004		 |$M37998|
 
 			 ENDP  ; |?CAN_PowerDown@@YAXK@Z|, CAN_PowerDown
 
 	EXPORT	|?SendMsg@@YAXPAUT_CAN_DEVICE@@PAUCAN_MESSAGE@@KE@Z| ; SendMsg
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38020| DCD	|$LN9@SendMsg|
+|$T38021| DCD	|$LN9@SendMsg|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -1272,7 +1272,7 @@
 
   00000		 |$LN9@SendMsg|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38017|
+  00004		 |$M38018|
   00004	e1a04003	 mov         r4, r3
 
 ; 901  :     OMAP_HECC_SCC_MAILBOX* pMbx;    
@@ -1313,7 +1313,7 @@
 
   00050	e8bd4010	 ldmia       sp!, {r4, lr}
   00054	e12fff1e	 bx          lr
-  00058		 |$M38018|
+  00058		 |$M38019|
 
 			 ENDP  ; |?SendMsg@@YAXPAUT_CAN_DEVICE@@PAUCAN_MESSAGE@@KE@Z|, SendMsg
 
@@ -1323,7 +1323,7 @@
 	IMPORT	|ReadMsgQueue|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38036| DCD	|$LN17@StartTrans|
+|$T38037| DCD	|$LN17@StartTrans|
 	DCD	0x40003f02
 ; Function compile flags: /Ogspy
 
@@ -1336,7 +1336,7 @@
   00000		 |$LN17@StartTrans|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd020	 sub         sp, sp, #0x20
-  00008		 |$M38033|
+  00008		 |$M38034|
   00008	e1a04000	 mov         r4, r0
 
 ; 911  :     DWORD trs;
@@ -1484,14 +1484,14 @@
   000f8		 |$LN18@StartTrans|
   000f8		 |$LN19@StartTrans|
   000f8	00000000	 DCD         |PriorityMapping|
-  000fc		 |$M38034|
+  000fc		 |$M38035|
 
 			 ENDP  ; |?StartTransmit@@YAXPAUT_CAN_DEVICE@@@Z|, StartTransmit
 
 	EXPORT	|?HandleTXMailboxInterrupt@@YAXPAUT_CAN_DEVICE@@@Z| ; HandleTXMailboxInterrupt
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38053| DCD	|$LN11@HandleTXMa|
+|$T38054| DCD	|$LN11@HandleTXMa|
 	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 
@@ -1503,7 +1503,7 @@
 
   00000		 |$LN11@HandleTXMa|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38050|
+  00004		 |$M38051|
   00004	e1a04000	 mov         r4, r0
 
 ; 960  :     DWORD canaa,canta;
@@ -1586,14 +1586,14 @@
 
   0006c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00070	e12fff1e	 bx          lr
-  00074		 |$M38051|
+  00074		 |$M38052|
 
 			 ENDP  ; |?HandleTXMailboxInterrupt@@YAXPAUT_CAN_DEVICE@@@Z|, HandleTXMailboxInterrupt
 
 	EXPORT	|?FindClassFilterFromMailbox@@YAPAUCLASS_FILTER_INTERNAL@@PAUT_CAN_DEVICE@@H@Z| ; FindClassFilterFromMailbox
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38072| DCD	|$LN13@FindClassF|
+|$T38073| DCD	|$LN13@FindClassF|
 	DCD	0x40000c00
 ; Function compile flags: /Ogspy
 
@@ -1604,7 +1604,7 @@
 ; 988  : {
 
   00000		 |$LN13@FindClassF|
-  00000		 |$M38069|
+  00000		 |$M38070|
 
 ; 989  :     CLASS_FILTER_INTERNAL* pCurrent = pDevice->ClassFilterList;   
 
@@ -1640,14 +1640,14 @@
 ; 999  : }
 
   0002c	e12fff1e	 bx          lr
-  00030		 |$M38070|
+  00030		 |$M38071|
 
 			 ENDP  ; |?FindClassFilterFromMailbox@@YAPAUCLASS_FILTER_INTERNAL@@PAUT_CAN_DEVICE@@H@Z|, FindClassFilterFromMailbox
 
 	EXPORT	|?HandleRxOverrun@@YAXPAUT_CAN_DEVICE@@@Z| ; HandleRxOverrun
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38079| DCD	|$LN5@HandleRxOv|
+|$T38080| DCD	|$LN5@HandleRxOv|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1658,14 +1658,14 @@
 ; 1125 : {
 
   00000		 |$LN5@HandleRxOv|
-  00000		 |$M38076|
+  00000		 |$M38077|
 
 ; 1126 :     UNREFERENCED_PARAMETER(pDevice);
 ; 1127 : 
 ; 1128 : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M38077|
+  00004		 |$M38078|
 
 			 ENDP  ; |?HandleRxOverrun@@YAXPAUT_CAN_DEVICE@@@Z|, HandleRxOverrun
 
@@ -1674,7 +1674,7 @@
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38089| DCD	|$LN7@HandleBusO|
+|$T38090| DCD	|$LN7@HandleBusO|
 	DCD	0x40000b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1693,7 +1693,7 @@
 
   00000		 |$LN7@HandleBusO|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38086|
+  00004		 |$M38087|
   00004	e1a04000	 mov         r4, r0
 
 ; 1131 : //    OMAP_HECC_SCC_REGS* pRegs = pDevice->pCanRegs;
@@ -1717,7 +1717,7 @@
   00028		 |$LN8@HandleBusO|
   00028		 |$LN9@HandleBusO|
   00028	00000000	 DCD         |??_C@_1CO@FOMMEIDD@?$AAB?$AAU?$AAS?$AA?5?$AAO?$AAF?$AAF?$AA?4?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
-  0002c		 |$M38087|
+  0002c		 |$M38088|
 
 			 ENDP  ; |?HandleBusOffInterrupt@@YAXPAUT_CAN_DEVICE@@@Z|, HandleBusOffInterrupt
 
@@ -1725,7 +1725,7 @@
 	EXPORT	|??_C@_1DK@IKHJICBP@?$AAE?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?4?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38101| DCD	|$LN7@HandleErro|
+|$T38102| DCD	|$LN7@HandleErro|
 	DCD	0x40000b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1745,7 +1745,7 @@
 
   00000		 |$LN7@HandleErro|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38098|
+  00004		 |$M38099|
   00004	e1a04000	 mov         r4, r0
 
 ; 1138 : //    OMAP_HECC_SCC_REGS* pRegs = pDevice->pCanRegs;
@@ -1768,7 +1768,7 @@
   00028		 |$LN8@HandleErro|
   00028		 |$LN9@HandleErro|
   00028	00000000	 DCD         |??_C@_1DK@IKHJICBP@?$AAE?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?4?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
-  0002c		 |$M38099|
+  0002c		 |$M38100|
 
 			 ENDP  ; |?HandleErrorPassiveInterrupt@@YAXPAUT_CAN_DEVICE@@@Z|, HandleErrorPassiveInterrupt
 
@@ -1776,7 +1776,7 @@
 	EXPORT	|??_C@_1DK@MEOEDCIG@?$AAW?$AAa?$AAr?$AAn?$AAi?$AAn?$AAg?$AA?5?$AAl?$AAe?$AAv?$AAe?$AAl?$AA?4?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38113| DCD	|$LN7@HandleWarn|
+|$T38114| DCD	|$LN7@HandleWarn|
 	DCD	0x40000b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1796,7 +1796,7 @@
 
   00000		 |$LN7@HandleWarn|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38110|
+  00004		 |$M38111|
   00004	e1a04000	 mov         r4, r0
 
 ; 1144 : //    OMAP_HECC_SCC_REGS* pRegs = pDevice->pCanRegs;
@@ -1819,7 +1819,7 @@
   00028		 |$LN8@HandleWarn|
   00028		 |$LN9@HandleWarn|
   00028	00000000	 DCD         |??_C@_1DK@MEOEDCIG@?$AAW?$AAa?$AAr?$AAn?$AAi?$AAn?$AAg?$AA?5?$AAl?$AAe?$AAv?$AAe?$AAl?$AA?4?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
-  0002c		 |$M38111|
+  0002c		 |$M38112|
 
 			 ENDP  ; |?HandleWarningLevelInterrupt@@YAXPAUT_CAN_DEVICE@@@Z|, HandleWarningLevelInterrupt
 
@@ -1828,7 +1828,7 @@
 	EXPORT	|??_C@_1DG@OJMHPLO@?$AAH?$AAE?$AAC?$AAC?$AA?5?$AA?3?$AA?5?$AAw?$AAr?$AAi?$AAt?$AAe?$AA?5?$AAd?$AAe?$AAn?$AAi?$AAe?$AAd?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38134| DCD	|$LN15@HandleOthe|
+|$T38135| DCD	|$LN15@HandleOthe|
 	DCD	0x40001b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1857,7 +1857,7 @@
 
   00000		 |$LN15@HandleOthe|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M38131|
+  00004		 |$M38132|
 
 ; 1152 :     DWORD clearMask = 0;
 ; 1153 :     DWORD dwStatus = INREG32(&pDevice->pCanRegs->CANGIF0);
@@ -1949,14 +1949,14 @@
   00064	00000000	 DCD         |??_C@_1EA@MJKOPJDB@?$AAH?$AAE?$AAC?$AAC?$AA?5?$AA?3?$AA?5?$AAW?$AAa?$AAk?$AAe?$AA?5?$AAU?$AAp?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAt?$AAp?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
   00068		 |$LN18@HandleOthe|
   00068	00000000	 DCD         |??_C@_1DG@OJMHPLO@?$AAH?$AAE?$AAC?$AAC?$AA?5?$AA?3?$AA?5?$AAw?$AAr?$AAi?$AAt?$AAe?$AA?5?$AAd?$AAe?$AAn?$AAi?$AAe?$AAd?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
-  0006c		 |$M38132|
+  0006c		 |$M38133|
 
 			 ENDP  ; |?HandleOtherInterrupts@@YAKPAUT_CAN_DEVICE@@@Z|, HandleOtherInterrupts
 
 	EXPORT	|?ShowErrors@@YAXPAUOMAP_HECC_SCC_REGS@@@Z| ; ShowErrors
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38144| DCD	|$LN5@ShowErrors|
+|$T38145| DCD	|$LN5@ShowErrors|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1967,7 +1967,7 @@
 ; 1188 : {
 
   00000		 |$LN5@ShowErrors|
-  00000		 |$M38141|
+  00000		 |$M38142|
 
 ; 1189 : #ifdef DEBUG
 ; 1190 :     DWORD CANES1,CANES2;
@@ -1983,7 +1983,7 @@
 ; 1200 : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M38142|
+  00004		 |$M38143|
 
 			 ENDP  ; |?ShowErrors@@YAXPAUOMAP_HECC_SCC_REGS@@@Z|, ShowErrors
 
@@ -1992,7 +1992,7 @@
 	IMPORT	|RegisterDbgZones|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38155| DCD	|$LN8@DllMain|
+|$T38156| DCD	|$LN8@DllMain|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -2004,7 +2004,7 @@
 
   00000		 |$LN8@DllMain|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38152|
+  00004		 |$M38153|
   00004	e1a04000	 mov         r4, r0
 
 ; 1310 :     UNREFERENCED_PARAMETER(pReserved);
@@ -2039,7 +2039,7 @@
   0002c		 |$LN9@DllMain|
   0002c		 |$LN10@DllMain|
   0002c	00000000	 DCD         |dpCurSettings|
-  00030		 |$M38153|
+  00030		 |$M38154|
 
 			 ENDP  ; |DllMain|
 
@@ -2047,7 +2047,7 @@
 	IMPORT	|Sleep|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38174| DCD	|$LN19@CANAllowCo|
+|$T38175| DCD	|$LN19@CANAllowCo|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -2059,7 +2059,7 @@
 
   00000		 |$LN19@CANAllowCo|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38171|
+  00004		 |$M38172|
   00004	e3510000	 cmp         r1, #0
   00008	e1a04000	 mov         r4, r0
 
@@ -2114,7 +2114,7 @@
 
   00060	e8bd4010	 ldmia       sp!, {r4, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M38172|
+  00068		 |$M38173|
 
 			 ENDP  ; |?CANAllowConfigChange@@YAXPAUOMAP_HECC_SCC_REGS@@H@Z|, CANAllowConfigChange
 
@@ -2122,7 +2122,7 @@
 	IMPORT	|__rt_sdiv|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38195| DCD	|$LN15@FindBestCa|
+|$T38196| DCD	|$LN15@FindBestCa|
 	DCD	0x40003502
 ; Function compile flags: /Ogspy
 
@@ -2135,7 +2135,7 @@
   00000		 |$LN15@FindBestCa|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M38192|
+  00008		 |$M38193|
   00008	e58d3000	 str         r3, [sp]
   0000c	e1a03002	 mov         r3, r2
   00010	e58d3004	 str         r3, [sp, #4]
@@ -2250,14 +2250,14 @@
   000cc	55555556	 DCD         0x55555556
   000d0		 |$LN18@FindBestCa|
   000d0	10624dd3	 DCD         0x10624dd3
-  000d4		 |$M38193|
+  000d4		 |$M38194|
 
 			 ENDP  ; |?FindBestCanBitTiming@@YAHHHPAH00@Z|, FindBestCanBitTiming
 
 	EXPORT	|?CANConfigureBaudrate@@YAHPAXK@Z|	; CANConfigureBaudrate
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38230| DCD	|$LN24@CANConfigu|
+|$T38231| DCD	|$LN24@CANConfigu|
 	DCD	0x40003d02
 ; Function compile flags: /Ogspy
 
@@ -2270,7 +2270,7 @@
   00000		 |$LN24@CANConfigu|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M38227|
+  00008		 |$M38228|
   00008	e1a04000	 mov         r4, r0
 
 ; 1525 :     int brp,tseg1,tseg2;
@@ -2389,7 +2389,7 @@
   000f0		 |$LN25@CANConfigu|
   000f0		 |$LN26@CANConfigu|
   000f0	00c65d40	 DCD         0xc65d40
-  000f4		 |$M38228|
+  000f4		 |$M38229|
 
 			 ENDP  ; |?CANConfigureBaudrate@@YAHPAXK@Z|, CANConfigureBaudrate
 
@@ -2397,7 +2397,7 @@
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38244| DCD	|$LN7@CANStatus|
+|$T38245| DCD	|$LN7@CANStatus|
 	DCD	0x40001c01
 ; Function compile flags: /Ogspy
 
@@ -2409,7 +2409,7 @@
 
   00000		 |$LN7@CANStatus|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M38241|
+  00004		 |$M38242|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -2472,7 +2472,7 @@
 
   00068	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0006c	e12fff1e	 bx          lr
-  00070		 |$M38242|
+  00070		 |$M38243|
 
 			 ENDP  ; |?CANStatus@@YAHPAXPAUCAN_STATUS@@@Z|, CANStatus
 
@@ -2483,7 +2483,7 @@
 	IMPORT	|WriteMsgQueue|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38269| DCD	|$LN20@CANSend|
+|$T38270| DCD	|$LN20@CANSend|
 	DCD	0x40003a02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2530,7 +2530,7 @@
   00000		 |$LN20@CANSend|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M38266|
+  00008		 |$M38267|
   00008	e1a08003	 mov         r8, r3
   0000c	e58d8004	 str         r8, [sp, #4]
   00010	e1a07002	 mov         r7, r2
@@ -2661,14 +2661,14 @@
   000e0	00000000	 DCD         |??_C@_1CI@OHCJFJPM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?5?$AAl?$AAi?$AAn?$AAe?$AA?5?$AA?$CF?$AAd?$AA?3?$AA?5?$AA?$AA@|
   000e4		 |$LN24@CANSend|
   000e4	00000000	 DCD         |??_C@_1KA@HGKICKLA@?$AAC?$AA?3?$AA?2?$AAW?$AAI?$AAN?$AAC?$AAE?$AA6?$AA0?$AA0?$AA?2?$AAP?$AAL?$AAA?$AAT?$AAF?$AAO?$AAR?$AAM?$AA?2?$AAC?$AAO?$AAM?$AAM?$AAO?$AAN?$AA?2?$AAS?$AAR?$AAC?$AA?2@|
-  000e8		 |$M38267|
+  000e8		 |$M38268|
 
 			 ENDP  ; |?CANSend@@YAHPAXPAUCAN_MESSAGE@@KPAKW4TXCAN_PRIORITY@@K@Z|, CANSend
 
 	EXPORT	|?CANReceive@@YAHPAXPAUCAN_MESSAGE@@KPAKK@Z| ; CANReceive
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38293| DCD	|$LN13@CANReceive|
+|$T38294| DCD	|$LN13@CANReceive|
 	DCD	0x40002002
 ; Function compile flags: /Ogspy
 
@@ -2681,7 +2681,7 @@
   00000		 |$LN13@CANReceive|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M38290|
+  00008		 |$M38291|
   00008	e1a07003	 mov         r7, r3
   0000c	e1b05002	 movs        r5, r2
   00010	e1a06001	 mov         r6, r1
@@ -2749,14 +2749,14 @@
   00074	e28dd010	 add         sp, sp, #0x10
   00078	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   0007c	e12fff1e	 bx          lr
-  00080		 |$M38291|
+  00080		 |$M38292|
 
 			 ENDP  ; |?CANReceive@@YAHPAXPAUCAN_MESSAGE@@KPAKK@Z|, CANReceive
 
 	EXPORT	|?CANConfigureAutoAnswer@@YAHPAXPAUCAN_MESSAGE@@H@Z| ; CANConfigureAutoAnswer
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38342| DCD	|$LN41@CANConfigu@2|
+|$T38343| DCD	|$LN41@CANConfigu@2|
 	DCD	0x40007602
 ; Function compile flags: /Ogspy
 
@@ -2769,7 +2769,7 @@
   00000		 |$LN41@CANConfigu@2|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M38339|
+  00008		 |$M38340|
   00008	e1a06002	 mov         r6, r2
   0000c	e1a0a001	 mov         r10, r1
   00010	e1a05000	 mov         r5, r0
@@ -3054,14 +3054,14 @@
   001cc	e28dd004	 add         sp, sp, #4
   001d0	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   001d4	e12fff1e	 bx          lr
-  001d8		 |$M38340|
+  001d8		 |$M38341|
 
 			 ENDP  ; |?CANConfigureAutoAnswer@@YAHPAXPAUCAN_MESSAGE@@H@Z|, CANConfigureAutoAnswer
 
 	EXPORT	|?ConfigureMailboxAndAcceptanceFilter@@YAXPAUT_CAN_DEVICE@@IPAUCLASS_FILTER@@@Z| ; ConfigureMailboxAndAcceptanceFilter
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38378| DCD	|$LN21@ConfigureM|
+|$T38379| DCD	|$LN21@ConfigureM|
 	DCD	0x40004b02
 ; Function compile flags: /Ogspy
 
@@ -3074,7 +3074,7 @@
   00000		 |$LN21@ConfigureM|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M38375|
+  00008		 |$M38376|
   00008	e1a0a002	 mov         r10, r2
   0000c	e3510000	 cmp         r1, #0
   00010	e58d1004	 str         r1, [sp, #4]
@@ -3226,7 +3226,7 @@
   00120	e28dd008	 add         sp, sp, #8
   00124	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   00128	e12fff1e	 bx          lr
-  0012c		 |$M38376|
+  0012c		 |$M38377|
 
 			 ENDP  ; |?ConfigureMailboxAndAcceptanceFilter@@YAXPAUT_CAN_DEVICE@@IPAUCLASS_FILTER@@@Z|, ConfigureMailboxAndAcceptanceFilter
 
@@ -3235,7 +3235,7 @@
 	IMPORT	|LocalAlloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38422| DCD	|$LN36@CANCreateC|
+|$T38423| DCD	|$LN36@CANCreateC|
 	DCD	0x40005e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3255,7 +3255,7 @@
 
   00000		 |$LN36@CANCreateC|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M38419|
+  00004		 |$M38420|
   00004	e1a09003	 mov         r9, r3
   00008	e1a05002	 mov         r5, r2
   0000c	e1a07001	 mov         r7, r1
@@ -3408,7 +3408,7 @@
 ; 1841 :         LocalFree(pNewClassFilter);
 
   000e0	e1a00005	 mov         r0, r5
-  000e4		 |$error$37478|
+  000e4		 |$error$37479|
   000e4	eb000000	 bl          LocalFree
   000e8		 |$LN1@CANCreateC|
 
@@ -3507,14 +3507,14 @@
   00170	00000000	 DCD         |??_C@_1KA@HGKICKLA@?$AAC?$AA?3?$AA?2?$AAW?$AAI?$AAN?$AAC?$AAE?$AA6?$AA0?$AA0?$AA?2?$AAP?$AAL?$AAA?$AAT?$AAF?$AAO?$AAR?$AAM?$AA?2?$AAC?$AAO?$AAM?$AAM?$AAO?$AAN?$AA?2?$AAS?$AAR?$AAC?$AA?2@|
   00174		 |$LN41@CANCreateC|
   00174	00000000	 DCD         |RxPriorityMlbxCount|
-  00178		 |$M38420|
+  00178		 |$M38421|
 
 			 ENDP  ; |?CANCreateClassFilter@@YAHPAXPAUCLASS_FILTER@@W4RXCAN_PRIORITY@@H@Z|, CANCreateClassFilter
 
 	EXPORT	|?FindClassFilterInstance@@YAPAUCLASS_FILTER_INTERNAL@@PAUT_CAN_DEVICE@@PAUCLASS_FILTER@@@Z| ; FindClassFilterInstance
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38447| DCD	|$LN15@FindClassF@2|
+|$T38448| DCD	|$LN15@FindClassF@2|
 	DCD	0x40001401
 ; Function compile flags: /Ogspy
 
@@ -3526,7 +3526,7 @@
 
   00000		 |$LN15@FindClassF@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M38444|
+  00004		 |$M38445|
   00004	e1b0e001	 movs        lr, r1
 
 ; 1851 :     CLASS_FILTER_INTERNAL* pCurrent = pDevice->ClassFilterList;
@@ -3581,14 +3581,14 @@
 
   00048	e49de004	 ldr         lr, [sp], #4
   0004c	e12fff1e	 bx          lr
-  00050		 |$M38445|
+  00050		 |$M38446|
 
 			 ENDP  ; |?FindClassFilterInstance@@YAPAUCLASS_FILTER_INTERNAL@@PAUT_CAN_DEVICE@@PAUCLASS_FILTER@@@Z|, FindClassFilterInstance
 
 	EXPORT	|?CANDeleteClassFilter@@YAHPAXPAUCLASS_FILTER@@@Z| ; CANDeleteClassFilter
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38496| DCD	|$LN30@CANDeleteC|
+|$T38497| DCD	|$LN30@CANDeleteC|
 	DCD	0x40003c01
 ; Function compile flags: /Ogspy
 
@@ -3600,7 +3600,7 @@
 
   00000		 |$LN30@CANDeleteC|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38493|
+  00004		 |$M38494|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -3729,14 +3729,14 @@
 
   000e8	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000ec	e12fff1e	 bx          lr
-  000f0		 |$M38494|
+  000f0		 |$M38495|
 
 			 ENDP  ; |?CANDeleteClassFilter@@YAHPAXPAUCLASS_FILTER@@@Z|, CANDeleteClassFilter
 
 	EXPORT	|?CANEnableClassFilter@@YAHPAXPAUCLASS_FILTER@@H@Z| ; CANEnableClassFilter
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38510| DCD	|$LN10@CANEnableC|
+|$T38511| DCD	|$LN10@CANEnableC|
 	DCD	0x40002001
 ; Function compile flags: /Ogspy
 
@@ -3748,7 +3748,7 @@
 
   00000		 |$LN10@CANEnableC|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38507|
+  00004		 |$M38508|
   00004	e1a04002	 mov         r4, r2
   00008	e1a06001	 mov         r6, r1
   0000c	e1a05000	 mov         r5, r0
@@ -3825,14 +3825,14 @@
   00074	e1a00004	 mov         r0, r4
   00078	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   0007c	e12fff1e	 bx          lr
-  00080		 |$M38508|
+  00080		 |$M38509|
 
 			 ENDP  ; |?CANEnableClassFilter@@YAHPAXPAUCLASS_FILTER@@H@Z|, CANEnableClassFilter
 
 	EXPORT	|?CANAddSubClassFilter@@YAHPAXPAUSUBCLASS_FILTER@@@Z| ; CANAddSubClassFilter
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38544| DCD	|$LN19@CANAddSubC|
+|$T38545| DCD	|$LN19@CANAddSubC|
 	DCD	0x40002f01
 ; Function compile flags: /Ogspy
 
@@ -3844,7 +3844,7 @@
 
   00000		 |$LN19@CANAddSubC|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38541|
+  00004		 |$M38542|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -3913,7 +3913,7 @@
 ; 1960 :     LeaveCriticalSection(&pDevice->regcs);
 
   00068	e2850030	 add         r0, r5, #0x30
-  0006c		 |$error$37554|
+  0006c		 |$error$37555|
   0006c	eb000000	 bl          LeaveCriticalSection
 
 ; 1961 :     if (pNewSubclassFilter)
@@ -3962,14 +3962,14 @@
 
   000b4	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M38542|
+  000bc		 |$M38543|
 
 			 ENDP  ; |?CANAddSubClassFilter@@YAHPAXPAUSUBCLASS_FILTER@@@Z|, CANAddSubClassFilter
 
 	EXPORT	|?CANRemoveSubClassFilter@@YAHPAXPAUSUBCLASS_FILTER@@@Z| ; CANRemoveSubClassFilter
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38574| DCD	|$LN25@CANRemoveS|
+|$T38575| DCD	|$LN25@CANRemoveS|
 	DCD	0x40003201
 ; Function compile flags: /Ogspy
 
@@ -3981,7 +3981,7 @@
 
   00000		 |$LN25@CANRemoveS|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M38571|
+  00004		 |$M38572|
   00004	e1a07001	 mov         r7, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -4005,7 +4005,7 @@
 
 ; 1977 :     if (pClassFilterInstance == NULL)
 
-  00024	0a000022	 beq         |$error$37568|
+  00024	0a000022	 beq         |$error$37569|
 
 ; 1978 :     {
 ; 1979 :         goto error;
@@ -4015,7 +4015,7 @@
 
   00028	e596300c	 ldr         r3, [r6, #0xC]
   0002c	e3530000	 cmp         r3, #0
-  00030	0a00001f	 beq         |$error$37568|
+  00030	0a00001f	 beq         |$error$37569|
 
 ; 1983 :     {
 ; 1984 :         goto error;
@@ -4115,7 +4115,7 @@
 
   000ac	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   000b0	e12fff1e	 bx          lr
-  000b4		 |$error$37568|
+  000b4		 |$error$37569|
 
 ; 2016 : error:    
 ; 2017 :     LeaveCriticalSection(&pDevice->regcs);
@@ -4131,14 +4131,14 @@
 
   000c0	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   000c4	e12fff1e	 bx          lr
-  000c8		 |$M38572|
+  000c8		 |$M38573|
 
 			 ENDP  ; |?CANRemoveSubClassFilter@@YAHPAXPAUSUBCLASS_FILTER@@@Z|, CANRemoveSubClassFilter
 
 	EXPORT	|?CANisIDAccepted@@YAHTCAN_ID@@PAUSUBCLASS_FILTER_INTERNAL@@@Z| ; CANisIDAccepted
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38598| DCD	|$LN19@CANisIDAcc|
+|$T38599| DCD	|$LN19@CANisIDAcc|
 	DCD	0x40000e00
 ; Function compile flags: /Ogspy
 
@@ -4149,7 +4149,7 @@
 ; 2022 : {    
 
   00000		 |$LN19@CANisIDAcc|
-  00000		 |$M38595|
+  00000		 |$M38596|
   00000	e3510000	 cmp         r1, #0
 
 ; 2023 :     SUBCLASS_FILTER_INTERNAL* pCurrent = pList;
@@ -4196,7 +4196,7 @@
 ; 2037 : }
 
   00034	e12fff1e	 bx          lr
-  00038		 |$M38596|
+  00038		 |$M38597|
 
 			 ENDP  ; |?CANisIDAccepted@@YAHTCAN_ID@@PAUSUBCLASS_FILTER_INTERNAL@@@Z|, CANisIDAccepted
 
@@ -4204,7 +4204,7 @@
 	EXPORT	|??_C@_1GE@OEKNAFA@?$AAu?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAg?$AAe?$AAt?$AA?5?$AAa?$AA?5?$AAf?$AAe?$AAr?$AAe?$AA?5?$AAm?$AAa?$AAi?$AAl?$AAb?$AAo?$AAx?$AA?5?$AAf?$AAo?$AAr@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38627| DCD	|$LN20@CANRemoteR|
+|$T38628| DCD	|$LN20@CANRemoteR|
 	DCD	0x40004101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4228,7 +4228,7 @@
 
   00000		 |$LN20@CANRemoteR|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38624|
+  00004		 |$M38625|
   00004	e1a06001	 mov         r6, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -4376,7 +4376,7 @@
   00100		 |$LN21@CANRemoteR|
   00100		 |$LN22@CANRemoteR|
   00100	00000000	 DCD         |??_C@_1GE@OEKNAFA@?$AAu?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAg?$AAe?$AAt?$AA?5?$AAa?$AA?5?$AAf?$AAe?$AAr?$AAe?$AA?5?$AAm?$AAa?$AAi?$AAl?$AAb?$AAo?$AAx?$AA?5?$AAf?$AAo?$AAr@|
-  00104		 |$M38625|
+  00104		 |$M38626|
 
 			 ENDP  ; |?CANRemoteRequest@@YAHPAXPAUCAN_REMOTE_REQUEST@@@Z|, CANRemoteRequest
 
@@ -4387,7 +4387,7 @@
 	EXPORT	|??_C@_1DO@FOGLPLCN@?$AAR?$AAe?$AAm?$AAo?$AAt?$AAe?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?5?$AA?$CF?$AAd?$AA?5?$AA?$HM?$AA?5?$AA?$CF?$AAi?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38682| DCD	|$LN51@HandleRXMa|
+|$T38683| DCD	|$LN51@HandleRXMa|
 	DCD	0x40009702
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4443,7 +4443,7 @@
   00000		 |$LN51@HandleRXMa|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dde22	 sub         sp, sp, #0x22, 28
-  00008		 |$M38679|
+  00008		 |$M38680|
   00008	e1a04000	 mov         r4, r0
 
 ; 1005 :     OMAP_HECC_SCC_MAILBOX mailboxCopy[NB_MAILBOXES];
@@ -4835,14 +4835,14 @@
   00254	00000000	 DCD         |??_C@_1DO@FOGLPLCN@?$AAR?$AAe?$AAm?$AAo?$AAt?$AAe?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?5?$AA?$CF?$AAd?$AA?5?$AA?$HM?$AA?5?$AA?$CF?$AAi?$AA?$AN?$AA?6?$AA?$AA@|
   00258		 |$LN58@HandleRXMa|
   00258	00000000	 DCD         |??_C@_1EC@BCDBGOBM@?$AAr?$AAe?$AAm?$AAo?$AAt?$AAe?$AA?5?$AAr?$AAe?$AAq?$AAu?$AAe?$AAs?$AAt?$AA?5?$AAa?$AAn?$AAs?$AAw?$AAe?$AAr?$AA?5?$AAr?$AAe?$AAc?$AAe?$AAi?$AAv?$AAe?$AAd?$AA?$AN?$AA?6@|
-  0025c		 |$M38680|
+  0025c		 |$M38681|
 
 			 ENDP  ; |?HandleRXMailboxInterrupt@@YAXPAUT_CAN_DEVICE@@@Z|, HandleRXMailboxInterrupt
 
 	EXPORT	|?CANHandleIrq@@YAHPAUT_CAN_DEVICE@@@Z|	; CANHandleIrq
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38736| DCD	|$LN33@CANHandleI|
+|$T38737| DCD	|$LN33@CANHandleI|
 	DCD	0x40004b01
 ; Function compile flags: /Ogspy
 
@@ -4854,7 +4854,7 @@
 
   00000		 |$LN33@CANHandleI|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M38733|
+  00004		 |$M38734|
   00004	e1a04000	 mov         r4, r0
 
 ; 1204 :     BOOL fSpurious = TRUE;
@@ -5063,7 +5063,7 @@
   00124	00000000	 DCD         |??_C@_1DK@IKHJICBP@?$AAE?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?4?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
   00128		 |$LN37@CANHandleI|
   00128	00000000	 DCD         |??_C@_1CO@FOMMEIDD@?$AAB?$AAU?$AAS?$AA?5?$AAO?$AAF?$AAF?$AA?4?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
-  0012c		 |$M38734|
+  0012c		 |$M38735|
 
 			 ENDP  ; |?CANHandleIrq@@YAHPAUT_CAN_DEVICE@@@Z|, CANHandleIrq
 
@@ -5071,7 +5071,7 @@
 	IMPORT	|InterruptDone|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38755| DCD	|$LN16@CANIntrThr|
+|$T38756| DCD	|$LN16@CANIntrThr|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -5083,7 +5083,7 @@
 
   00000		 |$LN16@CANIntrThr|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38752|
+  00004		 |$M38753|
   00004	e1a04000	 mov         r4, r0
 
 ; 1276 :     T_CAN_DEVICE *pDevice = (T_CAN_DEVICE*) pContext;
@@ -5147,14 +5147,14 @@
 
   00054	e8bd4010	 ldmia       sp!, {r4, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M38753|
+  0005c		 |$M38754|
 
 			 ENDP  ; |?CANIntrThread@@YAKPAX@Z|, CANIntrThread
 
 	EXPORT	|?CANInitHardware@@YAHPAX@Z|		; CANInitHardware
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38770| DCD	|$LN15@CANInitHar|
+|$T38771| DCD	|$LN15@CANInitHar|
 	DCD	0x40003001
 ; Function compile flags: /Ogspy
 
@@ -5166,7 +5166,7 @@
 
   00000		 |$LN15@CANInitHar|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M38767|
+  00004		 |$M38768|
   00004	e1a05000	 mov         r5, r0
 
 ; 1327 :     T_CAN_DEVICE *pDevice = (T_CAN_DEVICE*) ctxt;
@@ -5289,7 +5289,7 @@
 
   000b8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000bc	e12fff1e	 bx          lr
-  000c0		 |$M38768|
+  000c0		 |$M38769|
 
 			 ENDP  ; |?CANInitHardware@@YAHPAX@Z|, CANInitHardware
 
@@ -5298,7 +5298,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38809| DCD	|$LN42@CANCommand|
+|$T38810| DCD	|$LN42@CANCommand|
 	DCD	0x40009102
 ; Function compile flags: /Ogspy
 
@@ -5311,7 +5311,7 @@
   00000		 |$LN42@CANCommand|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd020	 sub         sp, sp, #0x20
-  00008		 |$M38806|
+  00008		 |$M38807|
   00008	e3510000	 cmp         r1, #0
   0000c	e1a04000	 mov         r4, r0
 
@@ -5644,7 +5644,7 @@
   00238	e28dd020	 add         sp, sp, #0x20
   0023c	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   00240	e12fff1e	 bx          lr
-  00244		 |$M38807|
+  00244		 |$M38808|
 
 			 ENDP  ; |?CANCommand@@YAHPAXW4CAN_COMMAND@@@Z|, CANCommand
 
@@ -5667,7 +5667,7 @@
 	IMPORT	|GetDeviceRegistryParams|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38832| DCD	|$LN51@CAN_Init|
+|$T38833| DCD	|$LN51@CAN_Init|
 	DCD	0x4000c502
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5688,7 +5688,7 @@
   00000		 |$LN51@CAN_Init|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M38829|
+  00008		 |$M38830|
   00008	e1a05000	 mov         r5, r0
 
 ; 389  :     DWORD rc = (DWORD)NULL;    
@@ -6127,7 +6127,7 @@
 ; 540  :     rc = (DWORD)pDevice;
 
   002e0	e1a09004	 mov         r9, r4
-  002e4		 |$cleanUp$36784|
+  002e4		 |$cleanUp$36785|
 
 ; 541  : cleanUp:
 ; 542  :     if (rc == (DWORD)NULL)
@@ -6161,14 +6161,14 @@
   0030c	00000000	 DCD         |??_C@_19CFPJNJHM@?$AAI?$AAN?$AAT?$AA0?$AA?$AA@|
   00310		 |$LN57@CAN_Init|
   00310	00000000	 DCD         |s_deviceRegParams|
-  00314		 |$M38830|
+  00314		 |$M38831|
 
 			 ENDP  ; |?CAN_Init@@YAKPBGPBX@Z|, CAN_Init
 
 	EXPORT	|?CAN_IOControl@@YAHKKPAEK0KPAK@Z|	; CAN_IOControl
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38943| DCD	|$LN118@CAN_IOCont|
+|$T38944| DCD	|$LN118@CAN_IOCont|
 	DCD	0x40010b02
 ; Function compile flags: /Ogspy
 
@@ -6181,7 +6181,7 @@
   00000		 |$LN118@CAN_IOCont|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M38940|
+  00008		 |$M38941|
   00008	e1a07003	 mov         r7, r3
   0000c	e1a05002	 mov         r5, r2
 
@@ -6806,7 +6806,7 @@
   00424	001b0408	 DCD         0x1b0408
   00428		 |$LN125@CAN_IOCont|
   00428	001b0404	 DCD         0x1b0404
-  0042c		 |$M38941|
+  0042c		 |$M38942|
 
 			 ENDP  ; |?CAN_IOControl@@YAHKKPAEK0KPAK@Z|, CAN_IOControl
 

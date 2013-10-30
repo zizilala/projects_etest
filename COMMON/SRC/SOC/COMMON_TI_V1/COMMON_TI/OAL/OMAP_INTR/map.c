@@ -37,32 +37,27 @@ static UINT32 s_oalIrq2SysIntr[OMAP_IRQ_MAXIMUM];
 //  This function must be called from OALInterruptInit to initialize mapping
 //  between IRQ and SYSINTR. It simply initialize mapping arrays.
 //
-VOID 
-OALIntrMapInit(
-    )
+VOID OALIntrMapInit( )
 {
-
     UINT32 i, j;
 
     OALMSG(OAL_FUNC&&OAL_INTR, (L"+OEMInterruptMapInit\r\n"));
 
     // Initialize interrupt maps
-    for (i = 0; i < SYSINTR_MAXIMUM; i++)
-        {
-        for (j = 0; j < OMAP_IRQ_PER_SYSINTR; j++)
-            {
+    for (i = 0; i < SYSINTR_MAXIMUM; i++) // 72
+	{
+        for (j = 0; j < OMAP_IRQ_PER_SYSINTR; j++) // 5 - \COMMON_TI_V1\COMMON_TI\INC\intr.h
+		{
             s_oalSysIntr2Irq[i][j] = (DWORD) OAL_INTR_IRQ_UNDEFINED;
-            }
-        }
-    for (i = 0; i < OMAP_IRQ_MAXIMUM; i++)
-        {
+		}
+	}
+    for (i = 0; i < OMAP_IRQ_MAXIMUM; i++) //320 - \COMMON_TI_V1\COMMON_TI\INC\intr.h
+	{
         s_oalIrq2SysIntr[i] = (DWORD) SYSINTR_UNDEFINED;
-        }
+	}
 
     OALMSG(OAL_FUNC&&OAL_INTR, (L"-OEMInterruptMapInit\r\n"));
-
 }
-
 
 //------------------------------------------------------------------------------
 //
@@ -70,34 +65,27 @@ OALIntrMapInit(
 //
 //  This function sets static translation between IRQ and SYSINTR.
 //
-VOID
-OALIntrStaticTranslate(
-    UINT32 sysIntr, 
-    UINT32 irq
-    )
+VOID OALIntrStaticTranslate(UINT32 sysIntr, UINT32 irq)
 {
 
     UINT32 i;
 
-    OALMSG(OAL_FUNC&&OAL_INTR, (
-        L"+OALIntrStaticTranslate(%d, %d)\r\n", sysIntr, irq
-        ));
+    OALMSG(1, (L"+OALIntrStaticTranslate(%d, %d)\r\n", sysIntr, irq)); //OAL_FUNC&&OAL_INTR
     if ((irq >= OMAP_IRQ_MAXIMUM) || (sysIntr >= SYSINTR_MAXIMUM))
         goto cleanUp;
 
     for (i = 0; i < OMAP_IRQ_PER_SYSINTR; i++)
-        {
-        if (s_oalSysIntr2Irq[sysIntr][i] != (DWORD) OAL_INTR_IRQ_UNDEFINED) continue;
+	{
+        if (s_oalSysIntr2Irq[sysIntr][i] != (DWORD) OAL_INTR_IRQ_UNDEFINED) 
+        	continue;
         s_oalSysIntr2Irq[sysIntr][i] = irq;
         s_oalIrq2SysIntr[irq] = sysIntr;
         break;
-        }
+	}
 
 cleanUp:
-    OALMSG(OAL_FUNC&&OAL_INTR, (L"-OALIntrStaticTranslate\r\n"));
-
+    OALMSG(1, (L"-OALIntrStaticTranslate\r\n"));
 }
-
 
 //------------------------------------------------------------------------------
 //
@@ -106,24 +94,21 @@ cleanUp:
 //  This function maps a SYSINTR to its corresponding IRQ. It is typically used
 //  in OEMInterruptXXX to obtain IRQs for given SYSINTR.
 //
-BOOL
-OALIntrTranslateSysIntr(
+BOOL OALIntrTranslateSysIntr(
     UINT32 sysIntr,
     UINT32 *pCount,
-    const UINT32 **ppIrqs
-    )
+    const UINT32 **ppIrqs)
 {
     BOOL rc = FALSE;
-
 
     OALMSG(OAL_FUNC&&OAL_INTR, (L"+OALTranslateSysIntr(%d)\r\n", sysIntr));
 
     // Valid SYSINTR?
     if (sysIntr >= SYSINTR_MAXIMUM)
-        {
+	{
         rc = FALSE;
         goto cleanUp;
-        }
+	}
     
     *pCount = OMAP_IRQ_PER_SYSINTR;
     *ppIrqs = s_oalSysIntr2Irq[sysIntr];
@@ -135,32 +120,25 @@ cleanUp:
     return rc;
 }
 
-
 //------------------------------------------------------------------------------
 //
 //  Function:  OALIntrTranslateIrq
 //
 //  This function maps a IRQ to its corresponding SYSINTR.
 //
-UINT32
-OALIntrTranslateIrq(
-    UINT32 irq
-    )
+UINT32 OALIntrTranslateIrq(UINT32 irq)
 {
     UINT32 sysIntr = (DWORD) SYSINTR_UNDEFINED;
 
     OALMSG(OAL_FUNC&&OAL_INTR, (L"+OALIntrTranslateIrq(%d)\r\n", irq));
 
+    if (irq < OMAP_IRQ_MAXIMUM) 
+    	sysIntr = s_oalIrq2SysIntr[irq];
 
-    if (irq < OMAP_IRQ_MAXIMUM) sysIntr = s_oalIrq2SysIntr[irq];
-
-
-    OALMSG(OAL_FUNC&&OAL_INTR, (
-        L"-OALIntrTranslateIrq(sysIntr = %d)\r\n", sysIntr
-        ));
+    OALMSG(OAL_FUNC&&OAL_INTR, (L"-OALIntrTranslateIrq(sysIntr = %d)\r\n", sysIntr));
+    
     return sysIntr;
 }
-
 
 //------------------------------------------------------------------------------
 //
@@ -169,145 +147,127 @@ OALIntrTranslateIrq(
 //  This function allocate new SYSINTR for given IRQ and it there isn't
 //  static mapping for this IRQ it will create it.
 //
-UINT32
-OALIntrRequestSysIntr(
+UINT32 OALIntrRequestSysIntr(
     UINT32 count, 
     const UINT32 *pIrqs, 
-    UINT32 flags
-    )
+    UINT32 flags)
 {
-
     UINT32 sysIntr, i, j;
 
-    OALMSG(OAL_INTR&&OAL_FUNC, (
-        L"+OALIntrRequestSysIntr(%d, 0x%08x, 0x%08x)\r\n", count, pIrqs, flags
-        ));
+    OALMSG(1, (L"+OALIntrRequestSysIntr(%d, 0x%08x, 0x%08x)\r\n", count, *pIrqs, flags)); // OAL_INTR&&OAL_FUNC
 
     // Valid IRQ?
-    if (count > OMAP_IRQ_PER_SYSINTR)
-        {
+    if (count > OMAP_IRQ_PER_SYSINTR) // 5
+	{
         OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "
-            L"Only %d IRQs for SYSINTR is supported\r\n",
-            OMAP_IRQ_PER_SYSINTR
-            ));
+            L"Only %d IRQs for SYSINTR is supported\r\n",OMAP_IRQ_PER_SYSINTR));
         sysIntr = (DWORD) SYSINTR_UNDEFINED;
         goto cleanUp;
-        }
+	}
 
     // If static mapping is requested check if we can obtain one
-    if ((flags & OAL_INTR_STATIC) != 0)
-        {
+    if ((flags & OAL_INTR_STATIC) != 0) // OAL_INTR_STATIC = 2
+	{
         for (i = 0; i < count; i++)
-            {
+		{
             if (pIrqs[i] >= OMAP_IRQ_MAXIMUM)
-                {
-                OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "
-                    L"IRQ %d out of range\r\n", pIrqs[i]
-                    ));
+			{
+                OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "L"IRQ %d out of range\r\n", pIrqs[i]));
                 sysIntr = (DWORD) SYSINTR_UNDEFINED;
                 goto cleanUp;
-                }
+			}
             if (s_oalIrq2SysIntr[pIrqs[i]] != (DWORD) SYSINTR_UNDEFINED)
-                {
+			{
                 OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "
-                    L"Static mapping for IRQ %d already assigned\r\n", pIrqs[i]
-                    ));
+                    L"Static mapping for IRQ %d already assigned\r\n", pIrqs[i]));
                 sysIntr = (DWORD) SYSINTR_UNDEFINED;
                 goto cleanUp;
-                }
-            }
-        }
+			}
+		}
+	}
 
     // If translate flag is set all IRQs must be mapped to same SYSINTR
     if (pIrqs[0] >= OMAP_IRQ_MAXIMUM)
-        {
-        OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "
-            L"IRQ %d out of range\r\n", pIrqs[0]
-            ));
+	{
+        OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: IRQ %d out of range\r\n", pIrqs[0]));
         sysIntr = (DWORD) SYSINTR_UNDEFINED;
         goto cleanUp;
-        }
+	}
     if (((flags & OAL_INTR_TRANSLATE) != 0) &&
         (s_oalIrq2SysIntr[pIrqs[0]] != (DWORD) SYSINTR_UNDEFINED))
-        {
+	{
         sysIntr = s_oalIrq2SysIntr[pIrqs[0]];
         // Check remaining IRQs
         for (i = 1; i < count; i++)
-            {
+		{
             if (pIrqs[i] >= OMAP_IRQ_MAXIMUM)
-                {
+			{
                 OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "
-                    L"IRQ %d out of range\r\n", pIrqs[i]
-                    ));
+                    L"IRQ %d out of range\r\n", pIrqs[i]));
                 sysIntr = (DWORD) SYSINTR_UNDEFINED;
                 goto cleanUp;
-                }
+			}
             // If it is mapped to same SYSINTR, we are fine
             if (s_oalIrq2SysIntr[pIrqs[i]] == sysIntr) continue;
             // It isn't mapped or mapped to some other SYSINTR, error...
             sysIntr = (DWORD) SYSINTR_UNDEFINED;
-            }
+		}
         goto cleanUp;
-        }
+	}
 
     // Find next available SYSINTR value...
     for (sysIntr = SYSINTR_FIRMWARE; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
-        {
+	{
         if (s_oalSysIntr2Irq[sysIntr][0] == (DWORD) OAL_INTR_IRQ_UNDEFINED) break;
-        }
+	}
 
     // Any available SYSINTRs left?
     if (sysIntr >= SYSINTR_MAXIMUM)
-        {
+	{
         OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "
-            L"No available SYSINTR found\r\n"
-            ));
+            L"No available SYSINTR found\r\n"));
         sysIntr = (DWORD) SYSINTR_UNDEFINED;
         goto cleanUp;
-        }
+	}
 
     // Make SYSINTR -> IRQs association
     for (i = 0; i < count; i++)
-        {
+	{
         if (pIrqs[i] >= OMAP_IRQ_MAXIMUM)
-            {
+		{
             OALMSG(OAL_ERROR, (L"ERROR: OALIntrRequestSysIntr: "
-                L"IRQ %d out of range\r\n", pIrqs[i]
-                ));
+                L"IRQ %d out of range\r\n", pIrqs[i]));
             for (j = 0; j < i; j++)
-                {
+			{
                 s_oalSysIntr2Irq[sysIntr][j] = (DWORD) OAL_INTR_IRQ_UNDEFINED;
-                }
+			}
             sysIntr = (DWORD) SYSINTR_UNDEFINED;
             goto cleanUp;
-            }
+		}
         s_oalSysIntr2Irq[sysIntr][i] = pIrqs[i];
-        }
+	}
     while (i < OMAP_IRQ_PER_SYSINTR)
-        {
+	{
         s_oalSysIntr2Irq[sysIntr][i++] = (DWORD) OAL_INTR_IRQ_UNDEFINED;
-        }
+	}
 
     // Make IRQ -> SYSINTR association, only if not multiply-mapped
     if ((flags & OAL_INTR_DYNAMIC) != 0) goto cleanUp;
     for (i = 0; i < count; i++)
-        {
+	{
         if ((s_oalIrq2SysIntr[pIrqs[i]] == (DWORD) SYSINTR_UNDEFINED) ||
             ((flags & OAL_INTR_FORCE_STATIC) != 0))
-            {
+		{
             s_oalIrq2SysIntr[pIrqs[i]] = sysIntr;
-            }
-        }
+		}
+	}
 
 cleanUp:
     
-    OALMSG(OAL_INTR&&OAL_FUNC, (
-        L"-OALIntrRequestSysIntr(sysIntr = %d)\r\n", sysIntr
-        ));
+    OALMSG(1, (L"-OALIntrRequestSysIntr(sysIntr = %d)\r\n", sysIntr));
     return sysIntr;
 
 }
-
 
 //------------------------------------------------------------------------------
 //
@@ -315,10 +275,7 @@ cleanUp:
 //
 //  This function release given SYSINTR and remove static mapping if exists.
 //
-BOOL
-OALIntrReleaseSysIntr(
-    UINT32 sysIntr
-    )
+BOOL OALIntrReleaseSysIntr(UINT32 sysIntr)
 {
     BOOL rc = TRUE;
 

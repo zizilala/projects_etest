@@ -58,7 +58,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43170| DCD	|$LN5@Stride|
+|$T43178| DCD	|$LN5@Stride|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -69,7 +69,7 @@
 ; 177  :     {
 
   00000		 |$LN5@Stride|
-  00000		 |$M43167|
+  00000		 |$M43175|
 
 ; 178  :         return m_nStrideBytes;
 
@@ -78,14 +78,14 @@
 ; 179  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M43168|
+  00008		 |$M43176|
 
 			 ENDP  ; |?Stride@GPESurf@@QAAHXZ|, GPESurf::Stride
 
 	EXPORT	|?BytesPerPixel@GPESurf@@QAAHXZ|	; GPESurf::BytesPerPixel
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43180| DCD	|$LN5@BytesPerPi|
+|$T43188| DCD	|$LN5@BytesPerPi|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -96,7 +96,7 @@
 ; 183  :     {
 
   00000		 |$LN5@BytesPerPi|
-  00000		 |$M43177|
+  00000		 |$M43185|
 
 ; 184  :         return m_BytesPixel;
 
@@ -105,14 +105,14 @@
 ; 185  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M43178|
+  00008		 |$M43186|
 
 			 ENDP  ; |?BytesPerPixel@GPESurf@@QAAHXZ|, GPESurf::BytesPerPixel
 
 	EXPORT	|?Format@GPESurf@@QAA?AW4EGPEFormat@@XZ| ; GPESurf::Format
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43190| DCD	|$LN5@Format|
+|$T43198| DCD	|$LN5@Format|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -123,7 +123,7 @@
 ; 189  :     {
 
   00000		 |$LN5@Format|
-  00000		 |$M43187|
+  00000		 |$M43195|
 
 ; 190  :         return m_eFormat;
 
@@ -132,14 +132,14 @@
 ; 191  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M43188|
+  00008		 |$M43196|
 
 			 ENDP  ; |?Format@GPESurf@@QAA?AW4EGPEFormat@@XZ|, GPESurf::Format
 
 	EXPORT	|?FormatPtr@GPESurf@@QAAPAVGPEFormat@@XZ| ; GPESurf::FormatPtr
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43200| DCD	|$LN5@FormatPtr|
+|$T43208| DCD	|$LN5@FormatPtr|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -150,7 +150,7 @@
 ; 195  :     {
 
   00000		 |$LN5@FormatPtr|
-  00000		 |$M43197|
+  00000		 |$M43205|
 
 ; 196  :         return &m_Format;
 
@@ -159,14 +159,14 @@
 ; 197  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M43198|
+  00008		 |$M43206|
 
 			 ENDP  ; |?FormatPtr@GPESurf@@QAAPAVGPEFormat@@XZ|, GPESurf::FormatPtr
 
 	EXPORT	|?Buffer@GPESurf@@QAAPAXXZ|		; GPESurf::Buffer
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43210| DCD	|$LN5@Buffer|
+|$T43218| DCD	|$LN5@Buffer|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -177,7 +177,7 @@
 ; 201  :     {
 
   00000		 |$LN5@Buffer|
-  00000		 |$M43207|
+  00000		 |$M43215|
 
 ; 202  :         return (void *)m_pVirtAddr;
 
@@ -186,14 +186,14 @@
 ; 203  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M43208|
+  00008		 |$M43216|
 
 			 ENDP  ; |?Buffer@GPESurf@@QAAPAXXZ|, GPESurf::Buffer
 
 	EXPORT	|?Width@GPESurf@@QAAHXZ|		; GPESurf::Width
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43220| DCD	|$LN5@Width|
+|$T43228| DCD	|$LN5@Width|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -204,7 +204,7 @@
 ; 207  :     {
 
   00000		 |$LN5@Width|
-  00000		 |$M43217|
+  00000		 |$M43225|
 
 ; 208  :         return m_nWidth;
 
@@ -213,14 +213,14 @@
 ; 209  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M43218|
+  00008		 |$M43226|
 
 			 ENDP  ; |?Width@GPESurf@@QAAHXZ|, GPESurf::Width
 
 	EXPORT	|?Height@GPESurf@@QAAHXZ|		; GPESurf::Height
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43230| DCD	|$LN5@Height|
+|$T43238| DCD	|$LN5@Height|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -231,7 +231,7 @@
 ; 213  :     {
 
   00000		 |$LN5@Height|
-  00000		 |$M43227|
+  00000		 |$M43235|
 
 ; 214  :         return m_nHeight;
 
@@ -240,7 +240,7 @@
 ; 215  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M43228|
+  00008		 |$M43236|
 
 			 ENDP  ; |?Height@GPESurf@@QAAHXZ|, GPESurf::Height
 
@@ -261,7 +261,7 @@
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43344| DCD	|$LN75@DumpParms|
+|$T43352| DCD	|$LN75@DumpParms|
 	DCD	0x40009702
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -389,7 +389,7 @@
   00000		 |$LN75@DumpParms|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M43341|
+  00008		 |$M43349|
   00008	e1a09000	 mov         r9, r0
 
 ; 271  :   RETAILMSG(1, (TEXT("Dst(%d (%d bytes) x %d)=(%d, %d) - (%d, %d), fmt=%d (%d bpp)\n"),
@@ -650,14 +650,14 @@
   00254	00000000	 DCD         |??_C@_1HM@KMEBNDDL@?$AAS?$AAr?$AAc?$AA?$CI?$AA?$CF?$AAd?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?5?$AAb?$AAy?$AAt?$AAe?$AAs?$AA?$CJ?$AA?5?$AAx?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$DN?$AA?$CI?$AA?$CF?$AAd?$AA?0?$AA?5?$AA?$CF?$AAd?$AA?$CJ@|
   00258		 |$LN89@DumpParms|
   00258	00000000	 DCD         |??_C@_1HM@GELAHLGC@?$AAD?$AAs?$AAt?$AA?$CI?$AA?$CF?$AAd?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?5?$AAb?$AAy?$AAt?$AAe?$AAs?$AA?$CJ?$AA?5?$AAx?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$DN?$AA?$CI?$AA?$CF?$AAd?$AA?0?$AA?5?$AA?$CF?$AAd?$AA?$CJ@|
-  0025c		 |$M43342|
+  0025c		 |$M43350|
 
 			 ENDP  ; |?DumpParms@@YAXPAUGPEBltParms@@@Z|, DumpParms
 
 	EXPORT	|?ClipNoScale@@YAXPAU_RECTL@@PBU1@@Z|	; ClipNoScale
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43367| DCD	|$LN10@ClipNoScal|
+|$T43375| DCD	|$LN10@ClipNoScal|
 	DCD	0x40001500
 ; Function compile flags: /Ogspy
 
@@ -668,7 +668,7 @@
 ; 489  : {
 
   00000		 |$LN10@ClipNoScal|
-  00000		 |$M43364|
+  00000		 |$M43372|
   00000	e3500000	 cmp         r0, #0
 
 ; 490  :   if(prclDst && prclClip)
@@ -725,14 +725,14 @@
 ; 509  : }
 
   00050	e12fff1e	 bx          lr
-  00054		 |$M43365|
+  00054		 |$M43373|
 
 			 ENDP  ; |?ClipNoScale@@YAXPAU_RECTL@@PBU1@@Z|, ClipNoScale
 
 	EXPORT	|?ClipNoScale@@YAXPAU_RECTL@@0PBU1@@Z|	; ClipNoScale
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43377| DCD	|$LN14@ClipNoScal@2|
+|$T43385| DCD	|$LN14@ClipNoScal@2|
 	DCD	0x40003301
 ; Function compile flags: /Ogspy
 
@@ -744,7 +744,7 @@
 
   00000		 |$LN14@ClipNoScal@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M43374|
+  00004		 |$M43382|
   00004	e3500000	 cmp         r0, #0
 
 ; 516  :   if(prclDst && prclClip)
@@ -863,14 +863,14 @@
 
   000c4	e8bd4010	 ldmia       sp!, {r4, lr}
   000c8	e12fff1e	 bx          lr
-  000cc		 |$M43375|
+  000cc		 |$M43383|
 
 			 ENDP  ; |?ClipNoScale@@YAXPAU_RECTL@@0PBU1@@Z|, ClipNoScale
 
 	EXPORT	|?ClipNoScale@@YAXPAU_RECTL@@0PAU_POINTL@@PBU1@@Z| ; ClipNoScale
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43390| DCD	|$LN16@ClipNoScal@3|
+|$T43398| DCD	|$LN16@ClipNoScal@3|
 	DCD	0x40003c01
 ; Function compile flags: /Ogspy
 
@@ -882,7 +882,7 @@
 
   00000		 |$LN16@ClipNoScal@3|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M43387|
+  00004		 |$M43395|
   00004	e1a04003	 mov         r4, r3
   00008	e3500000	 cmp         r0, #0
 
@@ -1026,14 +1026,14 @@
 
   000e8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000ec	e12fff1e	 bx          lr
-  000f0		 |$M43388|
+  000f0		 |$M43396|
 
 			 ENDP  ; |?ClipNoScale@@YAXPAU_RECTL@@0PAU_POINTL@@PBU1@@Z|, ClipNoScale
 
 	EXPORT	|?ClipNoScale@@YAXPAU_RECTL@@0PAU_POINTL@@0PBU1@@Z| ; ClipNoScale
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43406| DCD	|$LN20@ClipNoScal@4|
+|$T43414| DCD	|$LN20@ClipNoScal@4|
 	DCD	0x40004e01
 ; Function compile flags: /Ogspy
 
@@ -1045,7 +1045,7 @@
 
   00000		 |$LN20@ClipNoScal@4|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M43403|
+  00004		 |$M43411|
   00004	e1a04003	 mov         r4, r3
   00008	e1a06002	 mov         r6, r2
   0000c	e3500000	 cmp         r0, #0
@@ -1231,14 +1231,14 @@
 
   00130	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00134	e12fff1e	 bx          lr
-  00138		 |$M43404|
+  00138		 |$M43412|
 
 			 ENDP  ; |?ClipNoScale@@YAXPAU_RECTL@@0PAU_POINTL@@0PBU1@@Z|, ClipNoScale
 
 	EXPORT	|?AdjustForBottomUp@@YAXAAPAXAAJKAAU_RECTL@@01K2@Z| ; AdjustForBottomUp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43423| DCD	|$LN5@AdjustForB|
+|$T43431| DCD	|$LN5@AdjustForB|
 	DCD	0x40002601
 ; Function compile flags: /Ogspy
 
@@ -1250,7 +1250,7 @@
 
   00000		 |$LN5@AdjustForB|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M43420|
+  00004		 |$M43428|
   00004	e1a08001	 mov         r8, r1
 
 ; 648  :   long tmp = rclDst.bottom;
@@ -1313,14 +1313,14 @@
 
   00090	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   00094	e12fff1e	 bx          lr
-  00098		 |$M43421|
+  00098		 |$M43429|
 
 			 ENDP  ; |?AdjustForBottomUp@@YAXAAPAXAAJKAAU_RECTL@@01K2@Z|, AdjustForBottomUp
 
 	EXPORT	|?DesignateBltROP1@OMAPDDGPE@@QAAXPAUGPEBltParms@@K@Z| ; OMAPDDGPE::DesignateBltROP1
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43430| DCD	|$LN5@DesignateB|
+|$T43438| DCD	|$LN5@DesignateB|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1331,7 +1331,7 @@
 ; 788  : {
 
   00000		 |$LN5@DesignateB|
-  00000		 |$M43427|
+  00000		 |$M43435|
 
 ; 789  : //  GPEBltParms parms = *pParms;
 ; 790  : //  if(!(parms.bltFlags & BLT_STRETCH))
@@ -1349,14 +1349,14 @@
 ; 802  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M43428|
+  00004		 |$M43436|
 
 			 ENDP  ; |?DesignateBltROP1@OMAPDDGPE@@QAAXPAUGPEBltParms@@K@Z|, OMAPDDGPE::DesignateBltROP1
 
 	EXPORT	|?DesignateBltSRCCOPY_LUT8toLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_LUT8toLUT8
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43437| DCD	|$LN6@DesignateB@2|
+|$T43445| DCD	|$LN6@DesignateB@2|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1367,7 +1367,7 @@
 ; 870  : {
 
   00000		 |$LN6@DesignateB@2|
-  00000		 |$M43434|
+  00000		 |$M43442|
 
 ; 871  :   // Can't handle transparency, alpha, or stretch (yet)
 ; 872  :   if(pParms->bltFlags == 0 && pParms->xPositive == 1 && !pParms->pConvert)
@@ -1378,14 +1378,14 @@
 ; 877  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M43435|
+  00004		 |$M43443|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_LUT8toLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_LUT8toLUT8
 
 	EXPORT	|?DesignateBltSRCCOPY_BGR24toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_BGR24toBGR24
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43444| DCD	|$LN6@DesignateB@3|
+|$T43452| DCD	|$LN6@DesignateB@3|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1396,7 +1396,7 @@
 ; 994  : {
 
   00000		 |$LN6@DesignateB@3|
-  00000		 |$M43441|
+  00000		 |$M43449|
 
 ; 995  :   // Can't handle transparency, alpha, or stretch (yet)
 ; 996  :   if(pParms->bltFlags == 0)
@@ -1407,7 +1407,7 @@
 ; 1001 : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M43442|
+  00004		 |$M43450|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_BGR24toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_BGR24toBGR24
 
@@ -1416,7 +1416,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43469| DCD	|$LN9@EmulatedBl|
+|$T43477| DCD	|$LN9@EmulatedBl|
 	DCD	0x40001e02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -1430,7 +1430,7 @@
   00000		 |$LN9@EmulatedBl|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M43466|
+  00008		 |$M43474|
   00008	e1a0b001	 mov         r11, r1
 
 ; 1248 : CALLOUT(L"EmulatedBlockFill8()");
@@ -1493,7 +1493,7 @@
   0006c	e28dd00c	 add         sp, sp, #0xC
   00070	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   00074	e12fff1e	 bx          lr
-  00078		 |$M43467|
+  00078		 |$M43475|
 
 			 ENDP  ; |?EmulatedBlockFill8@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockFill8
 
@@ -1502,7 +1502,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43494| DCD	|$LN9@EmulatedBl@2|
+|$T43502| DCD	|$LN9@EmulatedBl@2|
 	DCD	0x40001e02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -1516,7 +1516,7 @@
   00000		 |$LN9@EmulatedBl@2|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M43491|
+  00008		 |$M43499|
   00008	e1a0b001	 mov         r11, r1
 
 ; 1277 : CALLOUT(L"EmulatedBlockFill16()");
@@ -1578,7 +1578,7 @@
   0006c	e28dd00c	 add         sp, sp, #0xC
   00070	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   00074	e12fff1e	 bx          lr
-  00078		 |$M43492|
+  00078		 |$M43500|
 
 			 ENDP  ; |?EmulatedBlockFill16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockFill16
 
@@ -1587,7 +1587,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43519| DCD	|$LN9@EmulatedBl@3|
+|$T43527| DCD	|$LN9@EmulatedBl@3|
 	DCD	0x40001e02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -1601,7 +1601,7 @@
   00000		 |$LN9@EmulatedBl@3|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M43516|
+  00008		 |$M43524|
   00008	e1a0a001	 mov         r10, r1
 
 ; 1305 : CALLOUT(L"EmulatedBlockFill24()");
@@ -1663,7 +1663,7 @@
   0006c	e28dd00c	 add         sp, sp, #0xC
   00070	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   00074	e12fff1e	 bx          lr
-  00078		 |$M43517|
+  00078		 |$M43525|
 
 			 ENDP  ; |?EmulatedBlockFill24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockFill24
 
@@ -1672,7 +1672,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43544| DCD	|$LN9@EmulatedBl@4|
+|$T43552| DCD	|$LN9@EmulatedBl@4|
 	DCD	0x40001e02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -1686,7 +1686,7 @@
   00000		 |$LN9@EmulatedBl@4|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M43541|
+  00008		 |$M43549|
   00008	e1a0a001	 mov         r10, r1
 
 ; 1333 : CALLOUT(L"EmulatedBlockFill32()");
@@ -1748,7 +1748,7 @@
   0006c	e28dd00c	 add         sp, sp, #0xC
   00070	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   00074	e12fff1e	 bx          lr
-  00078		 |$M43542|
+  00078		 |$M43550|
 
 			 ENDP  ; |?EmulatedBlockFill32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockFill32
 
@@ -1758,7 +1758,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43590| DCD	|$LN21@EmulatedBl@5|
+|$T43598| DCD	|$LN21@EmulatedBl@5|
 	DCD	0x40006802
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -1772,7 +1772,7 @@
   00000		 |$LN21@EmulatedBl@5|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M43587|
+  00008		 |$M43595|
   00008	e1a04001	 mov         r4, r1
   0000c	e1a06000	 mov         r6, r0
 
@@ -1946,7 +1946,7 @@
   00194	e28dd058	 add         sp, sp, #0x58
   00198	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   0019c	e12fff1e	 bx          lr
-  001a0		 |$M43588|
+  001a0		 |$M43596|
 
 			 ENDP  ; |?EmulatedBlockCopy8to8@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopy8to8
 
@@ -1955,7 +1955,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43627| DCD	|$LN13@EmulatedBl@6|
+|$T43635| DCD	|$LN13@EmulatedBl@6|
 	DCD	0x40003302
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -1969,7 +1969,7 @@
   00000		 |$LN13@EmulatedBl@6|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd03c	 sub         sp, sp, #0x3C
-  00008		 |$M43624|
+  00008		 |$M43632|
   00008	e1a06001	 mov         r6, r1
   0000c	e58d601c	 str         r6, [sp, #0x1C]
 
@@ -2061,7 +2061,7 @@
   000c0	e28dd03c	 add         sp, sp, #0x3C
   000c4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000c8	e12fff1e	 bx          lr
-  000cc		 |$M43625|
+  000cc		 |$M43633|
 
 			 ENDP  ; |?EmulatedBlockCopyLUT8to16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyLUT8to16
 
@@ -2070,7 +2070,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43672| DCD	|$LN21@EmulatedBl@7|
+|$T43680| DCD	|$LN21@EmulatedBl@7|
 	DCD	0x40006b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -2084,7 +2084,7 @@
   00000		 |$LN21@EmulatedBl@7|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M43669|
+  00008		 |$M43677|
   00008	e1a04001	 mov         r4, r1
   0000c	e1a06000	 mov         r6, r0
 
@@ -2261,7 +2261,7 @@
   001a0	e28dd058	 add         sp, sp, #0x58
   001a4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   001a8	e12fff1e	 bx          lr
-  001ac		 |$M43670|
+  001ac		 |$M43678|
 
 			 ENDP  ; |?EmulatedBlockCopy16to16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopy16to16
 
@@ -2270,7 +2270,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43721| DCD	|$LN17@EmulatedMa|
+|$T43729| DCD	|$LN17@EmulatedMa|
 	DCD	0x40004502
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -2284,7 +2284,7 @@
   00000		 |$LN17@EmulatedMa|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M43718|
+  00008		 |$M43726|
 
 ; 1489 : CALLOUT(L"EmulatedMaskCopy16to16withA1()");
 ; 1490 : 
@@ -2435,7 +2435,7 @@
   00108	e28dd058	 add         sp, sp, #0x58
   0010c	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   00110	e12fff1e	 bx          lr
-  00114		 |$M43719|
+  00114		 |$M43727|
 
 			 ENDP  ; |?EmulatedMaskCopy16to16withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedMaskCopy16to16withA1
 
@@ -2444,7 +2444,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43758| DCD	|$LN13@EmulatedBl@8|
+|$T43766| DCD	|$LN13@EmulatedBl@8|
 	DCD	0x40002f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -2458,7 +2458,7 @@
   00000		 |$LN13@EmulatedBl@8|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd034	 sub         sp, sp, #0x34
-  00008		 |$M43755|
+  00008		 |$M43763|
 
 ; 1567 : CALLOUT(L"EmulatedBlockCopyBGR24toRGB16()");
 ; 1568 : 
@@ -2558,7 +2558,7 @@
   000b0	e28dd034	 add         sp, sp, #0x34
   000b4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M43756|
+  000bc		 |$M43764|
 
 			 ENDP  ; |?EmulatedBlockCopyBGR24toRGB16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyBGR24toRGB16
 
@@ -2567,7 +2567,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43795| DCD	|$LN13@EmulatedBl@9|
+|$T43803| DCD	|$LN13@EmulatedBl@9|
 	DCD	0x40002f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -2581,7 +2581,7 @@
   00000		 |$LN13@EmulatedBl@9|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd034	 sub         sp, sp, #0x34
-  00008		 |$M43792|
+  00008		 |$M43800|
 
 ; 1614 : CALLOUT(L"EmulatedBlockCopyBGRx32toRGB16()");
 ; 1615 : 
@@ -2668,7 +2668,7 @@
   000b0	e28dd034	 add         sp, sp, #0x34
   000b4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M43793|
+  000bc		 |$M43801|
 
 			 ENDP  ; |?EmulatedBlockCopyBGRx32toRGB16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyBGRx32toRGB16
 
@@ -2677,7 +2677,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43832| DCD	|$LN13@EmulatedPe|
+|$T43840| DCD	|$LN13@EmulatedPe|
 	DCD	0x40002f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -2691,7 +2691,7 @@
   00000		 |$LN13@EmulatedPe|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd034	 sub         sp, sp, #0x34
-  00008		 |$M43829|
+  00008		 |$M43837|
 
 ; 1648 : CALLOUT(L"EmulatedPerPixelAlphaBlendBGRA32toRGB16()");
 ; 1649 : 
@@ -2840,7 +2840,7 @@
   000b0	e28dd034	 add         sp, sp, #0x34
   000b4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M43830|
+  000bc		 |$M43838|
 
 			 ENDP  ; |?EmulatedPerPixelAlphaBlendBGRA32toRGB16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedPerPixelAlphaBlendBGRA32toRGB16
 
@@ -2849,7 +2849,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43869| DCD	|$LN13@EmulatedBl@10|
+|$T43877| DCD	|$LN13@EmulatedBl@10|
 	DCD	0x40003302
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -2863,7 +2863,7 @@
   00000		 |$LN13@EmulatedBl@10|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd03c	 sub         sp, sp, #0x3C
-  00008		 |$M43866|
+  00008		 |$M43874|
   00008	e1a06001	 mov         r6, r1
   0000c	e58d601c	 str         r6, [sp, #0x1C]
 
@@ -2955,7 +2955,7 @@
   000c0	e28dd03c	 add         sp, sp, #0x3C
   000c4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000c8	e12fff1e	 bx          lr
-  000cc		 |$M43867|
+  000cc		 |$M43875|
 
 			 ENDP  ; |?EmulatedBlockCopyLUT8to24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyLUT8to24
 
@@ -2964,7 +2964,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43906| DCD	|$LN13@EmulatedBl@11|
+|$T43914| DCD	|$LN13@EmulatedBl@11|
 	DCD	0x40002f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -2978,7 +2978,7 @@
   00000		 |$LN13@EmulatedBl@11|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd034	 sub         sp, sp, #0x34
-  00008		 |$M43903|
+  00008		 |$M43911|
 
 ; 1779 : CALLOUT(L"EmulatedBlockCopyRGB16toBGR24()");
 ; 1780 : 
@@ -3065,7 +3065,7 @@
   000b0	e28dd034	 add         sp, sp, #0x34
   000b4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M43904|
+  000bc		 |$M43912|
 
 			 ENDP  ; |?EmulatedBlockCopyRGB16toBGR24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyRGB16toBGR24
 
@@ -3074,7 +3074,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43951| DCD	|$LN21@EmulatedBl@12|
+|$T43959| DCD	|$LN21@EmulatedBl@12|
 	DCD	0x40006b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -3088,7 +3088,7 @@
   00000		 |$LN21@EmulatedBl@12|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M43948|
+  00008		 |$M43956|
   00008	e1a04001	 mov         r4, r1
   0000c	e1a06000	 mov         r6, r0
 
@@ -3265,7 +3265,7 @@
   001a0	e28dd058	 add         sp, sp, #0x58
   001a4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   001a8	e12fff1e	 bx          lr
-  001ac		 |$M43949|
+  001ac		 |$M43957|
 
 			 ENDP  ; |?EmulatedBlockCopy24to24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopy24to24
 
@@ -3274,7 +3274,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43988| DCD	|$LN13@EmulatedBl@13|
+|$T43996| DCD	|$LN13@EmulatedBl@13|
 	DCD	0x40002f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -3288,7 +3288,7 @@
   00000		 |$LN13@EmulatedBl@13|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd034	 sub         sp, sp, #0x34
-  00008		 |$M43985|
+  00008		 |$M43993|
 
 ; 1860 : CALLOUT(L"EmulatedBlockCopyXYZx32toXYZ24()");
 ; 1861 : 
@@ -3375,7 +3375,7 @@
   000b0	e28dd034	 add         sp, sp, #0x34
   000b4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M43986|
+  000bc		 |$M43994|
 
 			 ENDP  ; |?EmulatedBlockCopyXYZx32toXYZ24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyXYZx32toXYZ24
 
@@ -3384,7 +3384,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44025| DCD	|$LN13@EmulatedBl@14|
+|$T44033| DCD	|$LN13@EmulatedBl@14|
 	DCD	0x40003302
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -3398,7 +3398,7 @@
   00000		 |$LN13@EmulatedBl@14|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd03c	 sub         sp, sp, #0x3C
-  00008		 |$M44022|
+  00008		 |$M44030|
   00008	e1a06001	 mov         r6, r1
   0000c	e58d601c	 str         r6, [sp, #0x1C]
 
@@ -3490,7 +3490,7 @@
   000c0	e28dd03c	 add         sp, sp, #0x3C
   000c4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000c8	e12fff1e	 bx          lr
-  000cc		 |$M44023|
+  000cc		 |$M44031|
 
 			 ENDP  ; |?EmulatedBlockCopyLUT8to32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyLUT8to32
 
@@ -3499,7 +3499,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44062| DCD	|$LN13@EmulatedBl@15|
+|$T44070| DCD	|$LN13@EmulatedBl@15|
 	DCD	0x40002f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -3513,7 +3513,7 @@
   00000		 |$LN13@EmulatedBl@15|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd034	 sub         sp, sp, #0x34
-  00008		 |$M44059|
+  00008		 |$M44067|
 
 ; 1929 : CALLOUT(L"EmulatedBlockCopyRGB16toBGRx32()");
 ; 1930 : 
@@ -3648,7 +3648,7 @@
   000b0	e28dd034	 add         sp, sp, #0x34
   000b4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M44060|
+  000bc		 |$M44068|
 
 			 ENDP  ; |?EmulatedBlockCopyRGB16toBGRx32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyRGB16toBGRx32
 
@@ -3657,7 +3657,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44099| DCD	|$LN13@EmulatedBl@16|
+|$T44107| DCD	|$LN13@EmulatedBl@16|
 	DCD	0x40002f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -3671,7 +3671,7 @@
   00000		 |$LN13@EmulatedBl@16|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd034	 sub         sp, sp, #0x34
-  00008		 |$M44096|
+  00008		 |$M44104|
 
 ; 2011 : CALLOUT(L"EmulatedBlockCopyXYZ24toXYZx32()");
 ; 2012 : 
@@ -3758,7 +3758,7 @@
   000b0	e28dd034	 add         sp, sp, #0x34
   000b4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M44097|
+  000bc		 |$M44105|
 
 			 ENDP  ; |?EmulatedBlockCopyXYZ24toXYZx32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopyXYZ24toXYZx32
 
@@ -3767,7 +3767,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44144| DCD	|$LN21@EmulatedBl@17|
+|$T44152| DCD	|$LN21@EmulatedBl@17|
 	DCD	0x40006b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -3781,7 +3781,7 @@
   00000		 |$LN21@EmulatedBl@17|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M44141|
+  00008		 |$M44149|
   00008	e1a04001	 mov         r4, r1
   0000c	e1a06000	 mov         r6, r0
 
@@ -3958,7 +3958,7 @@
   001a0	e28dd058	 add         sp, sp, #0x58
   001a4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   001a8	e12fff1e	 bx          lr
-  001ac		 |$M44142|
+  001ac		 |$M44150|
 
 			 ENDP  ; |?EmulatedBlockCopy32to32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedBlockCopy32to32
 
@@ -3967,7 +3967,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44193| DCD	|$LN17@EmulatedMa@2|
+|$T44201| DCD	|$LN17@EmulatedMa@2|
 	DCD	0x40004502
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -3981,7 +3981,7 @@
   00000		 |$LN17@EmulatedMa@2|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M44190|
+  00008		 |$M44198|
 
 ; 2092 : CALLOUT(L"EmulatedMaskCopy32to32withA1()");
 ; 2093 : 
@@ -4132,14 +4132,14 @@
   00108	e28dd058	 add         sp, sp, #0x58
   0010c	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   00110	e12fff1e	 bx          lr
-  00114		 |$M44191|
+  00114		 |$M44199|
 
 			 ENDP  ; |?EmulatedMaskCopy32to32withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::EmulatedMaskCopy32to32withA1
 
 	EXPORT	|?DesignateBltSRCCOPY_toLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_toLUT8
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44208| DCD	|$LN14@DesignateB@4|
+|$T44216| DCD	|$LN14@DesignateB@4|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -4150,7 +4150,7 @@
 ; 857  : {
 
   00000		 |$LN14@DesignateB@4|
-  00000		 |$M44205|
+  00000		 |$M44213|
 
 ; 858  :   if(pParms->pSrc)
 ; 859  :   {
@@ -4164,14 +4164,14 @@
 ; 867  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M44206|
+  00004		 |$M44214|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_toLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_toLUT8
 
 	EXPORT	|?DesignateBltSRCCOPY_LUT8toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_LUT8toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44216| DCD	|$LN6@DesignateB@5|
+|$T44224| DCD	|$LN6@DesignateB@5|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4182,7 +4182,7 @@
 ; 908  : {
 
   00000		 |$LN6@DesignateB@5|
-  00000		 |$M44213|
+  00000		 |$M44221|
 
 ; 909  :   // Can't handle transparency, alpha, or stretch (yet)
 ; 910  :   if(pParms->bltFlags == 0)
@@ -4203,14 +4203,14 @@
   00014		 |$LN7@DesignateB@5|
   00014		 |$LN8@DesignateB@5|
   00014	00000000	 DCD         |?EmulatedBlockCopyLUT8to16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44214|
+  00018		 |$M44222|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_LUT8toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_LUT8toRGB16
 
 	EXPORT	|?DesignateBltSRCCOPY_RGB16toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_RGB16toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44226| DCD	|$LN6@DesignateB@6|
+|$T44234| DCD	|$LN6@DesignateB@6|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4221,7 +4221,7 @@
 ; 917  : {
 
   00000		 |$LN6@DesignateB@6|
-  00000		 |$M44223|
+  00000		 |$M44231|
 
 ; 918  :   // Can't handle transparency, alpha, or stretch (yet)
 ; 919  :   if(pParms->bltFlags == 0)
@@ -4242,14 +4242,14 @@
   00014		 |$LN7@DesignateB@6|
   00014		 |$LN8@DesignateB@6|
   00014	00000000	 DCD         |?EmulatedBlockCopy16to16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44224|
+  00018		 |$M44232|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_RGB16toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_RGB16toRGB16
 
 	EXPORT	|?DesignateBltSRCCOPY_BGR24toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_BGR24toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44236| DCD	|$LN6@DesignateB@7|
+|$T44244| DCD	|$LN6@DesignateB@7|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4260,7 +4260,7 @@
 ; 926  : {
 
   00000		 |$LN6@DesignateB@7|
-  00000		 |$M44233|
+  00000		 |$M44241|
 
 ; 927  :   // Can't handle transparency, alpha, or stretch (yet)
 ; 928  :   if(pParms->bltFlags == 0)
@@ -4281,14 +4281,14 @@
   00014		 |$LN7@DesignateB@7|
   00014		 |$LN8@DesignateB@7|
   00014	00000000	 DCD         |?EmulatedBlockCopyBGR24toRGB16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44234|
+  00018		 |$M44242|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_BGR24toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_BGR24toRGB16
 
 	EXPORT	|?DesignateBltSRCCOPY_BGRA32toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_BGRA32toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44247| DCD	|$LN9@DesignateB@8|
+|$T44255| DCD	|$LN9@DesignateB@8|
 	DCD	0x40001000
 ; Function compile flags: /Ogspy
 
@@ -4299,7 +4299,7 @@
 ; 935  : {
 
   00000		 |$LN9@DesignateB@8|
-  00000		 |$M44244|
+  00000		 |$M44252|
 
 ; 936  :   // Not transparency, alpha, or stretch
 ; 937  :   if(pParms->bltFlags == 0)
@@ -4350,14 +4350,14 @@
   00038	00000000	 DCD         |?EmulatedPerPixelAlphaBlendBGRA32toRGB16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
   0003c		 |$LN12@DesignateB@8|
   0003c	00000000	 DCD         |?EmulatedBlockCopyBGRx32toRGB16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00040		 |$M44245|
+  00040		 |$M44253|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_BGRA32toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_BGRA32toRGB16
 
 	EXPORT	|?DesignateBltSRCCOPY_LUT8toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_LUT8toBGR24
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44258| DCD	|$LN6@DesignateB@9|
+|$T44266| DCD	|$LN6@DesignateB@9|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4368,7 +4368,7 @@
 ; 976  : {
 
   00000		 |$LN6@DesignateB@9|
-  00000		 |$M44255|
+  00000		 |$M44263|
 
 ; 977  :   // Can't handle transparency, alpha, or stretch (yet)
 ; 978  :   if(pParms->bltFlags == 0)
@@ -4389,14 +4389,14 @@
   00014		 |$LN7@DesignateB@9|
   00014		 |$LN8@DesignateB@9|
   00014	00000000	 DCD         |?EmulatedBlockCopyLUT8to24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44256|
+  00018		 |$M44264|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_LUT8toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_LUT8toBGR24
 
 	EXPORT	|?DesignateBltSRCCOPY_RGB16toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_RGB16toBGR24
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44268| DCD	|$LN6@DesignateB@10|
+|$T44276| DCD	|$LN6@DesignateB@10|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4407,7 +4407,7 @@
 ; 985  : {
 
   00000		 |$LN6@DesignateB@10|
-  00000		 |$M44265|
+  00000		 |$M44273|
 
 ; 986  :   // Can't handle transparency, alpha, or stretch (yet)
 ; 987  :   if(pParms->bltFlags == 0)
@@ -4428,14 +4428,14 @@
   00014		 |$LN7@DesignateB@10|
   00014		 |$LN8@DesignateB@10|
   00014	00000000	 DCD         |?EmulatedBlockCopyRGB16toBGR24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44266|
+  00018		 |$M44274|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_RGB16toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_RGB16toBGR24
 
 	EXPORT	|?DesignateBltSRCCOPY_BGRA32toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_BGRA32toBGR24
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44278| DCD	|$LN6@DesignateB@11|
+|$T44286| DCD	|$LN6@DesignateB@11|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4446,7 +4446,7 @@
 ; 1004 : {
 
   00000		 |$LN6@DesignateB@11|
-  00000		 |$M44275|
+  00000		 |$M44283|
 
 ; 1005 :   // Can't handle transparency, alpha, or stretch (yet)
 ; 1006 :   if(pParms->bltFlags == 0)
@@ -4467,14 +4467,14 @@
   00014		 |$LN7@DesignateB@11|
   00014		 |$LN8@DesignateB@11|
   00014	00000000	 DCD         |?EmulatedBlockCopyXYZx32toXYZ24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44276|
+  00018		 |$M44284|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_BGRA32toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_BGRA32toBGR24
 
 	EXPORT	|?DesignateBltSRCCOPY_LUT8toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_LUT8toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44288| DCD	|$LN6@DesignateB@12|
+|$T44296| DCD	|$LN6@DesignateB@12|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4485,7 +4485,7 @@
 ; 1038 : {
 
   00000		 |$LN6@DesignateB@12|
-  00000		 |$M44285|
+  00000		 |$M44293|
 
 ; 1039 :   // Can't handle transparency, alpha, or stretch (yet)
 ; 1040 :   if(pParms->bltFlags == 0)
@@ -4506,14 +4506,14 @@
   00014		 |$LN7@DesignateB@12|
   00014		 |$LN8@DesignateB@12|
   00014	00000000	 DCD         |?EmulatedBlockCopyLUT8to32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44286|
+  00018		 |$M44294|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_LUT8toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_LUT8toBGRA32
 
 	EXPORT	|?DesignateBltSRCCOPY_RGB16toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_RGB16toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44298| DCD	|$LN6@DesignateB@13|
+|$T44306| DCD	|$LN6@DesignateB@13|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4524,7 +4524,7 @@
 ; 1047 : {
 
   00000		 |$LN6@DesignateB@13|
-  00000		 |$M44295|
+  00000		 |$M44303|
 
 ; 1048 :   // Can't handle transparency, alpha, or stretch (yet)
 ; 1049 :   if(pParms->bltFlags == 0)
@@ -4545,14 +4545,14 @@
   00014		 |$LN7@DesignateB@13|
   00014		 |$LN8@DesignateB@13|
   00014	00000000	 DCD         |?EmulatedBlockCopyRGB16toBGRx32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44296|
+  00018		 |$M44304|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_RGB16toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_RGB16toBGRA32
 
 	EXPORT	|?DesignateBltSRCCOPY_BGR24toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_BGR24toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44308| DCD	|$LN6@DesignateB@14|
+|$T44316| DCD	|$LN6@DesignateB@14|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4563,7 +4563,7 @@
 ; 1056 : {
 
   00000		 |$LN6@DesignateB@14|
-  00000		 |$M44305|
+  00000		 |$M44313|
 
 ; 1057 :   // Can't handle transparency, alpha, or stretch (yet)
 ; 1058 :   if(pParms->bltFlags == 0)
@@ -4584,14 +4584,14 @@
   00014		 |$LN7@DesignateB@14|
   00014		 |$LN8@DesignateB@14|
   00014	00000000	 DCD         |?EmulatedBlockCopyXYZ24toXYZx32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44306|
+  00018		 |$M44314|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_BGR24toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_BGR24toBGRA32
 
 	EXPORT	|?DesignateBltSRCCOPY_BGRA32toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_BGRA32toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44318| DCD	|$LN6@DesignateB@15|
+|$T44326| DCD	|$LN6@DesignateB@15|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4602,7 +4602,7 @@
 ; 1065 : {
 
   00000		 |$LN6@DesignateB@15|
-  00000		 |$M44315|
+  00000		 |$M44323|
 
 ; 1066 :   // Can't handle transparency, alpha, or stretch (yet)
 ; 1067 :   if(pParms->bltFlags == 0)
@@ -4623,14 +4623,14 @@
   00014		 |$LN7@DesignateB@15|
   00014		 |$LN8@DesignateB@15|
   00014	00000000	 DCD         |?EmulatedBlockCopy32to32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44316|
+  00018		 |$M44324|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_BGRA32toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_BGRA32toBGRA32
 
 	EXPORT	|?DesignateBltPATCOPY_solidtoLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_solidtoLUT8
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44328| DCD	|$LN5@DesignateB@16|
+|$T44336| DCD	|$LN5@DesignateB@16|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -4641,7 +4641,7 @@
 ; 1123 : {
 
   00000		 |$LN5@DesignateB@16|
-  00000		 |$M44325|
+  00000		 |$M44333|
 
 ; 1124 :   pParms->pBlt = (BLTFN)&OMAPDDGPE::EmulatedBlockFill8;
 
@@ -4654,14 +4654,14 @@
   0000c		 |$LN6@DesignateB@16|
   0000c		 |$LN7@DesignateB@16|
   0000c	00000000	 DCD         |?EmulatedBlockFill8@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00010		 |$M44326|
+  00010		 |$M44334|
 
 			 ENDP  ; |?DesignateBltPATCOPY_solidtoLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_solidtoLUT8
 
 	EXPORT	|?DesignateBltPATCOPY_solidtoRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_solidtoRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44338| DCD	|$LN5@DesignateB@17|
+|$T44346| DCD	|$LN5@DesignateB@17|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -4672,7 +4672,7 @@
 ; 1134 : {
 
   00000		 |$LN5@DesignateB@17|
-  00000		 |$M44335|
+  00000		 |$M44343|
 
 ; 1135 :   pParms->pBlt = (BLTFN)&OMAPDDGPE::EmulatedBlockFill16;
 
@@ -4685,14 +4685,14 @@
   0000c		 |$LN6@DesignateB@17|
   0000c		 |$LN7@DesignateB@17|
   0000c	00000000	 DCD         |?EmulatedBlockFill16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00010		 |$M44336|
+  00010		 |$M44344|
 
 			 ENDP  ; |?DesignateBltPATCOPY_solidtoRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_solidtoRGB16
 
 	EXPORT	|?DesignateBltPATCOPY_solidtoBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_solidtoBGR24
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44348| DCD	|$LN5@DesignateB@18|
+|$T44356| DCD	|$LN5@DesignateB@18|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -4703,7 +4703,7 @@
 ; 1145 : {
 
   00000		 |$LN5@DesignateB@18|
-  00000		 |$M44345|
+  00000		 |$M44353|
 
 ; 1146 :   pParms->pBlt = (BLTFN)&OMAPDDGPE::EmulatedBlockFill24;
 
@@ -4716,14 +4716,14 @@
   0000c		 |$LN6@DesignateB@18|
   0000c		 |$LN7@DesignateB@18|
   0000c	00000000	 DCD         |?EmulatedBlockFill24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00010		 |$M44346|
+  00010		 |$M44354|
 
 			 ENDP  ; |?DesignateBltPATCOPY_solidtoBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_solidtoBGR24
 
 	EXPORT	|?DesignateBltPATCOPY_solidtoBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_solidtoBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44358| DCD	|$LN5@DesignateB@19|
+|$T44366| DCD	|$LN5@DesignateB@19|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -4734,7 +4734,7 @@
 ; 1156 : {
 
   00000		 |$LN5@DesignateB@19|
-  00000		 |$M44355|
+  00000		 |$M44363|
 
 ; 1157 :   pParms->pBlt = (BLTFN)&OMAPDDGPE::EmulatedBlockFill32;
 
@@ -4747,14 +4747,14 @@
   0000c		 |$LN6@DesignateB@19|
   0000c		 |$LN7@DesignateB@19|
   0000c	00000000	 DCD         |?EmulatedBlockFill32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00010		 |$M44356|
+  00010		 |$M44364|
 
 			 ENDP  ; |?DesignateBltPATCOPY_solidtoBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_solidtoBGRA32
 
 	EXPORT	|?DesignateBltAACC_RGB16toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltAACC_RGB16toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44368| DCD	|$LN6@DesignateB@20|
+|$T44376| DCD	|$LN6@DesignateB@20|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4765,7 +4765,7 @@
 ; 1213 : {
 
   00000		 |$LN6@DesignateB@20|
-  00000		 |$M44365|
+  00000		 |$M44373|
 
 ; 1214 :   // Can't handle transparency, alpha, or stretch (yet)
 ; 1215 :   if(pParms->bltFlags == 0)
@@ -4786,14 +4786,14 @@
   00014		 |$LN7@DesignateB@20|
   00014		 |$LN8@DesignateB@20|
   00014	00000000	 DCD         |?EmulatedMaskCopy16to16withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44366|
+  00018		 |$M44374|
 
 			 ENDP  ; |?DesignateBltAACC_RGB16toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltAACC_RGB16toRGB16
 
 	EXPORT	|?DesignateBltAACC_BGRA32toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltAACC_BGRA32toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44378| DCD	|$LN6@DesignateB@21|
+|$T44386| DCD	|$LN6@DesignateB@21|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -4804,7 +4804,7 @@
 ; 1235 : {
 
   00000		 |$LN6@DesignateB@21|
-  00000		 |$M44375|
+  00000		 |$M44383|
 
 ; 1236 :   // Can't handle transparency, alpha, or stretch (yet)
 ; 1237 :   if(pParms->bltFlags == 0)
@@ -4825,14 +4825,14 @@
   00014		 |$LN7@DesignateB@21|
   00014		 |$LN8@DesignateB@21|
   00014	00000000	 DCD         |?EmulatedMaskCopy32to32withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44376|
+  00018		 |$M44384|
 
 			 ENDP  ; |?DesignateBltAACC_BGRA32toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltAACC_BGRA32toBGRA32
 
 	EXPORT	|?DesignateBltSRCCOPY_toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44396| DCD	|$LN17@DesignateB@22|
+|$T44404| DCD	|$LN17@DesignateB@22|
 	DCD	0x40000b00
 ; Function compile flags: /Ogspy
 
@@ -4843,7 +4843,7 @@
 ; 880  : {
 
   00000		 |$LN17@DesignateB@22|
-  00000		 |$M44393|
+  00000		 |$M44401|
 
 ; 881  :   if(pParms->pSrc)
 
@@ -4891,14 +4891,14 @@
   00028		 |$LN18@DesignateB@22|
   00028		 |$LN19@DesignateB@22|
   00028	00000000	 DCD         |?EmulatedBlockCopyLUT8to16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  0002c		 |$M44394|
+  0002c		 |$M44402|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_toRGB16
 
 	EXPORT	|?DesignateBltSRCCOPY_toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_toBGR24
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44423| DCD	|$LN24@DesignateB@23|
+|$T44431| DCD	|$LN24@DesignateB@23|
 	DCD	0x40001700
 ; Function compile flags: /Ogspy
 
@@ -4909,7 +4909,7 @@
 ; 950  : {
 
   00000		 |$LN24@DesignateB@23|
-  00000		 |$M44420|
+  00000		 |$M44428|
 
 ; 951  :   if(pParms->pSrc)
 
@@ -4982,14 +4982,14 @@
   00054	00000000	 DCD         |?EmulatedBlockCopyLUT8to24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
   00058		 |$LN27@DesignateB@23|
   00058	00000000	 DCD         |?EmulatedBlockCopyXYZx32toXYZ24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  0005c		 |$M44421|
+  0005c		 |$M44429|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_toBGR24
 
 	EXPORT	|?DesignateBltSRCCOPY_toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltSRCCOPY_toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44455| DCD	|$LN27@DesignateB@24|
+|$T44463| DCD	|$LN27@DesignateB@24|
 	DCD	0x40002700
 ; Function compile flags: /Ogspy
 
@@ -5000,7 +5000,7 @@
 ; 1013 : {
 
   00000		 |$LN27@DesignateB@24|
-  00000		 |$M44452|
+  00000		 |$M44460|
 
 ; 1014 :   if(pParms->pSrc)
 
@@ -5118,14 +5118,14 @@
   00094	00000000	 DCD         |?EmulatedBlockCopyXYZ24toXYZx32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
   00098		 |$LN32@DesignateB@24|
   00098	00000000	 DCD         |?EmulatedBlockCopy32to32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  0009c		 |$M44453|
+  0009c		 |$M44461|
 
 			 ENDP  ; |?DesignateBltSRCCOPY_toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY_toBGRA32
 
 	EXPORT	|?DesignateBltPATCOPY_toLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_toLUT8
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44471| DCD	|$LN8@DesignateB@25|
+|$T44479| DCD	|$LN8@DesignateB@25|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -5136,7 +5136,7 @@
 ; 1117 : {
 
   00000		 |$LN8@DesignateB@25|
-  00000		 |$M44468|
+  00000		 |$M44476|
 
 ; 1118 :   if(pParms->solidColor != -1)
 
@@ -5154,14 +5154,14 @@
   00014		 |$LN9@DesignateB@25|
   00014		 |$LN10@DesignateB@25|
   00014	00000000	 DCD         |?EmulatedBlockFill8@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44469|
+  00018		 |$M44477|
 
 			 ENDP  ; |?DesignateBltPATCOPY_toLUT8@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_toLUT8
 
 	EXPORT	|?DesignateBltPATCOPY_toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44484| DCD	|$LN8@DesignateB@26|
+|$T44492| DCD	|$LN8@DesignateB@26|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -5172,7 +5172,7 @@
 ; 1128 : {
 
   00000		 |$LN8@DesignateB@26|
-  00000		 |$M44481|
+  00000		 |$M44489|
 
 ; 1129 :   if(pParms->solidColor != -1)
 
@@ -5190,14 +5190,14 @@
   00014		 |$LN9@DesignateB@26|
   00014		 |$LN10@DesignateB@26|
   00014	00000000	 DCD         |?EmulatedBlockFill16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44482|
+  00018		 |$M44490|
 
 			 ENDP  ; |?DesignateBltPATCOPY_toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_toRGB16
 
 	EXPORT	|?DesignateBltPATCOPY_toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_toBGR24
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44497| DCD	|$LN8@DesignateB@27|
+|$T44505| DCD	|$LN8@DesignateB@27|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -5208,7 +5208,7 @@
 ; 1139 : {
 
   00000		 |$LN8@DesignateB@27|
-  00000		 |$M44494|
+  00000		 |$M44502|
 
 ; 1140 :   if(pParms->solidColor != -1)
 
@@ -5226,14 +5226,14 @@
   00014		 |$LN9@DesignateB@27|
   00014		 |$LN10@DesignateB@27|
   00014	00000000	 DCD         |?EmulatedBlockFill24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44495|
+  00018		 |$M44503|
 
 			 ENDP  ; |?DesignateBltPATCOPY_toBGR24@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_toBGR24
 
 	EXPORT	|?DesignateBltPATCOPY_toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY_toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44510| DCD	|$LN8@DesignateB@28|
+|$T44518| DCD	|$LN8@DesignateB@28|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -5244,7 +5244,7 @@
 ; 1150 : {
 
   00000		 |$LN8@DesignateB@28|
-  00000		 |$M44507|
+  00000		 |$M44515|
 
 ; 1151 :   if(pParms->solidColor != -1)
 
@@ -5262,14 +5262,14 @@
   00014		 |$LN9@DesignateB@28|
   00014		 |$LN10@DesignateB@28|
   00014	00000000	 DCD         |?EmulatedBlockFill32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00018		 |$M44508|
+  00018		 |$M44516|
 
 			 ENDP  ; |?DesignateBltPATCOPY_toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY_toBGRA32
 
 	EXPORT	|?DesignateBltAACC_toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltAACC_toRGB16
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44528| DCD	|$LN14@DesignateB@29|
+|$T44536| DCD	|$LN14@DesignateB@29|
 	DCD	0x40000b00
 ; Function compile flags: /Ogspy
 
@@ -5280,7 +5280,7 @@
 ; 1200 : {
 
   00000		 |$LN14@DesignateB@29|
-  00000		 |$M44525|
+  00000		 |$M44533|
 
 ; 1201 :   if(pParms->pSrc)
 
@@ -5313,14 +5313,14 @@
   00028		 |$LN15@DesignateB@29|
   00028		 |$LN16@DesignateB@29|
   00028	00000000	 DCD         |?EmulatedMaskCopy16to16withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  0002c		 |$M44526|
+  0002c		 |$M44534|
 
 			 ENDP  ; |?DesignateBltAACC_toRGB16@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltAACC_toRGB16
 
 	EXPORT	|?DesignateBltAACC_toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltAACC_toBGRA32
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44546| DCD	|$LN14@DesignateB@30|
+|$T44554| DCD	|$LN14@DesignateB@30|
 	DCD	0x40000b00
 ; Function compile flags: /Ogspy
 
@@ -5331,7 +5331,7 @@
 ; 1222 : {
 
   00000		 |$LN14@DesignateB@30|
-  00000		 |$M44543|
+  00000		 |$M44551|
 
 ; 1223 :   if(pParms->pSrc)
 
@@ -5364,7 +5364,7 @@
   00028		 |$LN15@DesignateB@30|
   00028		 |$LN16@DesignateB@30|
   00028	00000000	 DCD         |?EmulatedMaskCopy32to32withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  0002c		 |$M44544|
+  0002c		 |$M44552|
 
 			 ENDP  ; |?DesignateBltAACC_toBGRA32@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltAACC_toBGRA32
 
@@ -5372,7 +5372,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44616| DCD	|$LN48@DesignateB@31|
+|$T44624| DCD	|$LN48@DesignateB@31|
 	DCD	0x40002901
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_optblt.cpp
@@ -5385,7 +5385,7 @@
 
   00000		 |$LN48@DesignateB@31|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44613|
+  00004		 |$M44621|
 
 ; 827  :   switch(pParms->pDst->Format())
 
@@ -5485,14 +5485,14 @@
   000a0		 |$LN49@DesignateB@31|
   000a0		 |$LN50@DesignateB@31|
   000a0	00000000	 DCD         |?EmulatedBlockCopyLUT8to16@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  000a4		 |$M44614|
+  000a4		 |$M44622|
 
 			 ENDP  ; |?DesignateBltSRCCOPY@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltSRCCOPY
 
 	EXPORT	|?DesignateBltPATCOPY@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltPATCOPY
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44667| DCD	|$LN34@DesignateB@32|
+|$T44675| DCD	|$LN34@DesignateB@32|
 	DCD	0x40002500
 ; Function compile flags: /Ogspy
 
@@ -5503,7 +5503,7 @@
 ; 1095 : {
 
   00000		 |$LN34@DesignateB@32|
-  00000		 |$M44664|
+  00000		 |$M44672|
 
 ; 1096 :   switch(pParms->pDst->Format())
 
@@ -5611,14 +5611,14 @@
   0008c	00000000	 DCD         |?EmulatedBlockFill24@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
   00090		 |$LN39@DesignateB@32|
   00090	00000000	 DCD         |?EmulatedBlockFill32@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00094		 |$M44665|
+  00094		 |$M44673|
 
 			 ENDP  ; |?DesignateBltPATCOPY@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltPATCOPY
 
 	EXPORT	|?DesignateBltAACC@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBltAACC
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44725| DCD	|$LN34@DesignateB@33|
+|$T44733| DCD	|$LN34@DesignateB@33|
 	DCD	0x40001e00
 ; Function compile flags: /Ogspy
 
@@ -5629,7 +5629,7 @@
 ; 1186 : {
 
   00000		 |$LN34@DesignateB@33|
-  00000		 |$M44722|
+  00000		 |$M44730|
 
 ; 1187 :   switch(pParms->pDst->Format())
 
@@ -5694,7 +5694,7 @@
   00070	00000000	 DCD         |?EmulatedMaskCopy16to16withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
   00074		 |$LN37@DesignateB@33|
   00074	00000000	 DCD         |?EmulatedMaskCopy32to32withA1@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|
-  00078		 |$M44723|
+  00078		 |$M44731|
 
 			 ENDP  ; |?DesignateBltAACC@OMAPDDGPE@@QAAXPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBltAACC
 
@@ -5702,7 +5702,7 @@
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44740| DCD	|$LN10@DesignateB@34|
+|$T44748| DCD	|$LN10@DesignateB@34|
 	DCD	0x40002402
 ; Function compile flags: /Ogspy
 
@@ -5715,7 +5715,7 @@
   00000		 |$LN10@DesignateB@34|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M44737|
+  00008		 |$M44745|
   00008	e1a07002	 mov         r7, r2
   0000c	e1a05001	 mov         r5, r1
   00010	e1a06000	 mov         r6, r0
@@ -5783,14 +5783,14 @@
   00084	e28dd058	 add         sp, sp, #0x58
   00088	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   0008c	e12fff1e	 bx          lr
-  00090		 |$M44738|
+  00090		 |$M44746|
 
 			 ENDP  ; |?DesignateBltROP2@OMAPDDGPE@@QAAXPAUGPEBltParms@@K@Z|, OMAPDDGPE::DesignateBltROP2
 
 	EXPORT	|?DesignateBltROP3@OMAPDDGPE@@QAAXPAUGPEBltParms@@K@Z| ; OMAPDDGPE::DesignateBltROP3
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44751| DCD	|$LN10@DesignateB@35|
+|$T44759| DCD	|$LN10@DesignateB@35|
 	DCD	0x40002502
 ; Function compile flags: /Ogspy
 
@@ -5803,7 +5803,7 @@
   00000		 |$LN10@DesignateB@35|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M44748|
+  00008		 |$M44756|
   00008	e1a07002	 mov         r7, r2
   0000c	e1a05001	 mov         r5, r1
   00010	e1a06000	 mov         r6, r0
@@ -5872,14 +5872,14 @@
   00088	e28dd058	 add         sp, sp, #0x58
   0008c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00090	e12fff1e	 bx          lr
-  00094		 |$M44749|
+  00094		 |$M44757|
 
 			 ENDP  ; |?DesignateBltROP3@OMAPDDGPE@@QAAXPAUGPEBltParms@@K@Z|, OMAPDDGPE::DesignateBltROP3
 
 	EXPORT	|?DesignateBltROP4@OMAPDDGPE@@QAAXPAUGPEBltParms@@K@Z| ; OMAPDDGPE::DesignateBltROP4
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44762| DCD	|$LN10@DesignateB@36|
+|$T44770| DCD	|$LN10@DesignateB@36|
 	DCD	0x40002702
 ; Function compile flags: /Ogspy
 
@@ -5892,7 +5892,7 @@
   00000		 |$LN10@DesignateB@36|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd05c	 sub         sp, sp, #0x5C
-  00008		 |$M44759|
+  00008		 |$M44767|
   00008	e1a07002	 mov         r7, r2
   0000c	e1a05001	 mov         r5, r1
   00010	e1a06000	 mov         r6, r0
@@ -5967,14 +5967,14 @@
   00090	e28dd05c	 add         sp, sp, #0x5C
   00094	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00098	e12fff1e	 bx          lr
-  0009c		 |$M44760|
+  0009c		 |$M44768|
 
 			 ENDP  ; |?DesignateBltROP4@OMAPDDGPE@@QAAXPAUGPEBltParms@@K@Z|, OMAPDDGPE::DesignateBltROP4
 
 	EXPORT	|?DesignateBlt@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z| ; OMAPDDGPE::DesignateBlt
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44781| DCD	|$LN13@DesignateB@37|
+|$T44789| DCD	|$LN13@DesignateB@37|
 	DCD	0x40001e01
 ; Function compile flags: /Ogspy
 
@@ -5986,7 +5986,7 @@
 
   00000		 |$LN13@DesignateB@37|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M44778|
+  00004		 |$M44786|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -6165,7 +6165,7 @@
   00074		 |$LN14@DesignateB@37|
   00074		 |$LN15@DesignateB@37|
   00074	00000000	 DCD         |?EmulatedBlt@GPE@@QAAJPAUGPEBltParms@@@Z|
-  00078		 |$M44779|
+  00078		 |$M44787|
 
 			 ENDP  ; |?DesignateBlt@OMAPDDGPE@@QAAJPAUGPEBltParms@@@Z|, OMAPDDGPE::DesignateBlt
 

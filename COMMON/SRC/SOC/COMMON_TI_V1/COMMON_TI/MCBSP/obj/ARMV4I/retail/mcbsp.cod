@@ -615,7 +615,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38082| DCD	|$LN5@GetCurrent|
+|$T38083| DCD	|$LN5@GetCurrent|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -626,7 +626,7 @@
 ; 351  : _inline HANDLE GetCurrentThread(void) {
 
   00000		 |$LN5@GetCurrent|
-  00000		 |$M38079|
+  00000		 |$M38080|
 
 ; 352  : 	return ((HANDLE)(SH_CURTHREAD+SYS_HANDLE_BASE));
 
@@ -635,7 +635,7 @@
 ; 353  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38080|
+  00008		 |$M38081|
 
 			 ENDP  ; |GetCurrentThread|
 
@@ -643,7 +643,7 @@
 	IMPORT	|__GetUserKData|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38091| DCD	|$LN5@GetCurrent@2|
+|$T38092| DCD	|$LN5@GetCurrent@2|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -655,7 +655,7 @@
 
   00000		 |$LN5@GetCurrent@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M38088|
+  00004		 |$M38089|
 
 ; 374  :     return __GetUserKData (SYSHANDLE_OFFSET + (SH_CURPROC * sizeof(HANDLE)));
 
@@ -666,7 +666,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M38089|
+  00014		 |$M38090|
 
 			 ENDP  ; |GetCurrentProcessId|
 
@@ -675,7 +675,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38105| DCD	|$LN7@IsEqualGUI|
+|$T38106| DCD	|$LN7@IsEqualGUI|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -687,7 +687,7 @@
 
   00000		 |$LN7@IsEqualGUI|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M38102|
+  00004		 |$M38103|
 
 ; 494  :     return !memcmp(&rguid1, &rguid2, sizeof(GUID));
 
@@ -708,7 +708,7 @@
 
   0001c	149de004	 ldrne       lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M38103|
+  00024		 |$M38104|
 
 			 ENDP  ; |?IsEqualGUID@@YAHABU_GUID@@0@Z|, IsEqualGUID
 
@@ -716,7 +716,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38115| DCD	|$LN5@DmaGetStat|
+|$T38116| DCD	|$LN5@DmaGetStat|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -727,7 +727,7 @@
 ; 570  : {
 
   00000		 |$LN5@DmaGetStat|
-  00000		 |$M38112|
+  00000		 |$M38113|
 
 ; 571  :     return INREG32(&pDataInfo->pDmaLcReg->CSR);
 
@@ -737,14 +737,14 @@
 ; 572  : }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M38113|
+  0000c		 |$M38114|
 
 			 ENDP  ; |DmaGetStatus|
 
 	EXPORT	|DmaClearStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38124| DCD	|$LN5@DmaClearSt|
+|$T38125| DCD	|$LN5@DmaClearSt|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -755,7 +755,7 @@
 ; 586  : {
 
   00000		 |$LN5@DmaClearSt|
-  00000		 |$M38121|
+  00000		 |$M38122|
 
 ; 587  :     OUTREG32(&pDataInfo->pDmaLcReg->CSR, dwStatus);
 
@@ -765,7 +765,7 @@
 ; 588  : }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M38122|
+  0000c		 |$M38123|
 
 			 ENDP  ; |DmaClearStatus|
 
@@ -785,7 +785,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbspprofile.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38135| DCD	|$LN5@McbspProfi|
+|$T38136| DCD	|$LN5@McbspProfi|
 	DCD	0x40000600
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -811,7 +811,7 @@
 ; 35   :     McbspProfile_t(McBSPDevice_t *pDevice)
 
   00000		 |$LN5@McbspProfi|
-  00000		 |$M38132|
+  00000		 |$M38133|
   00000	e1a02000	 mov         r2, r0
   00004	e59f3008	 ldr         r3, [pc, #8]
 
@@ -828,14 +828,14 @@
   00014		 |$LN6@McbspProfi|
   00014		 |$LN7@McbspProfi|
   00014	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00018		 |$M38133|
+  00018		 |$M38134|
 
 			 ENDP  ; |??0McbspProfile_t@@QAA@PAUMcBSPDevice_t@@@Z|, McbspProfile_t::McbspProfile_t
 
 	EXPORT	|??1McbspProfile_t@@UAA@XZ|		; McbspProfile_t::~McbspProfile_t
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38145| DCD	|$LN5@McbspProfi@2|
+|$T38146| DCD	|$LN5@McbspProfi@2|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -846,21 +846,21 @@
 ; 40   :     virtual ~McbspProfile_t() {};
 
   00000		 |$LN5@McbspProfi@2|
-  00000		 |$M38142|
+  00000		 |$M38143|
   00000	e59f3004	 ldr         r3, [pc, #4]
   00004	e5803000	 str         r3, [r0]
   00008	e12fff1e	 bx          lr
   0000c		 |$LN6@McbspProfi@2|
   0000c		 |$LN7@McbspProfi@2|
   0000c	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00010		 |$M38143|
+  00010		 |$M38144|
 
 			 ENDP  ; |??1McbspProfile_t@@UAA@XZ|, McbspProfile_t::~McbspProfile_t
 
 	IMPORT	|??3@YAXPAX@Z|				; operator delete
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38161| DCD	|$LN8@scalar|
+|$T38162| DCD	|$LN8@scalar|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -869,7 +869,7 @@
   00000		 |??_GMcbspProfile_t@@UAAPAXI@Z| PROC	; McbspProfile_t::`scalar deleting destructor'
   00000		 |$LN8@scalar|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38158|
+  00004		 |$M38159|
   00004	e1a04000	 mov         r4, r0
   00008	e59f3014	 ldr         r3, [pc, #0x14]
   0000c	e3110001	 tst         r1, #1
@@ -881,7 +881,7 @@
   00024		 |$LN9@scalar|
   00024		 |$LN10@scalar|
   00024	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00028		 |$M38159|
+  00028		 |$M38160|
 
 			 ENDP  ; |??_GMcbspProfile_t@@UAAPAXI@Z|, McbspProfile_t::`scalar deleting destructor'
 
@@ -895,7 +895,7 @@
 	IMPORT	|?ContextRestore@I2SSlaveProfile_t@@UAAXXZ| ; I2SSlaveProfile_t::ContextRestore
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38177| DCD	|$LN7@I2SSlavePr|
+|$T38178| DCD	|$LN7@I2SSlavePr|
 	DCD	0x40000600
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -921,7 +921,7 @@
 ; 67   :         {
 
   00000		 |$LN7@I2SSlavePr|
-  00000		 |$M38174|
+  00000		 |$M38175|
   00000	e1a02000	 mov         r2, r0
   00004	e59f3008	 ldr         r3, [pc, #8]
   00008	e5821004	 str         r1, [r2, #4]
@@ -934,14 +934,14 @@
   00014		 |$LN8@I2SSlavePr|
   00014		 |$LN9@I2SSlavePr|
   00014	00000000	 DCD         |??_7I2SSlaveProfile_t@@6B@|
-  00018		 |$M38175|
+  00018		 |$M38176|
 
 			 ENDP  ; |??0I2SSlaveProfile_t@@QAA@PAUMcBSPDevice_t@@@Z|, I2SSlaveProfile_t::I2SSlaveProfile_t
 
 	EXPORT	|??1I2SSlaveProfile_t@@UAA@XZ|		; I2SSlaveProfile_t::~I2SSlaveProfile_t
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38190| DCD	|$LN7@I2SSlavePr@2|
+|$T38191| DCD	|$LN7@I2SSlavePr@2|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -952,20 +952,20 @@
 ; 70   :     virtual ~I2SSlaveProfile_t() {};
 
   00000		 |$LN7@I2SSlavePr@2|
-  00000		 |$M38187|
+  00000		 |$M38188|
   00000	e59f3004	 ldr         r3, [pc, #4]
   00004	e5803000	 str         r3, [r0]
   00008	e12fff1e	 bx          lr
   0000c		 |$LN8@I2SSlavePr@2|
   0000c		 |$LN9@I2SSlavePr@2|
   0000c	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00010		 |$M38188|
+  00010		 |$M38189|
 
 			 ENDP  ; |??1I2SSlaveProfile_t@@UAA@XZ|, I2SSlaveProfile_t::~I2SSlaveProfile_t
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38201| DCD	|$LN5@GetMode|
+|$T38202| DCD	|$LN5@GetMode|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -976,7 +976,7 @@
 ; 76   :         {
 
   00000		 |$LN5@GetMode|
-  00000		 |$M38198|
+  00000		 |$M38199|
 
 ; 77   :         return kMcBSPProfile_I2S_Slave;
 
@@ -985,13 +985,13 @@
 ; 78   :         }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38199|
+  00008		 |$M38200|
 
 			 ENDP  ; |?GetMode@I2SSlaveProfile_t@@UAA?AW4McBSPProfile_e@@XZ|, I2SSlaveProfile_t::GetMode
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38208| DCD	|$LN5@SetTxChann|
+|$T38209| DCD	|$LN5@SetTxChann|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1002,15 +1002,15 @@
 ; 79   :     void SetTxChannelsRequested() {};
 
   00000		 |$LN5@SetTxChann|
-  00000		 |$M38205|
+  00000		 |$M38206|
   00000	e12fff1e	 bx          lr
-  00004		 |$M38206|
+  00004		 |$M38207|
 
 			 ENDP  ; |?SetTxChannelsRequested@I2SSlaveProfile_t@@UAAXXZ|, I2SSlaveProfile_t::SetTxChannelsRequested
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38215| DCD	|$LN5@SetRxChann|
+|$T38216| DCD	|$LN5@SetRxChann|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1021,15 +1021,15 @@
 ; 80   :     void SetRxChannelsRequested() {};
 
   00000		 |$LN5@SetRxChann|
-  00000		 |$M38212|
+  00000		 |$M38213|
   00000	e12fff1e	 bx          lr
-  00004		 |$M38213|
+  00004		 |$M38214|
 
 			 ENDP  ; |?SetRxChannelsRequested@I2SSlaveProfile_t@@UAAXXZ|, I2SSlaveProfile_t::SetRxChannelsRequested
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38234| DCD	|$LN10@scalar@2|
+|$T38235| DCD	|$LN10@scalar@2|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -1038,7 +1038,7 @@
   00000		 |??_GI2SSlaveProfile_t@@UAAPAXI@Z| PROC ; I2SSlaveProfile_t::`scalar deleting destructor'
   00000		 |$LN10@scalar@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38231|
+  00004		 |$M38232|
   00004	e1a04000	 mov         r4, r0
   00008	e59f3014	 ldr         r3, [pc, #0x14]
   0000c	e3110001	 tst         r1, #1
@@ -1050,7 +1050,7 @@
   00024		 |$LN11@scalar@2|
   00024		 |$LN12@scalar@2|
   00024	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00028		 |$M38232|
+  00028		 |$M38233|
 
 			 ENDP  ; |??_GI2SSlaveProfile_t@@UAAPAXI@Z|, I2SSlaveProfile_t::`scalar deleting destructor'
 
@@ -1064,7 +1064,7 @@
 	IMPORT	|?ContextRestore@I2SMasterProfile_t@@UAAXXZ| ; I2SMasterProfile_t::ContextRestore
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38250| DCD	|$LN7@I2SMasterP|
+|$T38251| DCD	|$LN7@I2SMasterP|
 	DCD	0x40000600
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1090,7 +1090,7 @@
 ; 95   :         {
 
   00000		 |$LN7@I2SMasterP|
-  00000		 |$M38247|
+  00000		 |$M38248|
   00000	e1a02000	 mov         r2, r0
   00004	e59f3008	 ldr         r3, [pc, #8]
   00008	e5821004	 str         r1, [r2, #4]
@@ -1103,14 +1103,14 @@
   00014		 |$LN8@I2SMasterP|
   00014		 |$LN9@I2SMasterP|
   00014	00000000	 DCD         |??_7I2SMasterProfile_t@@6B@|
-  00018		 |$M38248|
+  00018		 |$M38249|
 
 			 ENDP  ; |??0I2SMasterProfile_t@@QAA@PAUMcBSPDevice_t@@@Z|, I2SMasterProfile_t::I2SMasterProfile_t
 
 	EXPORT	|??1I2SMasterProfile_t@@UAA@XZ|		; I2SMasterProfile_t::~I2SMasterProfile_t
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38263| DCD	|$LN7@I2SMasterP@2|
+|$T38264| DCD	|$LN7@I2SMasterP@2|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -1121,20 +1121,20 @@
 ; 98   :     virtual ~I2SMasterProfile_t() {};
 
   00000		 |$LN7@I2SMasterP@2|
-  00000		 |$M38260|
+  00000		 |$M38261|
   00000	e59f3004	 ldr         r3, [pc, #4]
   00004	e5803000	 str         r3, [r0]
   00008	e12fff1e	 bx          lr
   0000c		 |$LN8@I2SMasterP@2|
   0000c		 |$LN9@I2SMasterP@2|
   0000c	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00010		 |$M38261|
+  00010		 |$M38262|
 
 			 ENDP  ; |??1I2SMasterProfile_t@@UAA@XZ|, I2SMasterProfile_t::~I2SMasterProfile_t
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38274| DCD	|$LN5@GetMode@2|
+|$T38275| DCD	|$LN5@GetMode@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1145,7 +1145,7 @@
 ; 104  :         {
 
   00000		 |$LN5@GetMode@2|
-  00000		 |$M38271|
+  00000		 |$M38272|
 
 ; 105  :         return kMcBSPProfile_I2S_Master;
 
@@ -1154,13 +1154,13 @@
 ; 106  :         }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38272|
+  00008		 |$M38273|
 
 			 ENDP  ; |?GetMode@I2SMasterProfile_t@@UAA?AW4McBSPProfile_e@@XZ|, I2SMasterProfile_t::GetMode
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38281| DCD	|$LN5@SetTxChann@2|
+|$T38282| DCD	|$LN5@SetTxChann@2|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1171,15 +1171,15 @@
 ; 107  :     void SetTxChannelsRequested() {};
 
   00000		 |$LN5@SetTxChann@2|
-  00000		 |$M38278|
+  00000		 |$M38279|
   00000	e12fff1e	 bx          lr
-  00004		 |$M38279|
+  00004		 |$M38280|
 
 			 ENDP  ; |?SetTxChannelsRequested@I2SMasterProfile_t@@UAAXXZ|, I2SMasterProfile_t::SetTxChannelsRequested
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38288| DCD	|$LN5@SetRxChann@2|
+|$T38289| DCD	|$LN5@SetRxChann@2|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1190,15 +1190,15 @@
 ; 108  :     void SetRxChannelsRequested() {};
 
   00000		 |$LN5@SetRxChann@2|
-  00000		 |$M38285|
+  00000		 |$M38286|
   00000	e12fff1e	 bx          lr
-  00004		 |$M38286|
+  00004		 |$M38287|
 
 			 ENDP  ; |?SetRxChannelsRequested@I2SMasterProfile_t@@UAAXXZ|, I2SMasterProfile_t::SetRxChannelsRequested
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38307| DCD	|$LN10@scalar@3|
+|$T38308| DCD	|$LN10@scalar@3|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -1207,7 +1207,7 @@
   00000		 |??_GI2SMasterProfile_t@@UAAPAXI@Z| PROC ; I2SMasterProfile_t::`scalar deleting destructor'
   00000		 |$LN10@scalar@3|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38304|
+  00004		 |$M38305|
   00004	e1a04000	 mov         r4, r0
   00008	e59f3014	 ldr         r3, [pc, #0x14]
   0000c	e3110001	 tst         r1, #1
@@ -1219,7 +1219,7 @@
   00024		 |$LN11@scalar@3|
   00024		 |$LN12@scalar@3|
   00024	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00028		 |$M38305|
+  00028		 |$M38306|
 
 			 ENDP  ; |??_GI2SMasterProfile_t@@UAAPAXI@Z|, I2SMasterProfile_t::`scalar deleting destructor'
 
@@ -1233,7 +1233,7 @@
 	IMPORT	|?SetRxChannelsRequested@TDMProfile_t@@UAAXXZ| ; TDMProfile_t::SetRxChannelsRequested
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38323| DCD	|$LN7@TDMProfile|
+|$T38324| DCD	|$LN7@TDMProfile|
 	DCD	0x40000600
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1259,7 +1259,7 @@
 ; 122  :         {
 
   00000		 |$LN7@TDMProfile|
-  00000		 |$M38320|
+  00000		 |$M38321|
   00000	e1a02000	 mov         r2, r0
   00004	e59f3008	 ldr         r3, [pc, #8]
   00008	e5821004	 str         r1, [r2, #4]
@@ -1272,14 +1272,14 @@
   00014		 |$LN8@TDMProfile|
   00014		 |$LN9@TDMProfile|
   00014	00000000	 DCD         |??_7TDMProfile_t@@6B@|
-  00018		 |$M38321|
+  00018		 |$M38322|
 
 			 ENDP  ; |??0TDMProfile_t@@QAA@PAUMcBSPDevice_t@@@Z|, TDMProfile_t::TDMProfile_t
 
 	EXPORT	|??1TDMProfile_t@@UAA@XZ|		; TDMProfile_t::~TDMProfile_t
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38336| DCD	|$LN7@TDMProfile@2|
+|$T38337| DCD	|$LN7@TDMProfile@2|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -1290,20 +1290,20 @@
 ; 125  :     virtual ~TDMProfile_t() {};
 
   00000		 |$LN7@TDMProfile@2|
-  00000		 |$M38333|
+  00000		 |$M38334|
   00000	e59f3004	 ldr         r3, [pc, #4]
   00004	e5803000	 str         r3, [r0]
   00008	e12fff1e	 bx          lr
   0000c		 |$LN8@TDMProfile@2|
   0000c		 |$LN9@TDMProfile@2|
   0000c	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00010		 |$M38334|
+  00010		 |$M38335|
 
 			 ENDP  ; |??1TDMProfile_t@@UAA@XZ|, TDMProfile_t::~TDMProfile_t
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38347| DCD	|$LN5@GetMode@3|
+|$T38348| DCD	|$LN5@GetMode@3|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1314,7 +1314,7 @@
 ; 131  :         {
 
   00000		 |$LN5@GetMode@3|
-  00000		 |$M38344|
+  00000		 |$M38345|
 
 ; 132  :         return kMcBSPProfile_TDM;
 
@@ -1323,13 +1323,13 @@
 ; 133  :         }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38345|
+  00008		 |$M38346|
 
 			 ENDP  ; |?GetMode@TDMProfile_t@@UAA?AW4McBSPProfile_e@@XZ|, TDMProfile_t::GetMode
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38366| DCD	|$LN10@scalar@4|
+|$T38367| DCD	|$LN10@scalar@4|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -1338,7 +1338,7 @@
   00000		 |??_GTDMProfile_t@@UAAPAXI@Z| PROC	; TDMProfile_t::`scalar deleting destructor'
   00000		 |$LN10@scalar@4|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38363|
+  00004		 |$M38364|
   00004	e1a04000	 mov         r4, r0
   00008	e59f3014	 ldr         r3, [pc, #0x14]
   0000c	e3110001	 tst         r1, #1
@@ -1350,7 +1350,7 @@
   00024		 |$LN11@scalar@4|
   00024		 |$LN12@scalar@4|
   00024	00000000	 DCD         |??_7McbspProfile_t@@6B@|
-  00028		 |$M38364|
+  00028		 |$M38365|
 
 			 ENDP  ; |??_GTDMProfile_t@@UAAPAXI@Z|, TDMProfile_t::`scalar deleting destructor'
 
@@ -1358,7 +1358,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38376| DCD	|$LN5@SetMaxLoop|
+|$T38377| DCD	|$LN5@SetMaxLoop|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -1369,7 +1369,7 @@
 ; 79   :     {
 
   00000		 |$LN5@SetMaxLoop|
-  00000		 |$M38373|
+  00000		 |$M38374|
 
 ; 80   :         m_DmaLoopCounter = DMA_SAFETY_LOOP_NUM;
 
@@ -1379,14 +1379,14 @@
 ; 81   :     }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M38374|
+  0000c		 |$M38375|
 
 			 ENDP  ; |?SetMaxLoopCount@DataPort_t@@QAAXXZ|, DataPort_t::SetMaxLoopCount
 
 	EXPORT	|?GetSamplesPerPage@DataPort_t@@QBAHXZ|	; DataPort_t::GetSamplesPerPage
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38386| DCD	|$LN5@GetSamples|
+|$T38387| DCD	|$LN5@GetSamples|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1397,7 +1397,7 @@
 ; 89   :     {
 
   00000		 |$LN5@GetSamples|
-  00000		 |$M38383|
+  00000		 |$M38384|
 
 ; 90   :         return m_SamplesPerPage;
 
@@ -1406,14 +1406,14 @@
 ; 91   :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38384|
+  00008		 |$M38385|
 
 			 ENDP  ; |?GetSamplesPerPage@DataPort_t@@QBAHXZ|, DataPort_t::GetSamplesPerPage
 
 	EXPORT	|?DecrementLoopCount@DataPort_t@@QAAHXZ| ; DataPort_t::DecrementLoopCount
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38396| DCD	|$LN5@DecrementL|
+|$T38397| DCD	|$LN5@DecrementL|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -1424,7 +1424,7 @@
 ; 94   :     {
 
   00000		 |$LN5@DecrementL|
-  00000		 |$M38393|
+  00000		 |$M38394|
 
 ; 95   :         return --m_DmaLoopCounter;
 
@@ -1436,14 +1436,14 @@
 ; 96   :     }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M38394|
+  00014		 |$M38395|
 
 			 ENDP  ; |?DecrementLoopCount@DataPort_t@@QAAHXZ|, DataPort_t::DecrementLoopCount
 
 	EXPORT	|?GetDmaInfo@DataPort_t@@QAAPAUDmaDataInfo_t@@XZ| ; DataPort_t::GetDmaInfo
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38406| DCD	|$LN5@GetDmaInfo|
+|$T38407| DCD	|$LN5@GetDmaInfo|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1454,7 +1454,7 @@
 ; 99   :     {
 
   00000		 |$LN5@GetDmaInfo|
-  00000		 |$M38403|
+  00000		 |$M38404|
 
 ; 100  :         return &m_DmaInfo;
 
@@ -1463,14 +1463,14 @@
 ; 101  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38404|
+  00008		 |$M38405|
 
 			 ENDP  ; |?GetDmaInfo@DataPort_t@@QAAPAUDmaDataInfo_t@@XZ|, DataPort_t::GetDmaInfo
 
 	EXPORT	|?GetState@DataPort_t@@QBA?AW4McBSPPortState_e@@XZ| ; DataPort_t::GetState
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38416| DCD	|$LN5@GetState|
+|$T38417| DCD	|$LN5@GetState|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1481,7 +1481,7 @@
 ; 104  :     {
 
   00000		 |$LN5@GetState|
-  00000		 |$M38413|
+  00000		 |$M38414|
 
 ; 105  :         return m_PortState;
 
@@ -1490,14 +1490,14 @@
 ; 106  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38414|
+  00008		 |$M38415|
 
 			 ENDP  ; |?GetState@DataPort_t@@QBA?AW4McBSPPortState_e@@XZ|, DataPort_t::GetState
 
 	EXPORT	|?Lock@DataPort_t@@QAAXXZ|		; DataPort_t::Lock
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38423| DCD	|$LN5@Lock|
+|$T38424| DCD	|$LN5@Lock|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1508,16 +1508,16 @@
 ; 108  :     void Lock()    {}
 
   00000		 |$LN5@Lock|
-  00000		 |$M38420|
+  00000		 |$M38421|
   00000	e12fff1e	 bx          lr
-  00004		 |$M38421|
+  00004		 |$M38422|
 
 			 ENDP  ; |?Lock@DataPort_t@@QAAXXZ|, DataPort_t::Lock
 
 	EXPORT	|?Unlock@DataPort_t@@QAAXXZ|		; DataPort_t::Unlock
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38430| DCD	|$LN5@Unlock|
+|$T38431| DCD	|$LN5@Unlock|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1528,16 +1528,16 @@
 ; 109  :     void Unlock()  {}
 
   00000		 |$LN5@Unlock|
-  00000		 |$M38427|
+  00000		 |$M38428|
   00000	e12fff1e	 bx          lr
-  00004		 |$M38428|
+  00004		 |$M38429|
 
 			 ENDP  ; |?Unlock@DataPort_t@@QAAXXZ|, DataPort_t::Unlock
 
 	EXPORT	|?RequestDmaStop@DataPort_t@@QAAXXZ|	; DataPort_t::RequestDmaStop
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38438| DCD	|$LN6@RequestDma|
+|$T38439| DCD	|$LN6@RequestDma|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -1548,7 +1548,7 @@
 ; 122  :     {
 
   00000		 |$LN6@RequestDma|
-  00000		 |$M38435|
+  00000		 |$M38436|
 
 ; 123  :         if (m_DmaLoopCounter) m_DmaLoopCounter = 1;
 
@@ -1560,14 +1560,14 @@
 ; 124  :     }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M38436|
+  00014		 |$M38437|
 
 			 ENDP  ; |?RequestDmaStop@DataPort_t@@QAAXXZ|, DataPort_t::RequestDmaStop
 
 	EXPORT	|?GetActiveInstance@DataPort_t@@QBAPAUMcBSPInstance_t@@XZ| ; DataPort_t::GetActiveInstance
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38448| DCD	|$LN5@GetActiveI|
+|$T38449| DCD	|$LN5@GetActiveI|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1578,7 +1578,7 @@
 ; 127  :     {
 
   00000		 |$LN5@GetActiveI|
-  00000		 |$M38445|
+  00000		 |$M38446|
 
 ; 128  :         return m_pActiveInstance;
 
@@ -1587,14 +1587,14 @@
 ; 129  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38446|
+  00008		 |$M38447|
 
 			 ENDP  ; |?GetActiveInstance@DataPort_t@@QBAPAUMcBSPInstance_t@@XZ|, DataPort_t::GetActiveInstance
 
 	EXPORT	|?SetActiveInstance@DataPort_t@@QAAXPAUMcBSPInstance_t@@@Z| ; DataPort_t::SetActiveInstance
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38457| DCD	|$LN5@SetActiveI|
+|$T38458| DCD	|$LN5@SetActiveI|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1605,7 +1605,7 @@
 ; 132  :     {
 
   00000		 |$LN5@SetActiveI|
-  00000		 |$M38454|
+  00000		 |$M38455|
 
 ; 133  :         m_pActiveInstance = pInstance;
 
@@ -1614,7 +1614,7 @@
 ; 134  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M38455|
+  00008		 |$M38456|
 
 			 ENDP  ; |?SetActiveInstance@DataPort_t@@QAAXPAUMcBSPInstance_t@@@Z|, DataPort_t::SetActiveInstance
 
@@ -1625,7 +1625,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38470| DCD	|$LN10@MCP_Open|
+|$T38471| DCD	|$LN10@MCP_Open|
 	DCD	0x40001b01
 ; Function compile flags: /Ogspy
 
@@ -1637,7 +1637,7 @@
 
   00000		 |$LN10@MCP_Open|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38467|
+  00004		 |$M38468|
   00004	e1b05000	 movs        r5, r0
 
 ; 589  :     DWORD rc = (DWORD)NULL;
@@ -1658,11 +1658,11 @@
 ; 601  :     if ((pDevice == NULL) ||
 ; 602  :         (pDevice->cookie != MCBSP_DEVICE_COOKIE))
 
-  0000c	0a000011	 beq         |$cleanUp$37532|
+  0000c	0a000011	 beq         |$cleanUp$37533|
   00010	e5952000	 ldr         r2, [r5]
   00014	e59f304c	 ldr         r3, [pc, #0x4C]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a00000d	 bne         |$cleanUp$37532|
+  0001c	1a00000d	 bne         |$cleanUp$37533|
 
 ; 603  :         {
 ; 604  :         DEBUGMSG(ZONE_ERROR, (L"MCP: ERROR: MCP_Open: "
@@ -1681,7 +1681,7 @@
 
 ; 612  :     if (pInstance == NULL)
 
-  00030	0a000008	 beq         |$cleanUp$37532|
+  00030	0a000008	 beq         |$cleanUp$37533|
 
 ; 613  :         {
 ; 614  :         DEBUGMSG(ZONE_ERROR, (L"MCP: ERROR: MCP_Open: "
@@ -1721,7 +1721,7 @@
 ; 634  :     rc = (DWORD)pInstance;
 
   00054	e1a04006	 mov         r4, r6
-  00058		 |$cleanUp$37532|
+  00058		 |$cleanUp$37533|
 
 ; 635  : 
 ; 636  : cleanUp:
@@ -1737,7 +1737,7 @@
   00064	62737049	 DCD         0x62737049
   00068		 |$LN13@MCP_Open|
   00068	62737044	 DCD         0x62737044
-  0006c		 |$M38468|
+  0006c		 |$M38469|
 
 			 ENDP  ; |MCP_Open|
 
@@ -1746,7 +1746,7 @@
 	IMPORT	|InterlockedDecrement|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38484| DCD	|$LN8@MCP_Close|
+|$T38485| DCD	|$LN8@MCP_Close|
 	DCD	0x40001101
 ; Function compile flags: /Ogspy
 
@@ -1758,7 +1758,7 @@
 
   00000		 |$LN8@MCP_Close|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38481|
+  00004		 |$M38482|
   00004	e1b04000	 movs        r4, r0
 
 ; 655  :     BOOL rc = FALSE;
@@ -1774,11 +1774,11 @@
 ; 662  :     if ((pInstance == NULL) ||
 ; 663  :         (pInstance->cookie != MCBSP_INSTANCE_COOKIE))
 
-  0000c	0a000009	 beq         |$cleanUp$37554|
+  0000c	0a000009	 beq         |$cleanUp$37555|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f3024	 ldr         r3, [pc, #0x24]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000005	 bne         |$cleanUp$37554|
+  0001c	1a000005	 bne         |$cleanUp$37555|
 
 ; 664  :         {
 ; 665  :         DEBUGMSG(ZONE_ERROR, (L"MCP: ERROR: MCP_Close: "
@@ -1812,7 +1812,7 @@
 ; 684  :     rc = TRUE;
 
   00034	e3a00001	 mov         r0, #1
-  00038		 |$cleanUp$37554|
+  00038		 |$cleanUp$37555|
 
 ; 685  : 
 ; 686  : cleanUp:
@@ -1825,14 +1825,14 @@
   00040		 |$LN9@MCP_Close|
   00040		 |$LN10@MCP_Close|
   00040	62737049	 DCD         0x62737049
-  00044		 |$M38482|
+  00044		 |$M38483|
 
 			 ENDP  ; |MCP_Close|
 
 	EXPORT	|ClearTransferInfo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38494| DCD	|$LN5@ClearTrans|
+|$T38495| DCD	|$LN5@ClearTrans|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -1843,7 +1843,7 @@
 ; 872  : {
 
   00000		 |$LN5@ClearTrans|
-  00000		 |$M38491|
+  00000		 |$M38492|
 
 ; 873  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S\r\n", __FUNCTION__));
 ; 874  : 
@@ -1877,7 +1877,7 @@
 ; 883  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M38492|
+  00020		 |$M38493|
 
 			 ENDP  ; |ClearTransferInfo|
 
@@ -1885,7 +1885,7 @@
 	IMPORT	|SetDevicePowerState|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38503| DCD	|$LN9@EnableCloc|
+|$T38504| DCD	|$LN9@EnableCloc|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -1897,7 +1897,7 @@
 
   00000		 |$LN9@EnableCloc|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38500|
+  00004		 |$M38501|
   00004	e3510000	 cmp         r1, #0
   00008	e1a04000	 mov         r4, r0
 
@@ -1968,7 +1968,7 @@
 
   00058	e8bd4010	 ldmia       sp!, {r4, lr}
   0005c	e12fff1e	 bx          lr
-  00060		 |$M38501|
+  00060		 |$M38502|
 
 			 ENDP  ; |EnableClocks|
 
@@ -1976,7 +1976,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38540| DCD	|$LN25@StartTrans|
+|$T38541| DCD	|$LN25@StartTrans|
 	DCD	0x40004d01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
@@ -1989,7 +1989,7 @@
 
   00000		 |$LN25@StartTrans|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M38537|
+  00004		 |$M38538|
   00004	e1a07000	 mov         r7, r0
 
 ; 933  :     INT nActiveStreams = 0;
@@ -2165,7 +2165,7 @@
 
   0012c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00130	e12fff1e	 bx          lr
-  00134		 |$M38538|
+  00134		 |$M38539|
 
 			 ENDP  ; |StartTransmit|
 
@@ -2173,7 +2173,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38573| DCD	|$LN23@StartRecei|
+|$T38574| DCD	|$LN23@StartRecei|
 	DCD	0x40003401
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
@@ -2186,7 +2186,7 @@
 
   00000		 |$LN23@StartRecei|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38570|
+  00004		 |$M38571|
   00004	e1a06000	 mov         r6, r0
 
 ; 1016 :     DataPort_t *pDataPort = pInstance->pDevice->pRxPort;
@@ -2310,7 +2310,7 @@
 
   000c8	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000cc	e12fff1e	 bx          lr
-  000d0		 |$M38571|
+  000d0		 |$M38572|
 
 			 ENDP  ; |StartReceive|
 
@@ -2318,7 +2318,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38607| DCD	|$LN23@StopTransm|
+|$T38608| DCD	|$LN23@StopTransm|
 	DCD	0x40002b01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
@@ -2331,7 +2331,7 @@
 
   00000		 |$LN23@StopTransm|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38604|
+  00004		 |$M38605|
   00004	e1a04000	 mov         r4, r0
 
 ; 1074 :     DataPort_t *pDataPort = pDevice->pTxPort;
@@ -2438,7 +2438,7 @@
 
   000a4	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000a8	e12fff1e	 bx          lr
-  000ac		 |$M38605|
+  000ac		 |$M38606|
 
 			 ENDP  ; |StopTransmit|
 
@@ -2446,7 +2446,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38641| DCD	|$LN23@StopReceiv|
+|$T38642| DCD	|$LN23@StopReceiv|
 	DCD	0x40002b01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
@@ -2459,7 +2459,7 @@
 
   00000		 |$LN23@StopReceiv|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38638|
+  00004		 |$M38639|
   00004	e1a04000	 mov         r4, r0
 
 ; 1130 :     DataPort_t *pDataPort = pDevice->pRxPort;
@@ -2566,7 +2566,7 @@
 
   000a4	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000a8	e12fff1e	 bx          lr
-  000ac		 |$M38639|
+  000ac		 |$M38640|
 
 			 ENDP  ; |StopReceive|
 
@@ -2577,7 +2577,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38745| DCD	|$LN79@TxCommand|
+|$T38746| DCD	|$LN79@TxCommand|
 	DCD	0x4000a701
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
@@ -2590,7 +2590,7 @@
 
   00000		 |$LN79@TxCommand|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M38742|
+  00004		 |$M38743|
   00004	e1b04002	 movs        r4, r2
   00008	e1a07001	 mov         r7, r1
 
@@ -2985,7 +2985,7 @@
   00294	00000000	 DCD         |??_7I2SMasterProfile_t@@6B@|
   00298		 |$LN84@TxCommand|
   00298	00000000	 DCD         |??_7I2SSlaveProfile_t@@6B@|
-  0029c		 |$M38743|
+  0029c		 |$M38744|
 
 			 ENDP  ; |TxCommand|
 
@@ -2993,7 +2993,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38854| DCD	|$LN79@RxCommand|
+|$T38855| DCD	|$LN79@RxCommand|
 	DCD	0x4000a701
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
@@ -3006,7 +3006,7 @@
 
   00000		 |$LN79@RxCommand|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M38851|
+  00004		 |$M38852|
   00004	e1b04002	 movs        r4, r2
   00008	e1a07001	 mov         r7, r1
 
@@ -3401,7 +3401,7 @@
   00294	00000000	 DCD         |??_7I2SMasterProfile_t@@6B@|
   00298		 |$LN84@RxCommand|
   00298	00000000	 DCD         |??_7I2SSlaveProfile_t@@6B@|
-  0029c		 |$M38852|
+  0029c		 |$M38853|
 
 			 ENDP  ; |RxCommand|
 
@@ -3413,15 +3413,15 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38919| DCD	|$LN45@IST_TxDMA|
+|$T38920| DCD	|$LN45@IST_TxDMA|
 	DCD	0xc0006304
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38921| DCD	|$LN13@IST_TxDMA|
+|$T38922| DCD	|$LN13@IST_TxDMA|
 	DCD	0x40000301
 
   00000			 AREA	 |.xdata|, DATA
-|$T38917| DCD	0x1
+|$T38918| DCD	0x1
 	DCD	|$LN17@IST_TxDMA|
 	DCD	|$LN18@IST_TxDMA|
 	DCD	|$LN13@IST_TxDMA|
@@ -3432,7 +3432,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T38917|
+  00004	00000000	 DCD         |$T38918|
 
   00008		 |IST_TxDMA| PROC
 
@@ -3726,15 +3726,15 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\dataport.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38984| DCD	|$LN45@IST_RxDMA|
+|$T38985| DCD	|$LN45@IST_RxDMA|
 	DCD	0xc0006304
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38986| DCD	|$LN13@IST_RxDMA|
+|$T38987| DCD	|$LN13@IST_RxDMA|
 	DCD	0x40000301
 
   00000			 AREA	 |.xdata|, DATA
-|$T38982| DCD	0x1
+|$T38983| DCD	0x1
 	DCD	|$LN17@IST_RxDMA|
 	DCD	|$LN18@IST_RxDMA|
 	DCD	|$LN13@IST_RxDMA|
@@ -3745,7 +3745,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T38982|
+  00004	00000000	 DCD         |$T38983|
 
   00008		 |IST_RxDMA| PROC
 
@@ -4042,7 +4042,7 @@
 	IMPORT	|ReleaseDevicePads|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T39023| DCD	|$LN28@MCP_Deinit|
+|$T39024| DCD	|$LN28@MCP_Deinit|
 	DCD	0x40003e01
 ; Function compile flags: /Ogspy
 
@@ -4054,7 +4054,7 @@
 
   00000		 |$LN28@MCP_Deinit|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M39020|
+  00004		 |$M39021|
   00004	e1b04000	 movs        r4, r0
 
 ; 498  :     BOOL rc = FALSE;
@@ -4069,11 +4069,11 @@
 ; 504  :     if ((pDevice == NULL) ||
 ; 505  :         (pDevice->cookie != MCBSP_DEVICE_COOKIE))
 
-  0000c	0a000036	 beq         |$cleanUp$37498|
+  0000c	0a000036	 beq         |$cleanUp$37499|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f30d8	 ldr         r3, [pc, #0xD8]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000032	 bne         |$cleanUp$37498|
+  0001c	1a000032	 bne         |$cleanUp$37499|
 
 ; 506  :         {
 ; 507  :         DEBUGMSG(ZONE_ERROR, (L"MCP: ERROR: MCP_Deinit: "
@@ -4087,7 +4087,7 @@
 
   00020	e5943004	 ldr         r3, [r4, #4]
   00024	e3530000	 cmp         r3, #0
-  00028	ca00002f	 bgt         |$cleanUp$37498|
+  00028	ca00002f	 bgt         |$cleanUp$37499|
 
 ; 515  :         {
 ; 516  :         DEBUGMSG(ZONE_ERROR, (L"MCP: ERROR: MCP_Deinit: "
@@ -4221,7 +4221,7 @@
 ; 567  :     rc = TRUE;
 
   000e8	e3a00001	 mov         r0, #1
-  000ec		 |$cleanUp$37498|
+  000ec		 |$cleanUp$37499|
 
 ; 568  : 
 ; 569  : cleanUp:
@@ -4234,14 +4234,14 @@
   000f4		 |$LN29@MCP_Deinit|
   000f4		 |$LN30@MCP_Deinit|
   000f4	62737044	 DCD         0x62737044
-  000f8		 |$M39021|
+  000f8		 |$M39022|
 
 			 ENDP  ; |MCP_Deinit|
 
 	EXPORT	|CopyTransferInfo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T39035| DCD	|$LN5@CopyTransf|
+|$T39036| DCD	|$LN5@CopyTransf|
 	DCD	0x40001401
 ; Function compile flags: /Ogspy
 
@@ -4253,7 +4253,7 @@
 
   00000		 |$LN5@CopyTransf|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M39032|
+  00004		 |$M39033|
 
 ; 845  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S\r\n", __FUNCTION__));
 ; 846  : 
@@ -4299,7 +4299,7 @@
   00048	00000000	 DCD         |TxCommand|
   0004c		 |$LN8@CopyTransf|
   0004c	00000000	 DCD         |RxCommand|
-  00050		 |$M39033|
+  00050		 |$M39034|
 
 			 ENDP  ; |CopyTransferInfo|
 
@@ -4313,7 +4313,7 @@
 	IMPORT	|GetDeviceRegistryParams|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T39113| DCD	|$LN70@MCP_Init|
+|$T39114| DCD	|$LN70@MCP_Init|
 	DCD	0x4000b902
 ; Function compile flags: /Ogspy
 
@@ -4326,7 +4326,7 @@
   00000		 |$LN70@MCP_Init|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M39110|
+  00008		 |$M39111|
   00008	e1a04000	 mov         r4, r0
 
 ; 280  :     DWORD rc = 0;
@@ -4358,7 +4358,7 @@
 ; 299  :         status = E_FAIL;
 ; 300  :         goto cleanUp;
 
-  00020	0a0000a1	 beq         |$cleanUp$37401|
+  00020	0a0000a1	 beq         |$cleanUp$37402|
 
 ; 301  :         }
 ; 302  : 
@@ -4405,7 +4405,7 @@
 ; 322  :         status = E_FAIL;
 ; 323  :         goto cleanUp;
 
-  00060	1a000091	 bne         |$cleanUp$37401|
+  00060	1a000091	 bne         |$cleanUp$37402|
 
 ; 324  :         }
 ; 325  : 
@@ -4426,7 +4426,7 @@
 ; 334  :         status = E_FAIL;
 ; 335  :         goto cleanUp;
 
-  00074	0a00008c	 beq         |$cleanUp$37401|
+  00074	0a00008c	 beq         |$cleanUp$37402|
 
 ; 336  :         }
 ; 337  :     // Set ConfigInfo structure with 0
@@ -4454,7 +4454,7 @@
 ; 348  :         status = E_FAIL;
 ; 349  :         goto cleanUp;
 
-  00094	0a000084	 beq         |$cleanUp$37401|
+  00094	0a000084	 beq         |$cleanUp$37402|
 
 ; 350  :         }
 ; 351  : 
@@ -4486,7 +4486,7 @@
 ; 364  :         status = E_FAIL;
 ; 365  :         goto cleanUp;
 
-  000bc	0a00007a	 beq         |$cleanUp$37401|
+  000bc	0a00007a	 beq         |$cleanUp$37402|
 
 ; 366  :         }
 ; 367  : 
@@ -4509,7 +4509,7 @@
 ; 376  :         status = E_FAIL;
 ; 377  :         goto cleanUp;
 
-  000d0	0a000075	 beq         |$cleanUp$37401|
+  000d0	0a000075	 beq         |$cleanUp$37402|
 
 ; 378  : 	}
 ; 379  : 
@@ -4527,7 +4527,7 @@
 ; 387  :         status = E_FAIL;
 ; 388  :         goto cleanUp;
 
-  000dc	0a000072	 beq         |$cleanUp$37401|
+  000dc	0a000072	 beq         |$cleanUp$37402|
 
 ; 389  :     }
 ; 390  : 
@@ -4626,7 +4626,7 @@
 ; 415  :         status = E_FAIL;
 ; 416  :         goto cleanUp;
 
-  0017c	0a00004a	 beq         |$cleanUp$37401|
+  0017c	0a00004a	 beq         |$cleanUp$37402|
 
 ; 417  :         }
 ; 418  : 
@@ -4683,10 +4683,10 @@
 ; 432  :         (pDevice->pTxPort == NULL))
 
   001e4	e3500000	 cmp         r0, #0
-  001e8	0a00002f	 beq         |$cleanUp$37401|
+  001e8	0a00002f	 beq         |$cleanUp$37402|
   001ec	e5963078	 ldr         r3, [r6, #0x78]
   001f0	e1b00003	 movs        r0, r3
-  001f4	0a00002c	 beq         |$cleanUp$37401|
+  001f4	0a00002c	 beq         |$cleanUp$37402|
 
 ; 433  :         {
 ; 434  :         DEBUGMSG(ZONE_ERROR, (L"MCP: ERROR: MCP_Init: "
@@ -4721,7 +4721,7 @@
 ; 448  :         status = E_FAIL;
 ; 449  :         goto cleanUp;
 
-  0022c	0a00001e	 beq         |$cleanUp$37401|
+  0022c	0a00001e	 beq         |$cleanUp$37402|
 
 ; 450  :         }
 ; 451  : 
@@ -4750,7 +4750,7 @@
 ; 459  :         status = E_FAIL;
 ; 460  :         goto cleanUp;
 
-  00264	0a000010	 beq         |$cleanUp$37401|
+  00264	0a000010	 beq         |$cleanUp$37402|
 
 ; 461  :         }
 ; 462  : 
@@ -4790,7 +4790,7 @@
 
   002a4	e1a07006	 mov         r7, r6
   002a8	ea000001	 b           |$LN1@MCP_Init|
-  002ac		 |$cleanUp$37401|
+  002ac		 |$cleanUp$37402|
 
 ; 475  : 
 ; 476  : cleanUp:
@@ -4829,7 +4829,7 @@
   002dc	00000000	 DCD         |s_deviceRegParams|
   002e0		 |$LN79@MCP_Init|
   002e0	62737044	 DCD         0x62737044
-  002e4		 |$M39111|
+  002e4		 |$M39112|
 
 			 ENDP  ; |MCP_Init|
 
@@ -4840,7 +4840,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T39159| DCD	|$LN37@MCP_IOCont|
+|$T39160| DCD	|$LN37@MCP_IOCont|
 	DCD	0x40008c02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbsp.cpp
@@ -4854,7 +4854,7 @@
   00000		 |$LN37@MCP_IOCont|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M39156|
+  00008		 |$M39157|
   00008	e1a09003	 mov         r9, r3
   0000c	e1a06002	 mov         r6, r2
   00010	e1a05000	 mov         r5, r0
@@ -4879,7 +4879,7 @@
   0001c	e5958004	 ldr         r8, [r5, #4]
   00020	e3a07000	 mov         r7, #0
   00024	e154000e	 cmp         r4, lr
-  00028	1a000075	 bne         |$cleanUp$37576|
+  00028	1a000075	 bne         |$cleanUp$37577|
   0002c	e3a03822	 mov         r3, #0x22, 16
 
 ; 723  :         {
@@ -4904,7 +4904,7 @@
   00058	0a000027	 beq         |$LN13@MCP_IOCont|
   0005c	e59f31c4	 ldr         r3, [pc, #0x1C4]
   00060	e1510003	 cmp         r1, r3
-  00064	1a000066	 bne         |$cleanUp$37576|
+  00064	1a000066	 bne         |$cleanUp$37577|
 
 ; 783  :                     {
 ; 784  :                     SetLastError(ERROR_INVALID_PARAMETER);
@@ -4986,7 +4986,7 @@
   000ec	e5980074	 ldr         r0, [r8, #0x74]
   000f0	eb000000	 bl          |?SetSrcPhysAddr@DataPort_t@@QAAXK@Z|
   000f4	e3a07001	 mov         r7, #1
-  000f8	ea000041	 b           |$cleanUp$37576|
+  000f8	ea000041	 b           |$cleanUp$37577|
   000fc		 |$LN13@MCP_IOCont|
 
 ; 738  : 
@@ -5015,7 +5015,7 @@
 
 ; 742  :             break;
 
-  0011c	ea000038	 b           |$cleanUp$37576|
+  0011c	ea000038	 b           |$cleanUp$37577|
   00120		 |$LN14@MCP_IOCont|
 
 ; 731  :         {
@@ -5049,7 +5049,7 @@
 
 ; 737  :             break;
 
-  0016c	ea000024	 b           |$cleanUp$37576|
+  0016c	ea000024	 b           |$cleanUp$37577|
   00170		 |$LN12@MCP_IOCont|
 
 ; 743  : 
@@ -5148,7 +5148,7 @@
   001fc	e3a00057	 mov         r0, #0x57
   00200		 |$LN33@MCP_IOCont|
   00200	eb000000	 bl          SetLastError
-  00204		 |$cleanUp$37576|
+  00204		 |$cleanUp$37577|
 
 ; 816  :                 }
 ; 817  :             else
@@ -5184,7 +5184,7 @@
   00228	80038140	 DCD         0x80038140
   0022c		 |$LN45@MCP_IOCont|
   0022c	62737049	 DCD         0x62737049
-  00230		 |$M39157|
+  00230		 |$M39158|
 
 			 ENDP  ; |MCP_IOControl|
 

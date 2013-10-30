@@ -77,6 +77,7 @@ typedef struct fileio_operations_t {
     // with the correct values, and this pointer must be initialized to the 
     // data structure before calling any of the fileio routines.
     void *drive_info;
+
 } S_FILEIO_OPERATIONS, *S_FILEIO_OPERATIONS_PTR;
 
 //----------------------------------------------------------------------------

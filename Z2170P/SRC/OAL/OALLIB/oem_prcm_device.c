@@ -24,7 +24,7 @@ typedef struct {
 } DomainDependencyRequirement;
 
 //-----------------------------------------------------------------------------
-DomainDependencyRequirement s_rgClockDomainDependency[POWERDOMAIN_COUNT] =
+DomainDependencyRequirement s_rgClockDomainDependency[POWERDOMAIN_COUNT+1] =		//Array size too many init, so that +1 , Ray 13-10-23 
 {
     {
         CLOCKDOMAIN_NULL,       0xFFFFFFFF,             0xFFFFFFFF                  // POWERDOMAIN_WAKEUP

@@ -64,8 +64,8 @@ TARGETLIBS= \
     $(_TILIBS)\$(_SOC)_soccfg.lib                                               \
     $(_TILIBS)\$(_SOC)_oal_padcfg.lib                                           \
     $(_TILIBS)\$(TRITON)_oal.lib                                                \
-    $(_TILIBS)\$(TI_COMMON)_oal_omap_gpio.lib																		\
-    $(_TILIBS)\$(TI_COMMON)_oal_gpiodispatch.lib																\
+    $(_TILIBS)\$(TI_COMMON)_oal_omap_gpio.lib									\
+    $(_TILIBS)\$(TI_COMMON)_oal_gpiodispatch.lib								\
     $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bspcfg.lib                                 \
     $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_bootstubs.lib                          \
     $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_stall.lib                              \

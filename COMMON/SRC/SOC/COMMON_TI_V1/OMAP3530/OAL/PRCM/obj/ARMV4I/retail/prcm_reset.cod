@@ -74,8 +74,8 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\omap3530\oal\prcm\prcm_reset.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47039| DCD	|$LN5@ResetIniti|
-	DCD	0x40002a01
+|$T47015| DCD	|$LN5@ResetIniti|
+	DCD	0x40002501
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -85,110 +85,93 @@
 ; 27   : {
 
   00000		 |$LN5@ResetIniti|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47036|
+  00000	e92d4010	 stmdb       sp!, {r4, lr}
+  00004		 |$M47012|
 
 ; 28   :     // clear the reset flags for all the power domains
 ; 29   :     OUTREG32(&g_pPrcmPrm->pOMAP_CORE_PRM->RM_RSTST_CORE, 
-; 30   :         DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 31   :         );
+; 30   :         DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
 
-  00004	e59fe098	 ldr         lr, [pc, #0x98]
-  00008	e3a04007	 mov         r4, #7
+  00004	e59f1084	 ldr         r1, [pc, #0x84]
+  00008	e3a0e007	 mov         lr, #7
 
-; 32   :     
-; 33   :     OUTREG32(&g_pPrcmPrm->pOMAP_EMU_PRM->RM_RSTST_EMU,  
-; 34   :         DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 35   :         );
-; 36   :     
-; 37   :     OUTREG32(&g_pPrcmPrm->pOMAP_PER_PRM->RM_RSTST_PER, 
-; 38   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 39   :         );
+; 31   :     
+; 32   :     OUTREG32(&g_pPrcmPrm->pOMAP_EMU_PRM->RM_RSTST_EMU,  
+; 33   :         DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
+; 34   :     
+; 35   :     OUTREG32(&g_pPrcmPrm->pOMAP_PER_PRM->RM_RSTST_PER, 
+; 36   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
 
-  0000c	e3a0500f	 mov         r5, #0xF
-  00010	e59e3000	 ldr         r3, [lr]
+  0000c	e3a0400f	 mov         r4, #0xF
+  00010	e5913000	 ldr         r3, [r1]
   00014	e3a02b02	 mov         r2, #2, 22
 
+; 37   :     
+; 38   :     OUTREG32(&g_pPrcmPrm->pOMAP_DSS_PRM->RM_RSTST_DSS, 
+; 39   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
 ; 40   :     
-; 41   :     OUTREG32(&g_pPrcmPrm->pOMAP_DSS_PRM->RM_RSTST_DSS, 
-; 42   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 43   :         );
-; 44   :     
-; 45   :     OUTREG32(&g_pPrcmPrm->pOMAP_NEON_PRM->RM_RSTST_NEON, 
-; 46   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 47   :         );
-; 48   :     
-; 49   :     OUTREG32(&g_pPrcmPrm->pOMAP_SGX_PRM->RM_RSTST_SGX, 
-; 50   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 51   :         );
-; 52   :     
-; 53   :     OUTREG32(&g_pPrcmPrm->pOMAP_CAM_PRM->RM_RSTST_CAM, 
-; 54   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 55   :         );
-; 56   :     
-; 57   :     OUTREG32(&g_pPrcmPrm->pOMAP_USBHOST_PRM->RM_RSTST_USBHOST, 
-; 58   :       COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-; 59   :       );
-; 60   : 
-; 61   :     OUTREG32(&g_pPrcmPrm->pOMAP_MPU_PRM->RM_RSTST_MPU,         
-; 62   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST |
-; 63   :         EMULATION_MPU_RST
-; 64   :         );
+; 41   :     OUTREG32(&g_pPrcmPrm->pOMAP_NEON_PRM->RM_RSTST_NEON, 
+; 42   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
+; 43   :     
+; 44   :     OUTREG32(&g_pPrcmPrm->pOMAP_SGX_PRM->RM_RSTST_SGX, 
+; 45   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
+; 46   :     
+; 47   :     OUTREG32(&g_pPrcmPrm->pOMAP_CAM_PRM->RM_RSTST_CAM, 
+; 48   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
+; 49   :     
+; 50   :     OUTREG32(&g_pPrcmPrm->pOMAP_USBHOST_PRM->RM_RSTST_USBHOST, 
+; 51   :       COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
+; 52   : 
+; 53   :     OUTREG32(&g_pPrcmPrm->pOMAP_MPU_PRM->RM_RSTST_MPU,         
+; 54   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST |
+; 55   :         EMULATION_MPU_RST);
 
   00018	e382200f	 orr         r2, r2, #0xF
   0001c	e5933004	 ldr         r3, [r3, #4]
-  00020	e3a01c3f	 mov         r1, #0x3F, 24
 
-; 65   :     
-; 66   :     OUTREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2, 
-; 67   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST |
-; 68   :         EMULATION_SEQ_RST | EMULATION_VHWA_RST | EMULATION_IVA2_RST |
-; 69   :         IVA2_SW_RST3 | IVA2_SW_RST2 | IVA2_SW_RST1
-; 70   :         );
+; 56   :     
+; 57   :     /*brian OUTREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2, 
+; 58   :         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST |
+; 59   :         EMULATION_SEQ_RST | EMULATION_VHWA_RST | EMULATION_IVA2_RST |
+; 60   :         IVA2_SW_RST3 | IVA2_SW_RST2 | IVA2_SW_RST1);*/
+; 61   : 
+; 62   :     return TRUE;
 
-  00024	e381100f	 orr         r1, r1, #0xF
-  00028	e5834058	 str         r4, [r3, #0x58]
-  0002c	e59e3000	 ldr         r3, [lr]
+  00020	e3a00001	 mov         r0, #1
+  00024	e583e058	 str         lr, [r3, #0x58]
+  00028	e5913000	 ldr         r3, [r1]
+  0002c	e5933010	 ldr         r3, [r3, #0x10]
+  00030	e583e058	 str         lr, [r3, #0x58]
+  00034	e5913000	 ldr         r3, [r1]
+  00038	e5933008	 ldr         r3, [r3, #8]
+  0003c	e5834058	 str         r4, [r3, #0x58]
+  00040	e5913000	 ldr         r3, [r1]
+  00044	e5933018	 ldr         r3, [r3, #0x18]
+  00048	e5834058	 str         r4, [r3, #0x58]
+  0004c	e5913000	 ldr         r3, [r1]
+  00050	e593301c	 ldr         r3, [r3, #0x1C]
+  00054	e5834058	 str         r4, [r3, #0x58]
+  00058	e5913000	 ldr         r3, [r1]
+  0005c	e5933028	 ldr         r3, [r3, #0x28]
+  00060	e5834058	 str         r4, [r3, #0x58]
+  00064	e5913000	 ldr         r3, [r1]
+  00068	e5933024	 ldr         r3, [r3, #0x24]
+  0006c	e5834058	 str         r4, [r3, #0x58]
+  00070	e5913000	 ldr         r3, [r1]
+  00074	e593300c	 ldr         r3, [r3, #0xC]
+  00078	e5834058	 str         r4, [r3, #0x58]
+  0007c	e5913000	 ldr         r3, [r1]
+  00080	e5933014	 ldr         r3, [r3, #0x14]
+  00084	e5832058	 str         r2, [r3, #0x58]
 
-; 71   : 
-; 72   :     return TRUE;
+; 63   : }
 
-  00030	e3a00001	 mov         r0, #1
-  00034	e5933010	 ldr         r3, [r3, #0x10]
-  00038	e5834058	 str         r4, [r3, #0x58]
-  0003c	e59e3000	 ldr         r3, [lr]
-  00040	e5933008	 ldr         r3, [r3, #8]
-  00044	e5835058	 str         r5, [r3, #0x58]
-  00048	e59e3000	 ldr         r3, [lr]
-  0004c	e5933018	 ldr         r3, [r3, #0x18]
-  00050	e5835058	 str         r5, [r3, #0x58]
-  00054	e59e3000	 ldr         r3, [lr]
-  00058	e593301c	 ldr         r3, [r3, #0x1C]
-  0005c	e5835058	 str         r5, [r3, #0x58]
-  00060	e59e3000	 ldr         r3, [lr]
-  00064	e5933028	 ldr         r3, [r3, #0x28]
-  00068	e5835058	 str         r5, [r3, #0x58]
-  0006c	e59e3000	 ldr         r3, [lr]
-  00070	e5933024	 ldr         r3, [r3, #0x24]
-  00074	e5835058	 str         r5, [r3, #0x58]
-  00078	e59e3000	 ldr         r3, [lr]
-  0007c	e593300c	 ldr         r3, [r3, #0xC]
-  00080	e5835058	 str         r5, [r3, #0x58]
-  00084	e59e3000	 ldr         r3, [lr]
-  00088	e5933014	 ldr         r3, [r3, #0x14]
-  0008c	e5832058	 str         r2, [r3, #0x58]
-  00090	e59e3000	 ldr         r3, [lr]
-  00094	e5933020	 ldr         r3, [r3, #0x20]
-  00098	e5831058	 str         r1, [r3, #0x58]
-
-; 73   : }
-
-  0009c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  000a0	e12fff1e	 bx          lr
-  000a4		 |$LN6@ResetIniti|
-  000a4		 |$LN7@ResetIniti|
-  000a4	00000000	 DCD         |g_pPrcmPrm|
-  000a8		 |$M47037|
+  00088	e8bd4010	 ldmia       sp!, {r4, lr}
+  0008c	e12fff1e	 bx          lr
+  00090		 |$LN6@ResetIniti|
+  00090		 |$LN7@ResetIniti|
+  00090	00000000	 DCD         |g_pPrcmPrm|
+  00094		 |$M47013|
 
 			 ENDP  ; |ResetInitialize|
 
@@ -196,7 +179,7 @@
 	IMPORT	|GetPrmRegisterSet|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47056| DCD	|$LN9@PrcmDomain|
+|$T47032| DCD	|$LN9@PrcmDomain|
 	DCD	0x40001301
 ; Function compile flags: /Ogspy
 
@@ -204,240 +187,137 @@
 
   00000		 |PrcmDomainResetStatus| PROC
 
-; 82   : {
+; 72   : {
 
   00000		 |$LN9@PrcmDomain|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47053|
+  00004		 |$M47029|
   00004	e1a07002	 mov         r7, r2
   00008	e1a06001	 mov         r6, r1
   0000c	e1a04000	 mov         r4, r0
 
-; 83   :     // get the prm register for the domain
-; 84   :     //
-; 85   :     BOOL rc = FALSE;
-; 86   :     UINT resetStatus;
-; 87   :     OMAP_PRM_REGS *pPrmRegs = GetPrmRegisterSet(powerDomain);
+; 73   :     // get the prm register for the domain
+; 74   :     //
+; 75   :     BOOL rc = FALSE;
+; 76   :     UINT resetStatus;
+; 77   :     OMAP_PRM_REGS *pPrmRegs = GetPrmRegisterSet(powerDomain);
 
   00010	e3a05000	 mov         r5, #0
   00014	eb000000	 bl          GetPrmRegisterSet
 
-; 88   :     if (powerDomain == POWERDOMAIN_WAKEUP || pPrmRegs == NULL) goto cleanUp;
+; 78   :     if (powerDomain == POWERDOMAIN_WAKEUP || pPrmRegs == NULL) goto cleanUp;
 
   00018	e3540000	 cmp         r4, #0
-  0001c	0a000007	 beq         |$cleanUp$46965|
+  0001c	0a000007	 beq         |$cleanUp$46963|
   00020	e3500000	 cmp         r0, #0
-  00024	0a000005	 beq         |$cleanUp$46965|
+  00024	0a000005	 beq         |$cleanUp$46963|
 
-; 89   : 
-; 90   :     // get current status 
-; 91   :     resetStatus = INREG32(&pPrmRegs->RM_RSTST_xxx);
+; 79   : 
+; 80   :     // get current status 
+; 81   :     resetStatus = INREG32(&pPrmRegs->RM_RSTST_xxx);
 
   00028	e5903058	 ldr         r3, [r0, #0x58]
 
-; 92   :     if (pResetStatus) *pResetStatus = resetStatus;
+; 82   :     if (pResetStatus) *pResetStatus = resetStatus;
 
   0002c	e3560000	 cmp         r6, #0
 
-; 93   :     
-; 94   :     // clear status if requested
-; 95   :     if (bClear) OUTREG32(&pPrmRegs->RM_RSTST_xxx, resetStatus);
-; 96   : 
-; 97   :     rc = TRUE;
+; 83   :     
+; 84   :     // clear status if requested
+; 85   :     if (bClear) OUTREG32(&pPrmRegs->RM_RSTST_xxx, resetStatus);
+; 86   : 
+; 87   :     rc = TRUE;
 
   00030	e3a05001	 mov         r5, #1
   00034	15863000	 strne       r3, [r6]
   00038	e3570000	 cmp         r7, #0
   0003c	15803058	 strne       r3, [r0, #0x58]
-  00040		 |$cleanUp$46965|
+  00040		 |$cleanUp$46963|
 
-; 98   :     
-; 99   : cleanUp:
-; 100  :     return rc;
-; 101  : }
+; 88   :     
+; 89   : cleanUp:
+; 90   :     return rc;
+; 91   : }
 
   00040	e1a00005	 mov         r0, r5
   00044	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00048	e12fff1e	 bx          lr
-  0004c		 |$M47054|
+  0004c		 |$M47030|
 
 			 ENDP  ; |PrcmDomainResetStatus|
 
 	EXPORT	|PrcmDomainReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47069| DCD	|$LN7@PrcmDomain@2|
-	DCD	0x40000e01
+|$T47041| DCD	|$LN5@PrcmDomain@2|
+	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |PrcmDomainReset| PROC
 
-; 109  : {
+; 99   : {
 
-  00000		 |$LN7@PrcmDomain@2|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47066|
-  00004	e1a05001	 mov         r5, r1
+  00000		 |$LN5@PrcmDomain@2|
+  00000		 |$M47038|
 
-; 110  :     BOOL            rc = FALSE;
+; 100  : 	BOOL            rc = FALSE;
+; 101  : 		
+; 102  : 	UNREFERENCED_PARAMETER(powerDomain);
+; 103  : 	UNREFERENCED_PARAMETER(resetMask);
+; 104  : 
+; 105  : 	// currently no reset domain supported - brian
+; 106  : 
+; 107  :     return rc;
 
-  00008	e3a04000	 mov         r4, #0
+  00000	e3a00000	 mov         r0, #0
 
-; 111  :     OMAP_PRM_REGS  *pPrmRegs;
-; 112  :     
-; 113  :     // currently only support resetting of iva2 domain
-; 114  :     if (powerDomain != POWERDOMAIN_IVA2) goto cleanUp;
+; 108  : }
 
-  0000c	e3500008	 cmp         r0, #8
-  00010	1a000005	 bne         |$cleanUp$46979|
-
-; 115  : 
-; 116  :     // reset the appropriate domains
-; 117  :     pPrmRegs = GetPrmRegisterSet(powerDomain);
-
-  00014	e3a00008	 mov         r0, #8
-  00018	eb000000	 bl          GetPrmRegisterSet
-  0001c	e3500000	 cmp         r0, #0
-
-; 118  :     if (pPrmRegs == NULL) goto cleanUp;
-; 119  : 
-; 120  :     resetMask &= RST3_IVA2 | RST2_IVA2 | RST1_IVA2;
-
-  00020	12053007	 andne       r3, r5, #7
-
-; 121  : 
-; 122  :     // UNDONE:
-; 123  :     // not exactly clear with the programming model for these registers
-; 124  :     //
-; 125  :     OUTREG32(&pPrmRegs->RM_RSTCTRL_xxx, resetMask);
-
-  00024	15803050	 strne       r3, [r0, #0x50]
-
-; 126  :     rc = TRUE;
-
-  00028	13a04001	 movne       r4, #1
-  0002c		 |$cleanUp$46979|
-
-; 127  :     
-; 128  : cleanUp:
-; 129  :     return rc;
-; 130  : }
-
-  0002c	e1a00004	 mov         r0, r4
-  00030	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00034	e12fff1e	 bx          lr
-  00038		 |$M47067|
+  00004	e12fff1e	 bx          lr
+  00008		 |$M47039|
 
 			 ENDP  ; |PrcmDomainReset|
 
 	EXPORT	|PrcmDomainResetRelease|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47086| DCD	|$LN11@PrcmDomain@3|
-	DCD	0x40001701
+|$T47050| DCD	|$LN5@PrcmDomain@3|
+	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |PrcmDomainResetRelease| PROC
 
-; 138  : {
+; 116  : {
 
-  00000		 |$LN11@PrcmDomain@3|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47083|
-  00004	e1a05001	 mov         r5, r1
+  00000		 |$LN5@PrcmDomain@3|
+  00000		 |$M47047|
 
-; 139  :     BOOL            rc = FALSE;
+; 117  : 	BOOL            rc = FALSE;
+; 118  : 		
+; 119  : 	UNREFERENCED_PARAMETER(powerDomain);
+; 120  : 	UNREFERENCED_PARAMETER(resetMask);
+; 121  : 	
+; 122  : 	// currently no reset domain supported - brian
+; 123  : 
+; 124  :     return rc;
 
-  00008	e3a04000	 mov         r4, #0
+  00000	e3a00000	 mov         r0, #0
 
-; 140  :     UINT            resetTemp;
-; 141  :     UINT            resetStatus;
-; 142  :     OMAP_PRM_REGS  *pPrmRegs;
-; 143  :     
-; 144  :     // currently only support resetting of iva2 domain
-; 145  :     if (powerDomain != POWERDOMAIN_IVA2) goto cleanUp;
+; 125  : }
 
-  0000c	e3500008	 cmp         r0, #8
-  00010	1a00000e	 bne         |$cleanUp$46994|
-
-; 146  : 
-; 147  :     // reset the appropriate domains
-; 148  :     pPrmRegs = GetPrmRegisterSet(powerDomain);
-
-  00014	e3a00008	 mov         r0, #8
-  00018	eb000000	 bl          GetPrmRegisterSet
-  0001c	e3500000	 cmp         r0, #0
-
-; 149  :     if (pPrmRegs == NULL) goto cleanUp;
-
-  00020	0a00000a	 beq         |$cleanUp$46994|
-
-; 150  : 
-; 151  :     resetMask &= RST3_IVA2 | RST2_IVA2 | RST1_IVA2;
-
-  00024	e2053007	 and         r3, r5, #7
-
-; 152  :     resetTemp = /*~INREG32(&pPrmRegs->RM_RSTCTRL_xxx) |*/ resetMask;
-; 153  : 
-; 154  :     // UNDONE:
-; 155  :     // not exactly clear with the programming model for these registers
-; 156  :     //
-; 157  :     OUTREG32(&pPrmRegs->RM_RSTCTRL_xxx, ~resetTemp);
-
-  00028	e1e02003	 mvn         r2, r3
-
-; 158  :     resetStatus = resetMask << 8;    
-
-  0002c	e1a01403	 mov         r1, r3, lsl #8
-  00030	e5802050	 str         r2, [r0, #0x50]
-  00034	e1b02001	 movs        r2, r1
-
-; 159  :     while (resetStatus != 0)
-
-  00038	0a000002	 beq         |$LN1@PrcmDomain@3|
-  0003c		 |$LL2@PrcmDomain@3|
-
-; 160  :         {
-; 161  :         resetStatus &= ~INREG32(&pPrmRegs->RM_RSTST_xxx);
-
-  0003c	e5903058	 ldr         r3, [r0, #0x58]
-  00040	e1d22003	 bics        r2, r2, r3
-  00044	1afffffc	 bne         |$LL2@PrcmDomain@3|
-  00048		 |$LN1@PrcmDomain@3|
-
-; 162  :         }
-; 163  :     
-; 164  :     // clear the status
-; 165  :     OUTREG32(&pPrmRegs->RM_RSTST_xxx, resetMask << 8);
-
-  00048	e5801058	 str         r1, [r0, #0x58]
-
-; 166  :         
-; 167  :     rc = TRUE;
-
-  0004c	e3a04001	 mov         r4, #1
-  00050		 |$cleanUp$46994|
-
-; 168  :     
-; 169  : cleanUp:
-; 170  :     return rc;
-; 171  : }
-
-  00050	e1a00004	 mov         r0, r4
-  00054	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00058	e12fff1e	 bx          lr
-  0005c		 |$M47084|
+  00004	e12fff1e	 bx          lr
+  00008		 |$M47048|
 
 			 ENDP  ; |PrcmDomainResetRelease|
 
 	EXPORT	|PrcmGlobalReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47093| DCD	|$LN5@PrcmGlobal|
+|$T47057| DCD	|$LN5@PrcmGlobal|
 	DCD	0x40000700
 ; Function compile flags: /Ogspy
 
@@ -445,20 +325,20 @@
 
   00000		 |PrcmGlobalReset| PROC
 
-; 177  : {
+; 131  : {
 
   00000		 |$LN5@PrcmGlobal|
-  00000		 |$M47090|
+  00000		 |$M47054|
 
-; 178  : #ifdef FIX_DDR_STALL_ERRATA
-; 179  : 	// set SDRC_POWER_REG register
-; 180  :     SETREG32(&g_pSDRCRegs->SDRC_POWER, (1 << 6));
-; 181  : 	INTERRUPTS_OFF();
-; 182  : 
-; 183  : 	// Call reset function from SRAM, never returns
-; 184  : 	fnOALCPUWarmReset(g_pCPUInfo);
-; 185  : #else
-; 186  : 	OUTREG32(&g_pPrcmPrm->pOMAP_GLOBAL_PRM->PRM_RSTCTRL, RSTCTRL_RST_GS);
+; 132  : #ifdef FIX_DDR_STALL_ERRATA
+; 133  : 	// set SDRC_POWER_REG register
+; 134  :     SETREG32(&g_pSDRCRegs->SDRC_POWER, (1 << 6));
+; 135  : 	INTERRUPTS_OFF();
+; 136  : 
+; 137  : 	// Call reset function from SRAM, never returns
+; 138  : 	fnOALCPUWarmReset(g_pCPUInfo);
+; 139  : #else
+; 140  : 	OUTREG32(&g_pPrcmPrm->pOMAP_GLOBAL_PRM->PRM_RSTCTRL, RSTCTRL_RST_GS);
 
   00000	e59f3010	 ldr         r3, [pc, #0x10]
   00004	e3a02002	 mov         r2, #2
@@ -466,14 +346,14 @@
   0000c	e593302c	 ldr         r3, [r3, #0x2C]
   00010	e5832050	 str         r2, [r3, #0x50]
 
-; 187  : #endif
-; 188  : }
+; 141  : #endif
+; 142  : }
 
   00014	e12fff1e	 bx          lr
   00018		 |$LN6@PrcmGlobal|
   00018		 |$LN7@PrcmGlobal|
   00018	00000000	 DCD         |g_pPrcmPrm|
-  0001c		 |$M47091|
+  0001c		 |$M47055|
 
 			 ENDP  ; |PrcmGlobalReset|
 

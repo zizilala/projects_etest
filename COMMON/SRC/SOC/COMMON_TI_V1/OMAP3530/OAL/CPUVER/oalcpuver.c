@@ -61,7 +61,7 @@ Get_CPUVersion(void)
     chip_info_tag *chip_info = OMAPCpuInfo;
 
     hawkeye_id = (INREG32(OALPAtoUA(OMAP_IDCODE_REGS_PA)) & 0xFFFFF000) ;
-    
+	//OALMSG(1, (L"Get_CPUVersion: 0x%x\r\n",hawkeye_id)); // 0x2b891000
     switch ( hawkeye_id )
     {
         case 0x0B6D6000:
@@ -180,7 +180,7 @@ Get_CPUVersion(void)
 	     chip_info++;
         }
     }
-	
+//OALMSG(1, (L"--Get_CPUVersion: 0x%x\r\n",CpuRevision));
     return (CpuRevision);
 }
 

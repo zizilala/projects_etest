@@ -99,7 +99,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42108| DCD	|$LN7@IsEqualGUI|
+|$T42116| DCD	|$LN7@IsEqualGUI|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -111,7 +111,7 @@
 
   00000		 |$LN7@IsEqualGUI|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42105|
+  00004		 |$M42113|
 
 ; 494  :     return !memcmp(&rguid1, &rguid2, sizeof(GUID));
 
@@ -132,7 +132,7 @@
 
   0001c	149de004	 ldrne       lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M42106|
+  00024		 |$M42114|
 
 			 ENDP  ; |?IsEqualGUID@@YAHABU_GUID@@0@Z|, IsEqualGUID
 
@@ -142,7 +142,7 @@
 	IMPORT	|GUID_GetDriverInfo_VidMemBase|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42127| DCD	|$LN11@HalGetDriv|
+|$T42135| DCD	|$LN11@HalGetDriv|
 	DCD	0x40001f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\halcaps.cpp
@@ -156,7 +156,7 @@
   00000		 |$LN11@HalGetDriv|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M42124|
+  00008		 |$M42132|
   00008	e1a04000	 mov         r4, r0
 
 ; 85   :     OMAPDDGPE * pDDGPE = static_cast<OMAPDDGPE *>(GetDDGPE());
@@ -253,7 +253,7 @@
   00074	00000000	 DCD         |GUID_GetDriverInfo_VidMemBase|
   00078		 |$LN14@HalGetDriv|
   00078	88760028	 DCD         0x88760028
-  0007c		 |$M42125|
+  0007c		 |$M42133|
 
 			 ENDP  ; |?HalGetDriverInfo@@YAKPAU_DDHAL_GETDRIVERINFODATA@@@Z|, HalGetDriverInfo
 
@@ -263,7 +263,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42143| DCD	|$LN13@buildDDHAL|
+|$T42151| DCD	|$LN13@buildDDHAL|
 	DCD	0x40005f02
 ; Function compile flags: /Ogspy
 
@@ -276,7 +276,7 @@
   00000		 |$LN13@buildDDHAL|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M42140|
+  00008		 |$M42148|
   00008	e58d100c	 str         r1, [sp, #0xC]
   0000c	e1a0b000	 mov         r11, r0
 
@@ -567,7 +567,7 @@
   00174	00000000	 DCD         |?g_FourCC@@3PAKA|
   00178		 |$LN17@buildDDHAL|
   00178	801526dd	 DCD         0x801526dd
-  0017c		 |$M42141|
+  0017c		 |$M42149|
 
 			 ENDP  ; |buildDDHALInfo|
 

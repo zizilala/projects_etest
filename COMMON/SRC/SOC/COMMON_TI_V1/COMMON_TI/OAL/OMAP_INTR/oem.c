@@ -39,9 +39,7 @@ BOOL OEMInterruptEnable(DWORD sysIntr, LPVOID pvData, DWORD cbData)
 	UNREFERENCED_PARAMETER(pvData);
 	UNREFERENCED_PARAMETER(cbData);
 
-    OALMSG(OAL_INTR&&OAL_VERBOSE, 
-        (L"+OEMInterruptEnable(%d, 0x%x, %d)\r\n", sysIntr, pvData, cbData
-    ));
+    OALMSG(OAL_INTR&&OAL_VERBOSE,(L"+OEMInterruptEnable(%d, 0x%x, %d)\r\n", sysIntr, pvData, cbData));
 
     // SYSINTR_VMINI & SYSINTR_TIMING are special cases
     if (sysIntr == SYSINTR_VMINI || sysIntr == SYSINTR_TIMING) {
@@ -54,8 +52,7 @@ BOOL OEMInterruptEnable(DWORD sysIntr, LPVOID pvData, DWORD cbData)
         // Indicate invalid SysIntr
         OALMSG(OAL_ERROR, (
             L"ERROR: OEMInterruptEnable: IRQs are undefined for SysIntr %d\r\n", 
-            sysIntr 
-        ));
+            sysIntr ));
         goto cleanUp;
     }
 
@@ -144,7 +141,7 @@ VOID OEMInterruptDone(DWORD sysIntr)
     UINT32 count;
     //BOOL bPrevIntrState;
 
-    OALMSG(OAL_INTR&&OAL_VERBOSE, (L"+OEMInterruptDone(%d)\r\n", sysIntr));
+    //OALMSG(OAL_INTR&&OAL_VERBOSE, (L"+OEMInterruptDone(%d)\r\n", sysIntr));
 
     // Make sure interrupts are disabled
     //bPrevIntrState = INTERRUPTS_ENABLE(FALSE);
@@ -156,7 +153,7 @@ VOID OEMInterruptDone(DWORD sysIntr)
     // Return interrupts to last state
     //INTERRUPTS_ENABLE(bPrevIntrState);
 
-    OALMSG(OAL_INTR&&OAL_VERBOSE, (L"-OEMInterruptDone\r\n"));
+    //OALMSG(OAL_INTR&&OAL_VERBOSE, (L"-OEMInterruptDone\r\n"));
 
 }
 

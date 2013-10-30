@@ -78,7 +78,7 @@ InitTwlPower(
     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0xCE);
     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0xEC);
 
-// brian ++ for eboot must delete
+/*
     SHOW_T2_REG(TWL_CFG_P1_TRANSITION);
     SHOW_T2_REG(TWL_CFG_P2_TRANSITION);
     SHOW_T2_REG(TWL_CFG_P3_TRANSITION);
@@ -269,7 +269,7 @@ InitTwlPower(
     SHOW_T2_REG(TWL_MAINREF_DEV_GRP);
     SHOW_T2_REG(TWL_MAINREF_TYPE);
     SHOW_T2_REG(TWL_MAINREF_REMAP);
-//brian --
+*/
 
     // enable MADC and USB CP clock
     TWLWriteByteReg(hTwl, TWL_CFG_BOOT, 0x0A); // HFCLK_FREQ = 26MHz
@@ -387,7 +387,7 @@ InitTwlPower(
 
 BOOL BSPSetT2MSECURE(BOOL fSet)
 {
-#ifdef BSP_EVM2
+/*#ifdef BSP_EVM2
     HANDLE hGPIO = GPIOOpen();
                 
     if (hGPIO == NULL) return FALSE;
@@ -398,9 +398,9 @@ BOOL BSPSetT2MSECURE(BOOL fSet)
         GPIOClrBit(hGPIO,TPS659XX_MSECURE_GPIO);
 
     GPIOClose(hGPIO);
-#else
+#else*/
     UNREFERENCED_PARAMETER(fSet);
-#endif
+//#endif
     return TRUE;
 }
 //------------------------------------------------------------------------------

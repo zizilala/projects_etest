@@ -2017,23 +2017,23 @@
 
   00000		 |OALIoctlGetDisplayRes| PROC
 
-; 632  : {
+; 631  : {
 
   00000		 |$LN12@OALIoctlGe@2|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004		 |$M51020|
   00004	e1a05003	 mov         r5, r3
 
-; 633  :     BOOL bRet = FALSE;
-; 634  :     DWORD *pDispRes = NULL;
-; 635  :     UINT8 *pData = NULL;
-; 636  : 
-; 637  : 	UNREFERENCED_PARAMETER(pOutSize);
-; 638  : 	UNREFERENCED_PARAMETER(inpSize);
-; 639  : 	UNREFERENCED_PARAMETER(pInpBuffer);
-; 640  : 	UNREFERENCED_PARAMETER(code);
-; 641  :     
-; 642  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"+IOCTL_HAL_GET_DISPLAY_RES\r\n"));
+; 632  :     BOOL bRet = FALSE;
+; 633  :     DWORD *pDispRes = NULL;
+; 634  :     UINT8 *pData = NULL;
+; 635  : 
+; 636  : 	UNREFERENCED_PARAMETER(pOutSize);
+; 637  : 	UNREFERENCED_PARAMETER(inpSize);
+; 638  : 	UNREFERENCED_PARAMETER(pInpBuffer);
+; 639  : 	UNREFERENCED_PARAMETER(code);
+; 640  :     
+; 641  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"+IOCTL_HAL_GET_DISPLAY_RES\r\n"));
 
   00008	e59f60a0	 ldr         r6, [pc, #0xA0]
   0000c	e3a04000	 mov         r4, #0
@@ -2043,8 +2043,8 @@
   0001c	159f0088	 ldrne       r0, [pc, #0x88]
   00020	1b000000	 blne        NKDbgPrintfW
 
-; 643  : 
-; 644  :     if ((!pOutBuffer) || (outSize < sizeof(DWORD)))
+; 642  : 
+; 643  :     if ((!pOutBuffer) || (outSize < sizeof(DWORD)))
 
   00024	e3550000	 cmp         r5, #0
   00028	0a000017	 beq         |$LN2@OALIoctlGe@2|
@@ -2052,23 +2052,23 @@
   00030	e3520004	 cmp         r2, #4
   00034	3a000014	 bcc         |$LN2@OALIoctlGe@2|
 
-; 648  :     }
-; 649  : 
-; 650  :     pDispRes  = (DWORD *)pOutBuffer;
-; 651  : 
-; 652  :     // This is the global shared Args flag
-; 653  :     pData = (UINT8 *)OALArgsQuery(OAL_ARGS_QUERY_DISP_RES);
+; 647  :     }
+; 648  : 
+; 649  :     pDispRes  = (DWORD *)pOutBuffer;
+; 650  : 
+; 651  :     // This is the global shared Args flag
+; 652  :     pData = (UINT8 *)OALArgsQuery(OAL_ARGS_QUERY_DISP_RES);
 
   00038	e3a00047	 mov         r0, #0x47
   0003c	eb000000	 bl          OALArgsQuery
   00040	e3500000	 cmp         r0, #0
 
-; 654  : 
-; 655  :     if (pData != NULL) {
+; 653  : 
+; 654  :     if (pData != NULL) {
 
   00044	0a000008	 beq         |$LN1@OALIoctlGe@2|
 
-; 656  :         memcpy(pDispRes, pData, sizeof(DWORD));
+; 655  :         memcpy(pDispRes, pData, sizeof(DWORD));
 
   00048	e5d0e000	 ldrb        lr, [r0]
   0004c	e5d03001	 ldrb        r3, [r0, #1]
@@ -2079,14 +2079,14 @@
   00060	e1833c01	 orr         r3, r3, r1, lsl #24
   00064	e5853000	 str         r3, [r5]
 
-; 657  :         bRet = TRUE;
+; 656  :         bRet = TRUE;
 
   00068	e3a04001	 mov         r4, #1
   0006c		 |$LN1@OALIoctlGe@2|
 
-; 658  :     }
-; 659  : 
-; 660  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"-IOCTL_HAL_GET_DISPLAY_RES\r\n"));
+; 657  :     }
+; 658  : 
+; 659  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"-IOCTL_HAL_GET_DISPLAY_RES\r\n"));
 
   0006c	e5963440	 ldr         r3, [r6, #0x440]
   00070	e3130a01	 tst         r3, #1, 20
@@ -2096,24 +2096,24 @@
   00080	e59f0020	 ldr         r0, [pc, #0x20]
   00084	eb000000	 bl          NKDbgPrintfW
 
-; 661  : 
-; 662  :     return bRet;
+; 660  : 
+; 661  :     return bRet;
 
   00088	ea000002	 b           |$LN4@OALIoctlGe@2|
   0008c		 |$LN2@OALIoctlGe@2|
 
-; 645  :     {
-; 646  :         RETAILMSG(1, (L"Invalid parameter\r\n"));
+; 644  :     {
+; 645  :         RETAILMSG(1, (L"Invalid parameter\r\n"));
 
   0008c	e59f0010	 ldr         r0, [pc, #0x10]
   00090	eb000000	 bl          NKDbgPrintfW
 
-; 647  :         return FALSE;
+; 646  :         return FALSE;
 
   00094	e3a04000	 mov         r4, #0
   00098		 |$LN4@OALIoctlGe@2|
 
-; 663  : }
+; 662  : }
 
   00098	e1a00004	 mov         r0, r4
   0009c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
@@ -2161,7 +2161,7 @@
 
   00000		 |OALIoctlConvertCAtoPA| PROC
 
-; 674  : {    
+; 673  : {    
 
   00000		 |$LN13@OALIoctlCo|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
@@ -2170,12 +2170,12 @@
   00008	e1a06002	 mov         r6, r2
   0000c	e1a05001	 mov         r5, r1
 
-; 675  :     DWORD *pPA = NULL;    
-; 676  :     
-; 677  : 	UNREFERENCED_PARAMETER(pOutSize);
-; 678  : 	UNREFERENCED_PARAMETER(code);
-; 679  :     
-; 680  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"+IOCTL_HAL_CONVERT_CA_TO_PA\r\n"));
+; 674  :     DWORD *pPA = NULL;    
+; 675  :     
+; 676  : 	UNREFERENCED_PARAMETER(pOutSize);
+; 677  : 	UNREFERENCED_PARAMETER(code);
+; 678  :     
+; 679  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"+IOCTL_HAL_CONVERT_CA_TO_PA\r\n"));
 
   00010	e59f7080	 ldr         r7, [pc, #0x80]
   00014	e5970440	 ldr         r0, [r7, #0x440]
@@ -2184,8 +2184,8 @@
   00020	159f006c	 ldrne       r0, [pc, #0x6C]
   00024	1b000000	 blne        NKDbgPrintfW
 
-; 681  : 
-; 682  :     if ((!pOutBuffer) || (outSize < sizeof(DWORD)))
+; 680  : 
+; 681  :     if ((!pOutBuffer) || (outSize < sizeof(DWORD)))
 
   00028	e3540000	 cmp         r4, #0
   0002c	0a000011	 beq         |$LN3@OALIoctlCo|
@@ -2193,29 +2193,29 @@
   00034	e3500004	 cmp         r0, #4
   00038	3a00000e	 bcc         |$LN3@OALIoctlCo|
 
-; 686  :     }
-; 687  : 
-; 688  :     if ((!pInpBuffer) || (inpSize < sizeof(DWORD)))
+; 685  :     }
+; 686  : 
+; 687  :     if ((!pInpBuffer) || (inpSize < sizeof(DWORD)))
 
   0003c	e3550000	 cmp         r5, #0
   00040	0a00000c	 beq         |$LN3@OALIoctlCo|
   00044	e3560004	 cmp         r6, #4
   00048	3a00000a	 bcc         |$LN3@OALIoctlCo|
 
-; 689  :     {
-; 690  :         RETAILMSG(1, (L"Invalid parameter\r\n"));
-; 691  :         return FALSE;
-; 692  :     }
-; 693  :     
-; 694  :     pPA = (DWORD *)pOutBuffer;    
-; 695  :     *pPA = OALVAtoPA(pInpBuffer);
+; 688  :     {
+; 689  :         RETAILMSG(1, (L"Invalid parameter\r\n"));
+; 690  :         return FALSE;
+; 691  :     }
+; 692  :     
+; 693  :     pPA = (DWORD *)pOutBuffer;    
+; 694  :     *pPA = OALVAtoPA(pInpBuffer);
 
   0004c	e1a00005	 mov         r0, r5
   00050	eb000000	 bl          OALVAtoPA
   00054	e5840000	 str         r0, [r4]
 
-; 696  : 
-; 697  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"-IOCTL_HAL_CONVERT_CA_TO_PA\r\n"));
+; 695  : 
+; 696  :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"-IOCTL_HAL_CONVERT_CA_TO_PA\r\n"));
 
   00058	e5973440	 ldr         r3, [r7, #0x440]
   0005c	e3130a01	 tst         r3, #1, 20
@@ -2223,28 +2223,28 @@
   00064	159f0024	 ldrne       r0, [pc, #0x24]
   00068	1b000000	 blne        NKDbgPrintfW
 
-; 698  : 
-; 699  :     return TRUE;
+; 697  : 
+; 698  :     return TRUE;
 
   0006c	e3a00001	 mov         r0, #1
 
-; 700  : }
+; 699  : }
 
   00070	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00074	e12fff1e	 bx          lr
   00078		 |$LN3@OALIoctlCo|
 
-; 683  :     {
-; 684  :         RETAILMSG(1, (L"Invalid parameter\r\n"));
+; 682  :     {
+; 683  :         RETAILMSG(1, (L"Invalid parameter\r\n"));
 
   00078	e59f000c	 ldr         r0, [pc, #0xC]
   0007c	eb000000	 bl          NKDbgPrintfW
 
-; 685  :         return FALSE;
+; 684  :         return FALSE;
 
   00080	e3a00000	 mov         r0, #0
 
-; 700  : }
+; 699  : }
 
   00084	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00088	e12fff1e	 bx          lr

@@ -7,19 +7,6 @@
 	DCB	"-defaultlib:LIBCMT "
 	DCB	"-defaultlib:OLDNAMES "
 
-	EXPORT	|??_C@_1BG@FGGFONDG@?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CA@ICPLCDKN@?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_17OLKFNCJO@?$AAL?$AAo?$AAw?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19LFNPILED@?$AAH?$AAi?$AAg?$AAh?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_13IMODFHAA@?$AA?9?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_13KJIIAINM@?$AA?$CL?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BO@DFMGFDAM@?$AAS?$AAh?$AAo?$AAw?$AA?5?$AA?4?$AAn?$AAb?$AA0?$AA?5?$AAD?$AAa?$AAt?$AAa?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BA@DMBHJKCI@?$AAW?$AAr?$AAi?$AAt?$AAi?$AAn?$AAg?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BA@GEJDCGIE@?$AAR?$AAe?$AAa?$AAd?$AAi?$AAn?$AAg?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19IOBNHAEP@?$AAE?$AAX?$AAI?$AAT?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BG@MCAABGNO@?$AAB?$AAR?$AAI?$AAG?$AAH?$AAT?$AAN?$AAE?$AAS?$AAS?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_17NBOBOEH@?$AAO?$AAF?$AAF?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_15MLPIMJOL@?$AAO?$AAN?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1FK@IBMDHDI@?$AAM?$AAP?$AAU?$AA?$FL?$AA1?$AA0?$AA0?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA3?$AA7?$AA5?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA8?$AA0?$AA0?$AAM@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1FO@MCHCGGFD@?$AAM?$AAP?$AAU?$AA?$FL?$AA8?$AA0?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA2?$AA6?$AA2?$AA5?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA6?$AA6?$AA0@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1FO@CAGHGIKC@?$AAM?$AAP?$AAU?$AA?$FL?$AA6?$AA0?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA1?$AA0?$AA0?$AA0?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA5?$AA2?$AA0@| [ DATA ] ; `string'
@@ -33,124 +20,23 @@
 	EXPORT	|??_C@_1BM@KBHAINFM@?$AAI?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CE@BMIKEEML@?$AAD?$AAV?$AAI?$AA?5?$AA1?$AA2?$AA8?$AA0?$AAx?$AA7?$AA2?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CE@LJDPDOKE@?$AAD?$AAV?$AAI?$AA?5?$AA1?$AA0?$AA2?$AA4?$AAx?$AA7?$AA6?$AA8?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CE@NBKEBDGN@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA6?$AA0?$AA0?$AA?5?$AA5?$AA6?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CE@PMPMKBOJ@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA6?$AA0?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CE@IKDLFFCF@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CE@CECNFHDE@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA6?$AA4?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA7?$AA2?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CE@IJMKDLHH@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA6?$AA4?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CE@FKEPMAF@?$AAL?$AAC?$AAD?$AA?5?$AA?5?$AA4?$AA8?$AA0?$AAx?$AA6?$AA4?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BE@FNAHCCDL@?$AAM?$AAa?$AAi?$AAn?$AA?5?$AAM?$AAe?$AAn?$AAu?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BO@KCFMLMDG@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAS?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|LCMInitial|
-	EXPORT	|??_C@_1BI@GPNGIDKF@?$AAL?$AAC?$AAM?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EI@LALMHHNG@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAf?$AAr?$AAo?$AAm?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAF?$AAl@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CC@COAEHFII@?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAO?$AAN?$AA?1?$AAO?$AAF?$AAF?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CA@MOPOGELI@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DE@DBBLEEO@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAR?$AAe?$AAs?$AAo?$AAl?$AAu?$AAt?$AAi?$AAo?$AAn?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_19FNGKFHMA@?$AAT?$AAe?$AAs?$AAt?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1EG@HMEOLENI@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BM@MOEMNNDE@?$AAS?$AAa?$AAv?$AAe?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BM@LAACEGCM@?$AAS?$AAe?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BA@MECCPMOL@?$AAS?$AAe?$AAt?$AA?5?$AAS?$AA?1?$AAN?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CC@GBKCLJHP@?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAm?$AAe?$AAn?$AAt?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CC@PCCBMLKB@?$AAN?$AAe?$AAt?$AAw?$AAo?$AAr?$AAk?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1M@OPFBIOCF@?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DG@LLAJHPJA@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AA?$CI?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$CJ?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19JCAOHIEH@?$AAB?$AAo?$AAo?$AAt?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CG@BBALNGAE@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CA@LLFAIJM@?$AAS?$AAe?$AAt?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1M@NJLEOPAB@?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CK@OKOLJFGH@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BO@BODFGHPI@?$AAD?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CG@PDJPJAON@?$AAS?$AAe?$AAt?$AA?5?$AAd?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BI@BNFAJPCD@?$AAS?$AAe?$AAt?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1O@HAMLNBEA@?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BO@OBBADFOO@?$AAS?$AAe?$AAt?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19DDJNJOGL@?$AAD?$AAH?$AAC?$AAP?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CI@OHHEPHNA@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAH?$AAC?$AAP?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DC@FMHJOEGL@?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAA?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?1?$AAP?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DC@FHPHDMKC@?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?1?$AAp?$AAo?$AAl?$AAl?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19KCABPHM@?$AAK?$AAI?$AAT?$AAL?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CI@NOMJHGMH@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CM@CFLHLMJF@?$AAS?$AAh?$AAo?$AAw?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|dispResMenu| [ DATA ]
 	EXPORT	|oppModeMenu35x| [ DATA ]
 	EXPORT	|oppModeMenu37x| [ DATA ]
-	EXPORT	|disBacklight| [ DATA ]
-	EXPORT	|sdToFlash| [ DATA ]
-	EXPORT	|backlightBN| [ DATA ]
-	EXPORT	|LCMInitiaArray| [ DATA ]
-	EXPORT	|BatteryStatusArray| [ DATA ]
-	EXPORT	|BACKLIGHT_EN_GPIO| [ DATA ]
 	IMPORT	|g_menuFlash|
 	IMPORT	|OALBLMenuShow|
-	IMPORT	|g_kitlDevices|
-	IMPORT	|g_bootDevices|
-	IMPORT	|OALBLMenuSelectDevice|
-	IMPORT	|OALBLMenuSetIpMask|
-	IMPORT	|OALBLMenuSetIpAddress|
-	IMPORT	|g_bootCfg|
-	IMPORT	|OALBLMenuEnable|
-
-  00000			 AREA	 |.data|, DATA
-	 COMMON	|hGPIO|, 0x4
-
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BG@FGGFONDG@?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?$AA@| DCB "B"
-	DCB	0x0, "r", 0x0, "i", 0x0, "g", 0x0, "h", 0x0, "t", 0x0, "n"
-	DCB	0x0, "e", 0x0, "s", 0x0, "s", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CA@ICPLCDKN@?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?$AA@| DCB "I"
-	DCB	0x0, "n", 0x0, "i", 0x0, "t", 0x0, "i", 0x0, "a", 0x0, "l"
-	DCB	0x0, " ", 0x0, "B", 0x0, "a", 0x0, "t", 0x0, "t", 0x0, "e"
-	DCB	0x0, "r", 0x0, "y", 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_17OLKFNCJO@?$AAL?$AAo?$AAw?$AA?$AA@| DCB "L", 0x0, "o", 0x0, "w", 0x0
-	DCB	0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19LFNPILED@?$AAH?$AAi?$AAg?$AAh?$AA?$AA@| DCB "H", 0x0, "i", 0x0, "g"
-	DCB	0x0, "h", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_13IMODFHAA@?$AA?9?$AA?$AA@| DCB "-", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_13KJIIAINM@?$AA?$CL?$AA?$AA@| DCB "+", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@DFMGFDAM@?$AAS?$AAh?$AAo?$AAw?$AA?5?$AA?4?$AAn?$AAb?$AA0?$AA?5?$AAD?$AAa?$AAt?$AAa?$AA?$AA@| DCB "S"
-	DCB	0x0, "h", 0x0, "o", 0x0, "w", 0x0, " ", 0x0, ".", 0x0, "n"
-	DCB	0x0, "b", 0x0, "0", 0x0, " ", 0x0, "D", 0x0, "a", 0x0, "t"
-	DCB	0x0, "a", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BA@DMBHJKCI@?$AAW?$AAr?$AAi?$AAt?$AAi?$AAn?$AAg?$AA?$AA@| DCB "W", 0x0
-	DCB	"r", 0x0, "i", 0x0, "t", 0x0, "i", 0x0, "n", 0x0, "g", 0x0
-	DCB	0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BA@GEJDCGIE@?$AAR?$AAe?$AAa?$AAd?$AAi?$AAn?$AAg?$AA?$AA@| DCB "R", 0x0
-	DCB	"e", 0x0, "a", 0x0, "d", 0x0, "i", 0x0, "n", 0x0, "g", 0x0
-	DCB	0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19IOBNHAEP@?$AAE?$AAX?$AAI?$AAT?$AA?$AA@| DCB "E", 0x0, "X", 0x0, "I"
-	DCB	0x0, "T", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BG@MCAABGNO@?$AAB?$AAR?$AAI?$AAG?$AAH?$AAT?$AAN?$AAE?$AAS?$AAS?$AA?$AA@| DCB "B"
-	DCB	0x0, "R", 0x0, "I", 0x0, "G", 0x0, "H", 0x0, "T", 0x0, "N"
-	DCB	0x0, "E", 0x0, "S", 0x0, "S", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_17NBOBOEH@?$AAO?$AAF?$AAF?$AA?$AA@| DCB "O", 0x0, "F", 0x0, "F", 0x0
-	DCB	0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_15MLPIMJOL@?$AAO?$AAN?$AA?$AA@| DCB "O", 0x0, "N", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1FK@IBMDHDI@?$AAM?$AAP?$AAU?$AA?$FL?$AA1?$AA0?$AA0?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA3?$AA7?$AA5?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA8?$AA0?$AA0?$AAM@| DCB "M"
@@ -281,28 +167,10 @@
 	DCB	0x0, "6", 0x0, "0", 0x0, "H", 0x0, "z", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CE@NBKEBDGN@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA6?$AA0?$AA0?$AA?5?$AA5?$AA6?$AAH?$AAz?$AA?$AA@| DCB "D"
-	DCB	0x0, "V", 0x0, "I", 0x0, " ", 0x0, " ", 0x0, "8", 0x0, "0"
-	DCB	0x0, "0", 0x0, "x", 0x0, "6", 0x0, "0", 0x0, "0", 0x0, " "
-	DCB	0x0, "5", 0x0, "6", 0x0, "H", 0x0, "z", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CE@PMPMKBOJ@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA6?$AA0?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| DCB "D"
 	DCB	0x0, "V", 0x0, "I", 0x0, " ", 0x0, " ", 0x0, "8", 0x0, "0"
 	DCB	0x0, "0", 0x0, "x", 0x0, "6", 0x0, "0", 0x0, "0", 0x0, " "
 	DCB	0x0, "6", 0x0, "0", 0x0, "H", 0x0, "z", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CE@IKDLFFCF@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| DCB "D"
-	DCB	0x0, "V", 0x0, "I", 0x0, " ", 0x0, " ", 0x0, "8", 0x0, "0"
-	DCB	0x0, "0", 0x0, "x", 0x0, "4", 0x0, "8", 0x0, "0", 0x0, " "
-	DCB	0x0, "6", 0x0, "0", 0x0, "H", 0x0, "z", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CE@CECNFHDE@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA6?$AA4?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA7?$AA2?$AAH?$AAz?$AA?$AA@| DCB "D"
-	DCB	0x0, "V", 0x0, "I", 0x0, " ", 0x0, " ", 0x0, "6", 0x0, "4"
-	DCB	0x0, "0", 0x0, "x", 0x0, "4", 0x0, "8", 0x0, "0", 0x0, " "
-	DCB	0x0, "7", 0x0, "2", 0x0, "H", 0x0, "z", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CE@IJMKDLHH@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA6?$AA4?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@| DCB "D"
@@ -321,187 +189,7 @@
 	DCB	0x0, "a", 0x0, "i", 0x0, "n", 0x0, " ", 0x0, "M", 0x0, "e"
 	DCB	0x0, "n", 0x0, "u", 0x0, 0x0, 0x0	; `string'
 
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@KCFMLMDG@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAS?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?$AA@| DCB "B"
-	DCB	0x0, "a", 0x0, "t", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, "y"
-	DCB	0x0, " ", 0x0, "S", 0x0, "t", 0x0, "a", 0x0, "t", 0x0, "u"
-	DCB	0x0, "s", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BI@GPNGIDKF@?$AAL?$AAC?$AAM?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?$AA@| DCB "L"
-	DCB	0x0, "C", 0x0, "M", 0x0, " ", 0x0, "I", 0x0, "n", 0x0, "i"
-	DCB	0x0, "t", 0x0, "i", 0x0, "a", 0x0, "l", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EI@LALMHHNG@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAf?$AAr?$AAo?$AAm?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAF?$AAl@| DCB "F"
-	DCB	0x0, "i", 0x0, "l", 0x0, "e", 0x0, " ", 0x0, "T", 0x0, "r"
-	DCB	0x0, "a", 0x0, "n", 0x0, "s", 0x0, "f", 0x0, "e", 0x0, "r"
-	DCB	0x0, " ", 0x0, "f", 0x0, "r", 0x0, "o", 0x0, "m", 0x0, " "
-	DCB	0x0, "S", 0x0, "D", 0x0, " ", 0x0, "C", 0x0, "a", 0x0, "r"
-	DCB	0x0, "d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "F"
-	DCB	0x0, "l", 0x0, "a", 0x0, "s", 0x0, "h", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CC@COAEHFII@?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAO?$AAN?$AA?1?$AAO?$AAF?$AAF?$AA?$AA@| DCB "B"
-	DCB	0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l", 0x0, "i", 0x0, "g"
-	DCB	0x0, "h", 0x0, "t", 0x0, " ", 0x0, "O", 0x0, "N", 0x0, "/"
-	DCB	0x0, "O", 0x0, "F", 0x0, "F", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CA@MOPOGELI@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
-	DCB	0x0, "O", 0x0, "P", 0x0, "P", 0x0, " ", 0x0, "M", 0x0, "o"
-	DCB	0x0, "d", 0x0, "e", 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DE@DBBLEEO@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAR?$AAe?$AAs?$AAo?$AAl?$AAu?$AAt?$AAi?$AAo?$AAn?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
-	DCB	0x0, "D", 0x0, "i", 0x0, "s", 0x0, "p", 0x0, "l", 0x0, "a"
-	DCB	0x0, "y", 0x0, " ", 0x0, "R", 0x0, "e", 0x0, "s", 0x0, "o"
-	DCB	0x0, "l", 0x0, "u", 0x0, "t", 0x0, "i", 0x0, "o", 0x0, "n"
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EG@HMEOLENI@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg@| DCB "E"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, "/"
-	DCB	0x0, "D", 0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l"
-	DCB	0x0, "e", 0x0, " ", 0x0, "O", 0x0, "A", 0x0, "L", 0x0, " "
-	DCB	0x0, "R", 0x0, "e", 0x0, "t", 0x0, "a", 0x0, "i", 0x0, "l"
-	DCB	0x0, " ", 0x0, "M", 0x0, "e", 0x0, "s", 0x0, "s", 0x0, "a"
-	DCB	0x0, "g", 0x0, "e", 0x0, "s", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@MOEMNNDE@?$AAS?$AAa?$AAv?$AAe?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| DCB "S"
-	DCB	0x0, "a", 0x0, "v", 0x0, "e", 0x0, " ", 0x0, "S", 0x0, "e"
-	DCB	0x0, "t", 0x0, "t", 0x0, "i", 0x0, "n", 0x0, "g", 0x0, "s"
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@LAACEGCM@?$AAS?$AAe?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "D", 0x0, "e", 0x0, "v"
-	DCB	0x0, "i", 0x0, "c", 0x0, "e", 0x0, " ", 0x0, "I", 0x0, "D"
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CC@GBKCLJHP@?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAm?$AAe?$AAn?$AAt?$AA?$AA@| DCB "F"
-	DCB	0x0, "l", 0x0, "a", 0x0, "s", 0x0, "h", 0x0, " ", 0x0, "M"
-	DCB	0x0, "a", 0x0, "n", 0x0, "a", 0x0, "g", 0x0, "e", 0x0, "m"
-	DCB	0x0, "e", 0x0, "n", 0x0, "t", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CC@PCCBMLKB@?$AAN?$AAe?$AAt?$AAw?$AAo?$AAr?$AAk?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| DCB "N"
-	DCB	0x0, "e", 0x0, "t", 0x0, "w", 0x0, "o", 0x0, "r", 0x0, "k"
-	DCB	0x0, " ", 0x0, "S", 0x0, "e", 0x0, "t", 0x0, "t", 0x0, "i"
-	DCB	0x0, "n", 0x0, "g", 0x0, "s", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1M@OPFBIOCF@?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$AA@| DCB "D", 0x0, "e", 0x0
-	DCB	"b", 0x0, "u", 0x0, "g", 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DG@LLAJHPJA@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AA?$CI?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$CJ?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
-	DCB	0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " ", 0x0, "("
-	DCB	0x0, "D", 0x0, "e", 0x0, "b", 0x0, "u", 0x0, "g", 0x0, ")"
-	DCB	0x0, " ", 0x0, "D", 0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c"
-	DCB	0x0, "e", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19JCAOHIEH@?$AAB?$AAo?$AAo?$AAt?$AA?$AA@| DCB "B", 0x0, "o", 0x0, "o"
-	DCB	0x0, "t", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CG@BBALNGAE@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
-	DCB	0x0, "B", 0x0, "o", 0x0, "o", 0x0, "t", 0x0, " ", 0x0, "D"
-	DCB	0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e", 0x0, 0x0
-	DCB	0x0					; `string'
-
   00000			 AREA	 |.data|, DATA
-|g_menuNetwork| DCW 0x31
-	%	2
-	DCD	|??_C@_1CM@CFLHLMJF@?$AAS?$AAh?$AAo?$AAw?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@|
-	DCD	|ShowNetworkSettings|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x32
-	%	2
-	DCD	|??_C@_1CI@NOMJHGMH@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?$AA@|
-	DCD	|OALBLMenuEnable|
-	DCD	|??_C@_19KCABPHM@?$AAK?$AAI?$AAT?$AAL?$AA?$AA@|
-	DCD	|g_bootCfg|+48
-	DCD	0x1
-	DCW	0x33
-	%	2
-	DCD	|??_C@_1DC@FHPHDMKC@?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?1?$AAp?$AAo?$AAl?$AAl?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AA@|
-	DCD	|SetKitlMode|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x34
-	%	2
-	DCD	|??_C@_1DC@FMHJOEGL@?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAA?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?1?$AAP?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AA@|
-	DCD	|SetKitlType|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x35
-	%	2
-	DCD	|??_C@_1CI@OHHEPHNA@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAH?$AAC?$AAP?$AA?$AA@|
-	DCD	|OALBLMenuEnable|
-	DCD	|??_C@_19DDJNJOGL@?$AAD?$AAH?$AAC?$AAP?$AA?$AA@|
-	DCD	|g_bootCfg|+48
-	DCD	0x4
-	DCW	0x36
-	%	2
-	DCD	|??_C@_1BO@OBBADFOO@?$AAS?$AAe?$AAt?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?$AA@|
-	DCD	|OALBLMenuSetIpAddress|
-	DCD	|??_C@_1O@HAMLNBEA@?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@|
-	DCD	|g_bootCfg|+56
-	DCD	0x0
-	DCW	0x37
-	%	2
-	DCD	|??_C@_1BI@BNFAJPCD@?$AAS?$AAe?$AAt?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?$AA@|
-	DCD	|OALBLMenuSetIpMask|
-	DCD	|??_C@_1O@HAMLNBEA@?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@|
-	DCD	|g_bootCfg|+60
-	DCD	0x0
-	DCW	0x38
-	%	2
-	DCD	|??_C@_1CG@PDJPJAON@?$AAS?$AAe?$AAt?$AA?5?$AAd?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?$AA@|
-	DCD	|OALBLMenuSetIpAddress|
-	DCD	|??_C@_1BO@BODFGHPI@?$AAD?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?$AA@|
-	DCD	|g_bootCfg|+64
-	DCD	0x0
-	DCW	0x39
-	%	2
-	DCD	|??_C@_1CK@OKOLJFGH@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?$AA@|
-	DCD	|OALBLMenuEnable|
-	DCD	|??_C@_1M@NJLEOPAB@?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?$AA@|
-	DCD	|g_bootCfg|+48
-	DCD	0x8
-	DCW	0x61
-	%	2
-	DCD	|??_C@_1CA@LLFAIJM@?$AAS?$AAe?$AAt?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?$AA@|
-	DCD	|SetMacAddress|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x30
-	%	2
-	DCD	|??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x0
-	%	2
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
 |g_menuMain| DCW 0x31
 	%	2
 	DCD	|??_C@_1CM@CFLHLMJF@?$AAS?$AAh?$AAo?$AAw?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@|
@@ -511,92 +199,43 @@
 	DCD	0x0
 	DCW	0x32
 	%	2
-	DCD	|??_C@_1CG@BBALNGAE@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@|
-	DCD	|OALBLMenuSelectDevice|
-	DCD	|??_C@_19JCAOHIEH@?$AAB?$AAo?$AAo?$AAt?$AA?$AA@|
-	DCD	|g_bootCfg|+8
-	DCD	|g_bootDevices|
-	DCW	0x33
-	%	2
-	DCD	|??_C@_1DG@LLAJHPJA@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AA?$CI?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$CJ?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@|
-	DCD	|OALBLMenuSelectDevice|
-	DCD	|??_C@_1M@OPFBIOCF@?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$AA@|
-	DCD	|g_bootCfg|+28
-	DCD	|g_kitlDevices|
-	DCW	0x34
-	%	2
-	DCD	|??_C@_1CC@PCCBMLKB@?$AAN?$AAe?$AAt?$AAw?$AAo?$AAr?$AAk?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@|
-	DCD	|OALBLMenuShow|
-	DCD	|??_C@_1CC@PCCBMLKB@?$AAN?$AAe?$AAt?$AAw?$AAo?$AAr?$AAk?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@|
-	DCD	|g_menuNetwork|
-	DCD	0x0
-	DCW	0x35
-	%	2
 	DCD	|??_C@_1CC@GBKCLJHP@?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAm?$AAe?$AAn?$AAt?$AA?$AA@|
 	DCD	|OALBLMenuShow|
 	DCD	|??_C@_1CC@GBKCLJHP@?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAm?$AAe?$AAn?$AAt?$AA?$AA@|
 	DCD	|g_menuFlash|
 	DCD	0x0
-	DCW	0x36
+	DCW	0x33
 	%	2
-	DCD	|??_C@_1BM@LAACEGCM@?$AAS?$AAe?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?$AA@|
+	DCD	|??_C@_1BA@MECCPMOL@?$AAS?$AAe?$AAt?$AA?5?$AAS?$AA?1?$AAN?$AA?$AA@|
 	DCD	|SetDeviceID|
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
-	DCW	0x37
+	DCW	0x34
 	%	2
 	DCD	|??_C@_1BM@MOEMNNDE@?$AAS?$AAa?$AAv?$AAe?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@|
 	DCD	|SaveSettings|
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
-	DCW	0x38
+	DCW	0x35
 	%	2
 	DCD	|??_C@_1EG@HMEOLENI@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg@|
 	DCD	|SetRetailMsgMode|
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
-	DCW	0x39
+	DCW	0x36
 	%	2
-	DCD	|??_C@_1DE@DBBLEEO@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAR?$AAe?$AAs?$AAo?$AAl?$AAu?$AAt?$AAi?$AAo?$AAn?$AA?$AA@|
-	DCD	|SetDisplayResolution|
+	DCD	|??_C@_19FNGKFHMA@?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
-	DCW	0x61
+	DCD	0x0
+	DCW	0x37
 	%	2
 	DCD	|??_C@_1CA@MOPOGELI@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@|
 	DCD	|SetOPPmode|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x62
-	%	2
-	DCD	|??_C@_1CC@COAEHFII@?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAO?$AAN?$AA?1?$AAO?$AAF?$AAF?$AA?$AA@|
-	DCD	|SetBacklight|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x63
-	%	2
-	DCD	|??_C@_1EI@LALMHHNG@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAf?$AAr?$AAo?$AAm?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAF?$AAl@|
-	DCD	|SDtoFlash|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x64
-	%	2
-	DCD	|??_C@_1BI@GPNGIDKF@?$AAL?$AAC?$AAM?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?$AA@|
-	DCD	|LCMInitial|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x65
-	%	2
-	DCD	|??_C@_1BO@KCFMLMDG@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAS?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?$AA@|
-	DCD	|FuelGaugeWithBattery|
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
@@ -626,18 +265,12 @@
 	DCD	0x1
 	DCD	|??_C@_1CE@IJMKDLHH@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA6?$AA4?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@|
 	DCD	0x2
-	DCD	|??_C@_1CE@CECNFHDE@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA6?$AA4?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA7?$AA2?$AAH?$AAz?$AA?$AA@|
-	DCD	0x3
-	DCD	|??_C@_1CE@IKDLFFCF@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA4?$AA8?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@|
-	DCD	0x4
 	DCD	|??_C@_1CE@PMPMKBOJ@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA6?$AA0?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@|
-	DCD	0x5
-	DCD	|??_C@_1CE@NBKEBDGN@?$AAD?$AAV?$AAI?$AA?5?$AA?5?$AA8?$AA0?$AA0?$AAx?$AA6?$AA0?$AA0?$AA?5?$AA5?$AA6?$AAH?$AAz?$AA?$AA@|
-	DCD	0x6
+	DCD	0x3
 	DCD	|??_C@_1CE@LJDPDOKE@?$AAD?$AAV?$AAI?$AA?5?$AA1?$AA0?$AA2?$AA4?$AAx?$AA7?$AA6?$AA8?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@|
-	DCD	0x7
+	DCD	0x4
 	DCD	|??_C@_1CE@BMIKEEML@?$AAD?$AAV?$AAI?$AA?5?$AA1?$AA2?$AA8?$AA0?$AAx?$AA7?$AA2?$AA0?$AA?5?$AA6?$AA0?$AAH?$AAz?$AA?$AA@|
-	DCD	0x8
+	DCD	0x5
 	DCD	|??_C@_1BM@KBHAINFM@?$AAI?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?$AA@|
 |oppModeMenu35x| DCD |??_C@_1FI@HKFGBOFG@?$AAM?$AAP?$AAU?$AA?$FL?$AA1?$AA2?$AA5?$AAM?$AAh?$AAz?$AA?5?$AA?$EA?$AA?5?$AA0?$AA?4?$AA9?$AA7?$AA5?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA?5?$AA9?$AA0?$AAM?$AAh@|
 	DCD	|??_C@_1FG@IMGDNCBP@?$AAM?$AAP?$AAU?$AA?$FL?$AA2?$AA5?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA0?$AA0?$AA0?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA1?$AA8?$AA0?$AAM?$AAh@|
@@ -649,70 +282,6 @@
 	DCD	|??_C@_1FO@CAGHGIKC@?$AAM?$AAP?$AAU?$AA?$FL?$AA6?$AA0?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA1?$AA0?$AA0?$AA0?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA5?$AA2?$AA0@|
 	DCD	|??_C@_1FO@MCHCGGFD@?$AAM?$AAP?$AAU?$AA?$FL?$AA8?$AA0?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA2?$AA6?$AA2?$AA5?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA6?$AA6?$AA0@|
 	DCD	|??_C@_1FK@IBMDHDI@?$AAM?$AAP?$AAU?$AA?$FL?$AA1?$AA0?$AA0?$AA0?$AAM?$AAh?$AAz?$AA?5?$AA?$EA?$AA?5?$AA1?$AA?4?$AA3?$AA7?$AA5?$AAV?$AA?$FN?$AA?0?$AA?5?$AAI?$AAV?$AAA?$AA2?$AA?$FL?$AA8?$AA0?$AA0?$AAM@|
-|disBacklight| DCD 0x0
-	DCD	|??_C@_15MLPIMJOL@?$AAO?$AAN?$AA?$AA@|
-	DCD	0x1
-	DCD	|??_C@_17NBOBOEH@?$AAO?$AAF?$AAF?$AA?$AA@|
-	DCD	0x2
-	DCD	|??_C@_1BG@MCAABGNO@?$AAB?$AAR?$AAI?$AAG?$AAH?$AAT?$AAN?$AAE?$AAS?$AAS?$AA?$AA@|
-	DCD	0x3
-	DCD	|??_C@_19IOBNHAEP@?$AAE?$AAX?$AAI?$AAT?$AA?$AA@|
-|sdToFlash| DCD	0x0
-	DCD	|??_C@_1BA@GEJDCGIE@?$AAR?$AAe?$AAa?$AAd?$AAi?$AAn?$AAg?$AA?$AA@|
-	DCD	0x1
-	DCD	|??_C@_1BA@DMBHJKCI@?$AAW?$AAr?$AAi?$AAt?$AAi?$AAn?$AAg?$AA?$AA@|
-	DCD	0x2
-	DCD	|??_C@_1BO@DFMGFDAM@?$AAS?$AAh?$AAo?$AAw?$AA?5?$AA?4?$AAn?$AAb?$AA0?$AA?5?$AAD?$AAa?$AAt?$AAa?$AA?$AA@|
-	DCD	0x3
-	DCD	|??_C@_19IOBNHAEP@?$AAE?$AAX?$AAI?$AAT?$AA?$AA@|
-|backlightBN| DCD 0x0
-	DCD	|??_C@_13KJIIAINM@?$AA?$CL?$AA?$AA@|
-	DCD	0x1
-	DCD	|??_C@_13IMODFHAA@?$AA?9?$AA?$AA@|
-	DCD	0x2
-	DCD	|??_C@_19IOBNHAEP@?$AAE?$AAX?$AAI?$AAT?$AA?$AA@|
-|LCMInitiaArray| DCD 0x0
-	DCD	|??_C@_19LFNPILED@?$AAH?$AAi?$AAg?$AAh?$AA?$AA@|
-	DCD	0x1
-	DCD	|??_C@_17OLKFNCJO@?$AAL?$AAo?$AAw?$AA?$AA@|
-	DCD	0x2
-	DCD	|??_C@_19IOBNHAEP@?$AAE?$AAX?$AAI?$AAT?$AA?$AA@|
-|BatteryStatusArray| DCD 0x0
-	DCD	|??_C@_1CA@ICPLCDKN@?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?$AA@|
-	DCD	0x1
-	DCD	|??_C@_1BO@KCFMLMDG@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAS?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?$AA@|
-	DCD	0x2
-	DCD	|??_C@_19IOBNHAEP@?$AAE?$AAX?$AAI?$AAT?$AA?$AA@|
-|BACKLIGHT_EN_GPIO| DCD 0x3d
-	%	4
-|g_menuBrightness| DCW 0x31
-	%	2
-	DCD	|??_C@_15MLPIMJOL@?$AAO?$AAN?$AA?$AA@|
-	DCD	|BacklightON|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x32
-	%	2
-	DCD	|??_C@_17NBOBOEH@?$AAO?$AAF?$AAF?$AA?$AA@|
-	DCD	|BacklightOFF|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x33
-	%	2
-	DCD	|??_C@_1BG@FGGFONDG@?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?$AA@|
-	DCD	|BacklightBrightness|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCW	0x30
-	%	2
-	DCD	|??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@|
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
-	DCD	0x0
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@| DCB "E"
@@ -721,87 +290,40 @@
 	DCB	0x0, "i", 0x0, "n", 0x0, "u", 0x0, "e", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CA@LLFAIJM@?$AAS?$AAe?$AAt?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "M", 0x0, "A", 0x0, "C"
-	DCB	0x0, " ", 0x0, "a", 0x0, "d", 0x0, "d", 0x0, "r", 0x0, "e"
-	DCB	0x0, "s", 0x0, "s", 0x0, 0x0, 0x0	; `string'
+|??_C@_1CA@MOPOGELI@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@| DCB "S"
+	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
+	DCB	0x0, "O", 0x0, "P", 0x0, "P", 0x0, " ", 0x0, "M", 0x0, "o"
+	DCB	0x0, "d", 0x0, "e", 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1M@NJLEOPAB@?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?$AA@| DCB "V", 0x0, "M", 0x0
-	DCB	"I", 0x0, "N", 0x0, "I", 0x0, 0x0, 0x0	; `string'
+|??_C@_19FNGKFHMA@?$AAT?$AAe?$AAs?$AAt?$AA?$AA@| DCB "T", 0x0, "e", 0x0, "s"
+	DCB	0x0, "t", 0x0, 0x0, 0x0			; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CK@OKOLJFGH@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?$AA@| DCB "E"
+|??_C@_1EG@HMEOLENI@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg@| DCB "E"
 	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, "/"
-	DCB	0x0, "d", 0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l"
-	DCB	0x0, "e", 0x0, " ", 0x0, "V", 0x0, "M", 0x0, "I", 0x0, "N"
-	DCB	0x0, "I", 0x0, 0x0, 0x0			; `string'
+	DCB	0x0, "D", 0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l"
+	DCB	0x0, "e", 0x0, " ", 0x0, "O", 0x0, "A", 0x0, "L", 0x0, " "
+	DCB	0x0, "R", 0x0, "e", 0x0, "t", 0x0, "a", 0x0, "i", 0x0, "l"
+	DCB	0x0, " ", 0x0, "M", 0x0, "e", 0x0, "s", 0x0, "s", 0x0, "a"
+	DCB	0x0, "g", 0x0, "e", 0x0, "s", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@BODFGHPI@?$AAD?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?$AA@| DCB "D"
-	DCB	0x0, "e", 0x0, "f", 0x0, "a", 0x0, "u", 0x0, "l", 0x0, "t"
-	DCB	0x0, " ", 0x0, "r", 0x0, "o", 0x0, "u", 0x0, "t", 0x0, "e"
-	DCB	0x0, "r", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CG@PDJPJAON@?$AAS?$AAe?$AAt?$AA?5?$AAd?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "d", 0x0, "e", 0x0, "f"
-	DCB	0x0, "a", 0x0, "u", 0x0, "l", 0x0, "t", 0x0, " ", 0x0, "r"
-	DCB	0x0, "o", 0x0, "u", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BI@BNFAJPCD@?$AAS?$AAe?$AAt?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "I", 0x0, "P", 0x0, " "
-	DCB	0x0, "m", 0x0, "a", 0x0, "s", 0x0, "k", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1O@HAMLNBEA@?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@| DCB "D", 0x0, "e"
-	DCB	0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@OBBADFOO@?$AAS?$AAe?$AAt?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "I", 0x0, "P", 0x0, " "
-	DCB	0x0, "a", 0x0, "d", 0x0, "d", 0x0, "r", 0x0, "e", 0x0, "s"
-	DCB	0x0, "s", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19DDJNJOGL@?$AAD?$AAH?$AAC?$AAP?$AA?$AA@| DCB "D", 0x0, "H", 0x0, "C"
-	DCB	0x0, "P", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CI@OHHEPHNA@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAH?$AAC?$AAP?$AA?$AA@| DCB "E"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, "/"
-	DCB	0x0, "d", 0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l"
-	DCB	0x0, "e", 0x0, " ", 0x0, "D", 0x0, "H", 0x0, "C", 0x0, "P"
+|??_C@_1BM@MOEMNNDE@?$AAS?$AAa?$AAv?$AAe?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| DCB "S"
+	DCB	0x0, "a", 0x0, "v", 0x0, "e", 0x0, " ", 0x0, "S", 0x0, "e"
+	DCB	0x0, "t", 0x0, "t", 0x0, "i", 0x0, "n", 0x0, "g", 0x0, "s"
 	DCB	0x0, 0x0, 0x0				; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DC@FMHJOEGL@?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAA?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?1?$AAP?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AA@| DCB "K"
-	DCB	0x0, "I", 0x0, "T", 0x0, "L", 0x0, " ", 0x0, "A", 0x0, "c"
-	DCB	0x0, "t", 0x0, "i", 0x0, "v", 0x0, "e", 0x0, "/", 0x0, "P"
-	DCB	0x0, "a", 0x0, "s", 0x0, "s", 0x0, "i", 0x0, "v", 0x0, "e"
-	DCB	0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DC@FHPHDMKC@?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?1?$AAp?$AAo?$AAl?$AAl?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AA@| DCB "K"
-	DCB	0x0, "I", 0x0, "T", 0x0, "L", 0x0, " ", 0x0, "i", 0x0, "n"
-	DCB	0x0, "t", 0x0, "e", 0x0, "r", 0x0, "r", 0x0, "u", 0x0, "p"
-	DCB	0x0, "t", 0x0, "/", 0x0, "p", 0x0, "o", 0x0, "l", 0x0, "l"
-	DCB	0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19KCABPHM@?$AAK?$AAI?$AAT?$AAL?$AA?$AA@| DCB "K", 0x0, "I", 0x0, "T"
-	DCB	0x0, "L", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CI@NOMJHGMH@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?1?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?$AA@| DCB "E"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, "/"
-	DCB	0x0, "d", 0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l"
-	DCB	0x0, "e", 0x0, " ", 0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L"
+|??_C@_1BA@MECCPMOL@?$AAS?$AAe?$AAt?$AA?5?$AAS?$AA?1?$AAN?$AA?$AA@| DCB "S"
+	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "S", 0x0, "/", 0x0, "N"
 	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CC@GBKCLJHP@?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAm?$AAe?$AAn?$AAt?$AA?$AA@| DCB "F"
+	DCB	0x0, "l", 0x0, "a", 0x0, "s", 0x0, "h", 0x0, " ", 0x0, "M"
+	DCB	0x0, "a", 0x0, "n", 0x0, "a", 0x0, "g", 0x0, "e", 0x0, "m"
+	DCB	0x0, "e", 0x0, "n", 0x0, "t", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CM@CFLHLMJF@?$AAS?$AAh?$AAo?$AAw?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| DCB "S"
@@ -872,592 +394,192 @@
 	DCB	0x6
 	DCB	"3C", 0x0
 	EXPORT	|BLMenu|
-	EXPORT	|??_C@_1HA@HEOLOGAM@?$AAS?$AAy?$AAn?$AAc?$AA?9?$AAp?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAs?$AAi?$AAd?$AAe?$AA?5?$AAk?$AAe?$AAy?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn@| [ DATA ] ; `string'
-	IMPORT	|BLShowLogo|
-	IMPORT	|LCD_SPI_Init|
+	EXPORT	|??_C@_1FM@KKEGFMMC@?$AAH?$AAi?$AAt?$AA?5?$AAs?$AAp?$AAa?$AAc?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAa?$AAt?$AAi?$AAo?$AAn@| [ DATA ] ; `string'
 	IMPORT	|OALBLMenuReadKey|
 	IMPORT	|OALGetTickCount|
 	IMPORT	|NKDbgPrintfW|
-	IMPORT	|GPIOGetBit|
-	IMPORT	|GPIOOpen|
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\menu.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49160| DCD	|$LN21@BLMenu|
-	DCD	0x40003201
+|$T47066| DCD	|$LN21@BLMenu|
+	DCD	0x40002801
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1HA@HEOLOGAM@?$AAS?$AAy?$AAn?$AAc?$AA?9?$AAp?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAs?$AAi?$AAd?$AAe?$AA?5?$AAk?$AAe?$AAy?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn@| DCB "S"
-	DCB	0x0, "y", 0x0, "n", 0x0, "c", 0x0, "-", 0x0, "p", 0x0, "r"
-	DCB	0x0, "e", 0x0, "s", 0x0, "s", 0x0, " ", 0x0, "s", 0x0, "i"
-	DCB	0x0, "d", 0x0, "e", 0x0, " ", 0x0, "k", 0x0, "e", 0x0, "y"
-	DCB	0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "e", 0x0, "n"
-	DCB	0x0, "t", 0x0, "e", 0x0, "r", 0x0, " ", 0x0, "c", 0x0, "o"
-	DCB	0x0, "n", 0x0, "f", 0x0, "i", 0x0, "g", 0x0, "u", 0x0, "r"
-	DCB	0x0, "a", 0x0, "t", 0x0, "i", 0x0, "o", 0x0, "n", 0x0, " "
-	DCB	0x0, "m", 0x0, "e", 0x0, "n", 0x0, "u", 0x0, " ", 0x0, "%"
-	DCB	0x0, "d", 0x0, ".", 0x0, ".", 0x0, ".", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
+|??_C@_1FM@KKEGFMMC@?$AAH?$AAi?$AAt?$AA?5?$AAs?$AAp?$AAa?$AAc?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAa?$AAt?$AAi?$AAo?$AAn@| DCB "H"
+	DCB	0x0, "i", 0x0, "t", 0x0, " ", 0x0, "s", 0x0, "p", 0x0, "a"
+	DCB	0x0, "c", 0x0, "e", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
+	DCB	0x0, "e", 0x0, "n", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, " "
+	DCB	0x0, "c", 0x0, "o", 0x0, "n", 0x0, "f", 0x0, "i", 0x0, "g"
+	DCB	0x0, "u", 0x0, "r", 0x0, "a", 0x0, "t", 0x0, "i", 0x0, "o"
+	DCB	0x0, "n", 0x0, " ", 0x0, "m", 0x0, "e", 0x0, "n", 0x0, "u"
+	DCB	0x0, " ", 0x0, "%", 0x0, "d", 0x0, ".", 0x0, ".", 0x0, "."
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |BLMenu| PROC
 
-; 409  : {
+; 227  : {
 
   00000		 |$LN21@BLMenu|
-  00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49157|
-  00004	e1a07000	 mov         r7, r0
+  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
+  00004		 |$M47063|
+  00004	e3500000	 cmp         r0, #0
 
-; 410  :     UINT32 time, delay = 8;
+; 228  :     UINT32 time, delay = 6;
 
-  00008	e3a05008	 mov         r5, #8
+  00008	e3a04006	 mov         r4, #6
 
-; 411  :     WCHAR key = 0;
+; 229  :     WCHAR key = 0;
 
-  0000c	e3a06000	 mov         r6, #0
+  0000c	e3a05000	 mov         r5, #0
 
-; 412  : 	//BOOL entry;
-; 413  :     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
+; 230  :     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
 
-  00010	e3a0820a	 mov         r8, #0xA, 4
+  00010	e3a0720a	 mov         r7, #0xA, 4
 
-; 414  : 
-; 415  : 	HANDLE hGPIO;
-; 416  : 	hGPIO = GPIOOpen();
+; 231  :     
+; 232  :     // First let user break to menu
+; 233  :     while (!bForced && (delay > 0 && key != L' ')) 
 
-  00014	eb000000	 bl          GPIOOpen
+  00014	1a000015	 bne         |$LN6@BLMenu|
+  00018		 |$LL7@BLMenu|
+  00018	e3540000	 cmp         r4, #0
+  0001c	0a000015	 beq         |$LN14@BLMenu|
+  00020	e3550020	 cmp         r5, #0x20
+  00024	0a000015	 beq         |$LN1@BLMenu|
 
-; 417  : 	GPIOGetBit(hGPIO, 114);	//key SD1
+; 234  : 	{
+; 235  : 		OALLog(L"Hit space to enter configuration menu %d...\r\n", delay);
 
-  00018	e3a01072	 mov         r1, #0x72
-  0001c	e1a04000	 mov         r4, r0
-  00020	eb000000	 bl          GPIOGetBit
+  00028	e59f006c	 ldr         r0, [pc, #0x6C]
+  0002c	e1a01004	 mov         r1, r4
+  00030	eb000000	 bl          NKDbgPrintfW
 
-; 418  : 	GPIOGetBit(hGPIO, 115); //key SD3
+; 236  : 		time = OALGetTickCount();
 
-  00024	e3a01073	 mov         r1, #0x73
-  00028	e1a00004	 mov         r0, r4
-  0002c	eb000000	 bl          GPIOGetBit
+  00034	eb000000	 bl          OALGetTickCount
+  00038	e1a06000	 mov         r6, r0
 
-; 419  :     
-; 420  :     // First let user break to menu 
-; 421  :     // Break to menu & count, Ray 13-09-26 
-; 422  :     while (!bForced && (delay > 0 && key != L' ')) 
+; 237  : 		while ((OALGetTickCount() - time) < 1000) 
 
-  00030	e3570000	 cmp         r7, #0
-  00034	1a000015	 bne         |$LN6@BLMenu|
-  00038		 |$LL7@BLMenu|
-  00038	e3550000	 cmp         r5, #0
-  0003c	0a000015	 beq         |$LN14@BLMenu|
-  00040	e3560020	 cmp         r6, #0x20
-  00044	0a000015	 beq         |$LN1@BLMenu|
+  0003c	ea000005	 b           |$LN18@BLMenu|
+  00040		 |$LL5@BLMenu|
 
-; 423  :     //while (!bForced && (delay > 0 && key != GPIOGetBit(hGPIO, 114) 
-; 424  : 	//								&& key != GPIOGetBit(hGPIO, 115) )) 
-; 425  : 	{
-; 426  : 		//OALLog(L"Hit space to enter configuration menu %d...\r\n", delay);
-; 427  : 		OALLog(L"Sync-press side key to enter configuration menu %d...\r\n", delay);
+; 238  : 		{
+; 239  : 			if ((key = OALBLMenuReadKey(FALSE)) == L' ') 
 
-  00048	e59f0074	 ldr         r0, [pc, #0x74]
-  0004c	e1a01005	 mov         r1, r5
-  00050	eb000000	 bl          NKDbgPrintfW
+  00040	e3a00000	 mov         r0, #0
+  00044	eb000000	 bl          OALBLMenuReadKey
+  00048	e1a05800	 mov         r5, r0, lsl #16
+  0004c	e1a05825	 mov         r5, r5, lsr #16
+  00050	e3550020	 cmp         r5, #0x20
+  00054	0a000003	 beq         |$LN15@BLMenu|
+  00058		 |$LN18@BLMenu|
+  00058	eb000000	 bl          OALGetTickCount
+  0005c	e0403006	 sub         r3, r0, r6
+  00060	e3530ffa	 cmp         r3, #0xFA, 30
+  00064	3afffff5	 bcc         |$LL5@BLMenu|
+  00068		 |$LN15@BLMenu|
 
-; 428  : 		time = OALGetTickCount();
+; 240  : 				break;
+; 241  : 		}
+; 242  : 		delay--;
 
-  00054	eb000000	 bl          OALGetTickCount
-  00058	e1a04000	 mov         r4, r0
+  00068	e2444001	 sub         r4, r4, #1
 
-; 429  : 		while ((OALGetTickCount() - time) < 1000) 
+; 231  :     
+; 232  :     // First let user break to menu
+; 233  :     while (!bForced && (delay > 0 && key != L' ')) 
 
-  0005c	ea000005	 b           |$LN18@BLMenu|
-  00060		 |$LL5@BLMenu|
+  0006c	eaffffe9	 b           |$LL7@BLMenu|
+  00070		 |$LN6@BLMenu|
 
-; 430  : 		{
-; 431  : 			if ((key = OALBLMenuReadKey(FALSE)) == L' ') 
+; 243  : 	}
+; 244  :     
+; 245  :     if ((bForced == TRUE) || (key == L' ')) 
 
-  00060	e3a00000	 mov         r0, #0
-  00064	eb000000	 bl          OALBLMenuReadKey
-  00068	e1a06800	 mov         r6, r0, lsl #16
-  0006c	e1a06826	 mov         r6, r6, lsr #16
-  00070	e3560020	 cmp         r6, #0x20
-  00074	0a000003	 beq         |$LN15@BLMenu|
-  00078		 |$LN18@BLMenu|
-  00078	eb000000	 bl          OALGetTickCount
-  0007c	e0403004	 sub         r3, r0, r4
-  00080	e3530ffa	 cmp         r3, #0xFA, 30
-  00084	3afffff5	 bcc         |$LL5@BLMenu|
-  00088		 |$LN15@BLMenu|
+  00070	e3500001	 cmp         r0, #1
+  00074	0a000001	 beq         |$LN1@BLMenu|
+  00078		 |$LN14@BLMenu|
+  00078	e3550020	 cmp         r5, #0x20
+  0007c	1a000003	 bne         |$LN2@BLMenu|
+  00080		 |$LN1@BLMenu|
 
-; 432  : 			/*if ( (key = OALBLMenuReadKey(FALSE)) == GPIOGetBit(hGPIO, 114) 
-; 433  : 					&& (key = OALBLMenuReadKey(FALSE)) == GPIOGetBit(hGPIO, 115) )*/ 
-; 434  : 				break;
-; 435  : 		}
-; 436  : 		delay--;
+; 246  :     {
+; 247  :         OALBLMenuShow(&g_menuRoot);
 
-  00088	e2455001	 sub         r5, r5, #1
+  00080	e59f0010	 ldr         r0, [pc, #0x10]
+  00084	eb000000	 bl          OALBLMenuShow
 
-; 419  :     
-; 420  :     // First let user break to menu 
-; 421  :     // Break to menu & count, Ray 13-09-26 
-; 422  :     while (!bForced && (delay > 0 && key != L' ')) 
+; 248  :         // Invalidate arguments to force them to be reinitialized
+; 249  :         // with new config data generated by the boot menu
+; 250  :         pArgs->header.signature = 0;
 
-  0008c	eaffffe9	 b           |$LL7@BLMenu|
-  00090		 |$LN6@BLMenu|
+  00088	e3a03000	 mov         r3, #0
+  0008c	e5873000	 str         r3, [r7]
+  00090		 |$LN2@BLMenu|
 
-; 437  : 	}
-; 438  : 	
-; 439  :     //entry = FALSE;
-; 440  :     if ((bForced == TRUE) || (key == L' '))
+; 251  :     }        
+; 252  : }
 
-  00090	e3570001	 cmp         r7, #1
-  00094	0a000001	 beq         |$LN1@BLMenu|
-  00098		 |$LN14@BLMenu|
-  00098	e3560020	 cmp         r6, #0x20
-  0009c	1a000005	 bne         |$LN2@BLMenu|
-  000a0		 |$LN1@BLMenu|
-
-; 441  :     //if ((!bForced == TRUE))
-; 442  : 	//if ((bForced == TRUE) || (key ==  GPIOGetBit(hGPIO, 114)) && (key ==  GPIOGetBit(hGPIO, 115))) 
-; 443  : 	{									//Combo SIDE KEY 
-; 444  :         LCD_SPI_Init();
-
-  000a0	eb000000	 bl          LCD_SPI_Init
-
-; 445  :         BLShowLogo();					//function is TRUE,so Forever go , Ray 13-07-31 
-
-  000a4	eb000000	 bl          BLShowLogo
-
-; 446  :         OALBLMenuShow(&g_menuRoot);
-
-  000a8	e59f0010	 ldr         r0, [pc, #0x10]
-  000ac	eb000000	 bl          OALBLMenuShow
-
-; 447  : 		//KeypadState();
-; 448  : 		// Invalidate arguments to force them to be reinitialized
-; 449  :         // with new config data generated by the boot menu
-; 450  : 		pArgs->header.signature = 0;
-
-  000b0	e3a03000	 mov         r3, #0
-  000b4	e5883000	 str         r3, [r8]
-  000b8		 |$LN2@BLMenu|
-
-; 451  :     }  
-; 452  : }
-
-  000b8	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
-  000bc	e12fff1e	 bx          lr
-  000c0		 |$LN22@BLMenu|
-  000c0		 |$LN23@BLMenu|
-  000c0	00000000	 DCD         |g_menuRoot|
-  000c4		 |$LN24@BLMenu|
-  000c4	00000000	 DCD         |??_C@_1HA@HEOLOGAM@?$AAS?$AAy?$AAn?$AAc?$AA?9?$AAp?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAs?$AAi?$AAd?$AAe?$AA?5?$AAk?$AAe?$AAy?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn@|
-  000c8		 |$M49158|
+  00090	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  00094	e12fff1e	 bx          lr
+  00098		 |$LN22@BLMenu|
+  00098		 |$LN23@BLMenu|
+  00098	00000000	 DCD         |g_menuRoot|
+  0009c		 |$LN24@BLMenu|
+  0009c	00000000	 DCD         |??_C@_1FM@KKEGFMMC@?$AAH?$AAi?$AAt?$AA?5?$AAs?$AAp?$AAa?$AAc?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAa?$AAt?$AAi?$AAo?$AAn@|
+  000a0		 |$M47064|
 
 			 ENDP  ; |BLMenu|
 
-	EXPORT	|__$ArrayPad$| [ DATA ]
-	EXPORT	|??_C@_1FI@GAMDHEMA@?$AA?$AN?$AA?6?$AA?5?$AA?5?$AA?5?$AAW?$AAA?$AAR?$AAN?$AAI?$AAN?$AAG?$AA?3?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAp?$AAr@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1KG@MHFLKBMF@?$AAm?$AAa?$AAc?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAf?$AAo?$AAu?$AAn?$AAd?$AA?5?$AAi?$AAn?$AA?5?$AAE?$AAE?$AAP?$AAR?$AAO?$AAM?$AA?4@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19OEFLBHKA@?$AAE?$AAV?$AAM?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1FC@DDNFDPMF@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAE?$AAt?$AAh?$AAe?$AAr?$AAn?$AAe?$AAt?$AA?5?$AA?$CI?$AAL?$AAA?$AAN?$AA9?$AAx?$AAx?$AAx?$AA?$CJ?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd@| [ DATA ] ; `string'
-	IMPORT	|LAN911XSetMacAddress|
-	IMPORT	|LAN911XFindController|
-	IMPORT	|OALBLMenuSetMacAddress|
-	IMPORT	|LAN911XGetMacAddress|
-	IMPORT	|OALPAtoVA|
-	IMPORT	|__GSHandlerCheck|
-	IMPORT	|__security_cookie|
-	IMPORT	|memcpy|
-	IMPORT	|__security_check_cookie|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49180| DCD	|$LN12@SetMacAddr|
-	DCD	0xc0006502
-
-  00000			 AREA	 |.xdata|, DATA
-|$T49176| DCD	0xffffffe8
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1FI@GAMDHEMA@?$AA?$AN?$AA?6?$AA?5?$AA?5?$AA?5?$AAW?$AAA?$AAR?$AAN?$AAI?$AAN?$AAG?$AA?3?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAp?$AAr@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "W", 0x0, "A"
-	DCB	0x0, "R", 0x0, "N", 0x0, "I", 0x0, "N", 0x0, "G", 0x0, ":"
-	DCB	0x0, " ", 0x0, "M", 0x0, "A", 0x0, "C", 0x0, " ", 0x0, "a"
-	DCB	0x0, "d", 0x0, "d", 0x0, "r", 0x0, "e", 0x0, "s", 0x0, "s"
-	DCB	0x0, " ", 0x0, "n", 0x0, "o", 0x0, "t", 0x0, " ", 0x0, "p"
-	DCB	0x0, "r", 0x0, "o", 0x0, "g", 0x0, "r", 0x0, "a", 0x0, "m"
-	DCB	0x0, "m", 0x0, "e", 0x0, "d", 0x0, "!", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1KG@MHFLKBMF@?$AAm?$AAa?$AAc?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAf?$AAo?$AAu?$AAn?$AAd?$AA?5?$AAi?$AAn?$AA?5?$AAE?$AAE?$AAP?$AAR?$AAO?$AAM?$AA?4@| DCB "m"
-	DCB	0x0, "a", 0x0, "c", 0x0, " ", 0x0, "a", 0x0, "d", 0x0, "d"
-	DCB	0x0, "r", 0x0, "e", 0x0, "s", 0x0, "s", 0x0, " ", 0x0, "n"
-	DCB	0x0, "o", 0x0, "t", 0x0, " ", 0x0, "f", 0x0, "o", 0x0, "u"
-	DCB	0x0, "n", 0x0, "d", 0x0, " ", 0x0, "i", 0x0, "n", 0x0, " "
-	DCB	0x0, "E", 0x0, "E", 0x0, "P", 0x0, "R", 0x0, "O", 0x0, "M"
-	DCB	0x0, ".", 0x0, " ", 0x0, "U", 0x0, "s", 0x0, "i", 0x0, "n"
-	DCB	0x0, "g", 0x0, " ", 0x0, "M", 0x0, "a", 0x0, "c", 0x0, " "
-	DCB	0x0, "a", 0x0, "d", 0x0, "d", 0x0, "r", 0x0, "e", 0x0, "s"
-	DCB	0x0, "s", 0x0, " ", 0x0, "s", 0x0, "t", 0x0, "o", 0x0, "r"
-	DCB	0x0, "e", 0x0, "d", 0x0, " ", 0x0, "w", 0x0, "i", 0x0, "t"
-	DCB	0x0, "h", 0x0, " ", 0x0, "t", 0x0, "h", 0x0, "e", 0x0, " "
-	DCB	0x0, "b", 0x0, "o", 0x0, "o", 0x0, "t", 0x0, " ", 0x0, "s"
-	DCB	0x0, "e", 0x0, "t", 0x0, "t", 0x0, "i", 0x0, "n", 0x0, "g"
-	DCB	0x0, "s", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19OEFLBHKA@?$AAE?$AAV?$AAM?$AA?5?$AA?$AA@| DCB "E", 0x0, "V", 0x0, "M"
-	DCB	0x0, " ", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1FC@DDNFDPMF@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAE?$AAt?$AAh?$AAe?$AAr?$AAn?$AAe?$AAt?$AA?5?$AA?$CI?$AAL?$AAA?$AAN?$AA9?$AAx?$AAx?$AAx?$AA?$CJ?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, " ", 0x0, "S", 0x0, "e", 0x0, "t", 0x0, " "
-	DCB	0x0, "E", 0x0, "t", 0x0, "h", 0x0, "e", 0x0, "r", 0x0, "n"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "(", 0x0, "L", 0x0, "A"
-	DCB	0x0, "N", 0x0, "9", 0x0, "x", 0x0, "x", 0x0, "x", 0x0, ")"
-	DCB	0x0, " ", 0x0, "M", 0x0, "A", 0x0, "C", 0x0, " ", 0x0, "A"
-	DCB	0x0, "d", 0x0, "d", 0x0, "r", 0x0, "e", 0x0, "s", 0x0, "s"
-	DCB	0x0, ":", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T49176|
-
-  00008		 |SetMacAddress| PROC
-
-; 457  : {
-
-  00008		 |$LN12@SetMacAddr|
-  00008	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  0000c	e24dd028	 sub         sp, sp, #0x28
-  00010		 |$M49177|
-  00010	e59f3180	 ldr         r3, [pc, #0x180]
-  00014	e5933000	 ldr         r3, [r3]
-  00018	e58d3024	 str         r3, [sp, #0x24]
-
-; 458  :     DWORD dummy;
-; 459  : #pragma warning(push)
-; 460  : #pragma warning(disable:4204 4221)
-; 461  :     UINT16 mac[3] = {0xFFFF, 0xFFFF, 0xFFFF};
-; 462  :     // We're using OALBLMenuSetMacAddress outside of a menu, but it still requires 
-; 463  :     // a menu item input structure
-; 464  :     OAL_BLMENU_ITEM DummyMacMenuItem = 
-; 465  :     {
-; 466  :         0, NULL, NULL,
-; 467  :         L"EVM ", mac, NULL
-
-  0001c	e59f3170	 ldr         r3, [pc, #0x170]
-
-; 468  :     };
-; 469  : #pragma warning(pop)
-; 470  : 
-; 471  :     UNREFERENCED_PARAMETER(pMenu);
-; 472  : 
-; 473  :     OALLog(L"\r\n Set Ethernet (LAN9xxx) MAC Address:\r\n");   
-
-  00020	e59f0168	 ldr         r0, [pc, #0x168]
-  00024	e3a01cff	 mov         r1, #0xFF, 24
-  00028	e38140ff	 orr         r4, r1, #0xFF
-  0002c	e3a0e000	 mov         lr, #0
-  00030	e3a05000	 mov         r5, #0
-  00034	e3a06000	 mov         r6, #0
-  00038	e28d201c	 add         r2, sp, #0x1C
-  0003c	e3a07000	 mov         r7, #0
-  00040	e58d300c	 str         r3, [sp, #0xC]
-  00044	e1cd41bc	 strh        r4, [sp, #0x1C]
-  00048	e1cd41be	 strh        r4, [sp, #0x1E]
-  0004c	e1cd42b0	 strh        r4, [sp, #0x20]
-  00050	e1cde0b0	 strh        lr, [sp]
-  00054	e58d5004	 str         r5, [sp, #4]
-  00058	e58d6008	 str         r6, [sp, #8]
-  0005c	e58d2010	 str         r2, [sp, #0x10]
-  00060	e58d7014	 str         r7, [sp, #0x14]
-  00064	eb000000	 bl          NKDbgPrintfW
-
-; 474  : 	
-; 475  : 	
-; 476  :     memset(mac,0xFF,sizeof(mac));
-
-  00068	e1cd41bc	 strh        r4, [sp, #0x1C]
-  0006c	e1cd41be	 strh        r4, [sp, #0x1E]
-
-; 477  :     LAN911XGetMacAddress(OALPAtoUA((DWORD) BSP_LAN9115_REGS_PA),mac);
-
-  00070	e3a01000	 mov         r1, #0
-  00074	e3a00415	 mov         r0, #0x15, 8
-  00078	e1cd42b0	 strh        r4, [sp, #0x20]
-  0007c	eb000000	 bl          OALPAtoVA
-  00080	e28d101c	 add         r1, sp, #0x1C
-  00084	eb000000	 bl          LAN911XGetMacAddress
-
-; 478  :     if (((mac[0]== 0xFFFF) && (mac[1] == 0xFFFF) && (mac[2] == 0xFFFF)) || ((mac[0]== 0x0) && (mac[1] == 0x0) && (mac[2] == 0x0)))
-
-  00088	e1dd11bc	 ldrh        r1, [sp, #0x1C]
-  0008c	e59f50f8	 ldr         r5, [pc, #0xF8]
-  00090	e1dd32b0	 ldrh        r3, [sp, #0x20]
-  00094	e1dd21be	 ldrh        r2, [sp, #0x1E]
-  00098	e1510004	 cmp         r1, r4
-  0009c	1a000003	 bne         |$LN5@SetMacAddr|
-  000a0	e1520004	 cmp         r2, r4
-  000a4	1a000001	 bne         |$LN5@SetMacAddr|
-  000a8	e1530004	 cmp         r3, r4
-  000ac	0a000005	 beq         |$LN6@SetMacAddr|
-  000b0		 |$LN5@SetMacAddr|
-  000b0	e3510000	 cmp         r1, #0
-  000b4	1a000009	 bne         |$LN7@SetMacAddr|
-  000b8	e3520000	 cmp         r2, #0
-  000bc	1a000007	 bne         |$LN7@SetMacAddr|
-  000c0	e3530000	 cmp         r3, #0
-  000c4	1a000005	 bne         |$LN7@SetMacAddr|
-  000c8		 |$LN6@SetMacAddr|
-
-; 479  :     {
-; 480  :         RETAILMSG(1,(TEXT("mac address not found in EEPROM. Using Mac address stored with the boot settings\r\n")));
-
-  000c8	e59f00b8	 ldr         r0, [pc, #0xB8]
-  000cc	eb000000	 bl          NKDbgPrintfW
-
-; 481  :         memcpy(mac,g_bootCfg.mac,sizeof(mac));       
-
-  000d0	e2851066	 add         r1, r5, #0x66
-  000d4	e28d001c	 add         r0, sp, #0x1C
-  000d8	e3a02006	 mov         r2, #6
-  000dc	eb000000	 bl          memcpy
-  000e0		 |$LN7@SetMacAddr|
-
-; 482  :     }
-; 483  : 
-; 484  :     OALBLMenuSetMacAddress(&DummyMacMenuItem);
-
-  000e0	e28d0000	 add         r0, sp, #0
-  000e4	eb000000	 bl          OALBLMenuSetMacAddress
-
-; 485  :     
-; 486  :     // Make sure we don't come out of OALBLMenuSetMacAddress with the original 0xFFFF FFFF FFFF or with all zeros
-; 487  :     if (((mac[0]== 0xFFFF) && (mac[1] == 0xFFFF) && (mac[2] == 0xFFFF)) || ((mac[0]== 0x0) && (mac[1] == 0x0) && (mac[2] == 0x0)))
-
-  000e8	e1dd11bc	 ldrh        r1, [sp, #0x1C]
-  000ec	e1dd32b0	 ldrh        r3, [sp, #0x20]
-  000f0	e1dd21be	 ldrh        r2, [sp, #0x1E]
-  000f4	e1510004	 cmp         r1, r4
-  000f8	1a000003	 bne         |$LN2@SetMacAddr|
-  000fc	e1520004	 cmp         r2, r4
-  00100	1a000001	 bne         |$LN2@SetMacAddr|
-  00104	e1530004	 cmp         r3, r4
-  00108	0a000005	 beq         |$LN3@SetMacAddr|
-  0010c		 |$LN2@SetMacAddr|
-  0010c	e3510000	 cmp         r1, #0
-  00110	1a000006	 bne         |$LN4@SetMacAddr|
-  00114	e3520000	 cmp         r2, #0
-  00118	1a000004	 bne         |$LN4@SetMacAddr|
-  0011c	e3530000	 cmp         r3, #0
-  00120	1a000002	 bne         |$LN4@SetMacAddr|
-  00124		 |$LN3@SetMacAddr|
-
-; 488  :     {
-; 489  :         OALLog(L"\r\n   WARNING: MAC address not programmed!\r\n");
-
-  00124	e59f0058	 ldr         r0, [pc, #0x58]
-  00128	eb000000	 bl          NKDbgPrintfW
-
-; 490  :         return;
-
-  0012c	ea00000f	 b           |$LN8@SetMacAddr|
-  00130		 |$LN4@SetMacAddr|
-
-; 491  :     }
-; 492  :         
-; 493  :    memcpy(g_bootCfg.mac,mac,sizeof(mac));
-
-  00130	e2850066	 add         r0, r5, #0x66
-  00134	e28d101c	 add         r1, sp, #0x1C
-  00138	e3a02006	 mov         r2, #6
-  0013c	eb000000	 bl          memcpy
-
-; 494  : 
-; 495  : 
-; 496  :     if (!LAN911XFindController(OALPAtoUA((DWORD) BSP_LAN9115_REGS_PA),&dummy))
-
-  00140	e3a01000	 mov         r1, #0
-  00144	e3a00415	 mov         r0, #0x15, 8
-  00148	eb000000	 bl          OALPAtoVA
-  0014c	e28d1018	 add         r1, sp, #0x18
-  00150	eb000000	 bl          LAN911XFindController
-  00154	e3500000	 cmp         r0, #0
-  00158	0a000004	 beq         |$LN8@SetMacAddr|
-
-; 497  :     {     
-; 498  :         return;
-; 499  :     }
-; 500  :    LAN911XSetMacAddress(OALPAtoUA((DWORD) BSP_LAN9115_REGS_PA),mac);  
-
-  0015c	e3a01000	 mov         r1, #0
-  00160	e3a00415	 mov         r0, #0x15, 8
-  00164	eb000000	 bl          OALPAtoVA
-  00168	e28d101c	 add         r1, sp, #0x1C
-  0016c	eb000000	 bl          LAN911XSetMacAddress
-  00170		 |$LN8@SetMacAddr|
-  00170	e59d0024	 ldr         r0, [sp, #0x24]
-  00174	eb000000	 bl          __security_check_cookie
-
-; 501  : }
-
-  00178	e28dd028	 add         sp, sp, #0x28
-  0017c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  00180	e12fff1e	 bx          lr
-  00184		 |$LN13@SetMacAddr|
-  00184		 |$LN14@SetMacAddr|
-  00184	00000000	 DCD         |??_C@_1FI@GAMDHEMA@?$AA?$AN?$AA?6?$AA?5?$AA?5?$AA?5?$AAW?$AAA?$AAR?$AAN?$AAI?$AAN?$AAG?$AA?3?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAp?$AAr@|
-  00188		 |$LN15@SetMacAddr|
-  00188	00000000	 DCD         |??_C@_1KG@MHFLKBMF@?$AAm?$AAa?$AAc?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAf?$AAo?$AAu?$AAn?$AAd?$AA?5?$AAi?$AAn?$AA?5?$AAE?$AAE?$AAP?$AAR?$AAO?$AAM?$AA?4@|
-  0018c		 |$LN16@SetMacAddr|
-  0018c	00000000	 DCD         |g_bootCfg|
-  00190		 |$LN17@SetMacAddr|
-  00190	00000000	 DCD         |??_C@_1FC@DDNFDPMF@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAE?$AAt?$AAh?$AAe?$AAr?$AAn?$AAe?$AAt?$AA?5?$AA?$CI?$AAL?$AAA?$AAN?$AA9?$AAx?$AAx?$AAx?$AA?$CJ?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd@|
-  00194		 |$LN18@SetMacAddr|
-  00194	00000000	 DCD         |??_C@_19OEFLBHKA@?$AAE?$AAV?$AAM?$AA?5?$AA?$AA@|
-  00198		 |$LN19@SetMacAddr|
-  00198	00000000	 DCD         |__security_cookie|
-  0019c		 |$M49178|
-
-			 ENDP  ; |SetMacAddress|
-
-	EXPORT	|__$ArrayPad$| [ DATA ]
-	EXPORT	|??_C@_1CM@MBNEBDDK@?$AA?5?$AA?5?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1GE@BGIPLJDA@?$AA?5?$AA?5?$AAN?$AAo?$AAt?$AAe?$AA?3?$AA?5?$AAU?$AAS?$AAB?$AAF?$AAN?$AA?5?$AAR?$AAN?$AAD?$AAI?$AAS?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd?$AAd?$AAr?$AA?5?$AAc?$AAa?$AAn@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DG@LEIGGFEH@?$AA?5?$AA?5?$AAE?$AAt?$AAh?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd?$AAd?$AAr?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BM@HBILLBOB@?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1O@HKPJJFOO@?$AAE?$AAE?$AAP?$AAR?$AAO?$AAM?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@ENNBLIDC@?$AA?5?$AA?5?$AAD?$AAH?$AAC?$AAP?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@PFJOPCHK@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@MFPGPOHA@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@IMEGPKBH@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@OEGKHNAF@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BE@OLFPFCKI@?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1O@DOAPGJLD@?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@OLFKODG@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAy?$AAp?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1O@IBNPCBAA@?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BA@INHNFGAO@?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@KKLHLKH@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DE@FKCOLIJA@?$AA?5?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AAi?$AAn?$AAg?$AA?5?$AAN?$AAK?$AA?4?$AAb?$AAi?$AAn?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CG@OIGCIHAG@?$AA?5?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CM@JIGPKFND@?$AA?5?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAs?$AAg?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CA@GEJBEGHK@?$AA?5?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BC@LGPIFEA@?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BA@BKMGIBPB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BM@NCMLOBGF@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAt?$AAw?$AAo?$AAr?$AAk?$AA?3?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|OALKitlMACtoString|
-	IMPORT	|OALKitlIPtoString|
+	EXPORT	|??_C@_1CM@NPGGEGKD@?$AA?5?$AA?5?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BM@PMDNGDGM@?$AAn?$AAo?$AAt?$AA?5?$AAs?$AAp?$AAe?$AAc?$AAi?$AAf?$AAi?$AAe?$AAd?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BG@CEFCIDHI@?$AA?$AN?$AA?6?$AA?5?$AAM?$AAa?$AAi?$AAn?$AA?3?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CM@IGJFNOHM@?$AA?5?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	IMPORT	|OALKitlDeviceName|
+	IMPORT	|g_CPUFamily|
+	IMPORT	|g_kitlDevices|
+	IMPORT	|g_bootDevices|
+	IMPORT	|g_bootCfg|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49214| DCD	|$LN23@ShowNetwor|
-	DCD	0xc0007b02
-
-  00000			 AREA	 |.xdata|, DATA
-|$T49210| DCD	0xffffffe8
+|$T47083| DCD	|$LN12@ShowSettin|
+	DCD	0x40003f01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@MBNEBDDK@?$AA?5?$AA?5?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "V", 0x0, "M", 0x0, "I", 0x0, "N", 0x0, "I"
-	DCB	0x0, ":", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1GE@BGIPLJDA@?$AA?5?$AA?5?$AAN?$AAo?$AAt?$AAe?$AA?3?$AA?5?$AAU?$AAS?$AAB?$AAF?$AAN?$AA?5?$AAR?$AAN?$AAD?$AAI?$AAS?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd?$AAd?$AAr?$AA?5?$AAc?$AAa?$AAn@| DCB " "
-	DCB	0x0, " ", 0x0, "N", 0x0, "o", 0x0, "t", 0x0, "e", 0x0, ":"
-	DCB	0x0, " ", 0x0, "U", 0x0, "S", 0x0, "B", 0x0, "F", 0x0, "N"
-	DCB	0x0, " ", 0x0, "R", 0x0, "N", 0x0, "D", 0x0, "I", 0x0, "S"
-	DCB	0x0, " ", 0x0, "M", 0x0, "A", 0x0, "C", 0x0, " ", 0x0, "A"
-	DCB	0x0, "d", 0x0, "d", 0x0, "r", 0x0, " ", 0x0, "c", 0x0, "a"
-	DCB	0x0, "n", 0x0, "n", 0x0, "o", 0x0, "t", 0x0, " ", 0x0, "b"
-	DCB	0x0, "e", 0x0, " ", 0x0, "c", 0x0, "h", 0x0, "a", 0x0, "n"
-	DCB	0x0, "g", 0x0, "e", 0x0, "d", 0x0, ".", 0x0, 0xd, 0x0, 0xa
+|??_C@_1DE@FKCOLIJA@?$AA?5?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AAi?$AAn?$AAg?$AA?5?$AAN?$AAK?$AA?4?$AAb?$AAi?$AAn?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, " ", 0x0, "F", 0x0, "l", 0x0, "a", 0x0, "s", 0x0, "h"
+	DCB	0x0, "i", 0x0, "n", 0x0, "g", 0x0, " ", 0x0, "N", 0x0, "K"
+	DCB	0x0, ".", 0x0, "b", 0x0, "i", 0x0, "n", 0x0, ":", 0x0, " "
+	DCB	0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa
 	DCB	0x0, 0x0, 0x0				; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DG@LEIGGFEH@?$AA?5?$AA?5?$AAE?$AAt?$AAh?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd?$AAd?$AAr?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "E", 0x0, "t", 0x0, "h", 0x0, " ", 0x0, "M"
-	DCB	0x0, "A", 0x0, "C", 0x0, " ", 0x0, "A", 0x0, "d", 0x0, "d"
-	DCB	0x0, "r", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, " ", 0x0, "(", 0x0, "%", 0x0, "s", 0x0, ")", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
+|??_C@_1CG@OIGCIHAG@?$AA?5?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, " ", 0x0, "O", 0x0, "P", 0x0, "P", 0x0, " ", 0x0, "M"
+	DCB	0x0, "o", 0x0, "d", 0x0, "e", 0x0, ":", 0x0, " ", 0x0, " "
+	DCB	0x0, " ", 0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
+	DCB	0x0					; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@HBILLBOB@?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@| DCB "B"
-	DCB	0x0, "o", 0x0, "o", 0x0, "t", 0x0, " ", 0x0, "s", 0x0, "e"
-	DCB	0x0, "t", 0x0, "t", 0x0, "i", 0x0, "n", 0x0, "g", 0x0, "s"
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1O@HKPJJFOO@?$AAE?$AAE?$AAP?$AAR?$AAO?$AAM?$AA?$AA@| DCB "E", 0x0, "E"
-	DCB	0x0, "P", 0x0, "R", 0x0, "O", 0x0, "M", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@ENNBLIDC@?$AA?5?$AA?5?$AAD?$AAH?$AAC?$AAP?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "D", 0x0, "H", 0x0, "C", 0x0, "P", 0x0, ":"
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
+|??_C@_1CM@JIGPKFND@?$AA?5?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAs?$AAg?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, " ", 0x0, "R", 0x0, "e", 0x0, "t", 0x0, "a", 0x0, "i"
+	DCB	0x0, "l", 0x0, " ", 0x0, "M", 0x0, "s", 0x0, "g", 0x0, "s"
+	DCB	0x0, ":", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
 	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@PFJOPCHK@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "I", 0x0, "P", 0x0, " ", 0x0, "a", 0x0, "d"
-	DCB	0x0, "d", 0x0, "r", 0x0, "e", 0x0, "s", 0x0, "s", 0x0, ":"
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@MFPGPOHA@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "I", 0x0, "P", 0x0, " ", 0x0, "m", 0x0, "a"
-	DCB	0x0, "s", 0x0, "k", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@IMEGPKBH@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "I", 0x0, "P", 0x0, " ", 0x0, "r", 0x0, "o"
-	DCB	0x0, "u", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, ":", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@OEGKHNAF@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " "
-	DCB	0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, ":", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BE@OLFPFCKI@?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?$AA@| DCB "i"
-	DCB	0x0, "n", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, "r", 0x0, "u"
-	DCB	0x0, "p", 0x0, "t", 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1O@DOAPGJLD@?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?$AA@| DCB "p", 0x0, "o"
-	DCB	0x0, "l", 0x0, "l", 0x0, "e", 0x0, "d", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@OLFKODG@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAy?$AAp?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " "
-	DCB	0x0, "t", 0x0, "y", 0x0, "p", 0x0, "e", 0x0, ":", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1O@IBNPCBAA@?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?$AA@| DCB "a", 0x0, "c"
-	DCB	0x0, "t", 0x0, "i", 0x0, "v", 0x0, "e", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BA@INHNFGAO@?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?$AA@| DCB "p", 0x0
-	DCB	"a", 0x0, "s", 0x0, "s", 0x0, "i", 0x0, "v", 0x0, "e", 0x0
-	DCB	0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@KKLHLKH@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " "
-	DCB	0x0, "s", 0x0, "t", 0x0, "a", 0x0, "t", 0x0, "e", 0x0, ":"
+|??_C@_1CA@GEJBEGHK@?$AA?5?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, " ", 0x0, "S", 0x0, "/", 0x0, "N", 0x0, ":", 0x0, " "
 	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
 	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 
@@ -1472,566 +594,270 @@
 	DCB	0x0, 0x0				; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@NCMLOBGF@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAt?$AAw?$AAo?$AAr?$AAk?$AA?3?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, " ", 0x0, "N", 0x0, "e", 0x0, "t", 0x0, "w"
-	DCB	0x0, "o", 0x0, "r", 0x0, "k", 0x0, ":", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T49210|
-
-  00008		 |ShowNetworkSettings| PROC
-
-; 557  : {
-
-  00008		 |$LN23@ShowNetwor|
-  00008	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  0000c	e24dd00c	 sub         sp, sp, #0xC
-  00010		 |$M49211|
-  00010	e59f31d8	 ldr         r3, [pc, #0x1D8]
-  00014	e5933000	 ldr         r3, [r3]
-  00018	e58d3008	 str         r3, [sp, #8]
-
-; 558  :     BOOL fValidExtMacAddr;
-; 559  :     UINT16 mac[3];
-; 560  :     UNREFERENCED_PARAMETER(pMenu);
-; 561  : 
-; 562  :     memset(mac,0xFF,sizeof(mac));
-
-  0001c	e3a03cff	 mov         r3, #0xFF, 24
-  00020	e38340ff	 orr         r4, r3, #0xFF
-  00024	e1cd40b0	 strh        r4, [sp]
-  00028	e1cd40b2	 strh        r4, [sp, #2]
-
-; 563  :     LAN911XGetMacAddress(OALPAtoUA((DWORD) BSP_LAN9115_REGS_PA),mac);
-
-  0002c	e3a01000	 mov         r1, #0
-  00030	e3a00415	 mov         r0, #0x15, 8
-  00034	e1cd40b4	 strh        r4, [sp, #4]
-  00038	eb000000	 bl          OALPAtoVA
-  0003c	e28d1000	 add         r1, sp, #0
-  00040	eb000000	 bl          LAN911XGetMacAddress
-
-; 564  :     if (((mac[0]== 0xFFFF) && (mac[1] == 0xFFFF) && (mac[2] == 0xFFFF)) || ((mac[0]== 0x0) && (mac[1] == 0x0) && (mac[2] == 0x0)))
-
-  00044	e1dd10b0	 ldrh        r1, [sp]
-  00048	e1dd30b4	 ldrh        r3, [sp, #4]
-  0004c	e1dd20b2	 ldrh        r2, [sp, #2]
-  00050	e1510004	 cmp         r1, r4
-  00054	1a000003	 bne         |$LN2@ShowNetwor|
-  00058	e1520004	 cmp         r2, r4
-  0005c	1a000001	 bne         |$LN2@ShowNetwor|
-  00060	e1530004	 cmp         r3, r4
-  00064	0a000005	 beq         |$LN3@ShowNetwor|
-  00068		 |$LN2@ShowNetwor|
-  00068	e3510000	 cmp         r1, #0
-  0006c	1a000005	 bne         |$LN4@ShowNetwor|
-  00070	e3520000	 cmp         r2, #0
-  00074	1a000003	 bne         |$LN4@ShowNetwor|
-  00078	e3530000	 cmp         r3, #0
-  0007c	1a000001	 bne         |$LN4@ShowNetwor|
-  00080		 |$LN3@ShowNetwor|
-
-; 565  :     {
-; 566  :         fValidExtMacAddr = FALSE;        
-
-  00080	e3a06000	 mov         r6, #0
-
-; 567  :     }
-; 568  :     else
-
-  00084	ea000000	 b           |$LN1@ShowNetwor|
-  00088		 |$LN4@ShowNetwor|
-
-; 569  :     {
-; 570  :         fValidExtMacAddr = TRUE;        
-
-  00088	e3a06001	 mov         r6, #1
-  0008c		 |$LN1@ShowNetwor|
-
-; 571  :     }
-; 572  : 
-; 573  : 
-; 574  :     OALLog(L"\r\n Network:\r\n");
-
-  0008c	e59f0158	 ldr         r0, [pc, #0x158]
-  00090	eb000000	 bl          NKDbgPrintfW
-
-; 575  :     OALLog(
-; 576  :         L"  KITL state:    %s\r\n",
-; 577  :         (g_bootCfg.kitlFlags & OAL_KITL_FLAGS_ENABLED) ? L"enabled" : L"disabled"
-; 578  :     );
-
-  00094	e59f414c	 ldr         r4, [pc, #0x14C]
-  00098	e59f5144	 ldr         r5, [pc, #0x144]
-  0009c	e59f013c	 ldr         r0, [pc, #0x13C]
-  000a0	e5943030	 ldr         r3, [r4, #0x30]
-  000a4	e3130001	 tst         r3, #1
-  000a8	11a01005	 movne       r1, r5
-  000ac	059f10f0	 ldreq       r1, [pc, #0xF0]
-  000b0	eb000000	 bl          NKDbgPrintfW
-
-; 579  : 
-; 580  :     OALLog(
-; 581  :         L"  KITL type:     %s\r\n",
-; 582  :         (g_bootCfg.kitlFlags & OAL_KITL_FLAGS_PASSIVE) ? L"passive" : L"active"
-; 583  :     );
-
-  000b4	e5943030	 ldr         r3, [r4, #0x30]
-  000b8	e59f011c	 ldr         r0, [pc, #0x11C]
-  000bc	e3130002	 tst         r3, #2
-  000c0	159f1110	 ldrne       r1, [pc, #0x110]
-  000c4	059f1108	 ldreq       r1, [pc, #0x108]
-  000c8	eb000000	 bl          NKDbgPrintfW
-
-; 584  : 
-; 585  :     OALLog(
-; 586  :         L"  KITL mode:     %s\r\n",
-; 587  :         (g_bootCfg.kitlFlags & OAL_KITL_FLAGS_POLL) ? L"polled" : L"interrupt"
-; 588  :     );
-
-  000cc	e5943030	 ldr         r3, [r4, #0x30]
-  000d0	e59f00f8	 ldr         r0, [pc, #0xF8]
-  000d4	e3130010	 tst         r3, #0x10
-  000d8	159f10ec	 ldrne       r1, [pc, #0xEC]
-  000dc	059f10e4	 ldreq       r1, [pc, #0xE4]
-  000e0	eb000000	 bl          NKDbgPrintfW
-
-; 589  :     OALLog(
-; 590  :         L"  DHCP:          %s\r\n",
-; 591  :         (g_bootCfg.kitlFlags & OAL_KITL_FLAGS_DHCP) ? L"enabled" : L"disabled"
-; 592  :     );
-
-  000e4	e5943030	 ldr         r3, [r4, #0x30]
-  000e8	e59f00d4	 ldr         r0, [pc, #0xD4]
-  000ec	e3130004	 tst         r3, #4
-  000f0	11a01005	 movne       r1, r5
-  000f4	059f10a8	 ldreq       r1, [pc, #0xA8]
-  000f8	eb000000	 bl          NKDbgPrintfW
-
-; 593  :     OALLog(L"  IP address:    %s\r\n", OALKitlIPtoString(g_bootCfg.ipAddress));
-
-  000fc	e5940038	 ldr         r0, [r4, #0x38]
-  00100	eb000000	 bl          OALKitlIPtoString
-  00104	e1a01000	 mov         r1, r0
-  00108	e59f00b0	 ldr         r0, [pc, #0xB0]
-  0010c	eb000000	 bl          NKDbgPrintfW
-
-; 594  :     OALLog(L"  IP mask:       %s\r\n", OALKitlIPtoString(g_bootCfg.ipMask));
-
-  00110	e594003c	 ldr         r0, [r4, #0x3C]
-  00114	eb000000	 bl          OALKitlIPtoString
-  00118	e1a01000	 mov         r1, r0
-  0011c	e59f0098	 ldr         r0, [pc, #0x98]
-  00120	eb000000	 bl          NKDbgPrintfW
-
-; 595  :     OALLog(L"  IP router:     %s\r\n", OALKitlIPtoString(g_bootCfg.ipRoute));
-
-  00124	e5940040	 ldr         r0, [r4, #0x40]
-  00128	eb000000	 bl          OALKitlIPtoString
-  0012c	e1a01000	 mov         r1, r0
-  00130	e59f0080	 ldr         r0, [pc, #0x80]
-  00134	eb000000	 bl          NKDbgPrintfW
-
-; 596  :     OALLog(L"  Eth MAC Addr:  %s (%s)\r\n", 
-; 597  :         OALKitlMACtoString(fValidExtMacAddr ? mac : g_bootCfg.mac)
-; 598  :         ,fValidExtMacAddr ? L"EEPROM" : L"Boot settings");
-
-  00138	e3560000	 cmp         r6, #0
-  0013c	159f7070	 ldrne       r7, [pc, #0x70]
-  00140	059f7068	 ldreq       r7, [pc, #0x68]
-  00144	e3560000	 cmp         r6, #0
-  00148	128d0000	 addne       r0, sp, #0
-  0014c	02840066	 addeq       r0, r4, #0x66
-  00150	eb000000	 bl          OALKitlMACtoString
-  00154	e1a01000	 mov         r1, r0
-  00158	e59f004c	 ldr         r0, [pc, #0x4C]
-  0015c	e1a02007	 mov         r2, r7
-  00160	eb000000	 bl          NKDbgPrintfW
-
-; 599  :     OALLog(
-; 600  :         L"  VMINI:         %s\r\n",
-; 601  :         (g_bootCfg.kitlFlags & OAL_KITL_FLAGS_VMINI) ? L"enabled" : L"disabled"
-; 602  :     );
-
-  00164	e5943030	 ldr         r3, [r4, #0x30]
-  00168	e59f0038	 ldr         r0, [pc, #0x38]
-  0016c	e3130008	 tst         r3, #8
-  00170	059f502c	 ldreq       r5, [pc, #0x2C]
-  00174	e1a01005	 mov         r1, r5
-  00178	eb000000	 bl          NKDbgPrintfW
-
-; 603  :     OALLog(L"  Note: USBFN RNDIS MAC Addr cannot be changed.\r\n");
-
-  0017c	e59f001c	 ldr         r0, [pc, #0x1C]
-  00180	eb000000	 bl          NKDbgPrintfW
-
-; 604  :     
-; 605  :     OALBLMenuReadKey(TRUE);
-
-  00184	e3a00001	 mov         r0, #1
-  00188	eb000000	 bl          OALBLMenuReadKey
-  0018c	e59d0008	 ldr         r0, [sp, #8]
-  00190	eb000000	 bl          __security_check_cookie
-
-; 606  : }
-
-  00194	e28dd00c	 add         sp, sp, #0xC
-  00198	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  0019c	e12fff1e	 bx          lr
-  001a0		 |$LN24@ShowNetwor|
-  001a0		 |$LN25@ShowNetwor|
-  001a0	00000000	 DCD         |??_C@_1GE@BGIPLJDA@?$AA?5?$AA?5?$AAN?$AAo?$AAt?$AAe?$AA?3?$AA?5?$AAU?$AAS?$AAB?$AAF?$AAN?$AA?5?$AAR?$AAN?$AAD?$AAI?$AAS?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd?$AAd?$AAr?$AA?5?$AAc?$AAa?$AAn@|
-  001a4		 |$LN26@ShowNetwor|
-  001a4	00000000	 DCD         |??_C@_1BC@LGPIFEA@?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
-  001a8		 |$LN27@ShowNetwor|
-  001a8	00000000	 DCD         |??_C@_1CM@MBNEBDDK@?$AA?5?$AA?5?$AAV?$AAM?$AAI?$AAN?$AAI?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001ac		 |$LN28@ShowNetwor|
-  001ac	00000000	 DCD         |??_C@_1DG@LEIGGFEH@?$AA?5?$AA?5?$AAE?$AAt?$AAh?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAA?$AAd?$AAd?$AAr?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  001b0		 |$LN29@ShowNetwor|
-  001b0	00000000	 DCD         |??_C@_1BM@HBILLBOB@?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?$AA@|
-  001b4		 |$LN30@ShowNetwor|
-  001b4	00000000	 DCD         |??_C@_1O@HKPJJFOO@?$AAE?$AAE?$AAP?$AAR?$AAO?$AAM?$AA?$AA@|
-  001b8		 |$LN31@ShowNetwor|
-  001b8	00000000	 DCD         |??_C@_1CM@IMEGPKBH@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAr?$AAo?$AAu?$AAt?$AAe?$AAr?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001bc		 |$LN32@ShowNetwor|
-  001bc	00000000	 DCD         |??_C@_1CM@MFPGPOHA@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001c0		 |$LN33@ShowNetwor|
-  001c0	00000000	 DCD         |??_C@_1CM@PFJOPCHK@?$AA?5?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001c4		 |$LN34@ShowNetwor|
-  001c4	00000000	 DCD         |??_C@_1CM@ENNBLIDC@?$AA?5?$AA?5?$AAD?$AAH?$AAC?$AAP?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001c8		 |$LN35@ShowNetwor|
-  001c8	00000000	 DCD         |??_C@_1BE@OLFPFCKI@?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?$AA@|
-  001cc		 |$LN36@ShowNetwor|
-  001cc	00000000	 DCD         |??_C@_1O@DOAPGJLD@?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?$AA@|
-  001d0		 |$LN37@ShowNetwor|
-  001d0	00000000	 DCD         |??_C@_1CM@OEGKHNAF@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001d4		 |$LN38@ShowNetwor|
-  001d4	00000000	 DCD         |??_C@_1O@IBNPCBAA@?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?$AA@|
-  001d8		 |$LN39@ShowNetwor|
-  001d8	00000000	 DCD         |??_C@_1BA@INHNFGAO@?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?$AA@|
-  001dc		 |$LN40@ShowNetwor|
-  001dc	00000000	 DCD         |??_C@_1CM@OLFKODG@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAy?$AAp?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001e0		 |$LN41@ShowNetwor|
-  001e0	00000000	 DCD         |??_C@_1CM@KKLHLKH@?$AA?5?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  001e4		 |$LN42@ShowNetwor|
-  001e4	00000000	 DCD         |??_C@_1BA@BKMGIBPB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
-  001e8		 |$LN43@ShowNetwor|
-  001e8	00000000	 DCD         |g_bootCfg|
-  001ec		 |$LN44@ShowNetwor|
-  001ec	00000000	 DCD         |??_C@_1BM@NCMLOBGF@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAt?$AAw?$AAo?$AAr?$AAk?$AA?3?$AA?$AN?$AA?6?$AA?$AA@|
-  001f0		 |$LN45@ShowNetwor|
-  001f0	00000000	 DCD         |__security_cookie|
-  001f4		 |$M49212|
-
-			 ENDP  ; |ShowNetworkSettings|
-
-	EXPORT	|??_C@_1DG@GANBFOFA@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DM@IPPCLHEI@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EC@JHPHMHOA@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EI@CAADENIK@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9@| [ DATA ] ; `string'
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49247| DCD	|$LN13@SetKitlMod|
-	DCD	0x40002201
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DG@GANBFOFA@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " ", 0x0, "s"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "p", 0x0, "o", 0x0, "l", 0x0, "l", 0x0, "e", 0x0, "d"
-	DCB	0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DM@IPPCLHEI@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " ", 0x0, "s"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "i", 0x0, "n", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, "r"
-	DCB	0x0, "u", 0x0, "p", 0x0, "t", 0x0, " ", 0x0, "m", 0x0, "o"
-	DCB	0x0, "d", 0x0, "e", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@| DCB "%", 0x0, "c", 0x0
-	DCB	0xd, 0x0, 0xa, 0x0, 0x0, 0x0		; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EC@JHPHMHOA@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5@| DCB " "
-	DCB	0x0, "S", 0x0, "e", 0x0, "t", 0x0, " ", 0x0, "K", 0x0, "I"
-	DCB	0x0, "T", 0x0, "L", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "p", 0x0, "o", 0x0, "l", 0x0, "l", 0x0, "e", 0x0, "d"
-	DCB	0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, " "
-	DCB	0x0, "[", 0x0, "y", 0x0, "/", 0x0, "-", 0x0, "]", 0x0, ":"
-	DCB	0x0, " ", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EI@CAADENIK@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9@| DCB " "
-	DCB	0x0, "S", 0x0, "e", 0x0, "t", 0x0, " ", 0x0, "K", 0x0, "I"
-	DCB	0x0, "T", 0x0, "L", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "i", 0x0, "n", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, "r"
-	DCB	0x0, "u", 0x0, "p", 0x0, "t", 0x0, " ", 0x0, "m", 0x0, "o"
-	DCB	0x0, "d", 0x0, "e", 0x0, " ", 0x0, "[", 0x0, "y", 0x0, "/"
-	DCB	0x0, "-", 0x0, "]", 0x0, ":", 0x0, " ", 0x0, 0x0, 0x0 ; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |SetKitlMode| PROC
-
-; 611  : {
-
-  00000		 |$LN13@SetKitlMod|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49244|
-
-; 612  :     WCHAR key;
-; 613  :     UNREFERENCED_PARAMETER(pMenu);
-; 614  : 
-; 615  :     if ((g_bootCfg.kitlFlags & OAL_KITL_FLAGS_POLL) != 0) {
-
-  00004	e59f4078	 ldr         r4, [pc, #0x78]
-  00008	e5943030	 ldr         r3, [r4, #0x30]
-  0000c	e3130010	 tst         r3, #0x10
-
-; 616  :         OALLog(L" Set KITL to interrupt mode [y/-]: ");
-
-  00010	159f0068	 ldrne       r0, [pc, #0x68]
-
-; 617  :     } else {
-; 618  :         OALLog(L" Set KITL to polled mode [y/-]: ");
-
-  00014	059f0060	 ldreq       r0, [pc, #0x60]
-  00018	eb000000	 bl          NKDbgPrintfW
-
-; 619  :     }    
-; 620  : 
-; 621  :     // Get key
-; 622  :     key = OALBLMenuReadKey(TRUE);
-
-  0001c	e3a00001	 mov         r0, #1
-  00020	eb000000	 bl          OALBLMenuReadKey
-  00024	e1a05800	 mov         r5, r0, lsl #16
-
-; 623  :     OALLog(L"%c\r\n", key);
-
-  00028	e59f0048	 ldr         r0, [pc, #0x48]
-  0002c	e1a05825	 mov         r5, r5, lsr #16
-  00030	e1a01005	 mov         r1, r5
-  00034	eb000000	 bl          NKDbgPrintfW
-
-; 624  : 
-; 625  :     if (key == L'y' || key == L'Y') {
-
-  00038	e3550079	 cmp         r5, #0x79
-  0003c	0a000001	 beq         |$LN3@SetKitlMod|
-  00040	e3550059	 cmp         r5, #0x59
-  00044	1a000007	 bne         |$LN1@SetKitlMod|
-  00048		 |$LN3@SetKitlMod|
-
-; 626  :         if ((g_bootCfg.kitlFlags & OAL_KITL_FLAGS_POLL) != 0) {
-
-  00048	e5943030	 ldr         r3, [r4, #0x30]
-  0004c	e3130010	 tst         r3, #0x10
-
-; 627  :             g_bootCfg.kitlFlags &= ~OAL_KITL_FLAGS_POLL;
-; 628  :             OALLog(L" KITL set to interrupt mode\r\n");
-
-  00050	159f001c	 ldrne       r0, [pc, #0x1C]
-
-; 629  :         } else {
-; 630  :             g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_POLL;
-; 631  :             OALLog(L" KITL set to polled mode\r\n");
-
-  00054	059f0014	 ldreq       r0, [pc, #0x14]
-  00058	13c33010	 bicne       r3, r3, #0x10
-  0005c	03833010	 orreq       r3, r3, #0x10
-  00060	e5843030	 str         r3, [r4, #0x30]
-  00064	eb000000	 bl          NKDbgPrintfW
-  00068		 |$LN1@SetKitlMod|
-
-; 632  :         }            
-; 633  :     }
-; 634  : }
-
-  00068	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  0006c	e12fff1e	 bx          lr
-  00070		 |$LN14@SetKitlMod|
-  00070		 |$LN15@SetKitlMod|
-  00070	00000000	 DCD         |??_C@_1DG@GANBFOFA@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  00074		 |$LN16@SetKitlMod|
-  00074	00000000	 DCD         |??_C@_1DM@IPPCLHEI@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  00078		 |$LN17@SetKitlMod|
-  00078	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
-  0007c		 |$LN18@SetKitlMod|
-  0007c	00000000	 DCD         |??_C@_1EC@JHPHMHOA@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAo?$AAl?$AAl?$AAe?$AAd?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5@|
-  00080		 |$LN19@SetKitlMod|
-  00080	00000000	 DCD         |??_C@_1EI@CAADENIK@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAi?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9@|
-  00084		 |$LN20@SetKitlMod|
-  00084	00000000	 DCD         |g_bootCfg|
-  00088		 |$M49245|
-
-			 ENDP  ; |SetKitlMode|
-
-	EXPORT	|??_C@_1DI@DNJMHDAE@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DG@EDFECNLC@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EE@HIABIPBL@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EC@OPMJBCEG@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5@| [ DATA ] ; `string'
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49264| DCD	|$LN13@SetKitlTyp|
-	DCD	0x40002201
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DI@DNJMHDAE@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " ", 0x0, "s"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "p", 0x0, "a", 0x0, "s", 0x0, "s", 0x0, "i", 0x0, "v"
-	DCB	0x0, "e", 0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e"
+|??_C@_1CM@NPGGEGKD@?$AA?5?$AA?5?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, " ", 0x0, "D", 0x0, "e", 0x0, "b", 0x0, "u", 0x0, "g"
+	DCB	0x0, " ", 0x0, "d", 0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c"
+	DCB	0x0, "e", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
 	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DG@EDFECNLC@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, "K", 0x0, "I", 0x0, "T", 0x0, "L", 0x0, " ", 0x0, "s"
-	DCB	0x0, "e", 0x0, "t", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "a", 0x0, "c", 0x0, "t", 0x0, "i", 0x0, "v", 0x0, "e"
-	DCB	0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
+|??_C@_1BM@PMDNGDGM@?$AAn?$AAo?$AAt?$AA?5?$AAs?$AAp?$AAe?$AAc?$AAi?$AAf?$AAi?$AAe?$AAd?$AA?$AA@| DCB "n"
+	DCB	0x0, "o", 0x0, "t", 0x0, " ", 0x0, "s", 0x0, "p", 0x0, "e"
+	DCB	0x0, "c", 0x0, "i", 0x0, "f", 0x0, "i", 0x0, "e", 0x0, "d"
+	DCB	0x0, 0x0, 0x0				; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EE@HIABIPBL@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3@| DCB " "
-	DCB	0x0, "S", 0x0, "e", 0x0, "t", 0x0, " ", 0x0, "K", 0x0, "I"
-	DCB	0x0, "T", 0x0, "L", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "p", 0x0, "a", 0x0, "s", 0x0, "s", 0x0, "i", 0x0, "v"
-	DCB	0x0, "e", 0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e"
-	DCB	0x0, " ", 0x0, "[", 0x0, "y", 0x0, "/", 0x0, "-", 0x0, "]"
-	DCB	0x0, ":", 0x0, " ", 0x0, 0x0, 0x0	; `string'
+|??_C@_1BG@CEFCIDHI@?$AA?$AN?$AA?6?$AA?5?$AAM?$AAa?$AAi?$AAn?$AA?3?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
+	DCB	0x0, 0xa, 0x0, " ", 0x0, "M", 0x0, "a", 0x0, "i", 0x0, "n"
+	DCB	0x0, ":", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EC@OPMJBCEG@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5@| DCB " "
-	DCB	0x0, "S", 0x0, "e", 0x0, "t", 0x0, " ", 0x0, "K", 0x0, "I"
-	DCB	0x0, "T", 0x0, "L", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "a", 0x0, "c", 0x0, "t", 0x0, "i", 0x0, "v", 0x0, "e"
-	DCB	0x0, " ", 0x0, "m", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, " "
-	DCB	0x0, "[", 0x0, "y", 0x0, "/", 0x0, "-", 0x0, "]", 0x0, ":"
-	DCB	0x0, " ", 0x0, 0x0, 0x0			; `string'
+|??_C@_1CM@IGJFNOHM@?$AA?5?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, " ", 0x0, "B", 0x0, "o", 0x0, "o", 0x0, "t", 0x0, " "
+	DCB	0x0, "d", 0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e"
+	DCB	0x0, ":", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |SetKitlType| PROC
+  00000		 |ShowSettings| PROC
 
-; 639  : {
+; 262  : {
 
-  00000		 |$LN13@SetKitlTyp|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49261|
+  00000		 |$LN12@ShowSettin|
+  00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
+  00004		 |$M47080|
 
-; 640  :     WCHAR key;
-; 641  :     UNREFERENCED_PARAMETER(pMenu);
-; 642  : 
-; 643  :     if ((g_bootCfg.kitlFlags & OAL_KITL_FLAGS_PASSIVE) != 0) 
+; 263  :     OPP_MODE_MENU * pOppMenu = oppModeMenu35x;
+; 264  :     UNREFERENCED_PARAMETER(pMenu);
+; 265  :     
+; 266  :     if(g_CPUFamily == CPU_FAMILY_DM37XX)
 
-  00004	e59f4078	 ldr         r4, [pc, #0x78]
-  00008	e5943030	 ldr         r3, [r4, #0x30]
-  0000c	e3130002	 tst         r3, #2
+  00004	e59f30ec	 ldr         r3, [pc, #0xEC]
+  00008	e59f40e4	 ldr         r4, [pc, #0xE4]
 
-; 644  :         {
-; 645  :         OALLog(L" Set KITL to active mode [y/-]: ");
+; 267  :     {
+; 268  :         pOppMenu = oppModeMenu37x;
+; 269  :     }
+; 270  : 
+; 271  :     OALLog(L"\r\n Main:\r\n");
 
-  00010	159f0068	 ldrne       r0, [pc, #0x68]
+  0000c	e59f00dc	 ldr         r0, [pc, #0xDC]
+  00010	e5933000	 ldr         r3, [r3]
+  00014	e3530001	 cmp         r3, #1
+  00018	02844018	 addeq       r4, r4, #0x18
+  0001c	eb000000	 bl          NKDbgPrintfW
 
-; 646  :         } 
-; 647  :    else 
-; 648  :         {
-; 649  :         OALLog(L" Set KITL to passive mode [y/-]: ");
+; 272  :     OALLog(
+; 273  :         L"  Boot device:   %s\r\n",
+; 274  :         OALKitlDeviceName(&g_bootCfg.bootDevLoc, g_bootDevices)
+; 275  :     );
 
-  00014	059f0060	 ldreq       r0, [pc, #0x60]
+  00020	e59f60c4	 ldr         r6, [pc, #0xC4]
+  00024	e59f10bc	 ldr         r1, [pc, #0xBC]
+  00028	e2860008	 add         r0, r6, #8
+  0002c	eb000000	 bl          OALKitlDeviceName
+  00030	e1a01000	 mov         r1, r0
+  00034	e59f00a8	 ldr         r0, [pc, #0xA8]
+  00038	eb000000	 bl          NKDbgPrintfW
+
+; 276  :     OALLog(
+; 277  :         L"  Debug device:  %s\r\n",
+; 278  :         (g_bootCfg.kitlDevLoc.LogicalLoc) ? OALKitlDeviceName(&g_bootCfg.kitlDevLoc, g_kitlDevices) : L"not specified"
+; 279  :     );
+
+  0003c	e5963024	 ldr         r3, [r6, #0x24]
+  00040	e3530000	 cmp         r3, #0
+  00044	0a000004	 beq         |$LN4@ShowSettin|
+  00048	e59f1090	 ldr         r1, [pc, #0x90]
+  0004c	e286001c	 add         r0, r6, #0x1C
+  00050	eb000000	 bl          OALKitlDeviceName
+  00054	e1a01000	 mov         r1, r0
+  00058	ea000000	 b           |$LN5@ShowSettin|
+  0005c		 |$LN4@ShowSettin|
+  0005c	e59f1078	 ldr         r1, [pc, #0x78]
+  00060		 |$LN5@ShowSettin|
+  00060	e59f0070	 ldr         r0, [pc, #0x70]
+  00064	eb000000	 bl          NKDbgPrintfW
+
+; 280  :     OALLog(
+; 281  :         L"  Retail Msgs:   %s\r\n",
+; 282  :         (g_bootCfg.oalFlags & BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE) ? L"enabled" : L"disabled"
+; 283  :     );
+
+  00068	e5963034	 ldr         r3, [r6, #0x34]
+  0006c	e59f5060	 ldr         r5, [pc, #0x60]
+  00070	e59f0058	 ldr         r0, [pc, #0x58]
+  00074	e3130001	 tst         r3, #1
+  00078	11a01005	 movne       r1, r5
+  0007c	059f1040	 ldreq       r1, [pc, #0x40]
+  00080	eb000000	 bl          NKDbgPrintfW
+
+; 284  :     OALLog(
+; 285  :         L"  S/N:     %s\r\n", g_bootCfg.SerialNumber
+; 286  :     );
+
+  00084	e59f0040	 ldr         r0, [pc, #0x40]
+  00088	e2861038	 add         r1, r6, #0x38
+  0008c	eb000000	 bl          NKDbgPrintfW
+
+; 287  :     /*OALLog(
+; 288  :         L"  Display Res:   %s\r\n", dispResMenu[g_bootCfg.displayRes].resName
+; 289  :     );*/
+; 290  :     OALLog(
+; 291  :         L"  Flashing NK.bin:   %s\r\n", 
+; 292  :         (g_bootCfg.flashNKFlags & ENABLE_FLASH_NK) ? L"enabled" : L"disabled"
+; 293  :     );    
+
+  00090	e5963080	 ldr         r3, [r6, #0x80]
+  00094	e59f002c	 ldr         r0, [pc, #0x2C]
+  00098	e3130001	 tst         r3, #1
+  0009c	059f5020	 ldreq       r5, [pc, #0x20]
+  000a0	e1a01005	 mov         r1, r5
+  000a4	eb000000	 bl          NKDbgPrintfW
+
+; 294  :     OALLog(
+; 295  :         L"  OPP Mode:   %s\r\n", pOppMenu[g_bootCfg.opp_mode].oppModeName
+; 296  :     );
+
+  000a8	e5963088	 ldr         r3, [r6, #0x88]
+  000ac	e59f000c	 ldr         r0, [pc, #0xC]
+  000b0	e7941103	 ldr         r1, [r4, +r3, lsl #2]
+  000b4	eb000000	 bl          NKDbgPrintfW
+
+; 297  : 	
+; 298  : #if BUILDING_EBOOT_SD
+; 299  :     ShowSDCardSettings(pMenu);
+; 300  : #endif
+; 301  :     //ShowNetworkSettings(pMenu);
+; 302  : }
+
+  000b8	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
+  000bc	e12fff1e	 bx          lr
+  000c0		 |$LN13@ShowSettin|
+  000c0		 |$LN14@ShowSettin|
+  000c0	00000000	 DCD         |??_C@_1CG@OIGCIHAG@?$AA?5?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  000c4		 |$LN15@ShowSettin|
+  000c4	00000000	 DCD         |??_C@_1BC@LGPIFEA@?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
+  000c8		 |$LN16@ShowSettin|
+  000c8	00000000	 DCD         |??_C@_1DE@FKCOLIJA@?$AA?5?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AAi?$AAn?$AAg?$AA?5?$AAN?$AAK?$AA?4?$AAb?$AAi?$AAn?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  000cc		 |$LN17@ShowSettin|
+  000cc	00000000	 DCD         |??_C@_1CA@GEJBEGHK@?$AA?5?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  000d0		 |$LN18@ShowSettin|
+  000d0	00000000	 DCD         |??_C@_1CM@JIGPKFND@?$AA?5?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAs?$AAg?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  000d4		 |$LN19@ShowSettin|
+  000d4	00000000	 DCD         |??_C@_1BA@BKMGIBPB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
+  000d8		 |$LN20@ShowSettin|
+  000d8	00000000	 DCD         |??_C@_1CM@NPGGEGKD@?$AA?5?$AA?5?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  000dc		 |$LN21@ShowSettin|
+  000dc	00000000	 DCD         |??_C@_1BM@PMDNGDGM@?$AAn?$AAo?$AAt?$AA?5?$AAs?$AAp?$AAe?$AAc?$AAi?$AAf?$AAi?$AAe?$AAd?$AA?$AA@|
+  000e0		 |$LN22@ShowSettin|
+  000e0	00000000	 DCD         |g_kitlDevices|
+  000e4		 |$LN23@ShowSettin|
+  000e4	00000000	 DCD         |??_C@_1CM@IGJFNOHM@?$AA?5?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  000e8		 |$LN24@ShowSettin|
+  000e8	00000000	 DCD         |g_bootDevices|
+  000ec		 |$LN25@ShowSettin|
+  000ec	00000000	 DCD         |g_bootCfg|
+  000f0		 |$LN26@ShowSettin|
+  000f0	00000000	 DCD         |??_C@_1BG@CEFCIDHI@?$AA?$AN?$AA?6?$AA?5?$AAM?$AAa?$AAi?$AAn?$AA?3?$AA?$AN?$AA?6?$AA?$AA@|
+  000f4		 |$LN27@ShowSettin|
+  000f4	00000000	 DCD         |oppModeMenu35x|
+  000f8		 |$LN28@ShowSettin|
+  000f8	00000000	 DCD         |g_CPUFamily|
+  000fc		 |$M47081|
+
+			 ENDP  ; |ShowSettings|
+
+	EXPORT	|??_C@_1CI@CKGGDGOD@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BK@EHKHMELD@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAw?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
+	IMPORT	|OALBLMenuReadLine|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T47106| DCD	|$LN6@SetDeviceI|
+	DCD	0x40000f01
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CI@CKGGDGOD@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, "C", 0x0, "u", 0x0, "r", 0x0, "r", 0x0, "e", 0x0, "n"
+	DCB	0x0, "t", 0x0, " ", 0x0, "S", 0x0, "/", 0x0, "N", 0x0, ":"
+	DCB	0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa
+	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BK@EHKHMELD@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAw?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?$AA@| DCB 0xd
+	DCB	0x0, 0xa, 0x0, " ", 0x0, "N", 0x0, "e", 0x0, "w", 0x0, " "
+	DCB	0x0, "S", 0x0, "/", 0x0, "N", 0x0, ":", 0x0, " ", 0x0, 0x0
+	DCB	0x0					; `string'
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |SetDeviceID| PROC
+
+; 426  : {
+
+  00000		 |$LN6@SetDeviceI|
+  00000	e92d4010	 stmdb       sp!, {r4, lr}
+  00004		 |$M47103|
+
+; 427  :     //WCHAR  szInputLine[16];
+; 428  :     UNREFERENCED_PARAMETER(pMenu);
+; 429  : 
+; 430  :     OALLog(L" Current S/N:  %s\r\n", g_bootCfg.SerialNumber);
+
+  00004	e59f402c	 ldr         r4, [pc, #0x2C]
+  00008	e59f0024	 ldr         r0, [pc, #0x24]
+  0000c	e2841038	 add         r1, r4, #0x38
+  00010	eb000000	 bl          NKDbgPrintfW
+
+; 431  : 
+; 432  :     OALLog(L"\r\n New S/N: ");
+
+  00014	e59f0014	 ldr         r0, [pc, #0x14]
   00018	eb000000	 bl          NKDbgPrintfW
 
-; 650  :         }    
-; 651  : 
-; 652  :     // Get key
-; 653  :     key = OALBLMenuReadKey(TRUE);
+; 433  : 
+; 434  :     if (OALBLMenuReadLine(g_bootCfg.SerialNumber, dimof(g_bootCfg.SerialNumber)) == 0) 
 
-  0001c	e3a00001	 mov         r0, #1
-  00020	eb000000	 bl          OALBLMenuReadKey
-  00024	e1a05800	 mov         r5, r0, lsl #16
+  0001c	e3a0100f	 mov         r1, #0xF
+  00020	e2840038	 add         r0, r4, #0x38
+  00024	eb000000	 bl          OALBLMenuReadLine
+  00028		 |$cleanUp$46910|
 
-; 654  :     OALLog(L"%c\r\n", key);
+; 435  : 	{
+; 436  :         goto cleanUp;
+; 437  : 	}
+; 438  : 
+; 439  :     // Get device ID
+; 440  : 	// g_bootCfg.deviceID = OALStringToUINT32(szInputLine);
+; 441  : 
+; 442  : cleanUp:
+; 443  :     return;
+; 444  : }
 
-  00028	e59f0048	 ldr         r0, [pc, #0x48]
-  0002c	e1a05825	 mov         r5, r5, lsr #16
-  00030	e1a01005	 mov         r1, r5
-  00034	eb000000	 bl          NKDbgPrintfW
+  00028	e8bd4010	 ldmia       sp!, {r4, lr}
+  0002c	e12fff1e	 bx          lr
+  00030		 |$LN7@SetDeviceI|
+  00030		 |$LN8@SetDeviceI|
+  00030	00000000	 DCD         |??_C@_1BK@EHKHMELD@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAw?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?$AA@|
+  00034		 |$LN9@SetDeviceI|
+  00034	00000000	 DCD         |??_C@_1CI@CKGGDGOD@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  00038		 |$LN10@SetDeviceI|
+  00038	00000000	 DCD         |g_bootCfg|
+  0003c		 |$M47104|
 
-; 655  : 
-; 656  :     if (key == L'y' || key == L'Y') 
-
-  00038	e3550079	 cmp         r5, #0x79
-  0003c	0a000001	 beq         |$LN3@SetKitlTyp|
-  00040	e3550059	 cmp         r5, #0x59
-  00044	1a000007	 bne         |$LN1@SetKitlTyp|
-  00048		 |$LN3@SetKitlTyp|
-
-; 657  :         {
-; 658  :         if ((g_bootCfg.kitlFlags & OAL_KITL_FLAGS_PASSIVE) != 0) 
-
-  00048	e5943030	 ldr         r3, [r4, #0x30]
-  0004c	e3130002	 tst         r3, #2
-
-; 659  :             {
-; 660  :             g_bootCfg.kitlFlags &= ~OAL_KITL_FLAGS_PASSIVE;
-; 661  :             OALLog(L" KITL set to active mode\r\n");
-
-  00050	159f001c	 ldrne       r0, [pc, #0x1C]
-
-; 662  :             }
-; 663  :         else 
-; 664  :             {
-; 665  :             g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_PASSIVE;
-; 666  :             OALLog(L" KITL set to passive mode\r\n");
-
-  00054	059f0014	 ldreq       r0, [pc, #0x14]
-  00058	13c33002	 bicne       r3, r3, #2
-  0005c	03833002	 orreq       r3, r3, #2
-  00060	e5843030	 str         r3, [r4, #0x30]
-  00064	eb000000	 bl          NKDbgPrintfW
-  00068		 |$LN1@SetKitlTyp|
-
-; 667  :             }            
-; 668  :         }
-; 669  : }
-
-  00068	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  0006c	e12fff1e	 bx          lr
-  00070		 |$LN14@SetKitlTyp|
-  00070		 |$LN15@SetKitlTyp|
-  00070	00000000	 DCD         |??_C@_1DI@DNJMHDAE@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  00074		 |$LN16@SetKitlTyp|
-  00074	00000000	 DCD         |??_C@_1DG@EDFECNLC@?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  00078		 |$LN17@SetKitlTyp|
-  00078	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
-  0007c		 |$LN18@SetKitlTyp|
-  0007c	00000000	 DCD         |??_C@_1EE@HIABIPBL@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAa?$AAs?$AAs?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3@|
-  00080		 |$LN19@SetKitlTyp|
-  00080	00000000	 DCD         |??_C@_1EC@OPMJBCEG@?$AA?5?$AAS?$AAe?$AAt?$AA?5?$AAK?$AAI?$AAT?$AAL?$AA?5?$AAt?$AAo?$AA?5?$AAa?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?5?$AAm?$AAo?$AAd?$AAe?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5@|
-  00084		 |$LN20@SetKitlTyp|
-  00084	00000000	 DCD         |g_bootCfg|
-  00088		 |$M49262|
-
-			 ENDP  ; |SetKitlType|
+			 ENDP  ; |SetDeviceID|
 
 	EXPORT	|??_C@_1DO@IPDMADGH@?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg?$AAe?$AAs?$AA?5?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1EA@EDIKANLP@?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg?$AAe?$AAs?$AA?5?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1EI@IEOEJKJK@?$AA?5?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg?$AAe?$AAs?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1EK@NMKAIECH@?$AA?5?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg?$AAe?$AAs?$AA?5?$AA?$FL?$AAy?$AA?1@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49281| DCD	|$LN13@SetRetailM|
+|$T47120| DCD	|$LN13@SetRetailM|
 	DCD	0x40002201
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2051,6 +877,10 @@
 	DCB	0x0, "s", 0x0, " ", 0x0, "d", 0x0, "i", 0x0, "s", 0x0, "a"
 	DCB	0x0, "b", 0x0, "l", 0x0, "e", 0x0, "d", 0x0, 0xd, 0x0, 0xa
 	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@| DCB "%", 0x0, "c", 0x0
+	DCB	0xd, 0x0, 0xa, 0x0, 0x0, 0x0		; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1EI@IEOEJKJK@?$AA?5?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg?$AAe?$AAs?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9@| DCB " "
@@ -2076,50 +906,50 @@
 
   00000		 |SetRetailMsgMode| PROC
 
-; 699  : {
+; 449  : {
 
   00000		 |$LN13@SetRetailM|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49278|
+  00004		 |$M47117|
 
-; 700  :     WCHAR key;
-; 701  : 
-; 702  :     UNREFERENCED_PARAMETER(pMenu);
-; 703  : 
-; 704  :     if (g_bootCfg.oalFlags & BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE) {
+; 450  :     WCHAR key;
+; 451  : 
+; 452  :     UNREFERENCED_PARAMETER(pMenu);
+; 453  : 
+; 454  :     if (g_bootCfg.oalFlags & BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE) {
 
   00004	e59f4078	 ldr         r4, [pc, #0x78]
   00008	e5943034	 ldr         r3, [r4, #0x34]
   0000c	e3130001	 tst         r3, #1
 
-; 705  :         OALLog(L" Disable OAL Retail Messages [y/-]: ");
+; 455  :         OALLog(L" Disable OAL Retail Messages [y/-]: ");
 
   00010	159f0068	 ldrne       r0, [pc, #0x68]
 
-; 706  :     } else {
-; 707  :         OALLog(L" Enable OAL Retail Messages [y/-]: ");
+; 456  :     } else {
+; 457  :         OALLog(L" Enable OAL Retail Messages [y/-]: ");
 
   00014	059f0060	 ldreq       r0, [pc, #0x60]
   00018	eb000000	 bl          NKDbgPrintfW
 
-; 708  :     }    
-; 709  : 
-; 710  :     // Get key
-; 711  :     key = OALBLMenuReadKey(TRUE);
+; 458  :     }    
+; 459  : 
+; 460  :     // Get key
+; 461  :     key = OALBLMenuReadKey(TRUE);
 
   0001c	e3a00001	 mov         r0, #1
   00020	eb000000	 bl          OALBLMenuReadKey
   00024	e1a05800	 mov         r5, r0, lsl #16
 
-; 712  :     OALLog(L"%c\r\n", key);
+; 462  :     OALLog(L"%c\r\n", key);
 
   00028	e59f0048	 ldr         r0, [pc, #0x48]
   0002c	e1a05825	 mov         r5, r5, lsr #16
   00030	e1a01005	 mov         r1, r5
   00034	eb000000	 bl          NKDbgPrintfW
 
-; 713  : 
-; 714  :     if (key == L'y' || key == L'Y') {
+; 463  : 
+; 464  :     if (key == L'y' || key == L'Y') {
 
   00038	e3550079	 cmp         r5, #0x79
   0003c	0a000001	 beq         |$LN3@SetRetailM|
@@ -2127,22 +957,22 @@
   00044	1a000007	 bne         |$LN1@SetRetailM|
   00048		 |$LN3@SetRetailM|
 
-; 715  :         if (g_bootCfg.oalFlags & BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE) 
+; 465  :         if (g_bootCfg.oalFlags & BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE) 
 
   00048	e5943034	 ldr         r3, [r4, #0x34]
   0004c	e3130001	 tst         r3, #1
 
-; 716  : 		{
-; 717  :             g_bootCfg.oalFlags &= ~BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE;
-; 718  :             OALLog(L" OAL Retail Messages disabled\r\n");
+; 466  : 		{
+; 467  :             g_bootCfg.oalFlags &= ~BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE;
+; 468  :             OALLog(L" OAL Retail Messages disabled\r\n");
 
   00050	159f001c	 ldrne       r0, [pc, #0x1C]
 
-; 719  :         }
-; 720  : 		else 
-; 721  : 		{
-; 722  :             g_bootCfg.oalFlags |= BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE;
-; 723  :             OALLog(L" OAL Retail Messages enabled\r\n");
+; 469  :         }
+; 470  : 		else 
+; 471  : 		{
+; 472  :             g_bootCfg.oalFlags |= BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE;
+; 473  :             OALLog(L" OAL Retail Messages enabled\r\n");
 
   00054	059f0014	 ldreq       r0, [pc, #0x14]
   00058	13c33001	 bicne       r3, r3, #1
@@ -2151,9 +981,9 @@
   00064	eb000000	 bl          NKDbgPrintfW
   00068		 |$LN1@SetRetailM|
 
-; 724  :         }    
-; 725  :     }
-; 726  : }
+; 474  :         }    
+; 475  :     }
+; 476  : }
 
   00068	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0006c	e12fff1e	 bx          lr
@@ -2170,18 +1000,18 @@
   00080	00000000	 DCD         |??_C@_1EK@NMKAIECH@?$AA?5?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg?$AAe?$AAs?$AA?5?$AA?$FL?$AAy?$AA?1@|
   00084		 |$LN20@SetRetailM|
   00084	00000000	 DCD         |g_bootCfg|
-  00088		 |$M49279|
+  00088		 |$M47118|
 
 			 ENDP  ; |SetRetailMsgMode|
 
 	EXPORT	|??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DG@FKDJCDHM@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DK@EBBOCKOO@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$FL?$AA?$CF?$AAs?$AA?$FN?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|OALBLMenuHeader|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49301| DCD	|$LN16@SetDisplay|
-	DCD	0x40002e01
+|$T47142| DCD	|$LN17@SetOPPmode|
+	DCD	0x40003501
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
@@ -2192,12 +1022,12 @@
 	DCB	0x0					; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DG@FKDJCDHM@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| DCB 0xd
+|??_C@_1DK@EBBOCKOO@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$FL?$AA?$CF?$AAs?$AA?$FN?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| DCB 0xd
 	DCB	0x0, 0xa, 0x0, " ", 0x0, "S", 0x0, "e", 0x0, "l", 0x0, "e"
 	DCB	0x0, "c", 0x0, "t", 0x0, "i", 0x0, "o", 0x0, "n", 0x0, " "
 	DCB	0x0, "(", 0x0, "a", 0x0, "c", 0x0, "t", 0x0, "u", 0x0, "a"
-	DCB	0x0, "l", 0x0, " ", 0x0, "%", 0x0, "s", 0x0, ")", 0x0, ":"
-	DCB	0x0, " ", 0x0, 0x0, 0x0			; `string'
+	DCB	0x0, "l", 0x0, " ", 0x0, "[", 0x0, "%", 0x0, "s", 0x0, "]"
+	DCB	0x0, ")", 0x0, ":", 0x0, " ", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
@@ -2207,172 +1037,40 @@
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |SetDisplayResolution| PROC
-
-; 731  : {
-
-  00000		 |$LN16@SetDisplay|
-  00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M49298|
-
-; 732  :     WCHAR key;
-; 733  :     UINT32 i;
-; 734  : 
-; 735  :     UNREFERENCED_PARAMETER(pMenu);
-; 736  :     
-; 737  :     OALBLMenuHeader(L"Select Display Resolution");
-
-  00004	e59f00a8	 ldr         r0, [pc, #0xA8]
-  00008	eb000000	 bl          OALBLMenuHeader
-  0000c	e59f409c	 ldr         r4, [pc, #0x9C]
-
-; 738  : 
-; 739  :     for (i=0; i<OMAP_RES_INVALID; i++)
-
-  00010	e3a05000	 mov         r5, #0
-  00014	e1a06004	 mov         r6, r4
-  00018		 |$LL7@SetDisplay|
-
-; 740  :     {
-; 741  :         OALLog(L" [%d] %s\r\n", i+1 , dispResMenu[i].resName);
-
-  00018	e5962004	 ldr         r2, [r6, #4]
-  0001c	e59f0088	 ldr         r0, [pc, #0x88]
-  00020	e2855001	 add         r5, r5, #1
-  00024	e1a01005	 mov         r1, r5
-  00028	eb000000	 bl          NKDbgPrintfW
-  0002c	e2866008	 add         r6, r6, #8
-  00030	e3550008	 cmp         r5, #8
-  00034	3afffff7	 bcc         |$LL7@SetDisplay|
-
-; 742  :     }
-; 743  :     OALLog(L" [0] Exit and Continue\r\n");
-
-  00038	e59f0068	 ldr         r0, [pc, #0x68]
-  0003c	eb000000	 bl          NKDbgPrintfW
-
-; 744  : 
-; 745  :     OALLog(L"\r\n Selection (actual %s): ", dispResMenu[g_bootCfg.displayRes].resName);
-
-  00040	e59f605c	 ldr         r6, [pc, #0x5C]
-  00044	e59f0054	 ldr         r0, [pc, #0x54]
-  00048	e596306c	 ldr         r3, [r6, #0x6C]
-  0004c	e0843183	 add         r3, r4, r3, lsl #3
-  00050	e5931004	 ldr         r1, [r3, #4]
-  00054	eb000000	 bl          NKDbgPrintfW
-  00058		 |$LL4@SetDisplay|
-
-; 746  :     // Get key
-; 747  :     do {
-; 748  :         key = OALBLMenuReadKey(TRUE);
-
-  00058	e3a00001	 mov         r0, #1
-  0005c	eb000000	 bl          OALBLMenuReadKey
-  00060	e1a04800	 mov         r4, r0, lsl #16
-  00064	e1a04824	 mov         r4, r4, lsr #16
-
-; 749  :     } while (key < L'0' || key > L'0' + i);    
-
-  00068	e3540030	 cmp         r4, #0x30
-  0006c	3afffff9	 bcc         |$LL4@SetDisplay|
-  00070	e2853030	 add         r3, r5, #0x30
-  00074	e1540003	 cmp         r4, r3
-  00078	8afffff6	 bhi         |$LL4@SetDisplay|
-
-; 750  :     OALLog(L"%c\r\n", key);
-
-  0007c	e59f0018	 ldr         r0, [pc, #0x18]
-  00080	e1a01004	 mov         r1, r4
-  00084	eb000000	 bl          NKDbgPrintfW
-
-; 751  :     
-; 752  :     // If user select exit don't change device
-; 753  :     if (key == L'0') return;
-
-  00088	e3540030	 cmp         r4, #0x30
-
-; 754  : 
-; 755  :     g_bootCfg.displayRes = (key - L'0' - 1);
-
-  0008c	12443031	 subne       r3, r4, #0x31
-  00090	1586306c	 strne       r3, [r6, #0x6C]
-
-; 756  : 
-; 757  : }
-
-  00094	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  00098	e12fff1e	 bx          lr
-  0009c		 |$LN17@SetDisplay|
-  0009c		 |$LN18@SetDisplay|
-  0009c	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
-  000a0		 |$LN19@SetDisplay|
-  000a0	00000000	 DCD         |??_C@_1DG@FKDJCDHM@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@|
-  000a4		 |$LN20@SetDisplay|
-  000a4	00000000	 DCD         |g_bootCfg|
-  000a8		 |$LN21@SetDisplay|
-  000a8	00000000	 DCD         |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  000ac		 |$LN22@SetDisplay|
-  000ac	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  000b0		 |$LN23@SetDisplay|
-  000b0	00000000	 DCD         |dispResMenu|
-  000b4		 |$LN24@SetDisplay|
-  000b4	00000000	 DCD         |??_C@_1DE@DBBLEEO@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAR?$AAe?$AAs?$AAo?$AAl?$AAu?$AAt?$AAi?$AAo?$AAn?$AA?$AA@|
-  000b8		 |$M49299|
-
-			 ENDP  ; |SetDisplayResolution|
-
-	EXPORT	|??_C@_1DK@EBBOCKOO@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$FL?$AA?$CF?$AAs?$AA?$FN?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|g_CPUFamily|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49324| DCD	|$LN17@SetOPPmode|
-	DCD	0x40003501
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DK@EBBOCKOO@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$FL?$AA?$CF?$AAs?$AA?$FN?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, " ", 0x0, "S", 0x0, "e", 0x0, "l", 0x0, "e"
-	DCB	0x0, "c", 0x0, "t", 0x0, "i", 0x0, "o", 0x0, "n", 0x0, " "
-	DCB	0x0, "(", 0x0, "a", 0x0, "c", 0x0, "t", 0x0, "u", 0x0, "a"
-	DCB	0x0, "l", 0x0, " ", 0x0, "[", 0x0, "%", 0x0, "s", 0x0, "]"
-	DCB	0x0, ")", 0x0, ":", 0x0, " ", 0x0, 0x0, 0x0 ; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
   00000		 |SetOPPmode| PROC
 
-; 763  : {
+; 513  : {
 
   00000		 |$LN17@SetOPPmode|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M49321|
+  00004		 |$M47139|
 
-; 764  :     WCHAR key;
-; 765  :     UINT32 i;
-; 766  :     UINT32 len = OMAP35x_OPP_NUM;
-; 767  :     OPP_MODE_MENU * pOppMenu = oppModeMenu35x;
-; 768  : 
-; 769  :     UNREFERENCED_PARAMETER(pMenu);
-; 770  :     
-; 771  :     OALBLMenuHeader(L"Select OPP Mode");
+; 514  :     WCHAR key;
+; 515  :     UINT32 i;
+; 516  :     UINT32 len = OMAP35x_OPP_NUM;
+; 517  :     OPP_MODE_MENU * pOppMenu = oppModeMenu35x;
+; 518  : 
+; 519  :     UNREFERENCED_PARAMETER(pMenu);
+; 520  :     
+; 521  :     OALBLMenuHeader(L"Select OPP Mode");
 
   00004	e59f00c4	 ldr         r0, [pc, #0xC4]
   00008	e59f40bc	 ldr         r4, [pc, #0xBC]
   0000c	e3a05006	 mov         r5, #6
   00010	eb000000	 bl          OALBLMenuHeader
 
-; 772  : 
-; 773  :     
-; 774  :     if(g_CPUFamily == CPU_FAMILY_DM37XX)
+; 522  : 
+; 523  :     
+; 524  :     if(g_CPUFamily == CPU_FAMILY_DM37XX)
 
   00014	e59f30ac	 ldr         r3, [pc, #0xAC]
 
-; 775  :     {
-; 776  :         len = OMAP37x_OPP_NUM;
-; 777  :         pOppMenu = oppModeMenu37x;
-; 778  :     }
-; 779  :     
-; 780  :     for (i=0; i<len; i++)
+; 525  :     {
+; 526  :         len = OMAP37x_OPP_NUM;
+; 527  :         pOppMenu = oppModeMenu37x;
+; 528  :     }
+; 529  :     
+; 530  :     for (i=0; i<len; i++)
 
   00018	e3a06000	 mov         r6, #0
   0001c	e5933000	 ldr         r3, [r3]
@@ -2384,8 +1082,8 @@
   00034	e1a07004	 mov         r7, r4
   00038		 |$LL7@SetOPPmode|
 
-; 781  :     {
-; 782  :         OALLog(L" [%d] %s\r\n", i+1 , pOppMenu[i].oppModeName);
+; 531  :     {
+; 532  :         OALLog(L" [%d] %s\r\n", i+1 , pOppMenu[i].oppModeName);
 
   00038	e4972004	 ldr         r2, [r7], #4
   0003c	e59f0080	 ldr         r0, [pc, #0x80]
@@ -2396,60 +1094,60 @@
   00050	3afffff8	 bcc         |$LL7@SetOPPmode|
   00054		 |$LN5@SetOPPmode|
 
-; 783  :     }
-; 784  :     OALLog(L" [0] Exit and Continue\r\n");
+; 533  :     }
+; 534  :     OALLog(L" [0] Exit and Continue\r\n");
 
   00054	e59f0064	 ldr         r0, [pc, #0x64]
   00058	eb000000	 bl          NKDbgPrintfW
 
-; 785  : 
-; 786  :     OALLog(L"\r\n Selection (actual [%s]): ", pOppMenu[g_bootCfg.opp_mode].oppModeName);
+; 535  : 
+; 536  :     OALLog(L"\r\n Selection (actual [%s]): ", pOppMenu[g_bootCfg.opp_mode].oppModeName);
 
   0005c	e59f5058	 ldr         r5, [pc, #0x58]
   00060	e59f0050	 ldr         r0, [pc, #0x50]
-  00064	e595308c	 ldr         r3, [r5, #0x8C]
+  00064	e5953088	 ldr         r3, [r5, #0x88]
   00068	e7941103	 ldr         r1, [r4, +r3, lsl #2]
   0006c	eb000000	 bl          NKDbgPrintfW
   00070	e2866030	 add         r6, r6, #0x30
   00074		 |$LL4@SetOPPmode|
 
-; 787  :     
-; 788  :     // Get key
-; 789  :     do {
-; 790  :         key = OALBLMenuReadKey(TRUE);
+; 537  :     
+; 538  :     // Get key
+; 539  :     do {
+; 540  :         key = OALBLMenuReadKey(TRUE);
 
   00074	e3a00001	 mov         r0, #1
   00078	eb000000	 bl          OALBLMenuReadKey
   0007c	e1a04800	 mov         r4, r0, lsl #16
   00080	e1a04824	 mov         r4, r4, lsr #16
 
-; 791  :     } while (key < L'0' || key > L'0' + i);    
+; 541  :     } while (key < L'0' || key > L'0' + i);    
 
   00084	e3540030	 cmp         r4, #0x30
   00088	3afffff9	 bcc         |$LL4@SetOPPmode|
   0008c	e1540006	 cmp         r4, r6
   00090	8afffff7	 bhi         |$LL4@SetOPPmode|
 
-; 792  :     OALLog(L"%c\r\n", key);
+; 542  :     OALLog(L"%c\r\n", key);
 
   00094	e59f0018	 ldr         r0, [pc, #0x18]
   00098	e1a01004	 mov         r1, r4
   0009c	eb000000	 bl          NKDbgPrintfW
 
-; 793  :     
-; 794  :     // If user select exit don't change device
-; 795  :     if (key == L'0') return;
+; 543  :     
+; 544  :     // If user select exit don't change device
+; 545  :     if (key == L'0') return;
 
   000a0	e3540030	 cmp         r4, #0x30
 
-; 796  : 
-; 797  :     g_bootCfg.opp_mode = (key - L'0' -1);
+; 546  : 
+; 547  :     g_bootCfg.opp_mode = (key - L'0' -1);
 
   000a4	12443031	 subne       r3, r4, #0x31
-  000a8	1585308c	 strne       r3, [r5, #0x8C]
+  000a8	15853088	 strne       r3, [r5, #0x88]
 
-; 798  : 
-; 799  : }
+; 548  : 
+; 549  : }
 
   000ac	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   000b0	e12fff1e	 bx          lr
@@ -2470,1219 +1168,9 @@
   000cc	00000000	 DCD         |oppModeMenu35x|
   000d0		 |$LN26@SetOPPmode|
   000d0	00000000	 DCD         |??_C@_1CA@MOPOGELI@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@|
-  000d4		 |$M49322|
+  000d4		 |$M47140|
 
 			 ENDP  ; |SetOPPmode|
-
-	IMPORT	|GPIOSetBit|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49340| DCD	|$LN5@BacklightO|
-	DCD	0x40000c01
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |BacklightON| PROC
-
-; 823  : {
-
-  00000		 |$LN5@BacklightO|
-  00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M49337|
-
-; 824  :     //HANDLE hGPIO = NULL;
-; 825  :     hGPIO = GPIOOpen();
-
-  00004	eb000000	 bl          GPIOOpen
-
-; 826  :     GPIOSetBit(hGPIO, BACKLIGHT_EN_GPIO);
-
-  00008	e59f301c	 ldr         r3, [pc, #0x1C]
-  0000c	e59fe014	 ldr         lr, [pc, #0x14]
-  00010	e1a02000	 mov         r2, r0
-  00014	e5931000	 ldr         r1, [r3]
-  00018	e58e2000	 str         r2, [lr]
-  0001c	eb000000	 bl          GPIOSetBit
-
-; 827  :     UNREFERENCED_PARAMETER(pMenu);	
-; 828  : }
-
-  00020	e49de004	 ldr         lr, [sp], #4
-  00024	e12fff1e	 bx          lr
-  00028		 |$LN6@BacklightO|
-  00028		 |$LN7@BacklightO|
-  00028	00000000	 DCD         |hGPIO|
-  0002c		 |$LN8@BacklightO|
-  0002c	00000000	 DCD         |BACKLIGHT_EN_GPIO|
-  00030		 |$M49338|
-
-			 ENDP  ; |BacklightON|
-
-	IMPORT	|GPIOClrBit|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49350| DCD	|$LN5@BacklightO@2|
-	DCD	0x40000c01
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |BacklightOFF| PROC
-
-; 831  : {
-
-  00000		 |$LN5@BacklightO@2|
-  00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M49347|
-
-; 832  :     //HANDLE hGPIO = NULL;
-; 833  :     hGPIO = GPIOOpen();
-
-  00004	eb000000	 bl          GPIOOpen
-
-; 834  :     GPIOClrBit(hGPIO, BACKLIGHT_EN_GPIO);
-
-  00008	e59f301c	 ldr         r3, [pc, #0x1C]
-  0000c	e59fe014	 ldr         lr, [pc, #0x14]
-  00010	e1a02000	 mov         r2, r0
-  00014	e5931000	 ldr         r1, [r3]
-  00018	e58e2000	 str         r2, [lr]
-  0001c	eb000000	 bl          GPIOClrBit
-
-; 835  :     UNREFERENCED_PARAMETER(pMenu);	
-; 836  : }
-
-  00020	e49de004	 ldr         lr, [sp], #4
-  00024	e12fff1e	 bx          lr
-  00028		 |$LN6@BacklightO@2|
-  00028		 |$LN7@BacklightO@2|
-  00028	00000000	 DCD         |hGPIO|
-  0002c		 |$LN8@BacklightO@2|
-  0002c	00000000	 DCD         |BACKLIGHT_EN_GPIO|
-  00030		 |$M49348|
-
-			 ENDP  ; |BacklightOFF|
-
-	EXPORT	|??_C@_1M@IDGKDCGK@?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_19EEPNDKNE@?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CA@LBCOEEPJ@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EA@MCBAEIOC@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?5?$AA?$CL?$AA?1?$AA?9?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|OALStall|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49365| DCD	|$LN16@BacklightB|
-	DCD	0x40004301
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1M@IDGKDCGK@?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?5?$AA?$AA@| DCB "%", 0x0
-	DCB	"s", 0x0, 0xd, 0x0, 0xa, 0x0, " ", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_19EEPNDKNE@?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB "%", 0x0, "s", 0x0
-	DCB	0xd, 0x0, 0xa, 0x0, 0x0, 0x0		; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CA@LBCOEEPJ@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?3?$AA?5?$AA?$AA@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, " ", 0x0, "S", 0x0, "e", 0x0, "l", 0x0, "e"
-	DCB	0x0, "c", 0x0, "t", 0x0, "i", 0x0, "o", 0x0, "n", 0x0, " "
-	DCB	0x0, ":", 0x0, " ", 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EA@MCBAEIOC@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?5?$AA?$CL?$AA?1?$AA?9?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
-	DCB	0x0, "B", 0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l", 0x0, "i"
-	DCB	0x0, "g", 0x0, "h", 0x0, "t", 0x0, " ", 0x0, "B", 0x0, "r"
-	DCB	0x0, "i", 0x0, "g", 0x0, "h", 0x0, "t", 0x0, "n", 0x0, "e"
-	DCB	0x0, "s", 0x0, "s", 0x0, " ", 0x0, "+", 0x0, "/", 0x0, "-"
-	DCB	0x0, 0x0, 0x0				; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |BacklightBrightness| PROC
-
-; 839  : {
-
-  00000		 |$LN16@BacklightB|
-  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M49362|
-
-; 840  :     
-; 841  : //    UINT32 AAT3123_Code[CODE_SIZE] = { 1, 4 , 7, 10, 13, 16, 19, 22, 25, 28, 31};
-; 842  :                                     /*{ 1, 2, 3, 4, 5, 6, 7, 8, 9,10,
-; 843  :                                        11,12,13,14,15,16,17,18,19,20,
-; 844  :                                        21,22,23,24,25,26,27,28,29,30,
-; 845  :                                        31,32};*/
-; 846  :     WCHAR key;
-; 847  : //    UINT32 i = 6;
-; 848  :     int k;
-; 849  :     //HANDLE hGPIO = NULL;
-; 850  :     hGPIO = GPIOOpen();
-
-  00004	eb000000	 bl          GPIOOpen
-  00008	e59f70f8	 ldr         r7, [pc, #0xF8]
-  0000c	e1a03000	 mov         r3, r0
-
-; 851  :     
-; 852  :     OALBLMenuHeader(L"Select Backlight Brightness +/-");
-
-  00010	e59f00ec	 ldr         r0, [pc, #0xEC]
-  00014	e5873000	 str         r3, [r7]
-  00018	eb000000	 bl          OALBLMenuHeader
-  0001c	e59f50dc	 ldr         r5, [pc, #0xDC]
-
-; 853  :     for (k=0; k< BN_EXIT ; k++)
-
-  00020	e3a04000	 mov         r4, #0
-  00024	e1a06005	 mov         r6, r5
-  00028		 |$LL8@BacklightB|
-
-; 854  :     {
-; 855  :         OALLog(L" [%d] %s\r\n", k+1,
-; 856  :                                 backlightBN[k].bnName);
-
-  00028	e5962004	 ldr         r2, [r6, #4]
-  0002c	e59f00c8	 ldr         r0, [pc, #0xC8]
-  00030	e2844001	 add         r4, r4, #1
-  00034	e1a01004	 mov         r1, r4
-  00038	eb000000	 bl          NKDbgPrintfW
-  0003c	e2866008	 add         r6, r6, #8
-  00040	e3540002	 cmp         r4, #2
-  00044	bafffff7	 blt         |$LL8@BacklightB|
-
-; 857  : 	}
-; 858  :     OALLog(L" [0] Exit and Continue\r\n");
-
-  00048	e59f00a8	 ldr         r0, [pc, #0xA8]
-  0004c	eb000000	 bl          NKDbgPrintfW
-
-; 859  :     
-; 860  :     GPIOClrBit( hGPIO, BACKLIGHT_EN_GPIO);
-
-  00050	e5951048	 ldr         r1, [r5, #0x48]
-  00054	e5970000	 ldr         r0, [r7]
-  00058	eb000000	 bl          GPIOClrBit
-
-; 861  :     OALStall(1000);
-
-  0005c	e3a00ffa	 mov         r0, #0xFA, 30
-  00060	eb000000	 bl          OALStall
-
-; 862  : 
-; 863  :     GPIOSetBit( hGPIO, BACKLIGHT_EN_GPIO);
-
-  00064	e5951048	 ldr         r1, [r5, #0x48]
-  00068	e5970000	 ldr         r0, [r7]
-  0006c	eb000000	 bl          GPIOSetBit
-
-; 864  :     OALStall(1);
-
-  00070	e3a00001	 mov         r0, #1
-  00074	eb000000	 bl          OALStall
-
-; 865  : 
-; 866  : 
-; 867  :     
-; 868  :     key = OALBLMenuReadKey(TRUE);
-
-  00078	e3a00001	 mov         r0, #1
-  0007c	eb000000	 bl          OALBLMenuReadKey
-  00080	e1a04800	 mov         r4, r0, lsl #16
-  00084	e1a04824	 mov         r4, r4, lsr #16
-
-; 869  :     // Show +/- selection
-; 870  :     if(key != L'0'){
-
-  00088	e59f6064	 ldr         r6, [pc, #0x64]
-
-; 871  :             OALLog(L"\r\n Selection : ");
-
-  0008c	e59f005c	 ldr         r0, [pc, #0x5C]
-  00090	e3540030	 cmp         r4, #0x30
-  00094	0a000009	 beq         |$LN5@BacklightB|
-  00098	eb000000	 bl          NKDbgPrintfW
-
-; 872  :         
-; 873  :         
-; 874  :        if(key == L'1'){
-; 875  :           OALLog(L"%s\r\n", backlightBN[g_bootCfg.backlighbn].bnName );
-
-  0009c	e5963078	 ldr         r3, [r6, #0x78]
-  000a0	e3540031	 cmp         r4, #0x31
-  000a4	059f0040	 ldreq       r0, [pc, #0x40]
-  000a8	e0853183	 add         r3, r5, r3, lsl #3
-  000ac	05931004	 ldreq       r1, [r3, #4]
-  000b0	0a000005	 beq         |$LN13@BacklightB|
-
-; 876  :        }else{
-; 877  :           OALLog(L"%s\r\n ", (backlightBN[(g_bootCfg.backlighbn) +1 ].bnName));
-
-  000b4	e59f002c	 ldr         r0, [pc, #0x2C]
-  000b8	e593100c	 ldr         r1, [r3, #0xC]
-
-; 878  :        }
-; 879  : 
-; 880  :         
-; 881  :            /*switch(key)
-; 882  :             {
-; 883  :             case L'1':
-; 884  :                 
-; 885  :                 GPIOClrBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 886  :                 OALStall(1000);
-; 887  : 
-; 888  :                 GPIOSetBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 889  :                 OALStall(1000);
-; 890  :                 i = AAT3123_Code[i++];
-; 891  :                 OALLog(L"\r\n i: %d, AAT3123_Code[i++]:%d.",i ,AAT3123_Code[i]);
-; 892  :                 if(AAT3123_Code[i] > 31){
-; 893  :                     OALLog(L"\r\n Brightness is the largest. ");
-; 894  :                 }else{
-; 895  :                     OALLog(L"\r\n Brightness increased.");
-; 896  :                 }
-; 897  :                 break;
-; 898  :             case L'2':
-; 899  :                 
-; 900  :                 GPIOClrBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 901  :                 OALStall(1000);
-; 902  : 
-; 903  :                 GPIOSetBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 904  :                 OALStall(1000);
-; 905  :                 i = AAT3123_Code[i--];
-; 906  :                 if(AAT3123_Code[i] < 1){
-; 907  :                     OALLog(L"\r\n Brightness is the lowest.");
-; 908  :                 }else{
-; 909  :                     OALLog(L"\r\n Brightness  decreased.");
-; 910  :                 }
-; 911  :                 break;
-; 912  :             case L'0':
-; 913  :                // goto stop;
-; 914  :                break;
-; 915  :             }*/
-; 916  :      }else{ /*(key == L'0'){*/
-
-  000bc	ea000002	 b           |$LN13@BacklightB|
-  000c0		 |$LN5@BacklightB|
-
-; 917  :         OALLog(L"\r\n Selection : ");
-
-  000c0	eb000000	 bl          NKDbgPrintfW
-
-; 918  :         OALLog(L"%c\r\n", key);
-
-  000c4	e59f0018	 ldr         r0, [pc, #0x18]
-  000c8	e3a01030	 mov         r1, #0x30
-  000cc		 |$LN13@BacklightB|
-  000cc	eb000000	 bl          NKDbgPrintfW
-
-; 919  :      }
-; 920  :    
-; 921  :     //key = OALBLMenuReadKey(TRUE);
-; 922  :     
-; 923  :     /*do{
-; 924  :         key = OALBLMenuReadKey(TRUE);
-; 925  :         
-; 926  :     }while (key != L'0');*/
-; 927  : 
-; 928  :     /*if(key == L'0'){
-; 929  :         OALLog(L"\r\n Selection : ");
-; 930  :         OALLog(L"%c\r\n", key);
-; 931  :     }*/
-; 932  : 
-; 933  :     
-; 934  :     
-; 935  :    //do{
-; 936  :      // key = OALBLMenuReadKey(TRUE);
-; 937  :       //OALLog(L"%c\r\n", key);
-; 938  :      /* switch(key)
-; 939  :         {
-; 940  :             case L'1':
-; 941  :                 
-; 942  :                 GPIOClrBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 943  :                 OALStall(1000);
-; 944  : 
-; 945  :                 GPIOSetBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 946  :                 OALStall(1000);
-; 947  :                 i = AAT3123_Code[i++];
-; 948  :                 OALLog(L"\r\n i: %d, AAT3123_Code[i++]:%d.",i ,AAT3123_Code[i]);
-; 949  :                 if(AAT3123_Code[i] > 31){
-; 950  :                     OALLog(L"\r\n Brightness is the largest. ");
-; 951  :                 }else{
-; 952  :                     OALLog(L"\r\n Brightness increased.");
-; 953  :                 }
-; 954  :                 break;
-; 955  :             case L'2':
-; 956  :                 
-; 957  :                 GPIOClrBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 958  :                 OALStall(1000);
-; 959  : 
-; 960  :                 GPIOSetBit( hGPIO, BACKLIGHT_EN_GPIO);
-; 961  :                 OALStall(1000);
-; 962  :                 i = AAT3123_Code[i--];
-; 963  :                 if(AAT3123_Code[i] < 1){
-; 964  :                     OALLog(L"\r\n Brightness is the lowest.");
-; 965  :                 }else{
-; 966  :                     OALLog(L"\r\n Brightness  decreased.");
-; 967  :                 }
-; 968  :                 break;
-; 969  :             
-; 970  :         }*/
-; 971  :    //}while(key != L'0');
-; 972  : 
-; 973  :    //OALLog(L"%c\r\n", key);
-; 974  :    UNREFERENCED_PARAMETER(pMenu);
-; 975  : //stop:
-; 976  :    if (key == L'0') return;
-
-  000d0	e3540030	 cmp         r4, #0x30
-
-; 977  :    g_bootCfg.backlighbn = (key - L'0' - 1);
-
-  000d4	12443031	 subne       r3, r4, #0x31
-  000d8	15863078	 strne       r3, [r6, #0x78]
-
-; 978  : }
-
-  000dc	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  000e0	e12fff1e	 bx          lr
-  000e4		 |$LN17@BacklightB|
-  000e4		 |$LN18@BacklightB|
-  000e4	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
-  000e8		 |$LN19@BacklightB|
-  000e8	00000000	 DCD         |??_C@_1M@IDGKDCGK@?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?5?$AA?$AA@|
-  000ec		 |$LN20@BacklightB|
-  000ec	00000000	 DCD         |??_C@_19EEPNDKNE@?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  000f0		 |$LN21@BacklightB|
-  000f0	00000000	 DCD         |??_C@_1CA@LBCOEEPJ@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?3?$AA?5?$AA?$AA@|
-  000f4		 |$LN22@BacklightB|
-  000f4	00000000	 DCD         |g_bootCfg|
-  000f8		 |$LN23@BacklightB|
-  000f8	00000000	 DCD         |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  000fc		 |$LN24@BacklightB|
-  000fc	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  00100		 |$LN25@BacklightB|
-  00100	00000000	 DCD         |backlightBN|
-  00104		 |$LN26@BacklightB|
-  00104	00000000	 DCD         |??_C@_1EA@MCBAEIOC@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?5?$AA?$CL?$AA?1?$AA?9?$AA?$AA@|
-  00108		 |$LN27@BacklightB|
-  00108	00000000	 DCD         |hGPIO|
-  0010c		 |$M49363|
-
-			 ENDP  ; |BacklightBrightness|
-
-	EXPORT	|??_C@_1BG@EBHIGBFG@?$AA?5?$AA?$FL?$AA?$CF?$AAc?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DA@BOLJNFCB@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAO?$AAN?$AA?1?$AAO?$AAF?$AAF?$AA?$AA@| [ DATA ] ; `string'
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49399| DCD	|$LN31@SetBacklig|
-	DCD	0x40003401
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BG@EBHIGBFG@?$AA?5?$AA?$FL?$AA?$CF?$AAc?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, "[", 0x0, "%", 0x0, "c", 0x0, "]", 0x0, " ", 0x0, "%"
-	DCB	0x0, "s", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DA@BOLJNFCB@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAO?$AAN?$AA?1?$AAO?$AAF?$AAF?$AA?$AA@| DCB "S"
-	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
-	DCB	0x0, "B", 0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l", 0x0, "i"
-	DCB	0x0, "g", 0x0, "h", 0x0, "t", 0x0, " ", 0x0, "O", 0x0, "N"
-	DCB	0x0, "/", 0x0, "O", 0x0, "F", 0x0, "F", 0x0, 0x0, 0x0 ; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |SetBacklight| PROC
-
-; 983  : {
-
-  00000		 |$LN31@SetBacklig|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49396|
-  00004	e59f50c0	 ldr         r5, [pc, #0xC0]
-  00008		 |$LL13@SetBacklig|
-
-; 984  :     //OALBLMenuShow(&g_menuBrightness);
-; 985  :     OAL_BLMENU_ITEM *pBnItem;
-; 986  :     WCHAR key;
-; 987  :     //UINT32 i;
-; 988  :     const int running = 1;
-; 989  : 	//HANDLE hGPIO;
-; 990  :    
-; 991  :     while(running)
-; 992  :     {
-; 993  :         OALBLMenuHeader(L"Select Backlight ON/OFF");
-
-  00008	e59f00b8	 ldr         r0, [pc, #0xB8]
-  0000c	eb000000	 bl          OALBLMenuHeader
-
-; 994  : 
-; 995  :         // Print menu items [1]~[3], Ray 13-09-23 
-; 996  :         for (pBnItem = g_menuBrightness; pBnItem->key != L'0'; pBnItem++) {
-
-  00010	e1d530b0	 ldrh        r3, [r5]
-  00014	e1a04005	 mov         r4, r5
-  00018	ea000004	 b           |$LN27@SetBacklig|
-  0001c		 |$LL11@SetBacklig|
-
-; 997  :             OALLog(L" [%c] %s\r\n", pBnItem->key, pBnItem->text);
-
-  0001c	e5942004	 ldr         r2, [r4, #4]
-  00020	e59f009c	 ldr         r0, [pc, #0x9C]
-  00024	e1a01003	 mov         r1, r3
-  00028	eb000000	 bl          NKDbgPrintfW
-  0002c	e1f431b8	 ldrh        r3, [r4, #0x18]!
-  00030		 |$LN27@SetBacklig|
-  00030	e3530030	 cmp         r3, #0x30
-  00034	1afffff8	 bne         |$LL11@SetBacklig|
-
-; 998  :         }
-; 999  :         OALLog(L" [0] Exit and Continue\r\n"); 
-
-  00038	e59f0080	 ldr         r0, [pc, #0x80]
-  0003c	eb000000	 bl          NKDbgPrintfW
-
-; 1000 :         OALLog(L"\r\n Selection : ");
-
-  00040	e59f0074	 ldr         r0, [pc, #0x74]
-  00044	eb000000	 bl          NKDbgPrintfW
-  00048		 |$LL8@SetBacklig|
-
-; 1001 : 
-; 1002 :         while(running)
-; 1003 :         {
-; 1004 :            // Get key
-; 1005 :             key = OALBLMenuReadKey(TRUE);
-
-  00048	e3a00001	 mov         r0, #1
-  0004c	eb000000	 bl          OALBLMenuReadKey
-
-; 1006 :             // Look for key in menu
-; 1007 :             for (pBnItem = g_menuBrightness; pBnItem->key != 0; pBnItem++) {
-
-  00050	e1a02800	 mov         r2, r0, lsl #16
-  00054	e1d530b0	 ldrh        r3, [r5]
-  00058	e1a02822	 mov         r2, r2, lsr #16
-  0005c	e1a04005	 mov         r4, r5
-  00060	ea000002	 b           |$LN28@SetBacklig|
-  00064		 |$LL6@SetBacklig|
-
-; 1008 :                 if (pBnItem->key == key)  
-
-  00064	e1530002	 cmp         r3, r2
-  00068	0a000002	 beq         |$LN26@SetBacklig|
-  0006c	e1f431b8	 ldrh        r3, [r4, #0x18]!
-  00070		 |$LN28@SetBacklig|
-  00070	e3530000	 cmp         r3, #0
-  00074	1afffffa	 bne         |$LL6@SetBacklig|
-  00078		 |$LN26@SetBacklig|
-
-; 1009 :                     break;
-; 1010 :             }
-; 1011 :             //If we find it, break loop
-; 1012 :             if (pBnItem->key != 0) 
-
-  00078	e1d430b0	 ldrh        r3, [r4]
-  0007c	e3530000	 cmp         r3, #0
-  00080	0afffff0	 beq         |$LL8@SetBacklig|
-
-; 1013 :                 break;
-; 1014 :         }
-; 1015 : 
-; 1016 :         // Show ON/OFF selection
-; 1017 :     	 OALLog(L"%c\r\n", pBnItem->key);
-
-  00084	e59f002c	 ldr         r0, [pc, #0x2C]
-  00088	e1a01803	 mov         r1, r3, lsl #16
-  0008c	e1a01821	 mov         r1, r1, lsr #16
-  00090	eb000000	 bl          NKDbgPrintfW
-
-; 1018 : 	    
-; 1019 : 	    // When action is NULL return back to parent menu
-; 1020 :         if (pBnItem->pfnAction == NULL) break;
-
-  00094	e5943008	 ldr         r3, [r4, #8]
-  00098	e3530000	 cmp         r3, #0
-  0009c	0a000003	 beq         |$LN22@SetBacklig|
-
-; 1021 :         
-; 1022 :         // Else call menu action(function pointer)
-; 1023 :         pBnItem->pfnAction(pBnItem);
-
-  000a0	e1a00004	 mov         r0, r4
-  000a4	e1a0e00f	 mov         lr, pc
-  000a8	e12fff13	 bx          r3
-  000ac	eaffffd5	 b           |$LL13@SetBacklig|
-  000b0		 |$LN22@SetBacklig|
-
-; 1024 :    }	
-; 1025 :    
-; 1026 : 
-; 1027 :     /*for (i=0; i<BACKLIGHT_EXIT; i++)
-; 1028 :     {
-; 1029 :         OALLog(L" [%d] %s\r\n", i+1, disBacklight[i].blName);
-; 1030 : 	}
-; 1031 :     OALLog(L" [0] Exit and Continue\r\n");*/
-; 1032 : 	
-; 1033 : 	//OALLog(L"\r\n Selection : [%s] ", disBacklight[g_bootCfg.backlight].blName);
-; 1034 : 	//OALLog(L"\r\n Selection : ");
-; 1035 :     // Get key
-; 1036 :    /* do {
-; 1037 :         key = OALBLMenuReadKey(TRUE);
-; 1038 :     } while (key < L'0' || key > L'0' + i);*/ 
-; 1039 : 	
-; 1040 : 	
-; 1041 : 	// Show ON/OFF selection
-; 1042 : 	//OALLog(L"%c\r\n", key);
-; 1043 : 	
-; 1044 : 	//ON/OFF Backlight action.
-; 1045 : 	//hGPIO = GPIOOpen();
-; 1046 : 
-; 1047 : 	/*switch(key)
-; 1048 : 	{
-; 1049 : 		case L'1':
-; 1050 :             BacklightNO(hGPIO);
-; 1051 : 			//GPIOSetBit(hGPIO, 61);
-; 1052 : 			break;
-; 1053 : 		case L'2':
-; 1054 :             BacklightOFF(hGPIO);
-; 1055 : 			//GPIOClrBit(hGPIO, 61);
-; 1056 :         case L'3':
-; 1057 :             //.........
-; 1058 :             BacklightBrightness(hGPIO);
-; 1059 : 			break;
-; 1060 : 		default:
-; 1061 : 			break;
-; 1062 : 	}*/
-; 1063 : 	/*if(key == L'2'){
-; 1064 : 		GPIOClrBit(hGPIO, 61);
-; 1065 : 	}else{
-; 1066 : 		GPIOSetBit(hGPIO, 61);
-; 1067 : 	}*/
-; 1068 :     
-; 1069 : 	// If user select exit don't any change device
-; 1070 :     //if (key == L'0') return;
-; 1071 :      UNREFERENCED_PARAMETER(pMenu);
-; 1072 :     //g_bootCfg.backlight = (key - L'0' - 1);
-; 1073 : }
-
-  000b0	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  000b4	e12fff1e	 bx          lr
-  000b8		 |$LN32@SetBacklig|
-  000b8		 |$LN33@SetBacklig|
-  000b8	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
-  000bc		 |$LN34@SetBacklig|
-  000bc	00000000	 DCD         |??_C@_1CA@LBCOEEPJ@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?3?$AA?5?$AA?$AA@|
-  000c0		 |$LN35@SetBacklig|
-  000c0	00000000	 DCD         |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  000c4		 |$LN36@SetBacklig|
-  000c4	00000000	 DCD         |??_C@_1BG@EBHIGBFG@?$AA?5?$AA?$FL?$AA?$CF?$AAc?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  000c8		 |$LN37@SetBacklig|
-  000c8	00000000	 DCD         |??_C@_1DA@BOLJNFCB@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAO?$AAN?$AA?1?$AAO?$AAF?$AAF?$AA?$AA@|
-  000cc		 |$LN38@SetBacklig|
-  000cc	00000000	 DCD         |g_menuBrightness|
-  000d0		 |$M49397|
-
-			 ENDP  ; |SetBacklight|
-
-	EXPORT	|??_C@_1BI@CCBAMNMF@?$AA?5?$AAR?$AAe?$AAa?$AAd?$AAi?$AAn?$AAg?$AA?5?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CA@ILICILPM@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAR?$AAe?$AAa?$AAd?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BI@JJGNKHCB@?$AA?5?$AAW?$AAr?$AAi?$AAt?$AAi?$AAn?$AAg?$AA?5?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CG@BPLJMLOC@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAW?$AAr?$AAi?$AAt?$AAt?$AAe?$AAn?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_17FHEBOJIN@?$AA?$CF?$AAc?$AA?$AN?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1FG@GGAKBCDG@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAf?$AAr?$AAo?$AAm?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr@| [ DATA ] ; `string'
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49420| DCD	|$LN27@SDtoFlash|
-	DCD	0x40003a01
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BI@CCBAMNMF@?$AA?5?$AAR?$AAe?$AAa?$AAd?$AAi?$AAn?$AAg?$AA?5?$AA?3?$AA?5?$AA?$AA@| DCB " "
-	DCB	0x0, "R", 0x0, "e", 0x0, "a", 0x0, "d", 0x0, "i", 0x0, "n"
-	DCB	0x0, "g", 0x0, " ", 0x0, ":", 0x0, " ", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CA@ILICILPM@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAR?$AAe?$AAa?$AAd?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?6?$AA?$AA@| DCB "F"
-	DCB	0x0, "i", 0x0, "l", 0x0, "e", 0x0, " ", 0x0, "R", 0x0, "e"
-	DCB	0x0, "a", 0x0, "d", 0x0, " ", 0x0, "o", 0x0, "k", 0x0, "!"
-	DCB	0x0, "!", 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BI@JJGNKHCB@?$AA?5?$AAW?$AAr?$AAi?$AAt?$AAi?$AAn?$AAg?$AA?5?$AA?3?$AA?5?$AA?$AA@| DCB " "
-	DCB	0x0, "W", 0x0, "r", 0x0, "i", 0x0, "t", 0x0, "i", 0x0, "n"
-	DCB	0x0, "g", 0x0, " ", 0x0, ":", 0x0, " ", 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CG@BPLJMLOC@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAW?$AAr?$AAi?$AAt?$AAt?$AAe?$AAn?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?6?$AA?$AA@| DCB "F"
-	DCB	0x0, "i", 0x0, "l", 0x0, "e", 0x0, " ", 0x0, "W", 0x0, "r"
-	DCB	0x0, "i", 0x0, "t", 0x0, "t", 0x0, "e", 0x0, "n", 0x0, " "
-	DCB	0x0, "o", 0x0, "k", 0x0, "!", 0x0, "!", 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_17FHEBOJIN@?$AA?$CF?$AAc?$AA?$AN?$AA?$AA@| DCB "%", 0x0, "c", 0x0, 0xd
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1FG@GGAKBCDG@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAf?$AAr?$AAo?$AAm?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr@| DCB "S"
-	DCB	0x0, "e", 0x0, "l", 0x0, "e", 0x0, "c", 0x0, "t", 0x0, " "
-	DCB	0x0, "F", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, " ", 0x0, "T"
-	DCB	0x0, "r", 0x0, "a", 0x0, "n", 0x0, "s", 0x0, "f", 0x0, "e"
-	DCB	0x0, "r", 0x0, " ", 0x0, "f", 0x0, "r", 0x0, "o", 0x0, "m"
-	DCB	0x0, " ", 0x0, "S", 0x0, "D", 0x0, " ", 0x0, "C", 0x0, "a"
-	DCB	0x0, "r", 0x0, "d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "F", 0x0, "l", 0x0, "a", 0x0, "s", 0x0, "h", 0x0, 0x0
-	DCB	0x0					; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |SDtoFlash| PROC
-
-; 1079 : {
-
-  00000		 |$LN27@SDtoFlash|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49417|
-
-; 1080 : 	WCHAR key;
-; 1081 : 	UINT32 i;
-; 1082 : //	BOOL read;
-; 1083 : //  BOOL write;
-; 1084 : 	BOOL check = TRUE;
-; 1085 : //  char size[500];
-; 1086 : //  OAL_BLMENU_ITEM dumpFlashBuFunc;
-; 1087 : //	int ch;
-; 1088 : 	
-; 1089 : 	//This function Initial SD Card file prepare file R/W
-; 1090 : 	//pRead =
-; 1091 : 	//BLSDtoFlash();
-; 1092 : 	//check = BLSDCardToFlash(L"OUT_DATA.txt");
-; 1093 : 	//read = BLSDtoFlash();
-; 1094 :     //OEMWriteFlash(IMAGE_STARTUP_IMAGE_PA,
-; 1095 :     //? Ray 13-09-16 
-; 1096 :     /*write = WriteFlashFromEEBOOT(IMAGE_STARTUP_IMAGE_PA,
-; 1097 :                          IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_CODE_SIZE+
-; 1098 :                          IMAGE_BOOTLOADER_BITMAP_SIZE + 8);*/
-; 1099 : 
-; 1100 :     /*write = WriteFlashNK(IMAGE_STARTUP_IMAGE_PA,
-; 1101 :                          IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_CODE_SIZE+
-; 1102 :                          IMAGE_BOOTLOADER_BITMAP_SIZE + 8);*/
-; 1103 : 
-; 1104 :     //pRead  = fopen("c:/wince600/file/output_data.txt", "r");
-; 1105 : 	//pWrite = fopen("c:/wince600/file/input_data.txt", "w");
-; 1106 : 	
-; 1107 : 	UNREFERENCED_PARAMETER(pMenu);
-; 1108 : 	OALBLMenuHeader(L"Select File Transfer from SD Card to Flash");
-
-  00004	e59f00d8	 ldr         r0, [pc, #0xD8]
-  00008	eb000000	 bl          OALBLMenuHeader
-  0000c	e59f40cc	 ldr         r4, [pc, #0xCC]
-
-; 1109 : 
-; 1110 : 	for(i=0; i<FLASH_EXIT; i++){
-
-  00010	e3a05000	 mov         r5, #0
-  00014		 |$LL17@SDtoFlash|
-
-; 1111 : 		OALLog(L" [%d] %s\r\n", i+1, sdToFlash[i].sdName);
-
-  00014	e5942004	 ldr         r2, [r4, #4]
-  00018	e59f00bc	 ldr         r0, [pc, #0xBC]
-  0001c	e2855001	 add         r5, r5, #1
-  00020	e1a01005	 mov         r1, r5
-  00024	eb000000	 bl          NKDbgPrintfW
-  00028	e2844008	 add         r4, r4, #8
-  0002c	e3550003	 cmp         r5, #3
-  00030	3afffff7	 bcc         |$LL17@SDtoFlash|
-
-; 1112 : 	}
-; 1113 : 	OALLog(L" [0] Exit and Continue\r\n");
-
-  00034	e59f009c	 ldr         r0, [pc, #0x9C]
-  00038	eb000000	 bl          NKDbgPrintfW
-
-; 1114 : 
-; 1115 : 	OALLog(L"\r\n Selection : ");
-
-  0003c	e59f0090	 ldr         r0, [pc, #0x90]
-  00040	eb000000	 bl          NKDbgPrintfW
-  00044		 |$LL14@SDtoFlash|
-
-; 1116 : 	
-; 1117 : 	do{
-; 1118 : 		key = OALBLMenuReadKey(TRUE);
-
-  00044	e3a00001	 mov         r0, #1
-  00048	eb000000	 bl          OALBLMenuReadKey
-  0004c	e1a04800	 mov         r4, r0, lsl #16
-  00050	e1a04824	 mov         r4, r4, lsr #16
-
-; 1119 : 	}while(key < L'0' || key > '0'+i);
-
-  00054	e3540030	 cmp         r4, #0x30
-  00058	3afffff9	 bcc         |$LL14@SDtoFlash|
-  0005c	e2853030	 add         r3, r5, #0x30
-  00060	e1540003	 cmp         r4, r3
-  00064	8afffff6	 bhi         |$LL14@SDtoFlash|
-
-; 1120 : 
-; 1121 :     /*if(key < L'0' || key > '0'+2){
-; 1122 :         break;
-; 1123 :     }else if (key == '3'){
-; 1124 : 
-; 1125 :     }*/
-; 1126 : 
-; 1127 : 	OALLog(L"%c\r", key);
-
-  00068	e59f0060	 ldr         r0, [pc, #0x60]
-  0006c	e1a01004	 mov         r1, r4
-  00070	eb000000	 bl          NKDbgPrintfW
-
-; 1128 : 	
-; 1129 : 	switch(key)
-
-  00074	e3540031	 cmp         r4, #0x31
-  00078	0a000005	 beq         |$LN9@SDtoFlash|
-  0007c	e3540032	 cmp         r4, #0x32
-  00080	1a000007	 bne         |$LN7@SDtoFlash|
-
-; 1136 :             }else{
-; 1137 : 				OALLog(L"File Read failure!!\n");
-; 1138 : 			} 
-; 1139 : 			
-; 1140 : 			/*if((pRead != NULL) && (pWrite!= NULL))
-; 1141 : 			{
-; 1142 : 				OALLog(L"\tReading: \r");
-; 1143 : 				while((ch = getc(pWrite)) != EOF)
-; 1144 : 				{
-; 1145 : 					OALLog(L"%c,\r\n", ch);
-; 1146 : 				}
-; 1147 : 				OALLog(L"\rFile Read end!!\n");
-; 1148 : 				fclose(pRead);
-; 1149 : 				fclose(pWrite);
-; 1150 : 			}else{
-; 1151 : 				OALLog(L"\rFile Read failure!!\n");
-; 1152 : 			}*/
-; 1153 : 			break;
-; 1154 : 		case L'2':                  //Ray 13-09-14
-; 1155 :             OALLog(L" Writing : ");
-
-  00084	e59f0040	 ldr         r0, [pc, #0x40]
-  00088	eb000000	 bl          NKDbgPrintfW
-
-; 1156 :             
-; 1157 :             if(/*write ==*/ check){
-; 1158 :                 OALLog(L"File Written ok!!\n");
-
-  0008c	e59f0034	 ldr         r0, [pc, #0x34]
-
-; 1159 :             }else{  
-; 1160 :                 OALLog(L"File Write failure!!\n");
-; 1161 :             }
-; 1162 :          
-; 1163 :             /*if((pRead != NULL) && (pWrite!= NULL))
-; 1164 : 			{
-; 1165 : 				while( (ch = getc(pRead)) != EOF)
-; 1166 : 				{
-; 1167 : 					putc(ch, pWrite);
-; 1168 : 				}
-; 1169 : 				OALLog(L"\rFile Write end!!\n");
-; 1170 : 			}else{
-; 1171 : 				OALLog(L"\rFile Read failure!!\n");
-; 1172 : 			}*/
-; 1173 : 			break;
-
-  00090	ea000002	 b           |$LN24@SDtoFlash|
-  00094		 |$LN9@SDtoFlash|
-
-; 1130 : 	{
-; 1131 : 		case L'1':
-; 1132 :             OALLog(L" Reading : ");
-
-  00094	e59f0028	 ldr         r0, [pc, #0x28]
-  00098	eb000000	 bl          NKDbgPrintfW
-
-; 1133 :             
-; 1134 : 			if(/*read==*/check){
-; 1135 : 				OALLog(L"File Read ok!!\n");
-
-  0009c	e59f001c	 ldr         r0, [pc, #0x1C]
-  000a0		 |$LN24@SDtoFlash|
-  000a0	eb000000	 bl          NKDbgPrintfW
-  000a4		 |$LN7@SDtoFlash|
-
-; 1174 :        case L'3':
-; 1175 :             //OALLog(L" Show .nb0 Data : ");
-; 1176 :             //VOID DumpFlash(OAL_BLMENU_ITEM *pMenu)
-; 1177 :             //dumpFlashBuFunc.pfnAction = DumpFlashBuffer;//dumpFlashBufer;
-; 1178 :             //dumpFlashBuFunc.pfnAction = DumpFlashBuffer; 
-; 1179 :             break;
-; 1180 : 		default:break;
-; 1181 : 	}
-; 1182 : 		
-; 1183 : 	// If user select exit, don't any change device		//Ray 13-09-04	
-; 1184 : 	if(key == L'0')return;
-
-  000a4	e3540030	 cmp         r4, #0x30
-
-; 1185 : 
-; 1186 : 	//Call ShowSettings() , show current settings status
-; 1187 : 	g_bootCfg.sdtoflash = (key - L'0' - 1);
-
-  000a8	159f200c	 ldrne       r2, [pc, #0xC]
-  000ac	12443031	 subne       r3, r4, #0x31
-  000b0	15823074	 strne       r3, [r2, #0x74]
-
-; 1188 : }
-
-  000b4	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  000b8	e12fff1e	 bx          lr
-  000bc		 |$LN28@SDtoFlash|
-  000bc		 |$LN29@SDtoFlash|
-  000bc	00000000	 DCD         |g_bootCfg|
-  000c0		 |$LN30@SDtoFlash|
-  000c0	00000000	 DCD         |??_C@_1CA@ILICILPM@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAR?$AAe?$AAa?$AAd?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?6?$AA?$AA@|
-  000c4		 |$LN31@SDtoFlash|
-  000c4	00000000	 DCD         |??_C@_1BI@CCBAMNMF@?$AA?5?$AAR?$AAe?$AAa?$AAd?$AAi?$AAn?$AAg?$AA?5?$AA?3?$AA?5?$AA?$AA@|
-  000c8		 |$LN32@SDtoFlash|
-  000c8	00000000	 DCD         |??_C@_1CG@BPLJMLOC@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAW?$AAr?$AAi?$AAt?$AAt?$AAe?$AAn?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?6?$AA?$AA@|
-  000cc		 |$LN33@SDtoFlash|
-  000cc	00000000	 DCD         |??_C@_1BI@JJGNKHCB@?$AA?5?$AAW?$AAr?$AAi?$AAt?$AAi?$AAn?$AAg?$AA?5?$AA?3?$AA?5?$AA?$AA@|
-  000d0		 |$LN34@SDtoFlash|
-  000d0	00000000	 DCD         |??_C@_17FHEBOJIN@?$AA?$CF?$AAc?$AA?$AN?$AA?$AA@|
-  000d4		 |$LN35@SDtoFlash|
-  000d4	00000000	 DCD         |??_C@_1CA@LBCOEEPJ@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?3?$AA?5?$AA?$AA@|
-  000d8		 |$LN36@SDtoFlash|
-  000d8	00000000	 DCD         |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  000dc		 |$LN37@SDtoFlash|
-  000dc	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  000e0		 |$LN38@SDtoFlash|
-  000e0	00000000	 DCD         |sdToFlash|
-  000e4		 |$LN39@SDtoFlash|
-  000e4	00000000	 DCD         |??_C@_1FG@GGAKBCDG@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAf?$AAr?$AAo?$AAm?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr@|
-  000e8		 |$M49418|
-
-			 ENDP  ; |SDtoFlash|
-
-	EXPORT	|??_C@_1CM@IBBBDEFC@?$AAL?$AAC?$AAM?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAh?$AAe?$AAc?$AAk?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|LcdStall|
-	IMPORT	|FillASCII|
-	IMPORT	|spi_Low|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49445| DCD	|$LN21@LCMInitial|
-	DCD	0x40003401
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@IBBBDEFC@?$AAL?$AAC?$AAM?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAh?$AAe?$AAc?$AAk?$AA?$AA@| DCB "L"
-	DCB	0x0, "C", 0x0, "M", 0x0, " ", 0x0, "I", 0x0, "n", 0x0, "i"
-	DCB	0x0, "t", 0x0, "i", 0x0, "a", 0x0, "l", 0x0, " ", 0x0, "a"
-	DCB	0x0, "n", 0x0, "d", 0x0, " ", 0x0, "C", 0x0, "h", 0x0, "e"
-	DCB	0x0, "c", 0x0, "k", 0x0, 0x0, 0x0	; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |LCMInitial| PROC
-
-; 1194 : {
-
-  00000		 |$LN21@LCMInitial|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49442|
-
-; 1195 :     WCHAR key;
-; 1196 :     UINT32 i;
-; 1197 :     DWORD dTime = 10000000;
-; 1198 : 
-; 1199 :     UNREFERENCED_PARAMETER(pMenu);
-; 1200 :     
-; 1201 :     OALBLMenuHeader(L"LCM Initial and Check");
-
-  00004	e59f00c0	 ldr         r0, [pc, #0xC0]
-  00008	eb000000	 bl          OALBLMenuHeader
-  0000c	e59f40b4	 ldr         r4, [pc, #0xB4]
-
-; 1202 :     
-; 1203 :     for (i=0; i<LCM_EXIT; i++)
-
-  00010	e3a05000	 mov         r5, #0
-  00014		 |$LL12@LCMInitial|
-
-; 1204 :     {
-; 1205 :         OALLog(L" [%d] %s\r\n", i+1 , LCMInitiaArray[i].lcmIniName);
-
-  00014	e5942004	 ldr         r2, [r4, #4]
-  00018	e59f00a4	 ldr         r0, [pc, #0xA4]
-  0001c	e2855001	 add         r5, r5, #1
-  00020	e1a01005	 mov         r1, r5
-  00024	eb000000	 bl          NKDbgPrintfW
-  00028	e2844008	 add         r4, r4, #8
-  0002c	e3550002	 cmp         r5, #2
-  00030	3afffff7	 bcc         |$LL12@LCMInitial|
-
-; 1206 :     }
-; 1207 :     OALLog(L" [0] Exit and Continue\r\n");
-
-  00034	e59f0084	 ldr         r0, [pc, #0x84]
-  00038	eb000000	 bl          NKDbgPrintfW
-
-; 1208 : 
-; 1209 :     OALLog(L"\r\n Selection : ");
-
-  0003c	e59f0078	 ldr         r0, [pc, #0x78]
-  00040	eb000000	 bl          NKDbgPrintfW
-  00044		 |$LL9@LCMInitial|
-
-; 1210 :     // Get key
-; 1211 :     do {
-; 1212 :         key = OALBLMenuReadKey(TRUE);
-
-  00044	e3a00001	 mov         r0, #1
-  00048	eb000000	 bl          OALBLMenuReadKey
-  0004c	e1a04800	 mov         r4, r0, lsl #16
-  00050	e1a04824	 mov         r4, r4, lsr #16
-
-; 1213 :     } while (key < L'0' || key > L'0'+ i);
-
-  00054	e3540030	 cmp         r4, #0x30
-  00058	3afffff9	 bcc         |$LL9@LCMInitial|
-  0005c	e2853030	 add         r3, r5, #0x30
-  00060	e1540003	 cmp         r4, r3
-  00064	8afffff6	 bhi         |$LL9@LCMInitial|
-
-; 1214 :     
-; 1215 :     OALLog(L"%c\r\n", key);
-
-  00068	e59f0048	 ldr         r0, [pc, #0x48]
-  0006c	e1a01004	 mov         r1, r4
-  00070	eb000000	 bl          NKDbgPrintfW
-
-; 1216 : 
-; 1217 : 
-; 1218 :     switch(key)
-
-  00074	e3540031	 cmp         r4, #0x31
-  00078	0a000003	 beq         |$LN4@LCMInitial|
-  0007c	e3540032	 cmp         r4, #0x32
-  00080	1a000004	 bne         |$LN5@LCMInitial|
-
-; 1224 : 			break;
-; 1225 : 		case L'2':
-; 1226 :             spi_Low();
-
-  00084	eb000000	 bl          spi_Low
-
-; 1227 :             break;
-
-  00088	ea000002	 b           |$LN5@LCMInitial|
-  0008c		 |$LN4@LCMInitial|
-
-; 1219 : 	{
-; 1220 : 		case L'1':
-; 1221 : 		    FillASCII();
-
-  0008c	eb000000	 bl          FillASCII
-
-; 1222 :             //LCD_SPI_Init();
-; 1223 :             LcdStall(dTime);
-
-  00090	e59f001c	 ldr         r0, [pc, #0x1C]
-  00094	eb000000	 bl          LcdStall
-  00098		 |$LN5@LCMInitial|
-
-; 1228 : 		default:
-; 1229 : 			break;
-; 1230 : 	}
-; 1231 :     
-; 1232 :     // If user select exit don't change device
-; 1233 :     if (key == L'0') return;
-
-  00098	e3540030	 cmp         r4, #0x30
-
-; 1234 : 
-; 1235 :     g_bootCfg.lcmInitial = (key - L'0' - 1);
-
-  0009c	159f200c	 ldrne       r2, [pc, #0xC]
-  000a0	12443031	 subne       r3, r4, #0x31
-  000a4	1582307c	 strne       r3, [r2, #0x7C]
-
-; 1236 : 
-; 1237 : }
-
-  000a8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  000ac	e12fff1e	 bx          lr
-  000b0		 |$LN22@LCMInitial|
-  000b0		 |$LN23@LCMInitial|
-  000b0	00000000	 DCD         |g_bootCfg|
-  000b4		 |$LN24@LCMInitial|
-  000b4	00989680	 DCD         0x989680
-  000b8		 |$LN25@LCMInitial|
-  000b8	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
-  000bc		 |$LN26@LCMInitial|
-  000bc	00000000	 DCD         |??_C@_1CA@LBCOEEPJ@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?3?$AA?5?$AA?$AA@|
-  000c0		 |$LN27@LCMInitial|
-  000c0	00000000	 DCD         |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  000c4		 |$LN28@LCMInitial|
-  000c4	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  000c8		 |$LN29@LCMInitial|
-  000c8	00000000	 DCD         |LCMInitiaArray|
-  000cc		 |$LN30@LCMInitial|
-  000cc	00000000	 DCD         |??_C@_1CM@IBBBDEFC@?$AAL?$AAC?$AAM?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAh?$AAe?$AAc?$AAk?$AA?$AA@|
-  000d0		 |$M49443|
-
-			 ENDP  ; |LCMInitial|
-
-	IMPORT	|I2C3_High|
-	IMPORT	|I2C3_Low|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49467| DCD	|$LN21@FuelGaugeW|
-	DCD	0x40003101
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |FuelGaugeWithBattery| PROC
-
-; 1378 : {
-
-  00000		 |$LN21@FuelGaugeW|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49464|
-
-; 1379 :     WCHAR key;
-; 1380 :     UINT32 i;
-; 1381 : 
-; 1382 :     UNREFERENCED_PARAMETER(pMenu);
-; 1383 : 
-; 1384 :     OALBLMenuHeader(L"Battery Status");
-
-  00004	e59f00b4	 ldr         r0, [pc, #0xB4]
-  00008	eb000000	 bl          OALBLMenuHeader
-  0000c	e59f40a8	 ldr         r4, [pc, #0xA8]
-
-; 1385 : 
-; 1386 :     for(i=0; i<BATTERY_EXIT; i++){
-
-  00010	e3a05000	 mov         r5, #0
-  00014		 |$LL12@FuelGaugeW|
-
-; 1387 :         OALLog(L" [%d] %s\r\n", i+1 , BatteryStatusArray[i].BatteryName);
-
-  00014	e5942004	 ldr         r2, [r4, #4]
-  00018	e59f0098	 ldr         r0, [pc, #0x98]
-  0001c	e2855001	 add         r5, r5, #1
-  00020	e1a01005	 mov         r1, r5
-  00024	eb000000	 bl          NKDbgPrintfW
-  00028	e2844008	 add         r4, r4, #8
-  0002c	e3550002	 cmp         r5, #2
-  00030	3afffff7	 bcc         |$LL12@FuelGaugeW|
-
-; 1388 :     }
-; 1389 :     OALLog(L" [0] Exit and Continue\r\n");
-
-  00034	e59f0078	 ldr         r0, [pc, #0x78]
-  00038	eb000000	 bl          NKDbgPrintfW
-
-; 1390 : 
-; 1391 :     OALLog(L"\r\n Selection : ");
-
-  0003c	e59f006c	 ldr         r0, [pc, #0x6C]
-  00040	eb000000	 bl          NKDbgPrintfW
-  00044		 |$LL9@FuelGaugeW|
-
-; 1392 : 
-; 1393 :     do {
-; 1394 :         key = OALBLMenuReadKey(TRUE);
-
-  00044	e3a00001	 mov         r0, #1
-  00048	eb000000	 bl          OALBLMenuReadKey
-  0004c	e1a04800	 mov         r4, r0, lsl #16
-  00050	e1a04824	 mov         r4, r4, lsr #16
-
-; 1395 :     } while (key < L'0' || key > L'0'+ i);
-
-  00054	e3540030	 cmp         r4, #0x30
-  00058	3afffff9	 bcc         |$LL9@FuelGaugeW|
-  0005c	e2853030	 add         r3, r5, #0x30
-  00060	e1540003	 cmp         r4, r3
-  00064	8afffff6	 bhi         |$LL9@FuelGaugeW|
-
-; 1396 :     
-; 1397 :     OALLog(L"%c\r\n", key);
-
-  00068	e59f003c	 ldr         r0, [pc, #0x3C]
-  0006c	e1a01004	 mov         r1, r4
-  00070	eb000000	 bl          NKDbgPrintfW
-
-; 1398 : 
-; 1399 :     switch(key)
-
-  00074	e3540031	 cmp         r4, #0x31
-  00078	0a000003	 beq         |$LN4@FuelGaugeW|
-  0007c	e3540032	 cmp         r4, #0x32
-  00080	1a000002	 bne         |$LN5@FuelGaugeW|
-
-; 1404 :             break;
-; 1405 :         case L'2':
-; 1406 :             I2C3_Low();
-
-  00084	eb000000	 bl          I2C3_Low
-
-; 1407 :             //................
-; 1408 :             break;
-
-  00088	ea000000	 b           |$LN5@FuelGaugeW|
-  0008c		 |$LN4@FuelGaugeW|
-
-; 1400 :     {
-; 1401 :         case L'1':
-; 1402 :             //InitI2CWithBQ27410();
-; 1403 :             I2C3_High();
-
-  0008c	eb000000	 bl          I2C3_High
-  00090		 |$LN5@FuelGaugeW|
-
-; 1409 :         default:
-; 1410 : 			break;
-; 1411 :     }
-; 1412 : 
-; 1413 :     // If user select exit don't change device
-; 1414 :     if(key == L'0') return;
-
-  00090	e3540030	 cmp         r4, #0x30
-
-; 1415 : 
-; 1416 :      g_bootCfg.BatteryStatus = (key - L'0' - 1);    
-
-  00094	159f200c	 ldrne       r2, [pc, #0xC]
-  00098	12443031	 subne       r3, r4, #0x31
-  0009c	15823080	 strne       r3, [r2, #0x80]
-
-; 1417 : }
-
-  000a0	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  000a4	e12fff1e	 bx          lr
-  000a8		 |$LN22@FuelGaugeW|
-  000a8		 |$LN23@FuelGaugeW|
-  000a8	00000000	 DCD         |g_bootCfg|
-  000ac		 |$LN24@FuelGaugeW|
-  000ac	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
-  000b0		 |$LN25@FuelGaugeW|
-  000b0	00000000	 DCD         |??_C@_1CA@LBCOEEPJ@?$AA?$AN?$AA?6?$AA?5?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AA?3?$AA?5?$AA?$AA@|
-  000b4		 |$LN26@FuelGaugeW|
-  000b4	00000000	 DCD         |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  000b8		 |$LN27@FuelGaugeW|
-  000b8	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  000bc		 |$LN28@FuelGaugeW|
-  000bc	00000000	 DCD         |BatteryStatusArray|
-  000c0		 |$LN29@FuelGaugeW|
-  000c0	00000000	 DCD         |??_C@_1BO@KCFMLMDG@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAS?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?$AA@|
-  000c4		 |$M49465|
-
-			 ENDP  ; |FuelGaugeWithBattery|
 
 	EXPORT	|??_C@_1DO@GCBJIIGC@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAS?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?5?$AAs?$AAa?$AAv?$AAe?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$CB?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1EG@EPHHPOIA@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AAs?$AA?5?$AAh?$AAa?$AAs?$AA?5?$AAb?$AAe?$AAe?$AAn?$AA?5?$AAs?$AAa?$AAv?$AAe?$AAd@| [ DATA ] ; `string'
@@ -3690,7 +1178,7 @@
 	IMPORT	|BLWriteBootCfg|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49484| DCD	|$LN9@SaveSettin|
+|$T47160| DCD	|$LN9@SaveSettin|
 	DCD	0x40001b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3727,68 +1215,68 @@
 
   00000		 |SaveSettings| PROC
 
-; 1423 : {
+; 555  : {
 
   00000		 |$LN9@SaveSettin|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M49481|
+  00004		 |$M47157|
 
-; 1424 :     WCHAR key;
-; 1425 :     UNREFERENCED_PARAMETER(pMenu);
-; 1426 : 
-; 1427 :     OALLog(L" Do you want save current settings [-/y]? ");
+; 556  :     WCHAR key;
+; 557  :     UNREFERENCED_PARAMETER(pMenu);
+; 558  : 
+; 559  :     OALLog(L" Do you want save current settings [-/y]? ");
 
   00004	e59f005c	 ldr         r0, [pc, #0x5C]
   00008	eb000000	 bl          NKDbgPrintfW
 
-; 1428 : 
-; 1429 :     // Get key
-; 1430 :     key = OALBLMenuReadKey(TRUE);
+; 560  : 
+; 561  :     // Get key
+; 562  :     key = OALBLMenuReadKey(TRUE);
 
   0000c	e3a00001	 mov         r0, #1
   00010	eb000000	 bl          OALBLMenuReadKey
   00014	e1a04800	 mov         r4, r0, lsl #16
 
-; 1431 :     OALLog(L"%c\r\n", key);
+; 563  :     OALLog(L"%c\r\n", key);
 
   00018	e59f0044	 ldr         r0, [pc, #0x44]
   0001c	e1a04824	 mov         r4, r4, lsr #16
   00020	e1a01004	 mov         r1, r4
   00024	eb000000	 bl          NKDbgPrintfW
 
-; 1432 : 
-; 1433 :     // Depending on result
-; 1434 :     if (key != L'y' && key != L'Y') goto cleanUp;
+; 564  : 
+; 565  :     // Depending on result
+; 566  :     if (key != L'y' && key != L'Y') goto cleanUp;
 
   00028	e3540079	 cmp         r4, #0x79
   0002c	0a000001	 beq         |$LN3@SaveSettin|
   00030	e3540059	 cmp         r4, #0x59
-  00034	1a000005	 bne         |$cleanUp$48923|
+  00034	1a000005	 bne         |$cleanUp$46949|
   00038		 |$LN3@SaveSettin|
 
-; 1435 : 
-; 1436 :     if (BLWriteBootCfg(&g_bootCfg)) {
+; 567  : 
+; 568  :     if (BLWriteBootCfg(&g_bootCfg)) {
 
   00038	e59f0020	 ldr         r0, [pc, #0x20]
   0003c	eb000000	 bl          BLWriteBootCfg
   00040	e3500000	 cmp         r0, #0
 
-; 1437 :         OALLog(L" Current settings has been saved\r\n");
+; 569  :         OALLog(L" Current settings has been saved\r\n");
 
   00044	159f0010	 ldrne       r0, [pc, #0x10]
 
-; 1438 :     } else {        
-; 1439 :         OALLog(L"ERROR: Settings save failed!\r\n");
+; 570  :     } else {        
+; 571  :         OALLog(L"ERROR: Settings save failed!\r\n");
 
   00048	059f0008	 ldreq       r0, [pc, #8]
   0004c	eb000000	 bl          NKDbgPrintfW
-  00050		 |$cleanUp$48923|
+  00050		 |$cleanUp$46949|
 
-; 1440 :     }
-; 1441 : 
-; 1442 : cleanUp:
-; 1443 :     return;
-; 1444 : }
+; 572  :     }
+; 573  : 
+; 574  : cleanUp:
+; 575  :     return;
+; 576  : }
 
   00050	e8bd4010	 ldmia       sp!, {r4, lr}
   00054	e12fff1e	 bx          lr
@@ -3803,14 +1291,14 @@
   00064	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
   00068		 |$LN15@SaveSettin|
   00068	00000000	 DCD         |??_C@_1FG@NGGODBPB@?$AA?5?$AAD?$AAo?$AA?5?$AAy?$AAo?$AAu?$AA?5?$AAw?$AAa?$AAn?$AAt?$AA?5?$AAs?$AAa?$AAv?$AAe?$AA?5?$AAc?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn@|
-  0006c		 |$M49482|
+  0006c		 |$M47158|
 
 			 ENDP  ; |SaveSettings|
 
 	EXPORT	|OALStringToUINT32|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49505| DCD	|$LN13@OALStringT|
+|$T47181| DCD	|$LN13@OALStringT|
 	DCD	0x40001000
 ; Function compile flags: /Ogspy
 
@@ -3818,19 +1306,19 @@
 
   00000		 |OALStringToUINT32| PROC
 
-; 1449 : {
+; 581  : {
 
   00000		 |$LN13@OALStringT|
-  00000		 |$M49502|
+  00000		 |$M47178|
   00000	e1b01000	 movs        r1, r0
 
-; 1450 :     UINT32 i = 0;
+; 582  :     UINT32 i = 0;
 
   00004	e3a00000	 mov         r0, #0
 
-; 1451 : 
-; 1452 :     // Replace the dots with NULL terminators
-; 1453 :     while (psz != NULL && *psz != L'\0') 
+; 583  : 
+; 584  :     // Replace the dots with NULL terminators
+; 585  :     while (psz != NULL && *psz != L'\0') 
 
   00008	0a00000b	 beq         |$LN10@OALStringT|
   0000c		 |$LL4@OALStringT|
@@ -3838,431 +1326,37 @@
   00010	e1b02003	 movs        r2, r3
   00014	0a000008	 beq         |$LN10@OALStringT|
 
-; 1454 :         {
-; 1455 :         if (*psz < L'0' || *psz > L'9') 
+; 586  :         {
+; 587  :         if (*psz < L'0' || *psz > L'9') 
 
   00018	e3520030	 cmp         r2, #0x30
   0001c	3a000006	 bcc         |$LN10@OALStringT|
   00020	e3520039	 cmp         r2, #0x39
   00024	8a000004	 bhi         |$LN10@OALStringT|
 
-; 1456 :             {
-; 1457 :             break;
-; 1458 :             }
-; 1459 :         i = i * 10 + (*psz - L'0');
+; 588  :             {
+; 589  :             break;
+; 590  :             }
+; 591  :         i = i * 10 + (*psz - L'0');
 
   00028	e0803100	 add         r3, r0, r0, lsl #2
   0002c	e0823083	 add         r3, r2, r3, lsl #1
   00030	e2430030	 sub         r0, r3, #0x30
 
-; 1460 :         psz++;
+; 592  :         psz++;
 
   00034	e2911002	 adds        r1, r1, #2
   00038	1afffff3	 bne         |$LL4@OALStringT|
   0003c		 |$LN10@OALStringT|
 
-; 1461 :         }
-; 1462 : 
-; 1463 :     return i;
-; 1464 : }
+; 593  :         }
+; 594  : 
+; 595  :     return i;
+; 596  : }
 
   0003c	e12fff1e	 bx          lr
-  00040		 |$M49503|
+  00040		 |$M47179|
 
 			 ENDP  ; |OALStringToUINT32|
-
-	EXPORT	|??_C@_1DE@FKCOLIJA@?$AA?5?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AAi?$AAn?$AAg?$AA?5?$AAN?$AAK?$AA?4?$AAb?$AAi?$AAn?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CG@OIGCIHAG@?$AA?5?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CI@GNFBDCCP@?$AA?5?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EE@JFPPGEDH@?$AA?5?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@JIGPKFND@?$AA?5?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAs?$AAg?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@NDEIFMBL@?$AA?5?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@FFHNOGK@?$AA?5?$AA?5?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAR?$AAe?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@NPGGEGKD@?$AA?5?$AA?5?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BM@PMDNGDGM@?$AAn?$AAo?$AAt?$AA?5?$AAs?$AAp?$AAe?$AAc?$AAi?$AAf?$AAi?$AAe?$AAd?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BG@CEFCIDHI@?$AA?$AN?$AA?6?$AA?5?$AAM?$AAa?$AAi?$AAn?$AA?3?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CM@IGJFNOHM@?$AA?5?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|OALKitlDeviceName|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49520| DCD	|$LN12@ShowSettin|
-	DCD	0x40005701
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DE@FKCOLIJA@?$AA?5?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AAi?$AAn?$AAg?$AA?5?$AAN?$AAK?$AA?4?$AAb?$AAi?$AAn?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "F", 0x0, "l", 0x0, "a", 0x0, "s", 0x0, "h"
-	DCB	0x0, "i", 0x0, "n", 0x0, "g", 0x0, " ", 0x0, "N", 0x0, "K"
-	DCB	0x0, ".", 0x0, "b", 0x0, "i", 0x0, "n", 0x0, ":", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CG@OIGCIHAG@?$AA?5?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "O", 0x0, "P", 0x0, "P", 0x0, " ", 0x0, "M"
-	DCB	0x0, "o", 0x0, "d", 0x0, "e", 0x0, ":", 0x0, " ", 0x0, " "
-	DCB	0x0, " ", 0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CI@GNFBDCCP@?$AA?5?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "B", 0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l"
-	DCB	0x0, "i", 0x0, "g", 0x0, "h", 0x0, "t", 0x0, ":", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EE@JFPPGEDH@?$AA?5?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN@| DCB " "
-	DCB	0x0, " ", 0x0, "S", 0x0, "D", 0x0, " ", 0x0, "C", 0x0, "a"
-	DCB	0x0, "r", 0x0, "d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " "
-	DCB	0x0, "F", 0x0, "l", 0x0, "a", 0x0, "s", 0x0, "h", 0x0, " "
-	DCB	0x0, "s", 0x0, "t", 0x0, "a", 0x0, "t", 0x0, "u", 0x0, "s"
-	DCB	0x0, ":", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@JIGPKFND@?$AA?5?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAs?$AAg?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "R", 0x0, "e", 0x0, "t", 0x0, "a", 0x0, "i"
-	DCB	0x0, "l", 0x0, " ", 0x0, "M", 0x0, "s", 0x0, "g", 0x0, "s"
-	DCB	0x0, ":", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@NDEIFMBL@?$AA?5?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "D", 0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c"
-	DCB	0x0, "e", 0x0, " ", 0x0, "I", 0x0, "D", 0x0, ":", 0x0, " "
-	DCB	0x0, " ", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "d"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@FFHNOGK@?$AA?5?$AA?5?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAR?$AAe?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "D", 0x0, "i", 0x0, "s", 0x0, "p", 0x0, "l"
-	DCB	0x0, "a", 0x0, "y", 0x0, " ", 0x0, "R", 0x0, "e", 0x0, "s"
-	DCB	0x0, ":", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@NPGGEGKD@?$AA?5?$AA?5?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "D", 0x0, "e", 0x0, "b", 0x0, "u", 0x0, "g"
-	DCB	0x0, " ", 0x0, "d", 0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c"
-	DCB	0x0, "e", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@PMDNGDGM@?$AAn?$AAo?$AAt?$AA?5?$AAs?$AAp?$AAe?$AAc?$AAi?$AAf?$AAi?$AAe?$AAd?$AA?$AA@| DCB "n"
-	DCB	0x0, "o", 0x0, "t", 0x0, " ", 0x0, "s", 0x0, "p", 0x0, "e"
-	DCB	0x0, "c", 0x0, "i", 0x0, "f", 0x0, "i", 0x0, "e", 0x0, "d"
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BG@CEFCIDHI@?$AA?$AN?$AA?6?$AA?5?$AAM?$AAa?$AAi?$AAn?$AA?3?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, " ", 0x0, "M", 0x0, "a", 0x0, "i", 0x0, "n"
-	DCB	0x0, ":", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CM@IGJFNOHM@?$AA?5?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, " ", 0x0, "B", 0x0, "o", 0x0, "o", 0x0, "t", 0x0, " "
-	DCB	0x0, "d", 0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e"
-	DCB	0x0, ":", 0x0, " ", 0x0, " ", 0x0, " ", 0x0, "%", 0x0, "s"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |ShowSettings| PROC
-
-; 506  : {
-
-  00000		 |$LN12@ShowSettin|
-  00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49517|
-  00004	e1a08000	 mov         r8, r0
-
-; 507  :     OPP_MODE_MENU * pOppMenu = oppModeMenu35x;
-; 508  :     UNREFERENCED_PARAMETER(pMenu);
-; 509  :     
-; 510  :     if(g_CPUFamily == CPU_FAMILY_DM37XX)
-
-  00008	e59f3148	 ldr         r3, [pc, #0x148]
-  0000c	e59f5140	 ldr         r5, [pc, #0x140]
-
-; 511  :     {
-; 512  :         pOppMenu = oppModeMenu37x;
-; 513  :     }
-; 514  : 
-; 515  :     OALLog(L"\r\n Main:\r\n");
-
-  00010	e59f0138	 ldr         r0, [pc, #0x138]
-  00014	e5933000	 ldr         r3, [r3]
-  00018	e2857048	 add         r7, r5, #0x48
-  0001c	e3530001	 cmp         r3, #1
-  00020	02857060	 addeq       r7, r5, #0x60
-  00024	eb000000	 bl          NKDbgPrintfW
-
-; 516  :     OALLog(
-; 517  :         L"  Boot device:   %s\r\n",
-; 518  :         OALKitlDeviceName(&g_bootCfg.bootDevLoc, g_bootDevices)
-; 519  :     );
-
-  00028	e59f411c	 ldr         r4, [pc, #0x11C]
-  0002c	e59f1114	 ldr         r1, [pc, #0x114]
-  00030	e2840008	 add         r0, r4, #8
-  00034	eb000000	 bl          OALKitlDeviceName
-  00038	e1a01000	 mov         r1, r0
-  0003c	e59f0100	 ldr         r0, [pc, #0x100]
-  00040	eb000000	 bl          NKDbgPrintfW
-
-; 520  :     OALLog(
-; 521  :         L"  Debug device:  %s\r\n",
-; 522  :         (g_bootCfg.kitlDevLoc.LogicalLoc) ? OALKitlDeviceName(&g_bootCfg.kitlDevLoc, g_kitlDevices) : L"not specified"
-; 523  :     );
-
-  00044	e5943024	 ldr         r3, [r4, #0x24]
-  00048	e3530000	 cmp         r3, #0
-  0004c	0a000004	 beq         |$LN4@ShowSettin|
-  00050	e59f10e8	 ldr         r1, [pc, #0xE8]
-  00054	e284001c	 add         r0, r4, #0x1C
-  00058	eb000000	 bl          OALKitlDeviceName
-  0005c	e1a01000	 mov         r1, r0
-  00060	ea000000	 b           |$LN5@ShowSettin|
-  00064		 |$LN4@ShowSettin|
-  00064	e59f10d0	 ldr         r1, [pc, #0xD0]
-  00068		 |$LN5@ShowSettin|
-  00068	e59f00c8	 ldr         r0, [pc, #0xC8]
-  0006c	eb000000	 bl          NKDbgPrintfW
-
-; 524  :     OALLog(
-; 525  :         L"  Retail Msgs:   %s\r\n",
-; 526  :         (g_bootCfg.oalFlags & BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE) ? L"enabled" : L"disabled"
-; 527  :     );
-
-  00070	e5943034	 ldr         r3, [r4, #0x34]
-  00074	e59f60b8	 ldr         r6, [pc, #0xB8]
-  00078	e59f00b0	 ldr         r0, [pc, #0xB0]
-  0007c	e3130001	 tst         r3, #1
-  00080	11a01006	 movne       r1, r6
-  00084	059f1094	 ldreq       r1, [pc, #0x94]
-  00088	eb000000	 bl          NKDbgPrintfW
-
-; 528  :     OALLog(
-; 529  :         L"  Device ID:     %d\r\n", g_bootCfg.deviceID
-; 530  :     );
-
-  0008c	e5941044	 ldr         r1, [r4, #0x44]
-  00090	e59f0094	 ldr         r0, [pc, #0x94]
-  00094	eb000000	 bl          NKDbgPrintfW
-
-; 531  :     OALLog(
-; 532  :         L"  Display Res:   %s\r\n", dispResMenu[g_bootCfg.displayRes].resName
-; 533  :     );
-
-  00098	e594306c	 ldr         r3, [r4, #0x6C]
-  0009c	e59f0084	 ldr         r0, [pc, #0x84]
-  000a0	e0853183	 add         r3, r5, r3, lsl #3
-  000a4	e5931004	 ldr         r1, [r3, #4]
-  000a8	eb000000	 bl          NKDbgPrintfW
-
-; 534  :     OALLog(
-; 535  :         L"  Flashing NK.bin:   %s\r\n", 
-; 536  :         (g_bootCfg.flashNKFlags & ENABLE_FLASH_NK) ? L"enabled" : L"disabled"
-; 537  :     );    
-
-  000ac	e5943084	 ldr         r3, [r4, #0x84]
-  000b0	e59f006c	 ldr         r0, [pc, #0x6C]
-  000b4	e3130001	 tst         r3, #1
-  000b8	059f6060	 ldreq       r6, [pc, #0x60]
-  000bc	e1a01006	 mov         r1, r6
-  000c0	eb000000	 bl          NKDbgPrintfW
-
-; 538  :     OALLog(
-; 539  :         L"  OPP Mode:   %s\r\n", pOppMenu[g_bootCfg.opp_mode].oppModeName
-; 540  :     );
-
-  000c4	e594308c	 ldr         r3, [r4, #0x8C]
-  000c8	e59f004c	 ldr         r0, [pc, #0x4C]
-  000cc	e7971103	 ldr         r1, [r7, +r3, lsl #2]
-  000d0	eb000000	 bl          NKDbgPrintfW
-
-; 541  : 	OALLog(
-; 542  :         L"  Backlight:   %s\r\n", disBacklight[g_bootCfg.backlight].blName	//Ray 13-07-29
-; 543  :     );
-
-  000d4	e5942070	 ldr         r2, [r4, #0x70]
-  000d8	e2853070	 add         r3, r5, #0x70
-  000dc	e59f0034	 ldr         r0, [pc, #0x34]
-  000e0	e0833182	 add         r3, r3, r2, lsl #3
-  000e4	e5931004	 ldr         r1, [r3, #4]
-  000e8	eb000000	 bl          NKDbgPrintfW
-
-; 544  : 	OALLog(
-; 545  :         L"  SD Card to Flash status:   %s\r\n", sdToFlash[g_bootCfg.sdtoflash].sdName //Ray 13-07-29
-; 546  :     );
-
-  000ec	e5942074	 ldr         r2, [r4, #0x74]
-  000f0	e2853090	 add         r3, r5, #0x90
-  000f4	e59f0018	 ldr         r0, [pc, #0x18]
-  000f8	e0833182	 add         r3, r3, r2, lsl #3
-  000fc	e5931004	 ldr         r1, [r3, #4]
-  00100	eb000000	 bl          NKDbgPrintfW
-
-; 547  : 	
-; 548  : #if BUILDING_EBOOT_SD
-; 549  :     ShowSDCardSettings(pMenu);
-; 550  : #endif
-; 551  :     ShowNetworkSettings(pMenu);
-
-  00104	e1a00008	 mov         r0, r8
-  00108	eb000000	 bl          ShowNetworkSettings
-
-; 552  : }
-
-  0010c	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
-  00110	e12fff1e	 bx          lr
-  00114		 |$LN13@ShowSettin|
-  00114		 |$LN14@ShowSettin|
-  00114	00000000	 DCD         |??_C@_1EE@JFPPGEDH@?$AA?5?$AA?5?$AAS?$AAD?$AA?5?$AAC?$AAa?$AAr?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN@|
-  00118		 |$LN15@ShowSettin|
-  00118	00000000	 DCD         |??_C@_1CI@GNFBDCCP@?$AA?5?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  0011c		 |$LN16@ShowSettin|
-  0011c	00000000	 DCD         |??_C@_1CG@OIGCIHAG@?$AA?5?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  00120		 |$LN17@ShowSettin|
-  00120	00000000	 DCD         |??_C@_1BC@LGPIFEA@?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
-  00124		 |$LN18@ShowSettin|
-  00124	00000000	 DCD         |??_C@_1DE@FKCOLIJA@?$AA?5?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AAi?$AAn?$AAg?$AA?5?$AAN?$AAK?$AA?4?$AAb?$AAi?$AAn?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  00128		 |$LN19@ShowSettin|
-  00128	00000000	 DCD         |??_C@_1CM@FFHNOGK@?$AA?5?$AA?5?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAR?$AAe?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  0012c		 |$LN20@ShowSettin|
-  0012c	00000000	 DCD         |??_C@_1CM@NDEIFMBL@?$AA?5?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  00130		 |$LN21@ShowSettin|
-  00130	00000000	 DCD         |??_C@_1CM@JIGPKFND@?$AA?5?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAs?$AAg?$AAs?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  00134		 |$LN22@ShowSettin|
-  00134	00000000	 DCD         |??_C@_1BA@BKMGIBPB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
-  00138		 |$LN23@ShowSettin|
-  00138	00000000	 DCD         |??_C@_1CM@NPGGEGKD@?$AA?5?$AA?5?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  0013c		 |$LN24@ShowSettin|
-  0013c	00000000	 DCD         |??_C@_1BM@PMDNGDGM@?$AAn?$AAo?$AAt?$AA?5?$AAs?$AAp?$AAe?$AAc?$AAi?$AAf?$AAi?$AAe?$AAd?$AA?$AA@|
-  00140		 |$LN25@ShowSettin|
-  00140	00000000	 DCD         |g_kitlDevices|
-  00144		 |$LN26@ShowSettin|
-  00144	00000000	 DCD         |??_C@_1CM@IGJFNOHM@?$AA?5?$AA?5?$AAB?$AAo?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?3?$AA?5?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  00148		 |$LN27@ShowSettin|
-  00148	00000000	 DCD         |g_bootDevices|
-  0014c		 |$LN28@ShowSettin|
-  0014c	00000000	 DCD         |g_bootCfg|
-  00150		 |$LN29@ShowSettin|
-  00150	00000000	 DCD         |??_C@_1BG@CEFCIDHI@?$AA?$AN?$AA?6?$AA?5?$AAM?$AAa?$AAi?$AAn?$AA?3?$AA?$AN?$AA?6?$AA?$AA@|
-  00154		 |$LN30@ShowSettin|
-  00154	00000000	 DCD         |dispResMenu|
-  00158		 |$LN31@ShowSettin|
-  00158	00000000	 DCD         |g_CPUFamily|
-  0015c		 |$M49518|
-
-			 ENDP  ; |ShowSettings|
-
-	EXPORT	|__$ArrayPad$| [ DATA ]
-	EXPORT	|??_C@_1DE@MLCCPHNO@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CG@DEECOADH@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAw?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|OALBLMenuReadLine|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49548| DCD	|$LN6@SetDeviceI|
-	DCD	0xc0001c02
-
-  00000			 AREA	 |.xdata|, DATA
-|$T49544| DCD	0xfffffff4
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DE@MLCCPHNO@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
-	DCB	0x0, "C", 0x0, "u", 0x0, "r", 0x0, "r", 0x0, "e", 0x0, "n"
-	DCB	0x0, "t", 0x0, " ", 0x0, "D", 0x0, "e", 0x0, "v", 0x0, "i"
-	DCB	0x0, "c", 0x0, "e", 0x0, " ", 0x0, "I", 0x0, "D", 0x0, ":"
-	DCB	0x0, " ", 0x0, " ", 0x0, "%", 0x0, "d", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CG@DEECOADH@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAw?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?$AA@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, " ", 0x0, "N", 0x0, "e", 0x0, "w", 0x0, " "
-	DCB	0x0, "D", 0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e"
-	DCB	0x0, " ", 0x0, "I", 0x0, "D", 0x0, ":", 0x0, " ", 0x0, 0x0
-	DCB	0x0					; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T49544|
-
-  00008		 |SetDeviceID| PROC
-
-; 674  : {
-
-  00008		 |$LN6@SetDeviceI|
-  00008	e92d4010	 stmdb       sp!, {r4, lr}
-  0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M49545|
-  00010	e59f305c	 ldr         r3, [pc, #0x5C]
-  00014	e5933000	 ldr         r3, [r3]
-  00018	e58d3020	 str         r3, [sp, #0x20]
-
-; 675  :     WCHAR  szInputLine[16];
-; 676  :     UNREFERENCED_PARAMETER(pMenu);
-; 677  : 
-; 678  :     OALLog(
-; 679  :         L" Current Device ID:  %d\r\n", g_bootCfg.deviceID
-; 680  :     );
-
-  0001c	e59f404c	 ldr         r4, [pc, #0x4C]
-  00020	e59f0044	 ldr         r0, [pc, #0x44]
-  00024	e5941044	 ldr         r1, [r4, #0x44]
-  00028	eb000000	 bl          NKDbgPrintfW
-
-; 681  : 
-; 682  :     OALLog(L"\r\n New Device ID: ");
-
-  0002c	e59f0034	 ldr         r0, [pc, #0x34]
-  00030	eb000000	 bl          NKDbgPrintfW
-
-; 683  : 
-; 684  :     if (OALBLMenuReadLine(szInputLine, dimof(szInputLine)) == 0) 
-
-  00034	e3a01010	 mov         r1, #0x10
-  00038	e28d0000	 add         r0, sp, #0
-  0003c	eb000000	 bl          OALBLMenuReadLine
-  00040	e3500000	 cmp         r0, #0
-  00044	0a000002	 beq         |$cleanUp$48734|
-
-; 685  :         {
-; 686  :         goto cleanUp;
-; 687  :         }
-; 688  : 
-; 689  :     // Get device ID
-; 690  :     g_bootCfg.deviceID = OALStringToUINT32(szInputLine);
-
-  00048	e28d0000	 add         r0, sp, #0
-  0004c	eb000000	 bl          OALStringToUINT32
-  00050	e5840044	 str         r0, [r4, #0x44]
-  00054		 |$cleanUp$48734|
-  00054	e59d0020	 ldr         r0, [sp, #0x20]
-  00058	eb000000	 bl          __security_check_cookie
-
-; 691  : 
-; 692  : cleanUp:
-; 693  :     return;
-; 694  : }
-
-  0005c	e28dd024	 add         sp, sp, #0x24
-  00060	e8bd4010	 ldmia       sp!, {r4, lr}
-  00064	e12fff1e	 bx          lr
-  00068		 |$LN7@SetDeviceI|
-  00068		 |$LN8@SetDeviceI|
-  00068	00000000	 DCD         |??_C@_1CG@DEECOADH@?$AA?$AN?$AA?6?$AA?5?$AAN?$AAe?$AAw?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?$AA@|
-  0006c		 |$LN9@SetDeviceI|
-  0006c	00000000	 DCD         |??_C@_1DE@MLCCPHNO@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  00070		 |$LN10@SetDeviceI|
-  00070	00000000	 DCD         |g_bootCfg|
-  00074		 |$LN11@SetDeviceI|
-  00074	00000000	 DCD         |__security_cookie|
-  00078		 |$M49546|
-
-			 ENDP  ; |SetDeviceID|
 
 	END

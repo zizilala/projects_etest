@@ -20,55 +20,41 @@
 //
 #ifndef __BOOT_ARGS_H
 #define __BOOT_ARGS_H
+
 //------------------------------------------------------------------------------
 
 #include <oal_args.h>
 #include <oal_kitl.h>
 #include <bsp_cfg.h>
+
+
 //------------------------------------------------------------------------------
 
-#define BOOT_CFG_SIGNATURE      	'BCFG'
-#define BOOT_CFG_VERSION        	2
+#define BOOT_CFG_SIGNATURE      'BCFG'
+#define BOOT_CFG_VERSION        2
 
 #define BOOT_CFG_OAL_FLAGS_RETAILMSG_ENABLE     (1 << 0)
-#define ENABLE_FLASH_NK				(1<<0)
+#define ENABLE_FLASH_NK          (1<<0)
 
 // BOOT_SDCARD_TYPE must not overlap with OAL_KITL_TYPE enum values
-#define BOOT_SDCARD_TYPE			(OAL_KITL_TYPE_FLASH+1)
+#define BOOT_SDCARD_TYPE        (OAL_KITL_TYPE_FLASH+1)
 
 typedef struct {
-    UINT32 signature;                   // Structure signature
-    UINT32 version;                     // Structure version
-
-    DEVICE_LOCATION bootDevLoc;         // Boot device
+    UINT32 signature;				// Structure signature
+    UINT32 version;					// Structure version
+    DEVICE_LOCATION bootDevLoc;		// Boot device
     DEVICE_LOCATION kitlDevLoc;
-    
-    UINT32 kitlFlags;                   // Debug/KITL mode
+    UINT32 kitlFlags;				// Debug/KITL mode
     UINT32 oalFlags;
-    UINT32 ipAddress;
-    UINT32 ipMask;
-    UINT32 ipRoute;    
-
-    UINT32 deviceID;                    // Unique ID for development platform
-    
-    UINT32 osPartitionSize;             // Space to reserve for OS partition in NAND
-    
-    WCHAR filename[13];                 // Space to reserve for SDCard filename (8.3 format)
-
-	UINT16 mac[3];						// mac address for the ethernet    
-
-    OMAP_LCD_DVI_RES displayRes;                  // display resolution
-
-	OMAP_LCM_BACKLIGHT backlight;	//Setup Backlight,The variable "backlight" it is use typedef enum name,
-	                                //not is typedef enum Variable
-	OMAP_SD_TO_FLASH	sdtoflash;				   // File transfer from SD card to flash, Ray 13-09-10 	
-
-	OMAP_LCM_BACKLIGHT_BN backlighbn;
-
-	OMAP_LCM_Initial    lcmInitial; //  Ray 13-09-24
-
-	OMAP_FuelGaugeWithBattery    BatteryStatus; //  Ray 13-10-07
-
+    //UINT32 ipAddress;
+    //UINT32 ipMask;
+    //UINT32 ipRoute;
+    //UINT32 deviceID;				// Unique ID for development platform
+    WCHAR SerialNumber[15];
+    UINT32 osPartitionSize;			// Space to reserve for OS partition in NAND
+    WCHAR filename[13];				// Space to reserve for SDCard filename (8.3 format)
+	UINT16 mac[3];					// mac address for the ethernet
+    OMAP_LCD_DVI_RES displayRes;	// display resolution
     UINT32 flashNKFlags;
     UCHAR ECCtype;
     UINT32 opp_mode;

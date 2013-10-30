@@ -123,12 +123,12 @@ typedef enum {
     POWERDOMAIN_MPU,
     POWERDOMAIN_DSS,
     POWERDOMAIN_NEON,
-    POWERDOMAIN_IVA2,    
     POWERDOMAIN_CAMERA,
     POWERDOMAIN_SGX,
     POWERDOMAIN_EFUSE,
     POWERDOMAIN_SMARTREFLEX,
     POWERDOMAIN_COUNT,
+	POWERDOMAIN_IVA2 //brian
 } PowerDomain_e;
 
 typedef enum {
@@ -204,19 +204,19 @@ typedef enum {
     
 //    clock name                   parent clock
 //  ----------------------      ----------------------
-    kDPLL1_M2X2_CLK,            // DPLL1_CLKOUT_M2X2
+    kDPLL1_M2X2_CLK,            // DPLL1_CLKOUT_M2X2 0
     kDPLL2_M2_CLK,              // DPLL2_CLKOUT_M2
     kCORE_CLK,                  // DPLL3_CLKOUT_M2
     kCOREX2_FCLK,               // DPLL3_CLKOUT_M2X2
     kEMUL_CORE_ALWON_CLK,       // DPLL3_CLKOUT_M3X2
     kPRM_96M_192M_ALWON_CLK,    // DPLL4_CLKOUT_M2X2
-    kDPLL4_M3X2_CLK,            // DPLL4_CLKOUT_M3X2
-    kDSS1_ALWON_FCLK,           // DPLL4_CLKOUT_M4X2
+    kDPLL4_M3X2_CLK,            // DPLL4_CLKOUT_M3X2 6
+    kDSS1_ALWON_FCLK,           // DPLL4_CLKOUT_M4X2 7
     kCAM_MCLK,                  // DPLL4_CLKOUT_M5X2
     kEMUL_PER_ALWON_CLK,        // DPLL4_CLKOUT_M6X2
-    k120M_FCLK,                 // DPLL5_CLKOUT_M2
-    k32K_FCLK,                  // EXT_32KHZ
-    kSYS_CLK,                   // EXT_SYS_CLK
+    k120M_FCLK,                 // DPLL5_CLKOUT_M2 10
+    k32K_FCLK,                  // EXT_32KHZ 11
+    kSYS_CLK,                   // EXT_SYS_CLK 12
     kSYS_ALTCLK,                // EXT_ALT
     kSECURE_32K_FCLK,           // INT_OSC
     kMCBSP_CLKS,                // EXT_MISC
@@ -224,27 +224,27 @@ typedef enum {
     kUSBHOST_SAR_FCLK,          // SYS_CLK
     kEFUSE_ALWON_FCLK,          // SYS_CLK
     kSR_ALWON_FCLK,             // SYS_CLK
-    kDPLL1_ALWON_FCLK,          // SYS_CLK
+    kDPLL1_ALWON_FCLK,          // SYS_CLK 20
     kDPLL2_ALWON_FCLK,          // SYS_CLK
     kDPLL3_ALWON_FCLK,          // SYS_CLK
     kDPLL4_ALWON_FCLK,          // SYS_CLK
     kDPLL5_ALWON_FCLK,          // SYS_CLK
     kCM_SYS_CLK,                // SYS_CLK
-    kDSS2_ALWON_FCLK,           // SYS_CLK
+    kDSS2_ALWON_FCLK,           // SYS_CLK 26
     kWKUP_L4_ICLK,              // SYS_CLK
     kCM_32K_CLK,                // 32K_FCLK
     kCORE_32K_FCLK,             // CM_32K_CLK
-    kWKUP_32K_FCLK,             // 32K_FCLK
+    kWKUP_32K_FCLK,             // 32K_FCLK 30
     kPER_32K_ALWON_FCLK,        // 32K_FCLK    
     kCORE_120M_FCLK,            // 120M_FCLK
-    kCM_96M_FCLK,               // PRM_96M_ALWON_CLK
+    kCM_96M_FCLK,               // PRM_96M_ALWON_CLK 33
     k96M_ALWON_FCLK,            // PRM_96M_ALWON_CLK    
     kL3_ICLK,                   // CORE_CLK
     kL4_ICLK,                   // L3_ICLK
     kUSB_L4_ICLK,               // L4_ICLK
     kRM_ICLK,                   // L4_ICLK
     kDPLL1_FCLK,                // CORE_CLK
-    kDPLL2_FCLK,                // CORE_CLK
+    kDPLL2_FCLK,                // CORE_CLK 40
     kCORE_L3_ICLK,              // L3_ICLK
     kCORE_L4_ICLK,              // L4_ICLK
     kSECURITY_L3_ICLK,          // L3_ICLK
@@ -254,7 +254,7 @@ typedef enum {
     kSSI_L4_ICLK,               // L4_ICLK
     kDSS_L3_ICLK,               // L3_ICLK
     kDSS_L4_ICLK,               // L4_ICLK
-    kCAM_L3_ICLK,               // L3_ICLK
+    kCAM_L3_ICLK,               // L3_ICLK 50
     kCAM_L4_ICLK,               // L4_ICLK
     kUSBHOST_L3_ICLK,           // L3_ICLK
     kUSBHOST_L4_ICLK,           // L4_ICLK
@@ -263,22 +263,22 @@ typedef enum {
     kSSI_SSR_FCLK,              // COREX2_FCLK
     kSSI_SST_FCLK,              // COREX2_FCLK
     kCORE_96M_FCLK,             // 96M_FCLK
-    kDSS_96M_FCLK,              // 96M_FCLK
-    kCSI2_96M_FCLK,             // 96M_FCLK
+    kDSS_96M_FCLK,              // 96M_FCLK 59
+    kCSI2_96M_FCLK,             // 96M_FCLK 60
     kCORE_48M_FCLK,             // 48M_FCLK
     kUSBHOST_48M_FCLK,          // 48M_FCLK
     kPER_48M_FCLK,              // 48M_FCLK
     k12M_FCLK,                  // 48M_FCLK
     kCORE_12M_FCLK,             // 12M_FCLK
-    kDSS_TV_FCLK,               // 54M_FCLK
+    kDSS_TV_FCLK,               // 54M_FCLK 66
     kUSBHOST_120M_FCLK,         // 120M_FCLK
     kCM_USIM_CLK,               // DPLL5_M2_CLK     | CM_96M_FCLK
     kUSIM_FCLK,                 // SYS_CLK          | CM_USIM_CLK
-    k96M_FCLK,                  // CM_96M_FCLK      | CM_SYS_CLK
+    k96M_FCLK,                  // CM_96M_FCLK      | CM_SYS_CLK 70
     k48M_FCLK,                  // SYS_ALTCLK       | CM_96M_FCLK
-    k54M_FCLK,                  // SYS_ALTCLK       | DPLL4_M3X2_CLK
+    k54M_FCLK,                  // SYS_ALTCLK       | DPLL4_M3X2_CLK 72
     kSGX_FCLK,                  // CORE_CLK         | CM_96M_FCLK       | PRM_96M_192M_ALWON_CLK   | COREX2_FCLK
-    kGPT1_FCLK,                 // SYS_CLK          | 32K_FCLK
+    kGPT1_FCLK,                 // SYS_CLK          | 32K_FCLK 74
     kGPT2_ALWON_FCLK,           // SYS_CLK          | 32K_FCLK
     kGPT3_ALWON_FCLK,           // SYS_CLK          | 32K_FCLK
     kGPT4_ALWON_FCLK,           // SYS_CLK          | 32K_FCLK

@@ -533,7 +533,7 @@ public:
     BOOL    EnableVSyncInterruptEx();
     VOID    DisableVSyncInterrupt();
     BOOL    InVSync(BOOL bClearStatus);
-    VOID WaitForVsync();
+    VOID 	WaitForVsync();
 
 
     //------------------------------------------------------------------------------
@@ -645,15 +645,20 @@ protected:
                 OMAP_DSS_FCLK      eDssFclkSource,
                 OMAP_DSS_FCLKVALUE eDssFclkValue
                 );
+	// brian
+    void WMLCDCOMD(short cmd);
+    void WMLCDDATA(short dat);
+    void SendInitialCode();
     
 private:
     //  OMAP Display Subsystem Registers
-    OMAP_DSS_REGS         *m_pDSSRegs;
-    OMAP_DISPC_REGS       *m_pDispRegs;
-    OMAP_VENC_REGS        *m_pVencRegs;
-    OMAP_DSI_REGS           *m_pDSIRegs;
-    OMAP_DSI_PLL_REGS       *m_pDSIPLLRegs;
-
+	OMAP_DSS_REGS		*m_pDSSRegs;
+    OMAP_DISPC_REGS		*m_pDispRegs;
+    OMAP_VENC_REGS		*m_pVencRegs;
+    OMAP_DSI_REGS		*m_pDSIRegs;
+    OMAP_DSI_PLL_REGS	*m_pDSIPLLRegs;
+	OMAP_RFBI_REGS		*m_pRFBIRegs;
+	
     //  Register Context Save/Restore globals
     OMAP_DISPC_REGS         g_rgDisplaySaveRestore;
     OMAP_DISPC_REGS         g_rgDisplaySaveRestore_eLcd;
@@ -683,14 +688,14 @@ private:
     DWORD                   m_dwGammaBufPhys;
     
     // Gamma Correction parameter
-    BOOL                       m_bGammaEnable;
+    BOOL					m_bGammaEnable;
 
     //  Surface Manager reference
     OMAPSurfaceManager      *m_pSurfaceMgr;
     HANDLE                  m_hDssIntEvent;
     HANDLE                  m_hDssIntThread;
-    DWORD                  m_dwDssSysIntr;
-    BOOL                     m_bDssIntThreadExit;
+    DWORD					m_dwDssSysIntr;
+    BOOL					m_bDssIntThreadExit;
 
     HANDLE                  m_hVsyncEvent;
     HANDLE                  m_hVsyncEventSGX;
@@ -710,11 +715,11 @@ private:
     //Handle to the SmartReflex Power Policy Adapter 
     HANDLE                  m_hSmartReflexPolicyAdapter;
 
-    DSS_INFO    m_dssinfo;
+    DSS_INFO				m_dssinfo;
 
-    
     DWORD                   m_lastVsyncIRQStatus;
 
+	HANDLE					m_hSPI;	//brian
 };
 
 

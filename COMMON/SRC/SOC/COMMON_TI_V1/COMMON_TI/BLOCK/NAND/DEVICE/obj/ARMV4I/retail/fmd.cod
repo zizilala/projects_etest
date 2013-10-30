@@ -123,7 +123,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\block\nand\fmd.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46704| DCD	|$LN5@SectorAcce|
+|$T46675| DCD	|$LN5@SectorAcce|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -135,7 +135,7 @@
 
   00000		 |$LN5@SectorAcce|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46701|
+  00004		 |$M46672|
 
 ; 218  :     
 ; 219  :     // Offset is provided to this function in bytes; NAND device requires words
@@ -178,14 +178,14 @@
 
   00050	e8bd4010	 ldmia       sp!, {r4, lr}
   00054	e12fff1e	 bx          lr
-  00058		 |$M46702|
+  00058		 |$M46673|
 
 			 ENDP  ; |SectorAccess|
 
 	EXPORT	|BlockAccess|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46714| DCD	|$LN5@BlockAcces|
+|$T46685| DCD	|$LN5@BlockAcces|
 	DCD	0x40000e00
 ; Function compile flags: /Ogspy
 
@@ -196,7 +196,7 @@
 ; 235  : {
 
   00000		 |$LN5@BlockAcces|
-  00000		 |$M46711|
+  00000		 |$M46682|
 
 ; 236  :     blockId *= pDevice->nandInfo.sectorsPerBlock;
 
@@ -226,14 +226,14 @@
 ; 240  : }
 
   00034	e12fff1e	 bx          lr
-  00038		 |$M46712|
+  00038		 |$M46683|
 
 			 ENDP  ; |BlockAccess|
 
 	EXPORT	|WaitOnEmptyWriteBufferStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46724| DCD	|$LN9@WaitOnEmpt|
+|$T46695| DCD	|$LN9@WaitOnEmpt|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -244,7 +244,7 @@
 ; 249  : {
 
   00000		 |$LN9@WaitOnEmpt|
-  00000		 |$M46721|
+  00000		 |$M46692|
   00000	e590202c	 ldr         r2, [r0, #0x2C]
   00004		 |$LL3@WaitOnEmpt|
 
@@ -263,7 +263,7 @@
 ; 255  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M46722|
+  00014		 |$M46693|
 
 			 ENDP  ; |WaitOnEmptyWriteBufferStatus|
 
@@ -273,7 +273,7 @@
 	IMPORT	|InitializeCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46740| DCD	|$LN9@Initialize|
+|$T46711| DCD	|$LN9@Initialize|
 	DCD	0x40002301
 ; Function compile flags: /Ogspy
 
@@ -285,7 +285,7 @@
 
   00000		 |$LN9@Initialize|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M46737|
+  00004		 |$M46708|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -391,14 +391,14 @@
   00088		 |$LN10@Initialize|
   00088		 |$LN11@Initialize|
   00088	00000000	 DCD         |g_deviceRegParams|
-  0008c		 |$M46738|
+  0008c		 |$M46709|
 
 			 ENDP  ; |InitializePointers|
 
 	EXPORT	|NAND_GetGpmcRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46752| DCD	|$LN5@NAND_GetGp|
+|$T46723| DCD	|$LN5@NAND_GetGp|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -409,7 +409,7 @@
 ; 313  : {
 
   00000		 |$LN5@NAND_GetGp|
-  00000		 |$M46749|
+  00000		 |$M46720|
 
 ; 314  :     return ((NandDevice_t*)hNand)->pGpmcRegs;
 
@@ -418,14 +418,14 @@
 ; 315  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M46750|
+  00008		 |$M46721|
 
 			 ENDP  ; |NAND_GetGpmcRegs|
 
 	EXPORT	|NAND_GetGeometry|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46762| DCD	|$LN5@NAND_GetGe|
+|$T46733| DCD	|$LN5@NAND_GetGe|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -436,7 +436,7 @@
 ; 324  : {
 
   00000		 |$LN5@NAND_GetGe|
-  00000		 |$M46759|
+  00000		 |$M46730|
 
 ; 325  :     return &(((NandDevice_t*)hNand)->nandInfo);
 
@@ -445,13 +445,13 @@
 ; 326  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M46760|
+  00008		 |$M46731|
 
 			 ENDP  ; |NAND_GetGeometry|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46775| DCD	|$LN9@NAND_LockB|
+|$T46746| DCD	|$LN9@NAND_LockB|
 	DCD	0x40000b00
 ; Function compile flags: /Ogspy
 
@@ -462,7 +462,7 @@
 ; 336  : {
 
   00000		 |$LN9@NAND_LockB|
-  00000		 |$M46772|
+  00000		 |$M46743|
   00000	e1b02000	 movs        r2, r0
 
 ; 337  :     BOOL rc = FALSE; 
@@ -476,7 +476,7 @@
 ; 342  : 
 ; 343  :     if (pDevice == NULL) goto cleanUp;
 
-  00008	0a000006	 beq         |$cleanUp$46069|
+  00008	0a000006	 beq         |$cleanUp$46040|
 
 ; 344  : 
 ; 345  :     if (bLock)
@@ -498,7 +498,7 @@
   0001c	13c33010	 bicne       r3, r3, #0x10
   00020	03833010	 orreq       r3, r3, #0x10
   00024	e5823050	 str         r3, [r2, #0x50]
-  00028		 |$cleanUp$46069|
+  00028		 |$cleanUp$46040|
 
 ; 354  : 
 ; 355  : cleanUp:
@@ -506,14 +506,14 @@
 ; 357  : }
 
   00028	e12fff1e	 bx          lr
-  0002c		 |$M46773|
+  0002c		 |$M46744|
 
 			 ENDP  ; |NAND_LockBlocks|
 
 	IMPORT	|MmUnmapIoSpace|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46783| DCD	|$LN7@NAND_Unini|
+|$T46754| DCD	|$LN7@NAND_Unini|
 	DCD	0x40000e01
 ; Function compile flags: /Ogspy
 
@@ -525,7 +525,7 @@
 
   00000		 |$LN7@NAND_Unini|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46780|
+  00004		 |$M46751|
   00004	e1a04000	 mov         r4, r0
 
 ; 365  : #ifdef BOOT_MODE
@@ -565,13 +565,13 @@
 
   00030	e8bd4010	 ldmia       sp!, {r4, lr}
   00034	e12fff1e	 bx          lr
-  00038		 |$M46781|
+  00038		 |$M46752|
 
 			 ENDP  ; |NAND_Uninitialize|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46800| DCD	|$LN7@NAND_Seek|
+|$T46771| DCD	|$LN7@NAND_Seek|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -579,15 +579,15 @@
 
   00000		 |NAND_Seek| PROC
 
-; 538  : {
+; 536  : {
 
   00000		 |$LN7@NAND_Seek|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46797|
+  00004		 |$M46768|
 
-; 539  :     // seek to address
-; 540  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 541  :     SectorAccess(pDevice, sector, offset);
+; 537  :     // seek to address
+; 538  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 539  :     SectorAccess(pDevice, sector, offset);
 
   00004	e590e020	 ldr         lr, [r0, #0x20]
   00008	e1a040a2	 mov         r4, r2, lsr #1
@@ -608,16 +608,16 @@
   00044	e5902020	 ldr         r2, [r0, #0x20]
   00048	e1a03c21	 mov         r3, r1, lsr #24
 
-; 542  :     return TRUE;
+; 540  :     return TRUE;
 
   0004c	e3a00001	 mov         r0, #1
   00050	e1c230b0	 strh        r3, [r2]
 
-; 543  : }
+; 541  : }
 
   00054	e8bd4010	 ldmia       sp!, {r4, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M46798|
+  0005c		 |$M46769|
 
 			 ENDP  ; |NAND_Seek|
 
@@ -627,7 +627,7 @@
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46821| DCD	|$LN25@NAND_Read|
+|$T46792| DCD	|$LN25@NAND_Read|
 	DCD	0x40004001
 ; Function compile flags: /Ogspy
 
@@ -635,23 +635,23 @@
 
   00000		 |NAND_Read| PROC
 
-; 553  : {
+; 551  : {
 
   00000		 |$LN25@NAND_Read|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M46818|
+  00004		 |$M46789|
   00004	e1b08003	 movs        r8, r3
   00008	e1a06002	 mov         r6, r2
   0000c	e1a07001	 mov         r7, r1
   00010	e1a05000	 mov         r5, r0
 
-; 554  :     UINT32 fifoLevel;
-; 555  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 556  : 
-; 557  :     // Start ECC if a valid ECC buffer is passed in
-; 558  :     if (pEcc != NULL)
-; 559  :         {
-; 560  :         ECC_Init(pDevice->pGpmcRegs, pDevice->ECCCfg, pDevice->ECCtype, NAND_ECC_READ);
+; 552  :     UINT32 fifoLevel;
+; 553  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 554  : 
+; 555  :     // Start ECC if a valid ECC buffer is passed in
+; 556  :     if (pEcc != NULL)
+; 557  :         {
+; 558  :         ECC_Init(pDevice->pGpmcRegs, pDevice->ECCCfg, pDevice->ECCtype, NAND_ECC_READ);
 
   00014	15952060	 ldrne       r2, [r5, #0x60]
   00018	15951058	 ldrne       r1, [r5, #0x58]
@@ -659,25 +659,25 @@
   00020	13a03000	 movne       r3, #0
   00024	1b000000	 blne        ECC_Init
 
-; 561  :         }
-; 562  : 
-; 563  :     // enable prefetch if it's been properly configured
-; 564  :     if (pDevice->prefetchMode == kPrefetchRead )
+; 559  :         }
+; 560  : 
+; 561  :     // enable prefetch if it's been properly configured
+; 562  :     if (pDevice->prefetchMode == kPrefetchRead )
 
   00028	e595e018	 ldr         lr, [r5, #0x18]
   0002c	e35e0001	 cmp         lr, #1
   00030	1a000025	 bne         |$LN22@NAND_Read|
 
-; 565  :         {
-; 566  :         SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 
-; 567  :             GPMC_PREFETCH_CONTROL_STARTENGINE
-; 568  :             );
+; 563  :         {
+; 564  :         SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 
+; 565  :             GPMC_PREFETCH_CONTROL_STARTENGINE
+; 566  :             );
 
   00034	e595402c	 ldr         r4, [r5, #0x2C]
 
-; 569  : 
-; 570  :         // start copying data into passed in buffer
-; 571  :         while (size > 0)
+; 567  : 
+; 568  :         // start copying data into passed in buffer
+; 569  :         while (size > 0)
 
   00038	e3560000	 cmp         r6, #0
   0003c	e594e1ec	 ldr         lr, [r4, #0x1EC]
@@ -691,71 +691,71 @@
   00058	e595202c	 ldr         r2, [r5, #0x2C]
   0005c		 |$LL10@NAND_Read|
 
-; 572  :             {
-; 573  :             // wait for fifo threshold to be reached
-; 574  :             fifoLevel = 0;
-; 575  :             while (fifoLevel < FIFO_THRESHOLD)
-; 576  :                 {
-; 577  :                 fifoLevel = INREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_STATUS);
+; 570  :             {
+; 571  :             // wait for fifo threshold to be reached
+; 572  :             fifoLevel = 0;
+; 573  :             while (fifoLevel < FIFO_THRESHOLD)
+; 574  :                 {
+; 575  :                 fifoLevel = INREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_STATUS);
 
   0005c	e59231f0	 ldr         r3, [r2, #0x1F0]
   00060	e203347f	 and         r3, r3, #0x7F, 8
   00064	e3530101	 cmp         r3, #1, 2
   00068	3afffffb	 bcc         |$LL10@NAND_Read|
 
-; 578  :                 fifoLevel &= GPMC_PREFETCH_STATUS_FIFOMASK;
-; 579  :                 fifoLevel >>= GPMC_PREFETCH_STATUS_FIFOSHIFT;
-; 580  :                 }
-; 581  : 
-; 582  :             // copy data to buffer
-; 583  :             memcpy(pData, (BYTE*)pDevice->pFifo, FIFO_THRESHOLD);
+; 576  :                 fifoLevel &= GPMC_PREFETCH_STATUS_FIFOMASK;
+; 577  :                 fifoLevel >>= GPMC_PREFETCH_STATUS_FIFOSHIFT;
+; 578  :                 }
+; 579  : 
+; 580  :             // copy data to buffer
+; 581  :             memcpy(pData, (BYTE*)pDevice->pFifo, FIFO_THRESHOLD);
 
   0006c	e5951028	 ldr         r1, [r5, #0x28]
   00070	e3a02040	 mov         r2, #0x40
   00074	e1a00007	 mov         r0, r7
   00078	eb000000	 bl          memcpy
 
-; 584  :             pData += FIFO_THRESHOLD;
+; 582  :             pData += FIFO_THRESHOLD;
 
   0007c	e2877040	 add         r7, r7, #0x40
   00080	e2544001	 subs        r4, r4, #1
   00084	1afffff3	 bne         |$LL12@NAND_Read|
   00088		 |$LN11@NAND_Read|
 
-; 585  :             size -= FIFO_THRESHOLD;        
-; 586  :             }
-; 587  : 
-; 588  :         // NOTE:
-; 589  :         //  Prefetch engine will automatically stop on the completion
-; 590  :         // of data transfer
-; 591  :         pDevice->prefetchMode = kPrefetchOff;
+; 583  :             size -= FIFO_THRESHOLD;        
+; 584  :             }
+; 585  : 
+; 586  :         // NOTE:
+; 587  :         //  Prefetch engine will automatically stop on the completion
+; 588  :         // of data transfer
+; 589  :         pDevice->prefetchMode = kPrefetchOff;
 
   00088	e3a03000	 mov         r3, #0
   0008c	e5853018	 str         r3, [r5, #0x18]
 
-; 592  :         }
-; 593  :     else
+; 590  :         }
+; 591  :     else
 
   00090	ea00000f	 b           |$LN6@NAND_Read|
   00094		 |$LL7@NAND_Read|
 
-; 598  :             {
-; 599  :             *(NANDREG*)pData = READ_NAND(pDevice->pNandData);
+; 596  :             {
+; 597  :             *(NANDREG*)pData = READ_NAND(pDevice->pNandData);
 
   00094	e5953024	 ldr         r3, [r5, #0x24]
 
-; 600  :             pData += sizeof(NANDREG);
-; 601  :             size -= sizeof(NANDREG);
+; 598  :             pData += sizeof(NANDREG);
+; 599  :             size -= sizeof(NANDREG);
 
   00098	e2466002	 sub         r6, r6, #2
   0009c	e1d330b0	 ldrh        r3, [r3]
   000a0	e0c730b2	 strh        r3, [r7], #2
 
-; 602  : 
-; 603  : 	     /* workaround for BCH engine when ECC is not put at the end of OOB area.  
-; 604  : 		  the checking is based on puting ECC at the BootROM expected location -
-; 605  : 		  with 2 bytes offset from the start of the OOB area */
-; 606  :             if(pDevice->ECCtype == BCH4bit || pDevice->ECCtype == BCH8bit)
+; 600  : 
+; 601  : 	     /* workaround for BCH engine when ECC is not put at the end of OOB area.  
+; 602  : 		  the checking is based on puting ECC at the BootROM expected location -
+; 603  : 		  with 2 bytes offset from the start of the OOB area */
+; 604  :             if(pDevice->ECCtype == BCH4bit || pDevice->ECCtype == BCH8bit)
 
   000a4	e5953060	 ldr         r3, [r5, #0x60]
   000a8	e3530001	 cmp         r3, #1
@@ -764,36 +764,36 @@
   000b4	1a000004	 bne         |$LN22@NAND_Read|
   000b8		 |$LN4@NAND_Read|
 
-; 607  :                 if (size == (int)(sizeof(NAND_SPARE_AREA) - ECC_OFFSET - pDevice->ECCsize))
+; 605  :                 if (size == (int)(sizeof(NAND_SPARE_AREA) - ECC_OFFSET - pDevice->ECCsize))
 
   000b8	e5953064	 ldr         r3, [r5, #0x64]
   000bc	e263303e	 rsb         r3, r3, #0x3E
   000c0	e1560003	 cmp         r6, r3
 
-; 608  :         	         ECC_Reset(pDevice->pGpmcRegs);  
+; 606  :         	         ECC_Reset(pDevice->pGpmcRegs);  
 
   000c4	0595002c	 ldreq       r0, [r5, #0x2C]
   000c8	0b000000	 bleq        ECC_Reset
   000cc		 |$LN22@NAND_Read|
 
-; 594  :         {
-; 595  :         // NOTE:
-; 596  :         //  Code assumes the entire page is read at once
-; 597  :         while (size >= sizeof(NANDREG))
+; 592  :         {
+; 593  :         // NOTE:
+; 594  :         //  Code assumes the entire page is read at once
+; 595  :         while (size >= sizeof(NANDREG))
 
   000cc	e3560002	 cmp         r6, #2
   000d0	2affffef	 bcs         |$LL7@NAND_Read|
   000d4		 |$LN6@NAND_Read|
 
-; 609  :                 }
-; 610  :         }
-; 611  : 
-; 612  :     // get ECC result
-; 613  :     if (pEcc != NULL)
-; 614  :         {
-; 615  :         // UNDONE:
-; 616  :         //  should pass in sector size???
-; 617  :         ECC_Result(pDevice->pGpmcRegs, pEcc, pDevice->ECCsize);
+; 607  :                 }
+; 608  :         }
+; 609  : 
+; 610  :     // get ECC result
+; 611  :     if (pEcc != NULL)
+; 612  :         {
+; 613  :         // UNDONE:
+; 614  :         //  should pass in sector size???
+; 615  :         ECC_Result(pDevice->pGpmcRegs, pEcc, pDevice->ECCsize);
 
   000d4	e595002c	 ldr         r0, [r5, #0x2C]
   000d8	e3580000	 cmp         r8, #0
@@ -802,34 +802,34 @@
   000e4	e1a01008	 mov         r1, r8
   000e8	eb000000	 bl          ECC_Result
 
-; 618  :         }
-; 619  :     else
+; 616  :         }
+; 617  :     else
 
   000ec	ea000000	 b           |$LN1@NAND_Read|
   000f0		 |$LN2@NAND_Read|
 
-; 620  :     	{
-; 621  :     	ECC_Reset(pDevice->pGpmcRegs);
+; 618  :     	{
+; 619  :     	ECC_Reset(pDevice->pGpmcRegs);
 
   000f0	eb000000	 bl          ECC_Reset
   000f4		 |$LN1@NAND_Read|
 
-; 622  :     	}
-; 623  :     return TRUE;
+; 620  :     	}
+; 621  :     return TRUE;
 
   000f4	e3a00001	 mov         r0, #1
 
-; 624  : }
+; 622  : }
 
   000f8	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   000fc	e12fff1e	 bx          lr
-  00100		 |$M46819|
+  00100		 |$M46790|
 
 			 ENDP  ; |NAND_Read|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46850| DCD	|$LN28@NAND_Write|
+|$T46821| DCD	|$LN28@NAND_Write|
 	DCD	0x40004201
 ; Function compile flags: /Ogspy
 
@@ -837,23 +837,23 @@
 
   00000		 |NAND_Write| PROC
 
-; 635  : {
+; 633  : {
 
   00000		 |$LN28@NAND_Write|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M46847|
+  00004		 |$M46818|
   00004	e1b08003	 movs        r8, r3
   00008	e1a06002	 mov         r6, r2
   0000c	e1a07001	 mov         r7, r1
   00010	e1a05000	 mov         r5, r0
 
-; 636  :     UINT32 fifoLevel;
-; 637  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 638  : 
-; 639  :     // Start ECC if a valid ECC buffer is passed in
-; 640  :     if (pEcc != NULL)
-; 641  :         {
-; 642  :         ECC_Init(pDevice->pGpmcRegs, pDevice->ECCCfg, pDevice->ECCtype, NAND_ECC_WRITE);
+; 634  :     UINT32 fifoLevel;
+; 635  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 636  : 
+; 637  :     // Start ECC if a valid ECC buffer is passed in
+; 638  :     if (pEcc != NULL)
+; 639  :         {
+; 640  :         ECC_Init(pDevice->pGpmcRegs, pDevice->ECCCfg, pDevice->ECCtype, NAND_ECC_WRITE);
 
   00014	15952060	 ldrne       r2, [r5, #0x60]
   00018	15951058	 ldrne       r1, [r5, #0x58]
@@ -861,24 +861,24 @@
   00020	13a03001	 movne       r3, #1
   00024	1b000000	 blne        ECC_Init
 
-; 643  :         }
-; 644  : 
-; 645  :     // enable prefetch if it's been properly configured
-; 646  :     if (pDevice->prefetchMode == kPrefetchWrite )
+; 641  :         }
+; 642  : 
+; 643  :     // enable prefetch if it's been properly configured
+; 644  :     if (pDevice->prefetchMode == kPrefetchWrite )
 
   00028	e595e018	 ldr         lr, [r5, #0x18]
   0002c	e35e0002	 cmp         lr, #2
   00030	1a000017	 bne         |$LN11@NAND_Write|
 
-; 647  :         {
-; 648  :         SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 
-; 649  :             GPMC_PREFETCH_CONTROL_STARTENGINE
-; 650  :             );
+; 645  :         {
+; 646  :         SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 
+; 647  :             GPMC_PREFETCH_CONTROL_STARTENGINE
+; 648  :             );
 
   00034	e595402c	 ldr         r4, [r5, #0x2C]
 
-; 651  :         // start copying data into passed in buffer
-; 652  :         while (size > 0)
+; 649  :         // start copying data into passed in buffer
+; 650  :         while (size > 0)
 
   00038	e3560000	 cmp         r6, #0
   0003c	e594e1ec	 ldr         lr, [r4, #0x1EC]
@@ -890,88 +890,88 @@
   00054	e2834001	 add         r4, r3, #1
   00058		 |$LL10@NAND_Write|
 
-; 653  :             {
-; 654  :             // copy data to buffer
-; 655  :             memcpy((BYTE*)pDevice->pFifo, pData, FIFO_THRESHOLD);
+; 651  :             {
+; 652  :             // copy data to buffer
+; 653  :             memcpy((BYTE*)pDevice->pFifo, pData, FIFO_THRESHOLD);
 
   00058	e5950028	 ldr         r0, [r5, #0x28]
   0005c	e3a02040	 mov         r2, #0x40
   00060	e1a01007	 mov         r1, r7
   00064	eb000000	 bl          memcpy
 
-; 656  :             pData += FIFO_THRESHOLD;
+; 654  :             pData += FIFO_THRESHOLD;
 
   00068	e595202c	 ldr         r2, [r5, #0x2C]
   0006c	e2877040	 add         r7, r7, #0x40
   00070		 |$LL8@NAND_Write|
 
-; 657  :             size -= FIFO_THRESHOLD;  
-; 658  :             
-; 659  :             // wait for fifo threshold to be reached
-; 660  :             fifoLevel = 0;
-; 661  :             while (fifoLevel < FIFO_THRESHOLD)
-; 662  :                 {
-; 663  :                 fifoLevel = INREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_STATUS);
+; 655  :             size -= FIFO_THRESHOLD;  
+; 656  :             
+; 657  :             // wait for fifo threshold to be reached
+; 658  :             fifoLevel = 0;
+; 659  :             while (fifoLevel < FIFO_THRESHOLD)
+; 660  :                 {
+; 661  :                 fifoLevel = INREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_STATUS);
 
   00070	e59231f0	 ldr         r3, [r2, #0x1F0]
   00074	e203347f	 and         r3, r3, #0x7F, 8
   00078	e3530101	 cmp         r3, #1, 2
   0007c	3afffffb	 bcc         |$LL8@NAND_Write|
 
-; 651  :         // start copying data into passed in buffer
-; 652  :         while (size > 0)
+; 649  :         // start copying data into passed in buffer
+; 650  :         while (size > 0)
 
   00080	e2544001	 subs        r4, r4, #1
   00084	1afffff3	 bne         |$LL10@NAND_Write|
   00088		 |$LN9@NAND_Write|
 
-; 664  :                 fifoLevel &= GPMC_PREFETCH_STATUS_FIFOMASK;
-; 665  :                 fifoLevel >>= GPMC_PREFETCH_STATUS_FIFOSHIFT;
-; 666  :                 }
-; 667  :             }
-; 668  : 
-; 669  :         // NOTE:
-; 670  :         //  Prefetch engine will automatically stop on the completion
-; 671  :         // of data transfer
-; 672  :         pDevice->prefetchMode = kPrefetchOff;
+; 662  :                 fifoLevel &= GPMC_PREFETCH_STATUS_FIFOMASK;
+; 663  :                 fifoLevel >>= GPMC_PREFETCH_STATUS_FIFOSHIFT;
+; 664  :                 }
+; 665  :             }
+; 666  : 
+; 667  :         // NOTE:
+; 668  :         //  Prefetch engine will automatically stop on the completion
+; 669  :         // of data transfer
+; 670  :         pDevice->prefetchMode = kPrefetchOff;
 
   00088	e3a03000	 mov         r3, #0
   0008c	e5853018	 str         r3, [r5, #0x18]
 
-; 673  :         }
-; 674  :     else
+; 671  :         }
+; 672  :     else
 
   00090	ea000011	 b           |$LN4@NAND_Write|
   00094		 |$LN11@NAND_Write|
 
-; 675  :         {
-; 676  :         int writeCount = 0;
+; 673  :         {
+; 674  :         int writeCount = 0;
 
   00094	e3a01000	 mov         r1, #0
 
-; 677  : 		
-; 678  :         while (size >= sizeof(NANDREG))
+; 675  : 		
+; 676  :         while (size >= sizeof(NANDREG))
 
   00098	e3560002	 cmp         r6, #2
   0009c	3a00000e	 bcc         |$LN4@NAND_Write|
 
-; 675  :         {
-; 676  :         int writeCount = 0;
+; 673  :         {
+; 674  :         int writeCount = 0;
 
   000a0	e1a000a6	 mov         r0, r6, lsr #1
   000a4		 |$LL5@NAND_Write|
 
-; 679  :             {
-; 680  :             WRITE_NAND(pDevice->pNandData, *(NANDREG*)pData);
+; 677  :             {
+; 678  :             WRITE_NAND(pDevice->pNandData, *(NANDREG*)pData);
 
   000a4	e5952024	 ldr         r2, [r5, #0x24]
   000a8	e1d730b0	 ldrh        r3, [r7]
 
-; 681  : 
-; 682  :             // Workaround Errata 1.53
-; 683  :             // need to check on EMPTYWRITEBUFFERSTATUS on every
-; 684  :             // 255 bytes
-; 685  :             if (++writeCount >= 255)
+; 679  : 
+; 680  :             // Workaround Errata 1.53
+; 681  :             // need to check on EMPTYWRITEBUFFERSTATUS on every
+; 682  :             // 255 bytes
+; 683  :             if (++writeCount >= 255)
 
   000ac	e2811001	 add         r1, r1, #1
   000b0	e35100ff	 cmp         r1, #0xFF
@@ -979,37 +979,37 @@
   000b8	ba000004	 blt         |$LN3@NAND_Write|
   000bc	e595202c	 ldr         r2, [r5, #0x2C]
 
-; 686  :                 {
-; 687  :                 WaitOnEmptyWriteBufferStatus(pDevice);
+; 684  :                 {
+; 685  :                 WaitOnEmptyWriteBufferStatus(pDevice);
 
   000c0		 |$LL17@NAND_Write|
   000c0	e5923054	 ldr         r3, [r2, #0x54]
   000c4	e3130001	 tst         r3, #1
   000c8	0afffffc	 beq         |$LL17@NAND_Write|
 
-; 688  :                 writeCount = 0;
+; 686  :                 writeCount = 0;
 
   000cc	e3a01000	 mov         r1, #0
   000d0		 |$LN3@NAND_Write|
 
-; 689  :                 }
-; 690  :             
-; 691  :             pData += sizeof(NANDREG);
+; 687  :                 }
+; 688  :             
+; 689  :             pData += sizeof(NANDREG);
 
   000d0	e2877002	 add         r7, r7, #2
   000d4	e2500001	 subs        r0, r0, #1
   000d8	1afffff1	 bne         |$LL5@NAND_Write|
   000dc		 |$LN4@NAND_Write|
 
-; 692  :             size -= sizeof(NANDREG);
-; 693  :             }
-; 694  : 		
-; 695  :         }
-; 696  : 
-; 697  :     // get ECC result
-; 698  :     if (pEcc != NULL)
-; 699  :         {
-; 700  :         ECC_Result(pDevice->pGpmcRegs, pEcc, pDevice->ECCsize);
+; 690  :             size -= sizeof(NANDREG);
+; 691  :             }
+; 692  : 		
+; 693  :         }
+; 694  : 
+; 695  :     // get ECC result
+; 696  :     if (pEcc != NULL)
+; 697  :         {
+; 698  :         ECC_Result(pDevice->pGpmcRegs, pEcc, pDevice->ECCsize);
 
   000dc	e595002c	 ldr         r0, [r5, #0x2C]
   000e0	e3580000	 cmp         r8, #0
@@ -1018,34 +1018,34 @@
   000ec	e1a01008	 mov         r1, r8
   000f0	eb000000	 bl          ECC_Result
 
-; 701  :         }
-; 702  :     else
+; 699  :         }
+; 700  :     else
 
   000f4	ea000000	 b           |$LN1@NAND_Write|
   000f8		 |$LN2@NAND_Write|
 
-; 703  :     	{
-; 704  : 	 ECC_Reset(pDevice->pGpmcRegs);
+; 701  :     	{
+; 702  : 	 ECC_Reset(pDevice->pGpmcRegs);
 
   000f8	eb000000	 bl          ECC_Reset
   000fc		 |$LN1@NAND_Write|
 
-; 705  :     	}
-; 706  :     return TRUE;
+; 703  :     	}
+; 704  :     return TRUE;
 
   000fc	e3a00001	 mov         r0, #1
 
-; 707  : }
+; 705  : }
 
   00100	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   00104	e12fff1e	 bx          lr
-  00108		 |$M46848|
+  00108		 |$M46819|
 
 			 ENDP  ; |NAND_Write|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46860| DCD	|$LN5@NAND_GetSt|
+|$T46831| DCD	|$LN5@NAND_GetSt|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -1053,35 +1053,35 @@
 
   00000		 |NAND_GetStatus| PROC
 
-; 714  : {
+; 712  : {
 
   00000		 |$LN5@NAND_GetSt|
-  00000		 |$M46857|
+  00000		 |$M46828|
 
-; 715  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 716  : 
-; 717  :     // request status
-; 718  :     WRITE_NAND(pDevice->pNandCmd, NAND_CMD_STATUS);
+; 713  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 714  : 
+; 715  :     // request status
+; 716  :     WRITE_NAND(pDevice->pNandCmd, NAND_CMD_STATUS);
 
   00000	e590301c	 ldr         r3, [r0, #0x1C]
   00004	e3a02070	 mov         r2, #0x70
   00008	e1c320b0	 strh        r2, [r3]
 
-; 719  :     return READ_NAND(pDevice->pNandData);
+; 717  :     return READ_NAND(pDevice->pNandData);
 
   0000c	e5903024	 ldr         r3, [r0, #0x24]
   00010	e1d300b0	 ldrh        r0, [r3]
 
-; 720  : }
+; 718  : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M46858|
+  00018		 |$M46829|
 
 			 ENDP  ; |NAND_GetStatus|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46871| DCD	|$LN8@NAND_Enabl|
+|$T46842| DCD	|$LN8@NAND_Enabl|
 	DCD	0x40001b01
 ; Function compile flags: /Ogspy
 
@@ -1089,25 +1089,25 @@
 
   00000		 |NAND_Enable| PROC
 
-; 745  : {
+; 743  : {
 
   00000		 |$LN8@NAND_Enabl|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46868|
+  00004		 |$M46839|
 
-; 746  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 747  : 
-; 748  :     if (pDevice->IrqWait)
+; 744  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 745  : 
+; 746  :     if (pDevice->IrqWait)
 
   00004	e590305c	 ldr         r3, [r0, #0x5C]
   00008	e1b0e003	 movs        lr, r3
   0000c	0a000013	 beq         |$LN1@NAND_Enabl|
 
-; 749  :     {
-; 750  :         if( bEnable )
-; 751  :         {
-; 752  :             // Enable GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
-; 753  :             SETREG32 (&pDevice->pGpmcRegs->GPMC_IRQENABLE, pDevice->IrqWait);
+; 747  :     {
+; 748  :         if( bEnable )
+; 749  :         {
+; 750  :             // Enable GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
+; 751  :             SETREG32 (&pDevice->pGpmcRegs->GPMC_IRQENABLE, pDevice->IrqWait);
 
   00010	e590202c	 ldr         r2, [r0, #0x2C]
   00014	e3510000	 cmp         r1, #0
@@ -1116,9 +1116,9 @@
   00020	e183300e	 orr         r3, r3, lr
   00024	e582301c	 str         r3, [r2, #0x1C]
 
-; 754  : 
-; 755  :             //  Reset IRQ status
-; 756  :             SETREG32 (&pDevice->pGpmcRegs->GPMC_IRQSTATUS, pDevice->IrqWait);
+; 752  : 
+; 753  :             //  Reset IRQ status
+; 754  :             SETREG32 (&pDevice->pGpmcRegs->GPMC_IRQSTATUS, pDevice->IrqWait);
 
   00028	e590102c	 ldr         r1, [r0, #0x2C]
   0002c	e590205c	 ldr         r2, [r0, #0x5C]
@@ -1126,23 +1126,23 @@
   00034	e1833002	 orr         r3, r3, r2
   00038	e5813018	 str         r3, [r1, #0x18]
 
-; 757  :         }
-; 758  :         else
+; 755  :         }
+; 756  :         else
 
   0003c	ea000007	 b           |$LN1@NAND_Enabl|
   00040		 |$LN2@NAND_Enabl|
 
-; 759  :         {
-; 760  :             //  Reset IRQ status
-; 761  :             SETREG32 (&pDevice->pGpmcRegs->GPMC_IRQSTATUS, pDevice->IrqWait);
+; 757  :         {
+; 758  :             //  Reset IRQ status
+; 759  :             SETREG32 (&pDevice->pGpmcRegs->GPMC_IRQSTATUS, pDevice->IrqWait);
 
   00040	e5923018	 ldr         r3, [r2, #0x18]
   00044	e183300e	 orr         r3, r3, lr
   00048	e5823018	 str         r3, [r2, #0x18]
 
-; 762  : 
-; 763  :             // Disable GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
-; 764  :             CLRREG32 (&pDevice->pGpmcRegs->GPMC_IRQENABLE, pDevice->IrqWait);
+; 760  : 
+; 761  :             // Disable GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
+; 762  :             CLRREG32 (&pDevice->pGpmcRegs->GPMC_IRQENABLE, pDevice->IrqWait);
 
   0004c	e590102c	 ldr         r1, [r0, #0x2C]
   00050	e590205c	 ldr         r2, [r0, #0x5C]
@@ -1151,24 +1151,24 @@
   0005c	e581301c	 str         r3, [r1, #0x1C]
   00060		 |$LN1@NAND_Enabl|
 
-; 765  :         }
-; 766  :     }
-; 767  :     return TRUE;
+; 763  :         }
+; 764  :     }
+; 765  :     return TRUE;
 
   00060	e3a00001	 mov         r0, #1
 
-; 768  : }
+; 766  : }
 
   00064	e49de004	 ldr         lr, [sp], #4
   00068	e12fff1e	 bx          lr
-  0006c		 |$M46869|
+  0006c		 |$M46840|
 
 			 ENDP  ; |NAND_Enable|
 
 	IMPORT	|EnterCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46881| DCD	|$LN5@NAND_Mutex|
+|$T46852| DCD	|$LN5@NAND_Mutex|
 	DCD	0x40000601
 ; Function compile flags: /Ogspy
 
@@ -1176,39 +1176,39 @@
 
   00000		 |NAND_MutexEnter| PROC
 
-; 775  : {   
+; 773  : {   
 
   00000		 |$LN5@NAND_Mutex|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46878|
+  00004		 |$M46849|
   00004	e1a04000	 mov         r4, r0
 
-; 776  : #ifdef DEVICE_MODE
-; 777  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 778  :     EnterCriticalSection(&pDevice->cs); 
+; 774  : #ifdef DEVICE_MODE
+; 775  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 776  :     EnterCriticalSection(&pDevice->cs); 
 
   00008	eb000000	 bl          EnterCriticalSection
 
-; 779  :     return pDevice->cs.LockCount;
+; 777  :     return pDevice->cs.LockCount;
 
   0000c	e5940000	 ldr         r0, [r4]
 
-; 780  : #else
-; 781  :     UNREFERENCED_PARAMETER(hNand);
-; 782  :     return 0;
-; 783  : #endif
-; 784  : }
+; 778  : #else
+; 779  :     UNREFERENCED_PARAMETER(hNand);
+; 780  :     return 0;
+; 781  : #endif
+; 782  : }
 
   00010	e8bd4010	 ldmia       sp!, {r4, lr}
   00014	e12fff1e	 bx          lr
-  00018		 |$M46879|
+  00018		 |$M46850|
 
 			 ENDP  ; |NAND_MutexEnter|
 
 	IMPORT	|LeaveCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46891| DCD	|$LN5@NAND_Mutex@2|
+|$T46862| DCD	|$LN5@NAND_Mutex@2|
 	DCD	0x40000601
 ; Function compile flags: /Ogspy
 
@@ -1216,38 +1216,38 @@
 
   00000		 |NAND_MutexExit| PROC
 
-; 791  : {
+; 789  : {
 
   00000		 |$LN5@NAND_Mutex@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46888|
+  00004		 |$M46859|
   00004	e1a04000	 mov         r4, r0
 
-; 792  : #ifdef DEVICE_MODE
-; 793  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 794  :     LeaveCriticalSection(&pDevice->cs); 
+; 790  : #ifdef DEVICE_MODE
+; 791  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 792  :     LeaveCriticalSection(&pDevice->cs); 
 
   00008	eb000000	 bl          LeaveCriticalSection
 
-; 795  :     return pDevice->cs.LockCount;
+; 793  :     return pDevice->cs.LockCount;
 
   0000c	e5940000	 ldr         r0, [r4]
 
-; 796  : #else
-; 797  :     UNREFERENCED_PARAMETER(hNand);
-; 798  :     return 0;
-; 799  : #endif
-; 800  : }
+; 794  : #else
+; 795  :     UNREFERENCED_PARAMETER(hNand);
+; 796  :     return 0;
+; 797  : #endif
+; 798  : }
 
   00010	e8bd4010	 ldmia       sp!, {r4, lr}
   00014	e12fff1e	 bx          lr
-  00018		 |$M46889|
+  00018		 |$M46860|
 
 			 ENDP  ; |NAND_MutexExit|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46902| DCD	|$LN5@NAND_SendC|
+|$T46873| DCD	|$LN5@NAND_SendC|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -1255,33 +1255,33 @@
 
   00000		 |NAND_SendCommand| PROC
 
-; 808  : {
+; 806  : {
 
   00000		 |$LN5@NAND_SendC|
-  00000		 |$M46899|
+  00000		 |$M46870|
   00000	e1a02001	 mov         r2, r1
 
-; 809  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 810  :     WRITE_NAND(pDevice->pNandCmd, cmd);
+; 807  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 808  :     WRITE_NAND(pDevice->pNandCmd, cmd);
 
   00004	e590301c	 ldr         r3, [r0, #0x1C]
 
-; 811  :     return TRUE;
+; 809  :     return TRUE;
 
   00008	e3a00001	 mov         r0, #1
   0000c	e1c320b0	 strh        r2, [r3]
 
-; 812  : }
+; 810  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M46900|
+  00014		 |$M46871|
 
 			 ENDP  ; |NAND_SendCommand|
 
 	IMPORT	|BSPGetNandCS|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46916| DCD	|$LN8@NAND_Confi|
+|$T46887| DCD	|$LN8@NAND_Confi|
 	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 
@@ -1289,32 +1289,32 @@
 
   00000		 |NAND_ConfigurePrefetch| PROC
 
-; 820  : {
+; 818  : {
 
   00000		 |$LN8@NAND_Confi|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M46913|
+  00004		 |$M46884|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
 
-; 821  :     DWORD chipSelect = BSPGetNandCS();
+; 819  :     DWORD chipSelect = BSPGetNandCS();
 
   0000c	eb000000	 bl          BSPGetNandCS
 
-; 822  :     UINT ffPrefetchMode = 0;
-; 823  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 824  : 
-; 825  :     // disable prefetch engine
-; 826  :     pDevice->prefetchMode = kPrefetchOff;
-; 827  :     
-; 828  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 0);
-; 829  : 
-; 830  :     // set prefetch mask
-; 831  :     ffPrefetchMode = GPMC_PREFETCH_CONFIG_PFPWENROUNDROBIN |
-; 832  :                      GPMC_PREFETCH_CONFIG_ENABLEOPTIMIZEDACCESS |
-; 833  :                      GPMC_PREFETCH_CONFIG_WAITPINSELECTOR(chipSelect) |
-; 834  :                      GPMC_PREFETCH_CONFIG_FIFOTHRESHOLD(FIFO_THRESHOLD) |
-; 835  :                      GPMC_PREFETCH_CONFIG_ENGINECSSELECTOR(chipSelect);
+; 820  :     UINT ffPrefetchMode = 0;
+; 821  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 822  : 
+; 823  :     // disable prefetch engine
+; 824  :     pDevice->prefetchMode = kPrefetchOff;
+; 825  :     
+; 826  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 0);
+; 827  : 
+; 828  :     // set prefetch mask
+; 829  :     ffPrefetchMode = GPMC_PREFETCH_CONFIG_PFPWENROUNDROBIN |
+; 830  :                      GPMC_PREFETCH_CONFIG_ENABLEOPTIMIZEDACCESS |
+; 831  :                      GPMC_PREFETCH_CONFIG_WAITPINSELECTOR(chipSelect) |
+; 832  :                      GPMC_PREFETCH_CONFIG_FIFOTHRESHOLD(FIFO_THRESHOLD) |
+; 833  :                      GPMC_PREFETCH_CONFIG_ENGINECSSELECTOR(chipSelect);
 
   00010	e2002007	 and         r2, r0, #7
   00014	e2003003	 and         r3, r0, #3
@@ -1324,42 +1324,42 @@
   00024	e595e02c	 ldr         lr, [r5, #0x2C]
   00028	e1823003	 orr         r3, r2, r3
 
-; 836  : 
-; 837  :     if (accessType == NAND_DATA_WRITE)
+; 834  : 
+; 835  :     if (accessType == NAND_DATA_WRITE)
 
   0002c	e3540002	 cmp         r4, #2
   00030	e1a02203	 mov         r2, r3, lsl #4
   00034	e3a01000	 mov         r1, #0
 
-; 838  :         {
-; 839  :         pDevice->prefetchMode = kPrefetchWrite;
+; 836  :         {
+; 837  :         pDevice->prefetchMode = kPrefetchWrite;
 
   00038	03a03002	 moveq       r3, #2
 
-; 840  :         ffPrefetchMode |= GPMC_PREFETCH_CONFIG_WRITEPOST;
-; 841  :         }
-; 842  :     else
-; 843  :         {
-; 844  :         pDevice->prefetchMode = kPrefetchRead;
+; 838  :         ffPrefetchMode |= GPMC_PREFETCH_CONFIG_WRITEPOST;
+; 839  :         }
+; 840  :     else
+; 841  :         {
+; 842  :         pDevice->prefetchMode = kPrefetchRead;
 
   0003c	13a03001	 movne       r3, #1
   00040	e5851018	 str         r1, [r5, #0x18]
   00044	e58e11ec	 str         r1, [lr, #0x1EC]
   00048	e5853018	 str         r3, [r5, #0x18]
 
-; 845  :         }
-; 846  :         
-; 847  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, ffPrefetchMode);
+; 843  :         }
+; 844  :         
+; 845  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, ffPrefetchMode);
 
   0004c	e595302c	 ldr         r3, [r5, #0x2C]
   00050	03822001	 orreq       r2, r2, #1
 
-; 848  : 
-; 849  :     SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, 
-; 850  :         GPMC_PREFETCH_CONFIG_ENABLEENGINE
-; 851  :         );
-; 852  : 
-; 853  :     return TRUE;
+; 846  : 
+; 847  :     SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, 
+; 848  :         GPMC_PREFETCH_CONFIG_ENABLEENGINE
+; 849  :         );
+; 850  : 
+; 851  :     return TRUE;
 
   00054	e3a00001	 mov         r0, #1
   00058	e58321e0	 str         r2, [r3, #0x1E0]
@@ -1368,11 +1368,11 @@
   00064	e3833080	 orr         r3, r3, #0x80
   00068	e58231e0	 str         r3, [r2, #0x1E0]
 
-; 854  : }
+; 852  : }
 
   0006c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00070	e12fff1e	 bx          lr
-  00074		 |$M46914|
+  00074		 |$M46885|
 
 			 ENDP  ; |NAND_ConfigurePrefetch|
 
@@ -1381,7 +1381,7 @@
 	IMPORT	|memcmp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46932| DCD	|$LN7@NAND_Corre|
+|$T46903| DCD	|$LN7@NAND_Corre|
 	DCD	0x40001b02
 ; Function compile flags: /Ogspy
 
@@ -1389,23 +1389,23 @@
 
   00000		 |NAND_CorrectEccData| PROC
 
-; 866  : {
+; 864  : {
 
   00000		 |$LN7@NAND_Corre|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M46929|
+  00008		 |$M46900|
   00008	e1a05003	 mov         r5, r3
   0000c	e1a08002	 mov         r8, r2
   00010	e1a09001	 mov         r9, r1
   00014	e1a06000	 mov         r6, r0
 
-; 867  :     BOOL rc = FALSE;
-; 868  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 869  :     
-; 870  :     // this call assumes the array size of pEccOld and pEccNew are of the 
-; 871  :     // correct size to hold all the parity bits of the given size    
-; 872  :     if (memcmp(pEccOld, pEccNew, pDevice->ECCsize) != 0)
+; 865  :     BOOL rc = FALSE;
+; 866  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 867  :     
+; 868  :     // this call assumes the array size of pEccOld and pEccNew are of the 
+; 869  :     // correct size to hold all the parity bits of the given size    
+; 870  :     if (memcmp(pEccOld, pEccNew, pDevice->ECCsize) != 0)
 
   00018	e59d7020	 ldr         r7, [sp, #0x20]
   0001c	e5962064	 ldr         r2, [r6, #0x64]
@@ -1416,10 +1416,10 @@
   00030	e3500000	 cmp         r0, #0
   00034	0a000007	 beq         |$LN1@NAND_Corre|
 
-; 873  :         {
-; 874  :         
-; 875  :         // check if data is correctable        
-; 876  :         if (ECC_CorrectData(pDevice->pGpmcRegs, pData, size, pEccOld, pEccNew) == FALSE)
+; 871  :         {
+; 872  :         
+; 873  :         // check if data is correctable        
+; 874  :         if (ECC_CorrectData(pDevice->pGpmcRegs, pData, size, pEccOld, pEccNew) == FALSE)
 
   00038	e596002c	 ldr         r0, [r6, #0x2C]
   0003c	e1a03005	 mov         r3, r5
@@ -1428,36 +1428,36 @@
   00048	e58d7000	 str         r7, [sp]
   0004c	eb000000	 bl          ECC_CorrectData
   00050	e3500000	 cmp         r0, #0
-  00054	0a000000	 beq         |$cleanUp$46347|
+  00054	0a000000	 beq         |$cleanUp$46318|
   00058		 |$LN1@NAND_Corre|
 
-; 877  :             {
-; 878  :             goto cleanUp;
-; 879  :             }
-; 880  :         }    
-; 881  : 
-; 882  :     rc = TRUE;
+; 875  :             {
+; 876  :             goto cleanUp;
+; 877  :             }
+; 878  :         }    
+; 879  : 
+; 880  :     rc = TRUE;
 
   00058	e3a04001	 mov         r4, #1
-  0005c		 |$cleanUp$46347|
+  0005c		 |$cleanUp$46318|
 
-; 883  :     
-; 884  : cleanUp:
-; 885  :     return rc;
-; 886  : }
+; 881  :     
+; 882  : cleanUp:
+; 883  :     return rc;
+; 884  : }
 
   0005c	e1a00004	 mov         r0, r4
   00060	e28dd004	 add         sp, sp, #4
   00064	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   00068	e12fff1e	 bx          lr
-  0006c		 |$M46930|
+  0006c		 |$M46901|
 
 			 ENDP  ; |NAND_CorrectEccData|
 
 	EXPORT	|WaitForReadyStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46945| DCD	|$LN10@WaitForRea|
+|$T46916| DCD	|$LN10@WaitForRea|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -1465,15 +1465,15 @@
 
   00000		 |WaitForReadyStatus| PROC
 
-; 897  : {
+; 895  : {
 
   00000		 |$LN10@WaitForRea|
-  00000		 |$M46942|
+  00000		 |$M46913|
   00000	e3a02070	 mov         r2, #0x70
   00004		 |$LL2@WaitForRea|
 
-; 898  :     //  Wait for a Ready status
-; 899  :     while ((NAND_GetStatus(hNand) & NAND_STATUS_READY) == 0); 
+; 896  :     //  Wait for a Ready status
+; 897  :     while ((NAND_GetStatus(hNand) & NAND_STATUS_READY) == 0); 
 
   00004	e590301c	 ldr         r3, [r0, #0x1C]
   00008	e1c320b0	 strh        r2, [r3]
@@ -1482,17 +1482,17 @@
   00014	e3130040	 tst         r3, #0x40
   00018	0afffff9	 beq         |$LL2@WaitForRea|
 
-; 900  : }
+; 898  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M46943|
+  00020		 |$M46914|
 
 			 ENDP  ; |WaitForReadyStatus|
 
 	EXPORT	|FMD_Deinit|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46996| DCD	|$LN26@FMD_Deinit|
+|$T46967| DCD	|$LN26@FMD_Deinit|
 	DCD	0x40002b01
 ; Function compile flags: /Ogspy
 
@@ -1500,35 +1500,35 @@
 
   00000		 |FMD_Deinit| PROC
 
-; 934  : {
+; 937  : {
 
   00000		 |$LN26@FMD_Deinit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M46993|
+  00004		 |$M46964|
 
-; 935  :     BOOL rc = FALSE;
-; 936  :     if (pContext != s_hNand) goto cleanUp;
+; 938  :     BOOL rc = FALSE;
+; 939  :     if (pContext != s_hNand) goto cleanUp;
 
   00004	e59f509c	 ldr         r5, [pc, #0x9C]
   00008	e5954000	 ldr         r4, [r5]
   0000c	e1500004	 cmp         r0, r4
-  00010	1a000021	 bne         |$cleanUp$46372|
+  00010	1a000021	 bne         |$cleanUp$46343|
 
-; 937  : 
-; 938  :     //  Only enable during NAND read/write/erase operations
-; 939  :     NAND_Enable(s_hNand, TRUE);
+; 940  : 
+; 941  :     //  Only enable during NAND read/write/erase operations
+; 942  :     NAND_Enable(s_hNand, TRUE);
 
   00014	e3a01001	 mov         r1, #1
   00018	e1a00004	 mov         r0, r4
   0001c	eb000000	 bl          NAND_Enable
   00020	e3a01070	 mov         r1, #0x70
 
-; 940  : 
-; 941  :     // Wait for NAND    
-; 942  :     // the next command may not work if you remove this wait on the status, 
-; 943  :     // because if the R/B pin is asserted during the reset, its deassertion 
-; 944  :     // isn't guaranteed to mean that the device is ready
-; 945  :     WaitForReadyStatus(s_hNand);   
+; 943  : 
+; 944  :     // Wait for NAND    
+; 945  :     // the next command may not work if you remove this wait on the status, 
+; 946  :     // because if the R/B pin is asserted during the reset, its deassertion 
+; 947  :     // isn't guaranteed to mean that the device is ready
+; 948  :     WaitForReadyStatus(s_hNand);   
 
   00024		 |$LL5@FMD_Deinit|
   00024	e594301c	 ldr         r3, [r4, #0x1C]
@@ -1538,18 +1538,18 @@
   00034	e3130040	 tst         r3, #0x40
   00038	0afffff9	 beq         |$LL5@FMD_Deinit|
 
-; 946  : 
-; 947  :     // Write RESET command
-; 948  :     // (a reset aborts any current READ, WRITE (PROGRAM) or ERASE operation)
-; 949  :     NAND_SendCommand(s_hNand, NAND_CMD_RESET);
+; 949  : 
+; 950  :     // Write RESET command
+; 951  :     // (a reset aborts any current READ, WRITE (PROGRAM) or ERASE operation)
+; 952  :     NAND_SendCommand(s_hNand, NAND_CMD_RESET);
 
   0003c	e594301c	 ldr         r3, [r4, #0x1C]
   00040	e3a020ff	 mov         r2, #0xFF
   00044	e1c320b0	 strh        r2, [r3]
 
-; 950  : 
-; 951  :     // Wait for NAND
-; 952  :     WaitForReadyStatus(s_hNand);
+; 953  : 
+; 954  :     // Wait for NAND
+; 955  :     WaitForReadyStatus(s_hNand);
 
   00048		 |$LL13@FMD_Deinit|
   00048	e594301c	 ldr         r3, [r4, #0x1C]
@@ -1559,17 +1559,17 @@
   00058	e3130040	 tst         r3, #0x40
   0005c	0afffff9	 beq         |$LL13@FMD_Deinit|
 
-; 953  : 
-; 954  :     // Clear GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
-; 955  :     NAND_Enable(s_hNand, FALSE);
+; 956  : 
+; 957  :     // Clear GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
+; 958  :     NAND_Enable(s_hNand, FALSE);
 
   00060	e3a01000	 mov         r1, #0
   00064	e1a00004	 mov         r0, r4
   00068	eb000000	 bl          NAND_Enable
 
-; 956  : 
-; 957  :     // uninitialize and release allocated resources
-; 958  :     NAND_Uninitialize(s_hNand);
+; 959  : 
+; 960  :     // uninitialize and release allocated resources
+; 961  :     NAND_Uninitialize(s_hNand);
 
   0006c	e594302c	 ldr         r3, [r4, #0x2C]
   00070	e3530000	 cmp         r3, #0
@@ -1582,33 +1582,33 @@
   0008c	11a00003	 movne       r0, r3
   00090	1b000000	 blne        MmUnmapIoSpace
 
-; 959  :     s_hNand = NULL;
+; 962  :     s_hNand = NULL;
 
   00094	e3a03000	 mov         r3, #0
   00098	e5853000	 str         r3, [r5]
-  0009c		 |$cleanUp$46372|
+  0009c		 |$cleanUp$46343|
 
-; 960  :     
-; 961  : cleanUp:
-; 962  :     return rc;
+; 963  :     
+; 964  : cleanUp:
+; 965  :     return rc;
 
   0009c	e3a00000	 mov         r0, #0
 
-; 963  : }
+; 966  : }
 
   000a0	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000a4	e12fff1e	 bx          lr
   000a8		 |$LN27@FMD_Deinit|
   000a8		 |$LN28@FMD_Deinit|
   000a8	00000000	 DCD         |s_hNand|
-  000ac		 |$M46994|
+  000ac		 |$M46965|
 
 			 ENDP  ; |FMD_Deinit|
 
 	EXPORT	|FMD_GetInfo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47024| DCD	|$LN16@FMD_GetInf|
+|$T46995| DCD	|$LN16@FMD_GetInf|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -1616,42 +1616,42 @@
 
   00000		 |FMD_GetInfo| PROC
 
-; 975  : {
+; 978  : {
 
   00000		 |$LN16@FMD_GetInf|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47021|
+  00004		 |$M46992|
   00004	e1a0e000	 mov         lr, r0
 
-; 976  :     BOOL rc = FALSE;
-; 977  : 
-; 978  :     // If we don't support NAND, fail...
-; 979  :     if (s_hNand == NULL) goto cleanUp;
+; 979  :     BOOL rc = FALSE;
+; 980  : 
+; 981  :     // If we don't support NAND, fail...
+; 982  :     if (s_hNand == NULL) goto cleanUp;
 
   00008	e59f304c	 ldr         r3, [pc, #0x4C]
   0000c	e3a00000	 mov         r0, #0
   00010	e5931000	 ldr         r1, [r3]
   00014	e3510000	 cmp         r1, #0
-  00018	0a00000d	 beq         |$cleanUp$46380|
+  00018	0a00000d	 beq         |$cleanUp$46351|
 
-; 980  : 
-; 981  :     // Memory type is NAND
-; 982  :     pFlashInfo->flashType = NAND;
+; 983  : 
+; 984  :     // Memory type is NAND
+; 985  :     pFlashInfo->flashType = NAND;
 
   0001c	e3a03000	 mov         r3, #0
   00020	e58e3000	 str         r3, [lr]
 
-; 983  :     pFlashInfo->dwNumBlocks = NAND_GetGeometry(s_hNand)->blocks;
+; 986  :     pFlashInfo->dwNumBlocks = NAND_GetGeometry(s_hNand)->blocks;
 
   00024	e5913048	 ldr         r3, [r1, #0x48]
 
-; 984  :     pFlashInfo->wSectorsPerBlock = (WORD) NAND_GetGeometry(s_hNand)->sectorsPerBlock;
-; 985  :     pFlashInfo->wDataBytesPerSector = (WORD) NAND_GetGeometry(s_hNand)->sectorSize;
-; 986  :     pFlashInfo->dwBytesPerBlock = NAND_GetGeometry(s_hNand)->sectorSize;
-; 987  :     pFlashInfo->dwBytesPerBlock *= NAND_GetGeometry(s_hNand)->sectorsPerBlock;
-; 988  : 
-; 989  :     // Done
-; 990  :     rc = TRUE;
+; 987  :     pFlashInfo->wSectorsPerBlock = (WORD) NAND_GetGeometry(s_hNand)->sectorsPerBlock;
+; 988  :     pFlashInfo->wDataBytesPerSector = (WORD) NAND_GetGeometry(s_hNand)->sectorSize;
+; 989  :     pFlashInfo->dwBytesPerBlock = NAND_GetGeometry(s_hNand)->sectorSize;
+; 990  :     pFlashInfo->dwBytesPerBlock *= NAND_GetGeometry(s_hNand)->sectorsPerBlock;
+; 991  : 
+; 992  :     // Done
+; 993  :     rc = TRUE;
 
   00028	e3a00001	 mov         r0, #1
   0002c	e58e3004	 str         r3, [lr, #4]
@@ -1664,26 +1664,26 @@
   00048	e591304c	 ldr         r3, [r1, #0x4C]
   0004c	e0020293	 mul         r2, r3, r2
   00050	e58e2008	 str         r2, [lr, #8]
-  00054		 |$cleanUp$46380|
+  00054		 |$cleanUp$46351|
 
-; 991  : 
-; 992  : cleanUp:
-; 993  :     return rc;
-; 994  : }
+; 994  : 
+; 995  : cleanUp:
+; 996  :     return rc;
+; 997  : }
 
   00054	e49de004	 ldr         lr, [sp], #4
   00058	e12fff1e	 bx          lr
   0005c		 |$LN17@FMD_GetInf|
   0005c		 |$LN18@FMD_GetInf|
   0005c	00000000	 DCD         |s_hNand|
-  00060		 |$M47022|
+  00060		 |$M46993|
 
 			 ENDP  ; |FMD_GetInfo|
 
 	EXPORT	|FMD_ReadSectorOOB|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47120| DCD	|$LN43@FMD_ReadSe|
+|$T47091| DCD	|$LN43@FMD_ReadSe|
 	DCD	0x40004c01
 ; Function compile flags: /Ogspy
 
@@ -1691,20 +1691,20 @@
 
   00000		 |FMD_ReadSectorOOB| PROC
 
-; 1007 : {
+; 1010 : {
 
   00000		 |$LN43@FMD_ReadSe|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M47117|
+  00004		 |$M47088|
   00004	e1a07001	 mov         r7, r1
   00008	e1a06000	 mov         r6, r0
 
-; 1008 :     BOOL rc = FALSE;
-; 1009 :     UINT32 oldIdleMode;
-; 1010 :     UINT32 sectorSize;
-; 1011 : 
-; 1012 :     // Fail if FMD wasn't opened
-; 1013 :     if (s_hNand == NULL) goto cleanUp;
+; 1011 :     BOOL rc = FALSE;
+; 1012 :     UINT32 oldIdleMode;
+; 1013 :     UINT32 sectorSize;
+; 1014 : 
+; 1015 :     // Fail if FMD wasn't opened
+; 1016 :     if (s_hNand == NULL) goto cleanUp;
 
   0000c	e59f5118	 ldr         r5, [pc, #0x118]
   00010	e3a04000	 mov         r4, #0
@@ -1712,26 +1712,26 @@
   00018	e3500000	 cmp         r0, #0
   0001c	0a00003f	 beq         |$LN37@FMD_ReadSe|
 
-; 1014 :     
-; 1015 :     NAND_MutexEnter(s_hNand);
+; 1017 :     
+; 1018 :     NAND_MutexEnter(s_hNand);
 
   00020	eb000000	 bl          EnterCriticalSection
 
-; 1016 : 
-; 1017 :     //  Change idle mode to no-idle to ensure access to GPMC registers
-; 1018 :     sectorSize = NAND_GetGeometry(s_hNand)->sectorSize;
+; 1019 : 
+; 1020 :     //  Change idle mode to no-idle to ensure access to GPMC registers
+; 1021 :     sectorSize = NAND_GetGeometry(s_hNand)->sectorSize;
 
   00024	e5954000	 ldr         r4, [r5]
 
-; 1019 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
-; 1020 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
+; 1022 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
+; 1023 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
 
   00028	e3a02008	 mov         r2, #8
 
-; 1021 :     
-; 1022 :         {
-; 1023 :         //  Only enable during NAND read/write/erase operations
-; 1024 :         NAND_Enable(s_hNand, TRUE);
+; 1024 :     
+; 1025 :         {
+; 1026 :         //  Only enable during NAND read/write/erase operations
+; 1027 :         NAND_Enable(s_hNand, TRUE);
 
   0002c	e3a01001	 mov         r1, #1
   00030	e594302c	 ldr         r3, [r4, #0x2C]
@@ -1742,9 +1742,9 @@
   00044	eb000000	 bl          NAND_Enable
   00048	e3a00070	 mov         r0, #0x70
 
-; 1025 : 
-; 1026 :         // Make sure of the NAND status
-; 1027 :         WaitForReadyStatus(s_hNand);
+; 1028 : 
+; 1029 :         // Make sure of the NAND status
+; 1030 :         WaitForReadyStatus(s_hNand);
 
   0004c		 |$LL14@FMD_ReadSe|
   0004c	e594301c	 ldr         r3, [r4, #0x1C]
@@ -1754,16 +1754,16 @@
   0005c	e3130040	 tst         r3, #0x40
   00060	0afffff9	 beq         |$LL14@FMD_ReadSe|
 
-; 1028 : 
-; 1029 :         // Send the command
-; 1030 :         NAND_SendCommand(s_hNand, NAND_CMD_READ1);
+; 1031 : 
+; 1032 :         // Send the command
+; 1033 :         NAND_SendCommand(s_hNand, NAND_CMD_READ1);
 
   00064	e594301c	 ldr         r3, [r4, #0x1C]
   00068	e3a0a000	 mov         r10, #0
 
-; 1031 : 
-; 1032 :         // Send the address
-; 1033 :         NAND_Seek(s_hNand, sector, sectorSize);
+; 1034 : 
+; 1035 :         // Send the address
+; 1036 :         NAND_Seek(s_hNand, sector, sectorSize);
 
   0006c	e1a010a9	 mov         r1, r9, lsr #1
   00070	e1c3a0b0	 strh        r10, [r3]
@@ -1785,18 +1785,18 @@
   000b0	e1c2e0b0	 strh        lr, [r2]
   000b4	e5943020	 ldr         r3, [r4, #0x20]
 
-; 1034 : 
-; 1035 :         // Send the command
-; 1036 :         NAND_SendCommand(s_hNand, NAND_CMD_READ2);
+; 1037 : 
+; 1038 :         // Send the command
+; 1039 :         NAND_SendCommand(s_hNand, NAND_CMD_READ2);
 
   000b8	e3a02030	 mov         r2, #0x30
   000bc	e1c310b0	 strh        r1, [r3]
   000c0	e594301c	 ldr         r3, [r4, #0x1C]
   000c4	e1c320b0	 strh        r2, [r3]
 
-; 1037 : 
-; 1038 :         // Wait for the action to finish
-; 1039 :         WaitForReadyStatus(s_hNand);
+; 1040 : 
+; 1041 :         // Wait for the action to finish
+; 1042 :         WaitForReadyStatus(s_hNand);
 
   000c8		 |$LL28@FMD_ReadSe|
   000c8	e594301c	 ldr         r3, [r4, #0x1C]
@@ -1806,15 +1806,15 @@
   000d8	e3130040	 tst         r3, #0x40
   000dc	0afffff9	 beq         |$LL28@FMD_ReadSe|
 
-; 1040 : 
-; 1041 :         //Force a read here, else we will read the status again
-; 1042 :         NAND_SendCommand (s_hNand, NAND_CMD_READ1);
+; 1043 : 
+; 1044 :         //Force a read here, else we will read the status again
+; 1045 :         NAND_SendCommand (s_hNand, NAND_CMD_READ1);
 
   000e0	e594101c	 ldr         r1, [r4, #0x1C]
 
-; 1043 : 
-; 1044 :         // read spare area
-; 1045 :         NAND_Read(s_hNand, (BYTE*)pBuffer, 64, NULL);
+; 1046 : 
+; 1047 :         // read spare area
+; 1048 :         NAND_Read(s_hNand, (BYTE*)pBuffer, 64, NULL);
 
   000e4	e3a03000	 mov         r3, #0
   000e8	e3a02040	 mov         r2, #0x40
@@ -1823,42 +1823,42 @@
   000f4	e1a00004	 mov         r0, r4
   000f8	eb000000	 bl          NAND_Read
 
-; 1046 :         
-; 1047 :         //  Only enable during NAND read/write/erase operations
-; 1048 :         NAND_Enable(s_hNand, FALSE);
+; 1049 :         
+; 1050 :         //  Only enable during NAND read/write/erase operations
+; 1051 :         NAND_Enable(s_hNand, FALSE);
 
   000fc	e5954000	 ldr         r4, [r5]
   00100	e3a01000	 mov         r1, #0
   00104	e1a00004	 mov         r0, r4
   00108	eb000000	 bl          NAND_Enable
 
-; 1049 : 
-; 1050 :         }
-; 1051 : 
-; 1052 :     //  Change idle mode back
-; 1053 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
+; 1052 : 
+; 1053 :         }
+; 1054 : 
+; 1055 :     //  Change idle mode back
+; 1056 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
 
   0010c	e594302c	 ldr         r3, [r4, #0x2C]
 
-; 1054 :     
-; 1055 :     // Done
-; 1056 :     rc = TRUE;
-; 1057 : 
-; 1058 : cleanUp:
-; 1059 :     // Release hardware lock
-; 1060 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
+; 1057 :     
+; 1058 :     // Done
+; 1059 :     rc = TRUE;
+; 1060 : 
+; 1061 : cleanUp:
+; 1062 :     // Release hardware lock
+; 1063 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
 
   00110	e1a00004	 mov         r0, r4
   00114	e3a04001	 mov         r4, #1
   00118	e5838010	 str         r8, [r3, #0x10]
-  0011c		 |$cleanUp$46394|
+  0011c		 |$cleanUp$46365|
   0011c	eb000000	 bl          LeaveCriticalSection
   00120		 |$LN37@FMD_ReadSe|
 
-; 1061 :     
-; 1062 :     ASSERT(rc);
-; 1063 :     return rc;
-; 1064 : }
+; 1064 :     
+; 1065 :     ASSERT(rc);
+; 1066 :     return rc;
+; 1067 : }
 
   00120	e1a00004	 mov         r0, r4
   00124	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
@@ -1866,7 +1866,7 @@
   0012c		 |$LN44@FMD_ReadSe|
   0012c		 |$LN45@FMD_ReadSe|
   0012c	00000000	 DCD         |s_hNand|
-  00130		 |$M47118|
+  00130		 |$M47089|
 
 			 ENDP  ; |FMD_ReadSectorOOB|
 
@@ -1877,26 +1877,26 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47350| DCD	|$LN128@FMD_ReadSe@2|
+|$T47321| DCD	|$LN128@FMD_ReadSe@2|
 	DCD	0xc0010602
 
   00000			 AREA	 |.xdata|, DATA
-|$T47346| DCD	0xffffffd8
+|$T47317| DCD	0xffffffd8
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47346|
+  00004	00000000	 DCD         |$T47317|
 
   00008		 |FMD_ReadSector| PROC
 
-; 1079 : {
+; 1082 : {
 
   00008		 |$LN128@FMD_ReadSe@2|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd08c	 sub         sp, sp, #0x8C
-  00010		 |$M47347|
+  00010		 |$M47318|
   00010	e1a05003	 mov         r5, r3
   00014	e1a06002	 mov         r6, r2
   00018	e58d5008	 str         r5, [sp, #8]
@@ -1907,38 +1907,38 @@
   0002c	e59ee000	 ldr         lr, [lr]
   00030	e58de088	 str         lr, [sp, #0x88]
 
-; 1080 :     BOOL rc = FALSE;
-; 1081 :     NAND_SPARE_AREA sa;
-; 1082 :     UINT32 oldIdleMode;
-; 1083 :     UINT32 sectorSize;
-; 1084 :     BYTE rgEcc[ECC_BYTES];
-; 1085 : 
-; 1086 :     // Fail if FMD wasn't opened
-; 1087 :     if (s_hNand == NULL) goto cleanUp;
+; 1083 :     BOOL rc = FALSE;
+; 1084 :     NAND_SPARE_AREA sa;
+; 1085 :     UINT32 oldIdleMode;
+; 1086 :     UINT32 sectorSize;
+; 1087 :     BYTE rgEcc[ECC_BYTES];
+; 1088 : 
+; 1089 :     // Fail if FMD wasn't opened
+; 1090 :     if (s_hNand == NULL) goto cleanUp;
 
   00034	e59f93dc	 ldr         r9, [pc, #0x3DC]
   00038	e5990000	 ldr         r0, [r9]
   0003c	e3500000	 cmp         r0, #0
   00040	0a0000ed	 beq         |$LN124@FMD_ReadSe@2|
 
-; 1088 :     
-; 1089 :     NAND_MutexEnter(s_hNand);
+; 1091 :     
+; 1092 :     NAND_MutexEnter(s_hNand);
 
   00044	eb000000	 bl          EnterCriticalSection
 
-; 1090 : 
-; 1091 :     //  Change idle mode to no-idle to ensure access to GPMC registers
-; 1092 :     sectorSize = NAND_GetGeometry(s_hNand)->sectorSize;
+; 1093 : 
+; 1094 :     //  Change idle mode to no-idle to ensure access to GPMC registers
+; 1095 :     sectorSize = NAND_GetGeometry(s_hNand)->sectorSize;
 
   00048	e5997000	 ldr         r7, [r9]
 
-; 1093 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
-; 1094 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
+; 1096 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
+; 1097 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
 
   0004c	e3a01008	 mov         r1, #8
 
-; 1095 : 	
-; 1096 :     while (sectors > 0)
+; 1098 : 	
+; 1099 :     while (sectors > 0)
 
   00050	e3550000	 cmp         r5, #0
   00054	e597302c	 ldr         r3, [r7, #0x2C]
@@ -1955,27 +1955,27 @@
   00080	e1cd40b6	 strh        r4, [sp, #6]
   00084		 |$LL17@FMD_ReadSe@2|
 
-; 1097 :         {
-; 1098 :         //  Only enable during NAND read/write/erase operations
-; 1099 :         NAND_Enable(s_hNand, TRUE);
+; 1100 :         {
+; 1101 :         //  Only enable during NAND read/write/erase operations
+; 1102 :         NAND_Enable(s_hNand, TRUE);
 
   00084	e3a01001	 mov         r1, #1
   00088	e1a00007	 mov         r0, r7
   0008c	eb000000	 bl          NAND_Enable
 
-; 1100 :         
-; 1101 :         // Read sector from A
-; 1102 :         if (pBuffer != NULL)
+; 1103 :         
+; 1104 :         // Read sector from A
+; 1105 :         if (pBuffer != NULL)
 
   00090	e3580000	 cmp         r8, #0
   00094	e3a02070	 mov         r2, #0x70
   00098	0a000048	 beq         |$LL62@FMD_ReadSe@2|
 
-; 1103 :             {
-; 1104 :             // be sure to do this before sending the READ command and not after ! or the
-; 1105 :             // status register would remain at status read mode, which would have to be changed
-; 1106 :             // before retreiving the data
-; 1107 :             WaitForReadyStatus(s_hNand);
+; 1106 :             {
+; 1107 :             // be sure to do this before sending the READ command and not after ! or the
+; 1108 :             // status register would remain at status read mode, which would have to be changed
+; 1109 :             // before retreiving the data
+; 1110 :             WaitForReadyStatus(s_hNand);
 
   0009c		 |$LL30@FMD_ReadSe@2|
   0009c	e597301c	 ldr         r3, [r7, #0x1C]
@@ -1985,10 +1985,10 @@
   000ac	e3130040	 tst         r3, #0x40
   000b0	0afffff9	 beq         |$LL30@FMD_ReadSe@2|
 
-; 1108 : 
-; 1109 : 			
-; 1110 :             // configure prefetch engine for input and start it
-; 1111 :             NAND_ConfigurePrefetch(s_hNand, NAND_DATA_READ);
+; 1111 : 
+; 1112 : 			
+; 1113 :             // configure prefetch engine for input and start it
+; 1114 :             NAND_ConfigurePrefetch(s_hNand, NAND_DATA_READ);
 
   000b4	eb000000	 bl          BSPGetNandCS
   000b8	e597302c	 ldr         r3, [r7, #0x2C]
@@ -2007,15 +2007,15 @@
   000ec	e58131e0	 str         r3, [r1, #0x1E0]
   000f0	e597102c	 ldr         r1, [r7, #0x2C]
 
-; 1112 :            
-; 1113 :             // Send the command
-; 1114 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
+; 1115 :            
+; 1116 :             // Send the command
+; 1117 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
 
   000f4	e5990000	 ldr         r0, [r9]
 
-; 1115 : 
-; 1116 :             // Send the address
-; 1117 :             NAND_Seek(s_hNand, sector, 0);
+; 1118 : 
+; 1119 :             // Send the address
+; 1120 :             NAND_Seek(s_hNand, sector, 0);
 
   000f8	e1a0380b	 mov         r3, r11, lsl #16
   000fc	e59121e0	 ldr         r2, [r1, #0x1E0]
@@ -2030,9 +2030,9 @@
   00120	e5903020	 ldr         r3, [r0, #0x20]
   00124	e20b40ff	 and         r4, r11, #0xFF
 
-; 1118 : 
-; 1119 :             // Send the command
-; 1120 :             NAND_SendCommand(s_hNand, NAND_CMD_READ2);
+; 1121 : 
+; 1122 :             // Send the command
+; 1123 :             NAND_SendCommand(s_hNand, NAND_CMD_READ2);
 
   00128	e3a02030	 mov         r2, #0x30
   0012c	e1c370b0	 strh        r7, [r3]
@@ -2048,9 +2048,9 @@
   00154	e590301c	 ldr         r3, [r0, #0x1C]
   00158	e1c320b0	 strh        r2, [r3]
 
-; 1121 : 
-; 1122 :             // Wait for the action to finish
-; 1123 :             WaitForReadyStatus(s_hNand);
+; 1124 : 
+; 1125 :             // Wait for the action to finish
+; 1126 :             WaitForReadyStatus(s_hNand);
 
   0015c		 |$LL48@FMD_ReadSe@2|
   0015c	e590301c	 ldr         r3, [r0, #0x1C]
@@ -2060,15 +2060,15 @@
   0016c	e3130040	 tst         r3, #0x40
   00170	0afffff9	 beq         |$LL48@FMD_ReadSe@2|
 
-; 1124 : 
-; 1125 :             //Force a read here, else we will read the status again
-; 1126 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
+; 1127 : 
+; 1128 :             //Force a read here, else we will read the status again
+; 1129 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
 
   00174	e590101c	 ldr         r1, [r0, #0x1C]
 
-; 1127 : 
-; 1128 : 	     // read data
-; 1129 :             NAND_Read(s_hNand, pBuffer, sectorSize, rgEcc);
+; 1130 : 
+; 1131 : 	     // read data
+; 1132 :             NAND_Read(s_hNand, pBuffer, sectorSize, rgEcc);
 
   00178	e28d3054	 add         r3, sp, #0x54
   0017c	e1a0200a	 mov         r2, r10
@@ -2076,9 +2076,9 @@
   00184	e1a01008	 mov         r1, r8
   00188	eb000000	 bl          NAND_Read
 
-; 1130 : 			
-; 1131 :             // read spare area
-; 1132 :             NAND_Read(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
+; 1133 : 			
+; 1134 :             // read spare area
+; 1135 :             NAND_Read(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
 
   0018c	e5990000	 ldr         r0, [r9]
   00190	e3a03000	 mov         r3, #0
@@ -2087,9 +2087,9 @@
   0019c	eb000000	 bl          NAND_Read
   001a0	e5997000	 ldr         r7, [r9]
 
-; 1133 : 
-; 1134 :             // Make sure of the NAND status
-; 1135 :             WaitForReadyStatus(s_hNand);
+; 1136 : 
+; 1137 :             // Make sure of the NAND status
+; 1138 :             WaitForReadyStatus(s_hNand);
 
   001a4		 |$LL56@FMD_ReadSe@2|
   001a4	e597301c	 ldr         r3, [r7, #0x1C]
@@ -2099,14 +2099,14 @@
   001b4	e3130040	 tst         r3, #0x40
   001b8	0afffff9	 beq         |$LL56@FMD_ReadSe@2|
 
-; 1136 :             }
-; 1137 :         else
+; 1139 :             }
+; 1140 :         else
 
   001bc	ea000031	 b           |$LN83@FMD_ReadSe@2|
 
-; 1138 :          {
-; 1139 :             // Make sure of the NAND status
-; 1140 :             WaitForReadyStatus(s_hNand);
+; 1141 :          {
+; 1142 :             // Make sure of the NAND status
+; 1143 :             WaitForReadyStatus(s_hNand);
 
   001c0		 |$LL62@FMD_ReadSe@2|
   001c0	e597301c	 ldr         r3, [r7, #0x1C]
@@ -2116,14 +2116,14 @@
   001d0	e3130040	 tst         r3, #0x40
   001d4	0afffff9	 beq         |$LL62@FMD_ReadSe@2|
 
-; 1141 :             // Send the command
-; 1142 :             NAND_SendCommand(s_hNand, NAND_CMD_READ1);
+; 1144 :             // Send the command
+; 1145 :             NAND_SendCommand(s_hNand, NAND_CMD_READ1);
 
   001d8	e597301c	 ldr         r3, [r7, #0x1C]
 
-; 1143 :     
-; 1144 :             // Send the address
-; 1145 :             NAND_Seek(s_hNand, sector, sectorSize);
+; 1146 :     
+; 1147 :             // Send the address
+; 1148 :             NAND_Seek(s_hNand, sector, sectorSize);
 
   001dc	e3a01000	 mov         r1, #0
   001e0	e1dd00b4	 ldrh        r0, [sp, #4]
@@ -2145,17 +2145,17 @@
   00220	e5973020	 ldr         r3, [r7, #0x20]
   00224	e1c320b0	 strh        r2, [r3]
 
-; 1146 :     
-; 1147 :             // Send the command
-; 1148 :             NAND_SendCommand(s_hNand, NAND_CMD_READ2);
+; 1149 :     
+; 1150 :             // Send the command
+; 1151 :             NAND_SendCommand(s_hNand, NAND_CMD_READ2);
 
   00228	e597301c	 ldr         r3, [r7, #0x1C]
   0022c	e3a02030	 mov         r2, #0x30
   00230	e1c320b0	 strh        r2, [r3]
 
-; 1149 :     
-; 1150 :             // Wait for the action to finish
-; 1151 :             WaitForReadyStatus(s_hNand);
+; 1152 :     
+; 1153 :             // Wait for the action to finish
+; 1154 :             WaitForReadyStatus(s_hNand);
 
   00234		 |$LL76@FMD_ReadSe@2|
   00234	e597301c	 ldr         r3, [r7, #0x1C]
@@ -2165,14 +2165,14 @@
   00244	e3130040	 tst         r3, #0x40
   00248	0afffff9	 beq         |$LL76@FMD_ReadSe@2|
 
-; 1152 :             //Force a read here, else we will read the status again
-; 1153 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
+; 1155 :             //Force a read here, else we will read the status again
+; 1156 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
 
   0024c	e597101c	 ldr         r1, [r7, #0x1C]
 
-; 1154 :     
-; 1155 :             // read spare area
-; 1156 :             NAND_Read(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
+; 1157 :     
+; 1158 :             // read spare area
+; 1159 :             NAND_Read(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
 
   00250	e3a00000	 mov         r0, #0
   00254	e3a03000	 mov         r3, #0
@@ -2183,9 +2183,9 @@
   00268	eb000000	 bl          NAND_Read
   0026c	e5997000	 ldr         r7, [r9]
 
-; 1157 : 
-; 1158 :             // Make sure of the NAND status
-; 1159 :             WaitForReadyStatus(s_hNand);
+; 1160 : 
+; 1161 :             // Make sure of the NAND status
+; 1162 :             WaitForReadyStatus(s_hNand);
 
   00270		 |$LL84@FMD_ReadSe@2|
   00270	e597301c	 ldr         r3, [r7, #0x1C]
@@ -2196,22 +2196,22 @@
   00284	0afffff9	 beq         |$LL84@FMD_ReadSe@2|
   00288		 |$LN83@FMD_ReadSe@2|
 
-; 1160 :     
-; 1161 :         }        // Copy sector info
-; 1162 :         if (pSectorInfo != NULL)
+; 1163 :     
+; 1164 :         }        // Copy sector info
+; 1165 :         if (pSectorInfo != NULL)
 
   00288	e3560000	 cmp         r6, #0
   0028c	0a00001e	 beq         |$LN13@FMD_ReadSe@2|
 
-; 1163 :             {
-; 1164 :             pSectorInfo->bBadBlock    = sa.hwBadBlock[0] & sa.hwBadBlock[1];    // HW bad block check
-; 1165 :             pSectorInfo->bBadBlock    = pSectorInfo->bBadBlock & sa.swBadBlock; // SW bad block flag check
-; 1166 :             pSectorInfo->bOEMReserved = sa.oemReserved;
-; 1167 : 
-; 1168 :             memcpy(
-; 1169 :                 &pSectorInfo->dwReserved1, sa.reserved1,
-; 1170 :                 sizeof(pSectorInfo->dwReserved1)
-; 1171 :                 );
+; 1166 :             {
+; 1167 :             pSectorInfo->bBadBlock    = sa.hwBadBlock[0] & sa.hwBadBlock[1];    // HW bad block check
+; 1168 :             pSectorInfo->bBadBlock    = pSectorInfo->bBadBlock & sa.swBadBlock; // SW bad block flag check
+; 1169 :             pSectorInfo->bOEMReserved = sa.oemReserved;
+; 1170 : 
+; 1171 :             memcpy(
+; 1172 :                 &pSectorInfo->dwReserved1, sa.reserved1,
+; 1173 :                 sizeof(pSectorInfo->dwReserved1)
+; 1174 :                 );
 
   00290	e5dd204d	 ldrb        r2, [sp, #0x4D]
   00294	e5dd304c	 ldrb        r3, [sp, #0x4C]
@@ -2234,11 +2234,11 @@
   002d8	e5dd5051	 ldrb        r5, [sp, #0x51]
   002dc	e0062000	 and         r2, r6, r0
 
-; 1172 : 
-; 1173 :             memcpy(
-; 1174 :                 &pSectorInfo->wReserved2, sa.reserved2,
-; 1175 :                 sizeof(pSectorInfo->wReserved2)
-; 1176 :                 );
+; 1175 : 
+; 1176 :             memcpy(
+; 1177 :                 &pSectorInfo->wReserved2, sa.reserved2,
+; 1178 :                 sizeof(pSectorInfo->wReserved2)
+; 1179 :                 );
 
   002e0	e59d600c	 ldr         r6, [sp, #0xC]
   002e4	e1a03823	 mov         r3, r3, lsr #16
@@ -2250,8 +2250,8 @@
   002fc	e5c62005	 strb        r2, [r6, #5]
   00300	e5c65004	 strb        r5, [r6, #4]
 
-; 1207 :         pSectorInfo++;
-; 1208 :         sectors--;
+; 1210 :         pSectorInfo++;
+; 1211 :         sectors--;
 
   00304	e59d5008	 ldr         r5, [sp, #8]
   00308	e1c610b6	 strh        r1, [r6, #6]
@@ -2283,40 +2283,40 @@
   00368	1a000017	 bne         |$LN113@FMD_ReadSe@2|
   0036c		 |$LN10@FMD_ReadSe@2|
 
-; 1177 :             }
-; 1178 :         
-; 1179 :         //  Only enable during NAND read/write/erase operations
-; 1180 :         NAND_Enable(s_hNand, FALSE);
-; 1181 : 
-; 1182 :         // perform ecc correction and correct data when possible
-; 1183 :         if ((pBuffer != NULL) &&
-; 1184 :             (NAND_CorrectEccData(s_hNand, pBuffer, sectorSize, sa.ecc, rgEcc) == FALSE))
-; 1185 :             {
-; 1186 :             UINT count;
-; 1187 :             UCHAR *pData = pBuffer;
-; 1188 :             DEBUGMSG (ZONE_ERROR, (L"NAND_CorrectEccData returns FALSE, sector=%d\r\n", sector));	
-; 1189 : 
-; 1190 :             for (count = 0; count < sizeof(sa); count++)
+; 1180 :             }
+; 1181 :         
+; 1182 :         //  Only enable during NAND read/write/erase operations
+; 1183 :         NAND_Enable(s_hNand, FALSE);
+; 1184 : 
+; 1185 :         // perform ecc correction and correct data when possible
+; 1186 :         if ((pBuffer != NULL) &&
+; 1187 :             (NAND_CorrectEccData(s_hNand, pBuffer, sectorSize, sa.ecc, rgEcc) == FALSE))
+; 1188 :             {
+; 1189 :             UINT count;
+; 1190 :             UCHAR *pData = pBuffer;
+; 1191 :             DEBUGMSG (ZONE_ERROR, (L"NAND_CorrectEccData returns FALSE, sector=%d\r\n", sector));	
+; 1192 : 
+; 1193 :             for (count = 0; count < sizeof(sa); count++)
 
   0036c	e2822001	 add         r2, r2, #1
   00370	e3520040	 cmp         r2, #0x40
   00374	3afffff5	 bcc         |$LL11@FMD_ReadSe@2|
 
-; 1191 :                 {
-; 1192 :                 // Allow OEMReserved byte to be set to reserved/readonly
-; 1193 :                 if (&(((UINT8*)&sa)[count]) == &sa.oemReserved) continue;
-; 1194 :                 if (((UINT8*)&sa)[count] != 0xFF) goto cleanUp;
-; 1195 :                 }
-; 1196 : 
-; 1197 :             for (count = 0; count < sectorSize; count++)
+; 1194 :                 {
+; 1195 :                 // Allow OEMReserved byte to be set to reserved/readonly
+; 1196 :                 if (&(((UINT8*)&sa)[count]) == &sa.oemReserved) continue;
+; 1197 :                 if (((UINT8*)&sa)[count] != 0xFF) goto cleanUp;
+; 1198 :                 }
+; 1199 : 
+; 1200 :             for (count = 0; count < sectorSize; count++)
 
   00378	e3a02000	 mov         r2, #0
   0037c	e35a0000	 cmp         r10, #0
   00380	0a000006	 beq         |$LN112@FMD_ReadSe@2|
   00384		 |$LL6@FMD_ReadSe@2|
 
-; 1198 :                 {
-; 1199 :                 if (*pData != 0xFF) goto cleanUp;
+; 1201 :                 {
+; 1202 :                 if (*pData != 0xFF) goto cleanUp;
 
   00384	e5d13000	 ldrb        r3, [r1]
   00388	e35300ff	 cmp         r3, #0xFF
@@ -2324,35 +2324,35 @@
   00390	e2822001	 add         r2, r2, #1
   00394	e152000a	 cmp         r2, r10
 
-; 1200 :                 ++pData;
+; 1203 :                 ++pData;
 
   00398	e2811001	 add         r1, r1, #1
   0039c	3afffff8	 bcc         |$LL6@FMD_ReadSe@2|
   003a0		 |$LN112@FMD_ReadSe@2|
 
-; 1191 :                 {
-; 1192 :                 // Allow OEMReserved byte to be set to reserved/readonly
-; 1193 :                 if (&(((UINT8*)&sa)[count]) == &sa.oemReserved) continue;
-; 1194 :                 if (((UINT8*)&sa)[count] != 0xFF) goto cleanUp;
-; 1195 :                 }
-; 1196 : 
-; 1197 :             for (count = 0; count < sectorSize; count++)
+; 1194 :                 {
+; 1195 :                 // Allow OEMReserved byte to be set to reserved/readonly
+; 1196 :                 if (&(((UINT8*)&sa)[count]) == &sa.oemReserved) continue;
+; 1197 :                 if (((UINT8*)&sa)[count] != 0xFF) goto cleanUp;
+; 1198 :                 }
+; 1199 : 
+; 1200 :             for (count = 0; count < sectorSize; count++)
 
   003a0	e5997000	 ldr         r7, [r9]
   003a4		 |$LN4@FMD_ReadSe@2|
 
-; 1201 :                 }
-; 1202 :             }
-; 1203 :         
-; 1204 :         // Move to next sector
-; 1205 :         sector++;
-; 1206 :         if (pBuffer != NULL) pBuffer += sectorSize;
+; 1204 :                 }
+; 1205 :             }
+; 1206 :         
+; 1207 :         // Move to next sector
+; 1208 :         sector++;
+; 1209 :         if (pBuffer != NULL) pBuffer += sectorSize;
 
   003a4	e3580000	 cmp         r8, #0
   003a8	1088800a	 addne       r8, r8, r10
 
-; 1207 :         pSectorInfo++;
-; 1208 :         sectors--;
+; 1210 :         pSectorInfo++;
+; 1211 :         sectors--;
 
   003ac	e2555001	 subs        r5, r5, #1
   003b0	e2866008	 add         r6, r6, #8
@@ -2364,40 +2364,40 @@
   003c8	eaffff2d	 b           |$LL17@FMD_ReadSe@2|
   003cc		 |$LN113@FMD_ReadSe@2|
 
-; 1213 :     
-; 1214 :     // Done
-; 1215 :     rc = TRUE;
+; 1216 :     
+; 1217 :     // Done
+; 1218 :     rc = TRUE;
 
   003cc	e5997000	 ldr         r7, [r9]
   003d0	e3a04000	 mov         r4, #0
-  003d4	ea000003	 b           |$cleanUp$46421|
+  003d4	ea000003	 b           |$cleanUp$46392|
   003d8		 |$LN125@FMD_ReadSe@2|
 
-; 1095 : 	
-; 1096 :     while (sectors > 0)
+; 1098 : 	
+; 1099 :     while (sectors > 0)
 
   003d8	e59d2010	 ldr         r2, [sp, #0x10]
   003dc		 |$LN16@FMD_ReadSe@2|
 
-; 1209 :         }
-; 1210 : 
-; 1211 :     //  Change idle mode back
-; 1212 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
+; 1212 :         }
+; 1213 : 
+; 1214 :     //  Change idle mode back
+; 1215 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
 
   003dc	e597302c	 ldr         r3, [r7, #0x2C]
 
-; 1213 :     
-; 1214 :     // Done
-; 1215 :     rc = TRUE;
+; 1216 :     
+; 1217 :     // Done
+; 1218 :     rc = TRUE;
 
   003e0	e3a04001	 mov         r4, #1
   003e4	e5832010	 str         r2, [r3, #0x10]
-  003e8		 |$cleanUp$46421|
+  003e8		 |$cleanUp$46392|
 
-; 1216 : 
-; 1217 : cleanUp:
-; 1218 :     // Release hardware lock
-; 1219 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
+; 1219 : 
+; 1220 : cleanUp:
+; 1221 :     // Release hardware lock
+; 1222 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
 
   003e8	e3570000	 cmp         r7, #0
   003ec	0a000003	 beq         |$LN91@FMD_ReadSe@2|
@@ -2406,26 +2406,26 @@
   003f8	ea000000	 b           |$LN91@FMD_ReadSe@2|
   003fc		 |$LN124@FMD_ReadSe@2|
 
-; 1207 :         pSectorInfo++;
-; 1208 :         sectors--;
+; 1210 :         pSectorInfo++;
+; 1211 :         sectors--;
 
   003fc	e3a04000	 mov         r4, #0
 
-; 1216 : 
-; 1217 : cleanUp:
-; 1218 :     // Release hardware lock
-; 1219 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
+; 1219 : 
+; 1220 : cleanUp:
+; 1221 :     // Release hardware lock
+; 1222 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
 
   00400		 |$LN91@FMD_ReadSe@2|
 
-; 1220 :     
-; 1221 :     ASSERT(rc);
-; 1222 :     return rc;
+; 1223 :     
+; 1224 :     ASSERT(rc);
+; 1225 :     return rc;
 
   00400	e59d0088	 ldr         r0, [sp, #0x88]
   00404	eb000000	 bl          __security_check_cookie
 
-; 1223 : }
+; 1226 : }
 
   00408	e1a00004	 mov         r0, r4
   0040c	e28dd08c	 add         sp, sp, #0x8C
@@ -2436,7 +2436,7 @@
   00418	00000000	 DCD         |s_hNand|
   0041c		 |$LN131@FMD_ReadSe@2|
   0041c	00000000	 DCD         |__security_cookie|
-  00420		 |$M47348|
+  00420		 |$M47319|
 
 			 ENDP  ; |FMD_ReadSector|
 
@@ -2445,26 +2445,26 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47540| DCD	|$LN89@FMD_WriteS|
+|$T47511| DCD	|$LN89@FMD_WriteS|
 	DCD	0xc000e302
 
   00000			 AREA	 |.xdata|, DATA
-|$T47536| DCD	0xffffffd8
+|$T47507| DCD	0xffffffd8
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47536|
+  00004	00000000	 DCD         |$T47507|
 
   00008		 |FMD_WriteSector| PROC
 
-; 1236 : {
+; 1239 : {
 
   00008		 |$LN89@FMD_WriteS|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd05c	 sub         sp, sp, #0x5C
-  00010		 |$M47537|
+  00010		 |$M47508|
   00010	e1a06000	 mov         r6, r0
   00014	e58d6000	 str         r6, [sp]
   00018	e1a09003	 mov         r9, r3
@@ -2474,47 +2474,47 @@
   00028	e59ee000	 ldr         lr, [lr]
   0002c	e58de058	 str         lr, [sp, #0x58]
 
-; 1237 :     BOOL rc = FALSE;
-; 1238 :     NAND_SPARE_AREA sa;
-; 1239 :     UINT32 oldIdleMode;
-; 1240 :     UINT32 sectorSize;
-; 1241 :     SECTOR_ADDR startSector = sector;
-; 1242 :     SECTOR_ADDR endSector = sector + sectors;
-; 1243 :     NandDevice_t *pDevice = (NandDevice_t*)s_hNand;
+; 1240 :     BOOL rc = FALSE;
+; 1241 :     NAND_SPARE_AREA sa;
+; 1242 :     UINT32 oldIdleMode;
+; 1243 :     UINT32 sectorSize;
+; 1244 :     SECTOR_ADDR startSector = sector;
+; 1245 :     SECTOR_ADDR endSector = sector + sectors;
+; 1246 :     NandDevice_t *pDevice = (NandDevice_t*)s_hNand;
 
   00030	e59fb354	 ldr         r11, [pc, #0x354]
   00034	e3a05000	 mov         r5, #0
   00038	e59b7000	 ldr         r7, [r11]
   0003c	e58d7014	 str         r7, [sp, #0x14]
 
-; 1244 : 
-; 1245 :     // Fail if FMD wasn't opened
-; 1246 :     if (s_hNand == NULL) goto cleanUp;
+; 1247 : 
+; 1248 :     // Fail if FMD wasn't opened
+; 1249 :     if (s_hNand == NULL) goto cleanUp;
 
   00040	e3570000	 cmp         r7, #0
   00044	0a0000c9	 beq         |$LN79@FMD_WriteS|
 
-; 1247 :     
-; 1248 :     // Obtain hardware lock
-; 1249 :     NAND_MutexEnter(s_hNand);
+; 1250 :     
+; 1251 :     // Obtain hardware lock
+; 1252 :     NAND_MutexEnter(s_hNand);
 
   00048	e1a00007	 mov         r0, r7
   0004c	eb000000	 bl          EnterCriticalSection
 
-; 1250 : 
-; 1251 :     //  Change idle mode to no-idle to ensure access to GPMC registers
-; 1252 :     sectorSize = NAND_GetGeometry(s_hNand)->sectorSize;
+; 1253 : 
+; 1254 :     //  Change idle mode to no-idle to ensure access to GPMC registers
+; 1255 :     sectorSize = NAND_GetGeometry(s_hNand)->sectorSize;
 
   00050	e59b4000	 ldr         r4, [r11]
 
-; 1253 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
-; 1254 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
+; 1256 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
+; 1257 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
 
   00054	e3a02008	 mov         r2, #8
 
-; 1255 : 
-; 1256 :     //  Only enable during NAND read/write/erase operations    
-; 1257 :     NAND_Enable(s_hNand, TRUE);
+; 1258 : 
+; 1259 :     //  Only enable during NAND read/write/erase operations    
+; 1260 :     NAND_Enable(s_hNand, TRUE);
 
   00058	e3a01001	 mov         r1, #1
   0005c	e594e02c	 ldr         lr, [r4, #0x2C]
@@ -2526,13 +2526,13 @@
   00074	e58d3010	 str         r3, [sp, #0x10]
   00078	eb000000	 bl          NAND_Enable
 
-; 1258 :     NAND_LockBlocks(s_hNand, startSector, endSector, FALSE);
+; 1261 :     NAND_LockBlocks(s_hNand, startSector, endSector, FALSE);
 
   0007c	e594202c	 ldr         r2, [r4, #0x2C]
-  00080		 |$cleanUp$47382|
+  00080		 |$cleanUp$47353|
 
-; 1259 :     
-; 1260 :     while (sectors > 0)
+; 1262 :     
+; 1263 :     while (sectors > 0)
 
   00080	e3590000	 cmp         r9, #0
   00084	e5923050	 ldr         r3, [r2, #0x50]
@@ -2548,25 +2548,25 @@
   000ac	e1cd30b8	 strh        r3, [sp, #8]
   000b0		 |$LL9@FMD_WriteS|
 
-; 1261 :         {
-; 1262 :         // Clear out spare area struct
-; 1263 :         memset(&sa, 0xFF, sizeof(NAND_SPARE_AREA));
+; 1264 :         {
+; 1265 :         // Clear out spare area struct
+; 1266 :         memset(&sa, 0xFF, sizeof(NAND_SPARE_AREA));
 
   000b0	e3a02040	 mov         r2, #0x40
   000b4	e3a010ff	 mov         r1, #0xFF
   000b8	e28d0018	 add         r0, sp, #0x18
   000bc	eb000000	 bl          memset
 
-; 1264 : 
-; 1265 :         // When there is buffer write data
-; 1266 :         if (pBuffer != NULL)
+; 1267 : 
+; 1268 :         // When there is buffer write data
+; 1269 :         if (pBuffer != NULL)
 
   000c0	e35a0000	 cmp         r10, #0
   000c4	0a00002e	 beq         |$LN7@FMD_WriteS|
 
-; 1267 :             {
-; 1268 :             // enable prefetch
-; 1269 :             NAND_ConfigurePrefetch(s_hNand, NAND_DATA_WRITE);
+; 1270 :             {
+; 1271 :             // enable prefetch
+; 1272 :             NAND_ConfigurePrefetch(s_hNand, NAND_DATA_WRITE);
 
   000c8	eb000000	 bl          BSPGetNandCS
   000cc	e594302c	 ldr         r3, [r4, #0x2C]
@@ -2582,12 +2582,12 @@
   000f4	e58131e0	 str         r3, [r1, #0x1E0]
   000f8	e594102c	 ldr         r1, [r4, #0x2C]
 
-; 1270 : 
-; 1271 :             // send the write command
-; 1272 :             NAND_SendCommand(s_hNand, NAND_CMD_WRITE1);
 ; 1273 : 
-; 1274 :             // send the address to write to
-; 1275 :             NAND_Seek(s_hNand, sector, 0);
+; 1274 :             // send the write command
+; 1275 :             NAND_SendCommand(s_hNand, NAND_CMD_WRITE1);
+; 1276 : 
+; 1277 :             // send the address to write to
+; 1278 :             NAND_Seek(s_hNand, sector, 0);
 
   000fc	e59d0000	 ldr         r0, [sp]
   00100	e59b7000	 ldr         r7, [r11]
@@ -2603,9 +2603,9 @@
   00128	e1c230b0	 strh        r3, [r2]
   0012c	e5971020	 ldr         r1, [r7, #0x20]
 
-; 1276 : 
-; 1277 :             // send data to flash
-; 1278 :             NAND_Write(s_hNand, pBuffer, sectorSize, sa.ecc);
+; 1279 : 
+; 1280 :             // send data to flash
+; 1281 :             NAND_Write(s_hNand, pBuffer, sectorSize, sa.ecc);
 
   00130	e3a0b000	 mov         r11, #0
   00134	e20660ff	 and         r6, r6, #0xFF
@@ -2624,9 +2624,9 @@
   00168	e1ce40b0	 strh        r4, [lr]
   0016c	eb000000	 bl          NAND_Write
 
-; 1279 : 
-; 1280 :             }
-; 1281 :         else
+; 1282 : 
+; 1283 :             }
+; 1284 :         else
 
   00170	e59fb214	 ldr         r11, [pc, #0x214]
   00174	e59d6000	 ldr         r6, [sp]
@@ -2635,15 +2635,15 @@
   00180	ea00003c	 b           |$LN60@FMD_WriteS|
   00184		 |$LN7@FMD_WriteS|
 
-; 1282 :             {
-; 1283 :             // Send the command
-; 1284 :             NAND_SendCommand(s_hNand, NAND_CMD_READ1);
+; 1285 :             {
+; 1286 :             // Send the command
+; 1287 :             NAND_SendCommand(s_hNand, NAND_CMD_READ1);
 
   00184	e594301c	 ldr         r3, [r4, #0x1C]
 
-; 1285 : 
-; 1286 :             // Send the address
-; 1287 :             NAND_Seek(s_hNand, sector, NAND_GetGeometry(s_hNand)->sectorSize);
+; 1288 : 
+; 1289 :             // Send the address
+; 1290 :             NAND_Seek(s_hNand, sector, NAND_GetGeometry(s_hNand)->sectorSize);
 
   00188	e3a01000	 mov         r1, #0
   0018c	e1a02806	 mov         r2, r6, lsl #16
@@ -2665,9 +2665,9 @@
   001cc	e1a01c23	 mov         r1, r3, lsr #24
   001d0	e5943020	 ldr         r3, [r4, #0x20]
 
-; 1288 : 
-; 1289 :             // Send the command
-; 1290 :             NAND_SendCommand(s_hNand, NAND_CMD_READ2);
+; 1291 : 
+; 1292 :             // Send the command
+; 1293 :             NAND_SendCommand(s_hNand, NAND_CMD_READ2);
 
   001d4	e3a02030	 mov         r2, #0x30
   001d8	e1cde0b4	 strh        lr, [sp, #4]
@@ -2679,9 +2679,9 @@
   001f0	e1c320b0	 strh        r2, [r3]
   001f4	e3a02070	 mov         r2, #0x70
 
-; 1291 : 
-; 1292 :             // Wait for the action to finish
-; 1293 :             WaitForReadyStatus(s_hNand);
+; 1294 : 
+; 1295 :             // Wait for the action to finish
+; 1296 :             WaitForReadyStatus(s_hNand);
 
   001f8		 |$LL49@FMD_WriteS|
   001f8	e594301c	 ldr         r3, [r4, #0x1C]
@@ -2691,15 +2691,15 @@
   00208	e3130040	 tst         r3, #0x40
   0020c	0afffff9	 beq         |$LL49@FMD_WriteS|
 
-; 1294 : 
-; 1295 :             //Force a read here, else we will read the status again
-; 1296 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
+; 1297 : 
+; 1298 :             //Force a read here, else we will read the status again
+; 1299 :             NAND_SendCommand (s_hNand, NAND_CMD_READ1);
 
   00210	e594101c	 ldr         r1, [r4, #0x1C]
 
-; 1297 : 
-; 1298 :             // read spare area
-; 1299 :             NAND_Read(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
+; 1300 : 
+; 1301 :             // read spare area
+; 1302 :             NAND_Read(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
 
   00214	e3a00000	 mov         r0, #0
   00218	e3a03000	 mov         r3, #0
@@ -2709,19 +2709,19 @@
   00228	e3a02040	 mov         r2, #0x40
   0022c	eb000000	 bl          NAND_Read
 
-; 1300 : 
-; 1301 : 
-; 1302 :             // send the write command
-; 1303 :             NAND_SendCommand(s_hNand, NAND_CMD_WRITE1);
+; 1303 : 
+; 1304 : 
+; 1305 :             // send the write command
+; 1306 :             NAND_SendCommand(s_hNand, NAND_CMD_WRITE1);
 
   00230	e59b0000	 ldr         r0, [r11]
   00234	e3a02080	 mov         r2, #0x80
   00238	e590301c	 ldr         r3, [r0, #0x1C]
   0023c	e1c320b0	 strh        r2, [r3]
 
-; 1304 : 
-; 1305 :             // send the address to write to
-; 1306 :             NAND_Seek(s_hNand, sector, sectorSize);
+; 1307 : 
+; 1308 :             // send the address to write to
+; 1309 :             NAND_Seek(s_hNand, sector, sectorSize);
 
   00240	e5903020	 ldr         r3, [r0, #0x20]
   00244	e1dd20b8	 ldrh        r2, [sp, #8]
@@ -2739,11 +2739,11 @@
   00274	e1c320b0	 strh        r2, [r3]
   00278		 |$LN60@FMD_WriteS|
 
-; 1307 : 			
-; 1308 :             }
-; 1309 : 		
-; 1310 :         /* used for test purpose */ 
-; 1311 :         if((pSectorInfo != NULL) && (pSectorInfo->bOEMReserved == SKIP_ECC_WRITE_MAGIC_NUMBER) )
+; 1310 : 			
+; 1311 :             }
+; 1312 : 		
+; 1313 :         /* used for test purpose */ 
+; 1314 :         if((pSectorInfo != NULL) && (pSectorInfo->bOEMReserved == SKIP_ECC_WRITE_MAGIC_NUMBER) )
 
   00278	e3580000	 cmp         r8, #0
   0027c	0a00000e	 beq         |$LN4@FMD_WriteS|
@@ -2751,31 +2751,31 @@
   00284	e354000f	 cmp         r4, #0xF
   00288	1a000002	 bne         |$LN5@FMD_WriteS|
 
-; 1312 :         {
-; 1313 :             /* skip updating ECC */
-; 1314 :             ECC_Reset(pDevice->pGpmcRegs);			
+; 1315 :         {
+; 1316 :             /* skip updating ECC */
+; 1317 :             ECC_Reset(pDevice->pGpmcRegs);			
 
   0028c	e597002c	 ldr         r0, [r7, #0x2C]
   00290	eb000000	 bl          ECC_Reset
 
-; 1315 : 	     goto  skip_ecc; 	
+; 1318 : 	     goto  skip_ecc; 	
 
-  00294	ea00000c	 b           |$skip_ecc$46494|
+  00294	ea00000c	 b           |$skip_ecc$46465|
   00298		 |$LN5@FMD_WriteS|
 
-; 1316 :         }
-; 1317 : 
-; 1318 :         if (pSectorInfo != NULL)
-; 1319 :             {
-; 1320 :             // Fill in rest of spare area info (we already have ECC from above)
-; 1321 :             sa.swBadBlock     = pSectorInfo->bBadBlock;
-; 1322 :             sa.oemReserved  = pSectorInfo->bOEMReserved;
-; 1323 :             memcpy(sa.reserved1, &pSectorInfo->dwReserved1, sizeof(sa.reserved1));
+; 1319 :         }
+; 1320 : 
+; 1321 :         if (pSectorInfo != NULL)
+; 1322 :             {
+; 1323 :             // Fill in rest of spare area info (we already have ECC from above)
+; 1324 :             sa.swBadBlock     = pSectorInfo->bBadBlock;
+; 1325 :             sa.oemReserved  = pSectorInfo->bOEMReserved;
+; 1326 :             memcpy(sa.reserved1, &pSectorInfo->dwReserved1, sizeof(sa.reserved1));
 
   00298	e598e000	 ldr         lr, [r8]
   0029c	e5d82005	 ldrb        r2, [r8, #5]
 
-; 1324 :             memcpy(sa.reserved2, &pSectorInfo->wReserved2, sizeof(sa.reserved2));
+; 1327 :             memcpy(sa.reserved2, &pSectorInfo->wReserved2, sizeof(sa.reserved2));
 
   002a0	e1d810b6	 ldrh        r1, [r8, #6]
   002a4	e1a0382e	 mov         r3, lr, lsr #16
@@ -2786,21 +2786,21 @@
   002b8	e1cd15b2	 strh        r1, [sp, #0x52]
   002bc		 |$LN4@FMD_WriteS|
 
-; 1325 :             }
-; 1326 : 
-; 1327 :         // write new spare info
-; 1328 :         NAND_Write(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
+; 1328 :             }
+; 1329 : 
+; 1330 :         // write new spare info
+; 1331 :         NAND_Write(s_hNand, (BYTE*)&sa, sizeof(sa), NULL);
 
   002bc	e3a03000	 mov         r3, #0
   002c0	e3a02040	 mov         r2, #0x40
   002c4	e28d1018	 add         r1, sp, #0x18
   002c8	eb000000	 bl          NAND_Write
-  002cc		 |$skip_ecc$46494|
+  002cc		 |$skip_ecc$46465|
 
-; 1329 : 
-; 1330 : skip_ecc:
-; 1331 :         // initiate the data programming process :
-; 1332 :         NAND_SendCommand(s_hNand, NAND_CMD_WRITE2);
+; 1332 : 
+; 1333 : skip_ecc:
+; 1334 :         // initiate the data programming process :
+; 1335 :         NAND_SendCommand(s_hNand, NAND_CMD_WRITE2);
 
   002cc	e59b4000	 ldr         r4, [r11]
   002d0	e3a02010	 mov         r2, #0x10
@@ -2808,9 +2808,9 @@
   002d8	e1c320b0	 strh        r2, [r3]
   002dc	e3a02070	 mov         r2, #0x70
 
-; 1333 : 
-; 1334 :         // wait until completion of the operation :
-; 1335 :         WaitForReadyStatus(s_hNand);
+; 1336 : 
+; 1337 :         // wait until completion of the operation :
+; 1338 :         WaitForReadyStatus(s_hNand);
 
   002e0		 |$LL65@FMD_WriteS|
   002e0	e594301c	 ldr         r3, [r4, #0x1C]
@@ -2820,8 +2820,8 @@
   002f0	e3130040	 tst         r3, #0x40
   002f4	0afffff9	 beq         |$LL65@FMD_WriteS|
 
-; 1336 : 
-; 1337 :         if ((NAND_GetStatus(s_hNand) & NAND_STATUS_ERROR) != 0)
+; 1339 : 
+; 1340 :         if ((NAND_GetStatus(s_hNand) & NAND_STATUS_ERROR) != 0)
 
   002f8	e594301c	 ldr         r3, [r4, #0x1C]
   002fc	e1c320b0	 strh        r2, [r3]
@@ -2830,19 +2830,19 @@
   00308	e3130001	 tst         r3, #1
   0030c	1a000008	 bne         |$LN86@FMD_WriteS|
 
-; 1338 :             {
-; 1339 :             break;
-; 1340 :             }
-; 1341 :         // Move to next sector
-; 1342 :         sector++;
-; 1343 :         if (pBuffer != NULL) pBuffer += sectorSize;
+; 1341 :             {
+; 1342 :             break;
+; 1343 :             }
+; 1344 :         // Move to next sector
+; 1345 :         sector++;
+; 1346 :         if (pBuffer != NULL) pBuffer += sectorSize;
 
   00310	e35a0000	 cmp         r10, #0
   00314	159d300c	 ldrne       r3, [sp, #0xC]
   00318	e2866001	 add         r6, r6, #1
 
-; 1344 :         pSectorInfo++;
-; 1345 :         sectors--;
+; 1347 :         pSectorInfo++;
+; 1348 :         sectors--;
 
   0031c	e59f5064	 ldr         r5, [pc, #0x64]
   00320	108aa003	 addne       r10, r10, r3
@@ -2852,57 +2852,57 @@
   00330	1affff5e	 bne         |$LL9@FMD_WriteS|
   00334		 |$LN86@FMD_WriteS|
 
-; 1346 :         }
-; 1347 : 
-; 1348 :     //  Only enable during NAND read/write/erase operations    
-; 1349 :     NAND_LockBlocks(s_hNand, startSector, endSector, TRUE);
+; 1349 :         }
+; 1350 : 
+; 1351 :     //  Only enable during NAND read/write/erase operations    
+; 1352 :     NAND_LockBlocks(s_hNand, startSector, endSector, TRUE);
 
   00334	e594202c	 ldr         r2, [r4, #0x2C]
 
-; 1350 :     NAND_Enable(s_hNand, FALSE);
+; 1353 :     NAND_Enable(s_hNand, FALSE);
 
   00338	e3a01000	 mov         r1, #0
   0033c	e1a00004	 mov         r0, r4
   00340	e5923050	 ldr         r3, [r2, #0x50]
-  00344		 |$cleanUp$47499|
+  00344		 |$cleanUp$47470|
   00344	e3c33010	 bic         r3, r3, #0x10
   00348	e5823050	 str         r3, [r2, #0x50]
   0034c	eb000000	 bl          NAND_Enable
 
-; 1351 : 
-; 1352 :     //  Change idle mode back
-; 1353 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
+; 1354 : 
+; 1355 :     //  Change idle mode back
+; 1356 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
 
   00350	e594302c	 ldr         r3, [r4, #0x2C]
 
-; 1354 : 
-; 1355 :     // All is ok, when we read all sectors
-; 1356 :     rc = (sectors == 0);
+; 1357 : 
+; 1358 :     // All is ok, when we read all sectors
+; 1359 :     rc = (sectors == 0);
 
   00354	e59d2010	 ldr         r2, [sp, #0x10]
   00358	e3590000	 cmp         r9, #0
   0035c	03a05001	 moveq       r5, #1
   00360	e5832010	 str         r2, [r3, #0x10]
   00364	13a05000	 movne       r5, #0
-  00368		 |$cleanUp$46479|
+  00368		 |$cleanUp$46450|
 
-; 1357 : 
-; 1358 : cleanUp:
-; 1359 :     // Release hardware lock
-; 1360 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
+; 1360 : 
+; 1361 : cleanUp:
+; 1362 :     // Release hardware lock
+; 1363 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
 
   00368	e1a00004	 mov         r0, r4
   0036c	eb000000	 bl          LeaveCriticalSection
   00370		 |$LN79@FMD_WriteS|
 
-; 1361 :     
-; 1362 :     ASSERT(rc);
-; 1363 :     return rc;
+; 1364 :     
+; 1365 :     ASSERT(rc);
+; 1366 :     return rc;
 
   00370	e59d0058	 ldr         r0, [sp, #0x58]
   00374	eb000000	 bl          __security_check_cookie
 
-; 1364 : }
+; 1367 : }
 
   00378	e1a00005	 mov         r0, r5
   0037c	e28dd05c	 add         sp, sp, #0x5C
@@ -2915,14 +2915,14 @@
   0038c	00000000	 DCD         |s_hNand|
   00390		 |$LN93@FMD_WriteS|
   00390	00000000	 DCD         |__security_cookie|
-  00394		 |$M47538|
+  00394		 |$M47509|
 
 			 ENDP  ; |FMD_WriteSector|
 
 	EXPORT	|FMD_GetBlockStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47560| DCD	|$LN13@FMD_GetBlo|
+|$T47531| DCD	|$LN13@FMD_GetBlo|
 	DCD	0x40002102
 ; Function compile flags: /Ogspy
 
@@ -2930,35 +2930,35 @@
 
   00000		 |FMD_GetBlockStatus| PROC
 
-; 1431 : {
+; 1437 : {
 
   00000		 |$LN13@FMD_GetBlo|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M47557|
+  00008		 |$M47528|
 
-; 1432 :     DWORD rc = 0;
-; 1433 :     SECTOR_ADDR sector;
-; 1434 :     SectorInfo sectorInfo[2];
-; 1435 : 
-; 1436 : 
-; 1437 :     // Check if we know flash geometry
-; 1438 :     if (s_hNand == NULL) goto cleanUp;
+; 1438 :     DWORD rc = 0;
+; 1439 :     SECTOR_ADDR sector;
+; 1440 :     SectorInfo sectorInfo[2];
+; 1441 : 
+; 1442 : 
+; 1443 :     // Check if we know flash geometry
+; 1444 :     if (s_hNand == NULL) goto cleanUp;
 
   00008	e59f3070	 ldr         r3, [pc, #0x70]
   0000c	e3a04000	 mov         r4, #0
   00010	e5933000	 ldr         r3, [r3]
   00014	e3530000	 cmp         r3, #0
-  00018	0a000014	 beq         |$cleanUp$46531|
+  00018	0a000014	 beq         |$cleanUp$46502|
 
-; 1439 : 
-; 1440 :     // Calculate sector
-; 1441 :     sector = blockId * NAND_GetGeometry(s_hNand)->sectorsPerBlock;
+; 1445 : 
+; 1446 :     // Calculate sector
+; 1447 :     sector = blockId * NAND_GetGeometry(s_hNand)->sectorsPerBlock;
 
   0001c	e593e04c	 ldr         lr, [r3, #0x4C]
 
-; 1442 : 
-; 1443 :     if (!FMD_ReadSector(sector, NULL, sectorInfo, 2))
+; 1448 : 
+; 1449 :     if (!FMD_ReadSector(sector, NULL, sectorInfo, 2))
 
   00020	e3a03002	 mov         r3, #2
   00024	e28d2000	 add         r2, sp, #0
@@ -2967,16 +2967,16 @@
   00030	eb000000	 bl          FMD_ReadSector
   00034	e3500000	 cmp         r0, #0
 
-; 1444 :         {
-; 1445 :         rc = BLOCK_STATUS_UNKNOWN;
+; 1450 :         {
+; 1451 :         rc = BLOCK_STATUS_UNKNOWN;
 
   00038	03a04001	 moveq       r4, #1
-  0003c	0a00000b	 beq         |$cleanUp$46531|
+  0003c	0a00000b	 beq         |$cleanUp$46502|
 
-; 1446 :         goto cleanUp;
-; 1447 :         }
-; 1448 : 
-; 1449 :     if ((sectorInfo[0].bBadBlock != 0xFF) || (sectorInfo[1].bBadBlock != 0xFF))
+; 1452 :         goto cleanUp;
+; 1453 :         }
+; 1454 : 
+; 1455 :     if ((sectorInfo[0].bBadBlock != 0xFF) || (sectorInfo[1].bBadBlock != 0xFF))
 
   00040	e5dd3005	 ldrb        r3, [sp, #5]
   00044	e35300ff	 cmp         r3, #0xFF
@@ -2986,41 +2986,41 @@
   00054	0a000000	 beq         |$LN4@FMD_GetBlo|
   00058		 |$LN3@FMD_GetBlo|
 
-; 1450 :         {
-; 1451 :         rc |= BLOCK_STATUS_BAD;
+; 1456 :         {
+; 1457 :         rc |= BLOCK_STATUS_BAD;
 
   00058	e3a04002	 mov         r4, #2
   0005c		 |$LN4@FMD_GetBlo|
 
-; 1452 :         }
-; 1453 : 
-; 1454 :     if ((sectorInfo[0].bOEMReserved & OEM_BLOCK_READONLY) == 0)
+; 1458 :         }
+; 1459 : 
+; 1460 :     if ((sectorInfo[0].bOEMReserved & OEM_BLOCK_READONLY) == 0)
 
   0005c	e5dd3004	 ldrb        r3, [sp, #4]
   00060	e3130002	 tst         r3, #2
 
-; 1455 :         {
-; 1456 :         rc |= BLOCK_STATUS_READONLY;
+; 1461 :         {
+; 1462 :         rc |= BLOCK_STATUS_READONLY;
 
   00064	03844004	 orreq       r4, r4, #4
 
-; 1457 :         }
-; 1458 : 
-; 1459 :     if ((sectorInfo[0].bOEMReserved & OEM_BLOCK_RESERVED) == 0)
+; 1463 :         }
+; 1464 : 
+; 1465 :     if ((sectorInfo[0].bOEMReserved & OEM_BLOCK_RESERVED) == 0)
 
   00068	e3130001	 tst         r3, #1
 
-; 1460 :         {
-; 1461 :         rc |= BLOCK_STATUS_RESERVED;
+; 1466 :         {
+; 1467 :         rc |= BLOCK_STATUS_RESERVED;
 
   0006c	03844008	 orreq       r4, r4, #8
-  00070		 |$cleanUp$46531|
+  00070		 |$cleanUp$46502|
 
-; 1462 :         }
-; 1463 : 
-; 1464 : cleanUp:
-; 1465 :     return rc;
-; 1466 : }
+; 1468 :         }
+; 1469 : 
+; 1470 : cleanUp:
+; 1471 :     return rc;
+; 1472 : }
 
   00070	e1a00004	 mov         r0, r4
   00074	e28dd010	 add         sp, sp, #0x10
@@ -3029,14 +3029,14 @@
   00080		 |$LN14@FMD_GetBlo|
   00080		 |$LN15@FMD_GetBlo|
   00080	00000000	 DCD         |s_hNand|
-  00084		 |$M47558|
+  00084		 |$M47529|
 
 			 ENDP  ; |FMD_GetBlockStatus|
 
 	EXPORT	|FMD_SetBlockStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47578| DCD	|$LN11@FMD_SetBlo|
+|$T47549| DCD	|$LN11@FMD_SetBlo|
 	DCD	0x40002102
 ; Function compile flags: /Ogspy
 
@@ -3044,42 +3044,42 @@
 
   00000		 |FMD_SetBlockStatus| PROC
 
-; 1477 : {
+; 1483 : {
 
   00000		 |$LN11@FMD_SetBlo|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47575|
+  00008		 |$M47546|
   00008	e1a06000	 mov         r6, r0
 
-; 1478 :     BOOL rc = FALSE;
-; 1479 :     SECTOR_ADDR sector;
-; 1480 :     SectorInfo sectorInfo;
-; 1481 : 
-; 1482 :     // Check if we know flash geometry
-; 1483 :     if (s_hNand == NULL) goto cleanUp;
+; 1484 :     BOOL rc = FALSE;
+; 1485 :     SECTOR_ADDR sector;
+; 1486 :     SectorInfo sectorInfo;
+; 1487 : 
+; 1488 :     // Check if we know flash geometry
+; 1489 :     if (s_hNand == NULL) goto cleanUp;
 
   0000c	e59f306c	 ldr         r3, [pc, #0x6C]
   00010	e3a04000	 mov         r4, #0
   00014	e5933000	 ldr         r3, [r3]
   00018	e3530000	 cmp         r3, #0
-  0001c	0a000013	 beq         |$cleanUp$46548|
+  0001c	0a000013	 beq         |$cleanUp$46519|
 
-; 1484 : 
-; 1485 :     // Calculate sector
-; 1486 :     sector = blockId * NAND_GetGeometry(s_hNand)->sectorsPerBlock;
+; 1490 : 
+; 1491 :     // Calculate sector
+; 1492 :     sector = blockId * NAND_GetGeometry(s_hNand)->sectorsPerBlock;
 
   00020	e593504c	 ldr         r5, [r3, #0x4C]
 
-; 1487 : 
-; 1488 :     if ((status & BLOCK_STATUS_BAD) != 0)
+; 1493 : 
+; 1494 :     if ((status & BLOCK_STATUS_BAD) != 0)
 
   00024	e3110002	 tst         r1, #2
   00028	0a00000f	 beq         |$LN1@FMD_SetBlo|
 
-; 1489 :         {
-; 1490 :         // Read the sector info
-; 1491 :         if (!FMD_ReadSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
+; 1495 :         {
+; 1496 :         // Read the sector info
+; 1497 :         if (!FMD_ReadSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
 
   0002c	e0000695	 mul         r0, r5, r6
   00030	e3a03001	 mov         r3, #1
@@ -3087,17 +3087,17 @@
   00038	e3a01000	 mov         r1, #0
   0003c	eb000000	 bl          FMD_ReadSector
   00040	e3500000	 cmp         r0, #0
-  00044	0a000009	 beq         |$cleanUp$46548|
+  00044	0a000009	 beq         |$cleanUp$46519|
 
-; 1492 : 
-; 1493 :         // Set the bad block marker
-; 1494 :         sectorInfo.bBadBlock = 0;
+; 1498 : 
+; 1499 :         // Set the bad block marker
+; 1500 :         sectorInfo.bBadBlock = 0;
 
   00048	e3a03000	 mov         r3, #0
 
-; 1495 : 
-; 1496 :         // Complete the write (no erase, we changed 0xFF -> 0x00)
-; 1497 :         if (!FMD_WriteSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
+; 1501 : 
+; 1502 :         // Complete the write (no erase, we changed 0xFF -> 0x00)
+; 1503 :         if (!FMD_WriteSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
 
   0004c	e0000695	 mul         r0, r5, r6
   00050	e5cd3005	 strb        r3, [sp, #5]
@@ -3106,35 +3106,35 @@
   0005c	e3a01000	 mov         r1, #0
   00060	eb000000	 bl          FMD_WriteSector
   00064	e3500000	 cmp         r0, #0
-  00068	0a000000	 beq         |$cleanUp$46548|
+  00068	0a000000	 beq         |$cleanUp$46519|
   0006c		 |$LN1@FMD_SetBlo|
 
-; 1498 :         }
-; 1499 : 
-; 1500 : #ifdef BOOT_MODE
-; 1501 :     if ( ((status & BLOCK_STATUS_READONLY) != 0) || ((status & BLOCK_STATUS_RESERVED) != 0) )
-; 1502 :         {
-; 1503 :         // Read the sector info
-; 1504 :         if (!FMD_ReadSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
+; 1504 :         }
 ; 1505 : 
-; 1506 :         // Set the OEM field
-; 1507 :         sectorInfo.bOEMReserved &= ((status & BLOCK_STATUS_READONLY) != 0) ? ~(OEM_BLOCK_READONLY) : 0xFF;
-; 1508 :         sectorInfo.bOEMReserved &= ((status & BLOCK_STATUS_RESERVED) != 0) ? ~(OEM_BLOCK_RESERVED) : 0xFF;
-; 1509 :         
-; 1510 :         // Complete the write (no erase, changed bits from 1s to 0s)
-; 1511 :         if (!FMD_WriteSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
-; 1512 :         }
-; 1513 : #endif
-; 1514 : 
-; 1515 :     rc = TRUE;
+; 1506 : #ifdef BOOT_MODE
+; 1507 :     if ( ((status & BLOCK_STATUS_READONLY) != 0) || ((status & BLOCK_STATUS_RESERVED) != 0) )
+; 1508 :         {
+; 1509 :         // Read the sector info
+; 1510 :         if (!FMD_ReadSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
+; 1511 : 
+; 1512 :         // Set the OEM field
+; 1513 :         sectorInfo.bOEMReserved &= ((status & BLOCK_STATUS_READONLY) != 0) ? ~(OEM_BLOCK_READONLY) : 0xFF;
+; 1514 :         sectorInfo.bOEMReserved &= ((status & BLOCK_STATUS_RESERVED) != 0) ? ~(OEM_BLOCK_RESERVED) : 0xFF;
+; 1515 :         
+; 1516 :         // Complete the write (no erase, changed bits from 1s to 0s)
+; 1517 :         if (!FMD_WriteSector(sector, NULL, &sectorInfo, 1)) goto cleanUp;
+; 1518 :         }
+; 1519 : #endif
+; 1520 : 
+; 1521 :     rc = TRUE;
 
   0006c	e3a04001	 mov         r4, #1
-  00070		 |$cleanUp$46548|
+  00070		 |$cleanUp$46519|
 
-; 1516 : 
-; 1517 : cleanUp:
-; 1518 :     return rc;
-; 1519 : }
+; 1522 : 
+; 1523 : cleanUp:
+; 1524 :     return rc;
+; 1525 : }
 
   00070	e1a00004	 mov         r0, r4
   00074	e28dd008	 add         sp, sp, #8
@@ -3143,14 +3143,14 @@
   00080		 |$LN12@FMD_SetBlo|
   00080		 |$LN13@FMD_SetBlo|
   00080	00000000	 DCD         |s_hNand|
-  00084		 |$M47576|
+  00084		 |$M47547|
 
 			 ENDP  ; |FMD_SetBlockStatus|
 
 	EXPORT	|FMD_PowerUp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47630| DCD	|$LN26@FMD_PowerU|
+|$T47601| DCD	|$LN26@FMD_PowerU|
 	DCD	0x40002201
 ; Function compile flags: /Ogspy
 
@@ -3158,29 +3158,29 @@
 
   00000		 |FMD_PowerUp| PROC
 
-; 1528 : {
+; 1534 : {
 
   00000		 |$LN26@FMD_PowerU|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47627|
+  00004		 |$M47598|
 
-; 1529 :     // exit if FMD wasn't opened
-; 1530 :     if (s_hNand == NULL) return;
+; 1535 :     // exit if FMD wasn't opened
+; 1536 :     if (s_hNand == NULL) return;
 
   00004	e59f4078	 ldr         r4, [pc, #0x78]
   00008	e5940000	 ldr         r0, [r4]
   0000c	e3500000	 cmp         r0, #0
   00010	0a000019	 beq         |$LN20@FMD_PowerU|
 
-; 1531 :     
-; 1532 :     // Obtain hardware lock
-; 1533 :     NAND_MutexEnter(s_hNand);
+; 1537 :     
+; 1538 :     // Obtain hardware lock
+; 1539 :     NAND_MutexEnter(s_hNand);
 
   00014	eb000000	 bl          EnterCriticalSection
 
-; 1534 : 
-; 1535 :     //  Only enable during NAND read/write/erase operations
-; 1536 :     NAND_Enable(s_hNand, TRUE);
+; 1540 : 
+; 1541 :     //  Only enable during NAND read/write/erase operations
+; 1542 :     NAND_Enable(s_hNand, TRUE);
 
   00018	e5944000	 ldr         r4, [r4]
   0001c	e3a01001	 mov         r1, #1
@@ -3188,9 +3188,9 @@
   00024	eb000000	 bl          NAND_Enable
   00028	e3a01070	 mov         r1, #0x70
 
-; 1537 : 
-; 1538 :     // Wait for NAND
-; 1539 :     WaitForReadyStatus(s_hNand);   
+; 1543 : 
+; 1544 :     // Wait for NAND
+; 1545 :     WaitForReadyStatus(s_hNand);   
 
   0002c		 |$LL7@FMD_PowerU|
   0002c	e594301c	 ldr         r3, [r4, #0x1C]
@@ -3200,17 +3200,17 @@
   0003c	e3130040	 tst         r3, #0x40
   00040	0afffff9	 beq         |$LL7@FMD_PowerU|
 
-; 1540 : 
-; 1541 :     // Write the reset command
-; 1542 :     NAND_SendCommand(s_hNand, NAND_CMD_RESET);
+; 1546 : 
+; 1547 :     // Write the reset command
+; 1548 :     NAND_SendCommand(s_hNand, NAND_CMD_RESET);
 
   00044	e594301c	 ldr         r3, [r4, #0x1C]
   00048	e3a020ff	 mov         r2, #0xFF
   0004c	e1c320b0	 strh        r2, [r3]
 
-; 1543 : 
-; 1544 :     // Wait for NAND
-; 1545 :     WaitForReadyStatus(s_hNand);
+; 1549 : 
+; 1550 :     // Wait for NAND
+; 1551 :     WaitForReadyStatus(s_hNand);
 
   00050		 |$LL15@FMD_PowerU|
   00050	e594301c	 ldr         r3, [r4, #0x1C]
@@ -3220,37 +3220,37 @@
   00060	e3130040	 tst         r3, #0x40
   00064	0afffff9	 beq         |$LL15@FMD_PowerU|
 
-; 1546 : 
-; 1547 :     //  Only enable during NAND read/write/erase operations
-; 1548 :     NAND_Enable(s_hNand, FALSE);
+; 1552 : 
+; 1553 :     //  Only enable during NAND read/write/erase operations
+; 1554 :     NAND_Enable(s_hNand, FALSE);
 
   00068	e3a01000	 mov         r1, #0
   0006c	e1a00004	 mov         r0, r4
   00070	eb000000	 bl          NAND_Enable
 
-; 1549 : 
-; 1550 :     // Release hardware lock
-; 1551 :     NAND_MutexExit(s_hNand);
+; 1555 : 
+; 1556 :     // Release hardware lock
+; 1557 :     NAND_MutexExit(s_hNand);
 
   00074	e1a00004	 mov         r0, r4
   00078	eb000000	 bl          LeaveCriticalSection
   0007c		 |$LN20@FMD_PowerU|
 
-; 1552 : }
+; 1558 : }
 
   0007c	e8bd4010	 ldmia       sp!, {r4, lr}
   00080	e12fff1e	 bx          lr
   00084		 |$LN27@FMD_PowerU|
   00084		 |$LN28@FMD_PowerU|
   00084	00000000	 DCD         |s_hNand|
-  00088		 |$M47628|
+  00088		 |$M47599|
 
 			 ENDP  ; |FMD_PowerUp|
 
 	EXPORT	|FMD_PowerDown|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47682| DCD	|$LN26@FMD_PowerD|
+|$T47653| DCD	|$LN26@FMD_PowerD|
 	DCD	0x40002201
 ; Function compile flags: /Ogspy
 
@@ -3258,29 +3258,29 @@
 
   00000		 |FMD_PowerDown| PROC
 
-; 1561 : {
+; 1567 : {
 
   00000		 |$LN26@FMD_PowerD|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47679|
+  00004		 |$M47650|
 
-; 1562 :     // exit if FMD wasn't opened
-; 1563 :     if (s_hNand == NULL) return;
+; 1568 :     // exit if FMD wasn't opened
+; 1569 :     if (s_hNand == NULL) return;
 
   00004	e59f4078	 ldr         r4, [pc, #0x78]
   00008	e5940000	 ldr         r0, [r4]
   0000c	e3500000	 cmp         r0, #0
   00010	0a000019	 beq         |$LN20@FMD_PowerD|
 
-; 1564 :     
-; 1565 :     // Obtain hardware lock
-; 1566 :     NAND_MutexEnter(s_hNand);
+; 1570 :     
+; 1571 :     // Obtain hardware lock
+; 1572 :     NAND_MutexEnter(s_hNand);
 
   00014	eb000000	 bl          EnterCriticalSection
 
-; 1567 : 
-; 1568 :     //  Only enable during NAND read/write/erase operations
-; 1569 :     NAND_Enable(s_hNand, TRUE);
+; 1573 : 
+; 1574 :     //  Only enable during NAND read/write/erase operations
+; 1575 :     NAND_Enable(s_hNand, TRUE);
 
   00018	e5944000	 ldr         r4, [r4]
   0001c	e3a01001	 mov         r1, #1
@@ -3288,9 +3288,9 @@
   00024	eb000000	 bl          NAND_Enable
   00028	e3a01070	 mov         r1, #0x70
 
-; 1570 : 
-; 1571 :     // Wait for NAND
-; 1572 :     WaitForReadyStatus(s_hNand);   
+; 1576 : 
+; 1577 :     // Wait for NAND
+; 1578 :     WaitForReadyStatus(s_hNand);   
 
   0002c		 |$LL7@FMD_PowerD|
   0002c	e594301c	 ldr         r3, [r4, #0x1C]
@@ -3300,17 +3300,17 @@
   0003c	e3130040	 tst         r3, #0x40
   00040	0afffff9	 beq         |$LL7@FMD_PowerD|
 
-; 1573 : 
-; 1574 :     // Write the reset command
-; 1575 :     NAND_SendCommand(s_hNand, NAND_CMD_RESET);
+; 1579 : 
+; 1580 :     // Write the reset command
+; 1581 :     NAND_SendCommand(s_hNand, NAND_CMD_RESET);
 
   00044	e594301c	 ldr         r3, [r4, #0x1C]
   00048	e3a020ff	 mov         r2, #0xFF
   0004c	e1c320b0	 strh        r2, [r3]
 
-; 1576 : 
-; 1577 :     // Wait for NAND
-; 1578 :     WaitForReadyStatus(s_hNand);
+; 1582 : 
+; 1583 :     // Wait for NAND
+; 1584 :     WaitForReadyStatus(s_hNand);
 
   00050		 |$LL15@FMD_PowerD|
   00050	e594301c	 ldr         r3, [r4, #0x1C]
@@ -3320,37 +3320,37 @@
   00060	e3130040	 tst         r3, #0x40
   00064	0afffff9	 beq         |$LL15@FMD_PowerD|
 
-; 1579 : 
-; 1580 :     //  Only enable during NAND read/write/erase operations
-; 1581 :     NAND_Enable(s_hNand, FALSE);
+; 1585 : 
+; 1586 :     //  Only enable during NAND read/write/erase operations
+; 1587 :     NAND_Enable(s_hNand, FALSE);
 
   00068	e3a01000	 mov         r1, #0
   0006c	e1a00004	 mov         r0, r4
   00070	eb000000	 bl          NAND_Enable
 
-; 1582 : 
-; 1583 :     // Release hardware lock
-; 1584 :     NAND_MutexExit(s_hNand);
+; 1588 : 
+; 1589 :     // Release hardware lock
+; 1590 :     NAND_MutexExit(s_hNand);
 
   00074	e1a00004	 mov         r0, r4
   00078	eb000000	 bl          LeaveCriticalSection
   0007c		 |$LN20@FMD_PowerD|
 
-; 1585 : }
+; 1591 : }
 
   0007c	e8bd4010	 ldmia       sp!, {r4, lr}
   00080	e12fff1e	 bx          lr
   00084		 |$LN27@FMD_PowerD|
   00084		 |$LN28@FMD_PowerD|
   00084	00000000	 DCD         |s_hNand|
-  00088		 |$M47680|
+  00088		 |$M47651|
 
 			 ENDP  ; |FMD_PowerDown|
 
 	EXPORT	|FMD_OEMIoControl|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47693| DCD	|$LN5@FMD_OEMIoC|
+|$T47664| DCD	|$LN5@FMD_OEMIoC|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -3358,28 +3358,28 @@
 
   00000		 |FMD_OEMIoControl| PROC
 
-; 1600 : {
+; 1606 : {
 
   00000		 |$LN5@FMD_OEMIoC|
-  00000		 |$M47690|
+  00000		 |$M47661|
 
-; 1601 : 
-; 1602 :     UNREFERENCED_PARAMETER(code);
-; 1603 : 
-; 1604 :     UNREFERENCED_PARAMETER(pInBuffer);
-; 1605 :     UNREFERENCED_PARAMETER(inSize);
-; 1606 :     UNREFERENCED_PARAMETER(pOutBuffer);
-; 1607 :     UNREFERENCED_PARAMETER(outSize);
-; 1608 :     UNREFERENCED_PARAMETER(pOutSize);
-; 1609 :     
-; 1610 :     return FALSE;    
+; 1607 : 
+; 1608 :     UNREFERENCED_PARAMETER(code);
+; 1609 : 
+; 1610 :     UNREFERENCED_PARAMETER(pInBuffer);
+; 1611 :     UNREFERENCED_PARAMETER(inSize);
+; 1612 :     UNREFERENCED_PARAMETER(pOutBuffer);
+; 1613 :     UNREFERENCED_PARAMETER(outSize);
+; 1614 :     UNREFERENCED_PARAMETER(pOutSize);
+; 1615 :     
+; 1616 :     return FALSE;    
 
   00000	e3a00000	 mov         r0, #0
 
-; 1611 : }
+; 1617 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47691|
+  00008		 |$M47662|
 
 			 ENDP  ; |FMD_OEMIoControl|
 
@@ -3401,8 +3401,8 @@
 |s_Device| %	0x68
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47736| DCD	|$LN32@NAND_Initi|
-	DCD	0x4000ac02
+|$T47707| DCD	|$LN32@NAND_Initi|
+	DCD	0x4000ab02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1KM@BKLPJHHD@?$AAC?$AA?3?$AA?2?$AAW?$AAI?$AAN?$AAC?$AAE?$AA6?$AA0?$AA0?$AA?2?$AAP?$AAL?$AAA?$AAT?$AAF?$AAO?$AAR?$AAM?$AA?2?$AAC?$AAO?$AAM?$AAM?$AAO?$AAN?$AA?2?$AAS?$AAR?$AAC?$AA?2@| DCB "C"
@@ -3482,7 +3482,7 @@
   00000		 |$LN32@NAND_Initi|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M47733|
+  00008		 |$M47704|
   00008	e1a05001	 mov         r5, r1
   0000c	e1a06000	 mov         r6, r0
 
@@ -3504,7 +3504,7 @@
 ; 402  :     // initialize structure
 ; 403  :     memset(pDevice, 0, sizeof(NandDevice_t));
 
-  00014	e59f4290	 ldr         r4, [pc, #0x290]
+  00014	e59f428c	 ldr         r4, [pc, #0x28C]
   00018	e1a07000	 mov         r7, r0
   0001c	e3a02068	 mov         r2, #0x68
   00020	e1a00004	 mov         r0, r4
@@ -3530,7 +3530,7 @@
   00030	e3560000	 cmp         r6, #0
   00034	0a000004	 beq         |$LN10@NAND_Initi|
 
-; 418  :         {
+; 418  : 	{
 ; 419  :         if (InitializePointers(szContext, pDevice) == FALSE) goto cleanUp;
 
   00038	e1a01004	 mov         r1, r4
@@ -3538,13 +3538,13 @@
   00040	eb000000	 bl          InitializePointers
   00044	e3500000	 cmp         r0, #0
 
-; 420  :         }
+; 420  : 	}
 ; 421  :     else
 
   00048	ea000013	 b           |$LN29@NAND_Initi|
   0004c		 |$LN10@NAND_Initi|
 
-; 422  :         {
+; 422  : 	{
 ; 423  :         PHYSICAL_ADDRESS pa;
 ; 424  :         
 ; 425  :         // if there's not context string then use global macros
@@ -3567,7 +3567,7 @@
 
 ; 430  :         if (pDevice->pGpmcRegs == NULL) goto cleanUp;
 
-  00070	0a00007f	 beq         |$cleanUp$46109|
+  00070	0a00007e	 beq         |$cleanUp$46080|
 
 ; 431  : 
 ; 432  :         pa.QuadPart = pRegIn->MemBase.Reg[1];
@@ -3590,16 +3590,14 @@
   00094	e594302c	 ldr         r3, [r4, #0x2C]
   00098	e3530000	 cmp         r3, #0
   0009c		 |$LN29@NAND_Initi|
-  0009c	0a000074	 beq         |$cleanUp$46109|
+  0009c	0a000073	 beq         |$cleanUp$46080|
 
 ; 436  : 
-; 437  :         }
+; 437  : 	}
 ; 438  : 
-; 439  : 
-; 440  :         if (!KernelIoControl(IOCTL_HAL_GET_ECC_TYPE,
-; 441  :                              NULL, 0, &pDevice->ECCtype, sizeof(DWORD), &dwKernelRet))
+; 439  : 	if (!KernelIoControl(IOCTL_HAL_GET_ECC_TYPE, NULL, 0, &pDevice->ECCtype, sizeof(DWORD), &dwKernelRet))
 
-  000a0	e59f0200	 ldr         r0, [pc, #0x200]
+  000a0	e59f01fc	 ldr         r0, [pc, #0x1FC]
   000a4	e28de008	 add         lr, sp, #8
   000a8	e3a05004	 mov         r5, #4
   000ac	e2843060	 add         r3, r4, #0x60
@@ -3611,13 +3609,13 @@
   000c4	e3500000	 cmp         r0, #0
   000c8	1a000004	 bne         |$LN28@NAND_Initi|
 
-; 442  :         {
-; 443  :             RETAILMSG( TRUE,(TEXT("Failed to read Ecc type\r\n")));
+; 440  : 	{
+; 441  : 		RETAILMSG( TRUE,(TEXT("Failed to read Ecc type\r\n")));
 
-  000cc	e59f01d0	 ldr         r0, [pc, #0x1D0]
+  000cc	e59f01cc	 ldr         r0, [pc, #0x1CC]
   000d0	eb000000	 bl          NKDbgPrintfW
 
-; 444  :             pDevice->ECCtype = Hamming1bit;
+; 442  : 		pDevice->ECCtype = Hamming1bit;
 
   000d4	e3a03000	 mov         r3, #0
   000d8	e5843060	 str         r3, [r4, #0x60]
@@ -3626,33 +3624,33 @@
   000e0	e5943060	 ldr         r3, [r4, #0x60]
   000e4		 |$LN5@NAND_Initi|
 
-; 445  :         }   
-; 446  : 	
-; 447  :         RETAILMSG(TRUE, (L"ECC TYPE is %s\r\n", (pDevice->ECCtype==Hamming1bit)? L"Hamming 1 bit" :
-; 448  : 			                                                    (pDevice->ECCtype==BCH4bit)? L"BCH 4 bit" : L"BCH 8 bit"));
+; 443  : 	}   
+; 444  : 	
+; 445  : 	RETAILMSG(TRUE, (L"ECC TYPE is %s\r\n", (pDevice->ECCtype==Hamming1bit)? L"Hamming 1 bit" :
+; 446  : 									(pDevice->ECCtype==BCH4bit)? L"BCH 4 bit" : L"BCH 8 bit"));
 
   000e4	e3530000	 cmp         r3, #0
-  000e8	059f11b0	 ldreq       r1, [pc, #0x1B0]
+  000e8	059f11ac	 ldreq       r1, [pc, #0x1AC]
   000ec	0a000002	 beq         |$LN14@NAND_Initi|
   000f0	e3530001	 cmp         r3, #1
-  000f4	059f11a0	 ldreq       r1, [pc, #0x1A0]
-  000f8	159f1198	 ldrne       r1, [pc, #0x198]
+  000f4	059f119c	 ldreq       r1, [pc, #0x19C]
+  000f8	159f1194	 ldrne       r1, [pc, #0x194]
   000fc		 |$LN14@NAND_Initi|
-  000fc	e59f0190	 ldr         r0, [pc, #0x190]
+  000fc	e59f018c	 ldr         r0, [pc, #0x18C]
   00100	eb000000	 bl          NKDbgPrintfW
 
-; 449  : 	
-; 450  : #endif
-; 451  : 
-; 452  :     pDevice->pNandCmd = (NANDREG*)((UINT32)pDevice->pGpmcRegs + offset(OMAP_GPMC_REGS, GPMC_NAND_COMMAND_0) + (0x30 * chipSelect));
+; 447  : 	
+; 448  : #endif
+; 449  : 
+; 450  :     pDevice->pNandCmd = (NANDREG*)((UINT32)pDevice->pGpmcRegs + offset(OMAP_GPMC_REGS, GPMC_NAND_COMMAND_0) + (0x30 * chipSelect));
 
   00104	e594202c	 ldr         r2, [r4, #0x2C]
   00108	e0873087	 add         r3, r7, r7, lsl #1
 
-; 453  :     pDevice->pNandAddress= (NANDREG*)((UINT32)pDevice->pGpmcRegs + offset(OMAP_GPMC_REGS, GPMC_NAND_ADDRESS_0) + (0x30 * chipSelect));
-; 454  :     pDevice->pNandData= (NANDREG*)((UINT32)pDevice->pGpmcRegs + offset(OMAP_GPMC_REGS, GPMC_NAND_DATA_0) + (0x30 * chipSelect));
-; 455  :     // Enable GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
-; 456  :     NAND_Enable(pDevice, TRUE);
+; 451  :     pDevice->pNandAddress= (NANDREG*)((UINT32)pDevice->pGpmcRegs + offset(OMAP_GPMC_REGS, GPMC_NAND_ADDRESS_0) + (0x30 * chipSelect));
+; 452  :     pDevice->pNandData= (NANDREG*)((UINT32)pDevice->pGpmcRegs + offset(OMAP_GPMC_REGS, GPMC_NAND_DATA_0) + (0x30 * chipSelect));
+; 453  :     // Enable GPMC wait-to-nowait edge detection mechanism on NAND R/B pin
+; 454  :     NAND_Enable(pDevice, TRUE);
 
   0010c	e3a01001	 mov         r1, #1
   00110	e0822203	 add         r2, r2, r3, lsl #4
@@ -3665,10 +3663,10 @@
   0012c	e5843024	 str         r3, [r4, #0x24]
   00130	eb000000	 bl          NAND_Enable
 
-; 457  : 
-; 458  :     // Write RESET command
-; 459  :     // (a reset aborts any current READ, WRITE (PROGRAM) or ERASE operation)
-; 460  :     NAND_SendCommand(pDevice, NAND_CMD_RESET);
+; 455  : 
+; 456  :     // Write RESET command
+; 457  :     // (a reset aborts any current READ, WRITE (PROGRAM) or ERASE operation)
+; 458  :     NAND_SendCommand(pDevice, NAND_CMD_RESET);
 
   00134	e594301c	 ldr         r3, [r4, #0x1C]
   00138	e3a020ff	 mov         r2, #0xFF
@@ -3676,9 +3674,9 @@
   00140	e3a02070	 mov         r2, #0x70
   00144		 |$LL4@NAND_Initi|
 
-; 461  : 
-; 462  :     // Wait for NAND
-; 463  :     while ((NAND_GetStatus(pDevice) & NAND_STATUS_READY) == 0);
+; 459  : 
+; 460  :     // Wait for NAND
+; 461  :     while ((NAND_GetStatus(pDevice) & NAND_STATUS_READY) == 0);
 
   00144	e594301c	 ldr         r3, [r4, #0x1C]
   00148	e1c320b0	 strh        r2, [r3]
@@ -3687,222 +3685,221 @@
   00154	e3130040	 tst         r3, #0x40
   00158	0afffff9	 beq         |$LL4@NAND_Initi|
 
-; 464  : 
-; 465  :     // Send Read ID Command
-; 466  :     NAND_SendCommand(pDevice, NAND_CMD_READID);
+; 462  : 
+; 463  :     // Send Read ID Command
+; 464  :     NAND_SendCommand(pDevice, NAND_CMD_READID);
 
   0015c	e594301c	 ldr         r3, [r4, #0x1C]
   00160	e3a02090	 mov         r2, #0x90
 
-; 467  : 
-; 468  :     // Send Address 00h
-; 469  :     WRITE_NAND(pDevice->pNandAddress, 0);
+; 465  : 
+; 466  :     // Send Address 00h
+; 467  :     WRITE_NAND(pDevice->pNandAddress, 0);
 
   00164	e3a06000	 mov         r6, #0
   00168	e1c320b0	 strh        r2, [r3]
   0016c	e5943020	 ldr         r3, [r4, #0x20]
   00170	e1c360b0	 strh        r6, [r3]
 
-; 470  : 
-; 471  :     // Read the manufacturer ID & device code
-; 472  :     manufacturer = (UINT8)READ_NAND(pDevice->pNandData);
+; 468  : 
+; 469  :     // Read the manufacturer ID & device code
+; 470  :     manufacturer = (UINT8)READ_NAND(pDevice->pNandData);
 
   00174	e5942024	 ldr         r2, [r4, #0x24]
   00178	e5d20000	 ldrb        r0, [r2]
 
-; 473  :     device = (UINT8)READ_NAND(pDevice->pNandData);
+; 471  :     device = (UINT8)READ_NAND(pDevice->pNandData);
 
   0017c	e5d21000	 ldrb        r1, [r2]
 
-; 474  : 
-; 475  :  
-; 476  :     if ((pBSPNandInfo = BSPGetNandInfo(manufacturer,device))==NULL)
+; 472  : 
+; 473  :  
+; 474  :     if ((pBSPNandInfo = BSPGetNandInfo(manufacturer,device))==NULL)
 
   00180	eb000000	 bl          BSPGetNandInfo
   00184	e1b05000	 movs        r5, r0
-  00188	0a000039	 beq         |$cleanUp$46109|
+  00188	0a000038	 beq         |$cleanUp$46080|
 
-; 477  :     {                
-; 478  :         goto cleanUp;
-; 479  :     }
-; 480  :     if ((pBSPNandInfo->sectorSize != 2048) && (pBSPNandInfo->wordData != 2))
+; 475  :     {                
+; 476  :         goto cleanUp;
+; 477  :     }
+; 478  :     if ((pBSPNandInfo->sectorSize != 2048) && (pBSPNandInfo->wordData != 2))
 
   0018c	e595300c	 ldr         r3, [r5, #0xC]
   00190	e3530b02	 cmp         r3, #2, 22
-  00194	0a00000a	 beq         |$LN1@NAND_Initi|
+  00194	0a000009	 beq         |$LN1@NAND_Initi|
   00198	e5953010	 ldr         r3, [r5, #0x10]
   0019c	e3530002	 cmp         r3, #2
-  001a0	0a000007	 beq         |$LN1@NAND_Initi|
+  001a0	0a000006	 beq         |$LN1@NAND_Initi|
 
-; 481  :     {
-; 482  :         ERRORMSG(1,(TEXT("FMD driver supports only 16bits large page (2KB) devices\r\n")));
+; 479  :     {
+; 480  :         ERRORMSG(1,(TEXT("FMD driver supports only 16bits large page (2KB) devices\r\n")));
 
-  001a4	e59f10e4	 ldr         r1, [pc, #0xE4]
-  001a8	e59f00dc	 ldr         r0, [pc, #0xDC]
-  001ac	e3a03c01	 mov         r3, #1, 24
-  001b0	e38320e2	 orr         r2, r3, #0xE2
-  001b4	eb000000	 bl          NKDbgPrintfW
-  001b8	e59f00c8	 ldr         r0, [pc, #0xC8]
-  001bc	eb000000	 bl          NKDbgPrintfW
+  001a4	e59f10e0	 ldr         r1, [pc, #0xE0]
+  001a8	e59f00d8	 ldr         r0, [pc, #0xD8]
+  001ac	e3a02e1e	 mov         r2, #0x1E, 28
+  001b0	eb000000	 bl          NKDbgPrintfW
+  001b4	e59f00c8	 ldr         r0, [pc, #0xC8]
+  001b8	eb000000	 bl          NKDbgPrintfW
 
-; 483  :         goto cleanUp;
+; 481  :         goto cleanUp;
 
-  001c0	ea00002b	 b           |$cleanUp$46109|
-  001c4		 |$LN1@NAND_Initi|
+  001bc	ea00002b	 b           |$cleanUp$46080|
+  001c0		 |$LN1@NAND_Initi|
 
-; 484  :     }
-; 485  :     pDevice->nandInfo = *pBSPNandInfo;
+; 482  :     }
+; 483  :     pDevice->nandInfo = *pBSPNandInfo;
 
-  001c4	e2840044	 add         r0, r4, #0x44
-  001c8	e3a02014	 mov         r2, #0x14
-  001cc	e1a01005	 mov         r1, r5
-  001d0	eb000000	 bl          memcpy
+  001c0	e2840044	 add         r0, r4, #0x44
+  001c4	e3a02014	 mov         r2, #0x14
+  001c8	e1a01005	 mov         r1, r5
+  001cc	eb000000	 bl          memcpy
+
+; 484  : 
+; 485  :     pDevice->IrqWait = BSPGetNandIrqWait();
+
+  001d0	eb000000	 bl          BSPGetNandIrqWait
 
 ; 486  : 
-; 487  :     pDevice->IrqWait = BSPGetNandIrqWait();
+; 487  :     /* ECCCfg: 16bit bus width, cs0, 4 - 512 bytes blocks per page */
+; 488  :     pDevice->ECCCfg = (GPMC_ECC_CONFIG_16BIT | (chipSelect << 1) | (0x3<<4)); 
 
-  001d4	eb000000	 bl          BSPGetNandIrqWait
+  001d4	e3873058	 orr         r3, r7, #0x58
+  001d8	e1a01083	 mov         r1, r3, lsl #1
+  001dc	e584005c	 str         r0, [r4, #0x5C]
+  001e0	e5841058	 str         r1, [r4, #0x58]
 
-; 488  : 
-; 489  :     /* ECCCfg: 16bit bus width, cs0, 4 - 512 bytes blocks per page */
-; 490  :     pDevice->ECCCfg = (GPMC_ECC_CONFIG_16BIT | (chipSelect << 1) | (0x3<<4)); 
+; 489  :     pDevice->ECCsize = (pDevice->ECCtype == Hamming1bit ) ? ECC_BYTES_HAMMING : 
+; 490  : 		                      (pDevice->ECCtype == BCH4bit ) ? ECC_BYTES_BCH4 : ECC_BYTES_BCH8; 
 
-  001d8	e3873058	 orr         r3, r7, #0x58
-  001dc	e1a01083	 mov         r1, r3, lsl #1
-  001e0	e584005c	 str         r0, [r4, #0x5C]
-  001e4	e5841058	 str         r1, [r4, #0x58]
+  001e4	e5942060	 ldr         r2, [r4, #0x60]
+  001e8	e3520000	 cmp         r2, #0
+  001ec	03a0300c	 moveq       r3, #0xC
+  001f0	0a000002	 beq         |$LN18@NAND_Initi|
+  001f4	e3520001	 cmp         r2, #1
+  001f8	03a0301c	 moveq       r3, #0x1C
+  001fc	13a03034	 movne       r3, #0x34
+  00200		 |$LN18@NAND_Initi|
+  00200	e5843064	 str         r3, [r4, #0x64]
 
-; 491  :     pDevice->ECCsize = (pDevice->ECCtype == Hamming1bit ) ? ECC_BYTES_HAMMING : 
-; 492  : 		                      (pDevice->ECCtype == BCH4bit ) ? ECC_BYTES_BCH4 : ECC_BYTES_BCH8; 
+; 491  : 							  
+; 492  :     //  Enable and reset ECC engine (workaround for engine giving 0s first time)
+; 493  :     ECC_Init(pDevice->pGpmcRegs, pDevice->ECCCfg, pDevice->ECCtype, NAND_ECC_READ);
 
-  001e8	e5942060	 ldr         r2, [r4, #0x60]
-  001ec	e3520000	 cmp         r2, #0
-  001f0	03a0300c	 moveq       r3, #0xC
-  001f4	0a000002	 beq         |$LN18@NAND_Initi|
-  001f8	e3520001	 cmp         r2, #1
-  001fc	03a0301c	 moveq       r3, #0x1C
-  00200	13a03034	 movne       r3, #0x34
-  00204		 |$LN18@NAND_Initi|
-  00204	e5843064	 str         r3, [r4, #0x64]
+  00204	e594002c	 ldr         r0, [r4, #0x2C]
+  00208	e3a03000	 mov         r3, #0
+  0020c	eb000000	 bl          ECC_Init
 
-; 493  : 							  
-; 494  :     //  Enable and reset ECC engine (workaround for engine giving 0s first time)
-; 495  :     ECC_Init(pDevice->pGpmcRegs, pDevice->ECCCfg, pDevice->ECCtype, NAND_ECC_READ);
+; 494  :     ECC_Reset(pDevice->pGpmcRegs);
 
-  00208	e594002c	 ldr         r0, [r4, #0x2C]
-  0020c	e3a03000	 mov         r3, #0
-  00210	eb000000	 bl          ECC_Init
+  00210	e594002c	 ldr         r0, [r4, #0x2C]
+  00214	eb000000	 bl          ECC_Reset
 
-; 496  :     ECC_Reset(pDevice->pGpmcRegs);
+; 495  : 
+; 496  :     //  Only enable during NAND read/write/erase operations
+; 497  :     NAND_Enable(pDevice, FALSE);
 
-  00214	e594002c	 ldr         r0, [r4, #0x2C]
-  00218	eb000000	 bl          ECC_Reset
+  00218	e3a01000	 mov         r1, #0
+  0021c	e1a00004	 mov         r0, r4
+  00220	eb000000	 bl          NAND_Enable
 
-; 497  : 
-; 498  :     //  Only enable during NAND read/write/erase operations
-; 499  :     NAND_Enable(pDevice, FALSE);
+; 498  : 
+; 499  :     // configure the prefetch engine
+; 500  :     pDevice->prefetchMode = kPrefetchOff;
 
-  0021c	e3a01000	 mov         r1, #0
-  00220	e1a00004	 mov         r0, r4
-  00224	eb000000	 bl          NAND_Enable
+  00224	e3a03000	 mov         r3, #0
+  00228	e5843018	 str         r3, [r4, #0x18]
 
-; 500  : 
-; 501  :     // configure the prefetch engine
-; 502  :     pDevice->prefetchMode = kPrefetchOff;
+; 501  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 0);
 
-  00228	e3a03000	 mov         r3, #0
-  0022c	e5843018	 str         r3, [r4, #0x18]
+  0022c	e594302c	 ldr         r3, [r4, #0x2C]
 
-; 503  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONTROL, 0);
+; 502  : 
+; 503  :     // set prefetch mask
+; 504  :     ffPrefetchMode = GPMC_PREFETCH_CONFIG_SYNCHROMODE |
+; 505  :                      GPMC_PREFETCH_CONFIG_PFPWENROUNDROBIN |
+; 506  :                      GPMC_PREFETCH_CONFIG_ENABLEOPTIMIZEDACCESS |
+; 507  :                      GPMC_PREFETCH_CONFIG_WAITPINSELECTOR(chipSelect) |
+; 508  :                      GPMC_PREFETCH_CONFIG_FIFOTHRESHOLD(FIFO_THRESHOLD) |
+; 509  :                      GPMC_PREFETCH_CONFIG_ENGINECSSELECTOR(chipSelect);
 
-  00230	e594302c	 ldr         r3, [r4, #0x2C]
+  00230	e59f0048	 ldr         r0, [pc, #0x48]
 
-; 504  : 
-; 505  :     // set prefetch mask
-; 506  :     ffPrefetchMode = GPMC_PREFETCH_CONFIG_SYNCHROMODE |
-; 507  :                      GPMC_PREFETCH_CONFIG_PFPWENROUNDROBIN |
-; 508  :                      GPMC_PREFETCH_CONFIG_ENABLEOPTIMIZEDACCESS |
-; 509  :                      GPMC_PREFETCH_CONFIG_WAITPINSELECTOR(chipSelect) |
-; 510  :                      GPMC_PREFETCH_CONFIG_FIFOTHRESHOLD(FIFO_THRESHOLD) |
-; 511  :                      GPMC_PREFETCH_CONFIG_ENGINECSSELECTOR(chipSelect);
+; 510  : 
+; 511  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, ffPrefetchMode);
 
-  00234	e59f0048	 ldr         r0, [pc, #0x48]
+  00234	e2072007	 and         r2, r7, #7
+  00238	e58361ec	 str         r6, [r3, #0x1EC]
+  0023c	e2073003	 and         r3, r7, #3
+  00240	e594102c	 ldr         r1, [r4, #0x2C]
+  00244	e1833a02	 orr         r3, r3, r2, lsl #20
+  00248	e1803203	 orr         r3, r0, r3, lsl #4
+  0024c	e58131e0	 str         r3, [r1, #0x1E0]
 
 ; 512  : 
-; 513  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, ffPrefetchMode);
+; 513  :     // configure prefetch engine
+; 514  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG2, 
+; 515  :         pBSPNandInfo->sectorSize
+; 516  :         );
 
-  00238	e2072007	 and         r2, r7, #7
-  0023c	e58361ec	 str         r6, [r3, #0x1EC]
-  00240	e2073003	 and         r3, r7, #3
-  00244	e594102c	 ldr         r1, [r4, #0x2C]
-  00248	e1833a02	 orr         r3, r3, r2, lsl #20
-  0024c	e1803203	 orr         r3, r0, r3, lsl #4
-  00250	e58131e0	 str         r3, [r1, #0x1E0]
+  00250	e594202c	 ldr         r2, [r4, #0x2C]
+  00254	e595300c	 ldr         r3, [r5, #0xC]
 
-; 514  : 
-; 515  :     // configure prefetch engine
-; 516  :     OUTREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG2, 
-; 517  :         pBSPNandInfo->sectorSize
-; 518  :         );
+; 517  :         
+; 518  :     SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, 
+; 519  :         GPMC_PREFETCH_CONFIG_ENABLEENGINE
+; 520  :         );
+; 521  : 
+; 522  :     // We are done
+; 523  :     hDevice = pDevice;
 
-  00254	e594202c	 ldr         r2, [r4, #0x2C]
-  00258	e595300c	 ldr         r3, [r5, #0xC]
+  00258	e1a08004	 mov         r8, r4
+  0025c	e58231e4	 str         r3, [r2, #0x1E4]
+  00260	e594202c	 ldr         r2, [r4, #0x2C]
+  00264	e59231e0	 ldr         r3, [r2, #0x1E0]
+  00268	e3833080	 orr         r3, r3, #0x80
+  0026c	e58231e0	 str         r3, [r2, #0x1E0]
+  00270		 |$cleanUp$46080|
 
-; 519  :         
-; 520  :     SETREG32(&pDevice->pGpmcRegs->GPMC_PREFETCH_CONFIG1, 
-; 521  :         GPMC_PREFETCH_CONFIG_ENABLEENGINE
-; 522  :         );
-; 523  : 
-; 524  :     // We are done
-; 525  :     hDevice = pDevice;
+; 524  : 
+; 525  : cleanUp:
+; 526  :     return hDevice;
+; 527  : }
 
-  0025c	e1a08004	 mov         r8, r4
-  00260	e58231e4	 str         r3, [r2, #0x1E4]
-  00264	e594202c	 ldr         r2, [r4, #0x2C]
-  00268	e59231e0	 ldr         r3, [r2, #0x1E0]
-  0026c	e3833080	 orr         r3, r3, #0x80
-  00270	e58231e0	 str         r3, [r2, #0x1E0]
-  00274		 |$cleanUp$46109|
-
-; 526  : 
-; 527  : cleanUp:
-; 528  :     return hDevice;
-; 529  : }
-
-  00274	e1a00008	 mov         r0, r8
-  00278	e28dd00c	 add         sp, sp, #0xC
-  0027c	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
-  00280	e12fff1e	 bx          lr
-  00284		 |$LN33@NAND_Initi|
-  00284		 |$LN34@NAND_Initi|
-  00284	08804008	 DCD         0x8804008
-  00288		 |$LN35@NAND_Initi|
-  00288	00000000	 DCD         |??_C@_1HG@DCOIKHPB@?$AAF?$AAM?$AAD?$AA?5?$AAd?$AAr?$AAi?$AAv?$AAe?$AAr?$AA?5?$AAs?$AAu?$AAp?$AAp?$AAo?$AAr?$AAt?$AAs?$AA?5?$AAo?$AAn?$AAl?$AAy?$AA?5?$AA1?$AA6?$AAb?$AAi?$AAt?$AAs?$AA?5@|
-  0028c		 |$LN36@NAND_Initi|
-  0028c	00000000	 DCD         |??_C@_1CI@OHCJFJPM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?5?$AAl?$AAi?$AAn?$AAe?$AA?5?$AA?$CF?$AAd?$AA?3?$AA?5?$AA?$AA@|
-  00290		 |$LN37@NAND_Initi|
-  00290	00000000	 DCD         |??_C@_1KM@BKLPJHHD@?$AAC?$AA?3?$AA?2?$AAW?$AAI?$AAN?$AAC?$AAE?$AA6?$AA0?$AA0?$AA?2?$AAP?$AAL?$AAA?$AAT?$AAF?$AAO?$AAR?$AAM?$AA?2?$AAC?$AAO?$AAM?$AAM?$AAO?$AAN?$AA?2?$AAS?$AAR?$AAC?$AA?2@|
-  00294		 |$LN38@NAND_Initi|
-  00294	00000000	 DCD         |??_C@_1CC@BEPLJHBE@?$AAE?$AAC?$AAC?$AA?5?$AAT?$AAY?$AAP?$AAE?$AA?5?$AAi?$AAs?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
-  00298		 |$LN39@NAND_Initi|
-  00298	00000000	 DCD         |??_C@_1BE@MLAOIDDC@?$AAB?$AAC?$AAH?$AA?5?$AA8?$AA?5?$AAb?$AAi?$AAt?$AA?$AA@|
-  0029c		 |$LN40@NAND_Initi|
-  0029c	00000000	 DCD         |??_C@_1BE@MOAEMOLD@?$AAB?$AAC?$AAH?$AA?5?$AA4?$AA?5?$AAb?$AAi?$AAt?$AA?$AA@|
-  002a0		 |$LN41@NAND_Initi|
-  002a0	00000000	 DCD         |??_C@_1BM@FIEJIIEI@?$AAH?$AAa?$AAm?$AAm?$AAi?$AAn?$AAg?$AA?5?$AA1?$AA?5?$AAb?$AAi?$AAt?$AA?$AA@|
-  002a4		 |$LN42@NAND_Initi|
-  002a4	00000000	 DCD         |??_C@_1DE@HHCNAOKK@?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAr?$AAe?$AAa?$AAd?$AA?5?$AAE?$AAc?$AAc?$AA?5?$AAt?$AAy?$AAp?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  002a8		 |$LN43@NAND_Initi|
-  002a8	01013098	 DCD         0x1013098
-  002ac		 |$LN44@NAND_Initi|
-  002ac	00000000	 DCD         |s_Device|
-  002b0		 |$M47734|
+  00270	e1a00008	 mov         r0, r8
+  00274	e28dd00c	 add         sp, sp, #0xC
+  00278	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
+  0027c	e12fff1e	 bx          lr
+  00280		 |$LN33@NAND_Initi|
+  00280		 |$LN34@NAND_Initi|
+  00280	08804008	 DCD         0x8804008
+  00284		 |$LN35@NAND_Initi|
+  00284	00000000	 DCD         |??_C@_1HG@DCOIKHPB@?$AAF?$AAM?$AAD?$AA?5?$AAd?$AAr?$AAi?$AAv?$AAe?$AAr?$AA?5?$AAs?$AAu?$AAp?$AAp?$AAo?$AAr?$AAt?$AAs?$AA?5?$AAo?$AAn?$AAl?$AAy?$AA?5?$AA1?$AA6?$AAb?$AAi?$AAt?$AAs?$AA?5@|
+  00288		 |$LN36@NAND_Initi|
+  00288	00000000	 DCD         |??_C@_1CI@OHCJFJPM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?5?$AAl?$AAi?$AAn?$AAe?$AA?5?$AA?$CF?$AAd?$AA?3?$AA?5?$AA?$AA@|
+  0028c		 |$LN37@NAND_Initi|
+  0028c	00000000	 DCD         |??_C@_1KM@BKLPJHHD@?$AAC?$AA?3?$AA?2?$AAW?$AAI?$AAN?$AAC?$AAE?$AA6?$AA0?$AA0?$AA?2?$AAP?$AAL?$AAA?$AAT?$AAF?$AAO?$AAR?$AAM?$AA?2?$AAC?$AAO?$AAM?$AAM?$AAO?$AAN?$AA?2?$AAS?$AAR?$AAC?$AA?2@|
+  00290		 |$LN38@NAND_Initi|
+  00290	00000000	 DCD         |??_C@_1CC@BEPLJHBE@?$AAE?$AAC?$AAC?$AA?5?$AAT?$AAY?$AAP?$AAE?$AA?5?$AAi?$AAs?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  00294		 |$LN39@NAND_Initi|
+  00294	00000000	 DCD         |??_C@_1BE@MLAOIDDC@?$AAB?$AAC?$AAH?$AA?5?$AA8?$AA?5?$AAb?$AAi?$AAt?$AA?$AA@|
+  00298		 |$LN40@NAND_Initi|
+  00298	00000000	 DCD         |??_C@_1BE@MOAEMOLD@?$AAB?$AAC?$AAH?$AA?5?$AA4?$AA?5?$AAb?$AAi?$AAt?$AA?$AA@|
+  0029c		 |$LN41@NAND_Initi|
+  0029c	00000000	 DCD         |??_C@_1BM@FIEJIIEI@?$AAH?$AAa?$AAm?$AAm?$AAi?$AAn?$AAg?$AA?5?$AA1?$AA?5?$AAb?$AAi?$AAt?$AA?$AA@|
+  002a0		 |$LN42@NAND_Initi|
+  002a0	00000000	 DCD         |??_C@_1DE@HHCNAOKK@?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAr?$AAe?$AAa?$AAd?$AA?5?$AAE?$AAc?$AAc?$AA?5?$AAt?$AAy?$AAp?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
+  002a4		 |$LN43@NAND_Initi|
+  002a4	01013098	 DCD         0x1013098
+  002a8		 |$LN44@NAND_Initi|
+  002a8	00000000	 DCD         |s_Device|
+  002ac		 |$M47705|
 
 			 ENDP  ; |NAND_Initialize|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47772| DCD	|$LN11@NAND_Erase|
+|$T47743| DCD	|$LN11@NAND_Erase|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -3910,31 +3907,31 @@
 
   00000		 |NAND_EraseBlock| PROC
 
-; 728  : {    
+; 726  : {    
 
   00000		 |$LN11@NAND_Erase|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47769|
+  00004		 |$M47740|
   00004	e1a0e000	 mov         lr, r0
 
-; 729  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
-; 730  :     
-; 731  :     // Calculate the sector number
-; 732  :     NAND_SendCommand(hNand, NAND_CMD_ERASE_SETUP);    
+; 727  :     NandDevice_t *pDevice = (NandDevice_t*)hNand;
+; 728  :     
+; 729  :     // Calculate the sector number
+; 730  :     NAND_SendCommand(hNand, NAND_CMD_ERASE_SETUP);    
 
   00008	e59e301c	 ldr         r3, [lr, #0x1C]
   0000c	e3a02060	 mov         r2, #0x60
 
-; 733  :     BlockAccess(pDevice, blockId);
-; 734  :     NAND_SendCommand(hNand, NAND_CMD_ERASE_CONFIRM);
+; 731  :     BlockAccess(pDevice, blockId);
+; 732  :     NAND_SendCommand(hNand, NAND_CMD_ERASE_CONFIRM);
 
   00010	e3a040d0	 mov         r4, #0xD0
   00014	e1c320b0	 strh        r2, [r3]
   00018	e59e304c	 ldr         r3, [lr, #0x4C]
   0001c	e59e2020	 ldr         r2, [lr, #0x20]
 
-; 735  :     
-; 736  :     return TRUE;
+; 733  :     
+; 734  :     return TRUE;
 
   00020	e3a00001	 mov         r0, #1
   00024	e0010193	 mul         r1, r3, r1
@@ -3951,18 +3948,18 @@
   00050	e59e301c	 ldr         r3, [lr, #0x1C]
   00054	e1c340b0	 strh        r4, [r3]
 
-; 737  : }
+; 735  : }
 
   00058	e8bd4010	 ldmia       sp!, {r4, lr}
   0005c	e12fff1e	 bx          lr
-  00060		 |$M47770|
+  00060		 |$M47741|
 
 			 ENDP  ; |NAND_EraseBlock|
 
 	EXPORT	|FMD_Init|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47785| DCD	|$LN6@FMD_Init|
+|$T47756| DCD	|$LN6@FMD_Init|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -3970,38 +3967,38 @@
 
   00000		 |FMD_Init| PROC
 
-; 909  : {
+; 912  : {
 
   00000		 |$LN6@FMD_Init|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47782|
+  00004		 |$M47753|
 
-; 910  :     HANDLE hRet = NULL;
-; 911  : 
-; 912  :     // Map NAND registers
-; 913  :     s_hNand = NAND_Initialize(szContext, pRegIn, pRegOut);
+; 913  :     HANDLE hRet = NULL;
+; 914  : 
+; 915  :     // Map NAND registers
+; 916  :     s_hNand = NAND_Initialize(szContext, pRegIn, pRegOut);
 
   00004	e3a04000	 mov         r4, #0
   00008	eb000000	 bl          NAND_Initialize
   0000c	e59f3014	 ldr         r3, [pc, #0x14]
   00010	e3500000	 cmp         r0, #0
 
-; 914  :     if (s_hNand == NULL)
-; 915  :         {
-; 916  :         goto cleanUp;
-; 917  :         }
-; 918  :         
-; 919  :     // We are done
-; 920  :     hRet = s_hNand;
+; 917  :     if (s_hNand == NULL)
+; 918  :         {
+; 919  :         goto cleanUp;
+; 920  :         }
+; 921  :         
+; 922  :     // We are done
+; 923  :     hRet = s_hNand;
 
   00014	11a04000	 movne       r4, r0
   00018	e5830000	 str         r0, [r3]
-  0001c		 |$cleanUp$46366|
+  0001c		 |$cleanUp$46337|
 
-; 921  : 
-; 922  : cleanUp:
-; 923  :     return hRet;
-; 924  : }
+; 924  : 
+; 925  : cleanUp:
+; 926  :     return hRet;
+; 927  : }
 
   0001c	e1a00004	 mov         r0, r4
   00020	e8bd4010	 ldmia       sp!, {r4, lr}
@@ -4009,14 +4006,14 @@
   00028		 |$LN7@FMD_Init|
   00028		 |$LN8@FMD_Init|
   00028	00000000	 DCD         |s_hNand|
-  0002c		 |$M47783|
+  0002c		 |$M47754|
 
 			 ENDP  ; |FMD_Init|
 
 	EXPORT	|FMD_EraseBlock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47886| DCD	|$LN45@FMD_EraseB|
+|$T47857| DCD	|$LN45@FMD_EraseB|
 	DCD	0x40004401
 ; Function compile flags: /Ogspy
 
@@ -4024,18 +4021,18 @@
 
   00000		 |FMD_EraseBlock| PROC
 
-; 1376 : {
+; 1379 : {
 
   00000		 |$LN45@FMD_EraseB|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47883|
+  00004		 |$M47854|
   00004	e1a05000	 mov         r5, r0
 
-; 1377 :     BOOL rc = FALSE;
-; 1378 :     UINT32 oldIdleMode;
-; 1379 : 
-; 1380 :     // Check if we know flash geometry
-; 1381 :     if (s_hNand == NULL) return rc;
+; 1380 :     BOOL rc = FALSE;
+; 1381 :     UINT32 oldIdleMode;
+; 1382 : 
+; 1383 :     // Check if we know flash geometry
+; 1384 :     if (s_hNand == NULL) return rc;
 
   00008	e59f40fc	 ldr         r4, [pc, #0xFC]
   0000c	e5940000	 ldr         r0, [r4]
@@ -4043,25 +4040,25 @@
   00014	03a05000	 moveq       r5, #0
   00018	0a000038	 beq         |$LN4@FMD_EraseB|
 
-; 1382 : 
-; 1383 :     // Obtain hardware lock
-; 1384 :     NAND_MutexEnter(s_hNand);
+; 1385 : 
+; 1386 :     // Obtain hardware lock
+; 1387 :     NAND_MutexEnter(s_hNand);
 
   0001c	eb000000	 bl          EnterCriticalSection
 
-; 1385 : 
-; 1386 :     //  Change idle mode to no-idle to ensure access to GPMC registers
-; 1387 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
+; 1388 : 
+; 1389 :     //  Change idle mode to no-idle to ensure access to GPMC registers
+; 1390 :     oldIdleMode = INREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG));
 
   00020	e5944000	 ldr         r4, [r4]
 
-; 1388 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
+; 1391 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), SYSCONFIG_NOIDLE);
 
   00024	e3a02008	 mov         r2, #8
 
-; 1389 : 
-; 1390 :     //  Only enable during NAND read/write/erase operations    
-; 1391 :     NAND_Enable(s_hNand, TRUE);
+; 1392 : 
+; 1393 :     //  Only enable during NAND read/write/erase operations    
+; 1394 :     NAND_Enable(s_hNand, TRUE);
 
   00028	e3a01001	 mov         r1, #1
   0002c	e594302c	 ldr         r3, [r4, #0x2C]
@@ -4070,18 +4067,18 @@
   00038	e5832010	 str         r2, [r3, #0x10]
   0003c	eb000000	 bl          NAND_Enable
 
-; 1392 :     NAND_LockBlocks(s_hNand, blockId, blockId, FALSE);
+; 1395 :     NAND_LockBlocks(s_hNand, blockId, blockId, FALSE);
 
   00040	e594202c	 ldr         r2, [r4, #0x2C]
 
-; 1393 :     
-; 1394 :     // send block id to erase
-; 1395 :     NAND_EraseBlock(s_hNand, blockId);
+; 1396 :     
+; 1397 :     // send block id to erase
+; 1398 :     NAND_EraseBlock(s_hNand, blockId);
 
   00044	e3a01060	 mov         r1, #0x60
   00048	e3a000d0	 mov         r0, #0xD0
   0004c	e5923050	 ldr         r3, [r2, #0x50]
-  00050		 |$cleanUp$47810|
+  00050		 |$cleanUp$47781|
   00050	e3a0e070	 mov         lr, #0x70
   00054	e3833010	 orr         r3, r3, #0x10
   00058	e5823050	 str         r3, [r2, #0x50]
@@ -4103,9 +4100,9 @@
   00098	e594301c	 ldr         r3, [r4, #0x1C]
   0009c	e1c300b0	 strh        r0, [r3]
 
-; 1396 : 
-; 1397 :     // wait for completion    
-; 1398 :     WaitForReadyStatus(s_hNand);
+; 1399 : 
+; 1400 :     // wait for completion    
+; 1401 :     WaitForReadyStatus(s_hNand);
 
   000a0		 |$LL26@FMD_EraseB|
   000a0	e594301c	 ldr         r3, [r4, #0x1C]
@@ -4115,9 +4112,9 @@
   000b0	e3130040	 tst         r3, #0x40
   000b4	0afffff9	 beq         |$LL26@FMD_EraseB|
 
-; 1399 : 
-; 1400 :     //Verify there wasn't any error by checking the NAND status register :
-; 1401 :     if ((NAND_GetStatus(s_hNand) & NAND_STATUS_ERROR) != 0)
+; 1402 : 
+; 1403 :     //Verify there wasn't any error by checking the NAND status register :
+; 1404 :     if ((NAND_GetStatus(s_hNand) & NAND_STATUS_ERROR) != 0)
 
   000b8	e594301c	 ldr         r3, [r4, #0x1C]
   000bc	e1c3e0b0	 strh        lr, [r3]
@@ -4125,58 +4122,58 @@
   000c4	e1d330b0	 ldrh        r3, [r3]
   000c8	e3130001	 tst         r3, #1
 
-; 1402 :         {
-; 1403 :         rc = FALSE;
+; 1405 :         {
+; 1406 :         rc = FALSE;
 
   000cc	13a05000	 movne       r5, #0
 
-; 1404 :         goto cleanUp;
-; 1405 :         }
-; 1406 : 
-; 1407 :     // Done
-; 1408 :     rc = TRUE;
+; 1407 :         goto cleanUp;
+; 1408 :         }
+; 1409 : 
+; 1410 :     // Done
+; 1411 :     rc = TRUE;
 
   000d0	03a05001	 moveq       r5, #1
-  000d4		 |$cleanUp$46518|
+  000d4		 |$cleanUp$46489|
 
-; 1409 : 
-; 1410 : cleanUp:
-; 1411 :     //  Only enable during NAND read/write/erase operations    
-; 1412 :     NAND_LockBlocks(s_hNand, blockId, blockId, TRUE);
+; 1412 : 
+; 1413 : cleanUp:
+; 1414 :     //  Only enable during NAND read/write/erase operations    
+; 1415 :     NAND_LockBlocks(s_hNand, blockId, blockId, TRUE);
 
   000d4	e594202c	 ldr         r2, [r4, #0x2C]
 
-; 1413 :     NAND_Enable(s_hNand, FALSE);
+; 1416 :     NAND_Enable(s_hNand, FALSE);
 
   000d8	e3a01000	 mov         r1, #0
   000dc	e1a00004	 mov         r0, r4
   000e0	e5923050	 ldr         r3, [r2, #0x50]
-  000e4		 |$cleanUp$47863|
+  000e4		 |$cleanUp$47834|
   000e4	e3c33010	 bic         r3, r3, #0x10
   000e8	e5823050	 str         r3, [r2, #0x50]
   000ec	eb000000	 bl          NAND_Enable
 
-; 1414 :    
-; 1415 : 
-; 1416 :     //  Change idle mode back
-; 1417 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
+; 1417 :    
+; 1418 : 
+; 1419 :     //  Change idle mode back
+; 1420 :     OUTREG32(&(NAND_GetGpmcRegs(s_hNand)->GPMC_SYSCONFIG), oldIdleMode);
 
   000f0	e594302c	 ldr         r3, [r4, #0x2C]
 
-; 1418 : 
-; 1419 :     // Release hardware lock
-; 1420 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
+; 1421 : 
+; 1422 :     // Release hardware lock
+; 1423 :     if (s_hNand != NULL) NAND_MutexExit(s_hNand);
 
   000f4	e1a00004	 mov         r0, r4
   000f8	e5836010	 str         r6, [r3, #0x10]
   000fc	eb000000	 bl          LeaveCriticalSection
 
-; 1421 : 
-; 1422 :     return rc;
+; 1424 : 
+; 1425 :     return rc;
 
   00100		 |$LN4@FMD_EraseB|
 
-; 1423 : }
+; 1426 : }
 
   00100	e1a00005	 mov         r0, r5
   00104	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
@@ -4184,7 +4181,7 @@
   0010c		 |$LN46@FMD_EraseB|
   0010c		 |$LN47@FMD_EraseB|
   0010c	00000000	 DCD         |s_hNand|
-  00110		 |$M47884|
+  00110		 |$M47855|
 
 			 ENDP  ; |FMD_EraseBlock|
 

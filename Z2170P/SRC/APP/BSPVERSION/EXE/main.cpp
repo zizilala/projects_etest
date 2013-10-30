@@ -17,6 +17,8 @@
 #define WINDOW_CLASS_NAME L"InfoWindowClass"
 
 
+
+
 // Constants
 const DWORD WINDOW_WIDTH = 180;
 const DWORD WINDOW_HEIGHT = 160;
@@ -107,7 +109,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
     int windowY = (screenHeight / 2) - (WINDOW_HEIGHT / 2);
 
 	// Concat the BSP version with the initial string
-	wcscat(cLabel_bsp,BSP_VERSION_STRING);
+	//wcscat(cLabel_bsp,BSP_VERSION_STRING);		//trouble, Ray 13-10-23
 
 	KernelIoControl(IOCTL_HAL_GET_CPUSPEED,
                 (LPVOID)&CPUspeed, sizeof(CPUspeed), (LPVOID)&CPUspeed, 4, &ret);

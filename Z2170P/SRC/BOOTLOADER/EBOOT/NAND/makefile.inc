@@ -8,6 +8,8 @@
 ; in the license agreement under which this software has been supplied.
 ;
 ;================================================================================
+;_FILES=C:\WINCE600\platform\Z2170P\files
+;_TGT=C:\WINCE600\platform\Z2170P\target\ARMV4I\retail
 !endif
 
 _FILES=$(_PLATFORMROOT)\$(_TGTPLAT)\files

@@ -257,7 +257,7 @@
 ; File c:\wince600\platform\z2170p\src\bsp_common\bspcfg\bspcfg.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47572| DCD	|$LN5@BSPGetDebu|
+|$T47555| DCD	|$LN5@BSPGetDebu|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -268,7 +268,7 @@
 ; 40   : {
 
   00000		 |$LN5@BSPGetDebu|
-  00000		 |$M47569|
+  00000		 |$M47552|
 
 ; 41   :     return &debugUartCfg;
 
@@ -280,14 +280,14 @@
   00008		 |$LN6@BSPGetDebu|
   00008		 |$LN7@BSPGetDebu|
   00008	00000000	 DCD         |debugUartCfg|
-  0000c		 |$M47570|
+  0000c		 |$M47553|
 
 			 ENDP  ; |BSPGetDebugUARTConfig|
 
 	EXPORT	|BSPGetNandIrqWait|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47583| DCD	|$LN5@BSPGetNand|
+|$T47566| DCD	|$LN5@BSPGetNand|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -298,7 +298,7 @@
 ; 112  : {
 
   00000		 |$LN5@BSPGetNand|
-  00000		 |$M47580|
+  00000		 |$M47563|
 
 ; 113  :     return BSP_GPMC_IRQ_WAIT_EDGE;
 
@@ -307,14 +307,14 @@
 ; 114  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47581|
+  00008		 |$M47564|
 
 			 ENDP  ; |BSPGetNandIrqWait|
 
 	EXPORT	|BSPGetNandCS|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47592| DCD	|$LN5@BSPGetNand@2|
+|$T47575| DCD	|$LN5@BSPGetNand@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -325,7 +325,7 @@
 ; 116  : {
 
   00000		 |$LN5@BSPGetNand@2|
-  00000		 |$M47589|
+  00000		 |$M47572|
 
 ; 117  :     return BSP_GPMC_NAND_CS;
 
@@ -334,17 +334,18 @@
 ; 118  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47590|
+  00008		 |$M47573|
 
 			 ENDP  ; |BSPGetNandCS|
 
 	EXPORT	|BSPGetNandInfo|
 	EXPORT	|??_C@_1HI@JDGLDLD@?$AAN?$AAA?$AAN?$AAD?$AA?5?$AAm?$AAa?$AAn?$AAu?$AAf?$AAa?$AAc?$AAt?$AAu?$AAr?$AAe?$AAr?$AA?5?$AA?$CF?$AAx?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AA?$CF?$AAx?$AA?5?$AA?3@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1FM@KNJBBMEO@?$AAN?$AAA?$AAN?$AAD?$AA?5?$AAm?$AAa?$AAn?$AAu?$AAf?$AAa?$AAc?$AAt?$AAu?$AAr?$AAe?$AAr?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?5?$AA?5?$AAd?$AAe?$AAv?$AAi@| [ DATA ] ; `string'
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47608| DCD	|$LN13@BSPGetNand@3|
-	DCD	0x40001c01
+|$T47591| DCD	|$LN13@BSPGetNand@3|
+	DCD	0x40002101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HI@JDGLDLD@?$AAN?$AAA?$AAN?$AAD?$AA?5?$AAm?$AAa?$AAn?$AAu?$AAf?$AAa?$AAc?$AAt?$AAu?$AAr?$AAe?$AAr?$AA?5?$AA?$CF?$AAx?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AA?$CF?$AAx?$AA?5?$AA?3@| DCB "N"
@@ -358,6 +359,17 @@
 	DCB	0x0, "g", 0x0, " ", 0x0, "d", 0x0, "e", 0x0, "v", 0x0, "i"
 	DCB	0x0, "c", 0x0, "e", 0x0, " ", 0x0, "f", 0x0, "o", 0x0, "u"
 	DCB	0x0, "n", 0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1FM@KNJBBMEO@?$AAN?$AAA?$AAN?$AAD?$AA?5?$AAm?$AAa?$AAn?$AAu?$AAf?$AAa?$AAc?$AAt?$AAu?$AAr?$AAe?$AAr?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?5?$AA?5?$AAd?$AAe?$AAv?$AAi@| DCB "N"
+	DCB	0x0, "A", 0x0, "N", 0x0, "D", 0x0, " ", 0x0, "m", 0x0, "a"
+	DCB	0x0, "n", 0x0, "u", 0x0, "f", 0x0, "a", 0x0, "c", 0x0, "t"
+	DCB	0x0, "u", 0x0, "r", 0x0, "e", 0x0, "r", 0x0, " ", 0x0, "I"
+	DCB	0x0, "D", 0x0, ":", 0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%"
+	DCB	0x0, "x", 0x0, " ", 0x0, " ", 0x0, "d", 0x0, "e", 0x0, "v"
+	DCB	0x0, "i", 0x0, "c", 0x0, "e", 0x0, " ", 0x0, "I", 0x0, "D"
+	DCB	0x0, ":", 0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "x"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -368,24 +380,24 @@
 
   00000		 |$LN13@BSPGetNand@3|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47605|
-  00004	e1a05000	 mov         r5, r0
+  00004		 |$M47588|
+  00004	e1a0e000	 mov         lr, r0
 
 ; 121  :     int i;    
 ; 122  :     for (i=0;i< dimof(SupportedNands);i++)
 
-  00008	e59f405c	 ldr         r4, [pc, #0x5C]
-  0000c	e3a02000	 mov         r2, #0
-  00010	e1a0e004	 mov         lr, r4
+  00008	e59f5070	 ldr         r5, [pc, #0x70]
+  0000c	e3a04000	 mov         r4, #0
+  00010	e1a02005	 mov         r2, r5
   00014		 |$LL4@BSPGetNand@3|
 
 ; 123  :     {
 ; 124  :         if ((SupportedNands[i].manufacturerId == manufacturer) && (SupportedNands[i].deviceId == device))
 
-  00014	e5de3000	 ldrb        r3, [lr]
-  00018	e1530005	 cmp         r3, r5
+  00014	e5d23000	 ldrb        r3, [r2]
+  00018	e153000e	 cmp         r3, lr
   0001c	1a000002	 bne         |$LN3@BSPGetNand@3|
-  00020	e5de3001	 ldrb        r3, [lr, #1]
+  00020	e5d23001	 ldrb        r3, [r2, #1]
   00024	e1530001	 cmp         r3, r1
   00028	0a00000a	 beq         |$LN8@BSPGetNand@3|
   0002c		 |$LN3@BSPGetNand@3|
@@ -393,53 +405,62 @@
 ; 121  :     int i;    
 ; 122  :     for (i=0;i< dimof(SupportedNands);i++)
 
-  0002c	e2822001	 add         r2, r2, #1
-  00030	e3520003	 cmp         r2, #3
-  00034	e28ee014	 add         lr, lr, #0x14
+  0002c	e2844001	 add         r4, r4, #1
+  00030	e3540003	 cmp         r4, #3
+  00034	e2822014	 add         r2, r2, #0x14
   00038	3afffff5	 bcc         |$LL4@BSPGetNand@3|
 
-; 127  :         }
-; 128  :     }
-; 129  :     RETAILMSG(1,(TEXT("NAND manufacturer %x device %x : no matching device found\r\n"),manufacturer,device));    
+; 128  :         }
+; 129  :     }
+; 130  :     RETAILMSG(1,(TEXT("NAND manufacturer %x device %x : no matching device found\r\n"),manufacturer,device));    
 
-  0003c	e59f0024	 ldr         r0, [pc, #0x24]
+  0003c	e59f0038	 ldr         r0, [pc, #0x38]
   00040	e1a02001	 mov         r2, r1
-  00044	e1a01005	 mov         r1, r5
+  00044	e1a0100e	 mov         r1, lr
   00048	eb000000	 bl          NKDbgPrintfW
 
-; 130  :     return NULL;
+; 131  :     return NULL;
 
   0004c	e3a00000	 mov         r0, #0
 
-; 131  : }
+; 132  : }
 
   00050	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00054	e12fff1e	 bx          lr
   00058		 |$LN8@BSPGetNand@3|
 
 ; 125  :         {
-; 126  :             return &SupportedNands[i];
+; 126  :         	RETAILMSG(1,(TEXT("NAND manufacturer ID: 0x%x  device ID: 0x%x\r\n"),manufacturer,device));
 
-  00058	e0823102	 add         r3, r2, r2, lsl #2
-  0005c	e0840103	 add         r0, r4, r3, lsl #2
+  00058	e59f0018	 ldr         r0, [pc, #0x18]
+  0005c	e1a02001	 mov         r2, r1
+  00060	e1a0100e	 mov         r1, lr
+  00064	eb000000	 bl          NKDbgPrintfW
 
-; 131  : }
+; 127  :             return &SupportedNands[i];
 
-  00060	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00064	e12fff1e	 bx          lr
-  00068		 |$LN14@BSPGetNand@3|
-  00068		 |$LN15@BSPGetNand@3|
-  00068	00000000	 DCD         |??_C@_1HI@JDGLDLD@?$AAN?$AAA?$AAN?$AAD?$AA?5?$AAm?$AAa?$AAn?$AAu?$AAf?$AAa?$AAc?$AAt?$AAu?$AAr?$AAe?$AAr?$AA?5?$AA?$CF?$AAx?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AA?$CF?$AAx?$AA?5?$AA?3@|
-  0006c		 |$LN16@BSPGetNand@3|
-  0006c	00000000	 DCD         |SupportedNands|
-  00070		 |$M47606|
+  00068	e0843104	 add         r3, r4, r4, lsl #2
+  0006c	e0850103	 add         r0, r5, r3, lsl #2
+
+; 132  : }
+
+  00070	e8bd4030	 ldmia       sp!, {r4, r5, lr}
+  00074	e12fff1e	 bx          lr
+  00078		 |$LN14@BSPGetNand@3|
+  00078		 |$LN15@BSPGetNand@3|
+  00078	00000000	 DCD         |??_C@_1FM@KNJBBMEO@?$AAN?$AAA?$AAN?$AAD?$AA?5?$AAm?$AAa?$AAn?$AAu?$AAf?$AAa?$AAc?$AAt?$AAu?$AAr?$AAe?$AAr?$AA?5?$AAI?$AAD?$AA?3?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?5?$AA?5?$AAd?$AAe?$AAv?$AAi@|
+  0007c		 |$LN16@BSPGetNand@3|
+  0007c	00000000	 DCD         |??_C@_1HI@JDGLDLD@?$AAN?$AAA?$AAN?$AAD?$AA?5?$AAm?$AAa?$AAn?$AAu?$AAf?$AAa?$AAc?$AAt?$AAu?$AAr?$AAe?$AAr?$AA?5?$AA?$CF?$AAx?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AA?$CF?$AAx?$AA?5?$AA?3@|
+  00080		 |$LN17@BSPGetNand@3|
+  00080	00000000	 DCD         |SupportedNands|
+  00084		 |$M47589|
 
 			 ENDP  ; |BSPGetNandInfo|
 
 	EXPORT	|BSPInsertGpioDevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47624| DCD	|$LN6@BSPInsertG|
+|$T47608| DCD	|$LN6@BSPInsertG|
 	DCD	0x40001501
 ; Function compile flags: /Ogspy
 
@@ -447,36 +468,36 @@
 
   00000		 |BSPInsertGpioDevice| PROC
 
-; 154  : {
+; 155  : {
 
   00000		 |$LN6@BSPInsertG|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47621|
+  00004		 |$M47605|
   00004	e1a05000	 mov         r5, r0
 
-; 155  :     int index = BSPGpioTables.nbGpioGrp;
+; 156  :     int index = BSPGpioTables.nbGpioGrp;
 
   00008	e59fe040	 ldr         lr, [pc, #0x40]
   0000c	e59e4004	 ldr         r4, [lr, #4]
 
-; 156  :     if (index >= NB_GPIO_GRP) return FALSE;
+; 157  :     if (index >= NB_GPIO_GRP) return FALSE;
 
   00010	e3540004	 cmp         r4, #4
   00014	a3a00000	 movge       r0, #0
 
-; 162  : }
+; 163  : }
 
   00018	a8bd4030	 ldmgeia     sp!, {r4, r5, lr}
   0001c	a12fff1e	 bxge        lr
 
-; 157  :     BSPGpioTables.rgRanges[index] = range;
+; 158  :     BSPGpioTables.rgRanges[index] = range;
 
   00020	e59e3008	 ldr         r3, [lr, #8]
 
-; 158  :     BSPGpioTables.rgGpioTbls[index] = fnTbl;
-; 159  :     BSPGpioTables.name[index] = name;
-; 160  :     BSPGpioTables.nbGpioGrp++;
-; 161  :     return TRUE;
+; 159  :     BSPGpioTables.rgGpioTbls[index] = fnTbl;
+; 160  :     BSPGpioTables.name[index] = name;
+; 161  :     BSPGpioTables.nbGpioGrp++;
+; 162  :     return TRUE;
 
   00024	e3a00001	 mov         r0, #1
   00028	e7835104	 str         r5, [r3, +r4, lsl #2]
@@ -488,21 +509,21 @@
   00040	e2833001	 add         r3, r3, #1
   00044	e58e3004	 str         r3, [lr, #4]
 
-; 162  : }
+; 163  : }
 
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
   00050		 |$LN7@BSPInsertG|
   00050		 |$LN8@BSPInsertG|
   00050	00000000	 DCD         |BSPGpioTables|
-  00054		 |$M47622|
+  00054		 |$M47606|
 
 			 ENDP  ; |BSPInsertGpioDevice|
 
 	EXPORT	|BSPGetGpioDevicesTable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47635| DCD	|$LN5@BSPGetGpio|
+|$T47619| DCD	|$LN5@BSPGetGpio|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -510,29 +531,29 @@
 
   00000		 |BSPGetGpioDevicesTable| PROC
 
-; 165  : {
+; 166  : {
 
   00000		 |$LN5@BSPGetGpio|
-  00000		 |$M47632|
+  00000		 |$M47616|
 
-; 166  :     return &BSPGpioTables;
+; 167  :     return &BSPGpioTables;
 
   00000	e59f0000	 ldr         r0, [pc]
 
-; 167  : }
+; 168  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$LN6@BSPGetGpio|
   00008		 |$LN7@BSPGetGpio|
   00008	00000000	 DCD         |BSPGpioTables|
-  0000c		 |$M47633|
+  0000c		 |$M47617|
 
 			 ENDP  ; |BSPGetGpioDevicesTable|
 
 	EXPORT	|BSPGetGpioIrq|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47647| DCD	|$LN5@BSPGetGpio@2|
+|$T47631| DCD	|$LN5@BSPGetGpio@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -540,26 +561,26 @@
 
   00000		 |BSPGetGpioIrq| PROC
 
-; 169  : {
+; 170  : {
 
   00000		 |$LN5@BSPGetGpio@2|
-  00000		 |$M47644|
+  00000		 |$M47628|
 
-; 170  :     return id + IRQ_GPIO_0;
+; 171  :     return id + IRQ_GPIO_0;
 
   00000	e2800080	 add         r0, r0, #0x80
 
-; 171  : }
+; 172  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47645|
+  00008		 |$M47629|
 
 			 ENDP  ; |BSPGetGpioIrq|
 
 	EXPORT	|BSPGetTritonBusID|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47656| DCD	|$LN5@BSPGetTrit|
+|$T47640| DCD	|$LN5@BSPGetTrit|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -567,26 +588,26 @@
 
   00000		 |BSPGetTritonBusID| PROC
 
-; 179  : {
+; 180  : {
 
   00000		 |$LN5@BSPGetTrit|
-  00000		 |$M47653|
+  00000		 |$M47637|
 
-; 180  :     return TPS659XX_I2C_BUS_ID;
+; 181  :     return TPS659XX_I2C_BUS_ID;
 
   00000	e3a0000c	 mov         r0, #0xC
 
-; 181  : }
+; 182  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47654|
+  00008		 |$M47638|
 
 			 ENDP  ; |BSPGetTritonBusID|
 
 	EXPORT	|BSPGetTritonSlaveAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47665| DCD	|$LN5@BSPGetTrit@2|
+|$T47649| DCD	|$LN5@BSPGetTrit@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -594,26 +615,26 @@
 
   00000		 |BSPGetTritonSlaveAddress| PROC
 
-; 184  : {
+; 185  : {
 
   00000		 |$LN5@BSPGetTrit@2|
-  00000		 |$M47662|
+  00000		 |$M47646|
 
-; 185  :     return TPS659XX_I2C_SLAVE_ADDRESS;
+; 186  :     return TPS659XX_I2C_SLAVE_ADDRESS;
 
   00000	e3a00048	 mov         r0, #0x48
 
-; 186  : }
+; 187  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47663|
+  00008		 |$M47647|
 
 			 ENDP  ; |BSPGetTritonSlaveAddress|
 
 	EXPORT	|BSPGetSDHCCardDetect|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47675| DCD	|$LN9@BSPGetSDHC|
+|$T47659| DCD	|$LN9@BSPGetSDHC|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -621,36 +642,36 @@
 
   00000		 |BSPGetSDHCCardDetect| PROC
 
-; 195  : {
+; 193  : {
 
   00000		 |$LN9@BSPGetSDHC|
-  00000		 |$M47672|
+  00000		 |$M47656|
 
-; 196  :     switch (slot)
+; 194  :     switch (slot)
 
   00000	e3500001	 cmp         r0, #1
 
-; 199  :     default: return (DWORD) -1;
+; 197  : 			default: return (DWORD) -1;
 
   00004	13e00000	 mvnne       r0, #0
 
-; 197  :     {
-; 198  :     case 1: return MMC1_CARDDET_GPIO;
+; 195  :     {
+; 196  : 		case 1: return MMC1_CARDDET_GPIO;
 
   00008	03a00c01	 moveq       r0, #1, 24
 
-; 200  :     }
-; 201  : }
+; 198  :     }
+; 199  : }
 
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47673|
+  00010		 |$M47657|
 
 			 ENDP  ; |BSPGetSDHCCardDetect|
 
 	EXPORT	|BSPGetSysTimerDevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47684| DCD	|$LN5@BSPGetSysT|
+|$T47668| DCD	|$LN5@BSPGetSysT|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -658,26 +679,26 @@
 
   00000		 |BSPGetSysTimerDevice| PROC
 
-; 267  : {
+; 265  : {
 
   00000		 |$LN5@BSPGetSysT|
-  00000		 |$M47681|
+  00000		 |$M47665|
 
-; 268  :     return OMAP_DEVICE_GPTIMER1;
+; 266  :     return OMAP_DEVICE_GPTIMER1;
 
   00000	e3a00024	 mov         r0, #0x24
 
-; 269  : }
+; 267  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47682|
+  00008		 |$M47666|
 
 			 ENDP  ; |BSPGetSysTimerDevice|
 
 	EXPORT	|BSPGetSysTimer32KClock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47693| DCD	|$LN5@BSPGetSysT@2|
+|$T47677| DCD	|$LN5@BSPGetSysT@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -685,26 +706,26 @@
 
   00000		 |BSPGetSysTimer32KClock| PROC
 
-; 272  : {
+; 270  : {
 
   00000		 |$LN5@BSPGetSysT@2|
-  00000		 |$M47690|
+  00000		 |$M47674|
 
-; 273  :     return k32K_FCLK;
+; 271  :     return k32K_FCLK;
 
   00000	e3a0000b	 mov         r0, #0xB
 
-; 274  : }
+; 272  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47691|
+  00008		 |$M47675|
 
 			 ENDP  ; |BSPGetSysTimer32KClock|
 
 	EXPORT	|BSPGetGPTPerfDevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47702| DCD	|$LN5@BSPGetGPTP|
+|$T47686| DCD	|$LN5@BSPGetGPTP|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -712,27 +733,26 @@
 
   00000		 |BSPGetGPTPerfDevice| PROC
 
-; 280  : {
+; 278  : {
 
   00000		 |$LN5@BSPGetGPTP|
-  00000		 |$M47699|
+  00000		 |$M47683|
 
-; 281  :     return OMAP_DEVICE_GPTIMER2;
+; 279  :     return OMAP_DEVICE_GPTIMER2;
 
   00000	e3a00035	 mov         r0, #0x35
 
-; 282  : 
-; 283  : }
+; 280  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47700|
+  00008		 |$M47684|
 
 			 ENDP  ; |BSPGetGPTPerfDevice|
 
 	EXPORT	|BSPGetGPTPerfHighFreqClock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47712| DCD	|$LN5@BSPGetGPTP@2|
+|$T47696| DCD	|$LN5@BSPGetGPTP@2|
 	DCD	0x40000700
 ; Function compile flags: /Ogspy
 
@@ -740,43 +760,43 @@
 
   00000		 |BSPGetGPTPerfHighFreqClock| PROC
 
-; 286  : {
+; 283  : {
 
   00000		 |$LN5@BSPGetGPTP@2|
-  00000		 |$M47709|
+  00000		 |$M47693|
   00000	e1a02000	 mov         r2, r0
 
-; 287  : #if 1
-; 288  :     //use SYS CLK as the timer source. better precision but cause CETK to fail because of the drift with the 32K clock
-; 289  :     *pFreq = (UINT32) g_dwMeasuredSysClkFreq;        
+; 284  : #if 1
+; 285  :     //use SYS CLK as the timer source. better precision but cause CETK to fail because of the drift with the 32K clock
+; 286  :     *pFreq = (UINT32) g_dwMeasuredSysClkFreq;        
 
   00004	e59f300c	 ldr         r3, [pc, #0xC]
 
-; 290  :     return kSYS_CLK;
+; 287  :     return kSYS_CLK;
 
   00008	e3a0000c	 mov         r0, #0xC
   0000c	e5933000	 ldr         r3, [r3]
   00010	e5823000	 str         r3, [r2]
 
-; 291  : #else
-; 292  :    //use 32K CLK as the timer source.
-; 293  :     *pFreq = 32768;
-; 294  :     return k32K_FCLK;
-; 295  : #endif
-; 296  : }
+; 288  : #else
+; 289  :    //use 32K CLK as the timer source.
+; 290  :     *pFreq = 32768;
+; 291  :     return k32K_FCLK;
+; 292  : #endif
+; 293  : }
 
   00014	e12fff1e	 bx          lr
   00018		 |$LN6@BSPGetGPTP@2|
   00018		 |$LN7@BSPGetGPTP@2|
   00018	00000000	 DCD         |g_dwMeasuredSysClkFreq|
-  0001c		 |$M47710|
+  0001c		 |$M47694|
 
 			 ENDP  ; |BSPGetGPTPerfHighFreqClock|
 
 	EXPORT	|BSPGetRTCGpioIrq|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47723| DCD	|$LN5@BSPGetRTCG|
+|$T47707| DCD	|$LN5@BSPGetRTCG|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -784,26 +804,26 @@
 
   00000		 |BSPGetRTCGpioIrq| PROC
 
-; 301  : {
+; 298  : {
 
   00000		 |$LN5@BSPGetRTCG|
-  00000		 |$M47720|
+  00000		 |$M47704|
 
-; 302  :     return (DWORD)-1;//BSPGetGpioIrq(RTC_IRQ_GPIO);
+; 299  :     return (DWORD)-1;//BSPGetGpioIrq(RTC_IRQ_GPIO);
 
   00000	e3e00000	 mvn         r0, #0
 
-; 303  : }
+; 300  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47721|
+  00008		 |$M47705|
 
 			 ENDP  ; |BSPGetRTCGpioIrq|
 
 	EXPORT	|BPSGetWatchdogDevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47732| DCD	|$LN5@BPSGetWatc|
+|$T47716| DCD	|$LN5@BPSGetWatc|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -811,19 +831,19 @@
 
   00000		 |BPSGetWatchdogDevice| PROC
 
-; 309  : {
+; 306  : {
 
   00000		 |$LN5@BPSGetWatc|
-  00000		 |$M47729|
+  00000		 |$M47713|
 
-; 310  :     return OMAP_DEVICE_WDT2;
+; 307  :     return OMAP_DEVICE_WDT2;
 
   00000	e3a00028	 mov         r0, #0x28
 
-; 311  : }
+; 308  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47730|
+  00008		 |$M47714|
 
 			 ENDP  ; |BPSGetWatchdogDevice|
 

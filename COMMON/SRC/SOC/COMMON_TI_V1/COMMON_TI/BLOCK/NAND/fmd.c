@@ -415,11 +415,11 @@ NAND_Initialize(
     	}
 #else    
     if (szContext != NULL)
-        {
+	{
         if (InitializePointers(szContext, pDevice) == FALSE) goto cleanUp;
-        }
+	}
     else
-        {
+	{
         PHYSICAL_ADDRESS pa;
         
         // if there's not context string then use global macros
@@ -434,18 +434,16 @@ NAND_Initialize(
         pDevice->pFifo = MmMapIoSpace(pa, pDevice->memLen[1], FALSE);
         if (pDevice->pGpmcRegs == NULL) goto cleanUp;
 
-        }
+	}
 
-
-        if (!KernelIoControl(IOCTL_HAL_GET_ECC_TYPE,
-                             NULL, 0, &pDevice->ECCtype, sizeof(DWORD), &dwKernelRet))
-        {
-            RETAILMSG( TRUE,(TEXT("Failed to read Ecc type\r\n")));
-            pDevice->ECCtype = Hamming1bit;
-        }   
+	if (!KernelIoControl(IOCTL_HAL_GET_ECC_TYPE, NULL, 0, &pDevice->ECCtype, sizeof(DWORD), &dwKernelRet))
+	{
+		RETAILMSG( TRUE,(TEXT("Failed to read Ecc type\r\n")));
+		pDevice->ECCtype = Hamming1bit;
+	}   
 	
-        RETAILMSG(TRUE, (L"ECC TYPE is %s\r\n", (pDevice->ECCtype==Hamming1bit)? L"Hamming 1 bit" :
-			                                                    (pDevice->ECCtype==BCH4bit)? L"BCH 4 bit" : L"BCH 8 bit"));
+	RETAILMSG(TRUE, (L"ECC TYPE is %s\r\n", (pDevice->ECCtype==Hamming1bit)? L"Hamming 1 bit" :
+									(pDevice->ECCtype==BCH4bit)? L"BCH 4 bit" : L"BCH 8 bit"));
 	
 #endif
 
@@ -905,7 +903,12 @@ WaitForReadyStatus(
 //
 //  This function is called to initialize flash subsystem.
 //
-VOID* FMD_Init(LPCTSTR szContext, PCI_REG_INFO *pRegIn, PCI_REG_INFO *pRegOut)
+VOID*
+FMD_Init(
+    LPCTSTR szContext,
+    PCI_REG_INFO *pRegIn,
+    PCI_REG_INFO *pRegOut
+    )
 {
     HANDLE hRet = NULL;
 
@@ -1427,7 +1430,10 @@ cleanUp:
 //
 //  Function: FMD_GetBlockStatus
 //
-DWORD FMD_GetBlockStatus(BLOCK_ID blockId)
+DWORD
+FMD_GetBlockStatus(
+    BLOCK_ID blockId
+    )
 {
     DWORD rc = 0;
     SECTOR_ADDR sector;

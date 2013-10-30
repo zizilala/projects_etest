@@ -280,11 +280,11 @@
 	DCD	0x43
 	DCD	0x4
 	DCD	0x2
-	DCD	0x9
+	DCD	0x8
 	DCD	0x44
 	DCD	0x4
 	DCD	0x0
-	DCD	0x9
+	DCD	0x8
 	DCD	0x45
 	DCD	0x4
 	DCD	0x0
@@ -300,7 +300,7 @@
 	DCD	0x48
 	DCD	0x4
 	DCD	0x2
-	DCD	0xa
+	DCD	0x9
 	DCD	0x49
 	DCD	0x4
 	DCD	0x2
@@ -334,8 +334,8 @@
 	IMPORT	|EnterCriticalSection|
 
   00000			 AREA	 |.bss|, NOINIT
-|s_DeviceMonitorInfo| % 0x84
-|s_DeviceMonitorInfo| % 0x84
+|s_DeviceMonitorInfo| % 0x80
+|s_DeviceMonitorInfo| % 0x80
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\omap3530\pm\policyadapters\devmon\devmon.cpp
 
   00000			 AREA	 |.pdata|, PDATA
@@ -761,7 +761,7 @@
   00010	e3e03cff	 mvn         r3, #0xFF, 24
   00014	e22340ff	 eor         r4, r3, #0xFF
   00018	e1a00006	 mov         r0, r6
-  0001c	e3a02084	 mov         r2, #0x84
+  0001c	e3a02080	 mov         r2, #0x80
   00020	e3a01000	 mov         r1, #0
   00024	e58d4000	 str         r4, [sp]
   00028	eb000000	 bl          memset
@@ -1261,7 +1261,7 @@
 			 ENDP  ; |??__Fs_IndexList@@YAXXZ|, `dynamic atexit destructor for 's_IndexList''
 
 
-  00108			 AREA	 |.bss|, NOINIT
+  00100			 AREA	 |.bss|, NOINIT
 |s_IndexList| %	0x8c
 
   00000			 AREA	 |.CRT$XCU|, DATA

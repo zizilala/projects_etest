@@ -175,7 +175,7 @@ void BootloaderMain (void)
     // output banner
     KITLOutputDebugString (NKSignon, CURRENT_VERSION_MAJOR, CURRENT_VERSION_MINOR);
 
-    // (3) initialize platform (clock, drivers, transports, etc)
+    // (2) initialize platform (clock, drivers, transports, etc)
     if (!OEMPlatformInit ())
     {
         // spin forever
@@ -185,11 +185,11 @@ void BootloaderMain (void)
     // system ready, preparing for download
     KITLOutputDebugString ("System ready!\r\nPreparing for download...\r\n");
 
-    // (4) call OEM specific pre-download function
+    // (3) call OEM specific pre-download function
     switch (dwAction = OEMPreDownload ())
     {
     case BL_DOWNLOAD:
-        // (5) download image
+        // (4) download image
         if (!DownloadImage (&dwImageStart, &dwImageLength, &dwLaunchAddr))
         {
             // error already reported in DownloadImage

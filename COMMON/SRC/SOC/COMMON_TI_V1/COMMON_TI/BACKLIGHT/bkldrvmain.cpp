@@ -24,6 +24,8 @@
 #include <strsafe.h>
 #include "backlight_class.h"
 #include "BKLi.h"
+#include "backlightCtls.h"
+#include "BroadcastEvent.h"
 
 // disable PREFAST warning for use of EXCEPTION_EXECUTE_HANDLER
 #pragma warning (disable: 6320)
@@ -40,13 +42,15 @@ DBGPARAM dpCurSettings = {
 
 extern CBacklightRoot* g_pBacklight;
 
-#define BACKLIGHT_REGKEY TEXT("ControlPanel\\Backlight")
+//#define BACKLIGHT_REGKEY TEXT("ControlPanel\\Backlight")
 
-#define BKL_EVENT_REG            0       // registry change
-#define BKL_EVENT_POWER_MSG      1       // power status change
-#define BKL_EVENT_EXIT           2       // we're exiting
-#define BKL_EVENT_DISPLAY_MSG    3       // display device notification
-#define BKL_NUM_EVENTS           4
+#define BKL_EVENT_REG           0       // LCD backlight registry change
+#define BKL_EVENT_POWER_MSG     1       // power status change
+#define BKL_EVENT_EXIT          2       // we're exiting
+#define BKL_KEYPAD_MSG          3
+#define BKL_ACTIVE_MSG          4
+#define BKL_EVENT_GWE_MSG       5       // gwes notification
+#define BKL_NUM_EVENTS          5
 
 #define TURNOFFIMMEDIATELY -1
 
@@ -64,6 +68,7 @@ static const UCHAR   DeviceStateMasks[5]=
     DX_MASK(D3),
     DX_MASK(D4),
 };
+static INT g_nTimeout = -1;
 
 BOOL ConvertStringToGuid(LPCTSTR GuidString, GUID *Guid )
 {
@@ -102,9 +107,6 @@ BOOL ConvertStringToGuid(LPCTSTR GuidString, GUID *Guid )
 
     return Ok;
 }
-
-
-
 
 void UpdateACStatus(BKL_MDD_INFO *pBKLinfo)
 {
@@ -259,20 +261,19 @@ BOOL IsTapOn(BKL_MDD_INFO *pBKLinfo)
     {
         return (pBKLinfo->fBatteryTapOn? TRUE : FALSE);
     }
-    
 }
 
 DWORD GetTimeout(BKL_MDD_INFO *pBKLinfo)
 {
-    if(pBKLinfo->fOnAC)
+    /*if(pBKLinfo->fOnAC)
     {
         return pBKLinfo->dwACTimeout;        
     }
     else
     {
         return pBKLinfo->dwBattTimeout;        
-    }
-
+    }*/
+	return pBKLinfo->nLcdTimeout;
 }
 
 /*
@@ -288,10 +289,37 @@ void BacklightUpdateMDDRegSettings(BKL_MDD_INFO *pBKLinfo)
     HKEY    hKey;
 
     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("+BacklightReadMDDReg\r\n")));
-    retCode = RegOpenKeyEx (HKEY_CURRENT_USER, BACKLIGHT_REGKEY, 0, KEY_ALL_ACCESS, &hKey);
+    retCode = RegOpenKeyEx(HKEY_LOCAL_MACHINE, BACKLIGHT_REGKEY, 0, KEY_ALL_ACCESS, &hKey);
     if (retCode == ERROR_SUCCESS)
     {
-        //Battery Tap
+        // Backlight Timeout.
+        dwType = REG_DWORD;
+        cbData = MAX_PATH;
+        retCode = RegQueryValueEx(hKey, BACKLIGHT_REGVALUE_TIMEOUT, NULL, &dwType, (LPBYTE) bData, (LPDWORD) &cbData);
+        if(retCode == ERROR_SUCCESS)
+        {
+            pBKLinfo->nLcdTimeout = (*(INT *) bData);
+            g_nTimeout = pBKLinfo->nLcdTimeout;
+        }
+
+        // Backlight Mode.
+        dwType = REG_DWORD;
+        cbData = MAX_PATH;
+        retCode = RegQueryValueEx(hKey, BACKLIGHT_REGVALUE_MODE, NULL, &dwType, (LPBYTE) bData, (LPDWORD) &cbData);
+        if(retCode == ERROR_SUCCESS)
+        {
+            pBKLinfo->dwBackLiteMode = (*(DWORD *) bData);
+        }
+
+        // Keypad Backlight Mode.
+        dwType = REG_DWORD;
+        cbData = MAX_PATH;
+        retCode = RegQueryValueEx(hKey, KEYPADBACKLIGHT_REGVALUE_MODE, NULL, &dwType, (LPBYTE) bData, (LPDWORD) &cbData);
+        if(retCode == ERROR_SUCCESS)
+        {
+            pBKLinfo->dwKBLMode = (*(DWORD *) bData);
+        }
+/*        //Battery Tap
         dwType=REG_DWORD;
         cbData = MAX_PATH;
         retCode = RegQueryValueEx(hKey, TEXT("BacklightOnTap"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
@@ -322,8 +350,7 @@ void BacklightUpdateMDDRegSettings(BKL_MDD_INFO *pBKLinfo)
         if (retCode == ERROR_SUCCESS)
         {
             pBKLinfo->dwACTimeout = (*(DWORD *)bData );
-        }
-        
+        }*/
     }
 
     goto exit;
@@ -395,8 +422,6 @@ void UpdateBacklight(BKL_MDD_INFO *pBKLinfo, DWORD dwReason)
     {
         BKL_SetDevicePower(pBKLinfo, PwrDeviceUnspecified);
     }
-    
-
 }
 /*
 
@@ -415,24 +440,32 @@ DWORD fnBackLightThread(PVOID pvArgument)
     HANDLE  hEventRegistryChange = NULL;
     DWORD   dwSize;    
     DWORD   dwFlags;
-    HANDLE  hDisplayNotifications = NULL;
-    HANDLE  hDisplayNotificationMsgs = NULL;
-    GUID    idInterface;
+    HANDLE  hGweNotifications = NULL;
     BKL_MDD_INFO *pBKLinfo = NULL;
+    HANDLE  hKBNotifications = NULL;
+    BOOL SetKeypadBacklightTimeout = FALSE;
+    DWORD dwTimeout = 5000;
+    HANDLE hBklNotifications = NULL;
     
     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("+fnBackLightRegThread\r\n")));
 
     // Verify context
     if(! pvArgument)
     {
-        DEBUGMSG(ZONE_ERROR, (L"ERROR: BacklightThread: "
-            L"Incorrect context paramer\r\n" ));
-
+        DEBUGMSG(ZONE_ERROR, (L"ERROR: BacklightThread: Incorrect context paramer\r\n" ));
         return FALSE;
     }
-
     pBKLinfo = (BKL_MDD_INFO*) pvArgument;
 
+    hGweNotifications = OpenEvent(EVENT_ALL_ACCESS, FALSE, GWE_USER_ACTIVE_NOTIFY);
+    hKBNotifications  = CreateEvent(NULL, FALSE, FALSE, KEYPAD_BACKLIGHT_NOTIFY);
+    hBklNotifications = CreateEvent(NULL, FALSE, FALSE, LCD_BACKLIGHT_ACTIVE_NOTIFY);
+
+    if(!hGweNotifications || !hKBNotifications || !hBklNotifications)
+    {
+        RETAILMSG(1, (TEXT("\n\rBKL: CreateEvent failed\r\n")));
+        goto exit_thread;
+    }
 
     // create msg queue for power status change notification (AC->Battery and vice versa)
     memset(&msgopts, 0, sizeof(msgopts));
@@ -446,84 +479,140 @@ DWORD fnBackLightThread(PVOID pvArgument)
     if (!hPowerNotificationMsgs) 
     {
         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: Create message queue failed\r\n")));
-        goto exit;
+        goto exit_thread;
     }
     // request notification of power status changes:
     hPwrNotification = RequestPowerNotifications(hPowerNotificationMsgs, PBT_POWERSTATUSCHANGE);
     if (!hPwrNotification) 
     {
         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: register power notification failed\r\n")));
-        goto exit;
+        goto exit_thread;
     }
 
-    // create msg queue for display device interface notifications:
-    msgopts.cbMaxMessage = PNP_QUEUE_SIZE;
-    hDisplayNotificationMsgs = CreateMsgQueue(NULL, &msgopts);
-    if (!hDisplayNotificationMsgs) 
+	dwResult = RegOpenKeyEx(HKEY_LOCAL_MACHINE, BACKLIGHT_REGKEY, 0, KEY_NOTIFY, &hKey);
+	if(ERROR_SUCCESS != dwResult)
+	{
+        DWORD  dwSize, dwValue;
+        if(RegCreateKeyEx(HKEY_LOCAL_MACHINE , BACKLIGHT_REGKEY, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwSize) == ERROR_SUCCESS)
+        {
+            dwValue=0x02; //enable backlight timer
+            if(RegSetValueEx(hKey, BACKLIGHT_REGVALUE_MODE, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
+            {
+                RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGVALUE_MODE));
+                goto exit_thread;
+            }
+
+            dwValue = 30; //timer set to 15 sec
+            if(RegSetValueEx(hKey, BACKLIGHT_REGVALUE_TIMEOUT, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
+            {
+                RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGVALUE_TIMEOUT));
+                goto exit_thread;
+            }
+
+            dwValue = 70; //Backlight Level
+            if(RegSetValueEx(hKey, BACKLIGHT_REGVALUE_LEVEL, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
+            {
+                RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGVALUE_LEVEL));
+                goto exit_thread;
+            }
+
+
+            dwValue = 0x02; //enable keypad backlight timer
+            if(RegSetValueEx(hKey, KEYPADBACKLIGHT_REGVALUE_MODE, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
+            {
+                RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), KEYPADBACKLIGHT_REGVALUE_MODE));
+                goto exit_thread;
+            }
+        }
+        else
+        {
+            RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGKEY));
+            goto exit_thread;
+        }
+	}
+
+    BacklightUpdateMDDRegSettings(pBKLinfo);
+    g_pBacklight->BacklightRegChanged();
+
+    if(pBKLinfo->dwKBLMode < 2)
     {
-        DEBUGMSG(ZONE_ERROR, (TEXT("BKL: Create message queue failed\r\n")));
-        goto exit;
+        g_pBacklight->SetKeypadBacklight((BOOL)pBKLinfo->dwKBLMode);
+        SetKeypadBacklightTimeout = FALSE;
     }
 
-    if(!ConvertStringToGuid(PMCLASS_DISPLAY, &idInterface)) 
-    {
-        DEBUGMSG(ZONE_ERROR, (TEXT("can't convert PMCLASS_DISPLAY string to GUID\r\n")));  
-        goto exit;
-    }
-
-    hDisplayNotifications = RequestDeviceNotifications(&idInterface, hDisplayNotificationMsgs, TRUE);
-    // get display driver name (required to keep display driver on with SetPowerRequirement):
-    if(!hDisplayNotifications)
-    {
-        DEBUGMSG(ZONE_ERROR, (TEXT("RequestDeviceNotifications failed\r\n")));
-        goto exit;
-    }    
-    
-    dwResult = RegOpenKeyEx(HKEY_CURRENT_USER, BACKLIGHT_REGKEY, 0, KEY_NOTIFY, &hKey);
-    if(ERROR_SUCCESS  != dwResult)
-    {
-        goto exit;
-    }
     // Request notification of backlight registry changes:
     hEventRegistryChange = CeFindFirstRegChange(hKey, FALSE, REG_NOTIFY_CHANGE_LAST_SET);
     if(INVALID_HANDLE_VALUE == hEventRegistryChange)
     {   
         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: CeFindFirstRegChange failed\r\n")));        
-        goto exit;
+        goto exit_thread;
     }
     RegCloseKey(hKey);
     hKey = NULL;
 
-    BacklightUpdateMDDRegSettings(pBKLinfo);
     UpdateACStatus(pBKLinfo);
+    g_nTimeout = GetTimeout(pBKLinfo);
 
     WaitEvents[BKL_EVENT_REG] = hEventRegistryChange;
     WaitEvents[BKL_EVENT_POWER_MSG] = hPowerNotificationMsgs;
     WaitEvents[BKL_EVENT_EXIT] = pBKLinfo->hExitEvent;
-    WaitEvents[BKL_EVENT_DISPLAY_MSG] = hDisplayNotificationMsgs;
+    WaitEvents[BKL_KEYPAD_MSG] = hKBNotifications;
+    WaitEvents[BKL_ACTIVE_MSG] = hBklNotifications;
+    //WaitEvents[BKL_EVENT_GWE_MSG] = hGweNotifications;
 
     pBKLinfo->fExit = FALSE;
     
     while(!pBKLinfo->fExit)
     {
-        dwResult = WaitForMultipleObjects(BKL_NUM_EVENTS, &WaitEvents[0], FALSE, INFINITE);
+        dwResult = WaitForMultipleObjects(BKL_NUM_EVENTS, &WaitEvents[0], FALSE, dwTimeout);
+
+        if(dwResult != WAIT_TIMEOUT)
+        {
+            dwTimeout = 5000;
+        }
+
         switch(dwResult)
         {
+            case WAIT_TIMEOUT:
+                if(pBKLinfo->dwBackLiteMode == 2)
+                {
+                    g_nTimeout -= 5;
+                    if(g_nTimeout <= 0)
+                    {
+                        g_pBacklight->SetBacklightBrightness(0);
+                    }
+                }
+                if((pBKLinfo->dwKBLMode == 2) && SetKeypadBacklightTimeout)
+                {
+                    g_pBacklight->SetKeypadBacklight(FALSE);
+                    SetKeypadBacklightTimeout = FALSE;
+                }
+                if((g_nTimeout <= 0) || (pBKLinfo->dwBackLiteMode < 2))
+                {
+                    dwTimeout = INFINITE;
+                }
+                break;
+
             case(WAIT_OBJECT_0 + BKL_EVENT_REG):
-            {
-                DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight mdd registry change\r\n")));
-
-                UpdateBacklight(pBKLinfo, BKL_EVENT_REG);
-
-                CeFindNextRegChange(hEventRegistryChange);      
+                RETAILMSG(1, (TEXT("\n\r***** Backlight mdd registry change ! ****\r\n")));
+                BacklightUpdateMDDRegSettings(pBKLinfo);
+                CeFindNextRegChange(hEventRegistryChange);
 
                 // Tell PDD that the backlight reg settings changed:
-//MYS                 BacklightRegChanged( pBKLinfo->dwPddContext );
-            }
-            break;
+                g_pBacklight->BacklightRegChanged();
+                if(pBKLinfo->dwKBLMode < 2)
+                {
+                    g_pBacklight->SetKeypadBacklight((BOOL)pBKLinfo->dwKBLMode);
+                    SetKeypadBacklightTimeout = FALSE;
+                }
+                else
+                {
+                    g_pBacklight->SetKeypadBacklight(FALSE);
+                    SetKeypadBacklightTimeout = TRUE;
+                }
+				break;
             
             case (WAIT_OBJECT_0 + BKL_EVENT_POWER_MSG):
-            {
                 POWER_BROADCAST PwrMsgBuf;
                 
                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Power status change to/from AC\r\n")));
@@ -532,72 +621,58 @@ DWORD fnBackLightThread(PVOID pvArgument)
                     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("ReadMsgQueue failed\r\n")));  
                     ASSERT(FALSE);
                 }
-
                 UpdateBacklight(pBKLinfo, BKL_EVENT_POWER_MSG);
-                if (pBKLinfo->fOnAC)
-DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Power status change %s\r\n"),pBKLinfo->fOnAC ? L"to AC" :L"to Batt"));
 
                 // tell PDD that power source changed:
-//MYS                BacklightPwrSrcChanged(pBKLinfo->fOnAC, pBKLinfo->dwPddContext );
-               g_pBacklight->SetPowerState(pBKLinfo->dwCurState);
+                g_pBacklight->BacklightPwrSrcChanged(pBKLinfo->fOnAC);
 
-                
-            }
-            break;
+                if(pBKLinfo->dwBackLiteMode == 2)
+                {
+                    g_nTimeout = GetTimeout(pBKLinfo);
+                    g_pBacklight->SetBacklightBrightness(-1);
+                }
+				break;
 
-            case (WAIT_OBJECT_0 + BKL_EVENT_DISPLAY_MSG):
-            {
-                union 
-                {
-                    UCHAR deviceBuf[PNP_QUEUE_SIZE];
-                    DEVDETAIL devDetail;
-                } u;
-                
-                DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Display driver interface notification\r\n")));
-                if (!ReadMsgQueue(hDisplayNotificationMsgs, u.deviceBuf, PNP_QUEUE_SIZE, &dwSize, 0, &dwFlags)) 
-                {
-                    DEBUGMSG(ZONE_BACKLIGHT,(TEXT("ReadMsgQueue failed\r\n")));  
-                    ASSERT(FALSE);
-                }
-                else if(dwSize >= sizeof(DEVDETAIL)) 
-                {
-                    PDEVDETAIL pDevDetail = &u.devDetail;
 
-                    if (pDevDetail->cbName < 0)
-                    {
-                        DEBUGMSG(ZONE_ERROR,(TEXT("Invalid cbName value\r\n")));                        
-                    }
-                    else if(( (pDevDetail->cbName + sizeof(TCHAR) < sizeof(pBKLinfo->szDisplayInterface) ) 
-                        && ( (int)(pDevDetail->cbName + sizeof(TCHAR)) > pDevDetail->cbName) ))
-                    {
-                        memcpy(pBKLinfo->szDisplayInterface, pDevDetail->szName, pDevDetail->cbName);
-                        // make sure it's null terminated:
-                        pBKLinfo->szDisplayInterface[pDevDetail->cbName] = '\0';
-                    } 
-                }
-                else
+            //case (WAIT_OBJECT_0 + BKL_EVENT_GWE_MSG): break;
+            case(WAIT_OBJECT_0 + BKL_ACTIVE_MSG):
+                RETAILMSG(0, (TEXT("\n\r***** BKL_ACTIVE_MSG ****\r\n")));
+                if(pBKLinfo->dwBackLiteMode == 2)
                 {
-                    DEBUGMSG(ZONE_BACKLIGHT,(TEXT("insufficient buffer for device message\r\n")));  
+                    g_nTimeout = GetTimeout(pBKLinfo);
                 }
-            }
-            break;
+
+                g_pBacklight->SetBacklightBrightness(-1);
+				break;
+
+            case(WAIT_OBJECT_0 + BKL_KEYPAD_MSG):
+            	RETAILMSG(0, (TEXT("\n\r***** BKL_KEYPAD_MSG ****\r\n")));
+                if(pBKLinfo->dwKBLMode)
+                {
+                    g_pBacklight->SetKeypadBacklight(TRUE);
+                    SetKeypadBacklightTimeout = (pBKLinfo->dwKBLMode == 2) ? TRUE : FALSE;
+                }
+
+                if(pBKLinfo->dwBackLiteMode == 2)
+                {
+                    g_nTimeout = GetTimeout(pBKLinfo);
+                }
+
+                g_pBacklight->SetBacklightBrightness(-1);
+				break;
 
             case(WAIT_OBJECT_0 + BKL_EVENT_EXIT):
-            {
-                DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight exiting\r\n")));                
-            }
-            break;
+                DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight exiting\r\n")));
+				break;
             
             default:
-            {
                 ASSERT(FALSE);
-            }
             
         }
         
     }
 
-    exit:
+exit_thread:
         
     if (hPwrNotification)
     {
@@ -607,14 +682,7 @@ DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Power status change %s\r\n"),pBKLinfo->fOnAC ? L"
     {
         CloseMsgQueue(hPowerNotificationMsgs);
     }
-    if (hDisplayNotifications)
-    {
-        StopDeviceNotifications(hDisplayNotifications);
-    }    
-    if (hDisplayNotificationMsgs)
-    {
-        CloseMsgQueue(hDisplayNotificationMsgs);
-    }
+
     if(hEventRegistryChange)
     {
         CeFindCloseRegChange(hEventRegistryChange);

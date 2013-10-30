@@ -99,9 +99,7 @@ BOOL OEMInterruptPending(DWORD sysIntr)
 //
 //  Called when the system is to transition to it's lowest power mode (off)
 //
-VOID
-OEMPowerOff(
-    )
+VOID OEMPowerOff()
 {
     DWORD i;
     UINT32 sysIntr;
@@ -111,6 +109,7 @@ OEMPowerOff(
     UINT irq = 0;
     UINT32 mask = 0;
 	
+	OALMSG(1, (L"OEMPowerOff()\r\n"));
     // disable interrupts (note: this should not be needed)
     bPrevIntrState = INTERRUPTS_ENABLE(FALSE);
 
@@ -122,9 +121,9 @@ OEMPowerOff(
     bPowerOn = FALSE;
     KITLIoctl(IOCTL_KITL_POWER_CALL, &bPowerOn, sizeof(bPowerOn), NULL, 0, NULL);    
 
-	
     //Save Perf Timer
     OALContextSavePerfTimer();
+    
     // Disable GPTimer2 (used for high perf/monte carlo profiling)
     EnableDeviceClocks(BSPGetGPTPerfDevice(), FALSE);
 
@@ -184,14 +183,14 @@ OEMPowerOff(
     //----------------------------------------------
     // Enable wake sources interrupts
     for (sysIntr = SYSINTR_DEVICES; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
-        {
+	{
         // Skip if sysIntr isn't allowed as wake source
         if (!OALPowerWakeSource(sysIntr)) 
 		    continue;
 
         // Enable it as interrupt
         OEMInterruptEnable(sysIntr, NULL, 0);
-        }
+	}
 
     // enter full retention
     PrcmSuspend();

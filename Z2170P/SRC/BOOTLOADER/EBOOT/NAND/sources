@@ -37,6 +37,7 @@ INCLUDES=$(INCLUDES);..
 
 SOURCES=\
     ..\main.c \
+	..\HotKey.c \
     ..\map.c \
     ..\eth.c \
     ..\menu.c \

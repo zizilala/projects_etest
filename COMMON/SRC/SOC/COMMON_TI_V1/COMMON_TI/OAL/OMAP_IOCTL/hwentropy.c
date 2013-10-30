@@ -24,8 +24,7 @@
 //  Implements the IOCTL_HAL_GET_HWENTROPY handler. This function creates a
 //  64-bit value which is unique to the hardware.  This value never changes.
 //
-BOOL
-OALIoCtlHalGetHWEntropy( 
+BOOL OALIoCtlHalGetHWEntropy( 
     UINT32 code, 
     VOID *pInpBuffer, 
     UINT32 inpSize, 
@@ -46,10 +45,8 @@ OALIoCtlHalGetHWEntropy(
     if (pOutSize != NULL) *pOutSize = size;
 
     if (pOutBuffer == NULL || outSize < size)
-        {
-        OALMSG(OAL_WARN, (L"WARN: OALIoCtlHalGetHWEntropy: "
-            L"Buffer too small\r\n"
-            ));
+	{
+        OALMSG(OAL_WARN, (L"WARN: OALIoCtlHalGetHWEntropy: Buffer too small\r\n"));
         NKSetLastError(ERROR_INSUFFICIENT_BUFFER);
         goto cleanUp;
     }

@@ -284,7 +284,7 @@ static BOOL InitializeHardware(DWORD Slot)
     m_pbRegisters = OALPAtoUA(GetAddressByDevice(SOCGetSDHCDeviceBySlot(Slot)));
         
     // Reset the controller
-    OALMSG(1, (TEXT("Init HW: controller RST\r\n")));
+    OALMSG(1, (TEXT("Init SDHC HW: controller RST\r\n")));
     OUTREG32(&m_pbRegisters->MMCHS_SYSCONFIG, MMCHS_SYSCONFIG_SOFTRESET);
 
     // calculate timeout conditions

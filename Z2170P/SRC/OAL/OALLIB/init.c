@@ -699,7 +699,16 @@ void OALGPIOSetDefaultValues()
 //#endif
     GPIOClose(hGPIO);
 }
+//trouble, Ray 13-10-23 
+#define IMAGE_DSP_720P_CA 	1
+#define IMAGE_DSP_720P_SIZE 2
 
+#define IMAGE_CMEM_CA 		3
+#define IMAGE_CMEM_SIZE 	4
+
+#define IMAGE_DSP_CA 		5
+#define IMAGE_DSP_SIZE		6
+//
 DWORD OEMEnumExtensionDRAM(PMEMORY_SECTION pMemSections,DWORD cMemSections)
 {
     DWORD cSections = 0;

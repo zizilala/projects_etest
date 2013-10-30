@@ -74,6 +74,7 @@ typedef struct {
     DWORD VENC1_REGS_PA;
     DWORD DSI_REGS_PA;    
     DWORD DSI_PLL_REGS_PA;
+	DWORD RFBI_REGS_PA;
 } DSS_INFO;
 
 void SOCGetDSSInfo(DSS_INFO* pInfo);

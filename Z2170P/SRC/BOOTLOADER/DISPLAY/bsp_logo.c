@@ -14,6 +14,8 @@
 //
 //  File:  bsp_logo.c
 //
+
+
 //------------------------------------------------------------------------------
 //
 // includes
@@ -30,12 +32,6 @@
 #include "twl.h"
 #include "triton.h"
 #include "tps659xx_internals.h"
-//Ray 13-08-08
-/*#include "sdk_spi.h"
-#include "dssai.h"
-//defines SPI1, Ray 13-08-06
-HANDLE  hSPI = NULL;*/
-//#define Z2000 Z2000
 //------------------------------------------------------------------------------
 //
 // prototypes
@@ -50,87 +46,60 @@ void lcd_config(UINT32 framebuffer);
 void lcd_shutdown(void);
 UINT32 disable_lcd_power(void);
 UINT32 disable_lcd_backlight(void);
-void SetupDisplaySize(DWORD*, DWORD*);
-static void FlipFrameBuffer(PUCHAR , DWORD, DWORD ,PUCHAR);
-BOOL BLSDCardReadLogo(WCHAR *, UCHAR *, DWORD);		
-BOOL BLSDCardToFlash(WCHAR *);                   //Initial SD Card, Ray13-09-03 
-void LcdStall(DWORD);
+void LcdStall(DWORD dwMicroseconds);
+void LcdSleep(DWORD dwMilliseconds);
+VOID FillASCII(BYTE showCharMode[][10]);
+//VOID FillASCII(void);
 
-//static void FlipFrameASCIIBuffer(PUCHAR, DWORD, DWORD,PUCHAR);
-// Fire up the LCM, Ray 13-08-06.
-/*void lcm_config(void);
-DWORD LCMSPIWrite(HANDLE, DWORD, VOID *);
-void OMAPDisplayController::R61526_send_command(short cmd);
-void OMAPDisplayController::R61526_send_data(short dat);*/
-//Graphic engine, Ray 13-08-20 
-void PrintStringN();
-//void PrintStringN(char*, int);
-VOID FillASCII();
-void GL_SetCursor(int, int);		
 
 
 //------------------------------------------------------------------------------
 //
 // defines
 //
-#ifdef Z2000
-#define LOGO_WIDTH                  320	//480    // Logo bitmap image is RGB24 VGA Portrait bitmap
-#define LOGO_HEIGHT                 240	//640
-#else   //Definition 2.4" TFT-LCD size, Ray 13-09-25 
-#define LOGO_WIDTH_ETD024FM         240
-#define LOGO_HEIGHT_ETD024FM        320
+#ifdef BSP_Z2000
+	#define LOGO_WIDTH			320	//480    // Logo bitmap image is RGB24 VGA Portrait bitmap
+	#define LOGO_HEIGHT			240	//640
+#else
+	#define LOGO_WIDTH			240 // Logo bitmap image is RGB24 VGA Portrait bitmap
+	#define LOGO_HEIGHT			320	
 #endif
 
-#define BYTES_PER_PIXEL             3
-#define DELAY_COUNT                 100 
-#define LOGO_GFX_ATTRIBUTES         (DISPC_GFX_ATTR_GFXENABLE | DISPC_GFX_ATTR_GFXFORMAT(DISPC_PIXELFORMAT_RGB24))           // RGB24 packed, enabled
+#define BYTES_PER_PIXEL			3
+#define DELAY_COUNT				100 
+#define LOGO_GFX_ATTRIBUTES		(DISPC_GFX_ATTR_GFXENABLE | DISPC_GFX_ATTR_GFXFORMAT(DISPC_PIXELFORMAT_RGB24))           // RGB24 packed, enabled
 
-#define BSP_LCD_CONFIG              (DISPC_CONFIG_FUNCGATED | DISPC_CONFIG_LOADMODE(2))
+#define BSP_LCD_CONFIG			(DISPC_CONFIG_FUNCGATED | DISPC_CONFIG_LOADMODE(2))
 
-#define BSP_GFX_POS                 (DISPC_GFX_POS_GFXPOSY(g_dwLogoPosY) | DISPC_GFX_POS_GFXPOSX(g_dwLogoPosX))
+#define BSP_GFX_POS					(DISPC_GFX_POS_GFXPOSY(g_dwLogoPosY) | DISPC_GFX_POS_GFXPOSX(g_dwLogoPosX))
 #define BSP_GFX_SIZE                (DISPC_GFX_SIZE_GFXSIZEY(g_dwLogoHeight) | DISPC_GFX_SIZE_GFXSIZEX(g_dwLogoWidth))
 #define BSP_GFX_FIFO_THRESHOLD      (DISPC_GFX_FIFO_THRESHOLD_LOW(192) | DISPC_GFX_FIFO_THRESHOLD_HIGH(252))
 #define BSP_GFX_ROW_INC             0x00000001
 #define BSP_GFX_PIXEL_INC           0x00000001
 #define BSP_GFX_WINDOW_SKIP         0x00000000
-//------------------------------------------------------------------------------
-//Add graphic engine 
-#define FONT_HEIGHT		16
-#define FONT_WIDTH		8
 
-static DWORD g_nHeight	= 0;
-static DWORD g_nWidth	= 0;
-static DWORD g_nColMax	= 0;
-static DWORD g_nRowMax	= 0;
-static DWORD g_nBpp;
-static DWORD g_wFontColor = 0x00000000; //??_RR_GG_BB
-//static DWORD g_wFontColor2 = 0x00;
-//static DWORD g_wFontColor3 = 0x00;
-
-static DWORD g_wBkColor = 0xffffffff;	
-//static DWORD g_wBkColor2 = 0xff;	
-//static DWORD g_wBkColor3 = 0xff;	
-
-
-//static DWORD g_wFontColor = 0x000000 ;
-//static DWORD g_wBkColor = 0xffffff;	
-
-static volatile DWORD *g_dwFrameBuffer = NULL;
+#define SPI_CS0_PIN     174         //mcspi1_cs0
+#define SPI_CLK_PIN     171         //mcspi1_clk
+#define SPI_DOUT_PIN    172         //mcspi1_simo
 
 DWORD   g_dwLogoPosX;
 DWORD   g_dwLogoPosY;
+
 DWORD   g_dwLogoWidth;
 DWORD   g_dwLogoHeight;
 
-//static int cur_row = 0;
-//static int cur_col = 0;
+//-----------------------------------------------------------------------------
+//Ray 131025
+#define FONT_HEIGHT		16
+#define FONT_WIDTH		8
 
-typedef struct DIRECT{
-		int left;   
-    	int top;   
-   		int right;
-   		int bottom;
-}DIRECT;
+static DWORD g_nHeight = 0;
+static DWORD g_nWidth = 0;
+static DWORD g_nBpp;
+static DWORD g_wFontColor = 0x00000000; //??_RR_GG_BB
+static DWORD g_wBkColor   = 0xffffffff; //??
+static volatile DWORD *g_dwFrameBuffer = NULL;
+
 
 const BYTE asciiFont[][16] = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -329,265 +298,66 @@ const BYTE asciiFont[][16] = {
  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  /*  []  ASCII =  0x7F */
 };
 
-//------------------------------------------------------------------------------
-
-//brief  SPI Init structure definition  
-/***************************************
-typedef struct
-{
-  UINT32 SPI1_Direction;           /*!< Specifies the SPI unidirectional or bidirectional data mode.
-                                         This parameter can be a value of @ref SPI_data_direction */
-
-  /*UINT32 SPI1_Mode;                /*!< Specifies the SPI operating mode.
-                                         This parameter can be a value of @ref SPI_mode */
-
-  /*UINT32 SPI1_DataSize;            /*!< Specifies the SPI data size.
-                                         This parameter can be a value of @ref SPI_data_size */
-
-  /*UINT32 SPI1_CPOL;                /*!< Specifies the serial clock steady state.
-                                         This parameter can be a value of @ref SPI_Clock_Polarity */
-
-  /*UINT32 SPI1_CPHA;                /*!< Specifies the clock active edge for the bit capture.
-                                         This parameter can be a value of @ref SPI_Clock_Phase */
-
-  /*UINT32 SPI1_CS0;                 /*!< Specifies whether the NSS signal is managed by
-                                         hardware (NSS pin) or by software using the SSI bit.
-                                         This parameter can be a value of @ref SPI_Slave_Select_management */
- 
-  /*UINT32 SPI1_BaudRatePrescaler;   /*!< Specifies the Baud Rate prescaler value which will be
-                                         used to configure the transmit and receive SCK clock.
-                                         This parameter can be a value of @ref SPI_BaudRate_Prescaler
-                                         @note The communication clock is derived from the master
-                                               clock. The slave clock does not need to be set. */
-
-  /*UINT32 SPI1_FirstBit;            /*!< Specifies whether data transfers start from MSB or LSB bit.
-                                         This parameter can be a value of @ref SPI_MSB_LSB_transmission */
-
-  /*UINT32 SPI1_CRCPolynomial;       /*!< Specifies the polynomial used for the CRC calculation. */
-/*}SPI_InitTypeDef;
-
-typedef struct
-{
-  UINT32 GPIO_Pin;              /*!< Specifies the GPIO pins to be configured.
-                                       This parameter can be any value of @ref GPIO_pins_define */
-
-  /*GPIOMode_TypeDef GPIO_Mode;     /*!< Specifies the operating mode for the selected pins.
-                                       This parameter can be a value of @ref GPIOMode_TypeDef */
-
-  /*GPIOSpeed_TypeDef GPIO_Speed;   /*!< Specifies the speed for the selected pins.
-                                       This parameter can be a value of @ref GPIOSpeed_TypeDef */
-
-  /*GPIOOType_TypeDef GPIO_OType;   /*!< Specifies the operating output type for the selected pins.
-                                       This parameter can be a value of @ref GPIOOType_TypeDef */
-
-  /*GPIOPuPd_TypeDef GPIO_PuPd;     /*!< Specifies the operating Pull-up/Pull down for the selected pins.
-                                       This parameter can be a value of @ref GPIOPuPd_TypeDef */
-/*}GPIO_InitTypeDef;*/
-
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 //
-//  Function:  InitGraphicsEngine
-//
-//  Initial graphics engine after Call function draw ASCII, Ray 13-10-03  
-//                
-//InitGraphicsEngine(dwLcdWidth, dwLcdHeight, pChar, framebuffer);
 BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight, PUCHAR nBpp, DWORD dwFrameBuffer)
 {
-	
-	/*if(nBpp != (PUCHAR)checkbpp)	//how to check values??
-		return FALSE;*/
 		
 	g_nHeight = nHeight;
-	g_nWidth  = nWidth;
-	
-	g_nColMax = g_nWidth  / FONT_WIDTH;			//nWidth(240) / 8   = 30(g_nColMax)
-	g_nRowMax = g_nHeight / FONT_HEIGHT;		//nHeight(320) / 16 = 20(g_nRowMax )
-	
+	g_nWidth  = nWidth;	
 	g_nBpp = (DWORD)nBpp; 
     g_dwFrameBuffer = (volatile DWORD *) dwFrameBuffer;
-
-	/*for (y = 0; y < g_nHeight; y++)		
-	{
-		for( x = 0; x < g_nWidth; x++ )	
-        {
-			*g_nBpp++ = 0xfa;    //  Blue	
-            *g_nBpp++ = 0xce;    //  Green
-            *g_nBpp++ = 0x87;    //  Red
-		}
-	}*/
 	
-	FillASCII();
+	//FillASCII();
 	
-    //size = (sizeof(asciiFont)/16); 
-	//PrintStringN(str, size);
-	//PrintStringN();
 	return TRUE;
 }
-
-/*BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight,
-                        PUCHAR nBpp, DWORD dwFrameBuffer)
-{
-	//ULONG x;
-	//ULONG y;
-	//char str[] = "Z"; 
-	//int size = 2;
-	
-	//int i = 0;
-	/*UINT checkbpp = 8;		
-	if(nBpp != (PUCHAR)checkbpp)	//how to check values??
-		return FALSE;*/
-	/*g_nWidth  = nWidth;
-	g_nHeight = nHeight;
-	
-	g_nColMax = g_nWidth  / FONT_WIDTH;			
-	g_nRowMax = g_nHeight / FONT_HEIGHT;		
-	
-	g_nBpp = nBpp;  
-	g_dwFrameBuffer = (volatile DWORD *) dwFrameBuffer;
-    */
-	/*for (y = 0; y < g_nHeight; y++)		
-	{
-		for( x = 0; x < g_nWidth; x++ )	
-        {
-			*g_nBpp++ = 0xfa;    //  Blue	
-            *g_nBpp++ = 0xce;    //  Green
-            *g_nBpp++ = 0x87;    //  Red
-		}
-	}*/
-	
-//	FillASCII();
-	
-//	size = (sizeof(asciiFont)/16); 
-	//PrintStringN(str, size);
-//	PrintStringN();
-/*	return TRUE;
-}*/
-
-//void PrintStringN(char* s, int size)
-/*void PrintStringN()
-{
-	int size = 350; 
-	//int y,x;
-	int i;
-	/*DIRECT bounds;
-
-    bounds.left   = 0;
-    bounds.top    = 0;
-    bounds.right  = LOGO_WIDTH;
-    bounds.bottom = LOGO_HEIGHT;*/
-	
-	
-	
-/*    for (i=0; i<size; i++) 
-    {
-		FillASCII(cur_row, cur_col, (BYTE)size);*/
-
-		/*for (y = 0; y < g_nHeight; y++)		
-			{
-				for( x = 0; x < g_nWidth; x++ )	
-        		{
-					*g_nBpp++ = 0xff;    //  Blue		--snow
-            		*g_nBpp++ = 0xfa;    //  Green
-            		*g_nBpp++ = 0xfa;    //  Red
-				}
-		}*/
-			
-//        cur_col++;
-       /* if (cur_col == (int)g_nColMax) 
-        {
-            if (cur_row == (int)g_nRowMax-2) 
-            {
-                for (y = 0; y < LOGO_HEIGHT; y++)		
-				{
-					for(x = 0; x < LOGO_WIDTH; x++)	
-        			{
-						*g_nBpp++ = 0xc0;    //  Blue		--silver
-            			*g_nBpp++ = 0xc0;    //  Green
-            			*g_nBpp++ = 0xc0;    //  Red
-					}
-				}
-            } else {
-                cur_row++;
-            }
-            cur_col = 0;
-        }*/
-
-//    }
-//}
-
-//------------------------------------------------------------------------------
 //
-//  Function:  ShowLogo
-//
-//  The FillASCII() function major draw ASCII show char
-//
-//ifndef Z2000
-//2.4", Ray 13-10-02
-VOID FillASCII()
+VOID FillASCII(BYTE showCharMode[][10])
 {
     volatile DWORD *mem = g_dwFrameBuffer;
     //static DWORD nWidth	= 360;  
     static DWORD nWidth	= 180;
-    //static DWORD nWidth	= 10;
-    //DWORD d4sec = 4000000;
-//    DWORD d50msec = 50000;
-	int printN=0;
-	BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
+    int printMode = 0;
+	int printN = 10;
+	//BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
 	UINT16 tempbit, i, j;
     int p = 8;
     unsigned long offset;
     int offh = 0, offw = 0;
     unsigned char bit;
 	BYTE c = 0; 
-	//BYTE c = 35;
 	static int cur_col  = 13;
-	static int cur_row  = 6;        //shift a row place equal a pixel, Ray 13-10-03  
+	static int cur_row  = 7;        //shift a row place equal a pixel, Ray 131003  
 	BYTE n = 0;
 	int shiftPalce = 8;	
-	//DWORD	dwLength 	= 0;
+
 	
 	offw =  FONT_WIDTH * cur_row ;  			// offw = 8
-	printN = sizeof(showChar);
-
+	//printN = sizeof(showChar);
+	
 	while(n < printN)
 	{
-		c = showChar[n];
+		c = showCharMode[printMode][n];
+		//c = showChar[n];
 		for (i=0; i<16; i++) 
 		{
-        	//g_nWidth -= 80;
         	offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
-            //OALLog(L"Round: %d \r\n", i);
-        	//OALLog(L"=============================\r\n");
-        	//LcdStall(d2sec);
+     
         	for (j=0; j<8; j++) 
         	{
-            	tempbit = 1 << j; //OALLog(L"j: %d \r\n", j);
+            	tempbit = 1 << j; 
             	bit = (unsigned char)tempbit;
             	bit &= asciiFont[c][i];                 //do array location & bit 
-                //OALLog(L"bit: %c,\tasciiFont: %d  \r\n",bit , asciiFont[c][i]);
-				//offset = g_nHeight * offh + offw;     //240*16+ 8   
                 offset = nWidth * offh + offw;
-                  /*if(j== 0)
-                  {
-                    OALLog(L"offh:    %d \r\n", offh);
-                    OALLog(L"offw:    %d \r\n", offw);
-                    OALLog(L"nWidth:  %d \r\n", nWidth);  
-                    //OALLog(L"g_nWidth: %d \r\n", g_nWidth);  
-                    OALLog(L"offset:  %d \r\n", offset);
-                    OALLog(L"-----------------------------\r\n");
-                  }*/
                 if (bit) {							//Non-zero is Running
         	  		mem[ p + offset ] = g_wFontColor;
-                   	//mem[ p + offset ] = g_wFontColor2;
-                   	//mem[ p + offset ] = g_wFontColor3;
                 	p--;
             	}else {
                 	mem[ p + offset ] = g_wBkColor;
-         	  		//mem[ p + offset ] = g_wBkColor2;
-           	  		//mem[ p + offset ] = g_wBkColor3;
                 	p--;
             	}
-                //LcdStall(d50msec);
+ 
             	if(p == 0){
                 	p = 8;
             	}
@@ -597,152 +367,344 @@ VOID FillASCII()
 		n++;
 	}
 }
-//3.5", Ray 13-10-02
-//#else
-/*VOID FillASCII()
+//
+VOID FillASCIIMode(int mode)
 {
-    volatile DWORD *mem = g_dwFrameBuffer;
-    int i, j;
-    DWORD d2sec = 2000000;
-	//int k;
-	//int printN=0;
-	//BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
-	int tempbit;
-    int p = 8;
-    unsigned long offset;
-    int offh = 0, offw = 0;
-    unsigned char bit;
-	//BYTE c = 0; 
-	BYTE c = 35;
-	static int cur_col  = 1;
-	static int cur_row  = 10;        //Offset row location
-	//BYTE time = 0;
-	//int shiftPalce = 8;	
-	//DWORD	dwLength 	= 0;
-
-	
-	offw =  FONT_WIDTH * cur_row ; 			// offw =8
-	//printN = sizeof(showChar);
-
-	//while(time < printN)
-	//{
-		//c = showChar[time];
-		for (i=0; i<16; i++) 
-		{
-        	//offh = FONT_HEIGHT * cur_col + i;		//offh =  16+0, 16+1.....
-            offh = 2 * cur_col + i;	
-        	OALLog(L"Round: %d \r\n", i);
-        	OALLog(L"=============================\r\n");
-        	for (j=0; j<8; j++) 
-        	{
-            	tempbit = 1 << j;
-				bit = (unsigned char)tempbit;
-            	bit &= asciiFont[c][i];
-				//offset = g_nWidth * offh + offw;     //240*16+ 8   
-				offset = g_nHeight * offh; /*+ offw;*/
-				/*if( (j%2) == 0){
-                    OALLog(L"offh:     %d \r\n", offh);
-                    OALLog(L"offw:     %d \r\n", offw);
-                    OALLog(L"g_nHeight:%d \r\n", g_nHeight);  
-                    OALLog(L"offset:   %d \r\n", offset);
-                    OALLog(L"-----------------------------\r\n");
-                  }
-                  LcdStall(d2sec);
-            
-            	if (!bit) {							//Non-zero is Running
-        	  		mem[ p + offset ] = g_wBkColor;	
-                	p--;
-            	}else {
-                	mem[ p + offset ] = g_wFontColor;
-                	p--;
-            	}
-            
-            	if(p == 0){
-                	p = 8;
-            	}
-        	}
-    	}
-}*/
-//#endif
-
-//------------------------------------------------------------------------------
-//(framebuffer, 240, 320*3, framebuffer + dwLength(3*240*320) )
-static void FlipFrameBuffer(PUCHAR fb, DWORD h, DWORD lineSize, PUCHAR temporaryBuffer)
-{
-    DWORD y;
-    PUCHAR top;
-    PUCHAR bottom;
-
-    top = fb;						//framebuffer (start address)
-    bottom = fb + ((h-1)*lineSize);	//bottom = 0 + 239*960 (i.e: Area)
-    
-    for (y=0; y < h/2; y++)
-    {
-        memcpy(temporaryBuffer, top, lineSize);	    //copy "top(source)" how much "lineSize(number)" to temporaryBuffer(destination) 
-        memcpy(top, bottom, lineSize);              //960 -> 0
-        memcpy(bottom, temporaryBuffer, lineSize);  //960 -> temp
-        top += lineSize;                            //top = 0+960
-        bottom -= lineSize;                         //bottom = 229440 -960
-     }
+    BYTE showCharMode[4][10] = {{54,81,69,66,85,70,84,15,15,15},	  //Updates... 
+                                {51,70,84,70,83,87,70,69,15,15},      //Reserved..
+                                {51,70,84,70,83,87,70,69,15,15},
+                                {51,70,84,70,83,87,70,69,15,15}};
+   switch(mode)
+   {
+        case 1:
+            FillASCII((showCharMode+0));
+            break;
+        case 2:
+            FillASCII((showCharMode+1));
+            break;
+        case 3:
+            FillASCII((showCharMode+2));
+            break;
+        case 4:
+            FillASCII((showCharMode+3));
+            break;
+   }
 }
 
-//(framebuffer, 240, 320*3, framebuffer + dwLength(3*240*320) )
-//FlipFrameBuffer((PUCHAR)framebuffer, LOGO_HEIGHT, LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
-/*static void FlipFrameASCIIBuffer(PUCHAR fb, DWORD h, DWORD lineSize,PUCHAR temporaryBuffer)
+//-----------------------------------------------------------------------------
+HANDLE hGpio = NULL;
+
+
+void spiWrBitHigh(void)
+{
+    DWORD delay = 10;
+
+    GPIOSetBit(hGpio, SPI_DOUT_PIN);
+
+    GPIOClrBit(hGpio, SPI_CLK_PIN);
+    LcdStall(delay);
+    GPIOSetBit(hGpio, SPI_CLK_PIN);
+    LcdStall(delay);
+    GPIOClrBit(hGpio, SPI_CLK_PIN);
+}
+
+void spiWrBitLow(void)
+{
+    int delay = 10;
+    
+    GPIOClrBit(hGpio, SPI_DOUT_PIN);
+
+    GPIOClrBit(hGpio, SPI_CLK_PIN);
+    LcdStall(delay);
+    GPIOSetBit(hGpio, SPI_CLK_PIN);
+    LcdStall(delay);
+    GPIOClrBit(hGpio, SPI_CLK_PIN);
+}
+
+void spi_SendData(short iSendData)
+{
+    short iCount = 0;
+	
+	GPIOClrBit(hGpio, SPI_CS0_PIN);
+    for(iCount=8; iCount>=0; iCount--)
+    {
+		if(iSendData & (1<<iCount)) 
+			spiWrBitHigh();
+		else 
+			spiWrBitLow();
+	}
+	GPIOSetBit(hGpio, SPI_CS0_PIN);
+}
+
+void WMLCDCOMD(short cmd)
+{
+    spi_SendData(cmd);
+}
+
+void WMLCDDATA(short dat)
+{
+	dat |= 0x0100;
+	spi_SendData(dat);
+}
+
+void LCD_Initial_Code(void)
+{
+	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+    WMLCDDATA(0x3F);
+	WMLCDDATA(0x3F);
+	LcdSleep(5);
+	
+	WMLCDCOMD(0xFE);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x21);
+	WMLCDDATA(0xB4);
+	
+	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x10);
+	
+	WMLCDCOMD(0xE0); // NVM Access Control
+	WMLCDDATA(0x00); // NVAE: NVM access enable register. NVM access is enabled when NVAE=1
+	WMLCDDATA(0x40); // FTT: NVM control bit.
+	//Sleep(10);
+	LcdSleep(10);
+	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xFE); // MAGIC - TODO
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x21);
+	WMLCDDATA(0x30);
+	
+	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+	WMLCDDATA(0x3F);
+	WMLCDDATA(0x3F); 
+	
+	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+	WMLCDDATA(0x02);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	        	   	
+	WMLCDCOMD(0xB4); //SET interface
+	WMLCDDATA(0x10);
+	
+	WMLCDCOMD(0xC0); //Panel Driving Setting
+	WMLCDDATA(0x03); //GIP REV  SM GS BGR SS
+	WMLCDDATA(0x4F);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x10);
+	WMLCDDATA(0xA2); //BLV=0 LINE
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xC1); //Display Timing Setting for Normal/Partial Mode
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x02);
+	WMLCDDATA(0x19);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x08);
+
+    LcdSleep(25);
+	WMLCDCOMD(0xC3); //PRTIAL MODE
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x28);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x08);
+
+	LcdSleep(25);
+	WMLCDCOMD(0xC4);
+	WMLCDDATA(0x11);
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x43);
+	WMLCDDATA(0x04);
+	
+	WMLCDCOMD(0xC8); //set gamma
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0D);
+	WMLCDDATA(0x14);
+	WMLCDDATA(0x18);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x05);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x07);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x15);
+	WMLCDDATA(0x12);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xC9); //set gamma
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0D);
+	WMLCDDATA(0x14);
+	WMLCDDATA(0x18);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x05);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x07);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x15);
+	WMLCDDATA(0x12);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xCA); //set gamma
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0D);
+	WMLCDDATA(0x14);
+	WMLCDDATA(0x18);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x05);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x07);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x15);
+	WMLCDDATA(0x12);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xD0); //Power Setting
+	WMLCDDATA(0x63); //BT[2:0]=110  VCI+VCI2¡Á2  :5   -(VCI2¡Á2):
+	WMLCDDATA(0x53);
+	WMLCDDATA(0x82); //VC2[2:0]=010,VCI2=5V
+	WMLCDDATA(0x3F); //VREG=5.0V 
+	
+	WMLCDCOMD(0xD1); //set vcom
+	WMLCDDATA(0x6A); //VCOMH
+	WMLCDDATA(0x64); //VDV
+	
+	WMLCDCOMD(0xD2); //Power Setting (Note 1) for Normal/Partial Mode
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x24);
+	
+	WMLCDCOMD(0xD4); //Power Setting (Note 1) for Idle Mode
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x24);
+	
+	WMLCDCOMD(0xE2); //NVM Load Control
+	WMLCDDATA(0x3F);
+
+	WMLCDCOMD(0x35); //set_tear_on
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0x36);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0x3A); //set_pixel_format
+	WMLCDDATA(0x66); // 66 18-bits
+	
+	WMLCDCOMD(0x2A); //set_column_address
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0xEF);
+	
+	WMLCDCOMD(0x2B); //set_page_address:
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x3F);
+	\
+	WMLCDCOMD(0x11); //exit_sleep_mode
+	LcdSleep(120);
+	WMLCDCOMD(0x29); //set_display_on
+	LcdSleep(30);
+	WMLCDCOMD(0x2C); //send DDRAM set
+}
+//-----------------------------------------------------------------------------
+void ClearDisplayBuffer()
+{
+	DWORD framebufferPA;
+	DWORD i, len;
+	
+	len = (320 * 240 * 3) / 4;
+	LcdPdd_GetMemory( NULL, &framebufferPA );
+	for( i=0 ; i<len ; i++ )
+		*((DWORD *)framebufferPA + i) = 0x0;
+}
+//-----------------------------------------------------------------------------
+static void FlipFrameBuffer(PUCHAR fb, DWORD h, DWORD lineSize,PUCHAR temporaryBuffer)
 {
     DWORD y;
     PUCHAR top;
     PUCHAR bottom;
 
-	top = fb;
-	//top = fb; 
+    top = fb;
     bottom = fb + ((h-1)*lineSize);
-	leftBottom = fb + ((h-1)*lineSize)
-   
-    for (y=0; y < h/2; y++)		//240/2 = 120
-    {
     
-		memcpy(temporaryBuffer, top, lineSize);	//framebuffer, framebuffer,320*3
-        memcpy(top, bottom, lineSize);			//top ,bottom,320*3
-        memcpy(bottom, temporaryBuffer, lineSize);
-
-		top += lineSize;
+    for (y=0;y<h/2;y++)
+    {
+        memcpy(temporaryBuffer,top,lineSize);
+        memcpy(top,bottom,lineSize);
+        memcpy(bottom,temporaryBuffer,lineSize);
+        top += lineSize;
         bottom -= lineSize;
     }
-}*/
+}
 //------------------------------------------------------------------------------
 //
 //  Function:  ShowLogo
 //
 //  This function shows the logo splash screen
 //
-//BOOL ShowLogo(UINT32 flashAddr, UINT32 offset)
-#ifdef Z2000
 VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
 {
-    HANDLE  hFlash = NULL;		
-    DWORD  framebuffer;		
-    DWORD  framebufferPA;	
+    HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
     PUCHAR  pChar;
-    ULONG   y;
-	ULONG   x;
-
-    WORD    wSignature = 0;
+    ULONG   x, y;
+    WORD	wSignature = 0;
     DWORD   dwOffset = 0;
-    DWORD   dwLcdWidth,
-            dwLcdHeight;
+    DWORD   dwLcdWidth, dwLcdHeight;
     DWORD   dwLength;
+
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
 	
-	//  Get the LCD width and height 	//-(Non-value, 320, 240,Non-value)
-    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL ); 
-	dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT; // 3*320*240
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
 
     //  Get the video memory
-    LcdPdd_GetMemory( NULL, &framebufferPA );	//00//-*pVideoMemAddr = ConvertCAtoPA
-	framebuffer = (DWORD) OALPAtoUA(framebufferPA);	//00
-    pChar = (PUCHAR)framebuffer;	//XX
+    LcdPdd_GetMemory( NULL, &framebufferPA );
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
     
-   if (flashAddr != -1)		//-not running
+    if (flashAddr != -1)
     {
         // Open flash storage
         hFlash = OALFlashStoreOpen(flashAddr);
@@ -771,150 +733,20 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
             g_dwLogoHeight = LOGO_HEIGHT;
             
             //As BMP are stored upside down, we need to flip the frame buffer's content
-            FlipFrameBuffer((PUCHAR)framebuffer, LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL, (PUCHAR)framebuffer + dwLength);
+            FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
         }
     }
 
     //  If bitmap signature is valid, display the logo, otherwise fill screen with pattern
-    // if( wSignature == 0x4D42 )			Ray 13-08-01 
-   if( wSignature != 0x4D42 )		//-0x4D42 == bitmap format values
-	{
-		 //  Adjust color bars to LCD size
-		g_dwLogoPosX   = 0;
-        g_dwLogoPosY   = 0;
-
-		g_dwLogoWidth  = dwLcdWidth;	//320
-        g_dwLogoHeight = dwLcdHeight;	//240	
-
-		//SetupDisplaySize(&dwLcdHeight, &dwLcdWidth); 
-	
-		for (y = 0; y < dwLcdHeight; y++)		//240		//13-08-20
-		{
-			//for( x = 0; x < dwLcdWidth; x++ )	{
-			for( x = 0; x < dwLcdWidth; x++ )	//320
-            {
-				if(y < 100)
-				{
-					if( x < dwLcdWidth/2-30 )		//160-30 =130
-                	{
-                       *pChar++ = 0xFF;    //  Blue	
-                       *pChar++ = 0x00;    //  Green
-                       *pChar++ = 0x00;    //  Red
-					}else{							//220
-                       	*pChar++ = 0xFF;    //  Blue	
-                        *pChar++ = 0x00;    //  Green  -FF
-                        *pChar++ = 0xFF;    //  Red
-					}
-				}else if(y > dwLcdHeight/2)		//120
-             	{
-               	 	if( x < dwLcdWidth/2-60 )		//160
-                	{
-                       *pChar++ = 0x00;    //  Blue	
-                       *pChar++ = 0xd7;    //  Green
-                       *pChar++ = 0xFF;    //  Red
-					}else{
-                       	*pChar++ = 0x00;    //  Blue	
-                        *pChar++ = 0xFF;    //  Green  -FF
-                        *pChar++ = 0x00;    //  Red
-					}
-           		}else{
-              		if( x < dwLcdWidth/2)
-              		{
-						*pChar++ = 0x00;    //  Blue	-FF
-                        *pChar++ = 0x00;    //  Green
-                        *pChar++ = 0x00;    //  Red
-              		}else{
-			 			*pChar++ = 0xFF;    //  Blue	
-                        *pChar++ = 0xFF;    //  Green
-                        *pChar++ = 0xFF;    //  Red  -FF
-              		}
-                }
-			}
-		}
-	}
-  
-	//  Fire up the LCD
-    lcd_config(framebufferPA); 
-    
-	
-	//	Fire up the LCM, Ray 13-08-06.
-	//lcm_config();
-}
-#else
-//------------------------------------------------------------------------------
-//  This function are drawing screen(the same above ShowLogo()), Ray 13-09-25 
-//  Function:   DrawLogo
-//
-void DrawingScreen(UINT32 flashAddr, UINT32 offset)
-{
-    HANDLE hFlash = NULL;
-    DWORD frameBuffer,
-          frameBufferPA;
-    PUCHAR pChar;
-    DWORD dwOffset = 0;
-    DWORD dwLcdWidth,
-          dwLcdHeight,
-          dwLcdFrameArea;
-    WORD wSignature = 0;
-	ULONG   y;
-	ULONG   x;
-
-    //Get the LCD width and height 	//original 320(RGB)*240, modify 240(RGB)*320 
-    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
-    dwLcdFrameArea = BYTES_PER_PIXEL * LOGO_WIDTH_ETD024FM * LOGO_HEIGHT_ETD024FM;
-
-    //Get the video memory
-    LcdPdd_GetMemory( NULL, &frameBufferPA);
-    frameBuffer = (DWORD)OALPAtoUA(frameBufferPA); 
-    pChar = (PUCHAR)frameBuffer;
-    
-    if (flashAddr != -1)		
-    {
-        // Open flash storage
-        hFlash = OALFlashStoreOpen(flashAddr);
-        
-        if( hFlash != NULL )
-        {
-            // The LOGO reserved NAND flash region contains the BMP file
-            OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
-
-            //  Check for 'BM' signature
-            if( wSignature == 0x4D42 )  
-            {
-                //  Read the offset to the pixel data
-                OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
-
-                //  Read the pixel data with the given offset
-                OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, 
-                                           dwLcdFrameArea, FALSE );
-            }
-           
-            // Close store
-            OALFlashStoreClose(hFlash);
-        
-            // Compute position and size of logo image 
-            g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH_ETD024FM)/2;
-            g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT_ETD024FM)/2;
-            g_dwLogoWidth  = LOGO_WIDTH_ETD024FM;
-            g_dwLogoHeight = LOGO_HEIGHT_ETD024FM;
-            
-            //As BMP are stored upside down, we need to flip the frame buffer's content
-            FlipFrameBuffer((PUCHAR)frameBuffer, LOGO_HEIGHT_ETD024FM, LOGO_WIDTH_ETD024FM * BYTES_PER_PIXEL,
-                            (PUCHAR)frameBuffer + dwLcdFrameArea);
-        }
-    }
-    
-	//  If bitmap signature is valid, display the logo, otherwise fill screen with pattern
-    if(wSignature != 0X4D42)
+    if( wSignature != 0x4D42 )
     {
         //  Adjust color bars to LCD size
         g_dwLogoPosX   = 0;
         g_dwLogoPosY   = 0;
-
-		g_dwLogoWidth  = dwLcdWidth;	//240
-        g_dwLogoHeight = dwLcdHeight;	//320	
-    
-		for (y = 0; y < dwLcdHeight; y++)
+        g_dwLogoWidth  = dwLcdWidth;
+        g_dwLogoHeight = dwLcdHeight;
+        
+        for (y= 0; y < dwLcdHeight; y++)
         {
             for( x = 0; x < dwLcdWidth; x++ )
             {
@@ -922,8 +754,8 @@ void DrawingScreen(UINT32 flashAddr, UINT32 offset)
                 {
                     if( x < dwLcdWidth/2 )
                     {
-                        *pChar++ = 0xFF;    //  Blue
-                        *pChar++ = 0xFF;    //  Green
+                        *pChar++ = 0x00;    //  Blue
+                        *pChar++ = 0x00;    //  Green
                         *pChar++ = 0xFF;    //  Red
                     }
                     else
@@ -944,21 +776,17 @@ void DrawingScreen(UINT32 flashAddr, UINT32 offset)
                     else
                     {
                         *pChar++ = 0x00;    //  Blue
-                        *pChar++ = 0x00;    //  Green
+                        *pChar++ = 0xFF;    //  Green
                         *pChar++ = 0xFF;    //  Red
                     }
                 }
             }
         }
-		
-	}
+    }
 	
-   // InitGraphicsEngine(dwLcdWidth, dwLcdHeight, pChar, frameBuffer);
-   //InitGraphicsEngine(LOGO_WIDTH_ETD024FM, LOGO_HEIGHT_ETD024FM, pChar, frameBuffer);
-	//  Fire up the LCD
-    lcd_config(frameBufferPA); 
+    //  Fire up the LCD
+    lcd_config(framebufferPA);       
 }
-#endif
 
 //------------------------------------------------------------------------------
 //
@@ -966,26 +794,25 @@ void DrawingScreen(UINT32 flashAddr, UINT32 offset)
 //
 //  This function is called to display the splaschreen bitmap from the SDCard
 //
-#ifdef Z2000
+//
 BOOL ShowSDLogo()
 {
-    DWORD	framebuffer = 0;
-    DWORD	framebufferPA = 0;
-    DWORD	dwLcdWidth 	= 0;
-    DWORD	dwLcdHeight = 0;
-	DWORD	dwLength 	= 0;
-    PUCHAR 	pChar;
-	
+    DWORD framebuffer = 0;
+    DWORD framebufferPA = 0;
+    DWORD dwLcdWidth = 0;
+    DWORD dwLcdHeight = 0;
+	DWORD dwLength = 0;
+	PUCHAR 	pChar;          //Ray 131028
     // Get the LCD width and height
     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
-    OALMSG(OAL_INFO, (L"ShowSDLogo: dwLcdWidth = %d, dwLcdHeight = %d\r\n",dwLcdWidth,dwLcdHeight));
-
+	//OALMSG(OAL_INFO, (L"ShowSDLogo: dwLcdWidth = %d, dwLcdHeight = %d\r\n",dwLcdWidth,dwLcdHeight));
+	
 	// Get the frame buffer
-	LcdPdd_GetMemory(NULL, &framebufferPA );
-	OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer = 0x%x\r\n",framebuffer));
+	LcdPdd_GetMemory( NULL, &framebufferPA );
+	//OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer = 0x%x\r\n",framebufferPA));
     framebuffer = (DWORD) OALPAtoUA(framebufferPA);
-	OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer OALPAtoUA = 0x%x\r\n",framebuffer));
-	pChar = (PUCHAR)framebuffer;
+	//OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer OALPAtoUA = 0x%x\r\n",framebuffer));
+	pChar = (PUCHAR)framebuffer;     //Ray 131028
 	
 	// Compute the size
 	dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
@@ -993,12 +820,18 @@ BOOL ShowSDLogo()
 	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_WIDTH = %d\r\n",LOGO_WIDTH));
 	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_HEIGHT = %d\r\n",LOGO_HEIGHT));
 	OALMSG(OAL_INFO, (L"ShowSDLogo: size = %d\r\n",dwLength));
-
-	//Loader file name(LOGO.bmp), Ray 13-08-01
-	if (!BLSDCardReadLogo(L"LOGO.bmp", (UCHAR*)framebuffer, dwLength))	
+	
+#ifdef BSP_Z2000    //Ray 131024	
+	if (!BLSDCardReadLogo(L"Logo.bmp", (UCHAR*)framebuffer, dwLength))
 	{
-		return FALSE;	//BLSDCardReadLogo() it is TRUE ,if not is TRUE, it will return FALSE, Ray 13-09-04 
+		return FALSE;
 	}
+#else
+    if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLength))
+	{
+		return FALSE;
+	}
+#endif
 
     //  Compute position and size of logo image 
     g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
@@ -1007,90 +840,17 @@ BOOL ShowSDLogo()
     g_dwLogoHeight = LOGO_HEIGHT;
 	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoPosX = %d,g_dwLogoPosY = %d\r\n",g_dwLogoPosX,g_dwLogoPosY));
 	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoWidth = %d,g_dwLogoHeight = %d\r\n",g_dwLogoWidth,g_dwLogoHeight));
+    //As BMP are stored upside down, we need to flip the frame buffer's content
+    FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
 
-    
-	//As BMP are stored upside down, we need to flip the frame buffer's content
-    FlipFrameBuffer((PUCHAR)framebuffer, LOGO_HEIGHT, LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
+    //Initial graphics engine and draw ASCII function, Ray 131025
+    //Check them size is right dwLcdWidth, dwLcdHeight?, Ray 131028
+	InitGraphicsEngine(LOGO_WIDTH, LOGO_HEIGHT, pChar, framebuffer);
 
-	//Initial graphics engine after Call function draw ASCII, Ray 13-08-30
-	InitGraphicsEngine(dwLcdWidth, dwLcdHeight, pChar, framebuffer);
-	
-	//  Fire up the LCD
+    //  Fire up the LCD
     lcd_config(framebufferPA);
 
 	return TRUE;
-	//return FALSE;
-}
-#else
-BOOL ShowSDLogo()
-{
-    DWORD	framebuffer = 0;
-    DWORD	framebufferPA = 0;
-    DWORD	dwLcdWidth 	= 0;
-    DWORD	dwLcdHeight = 0;
-	DWORD	dwLcdFrameArea 	= 0;
-	PUCHAR 	pChar;
-	
-    // Get the LCD width and height
-    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
-
-    OALMSG(OAL_INFO, (L"ShowSDLogo: dwLcdWidth = %d, dwLcdHeight = %d\r\n",dwLcdWidth,dwLcdHeight));
-
-	// Get the frame buffer
-	LcdPdd_GetMemory( NULL, &framebufferPA );
-	OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer = 0x%x\r\n",framebuffer));
-    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
-	OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer OALPAtoUA = 0x%x\r\n",framebuffer));
-	pChar = (PUCHAR)framebuffer;
-	
-	// Compute the size
-	dwLcdFrameArea = BYTES_PER_PIXEL * LOGO_WIDTH_ETD024FM * LOGO_HEIGHT_ETD024FM;
-	OALMSG(OAL_INFO, (L"ShowSDLogo: BYTES_PER_PIXEL = %d\r\n",BYTES_PER_PIXEL));
-	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_WIDTH = %d\r\n",LOGO_WIDTH_ETD024FM));
-	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_HEIGHT = %d\r\n",LOGO_HEIGHT_ETD024FM));
-	OALMSG(OAL_INFO, (L"ShowSDLogo: size = %d\r\n",dwLcdFrameArea));
-
-	//Loader file name(LOGO.bmp), Ray 13-08-01
-	if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLcdFrameArea))	
-	{
-		return FALSE;	//BLSDCardReadLogo() it has reading logo is TRUE ,if is not; it will return FALSE, Ray 13-09-04 
-	}
-
-    //  Compute position and size of logo image 
-    g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH_ETD024FM)/2;
-    g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT_ETD024FM)/2;
-    g_dwLogoWidth  = LOGO_WIDTH_ETD024FM;
-    g_dwLogoHeight = LOGO_HEIGHT_ETD024FM;
-	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoPosX = %d,g_dwLogoPosY = %d\r\n",g_dwLogoPosX,g_dwLogoPosY));
-	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoWidth = %d,g_dwLogoHeight = %d\r\n",g_dwLogoWidth,g_dwLogoHeight));
-    
-	//As BMP are stored upside down, we need to flip the frame buffer's content
-    FlipFrameBuffer((PUCHAR)framebuffer, LOGO_HEIGHT_ETD024FM, LOGO_WIDTH_ETD024FM * BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLcdFrameArea);
-
-    //initial graphics engine & Call function draw ASCII, Ray 13-08-30
-	InitGraphicsEngine(dwLcdWidth, dwLcdHeight, pChar, framebuffer);
-
-	//  Fire up the LCD
-    lcd_config(framebufferPA);
-
-	return TRUE;
-}
-#endif
-
-
-//------------------------------------------------------------------------------
-//  this fuction are used calling next function directive, Ray, 
-//  Function:   BLSDtoFlash
-//
-BOOL BLSDtoFlash()
-{
-	//if(BLSDCardToFlash(L"OUT_DATA.txt")){
-	if(BLSDCardToFlash(L"EBOOTSD.nb0")){
-        OALLog(L"------------\n");
-        return	TRUE;
-    }else{
-        return	FALSE;
-    }
 }
 
 //------------------------------------------------------------------------------
@@ -1120,7 +880,7 @@ void reset_display_controller( void )
     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
     OMAP_DISPC_REGS  *pDisplayRegs = OALPAtoUA(OMAP_DISC1_REGS_PA);
     
-	OALMSG(OAL_INFO, (L"reset_display_controller+\r\n"));
+	//OALMSG(OAL_INFO, (L"reset_display_controller+\r\n"));
 
     // enable all display clocks
     fclk = INREG32(&pPrcmRegs->CM_FCLKEN_DSS); // functional clock
@@ -1153,12 +913,11 @@ void reset_display_controller( void )
     reg_val &=~(DISPC_SYSCONFIG_SOFTRESET);
     OUTREG32(&pDisplayRegs->DISPC_SYSCONFIG,reg_val);
 
-
     // restore old clock settings
     OUTREG32(&pPrcmRegs->CM_FCLKEN_DSS, fclk);
     OUTREG32(&pPrcmRegs->CM_ICLKEN_DSS, iclk);
     
-	OALMSG(OAL_INFO, (L"reset_display_controller-\r\n"));
+	//OALMSG(OAL_INFO, (L"reset_display_controller-\r\n"));
 }
 
 //------------------------------------------------------------------------------
@@ -1168,7 +927,9 @@ void reset_display_controller( void )
 //  This function configures the LCD
 //
 void lcd_config(UINT32 framebuffer)
-{    
+{
+	OALMSG(OAL_INFO, (L"lcd_config\r\n"));
+	
     reset_display_controller();
 
     // Enable LCD clocks
@@ -1221,8 +982,8 @@ UINT32 enable_lcd_power( void )
 {
     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
     
-	OALMSG(OAL_INFO, (L"enable DSS1_ALWON_FCLK, DSS2_ALWON_FCLK,\r\n"));
-	OALMSG(OAL_INFO, (L"enable DSS_L3_ICLK, DSS_L4_ICLK,\r\n"));
+	//OALMSG(OAL_INFO, (L"enable DSS1_ALWON_FCLK, DSS2_ALWON_FCLK,\r\n"));
+	//OALMSG(OAL_INFO, (L"enable DSS_L3_ICLK, DSS_L4_ICLK,\r\n"));
     SETREG32(&pPrcmRegs->CM_FCLKEN_DSS, (CM_CLKEN_DSS1 | CM_CLKEN_DSS2));
     SETREG32(&pPrcmRegs->CM_ICLKEN_DSS, (CM_CLKEN_DSS));
 
@@ -1258,32 +1019,48 @@ UINT32 disable_lcd_power( void )
 //
 UINT32 enable_lcd_backlight( void )
 {
+#ifdef BSP_Z2000
     void* hTwl;
-    
-	OALMSG(OAL_INFO, (L"enable_lcd_backlight+\r\n"));
 
     // Enable LEDA on TPS659XX
     hTwl = TWLOpen();
-
 	TWLWriteByteReg(hTwl, TWL_PMBR1, 0x04); // PWM0 function is enabled
 	TWLWriteByteReg(hTwl, TWL_GPBR1, 0x05); // PWM0_ENABLE & PWM0_CLK_ENABLE
 	TWLWriteByteReg(hTwl, TWL_PWM0OFF, 0x7F);
 	TWLWriteByteReg(hTwl, TWL_PWM0ON, 0x40);
-/*#ifdef BSP_EVM2
-    TWLWriteByteReg(hTwl, TWL_LEDEN, 0x11);
-    // Set PWM registers to same value to trigger 100% duty cycle
-    TWLWriteByteReg(hTwl, TWL_PWMAOFF, 0x00);
-    TWLWriteByteReg(hTwl, TWL_PWMAON, 0x00);
-#else
-    // The hardware design is completely backwards.  
-    // In order to get 100% brightness, the LEDPWM must 
-    // be disabled.
-    // Clear LEDAON, LEDAPWM
-    TWLWriteByteReg(hTwl, TWL_LEDEN, 0x00);
-#endif */   
+
     TWLClose(hTwl);
+#else
+	int i = 25;
+	
+	hGpio = GPIOOpen();
+
+	GPIOSetMode(hGpio, SPI_CS0_PIN, GPIO_DIR_OUTPUT);
+	GPIOSetMode(hGpio, SPI_DOUT_PIN, GPIO_DIR_OUTPUT);
+	GPIOSetMode(hGpio, SPI_CLK_PIN, GPIO_DIR_OUTPUT);
+	
+    GPIOSetBit(hGpio, SPI_CS0_PIN);
+    GPIOSetBit(hGpio, SPI_CLK_PIN);
+    GPIOSetBit(hGpio, SPI_DOUT_PIN);
     
-     //OALMSG(OAL_INFO, (L"enable_lcd_backlight-\r\n"));
+    OALMSG(1, (L"LCD send Initial Code\r\n"));
+    LCD_Initial_Code();
+    
+    GPIOClrBit(hGpio, BL_EN_SET_GPIO);
+    OALStall(1000);
+	GPIOSetBit(hGpio, BL_EN_SET_GPIO);
+	OALStall(1);
+    for(; i > 0; i --)
+    {
+        GPIOClrBit(hGpio, BL_EN_SET_GPIO);
+        OALStall(1);
+        GPIOSetBit(hGpio, BL_EN_SET_GPIO);
+        OALStall(1);
+    }
+	GPIOClose(hGpio);
+	hGpio = NULL;
+#endif
+
     return ERROR_SUCCESS;
 }
 
@@ -1297,7 +1074,7 @@ UINT32 disable_lcd_backlight( void )
 {
     HANDLE hTwl;
 
-	OALMSG(OAL_INFO, (L"disable_lcd_backlight+\r\n"));
+	//OALMSG(OAL_INFO, (L"disable_lcd_backlight+\r\n"));
     // Enable LEDA on TPS659XX
     hTwl = TWLOpen();
 	TWLWriteByteReg(hTwl, TWL_PMBR1, 0x00);
@@ -1329,12 +1106,12 @@ UINT32 disable_lcd_backlight( void )
 //
 void configure_dss( UINT32 framebuffer )
 {
-    OMAP_DSS_REGS   *pDSSRegs		= OALPAtoUA(OMAP_DSS1_REGS_PA);
-    OMAP_DISPC_REGS *pDisplayRegs	= OALPAtoUA(OMAP_DISC1_REGS_PA);
-    OMAP_RFBI_REGS	*pRfbiRegs		= OALPAtoUA(OMAP_RFBI1_REGS_PA);
-    HANDLE hGpio = GPIOOpen();
+    OMAP_DSS_REGS   *pDSSRegs = OALPAtoUA(OMAP_DSS1_REGS_PA);
+    OMAP_DISPC_REGS *pDisplayRegs = OALPAtoUA(OMAP_DISC1_REGS_PA);
+    OMAP_RFBI_REGS *pRfbiRegs = OALPAtoUA(OMAP_RFBI1_REGS_PA);
+    //HANDLE hGpio = GPIOOpen();
 
-	OALMSG(OAL_INFO, (L"\r\nconfigure_dss+\r\n"));
+	//OALMSG(OAL_INFO, (L"\r\nconfigure_dss+\r\n"));
 
     //  Configure the clock source
     OUTREG32( &pDSSRegs->DSS_CONTROL, 
@@ -1373,9 +1150,9 @@ void configure_dss( UINT32 framebuffer )
     OUTREG32(&pDisplayRegs->DISPC_GFX_PIXEL_INC,BSP_GFX_PIXEL_INC); 
     OUTREG32(&pDisplayRegs->DISPC_GFX_WINDOW_SKIP,BSP_GFX_WINDOW_SKIP);
 
-    OALMSG(OAL_INFO, (L"configure_dss-\r\n"));
+    //OALMSG(OAL_INFO, (L"configure_dss-\r\n"));
 
-	GPIOClose(hGpio);
+	//GPIOClose(hGpio);
 }
 
 //------------------------------------------------------------------------------
@@ -1402,10 +1179,10 @@ void display_lcd_image( void )
     }
     while((ctrl & DISPC_CONTROL_GOLCD) && (timeout > 0));
     
-    // Power up and start scanning
-    LcdPdd_SetPowerLevel(D0);   
+	// Power up and start scanning
+    // LcdPdd_SetPowerLevel(D0);   
     
-     //OALMSG(OAL_INFO, (L"display_lcd_image-\r\n"));
+	// OALMSG(OAL_INFO, (L"display_lcd_image-\r\n"));
 }
 
 
@@ -1418,379 +1195,6 @@ void LcdSleep(DWORD dwMilliseconds)
 {
     OALStall(1000 * dwMilliseconds);
 }
-
-//------------------------------------------------------------------------------
-//Would Adjust display size, Ray 13-08-06.
- void SetupDisplaySize(DWORD *dwLcdHeight, DWORD *dwLcdWidth)
-{
-	PDWORD adjustHeight =  dwLcdHeight;
-	PDWORD adjustWidth  =  dwLcdWidth;
-	*adjustHeight 	/=2;
-	*adjustWidth 	/=2;
-}
-
-//------------------------------------------------------------------------------
-//LCM_SPI_Init function starting, Ray 13-08-06.
-
-/*BOOL OSPIOpen(void)
-{
-	
-	// enable clock for used IO pins
-	InitSpiClock();
-
-	// enable SPI1 peripheral clock
-	InitSpiPeriphCloc();
-	
-	return TRUE;
-}*/
-
-/*void OSPIConfigure(void)
-{
-	GPIO_InitTypeDef	GPIO_InitConfig;
-	SPI_InitTypeDef		SPI_InitConfig;
-	HANDLE hGpio = GPIOOpen();
-
-	GPIO_InitConfig.GPIO_Pin = 
-}*/
-
-/*void OMAPDisplayController::R61526_send_command(short cmd)
-{
-	//LCMSPIWrite(hSPI, sizeof(short), &cmd);
-}
-
-void OMAPDisplayController::R61526_send_data(short dat)
-{
-	dat |= 0x0100;
-	//LCMSPIWrite(hSPI, sizeof(short), &dat);
-}
-
-HANDLE LCMSPIOpen(LPCTSTR pSpiName) //comport name
-{
-	HANDLE hDevice;
-	DEVICE_CONTEXT_SPI *pContext = NULL;
-
-	hDevice = CreateFile(pSpiName, GENERIC_READ | GENERIC_WRITE,    
-                         FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
-						//Write comport name, write read functional, and so on ...  
-	if(hDevice == INVALID_HANDLE_VALUE)
-		goto clean;
-	
-	// Allocate memory for our handler..
-	 if ((pContext = (DEVICE_CONTEXT_SPI *)LocalAlloc(LPTR, sizeof(DEVICE_CONTEXT_SPI))) == NULL) 
-	 {
-        CloseHandle(hDevice);
-        goto clean;
-    }
-
-	// Get function pointers.  If not possible (b/c of cross process calls), use IOCTLs instead
-	if(!DeviceIoControl(hDevice, IOCTL_DDK_GET_DRIVER_IFC, (VOID*)&DEVICE_IFC_SPI_GUID,
-		sizeof(DEVICE_IFC_SPI_GUID), &pContext->ifc, sizeof(DEVICE_IFC_SPI),NULL, NULL)){
-		//  Need to use IOCTLs instead of direct function ptrs
-        pContext->ifc.context = 0;
-	} 
-	// Save device handle
-    pContext->hDevice = hDevice;
-
-clean:
-    return pContext;
-}
-
-BOOL LCMSPIConfigure(HANDLE hContext, DWORD address, DWORD config)
-{
-	DEVICE_CONTEXT_SPI *pContext = (DEVICE_CONTEXT_SPI *)hContext;
-
-	if(pContext->ifc.context)
-	{
-		return pContext->ifc.pfnConfigure(pContext->ifc.context, address, config);
-	}else{
-		IOCTL_SPI_CONFIGURE_IN dwIn;
-		dwIn.address = address;
-		dwIn.config = config;
-
-		return DeviceIoControl(pContext->hDevice,
-								IOCTL_SPI_CONFIGURE,
-								&dwIn,
-								sizeof(dwIn),
-								NULL,
-								0,
-								NULL,
-								NULL);
-	}
-}
-
-
-VOID LCMSPIClose(HANDLE hContext)
-{
-	DEVICE_CONTEXT_SPI *pContext = (DEVICE_CONTEXT_SPI *)hContext;
-	CloseHandle(pContext->hDevice);
-	LocalFree(pContext);
-}
-
-//------------------------------------------------------------------------------
-//lcm_config function starting, Ray 13-08-06.
-
-void LCM_SPI_Init(void)
-{
-	
-	//SPIOpen();
-	//SPIConfigure();
-	//SPIClose();
-	DWORD configReg;
-	HANDLE hGPIO;
-	//11
-	hSPI = LCMSPIOpen(L"SPI1:");
-	//SPI1 gpio init
-	GPIOInit();
-	hGPIO = GPIOOpen(); 
-	GPIOSetBit(hGPIO, 171); // SPI1_clk_EN
-	GPIOSetMode(hGPIO, 171,GPIO_DIR_OUTPUT);
-	GPIOSetBit(hGPIO, 172); // SPI1_simo_EN
-	GPIOSetMode(hGPIO, 172,GPIO_DIR_OUTPUT);
-	GPIOSetBit(hGPIO, 174); // SPI1_cs0_EN
-	GPIOSetMode(hGPIO, 174,GPIO_DIR_OUTPUT);
-	
-	
-	
-	
-	configReg = MCSPI_PHA_EVEN_EDGES | MCSPI_POL_ACTIVELOW |  // mode 3
-				MCSPI_CHCONF_CLKD(3) | MCSPI_CHCONF_WL(9) |
-                MCSPI_CHCONF_TRM_TXRX | MCSPI_CSPOLARITY_ACTIVELOW |
-                MCSPI_CHCONF_DPE0;
-	//22
-	LCMSPIConfigure(hSPI, 0, configReg); // channel 0, MCSPI_CHxCONF
-	
- 	R61526_send_command(hSPI, 0xB0); // Manufacturer Command Access Protect
-     	R61526_send_data(hSPI, 0x3F);
-     	R61526_send_data(hSPI, 0x3F);
-        Sleep(5);
-        	
-    R61526_send_command(hSPI, 0xFE);
-        R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x21);
-       	R61526_send_data(hSPI, 0xB4);
-        	
-	R61526_send_command(hSPI, 0xB3); // Frame Memory Access and Interface Setting
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x10);
-        	
-    R61526_send_command(hSPI, 0xE0); // NVM Access Control
-       	R61526_send_data(hSPI, 0x00); // NVAE: NVM access enable register. NVM access is enabled when NVAE=1
-       	R61526_send_data(hSPI, 0x40); // FTT: NVM control bit.
-       	Sleep(10);
-        	
-	R61526_send_command(hSPI, 0xB3); // Frame Memory Access and Interface Setting
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	
-    R61526_send_command(hSPI, 0xFE); // MAGIC - TODO
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x21);
-       	R61526_send_data(hSPI, 0x30);
-        	
-    R61526_send_command(hSPI, 0xB0); // Manufacturer Command Access Protect
-       	R61526_send_data(hSPI, 0x3F);
-       	R61526_send_data(hSPI, 0x3F);
-        	
-	R61526_send_command(hSPI, 0xB3); // Frame Memory Access and Interface Setting
-       	R61526_send_data(hSPI, 0x02);
-       	R61526_send_data(hSPI, 0x00);
-		R61526_send_data(hSPI, 0x00);
-		R61526_send_data(hSPI, 0x00);
-
-	R61526_send_command(hSPI, 0xB4); //SET interface
-       	R61526_send_data(hSPI, 0x10);
-        	
-   	R61526_send_command(hSPI, 0xC0); //Panel Driving Setting
-       	R61526_send_data(hSPI, 0x03); //GIP REV  SM GS BGR SS
-       	R61526_send_data(hSPI, 0x4F);
-        R61526_send_data(hSPI, 0x00);
-        R61526_send_data(hSPI, 0x10);
-        R61526_send_data(hSPI, 0xA2); //BLV=0 LINE
-        R61526_send_data(hSPI, 0x00);
-        R61526_send_data(hSPI, 0x01);
-        R61526_send_data(hSPI, 0x00);
-        	
-	R61526_send_command(hSPI, 0xC1); //Display Timing Setting for Normal/Partial Mode
-       	R61526_send_data(hSPI, 0x01);
-        R61526_send_data(hSPI, 0x02);
-        R61526_send_data(hSPI, 0x19);
-        R61526_send_data(hSPI, 0x08);
-		R61526_send_data(hSPI, 0x08);
-		Sleep(25);
-
-	R61526_send_command(hSPI, 0xC3); //PRTIAL MODE
-        R61526_send_data(hSPI, 0x01);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x28);
-       	R61526_send_data(hSPI, 0x08);
-		R61526_send_data(hSPI, 0x08);
-		Sleep(25);
-
-	R61526_send_command(hSPI, 0xC4);
-       	R61526_send_data(hSPI, 0x11);
-       	R61526_send_data(hSPI, 0x01);
-       	R61526_send_data(hSPI, 0x43);
-       	R61526_send_data(hSPI, 0x04);
-
-	R61526_send_command(hSPI, 0xC8); //set gamma
-		R61526_send_data(hSPI, 0x0C);
-		R61526_send_data(hSPI, 0x0C);
-		R61526_send_data(hSPI, 0x0D);
-		R61526_send_data(hSPI, 0x14);
-		R61526_send_data(hSPI, 0x18);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x09);
-		R61526_send_data(hSPI, 0x09);
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x05);
-		R61526_send_data(hSPI, 0x00);
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x08);
-		R61526_send_data(hSPI, 0x07);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x15);
-		R61526_send_data(hSPI, 0x12);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x00);
-
-	R61526_send_command(hSPI, 0xC9); //set gamma
-		R61526_send_data(hSPI, 0x0C);
-		R61526_send_data(hSPI, 0x0C);
-		R61526_send_data(hSPI, 0x0D);
-		R61526_send_data(hSPI, 0x14);
-		R61526_send_data(hSPI, 0x18);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x09);
-		R61526_send_data(hSPI, 0x09);
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x05);
-		R61526_send_data(hSPI, 0x00);
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x08);
-		R61526_send_data(hSPI, 0x07);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x15);
-		R61526_send_data(hSPI, 0x12);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x00);
-
-	R61526_send_command(hSPI, 0xCA); //set gamma
-		R61526_send_data(hSPI, 0x0C);
-		R61526_send_data(hSPI, 0x0C);
-		R61526_send_data(hSPI, 0x0D);
-		R61526_send_data(hSPI, 0x14);
-		R61526_send_data(hSPI, 0x18);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x09);
-		R61526_send_data(hSPI, 0x09);
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x05);
-		R61526_send_data(hSPI, 0x00);
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x08);
-		R61526_send_data(hSPI, 0x07);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x15);
-		R61526_send_data(hSPI, 0x12);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x0E);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x0A);
-		R61526_send_data(hSPI, 0x00);
-
-	R61526_send_command(hSPI, 0xD0); //Power Setting 
-		R61526_send_data(hSPI, 0x63); //BT[2:0]=110  VCI+VCI2¡Á2  :5   -(VCI2¡Á2):
-		R61526_send_data(hSPI, 0x53);
-		R61526_send_data(hSPI, 0x82); //VC2[2:0]=010,VCI2=5V
-		R61526_send_data(hSPI, 0x3F); //VREG=5.0V
-
-    R61526_send_command(hSPI, 0xD1); //set vcom
-		R61526_send_data(hSPI, 0x6A); //VCOMH
-		R61526_send_data(hSPI, 0x64); //VDV
-
-    R61526_send_command(hSPI, 0xD2); //Power Setting (Note 1) for Normal/Partial Mode
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x24);
-
-   	R61526_send_command(hSPI, 0xD4); //Power Setting (Note 1) for Idle Mode
-		R61526_send_data(hSPI, 0x03);
-		R61526_send_data(hSPI, 0x24);
-
-   	R61526_send_command(hSPI, 0xE2); //NVM Load Control
-		R61526_send_data(hSPI, 0x3F);
-
-    R61526_send_command(hSPI, 0x35); //set_tear_on
-		R61526_send_data(hSPI, 0x00);
-
-    R61526_send_command(hSPI, 0x36);
-		R61526_send_data(hSPI, 0x00);
-
-    R61526_send_command(hSPI, 0x3A); //set_pixel_format
-       	R61526_send_data(hSPI, 0x55); // 66 18-bits
-
-	R61526_send_command(hSPI, 0x2A); //set_column_address
-        R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0xEF);
-            
-	R61526_send_command(hSPI, 0x2B); //set_page_address:
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x00);
-       	R61526_send_data(hSPI, 0x01);
-       	R61526_send_data(hSPI, 0x3F);
-            
-    R61526_send_command(hSPI, 0x11); //exit_sleep_mode
-       	Sleep(120);
-    R61526_send_command(hSPI, 0x29); //set_display_on
-       	Sleep(30);
-    R61526_send_command(hSPI, 0x2C); //send DDRAM set
-    
-	//33
-	LCMSPIClose(hSPI);
-}
-
-DWORD LCMSPIWrite(HANDLE hContext, DWORD size, VOID *pBuffer)
-{
-	DEVICE_CONTEXT_SPI *pContext = (DEVICE_CONTEXT_SPI *)hContext;
-	if(pContext->ifc.context){
-		return pContext->ifc.pfnWrite(pContext->ifc.context, pBuffer, size);
-	}else{
-		DWORD dwCount = 0;
-		WriteFile(pContext->hDevice, pBuffer, size, &dwCount, NULL);
-		return dwCount;
-	}
-}
-
-void OMAPDisplayController::R61526_send_command(short cmd)
-{
-	//LCMSPIWrite(hSPI, sizeof(short), &cmd);
-}
-
-void OMAPDisplayController::R61526_send_data(short dat)
-{
-	dat |= 0x0100;
-	//LCMSPIWrite(hSPI, sizeof(short), &dat);
-}
-
-void lcm_config(void)
-{
-	LCM_SPI_Init();
-	//LCMSPIWrite(hSPI,);
-	OMAPDisplayController::R61526_send_command(short cmd);
-	OMAPDisplayController::R61526_send_data(short dat);
-}*/
-
 
 //------------------------------------------------------------------------------
 //

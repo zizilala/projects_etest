@@ -27,47 +27,37 @@ ResetInitialize()
 {
     // clear the reset flags for all the power domains
     OUTREG32(&g_pPrcmPrm->pOMAP_CORE_PRM->RM_RSTST_CORE, 
-        DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-        );
+        DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
     
     OUTREG32(&g_pPrcmPrm->pOMAP_EMU_PRM->RM_RSTST_EMU,  
-        DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-        );
+        DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
     
     OUTREG32(&g_pPrcmPrm->pOMAP_PER_PRM->RM_RSTST_PER, 
-        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-        );
+        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
     
     OUTREG32(&g_pPrcmPrm->pOMAP_DSS_PRM->RM_RSTST_DSS, 
-        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-        );
+        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
     
     OUTREG32(&g_pPrcmPrm->pOMAP_NEON_PRM->RM_RSTST_NEON, 
-        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-        );
+        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
     
     OUTREG32(&g_pPrcmPrm->pOMAP_SGX_PRM->RM_RSTST_SGX, 
-        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-        );
+        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
     
     OUTREG32(&g_pPrcmPrm->pOMAP_CAM_PRM->RM_RSTST_CAM, 
-        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-        );
+        COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
     
     OUTREG32(&g_pPrcmPrm->pOMAP_USBHOST_PRM->RM_RSTST_USBHOST, 
-      COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST
-      );
+      COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST);
 
     OUTREG32(&g_pPrcmPrm->pOMAP_MPU_PRM->RM_RSTST_MPU,         
         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST |
-        EMULATION_MPU_RST
-        );
+        EMULATION_MPU_RST);
     
-    OUTREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2, 
+    /*brian OUTREG32(&g_pPrcmPrm->pOMAP_IVA2_PRM->RM_RSTST_IVA2, 
         COREDOMAINWKUP_RST | DOMAINWKUP_RST | GLOBALWARM_RST | GLOBALCOLD_RST |
         EMULATION_SEQ_RST | EMULATION_VHWA_RST | EMULATION_IVA2_RST |
-        IVA2_SW_RST3 | IVA2_SW_RST2 | IVA2_SW_RST1
-        );
+        IVA2_SW_RST3 | IVA2_SW_RST2 | IVA2_SW_RST1);*/
 
     return TRUE;
 }
@@ -107,25 +97,13 @@ PrcmDomainReset(
     UINT resetMask
     )
 {
-    BOOL            rc = FALSE;
-    OMAP_PRM_REGS  *pPrmRegs;
-    
-    // currently only support resetting of iva2 domain
-    if (powerDomain != POWERDOMAIN_IVA2) goto cleanUp;
+	BOOL            rc = FALSE;
+		
+	UNREFERENCED_PARAMETER(powerDomain);
+	UNREFERENCED_PARAMETER(resetMask);
 
-    // reset the appropriate domains
-    pPrmRegs = GetPrmRegisterSet(powerDomain);
-    if (pPrmRegs == NULL) goto cleanUp;
+	// currently no reset domain supported - brian
 
-    resetMask &= RST3_IVA2 | RST2_IVA2 | RST1_IVA2;
-
-    // UNDONE:
-    // not exactly clear with the programming model for these registers
-    //
-    OUTREG32(&pPrmRegs->RM_RSTCTRL_xxx, resetMask);
-    rc = TRUE;
-    
-cleanUp:
     return rc;
 }
 
@@ -136,37 +114,13 @@ PrcmDomainResetRelease(
     UINT resetMask
     )
 {
-    BOOL            rc = FALSE;
-    UINT            resetTemp;
-    UINT            resetStatus;
-    OMAP_PRM_REGS  *pPrmRegs;
-    
-    // currently only support resetting of iva2 domain
-    if (powerDomain != POWERDOMAIN_IVA2) goto cleanUp;
+	BOOL            rc = FALSE;
+		
+	UNREFERENCED_PARAMETER(powerDomain);
+	UNREFERENCED_PARAMETER(resetMask);
+	
+	// currently no reset domain supported - brian
 
-    // reset the appropriate domains
-    pPrmRegs = GetPrmRegisterSet(powerDomain);
-    if (pPrmRegs == NULL) goto cleanUp;
-
-    resetMask &= RST3_IVA2 | RST2_IVA2 | RST1_IVA2;
-    resetTemp = /*~INREG32(&pPrmRegs->RM_RSTCTRL_xxx) |*/ resetMask;
-
-    // UNDONE:
-    // not exactly clear with the programming model for these registers
-    //
-    OUTREG32(&pPrmRegs->RM_RSTCTRL_xxx, ~resetTemp);
-    resetStatus = resetMask << 8;    
-    while (resetStatus != 0)
-        {
-        resetStatus &= ~INREG32(&pPrmRegs->RM_RSTST_xxx);
-        }
-    
-    // clear the status
-    OUTREG32(&pPrmRegs->RM_RSTST_xxx, resetMask << 8);
-        
-    rc = TRUE;
-    
-cleanUp:
     return rc;
 }
 

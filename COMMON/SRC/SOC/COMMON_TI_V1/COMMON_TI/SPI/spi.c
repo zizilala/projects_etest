@@ -345,16 +345,13 @@ DWORD SPI_Init(LPCTSTR szContext, LPCVOID pBusContext)
 
 	UNREFERENCED_PARAMETER(pBusContext);
 
-    DEBUGMSG(ZONE_FUNCTION, (
-        L"+SPI_Init(%s, 0x%08x)\r\n", szContext, pBusContext
-    ));
-
+    //DEBUGMSG(ZONE_FUNCTION, (L"+SPI_Init(%s, 0x%08x)\r\n", szContext, pBusContext));
+	RETAILMSG(1, (L"+SPI_Init(%s, 0x%08x)\r\n", szContext, pBusContext));
     // Create device structure
     pDevice = (SPI_DEVICE *)LocalAlloc(LPTR, sizeof(SPI_DEVICE));
     if (pDevice == NULL) {
         DEBUGMSG(ZONE_ERROR, (L"ERROR: SPI_Init: "
-            L"Failed allocate SPI controller structure\r\n"
-        ));
+            L"Failed allocate SPI controller structure\r\n"));
         goto cleanUp;
     }
     memset(pDevice, 0, sizeof(SPI_DEVICE));
@@ -381,62 +378,56 @@ DWORD SPI_Init(LPCTSTR szContext, LPCVOID pBusContext)
 
     // Read device parameters
     if (GetDeviceRegistryParams(
-        szContext, pDevice, dimof(g_deviceRegParams), g_deviceRegParams
-    ) != ERROR_SUCCESS) {
+        szContext, pDevice, dimof(g_deviceRegParams), g_deviceRegParams) != ERROR_SUCCESS) 
+	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: SPI_Init: "
-            L"Failed read SPI driver registry parameters\r\n"
-        ));
+            L"Failed read SPI driver registry parameters\r\n"));
         goto cleanUp;
     }
+    RETAILMSG(1, (L" SPI_Init: port = %d\r\n", pDevice->dwPort));
 
     // Create DVFS async dvfs handles if necessary
     pDevice->hDVFSInactiveEvent = CreateEvent(NULL, TRUE, TRUE, NULL);
     if (_tcslen(pDevice->szDVFSAsyncEventName) > 0)
-        {
-        pDevice->hDVFSAsyncEvent = CreateEvent(NULL, TRUE, FALSE, 
-                                        pDevice->szDVFSAsyncEventName
-                                        );        
-        }
+	{
+        pDevice->hDVFSAsyncEvent = CreateEvent(NULL, TRUE, FALSE, pDevice->szDVFSAsyncEventName);        
+	}
 
     // Open parent bus
     pDevice->hParentBus = CreateBusAccessHandle(szContext);
-    if (pDevice->hParentBus == NULL) {
-        DEBUGMSG(ZONE_ERROR, (L"ERROR: SPI_Init: "
-            L"Failed open parent bus driver\r\n"
-        ));
+    if (pDevice->hParentBus == NULL) 
+    {
+        DEBUGMSG(ZONE_ERROR, (L"ERROR: SPI_Init: "L"Failed open parent bus driver\r\n"));
         goto cleanUp;
     }
 
     // start timer thread
     pDevice->hTimerEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
     if (pDevice->hTimerEvent != NULL)
-        {
-        pDevice->hTimerThread = CreateThread(NULL, 0, SPIPowerTimerThread, 
-            pDevice, 0, NULL
-            );
+	{
+        pDevice->hTimerThread = CreateThread(NULL, 0, SPIPowerTimerThread, pDevice, 0, NULL);
         
         if (pDevice->hTimerThread != NULL)
-            {
+		{
             CeSetThreadPriority(pDevice->hTimerThread, TIMERTHREAD_PRIORITY);
-            }
-        }
+		}
+	}
 
     // Create an Event to wait for Device OFF on Suspend
     pDevice->hDeviceOffEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
     if (pDevice->hDeviceOffEvent == NULL)
     {
         DEBUGMSG(ZONE_ERROR, (L"ERROR: SPI_Init: "
-            L"Failed to create Device Off Event\r\n"
-        ));        
+            L"Failed to create Device Off Event\r\n"));        
 	}
 	
 	// Retrieve device ID
 	pDevice->deviceID = SOCGetMCSPIDeviceByBus(pDevice->dwPort);
+	RETAILMSG(1, (L" SPI_Init: deviceID = %d\r\n", pDevice->deviceID));
 	if (pDevice->deviceID == OMAP_DEVICE_NONE)
 	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: SPI_Init: "
-            L"Failed to find device ID for this SPI controller\r\n"
-        ));
+            L"Failed to find device ID for this SPI controller\r\n"));
         goto cleanUp;
 	}
 	
@@ -538,7 +529,7 @@ DWORD SPI_Init(LPCTSTR szContext, LPCVOID pBusContext)
 
 cleanUp:
     if (rc == 0) SPI_Deinit((DWORD)pDevice);
-    DEBUGMSG(ZONE_FUNCTION, (L"-SPI_Init(rc = %d)\r\n", rc));
+    RETAILMSG(1, (L"-SPI_Init(rc = %d)\r\n", rc));
     return rc;
 }
 
@@ -553,7 +544,8 @@ BOOL SPI_Deinit(DWORD context)
     BOOL rc = FALSE;
     SPI_DEVICE *pDevice = (SPI_DEVICE*)context;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_Deinit(0x%08x)\r\n", context));
+    //DEBUGMSG(ZONE_FUNCTION, (L"+SPI_Deinit(0x%08x)\r\n", context));
+    RETAILMSG(1, (L"+SPI_Deinit(0x%08x)\r\n", context));
 
     // Check if we get correct context
     if (pDevice == NULL || pDevice->cookie != SPI_DEVICE_COOKIE) {
@@ -624,7 +616,7 @@ BOOL SPI_Deinit(DWORD context)
     rc = TRUE;
 
 cleanUp:
-    DEBUGMSG(ZONE_FUNCTION, (L"-SPI_Deinit(rc = %d)\r\n", rc));
+    RETAILMSG(1, (L"-SPI_Deinit(rc = %d)\r\n", rc));
     return rc;
 }
 
@@ -643,9 +635,7 @@ DWORD SPI_Open(DWORD context, DWORD accessCode, DWORD shareMode)
 	UNREFERENCED_PARAMETER(accessCode);
 	UNREFERENCED_PARAMETER(shareMode);
 
-    DEBUGMSG(ZONE_FUNCTION, (
-        L"+SPI_Open(0x%08x, 0x%08x, 0x%08x\r\n", context, accessCode, shareMode
-    ));
+    RETAILMSG(1, (L"+SPI_Open(0x%08x, 0x%08x, 0x%08x\r\n", context, accessCode, shareMode));
 
     // Check if we get correct context
     if (pDevice == NULL || pDevice->cookie != SPI_DEVICE_COOKIE) {
@@ -682,7 +672,7 @@ DWORD SPI_Open(DWORD context, DWORD accessCode, DWORD shareMode)
     rc = (DWORD)pInstance;
 
 cleanUp:
-    DEBUGMSG(ZONE_FUNCTION, (L"-SPI_Open(rc = 0x%08x)\r\n", rc));
+    //RETAILMSG(1, (L"-SPI_Open(rc = 0x%08x)\r\n", rc));
     return rc;
 }
 
@@ -698,7 +688,7 @@ BOOL SPI_Close(DWORD context)
     SPI_DEVICE *pDevice;
     SPI_INSTANCE *pInstance = (SPI_INSTANCE*)context;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_Close(0x%08x)\r\n", context));
+    RETAILMSG(1, (L"+SPI_Close(0x%08x)\r\n", context));
 
     // Check if we get correct context
     if (pInstance == NULL || pInstance->cookie != SPI_INSTANCE_COOKIE) {
@@ -745,7 +735,7 @@ BOOL SPI_Close(DWORD context)
     rc = TRUE;
 
 cleanUp:
-    DEBUGMSG(ZONE_FUNCTION, (L"-SPI_Close(rc = %d)\r\n", rc));
+    //RETAILMSG(1, (L"-SPI_Close(rc = %d)\r\n", rc));
     return rc;
 }
 
@@ -761,7 +751,7 @@ BOOL SPI_Configure(DWORD context, DWORD address, DWORD config)
     SPI_INSTANCE *pInstance = (SPI_INSTANCE*)context;
     SPI_DEVICE *pDevice;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"SPI_Configure Addr = 0x%x  Config = 0x%x\r\n", address, config));
+    //RETAILMSG(1, (L"SPI_Configure Addr = 0x%x  Config = 0x%x\r\n", address, config));
 
     // Check if we get correct context
     if (pInstance == NULL || pInstance->cookie != SPI_INSTANCE_COOKIE) {
@@ -965,7 +955,7 @@ SPI_Read(
     DWORD dwCount = 0;
     DWORD dwWait;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_Read(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
+    //RETAILMSG(1, (L"+SPI_Read(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
 
     // Check if we get correct context
     if (pInstance == NULL || pInstance->cookie != SPI_INSTANCE_COOKIE) {
@@ -1057,7 +1047,7 @@ SPI_Read(
 	ReleaseMutex(pDevice->hControllerMutex);
 
 clean:
-    DEBUGMSG(ZONE_FUNCTION, (L"-SPI_Read(rc = %d)\r\n", dwCount));
+    //RETAILMSG(1, (L"-SPI_Read(rc = %d)\r\n", dwCount));
 	return dwCount;
 }
 
@@ -1085,7 +1075,7 @@ SPI_DmaRead(
     DWORD dwDmaSize;
     DWORD dwDmaStatus;
 
-    DEBUGMSG(ZONE_DMA, (L"+SPI_DmaRead(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
+    //RETAILMSG(1, (L"+SPI_DmaRead(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
 
     // We don't need to check instance since it's already checked by caller    
     ASSERT(pInstance->cookie == SPI_INSTANCE_COOKIE);
@@ -1188,7 +1178,7 @@ cleanUp:
 	ReleaseMutex(pDevice->hControllerMutex);
 
 
-    DEBUGMSG(ZONE_DMA, (L"-SPI_DmaRead(rc = %d)\r\n", dwCount));
+    //RETAILMSG(1, (L"-SPI_DmaRead(rc = %d)\r\n", dwCount));
 	return dwCount;
 }
 
@@ -1215,7 +1205,7 @@ SPI_Write(
     DWORD dwCount = 0;
     DWORD dwWait;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_Write(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
+    //RETAILMSG(1, (L"+SPI_Write(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
 
     // Check if we get correct context
     if (pInstance == NULL || pInstance->cookie != SPI_INSTANCE_COOKIE) {
@@ -1308,7 +1298,7 @@ SPI_Write(
 
 
 clean:
-    DEBUGMSG(ZONE_FUNCTION, (L"-SPI_Write(rc = %d)\r\n", dwCount));
+    //RETAILMSG(1, (L"-SPI_Write(rc = %d)\r\n", dwCount));
 	return dwCount;
 }
 
@@ -1337,7 +1327,7 @@ SPI_DmaWrite(
     DWORD dwDmaSize;
     DWORD dwDmaStatus;
 
-    DEBUGMSG(ZONE_DMA, (L"+SPI_DmaWrite(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
+    //RETAILMSG(1, (L"+SPI_DmaWrite(0x%08x, 0x%08x, 0x%08x)\r\n", context, pBuffer, size));
 
     // We don't need to check instance since it's already checked by caller    
     ASSERT(pInstance->cookie == SPI_INSTANCE_COOKIE);
@@ -1436,7 +1426,7 @@ cleanUp:
     // Release hardware
 	ReleaseMutex(pDevice->hControllerMutex);
 
-    DEBUGMSG(ZONE_DMA, (L"-SPI_DmaWrite(rc = %d)\r\n", dwCount));
+    //RETAILMSG(1, (L"-SPI_DmaWrite(rc = %d)\r\n", dwCount));
     return dwCount;
 }
 
@@ -1465,7 +1455,7 @@ SPI_AsyncWriteRead(
     DWORD dwWordSize;
     DWORD dwDmaSize;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_AsyncWriteRead(0x%08x, 0x%08x)\r\n", context, size));
+    //RETAILMSG(1, (L"+SPI_AsyncWriteRead(0x%08x, 0x%08x)\r\n", context, size));
   
     // We don't need to check instance since it's already checked by caller
     ASSERT(pInstance->cookie == SPI_INSTANCE_COOKIE);
@@ -1556,7 +1546,7 @@ SPI_WaitForAsyncWriteReadComplete(
     OMAP_MCSPI_CHANNEL_REGS *pSPIChannelRegs;
     DWORD dwDmaStatus;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_WaitForAsyncWriteReadComplete(0x%08x)\r\n", context));
+    //RETAILMSG(1, (L"+SPI_WaitForAsyncWriteReadComplete(0x%08x)\r\n", context));
 
     pDevice = pInstance->pDevice;
     pSPIChannelRegs = pInstance->pSPIChannelRegs;
@@ -1648,7 +1638,7 @@ SPI_DmaWriteRead(
 {
     DWORD   dwCount = 0;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_DmaWriteRead(0x%08x, 0x%08x)\r\n", context, size));
+    //RETAILMSG(1, (L"+SPI_DmaWriteRead(0x%08x, 0x%08x)\r\n", context, size));
 
     dwCount = SPI_AsyncWriteRead(context, size, pOutBuffer, pInBuffer);
     if (dwCount != 0)
@@ -1685,7 +1675,7 @@ SPI_WriteRead(
     DWORD dwCount = 0;
     DWORD dwWait;
 
-    DEBUGMSG(ZONE_FUNCTION, (L"+SPI_WriteRead(0x%08x, 0x%08x)\r\n", context, size));
+    //RETAILMSG(1, (L"+SPI_WriteRead(0x%08x, 0x%08x)\r\n", context, size));
 
     // Check if we get correct context
     if (pInstance == NULL || pInstance->cookie != SPI_INSTANCE_COOKIE) {

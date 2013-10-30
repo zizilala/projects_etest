@@ -19,7 +19,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\mcbsp\mcbspconfig.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37132| DCD	|$LN98@mcbsp_GetR|
+|$T37133| DCD	|$LN98@mcbsp_GetR|
 	DCD	0x40012001
 ; Function compile flags: /Ogspy
 
@@ -31,7 +31,7 @@
 
   00000		 |$LN98@mcbsp_GetR|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M37129|
+  00004		 |$M37130|
 
 ; 91   :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 92   : 
@@ -936,14 +936,14 @@
 
   00478	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   0047c	e12fff1e	 bx          lr
-  00480		 |$M37130|
+  00480		 |$M37131|
 
 			 ENDP  ; |mcbsp_GetRegistryValues|
 
 	EXPORT	|mcbsp_ConfigureForMaster|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37140| DCD	|$LN5@mcbsp_Conf|
+|$T37141| DCD	|$LN5@mcbsp_Conf|
 	DCD	0x40004001
 ; Function compile flags: /Ogspy
 
@@ -955,7 +955,7 @@
 
   00000		 |$LN5@mcbsp_Conf|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M37137|
+  00004		 |$M37138|
 
 ; 441  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 442  : 
@@ -1179,7 +1179,7 @@
 
   000f8	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   000fc	e12fff1e	 bx          lr
-  00100		 |$M37138|
+  00100		 |$M37139|
 
 			 ENDP  ; |mcbsp_ConfigureForMaster|
 
@@ -1187,7 +1187,7 @@
 	IMPORT	|Sleep|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37154| DCD	|$LN13@mcbsp_Rese|
+|$T37155| DCD	|$LN13@mcbsp_Rese|
 	DCD	0x40002701
 ; Function compile flags: /Ogspy
 
@@ -1199,7 +1199,7 @@
 
   00000		 |$LN13@mcbsp_Rese|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37151|
+  00004		 |$M37152|
   00004	e1a04000	 mov         r4, r0
 
 ; 578  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
@@ -1312,14 +1312,14 @@
 
   00094	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00098	e12fff1e	 bx          lr
-  0009c		 |$M37152|
+  0009c		 |$M37153|
 
 			 ENDP  ; |mcbsp_ResetShadowRegisters|
 
 	EXPORT	|mcbsp_ConfigureSampleRateGenerator|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37164| DCD	|$LN15@mcbsp_Conf@2|
+|$T37165| DCD	|$LN15@mcbsp_Conf@2|
 	DCD	0x40003d01
 ; Function compile flags: /Ogspy
 
@@ -1331,7 +1331,7 @@
 
   00000		 |$LN15@mcbsp_Conf@2|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M37161|
+  00004		 |$M37162|
   00004	e1a05000	 mov         r5, r0
 
 ; 628  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
@@ -1499,14 +1499,14 @@
   000f0		 |$LN16@mcbsp_Conf@2|
   000f0		 |$LN17@mcbsp_Conf@2|
   000f0	00000000	 DCD         |f_rgWordLength|
-  000f4		 |$M37162|
+  000f4		 |$M37163|
 
 			 ENDP  ; |mcbsp_ConfigureSampleRateGenerator|
 
 	EXPORT	|mcbsp_ConfigureTransmitter|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37175| DCD	|$LN13@mcbsp_Conf@3|
+|$T37176| DCD	|$LN13@mcbsp_Conf@3|
 	DCD	0x40003e01
 ; Function compile flags: /Ogspy
 
@@ -1518,7 +1518,7 @@
 
   00000		 |$LN13@mcbsp_Conf@3|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M37172|
+  00004		 |$M37173|
 
 ; 713  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 714  : 
@@ -1702,14 +1702,14 @@
 
   000f0	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000f4	e12fff1e	 bx          lr
-  000f8		 |$M37173|
+  000f8		 |$M37174|
 
 			 ENDP  ; |mcbsp_ConfigureTransmitter|
 
 	EXPORT	|mcbsp_ConfigureReceiver|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37183| DCD	|$LN5@mcbsp_Conf@4|
+|$T37184| DCD	|$LN5@mcbsp_Conf@4|
 	DCD	0x40002f01
 ; Function compile flags: /Ogspy
 
@@ -1721,7 +1721,7 @@
 
   00000		 |$LN5@mcbsp_Conf@4|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M37180|
+  00004		 |$M37181|
   00004	e1a08000	 mov         r8, r0
 
 ; 823  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
@@ -1843,14 +1843,14 @@
 
   000b4	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M37181|
+  000bc		 |$M37182|
 
 			 ENDP  ; |mcbsp_ConfigureReceiver|
 
 	EXPORT	|mcbsp_ClearIRQStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37191| DCD	|$LN5@mcbsp_Clea|
+|$T37192| DCD	|$LN5@mcbsp_Clea|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -1861,7 +1861,7 @@
 ; 896  : {
 
   00000		 |$LN5@mcbsp_Clea|
-  00000		 |$M37188|
+  00000		 |$M37189|
 
 ; 897  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 898  : 
@@ -1879,14 +1879,14 @@
 ; 904  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M37189|
+  00014		 |$M37190|
 
 			 ENDP  ; |mcbsp_ClearIRQStatus|
 
 	EXPORT	|mcbsp_UpdateRegisters|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37199| DCD	|$LN5@mcbsp_Upda|
+|$T37200| DCD	|$LN5@mcbsp_Upda|
 	DCD	0x40003401
 ; Function compile flags: /Ogspy
 
@@ -1898,7 +1898,7 @@
 
   00000		 |$LN5@mcbsp_Upda|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37196|
+  00004		 |$M37197|
 
 ; 915  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 916  : 
@@ -2005,14 +2005,14 @@
 
   000c8	e49de004	 ldr         lr, [sp], #4
   000cc	e12fff1e	 bx          lr
-  000d0		 |$M37197|
+  000d0		 |$M37198|
 
 			 ENDP  ; |mcbsp_UpdateRegisters|
 
 	EXPORT	|mcbsp_ResetSampleRateGenerator|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37207| DCD	|$LN5@mcbsp_Rese@2|
+|$T37208| DCD	|$LN5@mcbsp_Rese@2|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -2023,7 +2023,7 @@
 ; 969  : {
 
   00000		 |$LN5@mcbsp_Rese@2|
-  00000		 |$M37204|
+  00000		 |$M37205|
 
 ; 970  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 971  : 
@@ -2044,14 +2044,14 @@
 ; 977  : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M37205|
+  00018		 |$M37206|
 
 			 ENDP  ; |mcbsp_ResetSampleRateGenerator|
 
 	EXPORT	|mcbsp_EnableSampleRateGenerator|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37215| DCD	|$LN5@mcbsp_Enab|
+|$T37216| DCD	|$LN5@mcbsp_Enab|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -2062,7 +2062,7 @@
 ; 987  : {
 
   00000		 |$LN5@mcbsp_Enab|
-  00000		 |$M37212|
+  00000		 |$M37213|
 
 ; 988  :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 989  : 
@@ -2083,14 +2083,14 @@
 ; 995  : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M37213|
+  00018		 |$M37214|
 
 			 ENDP  ; |mcbsp_EnableSampleRateGenerator|
 
 	EXPORT	|mcbsp_ResetTransmitter|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37223| DCD	|$LN5@mcbsp_Rese@3|
+|$T37224| DCD	|$LN5@mcbsp_Rese@3|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -2101,7 +2101,7 @@
 ; 1006 : {
 
   00000		 |$LN5@mcbsp_Rese@3|
-  00000		 |$M37220|
+  00000		 |$M37221|
 
 ; 1007 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1008 : 
@@ -2121,14 +2121,14 @@
 ; 1013 : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M37221|
+  00018		 |$M37222|
 
 			 ENDP  ; |mcbsp_ResetTransmitter|
 
 	EXPORT	|mcbsp_EnableTransmitter|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37231| DCD	|$LN5@mcbsp_Enab@2|
+|$T37232| DCD	|$LN5@mcbsp_Enab@2|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -2139,7 +2139,7 @@
 ; 1024 : {
 
   00000		 |$LN5@mcbsp_Enab@2|
-  00000		 |$M37228|
+  00000		 |$M37229|
 
 ; 1025 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1026 : 
@@ -2159,14 +2159,14 @@
 ; 1031 : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M37229|
+  00018		 |$M37230|
 
 			 ENDP  ; |mcbsp_EnableTransmitter|
 
 	EXPORT	|mcbsp_ResetReceiver|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37239| DCD	|$LN5@mcbsp_Rese@4|
+|$T37240| DCD	|$LN5@mcbsp_Rese@4|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -2177,7 +2177,7 @@
 ; 1042 : {
 
   00000		 |$LN5@mcbsp_Rese@4|
-  00000		 |$M37236|
+  00000		 |$M37237|
 
 ; 1043 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1044 : 
@@ -2197,14 +2197,14 @@
 ; 1049 : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M37237|
+  00018		 |$M37238|
 
 			 ENDP  ; |mcbsp_ResetReceiver|
 
 	EXPORT	|mcbsp_EnableReceiver|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37247| DCD	|$LN5@mcbsp_Enab@3|
+|$T37248| DCD	|$LN5@mcbsp_Enab@3|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -2215,7 +2215,7 @@
 ; 1060 : {
 
   00000		 |$LN5@mcbsp_Enab@3|
-  00000		 |$M37244|
+  00000		 |$M37245|
 
 ; 1061 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1062 : 
@@ -2235,14 +2235,14 @@
 ; 1067 : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M37245|
+  00018		 |$M37246|
 
 			 ENDP  ; |mcbsp_EnableReceiver|
 
 	EXPORT	|mcbsp_ConfigI2SProfile|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37255| DCD	|$LN5@mcbsp_Conf@5|
+|$T37256| DCD	|$LN5@mcbsp_Conf@5|
 	DCD	0x40002c01
 ; Function compile flags: /Ogspy
 
@@ -2254,7 +2254,7 @@
 
   00000		 |$LN5@mcbsp_Conf@5|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37252|
+  00004		 |$M37253|
   00004	e1a05000	 mov         r5, r0
 
 ; 1078 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
@@ -2338,14 +2338,14 @@
 
   000a8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000ac	e12fff1e	 bx          lr
-  000b0		 |$M37253|
+  000b0		 |$M37254|
 
 			 ENDP  ; |mcbsp_ConfigI2SProfile|
 
 	EXPORT	|mcbsp_ConfigTDMTxChannels|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37276| DCD	|$LN23@mcbsp_Conf@6|
+|$T37277| DCD	|$LN23@mcbsp_Conf@6|
 	DCD	0x40006d01
 ; Function compile flags: /Ogspy
 
@@ -2357,7 +2357,7 @@
 
   00000		 |$LN23@mcbsp_Conf@6|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M37273|
+  00004		 |$M37274|
   00004	e1a0e000	 mov         lr, r0
 
 ; 1207 :     DWORD channelToEnable = 0;
@@ -2649,14 +2649,14 @@
   001ac	cccccccd	 DCD         0xcccccccd
   001b0		 |$LN27@mcbsp_Conf@6|
   001b0	aaaaaaab	 DCD         0xaaaaaaab
-  001b4		 |$M37274|
+  001b4		 |$M37275|
 
 			 ENDP  ; |mcbsp_ConfigTDMTxChannels|
 
 	EXPORT	|mcbsp_ConfigTDMRxChannels|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37301| DCD	|$LN23@mcbsp_Conf@7|
+|$T37302| DCD	|$LN23@mcbsp_Conf@7|
 	DCD	0x40006d01
 ; Function compile flags: /Ogspy
 
@@ -2668,7 +2668,7 @@
 
   00000		 |$LN23@mcbsp_Conf@7|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M37298|
+  00004		 |$M37299|
   00004	e1a0e000	 mov         lr, r0
 
 ; 1311 :     DWORD channelToEnable = 0;
@@ -2960,14 +2960,14 @@
   001ac	cccccccd	 DCD         0xcccccccd
   001b0		 |$LN27@mcbsp_Conf@7|
   001b0	aaaaaaab	 DCD         0xaaaaaaab
-  001b4		 |$M37299|
+  001b4		 |$M37300|
 
 			 ENDP  ; |mcbsp_ConfigTDMRxChannels|
 
 	EXPORT	|mcbsp_SideToneEnable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37314| DCD	|$LN5@mcbsp_Side|
+|$T37315| DCD	|$LN5@mcbsp_Side|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -2979,7 +2979,7 @@
 
   00000		 |$LN5@mcbsp_Side|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37311|
+  00004		 |$M37312|
 
 ; 1476 :     DWORD regVal = 0;
 ; 1477 : 
@@ -3042,14 +3042,14 @@
 
   00040	e49de004	 ldr         lr, [sp], #4
   00044	e12fff1e	 bx          lr
-  00048		 |$M37312|
+  00048		 |$M37313|
 
 			 ENDP  ; |mcbsp_SideToneEnable|
 
 	EXPORT	|mcbsp_SideToneDisable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37322| DCD	|$LN5@mcbsp_Side@2|
+|$T37323| DCD	|$LN5@mcbsp_Side@2|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -3060,7 +3060,7 @@
 ; 1516 : {
 
   00000		 |$LN5@mcbsp_Side@2|
-  00000		 |$M37319|
+  00000		 |$M37320|
 
 ; 1517 :     DWORD regVal = 0;
 ; 1518 : 
@@ -3094,14 +3094,14 @@
 ; 1533 : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M37320|
+  00020		 |$M37321|
 
 			 ENDP  ; |mcbsp_SideToneDisable|
 
 	EXPORT	|mcbsp_SideToneWriteReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37333| DCD	|$LN5@mcbsp_Side@3|
+|$T37334| DCD	|$LN5@mcbsp_Side@3|
 	DCD	0x40000d00
 ; Function compile flags: /Ogspy
 
@@ -3112,7 +3112,7 @@
 ; 1617 : {
 
   00000		 |$LN5@mcbsp_Side@3|
-  00000		 |$M37330|
+  00000		 |$M37331|
 
 ; 1618 :     DWORD regVal = 0;
 ; 1619 : 
@@ -3162,14 +3162,14 @@
 ; 1639 : }
 
   00030	e12fff1e	 bx          lr
-  00034		 |$M37331|
+  00034		 |$M37332|
 
 			 ENDP  ; |mcbsp_SideToneWriteReset|
 
 	EXPORT	|mcbsp_SideToneReadReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37344| DCD	|$LN5@mcbsp_Side@4|
+|$T37345| DCD	|$LN5@mcbsp_Side@4|
 	DCD	0x40000d00
 ; Function compile flags: /Ogspy
 
@@ -3180,7 +3180,7 @@
 ; 1649 : {
 
   00000		 |$LN5@mcbsp_Side@4|
-  00000		 |$M37341|
+  00000		 |$M37342|
 
 ; 1650 :     DWORD regVal = 0;
 ; 1651 : 
@@ -3224,14 +3224,14 @@
 ; 1671 : }
 
   00030	e12fff1e	 bx          lr
-  00034		 |$M37342|
+  00034		 |$M37343|
 
 			 ENDP  ; |mcbsp_SideToneReadReset|
 
 	EXPORT	|mcbsp_SideToneAutoIdle|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37352| DCD	|$LN5@mcbsp_Side@5|
+|$T37353| DCD	|$LN5@mcbsp_Side@5|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -3242,7 +3242,7 @@
 ; 1681 : {
 
   00000		 |$LN5@mcbsp_Side@5|
-  00000		 |$M37349|
+  00000		 |$M37350|
 
 ; 1682 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1683 : 
@@ -3259,14 +3259,14 @@
 ; 1689 : }
 
   0000c	e12fff1e	 bx          lr
-  00010		 |$M37350|
+  00010		 |$M37351|
 
 			 ENDP  ; |mcbsp_SideToneAutoIdle|
 
 	EXPORT	|mcbsp_SideToneInterruptEnable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37360| DCD	|$LN5@mcbsp_Side@6|
+|$T37361| DCD	|$LN5@mcbsp_Side@6|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -3277,7 +3277,7 @@
 ; 1699 : {
 
   00000		 |$LN5@mcbsp_Side@6|
-  00000		 |$M37357|
+  00000		 |$M37358|
 
 ; 1700 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1701 : 
@@ -3294,14 +3294,14 @@
 ; 1707 : }
 
   0000c	e12fff1e	 bx          lr
-  00010		 |$M37358|
+  00010		 |$M37359|
 
 			 ENDP  ; |mcbsp_SideToneInterruptEnable|
 
 	EXPORT	|mcbsp_SideToneInterruptStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37368| DCD	|$LN5@mcbsp_Side@7|
+|$T37369| DCD	|$LN5@mcbsp_Side@7|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -3312,7 +3312,7 @@
 ; 1717 : {
 
   00000		 |$LN5@mcbsp_Side@7|
-  00000		 |$M37365|
+  00000		 |$M37366|
 
 ; 1718 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1719 : 
@@ -3328,14 +3328,14 @@
 ; 1725 : }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M37366|
+  0000c		 |$M37367|
 
 			 ENDP  ; |mcbsp_SideToneInterruptStatus|
 
 	EXPORT	|mcbsp_SideToneResetInterrupt|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37376| DCD	|$LN5@mcbsp_Side@8|
+|$T37377| DCD	|$LN5@mcbsp_Side@8|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -3346,7 +3346,7 @@
 ; 1735 : {
 
   00000		 |$LN5@mcbsp_Side@8|
-  00000		 |$M37373|
+  00000		 |$M37374|
 
 ; 1736 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
 ; 1737 : 
@@ -3363,7 +3363,7 @@
 ; 1743 : }
 
   0000c	e12fff1e	 bx          lr
-  00010		 |$M37374|
+  00010		 |$M37375|
 
 			 ENDP  ; |mcbsp_SideToneResetInterrupt|
 
@@ -3386,7 +3386,7 @@
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37418| DCD	|$LN37@mcbsp_Dump|
+|$T37419| DCD	|$LN37@mcbsp_Dump|
 	DCD	0x40004301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3489,7 +3489,7 @@
 
   00000		 |$LN37@mcbsp_Dump|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37415|
+  00004		 |$M37416|
   00004	e1a03000	 mov         r3, r0
 
 ; 1756 :     OMAP35XX_MCBSP_REGS_t *pMcbspRegs = pDevice->pMcbspRegs;
@@ -3626,14 +3626,14 @@
   00104	00000000	 DCD         |??_C@_1CE@PMBNDED@?$AAS?$AAP?$AAC?$AAR?$AA1?$AA?5?$AA?5?$AA?5?$AA?5?$AA?3?$AA?5?$AA?$CF?$AA0?$AA8?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
   00108		 |$LN53@mcbsp_Dump|
   00108	00000000	 DCD         |??_C@_1CE@NBPNEGE@?$AAS?$AAP?$AAC?$AAR?$AA2?$AA?5?$AA?5?$AA?5?$AA?5?$AA?3?$AA?5?$AA?$CF?$AA0?$AA8?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
-  0010c		 |$M37416|
+  0010c		 |$M37417|
 
 			 ENDP  ; |mcbsp_DumpReg|
 
 	EXPORT	|mcbsp_ConfigCommonRegisters|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37454| DCD	|$LN14@mcbsp_Conf@8|
+|$T37455| DCD	|$LN14@mcbsp_Conf@8|
 	DCD	0x40002401
 ; Function compile flags: /Ogspy
 
@@ -3645,7 +3645,7 @@
 
   00000		 |$LN14@mcbsp_Conf@8|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37451|
+  00004		 |$M37452|
   00004	e1a04000	 mov         r4, r0
 
 ; 55   :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
@@ -3726,14 +3726,14 @@
 
   00088	e8bd4010	 ldmia       sp!, {r4, lr}
   0008c	e12fff1e	 bx          lr
-  00090		 |$M37452|
+  00090		 |$M37453|
 
 			 ENDP  ; |mcbsp_ConfigCommonRegisters|
 
 	EXPORT	|mcbsp_ConfigTDMProfile|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37469| DCD	|$LN10@mcbsp_Conf@9|
+|$T37470| DCD	|$LN10@mcbsp_Conf@9|
 	DCD	0x40003501
 ; Function compile flags: /Ogspy
 
@@ -3745,7 +3745,7 @@
 
   00000		 |$LN10@mcbsp_Conf@9|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37466|
+  00004		 |$M37467|
   00004	e1a04000	 mov         r4, r0
 
 ; 1110 :     DWORD regVal = 0;
@@ -3942,14 +3942,14 @@
 
   000cc	e8bd4010	 ldmia       sp!, {r4, lr}
   000d0	e12fff1e	 bx          lr
-  000d4		 |$M37467|
+  000d4		 |$M37468|
 
 			 ENDP  ; |mcbsp_ConfigTDMProfile|
 
 	EXPORT	|mcbsp_SideToneWriteFIRCoeff|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37495| DCD	|$LN15@mcbsp_Side@9|
+|$T37496| DCD	|$LN15@mcbsp_Side@9|
 	DCD	0x40003101
 ; Function compile flags: /Ogspy
 
@@ -3961,7 +3961,7 @@
 
   00000		 |$LN15@mcbsp_Side@9|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37492|
+  00004		 |$M37493|
 
 ; 1545 : 
 ; 1546 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
@@ -4053,14 +4053,14 @@
 
   000bc	e49de004	 ldr         lr, [sp], #4
   000c0	e12fff1e	 bx          lr
-  000c4		 |$M37493|
+  000c4		 |$M37494|
 
 			 ENDP  ; |mcbsp_SideToneWriteFIRCoeff|
 
 	EXPORT	|mcbsp_SideToneReadFIRCoeff|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37521| DCD	|$LN15@mcbsp_Side@10|
+|$T37522| DCD	|$LN15@mcbsp_Side@10|
 	DCD	0x40003101
 ; Function compile flags: /Ogspy
 
@@ -4072,7 +4072,7 @@
 
   00000		 |$LN15@mcbsp_Side@10|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37518|
+  00004		 |$M37519|
 
 ; 1582 : 
 ; 1583 :     DEBUGMSG(ZONE_FUNCTION, (L"MCP:+%S(0x%08x)\r\n", __FUNCTION__, pDevice));
@@ -4164,7 +4164,7 @@
 
   000bc	e49de004	 ldr         lr, [sp], #4
   000c0	e12fff1e	 bx          lr
-  000c4		 |$M37519|
+  000c4		 |$M37520|
 
 			 ENDP  ; |mcbsp_SideToneReadFIRCoeff|
 
@@ -4173,7 +4173,7 @@
 	IMPORT	|SOCGetMCBSPSidetoneAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37540| DCD	|$LN13@mcbsp_Side@11|
+|$T37541| DCD	|$LN13@mcbsp_Side@11|
 	DCD	0x40002b01
 ; Function compile flags: /Ogspy
 
@@ -4185,7 +4185,7 @@
 
   00000		 |$LN13@mcbsp_Side@11|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37537|
+  00004		 |$M37538|
   00004	e1a04000	 mov         r4, r0
 
 ; 1416 :     DWORD regVal = 0;
@@ -4204,7 +4204,7 @@
 
 ; 1424 :     if (pDevice->pPhysAddrSidetone == NULL)
 
-  00018	0a000021	 beq         |$cleanUp$36847|
+  00018	0a000021	 beq         |$cleanUp$36848|
 
 ; 1425 :     {
 ; 1426 :         goto cleanUp;
@@ -4226,7 +4226,7 @@
 
 ; 1434 :     if (pSideToneRegs == NULL)
 
-  00030	0a00001b	 beq         |$cleanUp$36847|
+  00030	0a00001b	 beq         |$cleanUp$36848|
 
 ; 1435 :         {
 ; 1436 :         DEBUGMSG(ZONE_ERROR, (L"MCP: ERROR: mcbsp_SideToneInit: "
@@ -4292,7 +4292,7 @@
   00098	e594306c	 ldr         r3, [r4, #0x6C]
   0009c	e3a02001	 mov         r2, #1
   000a0	e5832010	 str         r2, [r3, #0x10]
-  000a4		 |$cleanUp$36847|
+  000a4		 |$cleanUp$36848|
 
 ; 1462 : 
 ; 1463 : cleanUp:
@@ -4301,7 +4301,7 @@
 
   000a4	e8bd4010	 ldmia       sp!, {r4, lr}
   000a8	e12fff1e	 bx          lr
-  000ac		 |$M37538|
+  000ac		 |$M37539|
 
 			 ENDP  ; |mcbsp_SideToneInit|
 

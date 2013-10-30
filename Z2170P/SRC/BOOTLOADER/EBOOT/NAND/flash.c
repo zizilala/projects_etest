@@ -112,38 +112,30 @@ struct {
 //
 //  This function download image from flash memory to RAM.
 //
-UINT32
-BLFlashDownload(
-    BOOT_CFG *pConfig,
-    OAL_KITL_DEVICE *pBootDevices
-    )
+UINT32 BLFlashDownload(BOOT_CFG *pConfig, OAL_KITL_DEVICE *pBootDevices)
 {
     UINT32 rc = (UINT32) BL_ERROR;
 
     UNREFERENCED_PARAMETER(pBootDevices);
-
+	OALLog(L"BLFlashDownload()\r\n");
     // We have do device initialization for some devices
     switch (pConfig->bootDevLoc.IfcType)
-        {
+	{
         case Internal:
             switch (pConfig->bootDevLoc.LogicalLoc)
-                {
+			{
                 case BSP_NAND_REGS_PA + 0x20:
-                rc = ReadFlashNK();
-                break;
-                }
+                	rc = ReadFlashNK();
+                	break;
+			}
             break;
-        }
+	}
 
     return rc;
 }
 
 //------------------------------------------------------------------------------
-
-static
-UINT32
-ReadFlashNK(
-    )
+static UINT32 ReadFlashNK()
 {
     UINT32 rc = (UINT32) BL_ERROR;
     HANDLE hPartition;
@@ -161,7 +153,7 @@ ReadFlashNK(
 
 
     // Check if there is a valid image
-    OALMSG(OAL_INFO, (L"\r\nLoad NK image from flash memory\r\n"));
+    OALMSG(1, (L"Load NK image from flash memory\r\n"));
 
     // Initialize boot partition library
     if (!BP_Init((LPBYTE)g_ulBPartBase, g_ulBPartLengthBytes, NULL, &regInfo, NULL))
@@ -234,7 +226,7 @@ ReadFlashNK(
         goto cleanUp;
     }
 
-    OALMSG(OAL_INFO, (L"NK Image Loaded\r\n"));
+    OALMSG(1, (L"NK Image Loaded\r\n"));
 
     // Done
     g_eboot.launchAddress = OALVAtoPA((UCHAR*)IMAGE_WINCE_CODE_CA);
@@ -525,12 +517,8 @@ cleanUp:
 }
 
 //------------------------------------------------------------------------------
-
-BOOL
-WriteFlashEBOOT(
-    UINT32 address,
-    UINT32 size
-    )
+//important, Ray 131024
+BOOL WriteFlashEBOOT(UINT32 address, UINT32 size)
 {
     BOOL rc = FALSE;
     HANDLE hFlash = NULL;
@@ -543,40 +531,36 @@ WriteFlashEBOOT(
     // Open flash storage
     hFlash = OALFlashStoreOpen(g_ulFlashBase);
     if (hFlash == NULL)
-        {
-        OALMSG(OAL_ERROR, (L"ERROR: OEMWriteFlash: "
-            L"OALFlashStoreOpen call failed!\r\n"
-            ));
+    {
+        OALMSG(OAL_ERROR, (L"ERROR: OEMWriteFlash: "L"OALFlashStoreOpen call failed!\r\n"));
         goto cleanUp;
-        }
+    }
 
     // Check if image fit (last sector used for configuration)
     if (size > (IMAGE_EBOOT_CODE_SIZE - OALFlashStoreSectorSize(hFlash)))
-        {
+    {
         OALMSG(OAL_ERROR, (L"ERROR: OEMWriteFlash: "
             L"EBOOT image too big (size 0x%08x, maximum size 0x%08x)\r\n",
             size, IMAGE_EBOOT_CODE_SIZE - OALFlashStoreBlockSize(hFlash)
             ));
         goto cleanUp;
-        }
+    }
 
     // Get data location
     pData = OEMMapMemAddr(address, address);
 
     // Verify that we get CE image
     if (!VerifyImage(pData, NULL))
-        {
-        OALMSG(OAL_ERROR, (L"ERROR: OEMWriteFlash: "
-            L"EBOOT image signature not found\r\n"
-            ));
+    {
+        OALMSG(OAL_ERROR, (L"ERROR: OEMWriteFlash: "L"EBOOT image signature not found\r\n"));
         goto cleanUp;
-        }
+    }
 
     // Fill unused space with 0xFF
     if (size < IMAGE_EBOOT_CODE_SIZE)
-        {
+    {
         memset(pData + size, 0xFF, IMAGE_EBOOT_CODE_SIZE - size);
-        }
+    }
 
     offset = IMAGE_XLDR_BOOTSEC_NAND_SIZE;
     if (!OALFlashStoreWrite(
@@ -600,12 +584,7 @@ cleanUp:
 }
 
 //------------------------------------------------------------------------------
-
-BOOL
-WriteFlashNK(
-    UINT32 address,
-    UINT32 size
-    )
+BOOL WriteFlashNK(UINT32 address, UINT32 size)
 {
     BOOL rc = FALSE;
     BOOL bExt = FALSE;

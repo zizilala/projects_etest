@@ -1188,12 +1188,12 @@
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M42649|
   00004	e1a04000	 mov         r4, r0
-  00008	e2840050	 add         r0, r4, #0x50
+  00008	e284004c	 add         r0, r4, #0x4C
   0000c	e3a02088	 mov         r2, #0x88
   00010	e3a01000	 mov         r1, #0
   00014	eb000000	 bl          memset
   00018	e3a0301f	 mov         r3, #0x1F
-  0001c	e58430d8	 str         r3, [r4, #0xD8]
+  0001c	e58430d4	 str         r3, [r4, #0xD4]
   00020	e1a00004	 mov         r0, r4
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
@@ -1214,7 +1214,7 @@
   00000		 |$LN12@PowerDomai@3|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M42671|
-  00004	e5903050	 ldr         r3, [r0, #0x50]
+  00004	e590304c	 ldr         r3, [r0, #0x4C]
   00008	e1b04003	 movs        r4, r3
   0000c	0a000004	 beq         |$LN4@PowerDomai@3|
   00010		 |$LL5@PowerDomai@3|
@@ -1298,7 +1298,7 @@
 ; 289  :     // create structure to maintain constraints for this handle
 ; 290  :     pConstraintContext = (ConstraintContext*)LocalAlloc(LPTR, sizeof(ConstraintContext));
 
-  00018	e3a01034	 mov         r1, #0x34
+  00018	e3a01030	 mov         r1, #0x30
   0001c	e3a00040	 mov         r0, #0x40
   00020	eb000000	 bl          LocalAlloc
   00024	e1b05000	 movs        r5, r0
@@ -1309,7 +1309,7 @@
 
 ; 292  :     memset(pConstraintContext->rgConstraints, 0, sizeof(pConstraintContext->rgConstraints));
 
-  0002c	e3a02034	 mov         r2, #0x34
+  0002c	e3a02030	 mov         r2, #0x30
   00030	e3a01000	 mov         r1, #0
   00034	e1a00005	 mov         r0, r5
   00038	eb000000	 bl          memset
@@ -1325,7 +1325,7 @@
 
   00044	e28d2004	 add         r2, sp, #4
   00048	e28d1000	 add         r1, sp, #0
-  0004c	e2870050	 add         r0, r7, #0x50
+  0004c	e287004c	 add         r0, r7, #0x4C
   00050	eb000000	 bl          |?NewIndex@?$IndexList@K@@QAAHPAPAKPAK@Z|
   00054	e1a04000	 mov         r4, r0
 
@@ -1422,7 +1422,7 @@
 ; 336  :     if (id > s_PowerDomainInfo.IndexList.MaxIndex()) goto cleanUp;
 
   00020	e59f40cc	 ldr         r4, [pc, #0xCC]
-  00024	e59430d8	 ldr         r3, [r4, #0xD8]
+  00024	e59430d4	 ldr         r3, [r4, #0xD4]
   00028	e1590003	 cmp         r9, r3
   0002c	8a00002c	 bhi         |$cleanUp$41375|
 
@@ -1458,7 +1458,7 @@
 ; 350  :     if (pConstraintInfo->powerDomain >= POWERDOMAIN_COUNT) goto cleanUp;
 
   0005c	e5965004	 ldr         r5, [r6, #4]
-  00060	e355000d	 cmp         r5, #0xD
+  00060	e355000c	 cmp         r5, #0xC
   00064	2a00001e	 bcs         |$cleanUp$41375|
 
 ; 351  :     pPowerDomain = s_PowerDomainInfo.rgPowerDomainStates[pConstraintInfo->powerDomain];
@@ -1476,7 +1476,7 @@
 ; 355  :     pConstraintContext = *(ConstraintContext**)s_PowerDomainInfo.IndexList.GetIndex(id);
 
   00078	e1a01009	 mov         r1, r9
-  0007c	e2840050	 add         r0, r4, #0x50
+  0007c	e284004c	 add         r0, r4, #0x4C
   00080	eb000000	 bl          |?GetIndex@?$IndexList@K@@QAAPAKK@Z|
   00084	e5903000	 ldr         r3, [r0]
   00088	e1b07003	 movs        r7, r3
@@ -1579,7 +1579,7 @@
   00004	e59f40b4	 ldr         r4, [pc, #0xB4]
   00008	e2408001	 sub         r8, r0, #1
   0000c	e3a05000	 mov         r5, #0
-  00010	e59430d8	 ldr         r3, [r4, #0xD8]
+  00010	e59430d4	 ldr         r3, [r4, #0xD4]
   00014	e1580003	 cmp         r8, r3
   00018	8a000025	 bhi         |$cleanUp$41401|
 
@@ -1588,7 +1588,7 @@
 ; 399  :     pConstraintContext = *(ConstraintContext**)s_PowerDomainInfo.IndexList.GetIndex(id);
 
   0001c	e1a01008	 mov         r1, r8
-  00020	e2840050	 add         r0, r4, #0x50
+  00020	e284004c	 add         r0, r4, #0x4C
   00024	eb000000	 bl          |?GetIndex@?$IndexList@K@@QAAPAKK@Z|
   00028	e5903000	 ldr         r3, [r0]
   0002c	e1b07003	 movs        r7, r3
@@ -1607,7 +1607,7 @@
 ; 403  :     for (int i = 0; i < POWERDOMAIN_COUNT; ++i)
 
   00040	e0449007	 sub         r9, r4, r7
-  00044	e3a0600d	 mov         r6, #0xD
+  00044	e3a0600c	 mov         r6, #0xC
   00048		 |$LL4@PWRDOM_Clo|
 
 ; 404  :         {
@@ -1639,7 +1639,7 @@
 ; 414  :     s_PowerDomainInfo.IndexList.DeleteIndex(id);  
 
   00070	e1b022a8	 movs        r2, r8, lsr #5
-  00074	e2841050	 add         r1, r4, #0x50
+  00074	e284104c	 add         r1, r4, #0x4C
   00078	0a000005	 beq         |$LN16@PWRDOM_Clo|
   0007c		 |$LL17@PWRDOM_Clo|
   0007c	e5913000	 ldr         r3, [r1]
@@ -2111,7 +2111,7 @@
 
   00000		 |$LN5@GetPowerDo@3|
   00000		 |$M43011|
-  00000	e3a00008	 mov         r0, #8
+  00000	e3a0000d	 mov         r0, #0xD
   00004	e12fff1e	 bx          lr
   00008		 |$M43012|
 
@@ -2279,7 +2279,7 @@
 
   00000		 |$LN5@GetPowerDo@6|
   00000		 |$M43077|
-  00000	e3a0000a	 mov         r0, #0xA
+  00000	e3a00009	 mov         r0, #9
   00004	e12fff1e	 bx          lr
   00008		 |$M43078|
 
@@ -2391,7 +2391,7 @@
 
   00000		 |$LN5@GetPowerDo@8|
   00000		 |$M43121|
-  00000	e3a00009	 mov         r0, #9
+  00000	e3a00008	 mov         r0, #8
   00004	e12fff1e	 bx          lr
   00008		 |$M43122|
 
@@ -2884,7 +2884,7 @@
 ; 151  :     memset(&s_PowerDomainInfo.rgPowerDomainStates, 0, sizeof(s_PowerDomainInfo.rgPowerDomainStates));
 
   00020	e59f4420	 ldr         r4, [pc, #0x420]
-  00024	e3a02034	 mov         r2, #0x34
+  00024	e3a02030	 mov         r2, #0x30
   00028	e3a01000	 mov         r1, #0
   0002c	e284001c	 add         r0, r4, #0x1C
   00030	eb000000	 bl          memset
@@ -3014,7 +3014,7 @@
   0013c		 |$LN16@PWRDOM_Ini|
   0013c	e3a05000	 mov         r5, #0
   00140		 |$LN17@PWRDOM_Ini|
-  00140	e584503c	 str         r5, [r4, #0x3C]
+  00140	e5845050	 str         r5, [r4, #0x50]
 
 ; 179  :     if (s_PowerDomainInfo.rgPowerDomainStates[POWERDOMAIN_IVA2] != NULL)
 
@@ -3030,7 +3030,7 @@
 
 ; 182  :         s_PowerDomainInfo.rgPowerDomainStates[POWERDOMAIN_IVA2]->FlushDomainPowerState();        
 
-  00158	e594003c	 ldr         r0, [r4, #0x3C]
+  00158	e5940050	 ldr         r0, [r4, #0x50]
   0015c	e5903000	 ldr         r3, [r0]
   00160	e5933008	 ldr         r3, [r3, #8]
   00164	e1a0e00f	 mov         lr, pc
@@ -3158,7 +3158,7 @@
   00274		 |$LN22@PWRDOM_Ini|
   00274	e3a05000	 mov         r5, #0
   00278		 |$LN23@PWRDOM_Ini|
-  00278	e5845044	 str         r5, [r4, #0x44]
+  00278	e5845040	 str         r5, [r4, #0x40]
 
 ; 206  :     if (s_PowerDomainInfo.rgPowerDomainStates[POWERDOMAIN_SGX] != NULL)
 
@@ -3174,7 +3174,7 @@
 
 ; 209  :         s_PowerDomainInfo.rgPowerDomainStates[POWERDOMAIN_SGX]->FlushDomainPowerState();
 
-  00290	e5940044	 ldr         r0, [r4, #0x44]
+  00290	e5940040	 ldr         r0, [r4, #0x40]
   00294	e5903000	 ldr         r3, [r0]
   00298	e5933008	 ldr         r3, [r3, #8]
   0029c	e1a0e00f	 mov         lr, pc
@@ -3254,7 +3254,7 @@
   00344		 |$LN26@PWRDOM_Ini|
   00344	e3a05000	 mov         r5, #0
   00348		 |$LN27@PWRDOM_Ini|
-  00348	e5845040	 str         r5, [r4, #0x40]
+  00348	e584503c	 str         r5, [r4, #0x3C]
 
 ; 224  :     if (s_PowerDomainInfo.rgPowerDomainStates[POWERDOMAIN_CAMERA] != NULL)
 
@@ -3270,7 +3270,7 @@
 
 ; 227  :         s_PowerDomainInfo.rgPowerDomainStates[POWERDOMAIN_CAMERA]->FlushDomainPowerState();
 
-  00360	e5940040	 ldr         r0, [r4, #0x40]
+  00360	e594003c	 ldr         r0, [r4, #0x3C]
   00364	e5903000	 ldr         r3, [r0]
   00368	e5933008	 ldr         r3, [r3, #8]
   0036c	e1a0e00f	 mov         lr, pc
@@ -3676,7 +3676,7 @@
 
   00010	e59f4084	 ldr         r4, [pc, #0x84]
   00014	e2465001	 sub         r5, r6, #1
-  00018	e59430d8	 ldr         r3, [r4, #0xD8]
+  00018	e59430d4	 ldr         r3, [r4, #0xD4]
   0001c	e1550003	 cmp         r5, r3
   00020	8a000018	 bhi         |$cleanUp$41424|
 
@@ -3685,7 +3685,7 @@
 ; 449  :     pDataNode = s_PowerDomainInfo.IndexList.GetIndex(id);
 
   00024	e1a01005	 mov         r1, r5
-  00028	e2840050	 add         r0, r4, #0x50
+  00028	e284004c	 add         r0, r4, #0x4C
   0002c	eb000000	 bl          |?GetIndex@?$IndexList@K@@QAAPAKK@Z|
   00030	e3500000	 cmp         r0, #0
 
@@ -3822,11 +3822,11 @@
   00004	e59f4028	 ldr         r4, [pc, #0x28]
   00008	e3a02088	 mov         r2, #0x88
   0000c	e3a01000	 mov         r1, #0
-  00010	e2840050	 add         r0, r4, #0x50
+  00010	e284004c	 add         r0, r4, #0x4C
   00014	eb000000	 bl          memset
   00018	e59f0010	 ldr         r0, [pc, #0x10]
   0001c	e3a0301f	 mov         r3, #0x1F
-  00020	e58430d8	 str         r3, [r4, #0xD8]
+  00020	e58430d4	 str         r3, [r4, #0xD4]
   00024	eb000000	 bl          atexit
   00028	e8bd4010	 ldmia       sp!, {r4, lr}
   0002c	e12fff1e	 bx          lr
@@ -3852,7 +3852,7 @@
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M44158|
   00004	e59f3020	 ldr         r3, [pc, #0x20]
-  00008	e5934050	 ldr         r4, [r3, #0x50]
+  00008	e593404c	 ldr         r4, [r3, #0x4C]
   0000c	ea000002	 b           |$LN11@dynamic@3|
   00010		 |$LL6@dynamic@3|
   00010	e1a00004	 mov         r0, r4
@@ -3895,7 +3895,7 @@
 
 
   00000			 AREA	 |.bss|, NOINIT
-|s_PowerDomainInfo| % 0xdc
+|s_PowerDomainInfo| % 0xd8
 |s_CallbackList| % 0xc
 
   00000			 AREA	 |.CRT$XCU|, DATA

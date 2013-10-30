@@ -75,7 +75,7 @@ static void OutputNumHex(unsigned long n, long depth);
 
 void BSPGpioInit()
 {
-	XLDRMSG( TEXT("BSPGpioInit()\r\n"));
+	//XLDRMSG( TEXT("BSPGpioInit()\r\n"));
 	BSPInsertGpioDevice(0,&Omap_Gpio,NULL);
 	BSPInsertGpioDevice(TRITON_GPIO_PINID_START,&Tps659xx_Gpio,NULL);
 }
@@ -85,7 +85,7 @@ void BSPGpioInit()
 //
 VOID XLDRMain()
 {
-    //OMAP_GPTIMER_REGS *pTimerRegs;
+    OMAP_GPTIMER_REGS *pTimerRegs;
     static UCHAR allocationPool[512];
     LPCWSTR ProcessorName   = L"3530";
 
@@ -117,13 +117,13 @@ VOID XLDRMain()
     XLDRMSGINIT;
 
     // Print information...
-    //XLDRMSG( TEXT("\r\nZEBEX Windows CE SD X-Loader for Z-2170 plus - Brian"));   //Ray 13-09-12
-    XLDRMSG( TEXT("\r\nZEBEX Windows CE SD X-Loader for Z-2170 plus - Ray Testing"));  
+    //XLDRMSG( TEXT("\r\nZEBEX Windows CE SD X-Loader for Z-2170 plus - Brian"));
+    XLDRMSG( TEXT("\r\nZEBEX Windows CE SD X-Loader for Z-2170 plus - Ray"));   //Ray 131024
     XLDRMSG( TEXT("\r\n") TEXT("Built ") TEXT(__DATE__) TEXT(" at ") TEXT(__TIME__) TEXT(" ("));
 	XLDRMSG( (UINT16 *)ProcessorName);
 	XLDRMSG( TEXT(")\r\n"));
     GPIOInit();	// \COMMON_TI_V1\COMMON_TI\GPIO\DISPATCH\OAL\gpio_dispatch.c
-    /*pTimerRegs = (OMAP_GPTIMER_REGS *)OALPAtoUA(OMAP_GPTIMER1_REGS_PA); // General-Purpose Timers
+    pTimerRegs = (OMAP_GPTIMER_REGS *)OALPAtoUA(OMAP_GPTIMER1_REGS_PA); // General-Purpose Timers
 
     // Soft reset GPTIMER1
     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET); 
@@ -136,7 +136,7 @@ VOID XLDRMain()
     // Start timer
     OUTREG32(&pTimerRegs->TCLR, GPTIMER_TCLR_AR|GPTIMER_TCLR_ST);
     // need to init OAL tick functions
-*/
+
 
     memset(&g_bootCfg, 0, sizeof(g_bootCfg));
     //g_bootCfg.signature = BOOT_CFG_SIGNATURE;
@@ -155,7 +155,6 @@ VOID XLDRMain()
     //g_bootCfg.ipRoute = 0;
     //g_bootCfg.deviceID = 0;
     //g_bootCfg.osPartitionSize = IMAGE_WINCE_CODE_SIZE;
-
     wcscpy(g_bootCfg.filename, L"ebootsd.nb0");
 
     XLDRMSG(TEXT("open ebootsd.nb0 file\r\n"));
@@ -207,6 +206,7 @@ UINT32 OALVAtoPA(VOID *pVA)
 {
     return (UINT32)pVA;
 }
+
 
 //------------------------------------------------------------------------------
 //

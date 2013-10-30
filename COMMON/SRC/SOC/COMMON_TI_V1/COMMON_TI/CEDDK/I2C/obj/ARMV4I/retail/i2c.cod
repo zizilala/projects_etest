@@ -81,7 +81,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\ceddk\i2c\i2c.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44620| DCD	|$LN8@I2CInitial|
+|$T44621| DCD	|$LN8@I2CInitial|
 	DCD	0x40001c02
 ; Function compile flags: /Ogspy
 
@@ -94,7 +94,7 @@
   00000		 |$LN8@I2CInitial|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M44617|
+  00008		 |$M44618|
 
 ; 43   :     if (_bI2CFnTableInit == FALSE)
 
@@ -150,7 +150,7 @@
   00068	01011014	 DCD         0x1011014
   0006c		 |$LN11@I2CInitial|
   0006c	00000000	 DCD         |_i2cFnTable|
-  00070		 |$M44618|
+  00070		 |$M44619|
 
 			 ENDP  ; |I2CInitialize|
 
@@ -158,7 +158,7 @@
 	IMPORT	|GetDeviceByAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44633| DCD	|$LN5@I2CGetDevi|
+|$T44634| DCD	|$LN5@I2CGetDevi|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -170,7 +170,7 @@
 
   00000		 |$LN5@I2CGetDevi|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44630|
+  00004		 |$M44631|
 
 ; 67   :     return GetDeviceByAddress(memBase);
 
@@ -180,14 +180,14 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M44631|
+  00010		 |$M44632|
 
 			 ENDP  ; |I2CGetDeviceIdFromMembase|
 
 	EXPORT	|I2COpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44649| DCD	|$LN11@I2COpen|
+|$T44650| DCD	|$LN11@I2COpen|
 	DCD	0x40002502
 ; Function compile flags: /Ogspy
 
@@ -200,7 +200,7 @@
   00000		 |$LN11@I2COpen|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M44646|
+  00008		 |$M44647|
   00008	e1a05000	 mov         r5, r0
 
 ; 77   :     if (I2CInitialize() == FALSE) return NULL;
@@ -255,14 +255,14 @@
   0008c	01011014	 DCD         0x1011014
   00090		 |$LN14@I2COpen|
   00090	00000000	 DCD         |_i2cFnTable|
-  00094		 |$M44647|
+  00094		 |$M44648|
 
 			 ENDP  ; |I2COpen|
 
 	EXPORT	|I2CSetSlaveAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44663| DCD	|$LN5@I2CSetSlav|
+|$T44664| DCD	|$LN5@I2CSetSlav|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -274,7 +274,7 @@
 
   00000		 |$LN5@I2CSetSlav|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44660|
+  00004		 |$M44661|
 
 ; 90   :     return _i2cFnTable.fnI2CSetSlaveAddress(hContext,slaveAddress);
 
@@ -290,14 +290,14 @@
   0001c		 |$LN6@I2CSetSlav|
   0001c		 |$LN7@I2CSetSlav|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44661|
+  00020		 |$M44662|
 
 			 ENDP  ; |I2CSetSlaveAddress|
 
 	EXPORT	|I2CSetSubAddressMode|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44674| DCD	|$LN5@I2CSetSubA|
+|$T44675| DCD	|$LN5@I2CSetSubA|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -309,7 +309,7 @@
 
   00000		 |$LN5@I2CSetSubA|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44671|
+  00004		 |$M44672|
 
 ; 100  :     _i2cFnTable.fnI2CSetSubAddressMode(hContext,subAddressMode);    
 
@@ -325,14 +325,14 @@
   0001c		 |$LN6@I2CSetSubA|
   0001c		 |$LN7@I2CSetSubA|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44672|
+  00020		 |$M44673|
 
 			 ENDP  ; |I2CSetSubAddressMode|
 
 	EXPORT	|I2CSetBaudIndex|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44685| DCD	|$LN5@I2CSetBaud|
+|$T44686| DCD	|$LN5@I2CSetBaud|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -344,7 +344,7 @@
 
   00000		 |$LN5@I2CSetBaud|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44682|
+  00004		 |$M44683|
 
 ; 110  :     _i2cFnTable.fnI2CSetBaudIndex(hContext,baudIndex);    
 
@@ -360,14 +360,14 @@
   0001c		 |$LN6@I2CSetBaud|
   0001c		 |$LN7@I2CSetBaud|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44683|
+  00020		 |$M44684|
 
 			 ENDP  ; |I2CSetBaudIndex|
 
 	EXPORT	|I2CSetTimeout|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44696| DCD	|$LN5@I2CSetTime|
+|$T44697| DCD	|$LN5@I2CSetTime|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -379,7 +379,7 @@
 
   00000		 |$LN5@I2CSetTime|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44693|
+  00004		 |$M44694|
 
 ; 120  :     _i2cFnTable.fnI2CSetTimeout(hContext,timeOut); 
 
@@ -395,14 +395,14 @@
   0001c		 |$LN6@I2CSetTime|
   0001c		 |$LN7@I2CSetTime|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44694|
+  00020		 |$M44695|
 
 			 ENDP  ; |I2CSetTimeout|
 
 	EXPORT	|I2CClose|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44706| DCD	|$LN5@I2CClose|
+|$T44707| DCD	|$LN5@I2CClose|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -414,7 +414,7 @@
 
   00000		 |$LN5@I2CClose|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44703|
+  00004		 |$M44704|
 
 ; 130  :     _i2cFnTable.fnI2CClose(hContext);
 
@@ -430,14 +430,14 @@
   0001c		 |$LN6@I2CClose|
   0001c		 |$LN7@I2CClose|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44704|
+  00020		 |$M44705|
 
 			 ENDP  ; |I2CClose|
 
 	EXPORT	|I2CRead|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44721| DCD	|$LN5@I2CRead|
+|$T44722| DCD	|$LN5@I2CRead|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -449,7 +449,7 @@
 
   00000		 |$LN5@I2CRead|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M44718|
+  00004		 |$M44719|
 
 ; 142  :     return _i2cFnTable.fnI2CRead(hCtx, subAddr, pBuffer, size);
 
@@ -465,14 +465,14 @@
   0001c		 |$LN6@I2CRead|
   0001c		 |$LN7@I2CRead|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44719|
+  00020		 |$M44720|
 
 			 ENDP  ; |I2CRead|
 
 	EXPORT	|I2CWrite|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44736| DCD	|$LN5@I2CWrite|
+|$T44737| DCD	|$LN5@I2CWrite|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -484,7 +484,7 @@
 
   00000		 |$LN5@I2CWrite|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M44733|
+  00004		 |$M44734|
 
 ; 154  :     return _i2cFnTable.fnI2CWrite(hCtx, subAddr, (VOID*)pBuffer, size);
 
@@ -500,14 +500,14 @@
   0001c		 |$LN6@I2CWrite|
   0001c		 |$LN7@I2CWrite|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44734|
+  00020		 |$M44735|
 
 			 ENDP  ; |I2CWrite|
 
 	EXPORT	|I2CLock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44746| DCD	|$LN5@I2CLock|
+|$T44747| DCD	|$LN5@I2CLock|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -519,7 +519,7 @@
 
   00000		 |$LN5@I2CLock|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44743|
+  00004		 |$M44744|
 
 ; 159  :     _i2cFnTable.fnI2CLock(hCtx);
 
@@ -535,14 +535,14 @@
   0001c		 |$LN6@I2CLock|
   0001c		 |$LN7@I2CLock|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44744|
+  00020		 |$M44745|
 
 			 ENDP  ; |I2CLock|
 
 	EXPORT	|I2CUnlock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44756| DCD	|$LN5@I2CUnlock|
+|$T44757| DCD	|$LN5@I2CUnlock|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -554,7 +554,7 @@
 
   00000		 |$LN5@I2CUnlock|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44753|
+  00004		 |$M44754|
 
 ; 164  :     _i2cFnTable.fnI2CUnlock(hCtx);
 
@@ -570,14 +570,14 @@
   0001c		 |$LN6@I2CUnlock|
   0001c		 |$LN7@I2CUnlock|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44754|
+  00020		 |$M44755|
 
 			 ENDP  ; |I2CUnlock|
 
 	EXPORT	|I2CSetManualDriveMode|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44767| DCD	|$LN5@I2CSetManu|
+|$T44768| DCD	|$LN5@I2CSetManu|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -589,7 +589,7 @@
 
   00000		 |$LN5@I2CSetManu|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44764|
+  00004		 |$M44765|
 
 ; 170  :     _i2cFnTable.fnSetManualDriveMode(hCtx,fOn);
 
@@ -605,14 +605,14 @@
   0001c		 |$LN6@I2CSetManu|
   0001c		 |$LN7@I2CSetManu|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44765|
+  00020		 |$M44766|
 
 			 ENDP  ; |I2CSetManualDriveMode|
 
 	EXPORT	|I2CDriveSCL|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44778| DCD	|$LN5@I2CDriveSC|
+|$T44779| DCD	|$LN5@I2CDriveSC|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -624,7 +624,7 @@
 
   00000		 |$LN5@I2CDriveSC|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44775|
+  00004		 |$M44776|
 
 ; 174  :     _i2cFnTable.fnDriveSCL(hCtx,fHigh);
 
@@ -640,14 +640,14 @@
   0001c		 |$LN6@I2CDriveSC|
   0001c		 |$LN7@I2CDriveSC|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44776|
+  00020		 |$M44777|
 
 			 ENDP  ; |I2CDriveSCL|
 
 	EXPORT	|I2CDriveSDA|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44789| DCD	|$LN5@I2CDriveSD|
+|$T44790| DCD	|$LN5@I2CDriveSD|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -659,7 +659,7 @@
 
   00000		 |$LN5@I2CDriveSD|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M44786|
+  00004		 |$M44787|
 
 ; 178  :     _i2cFnTable.fnDriveSDA(hCtx,fHigh);
 
@@ -675,7 +675,7 @@
   0001c		 |$LN6@I2CDriveSD|
   0001c		 |$LN7@I2CDriveSD|
   0001c	00000000	 DCD         |_i2cFnTable|
-  00020		 |$M44787|
+  00020		 |$M44788|
 
 			 ENDP  ; |I2CDriveSDA|
 

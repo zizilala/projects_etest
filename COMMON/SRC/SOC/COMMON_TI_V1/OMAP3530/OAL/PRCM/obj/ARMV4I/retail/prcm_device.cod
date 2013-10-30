@@ -329,7 +329,7 @@
 |_fclk_USBHOST1| % 0x10
 |_fclk_USBHOST2| % 0x10
 |_fclk_USBHOST3| % 0x10
-|s_rgActiveDomainDeviceCount| % 0x34
+|s_rgActiveDomainDeviceCount| % 0x30
 
   00000			 AREA	 |.data|, DATA
 |_SR_SourceClock| DCD 0x1
@@ -1833,42 +1833,42 @@
 	DCD	0x0
 	DCD	0x0
 	DCD	|_TV_SourceClock|
-	DCD	0x9
+	DCD	0x8
 	DCD	|_fclk_CAM|
 	DCD	|_iclk_CAM|
 	DCD	0x0
 	DCD	|_idleStat_CAM|
 	DCD	|_autoIdle_CAM|
 	DCD	|_CAM_SourceClock|
-	DCD	0x9
+	DCD	0x8
 	DCD	|_fclk_CSI2|
 	DCD	|_iclk_CAM|
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
 	DCD	|_CSI2_SourceClock|
-	DCD	0x8
+	DCD	0x2
 	DCD	|_fclk_IVA2|
 	DCD	|_iclk_IVA2|
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
-	DCD	0xa
+	DCD	0x9
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
-	DCD	0xa
+	DCD	0x9
 	DCD	|_fclk_3D|
 	DCD	|_iclk_SGX|
 	DCD	0x0
 	DCD	|_idleStat_SGX|
 	DCD	0x0
 	DCD	0x0
-	DCD	0xa
+	DCD	0x9
 	DCD	|_fclk_SGX|
 	DCD	|_iclk_SGX|
 	DCD	0x0
@@ -1956,14 +1956,6 @@
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
-	DCD	0x0
-	DCD	|_PrcmDeviceEnableFClock|
-	DCD	0x0
-	DCD	0x0
-	DCD	|_PrcmDeviceEnableIClock|
-	DCD	|_PrcmDeviceEnableFClock|
-	DCD	|_PrcmDeviceEnableAutoIdle|
-	DCD	|_PrcmDeviceSetSourceClock|
 	DCD	|_PrcmDeviceEnableIClock|
 	DCD	|_PrcmDeviceEnableFClock|
 	DCD	0x0
@@ -2046,7 +2038,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\omap3530\oal\prcm\prcm_priv.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48876| DCD	|$LN6@Lock|
+|$T48873| DCD	|$LN6@Lock|
 	DCD	0x40001101
 ; Function compile flags: /Ogspy
 
@@ -2058,7 +2050,7 @@
 
   00000		 |$LN6@Lock|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48873|
+  00004		 |$M48870|
 
 ; 267  :     if (g_PrcmPostInit && !g_bSingleThreaded) 
 
@@ -2091,7 +2083,7 @@
   0003c	00000000	 DCD         |g_bSingleThreaded|
   00040		 |$LN10@Lock|
   00040	00000000	 DCD         |g_PrcmPostInit|
-  00044		 |$M48874|
+  00044		 |$M48871|
 
 			 ENDP  ; |Lock|
 
@@ -2099,7 +2091,7 @@
 	IMPORT	|LeaveCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48888| DCD	|$LN6@Unlock|
+|$T48885| DCD	|$LN6@Unlock|
 	DCD	0x40001101
 ; Function compile flags: /Ogspy
 
@@ -2111,7 +2103,7 @@
 
   00000		 |$LN6@Unlock|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48885|
+  00004		 |$M48882|
 
 ; 278  :     if (g_PrcmPostInit && !g_bSingleThreaded)
 
@@ -2144,7 +2136,7 @@
   0003c	00000000	 DCD         |g_bSingleThreaded|
   00040		 |$LN10@Unlock|
   00040	00000000	 DCD         |g_PrcmPostInit|
-  00044		 |$M48886|
+  00044		 |$M48883|
 
 			 ENDP  ; |Unlock|
 
@@ -2155,7 +2147,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\omap3530\oal\prcm\prcm_device.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48900| DCD	|$LN8@PrcmDevice|
+|$T48897| DCD	|$LN8@PrcmDevice|
 	DCD	0x40002901
 ; Function compile flags: /Ogspy
 
@@ -2167,7 +2159,7 @@
 
   00000		 |$LN8@PrcmDevice|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48897|
+  00004		 |$M48894|
   00004	e1a04000	 mov         r4, r0
 
 ; 91   :     // UNDONE:
@@ -2267,13 +2259,13 @@
   0009c	00000000	 DCD         |s_rgClockDomainDependency|
   000a0		 |$LN11@PrcmDevice|
   000a0	00000000	 DCD         |s_rgActiveDomainDeviceCount|
-  000a4		 |$M48898|
+  000a4		 |$M48895|
 
 			 ENDP  ; |_PrcmDeviceAddrefDeviceDomain|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48911| DCD	|$LN9@PrcmDevice@2|
+|$T48908| DCD	|$LN9@PrcmDevice@2|
 	DCD	0x40002a01
 ; Function compile flags: /Ogspy
 
@@ -2285,7 +2277,7 @@
 
   00000		 |$LN9@PrcmDevice@2|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48908|
+  00004		 |$M48905|
   00004	e1a04000	 mov         r4, r0
 
 ; 135  :     // UNDONE:
@@ -2390,7 +2382,7 @@
   000a0	00000000	 DCD         |s_rgClockDomainDependency|
   000a4		 |$LN12@PrcmDevice@2|
   000a4	00000000	 DCD         |s_rgActiveDomainDeviceCount|
-  000a8		 |$M48909|
+  000a8		 |$M48906|
 
 			 ENDP  ; |_PrcmDeviceReleaseDeviceDomain|
 
@@ -2402,7 +2394,7 @@
 	IMPORT	|dpCurSettings|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48933| DCD	|$LN16@PrcmDevice@3|
+|$T48930| DCD	|$LN16@PrcmDevice@3|
 	DCD	0x40002d01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2433,7 +2425,7 @@
 
   00000		 |$LN16@PrcmDevice@3|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48930|
+  00004		 |$M48927|
   00004	e1a04000	 mov         r4, r0
 
 ; 182  :     UINT mask;
@@ -2467,7 +2459,7 @@
   00038	e0827101	 add         r7, r2, r1, lsl #2
   0003c	e5973014	 ldr         r3, [r7, #0x14]
   00040	e3530000	 cmp         r3, #0
-  00044	0a00000a	 beq         |$cleanUp$48138|
+  00044	0a00000a	 beq         |$cleanUp$48135|
 
 ; 192  : 
 ; 193  :     mask = s_rgDeviceLookupTable[devId].pautoidle->mask;
@@ -2501,7 +2493,7 @@
 
   0006c	11c33004	 bicne       r3, r3, r4
   00070	e7823000	 str         r3, [r2, +r0]
-  00074		 |$cleanUp$48138|
+  00074		 |$cleanUp$48135|
   00074	e5963000	 ldr         r3, [r6]
 
 ; 204  :         }
@@ -2543,7 +2535,7 @@
   000ac	00000000	 DCD         |dpCurSettings|
   000b0		 |$LN22@PrcmDevice@3|
   000b0	00000000	 DCD         |g_bSingleThreaded|
-  000b4		 |$M48931|
+  000b4		 |$M48928|
 
 			 ENDP  ; |_PrcmDeviceHwUpdateAutoidle|
 
@@ -2551,7 +2543,7 @@
 	EXPORT	|??_C@_1FG@JDCJJDME@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAA?$AAu?$AAt?$AAo?$AAI?$AAd?$AAl?$AAe?$AA?$CI?$AAd?$AAe?$AAv?$AAI?$AAd@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48955| DCD	|$LN13@PrcmDevice@4|
+|$T48952| DCD	|$LN13@PrcmDevice@4|
 	DCD	0x40002601
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2583,7 +2575,7 @@
 
   00000		 |$LN13@PrcmDevice@4|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48952|
+  00004		 |$M48949|
   00004	e1a06001	 mov         r6, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -2665,21 +2657,21 @@
   00090	00000000	 DCD         |dpCurSettings|
   00094		 |$LN19@PrcmDevice@4|
   00094	00000000	 DCD         |g_bSingleThreaded|
-  00098		 |$M48953|
+  00098		 |$M48950|
 
 			 ENDP  ; |_PrcmDeviceEnableAutoIdle|
 
 	EXPORT	|_PrcmUpdateDeviceClockSource|
-	EXPORT	|??_C@_1EE@LKHHNJGE@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1EE@DPILIPOJ@?$AA?9?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HO@BDPNINII@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AAp?$AAS@| [ DATA ] ; `string'
 	IMPORT	|ClockUpdateParentClock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48978| DCD	|$LN18@PrcmUpdate|
+|$T48975| DCD	|$LN18@PrcmUpdate|
 	DCD	0x40002901
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EE@LKHHNJGE@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN@| DCB "+"
+|??_C@_1EE@DPILIPOJ@?$AA?9?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN@| DCB "-"
 	DCB	0x0, "_", 0x0, "P", 0x0, "r", 0x0, "c", 0x0, "m", 0x0, "U"
 	DCB	0x0, "p", 0x0, "d", 0x0, "a", 0x0, "t", 0x0, "e", 0x0, "D"
 	DCB	0x0, "e", 0x0, "v", 0x0, "i", 0x0, "c", 0x0, "e", 0x0, "C"
@@ -2710,7 +2702,7 @@
 
   00000		 |$LN18@PrcmUpdate|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M48975|
+  00004		 |$M48972|
   00004	e1a09001	 mov         r9, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -2751,7 +2743,7 @@
   00050	e1a07004	 mov         r7, r4
   00054		 |$LL4@PrcmUpdate|
 
-; 270  :         {
+; 270  : 	{
 ; 271  :         ClockUpdateParentClock(pSrcClocks->rgSourceClocks[i], bEnable);
 
   00054	e5b70004	 ldr         r0, [r7, #4]!
@@ -2768,7 +2760,7 @@
 
   00070	e5963000	 ldr         r3, [r6]
 
-; 272  :         }
+; 272  : 	}
 ; 273  : 
 ; 274  :     if (!g_bSingleThreaded)
 
@@ -2776,7 +2768,7 @@
   00078	1a000003	 bne         |$LN11@PrcmUpdate|
   0007c	e5953440	 ldr         r3, [r5, #0x440]
 
-; 275  :         OALMSG(OAL_FUNC, (L"+_PrcmUpdateDeviceClockSource()\r\n"));
+; 275  :         OALMSG(OAL_FUNC, (L"-_PrcmUpdateDeviceClockSource()\r\n"));
 
   00080	e3130004	 tst         r3, #4
   00084	159f0008	 ldrne       r0, [pc, #8]
@@ -2789,14 +2781,14 @@
   00090	e12fff1e	 bx          lr
   00094		 |$LN19@PrcmUpdate|
   00094		 |$LN20@PrcmUpdate|
-  00094	00000000	 DCD         |??_C@_1EE@LKHHNJGE@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN@|
+  00094	00000000	 DCD         |??_C@_1EE@DPILIPOJ@?$AA?9?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN@|
   00098		 |$LN21@PrcmUpdate|
   00098	00000000	 DCD         |??_C@_1HO@BDPNINII@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AA?$CI?$AAp?$AAS@|
   0009c		 |$LN22@PrcmUpdate|
   0009c	00000000	 DCD         |dpCurSettings|
   000a0		 |$LN23@PrcmUpdate|
   000a0	00000000	 DCD         |g_bSingleThreaded|
-  000a4		 |$M48976|
+  000a4		 |$M48973|
 
 			 ENDP  ; |_PrcmUpdateDeviceClockSource|
 
@@ -2806,7 +2798,7 @@
 	IMPORT	|OALStall|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49008| DCD	|$LN22@PrcmDevice@5|
+|$T49005| DCD	|$LN22@PrcmDevice@5|
 	DCD	0x40003101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2839,7 +2831,7 @@
 
   00000		 |$LN22@PrcmDevice@5|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M49005|
+  00004		 |$M49002|
   00004	e1a0e000	 mov         lr, r0
 
 ; 290  :     int i;
@@ -2958,7 +2950,7 @@
   000bc	00000000	 DCD         |s_rgDeviceLookupTable|
   000c0		 |$LN28@PrcmDevice@5|
   000c0	00000000	 DCD         |g_bSingleThreaded|
-  000c4		 |$M49006|
+  000c4		 |$M49003|
 
 			 ENDP  ; |_PrcmDeviceWaitForDeviceAccess|
 
@@ -2968,7 +2960,7 @@
 	IMPORT	|GetPrmRegisterSet|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49035| DCD	|$LN16@PrcmDevice@6|
+|$T49032| DCD	|$LN16@PrcmDevice@6|
 	DCD	0x40002c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2999,7 +2991,7 @@
 
   00000		 |$LN16@PrcmDevice@6|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49032|
+  00004		 |$M49029|
   00004	e1a08001	 mov         r8, r1
   00008	e1a01000	 mov         r1, r0
 
@@ -3109,7 +3101,7 @@
   000a8	00000000	 DCD         |s_rgDeviceLookupTable|
   000ac		 |$LN22@PrcmDevice@6|
   000ac	00000000	 DCD         |g_bSingleThreaded|
-  000b0		 |$M49033|
+  000b0		 |$M49030|
 
 			 ENDP  ; |_PrcmDeviceEnableWakeUp|
 
@@ -3118,7 +3110,7 @@
 	IMPORT	|OALWakeupLatency_DeviceEnabled|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49062| DCD	|$LN16@PrcmDevice@7|
+|$T49059| DCD	|$LN16@PrcmDevice@7|
 	DCD	0x40003101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3149,7 +3141,7 @@
 
   00000		 |$LN16@PrcmDevice@7|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M49059|
+  00004		 |$M49056|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -3263,7 +3255,7 @@
   000bc	00000000	 DCD         |s_rgDeviceLookupTable|
   000c0		 |$LN22@PrcmDevice@7|
   000c0	00000000	 DCD         |g_bSingleThreaded|
-  000c4		 |$M49060|
+  000c4		 |$M49057|
 
 			 ENDP  ; |_PrcmDeviceEnableFClock|
 
@@ -3271,7 +3263,7 @@
 	EXPORT	|??_C@_1FC@IOGCKABF@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAI?$AAC?$AAl?$AAo?$AAc?$AAk?$AA?$CI?$AAd?$AAe?$AAv?$AAI?$AAd?$AA?$DN?$AA?$CF@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49089| DCD	|$LN17@PrcmDevice@8|
+|$T49086| DCD	|$LN17@PrcmDevice@8|
 	DCD	0x40003c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3302,7 +3294,7 @@
 
   00000		 |$LN17@PrcmDevice@8|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M49086|
+  00004		 |$M49083|
   00004	e1a07001	 mov         r7, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -3445,7 +3437,7 @@
   000e8	00000000	 DCD         |s_rgDeviceLookupTable|
   000ec		 |$LN23@PrcmDevice@8|
   000ec	00000000	 DCD         |g_bSingleThreaded|
-  000f0		 |$M49087|
+  000f0		 |$M49084|
 
 			 ENDP  ; |_PrcmDeviceEnableIClock|
 
@@ -3453,7 +3445,7 @@
 	EXPORT	|??_C@_1FC@LEEBAIPA@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAI?$AAC?$AAl?$AAo?$AAc?$AAk?$AA_?$AAD?$AAS?$AAS?$AA?$CI?$AAd?$AAe?$AAv@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49116| DCD	|$LN17@PrcmDevice@9|
+|$T49113| DCD	|$LN17@PrcmDevice@9|
 	DCD	0x40004301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3484,7 +3476,7 @@
 
   00000		 |$LN17@PrcmDevice@9|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M49113|
+  00004		 |$M49110|
   00004	e1a06001	 mov         r6, r1
   00008	e1a07000	 mov         r7, r0
 
@@ -3647,7 +3639,7 @@
   00104	00000000	 DCD         |s_rgDeviceLookupTable|
   00108		 |$LN23@PrcmDevice@9|
   00108	00000000	 DCD         |g_bSingleThreaded|
-  0010c		 |$M49114|
+  0010c		 |$M49111|
 
 			 ENDP  ; |_PrcmDeviceEnableIClock_DSS|
 
@@ -3656,7 +3648,7 @@
 	IMPORT	|PrcmClockSetParent|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49139| DCD	|$LN11@PrcmDevice@10|
+|$T49136| DCD	|$LN11@PrcmDevice@10|
 	DCD	0x40002501
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3687,7 +3679,7 @@
 
   00000		 |$LN11@PrcmDevice@10|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M49136|
+  00004		 |$M49133|
   00004	e1a07002	 mov         r7, r2
   00008	e1a04000	 mov         r4, r0
 
@@ -3761,7 +3753,7 @@
   0008c	00000000	 DCD         |dpCurSettings|
   00090		 |$LN17@PrcmDevice@10|
   00090	00000000	 DCD         |g_bSingleThreaded|
-  00094		 |$M49137|
+  00094		 |$M49134|
 
 			 ENDP  ; |_PrcmDeviceSetSourceClock|
 
@@ -3770,7 +3762,7 @@
 	EXPORT	|??_C@_1EO@HBNBPEKM@?$AA?$CL?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAG?$AAe?$AAt?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AAS?$AAt?$AAa?$AAt?$AAe?$AA?$CI?$AAd?$AAe?$AAv?$AAI?$AAd@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49164| DCD	|$LN16@PrcmDevice@11|
+|$T49161| DCD	|$LN16@PrcmDevice@11|
 	DCD	0x40002e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3801,7 +3793,7 @@
 
   00000		 |$LN16@PrcmDevice@11|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49161|
+  00004		 |$M49158|
   00004	e1a07001	 mov         r7, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -3828,7 +3820,7 @@
 ; 989  :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   00038	e3550050	 cmp         r5, #0x50
-  0003c	2a00000d	 bcs         |$cleanUp$48508|
+  0003c	2a00000d	 bcs         |$cleanUp$48505|
 
 ; 990  : 
 ; 991  :     SPECIAL_DEBUG_MESSAGE(PrcmDeviceGetEnabledState, devId)
@@ -3860,7 +3852,7 @@
 ; 999  :     rc = TRUE;
 
   00074	e3a04001	 mov         r4, #1
-  00078		 |$cleanUp$48508|
+  00078		 |$cleanUp$48505|
 
 ; 985  :     BOOL rc = FALSE;
 ; 986  :     if (!g_bSingleThreaded)
@@ -3902,7 +3894,7 @@
   000b0	00000000	 DCD         |dpCurSettings|
   000b4		 |$LN22@PrcmDevice@11|
   000b4	00000000	 DCD         |g_bSingleThreaded|
-  000b8		 |$M49162|
+  000b8		 |$M49159|
 
 			 ENDP  ; |PrcmDeviceGetEnabledState|
 
@@ -3911,7 +3903,7 @@
 	EXPORT	|??_C@_1FA@BNNNADLI@?$AA?$CL?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAG?$AAe?$AAt?$AAA?$AAu?$AAt?$AAo?$AAI?$AAd?$AAl?$AAe?$AAS?$AAt?$AAa?$AAt?$AAe?$AA?$CI?$AAd?$AAe?$AAv?$AAI@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49187| DCD	|$LN14@PrcmDevice@12|
+|$T49184| DCD	|$LN14@PrcmDevice@12|
 	DCD	0x40002a01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3942,7 +3934,7 @@
 
   00000		 |$LN14@PrcmDevice@12|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49184|
+  00004		 |$M49181|
   00004	e1a07001	 mov         r7, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -3971,7 +3963,7 @@
 ; 1028 :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   00038	e3550050	 cmp         r5, #0x50
-  0003c	2a000009	 bcs         |$cleanUp$48524|
+  0003c	2a000009	 bcs         |$cleanUp$48521|
 
 ; 1029 : 
 ; 1030 :     *pbEnable = FALSE;
@@ -3994,7 +3986,7 @@
   0005c	e3530000	 cmp         r3, #0
   00060	15933000	 ldrne       r3, [r3]
   00064	15873000	 strne       r3, [r7]
-  00068		 |$cleanUp$48524|
+  00068		 |$cleanUp$48521|
   00068	e5983000	 ldr         r3, [r8]
 
 ; 1037 : 
@@ -4032,7 +4024,7 @@
   000a0	00000000	 DCD         |dpCurSettings|
   000a4		 |$LN20@PrcmDevice@12|
   000a4	00000000	 DCD         |g_bSingleThreaded|
-  000a8		 |$M49185|
+  000a8		 |$M49182|
 
 			 ENDP  ; |PrcmDeviceGetAutoIdleState|
 
@@ -4041,7 +4033,7 @@
 	EXPORT	|??_C@_1EO@EJAHHGM@?$AA?$CL?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAS?$AAe?$AAt?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AAs?$AA?$CI?$AAd?$AAe?$AAv?$AAI?$AAd@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49211| DCD	|$LN14@PrcmDevice@13|
+|$T49208| DCD	|$LN14@PrcmDevice@13|
 	DCD	0x40003701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4072,7 +4064,7 @@
 
   00000		 |$LN14@PrcmDevice@13|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M49208|
+  00004		 |$M49205|
   00004	e1a08002	 mov         r8, r2
   00008	e1a09001	 mov         r9, r1
   0000c	e1a05000	 mov         r5, r0
@@ -4102,7 +4094,7 @@
 ; 1077 :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   0003c	e3550050	 cmp         r5, #0x50
-  00040	2a000015	 bcs         |$cleanUp$48550|
+  00040	2a000015	 bcs         |$cleanUp$48547|
 
 ; 1078 : 
 ; 1079 :     Lock(Mutex_DeviceClock);
@@ -4142,7 +4134,7 @@
 
   00094	e3a00000	 mov         r0, #0
   00098	eb000000	 bl          Unlock
-  0009c		 |$cleanUp$48550|
+  0009c		 |$cleanUp$48547|
   0009c	e5973000	 ldr         r3, [r7]
 
 ; 1086 :     
@@ -4180,7 +4172,7 @@
   000d4	00000000	 DCD         |dpCurSettings|
   000d8		 |$LN20@PrcmDevice@13|
   000d8	00000000	 DCD         |g_bSingleThreaded|
-  000dc		 |$M49209|
+  000dc		 |$M49206|
 
 			 ENDP  ; |PrcmDeviceSetSourceClocks|
 
@@ -4194,7 +4186,7 @@
 	IMPORT	|InterlockedIncrement|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49241| DCD	|$LN30@PrcmDevice@14|
+|$T49238| DCD	|$LN30@PrcmDevice@14|
 	DCD	0x40006001
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4242,7 +4234,7 @@
 
   00000		 |$LN30@PrcmDevice@14|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M49238|
+  00004		 |$M49235|
   00004	e1a08001	 mov         r8, r1
   00008	e1a06000	 mov         r6, r0
 
@@ -4274,7 +4266,7 @@
 ; 1115 :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   00040	e3560050	 cmp         r6, #0x50
-  00044	2a00003a	 bcs         |$cleanUp$48567|
+  00044	2a00003a	 bcs         |$cleanUp$48564|
 
 ; 1116 :     if (s_rgDeviceLookupTable[devId].piclk == NULL) goto cleanUp;
 
@@ -4284,7 +4276,7 @@
   00054	e084300a	 add         r3, r4, r10
   00058	e5933008	 ldr         r3, [r3, #8]
   0005c	e1b00003	 movs        r0, r3
-  00060	0a000033	 beq         |$cleanUp$48567|
+  00060	0a000033	 beq         |$cleanUp$48564|
 
 ; 1117 : 
 ; 1118 :     if (bEnable != FALSE)
@@ -4355,12 +4347,12 @@
 ; 1136 :     if (bUpdateClocks == TRUE && s_rgDeviceLookupTable[devId].piclk->bVirtual == FALSE)
 
   000bc	e3550001	 cmp         r5, #1
-  000c0	1a00001b	 bne         |$cleanUp$48567|
+  000c0	1a00001b	 bne         |$cleanUp$48564|
   000c4	e084300a	 add         r3, r4, r10
   000c8	e5933008	 ldr         r3, [r3, #8]
   000cc	e593300c	 ldr         r3, [r3, #0xC]
   000d0	e3530000	 cmp         r3, #0
-  000d4	1a000016	 bne         |$cleanUp$48567|
+  000d4	1a000016	 bne         |$cleanUp$48564|
 
 ; 1137 :         {
 ; 1138 :         Lock(Mutex_DeviceClock);
@@ -4420,7 +4412,7 @@
 
   0012c	e3a00000	 mov         r0, #0
   00130	eb000000	 bl          Unlock
-  00134		 |$cleanUp$48567|
+  00134		 |$cleanUp$48564|
   00134	e59b3000	 ldr         r3, [r11]
 
 ; 1154 :         }
@@ -4466,7 +4458,7 @@
   00178	00000000	 DCD         |dpCurSettings|
   0017c		 |$LN39@PrcmDevice@14|
   0017c	00000000	 DCD         |g_bSingleThreaded|
-  00180		 |$M49239|
+  00180		 |$M49236|
 
 			 ENDP  ; |PrcmDeviceEnableIClock|
 
@@ -4477,7 +4469,7 @@
 	IMPORT	|PrcmDomainUpdateRefCount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49275| DCD	|$LN31@PrcmDevice@15|
+|$T49272| DCD	|$LN31@PrcmDevice@15|
 	DCD	0x40006501
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4518,7 +4510,7 @@
 
   00000		 |$LN31@PrcmDevice@15|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M49272|
+  00004		 |$M49269|
   00004	e1a04001	 mov         r4, r1
   00008	e1a06000	 mov         r6, r0
 
@@ -4550,7 +4542,7 @@
 ; 1184 :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   00040	e3560050	 cmp         r6, #0x50
-  00044	2a00003f	 bcs         |$cleanUp$48598|
+  00044	2a00003f	 bcs         |$cleanUp$48595|
 
 ; 1185 :     // update autoidle for device
 ; 1186 :     _PrcmDeviceHwUpdateAutoidle(devId);
@@ -4567,7 +4559,7 @@
   0005c	e08b9002	 add         r9, r11, r2
   00060	e5993004	 ldr         r3, [r9, #4]
   00064	e1b00003	 movs        r0, r3
-  00068	0a000036	 beq         |$cleanUp$48598|
+  00068	0a000036	 beq         |$cleanUp$48595|
 
 ; 1189 : 
 ; 1190 :     if (bEnable != FALSE)
@@ -4638,13 +4630,13 @@
 ; 1208 :     if (bUpdateClocks == TRUE && s_rgDeviceLookupTable[devId].pfclk->bVirtual == FALSE)
 
   000c4	e3550001	 cmp         r5, #1
-  000c8	1a00001e	 bne         |$cleanUp$48598|
+  000c8	1a00001e	 bne         |$cleanUp$48595|
   000cc	e5993004	 ldr         r3, [r9, #4]
   000d0	e593300c	 ldr         r3, [r3, #0xC]
   000d4	e3530000	 cmp         r3, #0
-  000d8	1a00001a	 bne         |$cleanUp$48598|
+  000d8	1a00001a	 bne         |$cleanUp$48595|
 
-; 1209 :         {
+; 1209 : 	{
 ; 1210 :         Lock(Mutex_DeviceClock);
 
   000dc	e3a00000	 mov         r0, #0
@@ -4654,7 +4646,7 @@
 
   000e4	e3540000	 cmp         r4, #0
 
-; 1212 :             {
+; 1212 : 		{
 ; 1213 :             SPECIAL_DEBUG_MESSAGE2(_PrcmUpdateDeviceClockSource enable, devId, bEnable)
 ; 1214 :             _PrcmUpdateDeviceClockSource(s_rgDeviceLookupTable[devId].pSrcClocks, bEnable);
 
@@ -4662,7 +4654,7 @@
   000ec	11a01004	 movne       r1, r4
   000f0	1b000000	 blne        _PrcmUpdateDeviceClockSource
 
-; 1215 :             }
+; 1215 : 		}
 ; 1216 :         
 ; 1217 :         if (s_rgClockManagementRoutines[s_rgDeviceLookupTable[devId].powerDomain].PrcmDeviceEnableFClock)
 
@@ -4674,7 +4666,7 @@
   00108	e3530000	 cmp         r3, #0
   0010c	0a000004	 beq         |$LN3@PrcmDevice@15|
 
-; 1218 :             {
+; 1218 : 		{
 ; 1219 :             rc = s_rgClockManagementRoutines[s_rgDeviceLookupTable[devId].powerDomain].PrcmDeviceEnableFClock(devId, bEnable);
 
   00110	e1a01004	 mov         r1, r4
@@ -4684,13 +4676,13 @@
   00120	e1a07000	 mov         r7, r0
   00124		 |$LN3@PrcmDevice@15|
 
-; 1220 :             }
+; 1220 : 		}
 ; 1221 :         
 ; 1222 :         if (!bEnable)
 
   00124	e3540000	 cmp         r4, #0
 
-; 1223 :             {
+; 1223 : 		{
 ; 1224 :             SPECIAL_DEBUG_MESSAGE2(_PrcmUpdateDeviceClockSource disable, devId, bEnable)
 ; 1225 :             _PrcmUpdateDeviceClockSource(s_rgDeviceLookupTable[devId].pSrcClocks, bEnable);
 
@@ -4698,7 +4690,7 @@
   0012c	03a01000	 moveq       r1, #0
   00130	0b000000	 bleq        _PrcmUpdateDeviceClockSource
 
-; 1226 :             }
+; 1226 : 		}
 ; 1227 :         PrcmDomainUpdateRefCount(s_rgDeviceLookupTable[devId].powerDomain, bEnable);
 
   00134	e59b0000	 ldr         r0, [r11]
@@ -4709,10 +4701,10 @@
 
   00140	e3a00000	 mov         r0, #0
   00144	eb000000	 bl          Unlock
-  00148		 |$cleanUp$48598|
+  00148		 |$cleanUp$48595|
   00148	e59a3000	 ldr         r3, [r10]
 
-; 1229 :         }
+; 1229 : 	}
 ; 1230 : 
 ; 1231 :     SPECIAL_DEBUG_MESSAGE_DONE(PrcmDeviceEnableFClock, devId)
 ; 1232 : 
@@ -4755,7 +4747,7 @@
   0018c	00000000	 DCD         |dpCurSettings|
   00190		 |$LN40@PrcmDevice@15|
   00190	00000000	 DCD         |g_bSingleThreaded|
-  00194		 |$M49273|
+  00194		 |$M49270|
 
 			 ENDP  ; |PrcmDeviceEnableFClock|
 
@@ -4763,7 +4755,7 @@
 	IMPORT	|OALMux_UpdateOnDeviceStateChange|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49301| DCD	|$LN9@PrcmDevice@16|
+|$T49298| DCD	|$LN9@PrcmDevice@16|
 	DCD	0x40001b01
 ; Function compile flags: /Ogspy
 
@@ -4775,7 +4767,7 @@
 
   00000		 |$LN9@PrcmDevice@16|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M49298|
+  00004		 |$M49295|
   00004	e1b06001	 movs        r6, r1
   00008	e1a07000	 mov         r7, r0
 
@@ -4831,14 +4823,14 @@
 
   00064	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00068	e12fff1e	 bx          lr
-  0006c		 |$M49299|
+  0006c		 |$M49296|
 
 			 ENDP  ; |PrcmDeviceEnableClocks|
 
 	EXPORT	|PrcmDeviceEnableClocksKernel|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49318| DCD	|$LN9@PrcmDevice@17|
+|$T49315| DCD	|$LN9@PrcmDevice@17|
 	DCD	0x40002101
 ; Function compile flags: /Ogspy
 
@@ -4850,7 +4842,7 @@
 
   00000		 |$LN9@PrcmDevice@17|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49315|
+  00004		 |$M49312|
   00004	e1b07001	 movs        r7, r1
   00008	e1a08000	 mov         r8, r0
 
@@ -4913,7 +4905,7 @@
   00080		 |$LN10@PrcmDevice@17|
   00080		 |$LN11@PrcmDevice@17|
   00080	00000000	 DCD         |g_bSingleThreaded|
-  00084		 |$M49316|
+  00084		 |$M49313|
 
 			 ENDP  ; |PrcmDeviceEnableClocksKernel|
 
@@ -4922,7 +4914,7 @@
 	EXPORT	|??_C@_1FE@LLCMNDJM@?$AA?$CL?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAA?$AAu?$AAt?$AAo?$AAI?$AAd?$AAl?$AAe?$AA?$CI?$AAd?$AAe?$AAv?$AAI?$AAd?$AA?$DN@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49337| DCD	|$LN15@PrcmDevice@18|
+|$T49334| DCD	|$LN15@PrcmDevice@18|
 	DCD	0x40003b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4953,7 +4945,7 @@
 
   00000		 |$LN15@PrcmDevice@18|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M49334|
+  00004		 |$M49331|
   00004	e1a0a001	 mov         r10, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -4983,7 +4975,7 @@
 ; 1315 :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   0003c	e3540050	 cmp         r4, #0x50
-  00040	2a000019	 bcs         |$cleanUp$48646|
+  00040	2a000019	 bcs         |$cleanUp$48643|
 
 ; 1316 :     if (s_rgDeviceLookupTable[devId].pautoidle == NULL) goto cleanUp;
 
@@ -4993,7 +4985,7 @@
   00050	e0883007	 add         r3, r8, r7
   00054	e5933014	 ldr         r3, [r3, #0x14]
   00058	e3530000	 cmp         r3, #0
-  0005c	0a000012	 beq         |$cleanUp$48646|
+  0005c	0a000012	 beq         |$cleanUp$48643|
 
 ; 1317 : 
 ; 1318 :     if (s_rgClockManagementRoutines[s_rgDeviceLookupTable[devId].powerDomain].PrcmDeviceEnableAutoIdle)
@@ -5003,7 +4995,7 @@
   00068	e0833202	 add         r3, r3, r2, lsl #4
   0006c	e5933008	 ldr         r3, [r3, #8]
   00070	e3530000	 cmp         r3, #0
-  00074	0a00000c	 beq         |$cleanUp$48646|
+  00074	0a00000c	 beq         |$cleanUp$48643|
 
 ; 1319 :         {
 ; 1320 :         Lock(Mutex_DeviceClock);
@@ -5027,7 +5019,7 @@
 
   000a4	e3a00000	 mov         r0, #0
   000a8	eb000000	 bl          Unlock
-  000ac		 |$cleanUp$48646|
+  000ac		 |$cleanUp$48643|
   000ac	e5993000	 ldr         r3, [r9]
 
 ; 1323 :         }
@@ -5066,7 +5058,7 @@
   000e4	00000000	 DCD         |dpCurSettings|
   000e8		 |$LN21@PrcmDevice@18|
   000e8	00000000	 DCD         |g_bSingleThreaded|
-  000ec		 |$M49335|
+  000ec		 |$M49332|
 
 			 ENDP  ; |PrcmDeviceEnableAutoIdle|
 
@@ -5076,7 +5068,7 @@
 	IMPORT	|DomainGetDeviceContextState|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49359| DCD	|$LN11@PrcmDevice@19|
+|$T49356| DCD	|$LN11@PrcmDevice@19|
 	DCD	0x40002301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5107,7 +5099,7 @@
 
   00000		 |$LN11@PrcmDevice@19|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M49356|
+  00004		 |$M49353|
   00004	e1a07001	 mov         r7, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -5126,7 +5118,7 @@
 ; 1352 :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   00028	e3550050	 cmp         r5, #0x50
-  0002c	2a00000a	 bcs         |$cleanUp$48662|
+  0002c	2a00000a	 bcs         |$cleanUp$48659|
 
 ; 1353 : 
 ; 1354 :     if (s_rgDeviceLookupTable[devId].piclk != NULL)
@@ -5136,7 +5128,7 @@
   00038	e0823100	 add         r3, r2, r0, lsl #2
   0003c	e5933008	 ldr         r3, [r3, #8]
   00040	e3530000	 cmp         r3, #0
-  00044	0a000004	 beq         |$cleanUp$48662|
+  00044	0a000004	 beq         |$cleanUp$48659|
 
 ; 1355 :         {
 ; 1356 :         rc = DomainGetDeviceContextState(s_rgDeviceLookupTable[devId].powerDomain,
@@ -5149,7 +5141,7 @@
   00050	e1a01003	 mov         r1, r3
   00054	eb000000	 bl          DomainGetDeviceContextState
   00058	e1a04000	 mov         r4, r0
-  0005c		 |$cleanUp$48662|
+  0005c		 |$cleanUp$48659|
   0005c	e5963440	 ldr         r3, [r6, #0x440]
 
 ; 1360 :         }
@@ -5177,7 +5169,7 @@
   00084	00000000	 DCD         |??_C@_1EO@NBCGFJHE@?$AA?$CL?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAG?$AAe?$AAt?$AAC?$AAo?$AAn?$AAt?$AAe?$AAx?$AAt?$AAS?$AAt?$AAa?$AAt?$AAe?$AA?$CI?$AAd?$AAe?$AAv?$AAI?$AAd@|
   00088		 |$LN16@PrcmDevice@19|
   00088	00000000	 DCD         |dpCurSettings|
-  0008c		 |$M49357|
+  0008c		 |$M49354|
 
 			 ENDP  ; |PrcmDeviceGetContextState|
 
@@ -5187,7 +5179,7 @@
 	IMPORT	|PrcmClockGetParentClockRefcount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49384| DCD	|$LN19@PrcmDevice@20|
+|$T49381| DCD	|$LN19@PrcmDevice@20|
 	DCD	0x40003c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5219,7 +5211,7 @@
 
   00000		 |$LN19@PrcmDevice@20|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M49381|
+  00004		 |$M49378|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -5249,7 +5241,7 @@
 ; 1387 :     if (devId >= OMAP_DEVICE_GENERIC) goto cleanUp;
 
   00038	e3550050	 cmp         r5, #0x50
-  0003c	2a00001b	 bcs         |$cleanUp$48678|
+  0003c	2a00001b	 bcs         |$cleanUp$48675|
 
 ; 1388 :     
 ; 1389 :     if (s_rgDeviceLookupTable[devId].pSrcClocks == NULL) goto cleanUp;
@@ -5259,7 +5251,7 @@
   00048	e0829103	 add         r9, r2, r3, lsl #2
   0004c	e5993018	 ldr         r3, [r9, #0x18]
   00050	e3530000	 cmp         r3, #0
-  00054	0a000015	 beq         |$cleanUp$48678|
+  00054	0a000015	 beq         |$cleanUp$48675|
 
 ; 1390 :     
 ; 1391 :     pInfo->count = s_rgDeviceLookupTable[devId].pSrcClocks->size;
@@ -5309,7 +5301,7 @@
 ; 1402 :     rc = TRUE;
 
   000ac	e3a04001	 mov         r4, #1
-  000b0		 |$cleanUp$48678|
+  000b0		 |$cleanUp$48675|
 
 ; 1380 :     UINT i;
 ; 1381 :     BOOL rc = FALSE;
@@ -5352,7 +5344,7 @@
   000e8	00000000	 DCD         |dpCurSettings|
   000ec		 |$LN25@PrcmDevice@20|
   000ec	00000000	 DCD         |g_bSingleThreaded|
-  000f0		 |$M49382|
+  000f0		 |$M49379|
 
 			 ENDP  ; |PrcmDeviceGetSourceClockInfo|
 
@@ -5361,8 +5353,8 @@
 	EXPORT	|??_C@_1CM@PFIEEMDN@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49410| DCD	|$LN24@DeviceInit|
-	DCD	0x40004301
+|$T49403| DCD	|$LN20@DeviceInit|
+	DCD	0x40003b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CM@JHENNHB@?$AA?9?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "-"
@@ -5385,9 +5377,9 @@
 
 ; 1415 : {
 
-  00000		 |$LN24@DeviceInit|
-  00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49407|
+  00000		 |$LN20@DeviceInit|
+  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
+  00004		 |$M49400|
 
 ; 1416 :     unsigned int i;
 ; 1417 :     OMAP_CM_REGS *pPrcmCm;
@@ -5395,137 +5387,132 @@
 ; 1419 :     
 ; 1420 :     if (!g_bSingleThreaded)
 
-  00004	e59f70fc	 ldr         r7, [pc, #0xFC]
-  00008	e59f60f4	 ldr         r6, [pc, #0xF4]
-  0000c	e5973000	 ldr         r3, [r7]
-  00010	e3530000	 cmp         r3, #0
-  00014	1a000003	 bne         |$LN16@DeviceInit|
+  00004	e59f60dc	 ldr         r6, [pc, #0xDC]
+  00008	e5963000	 ldr         r3, [r6]
+  0000c	e3530000	 cmp         r3, #0
 
-; 1421 :         OALMSG(OAL_FUNC, (L"+DeviceInitialize()\r\n"));
+; 1421 :         OALMSG(1, (L"+DeviceInitialize()\r\n"));
 
-  00018	e5963440	 ldr         r3, [r6, #0x440]
-  0001c	e3130004	 tst         r3, #4
-  00020	159f00d8	 ldrne       r0, [pc, #0xD8]
-  00024	1b000000	 blne        NKDbgPrintfW
-  00028		 |$LN16@DeviceInit|
+  00010	059f00cc	 ldreq       r0, [pc, #0xCC]
+  00014	0b000000	 bleq        NKDbgPrintfW
 
 ; 1422 : 
 ; 1423 :     // iterate through all devices and update its state information
 ; 1424 :     for (i = 0; i < OMAP_DEVICE_COUNT - 1; ++i)
 
-  00028	e59f50cc	 ldr         r5, [pc, #0xCC]
-  0002c	e3a04000	 mov         r4, #0
-  00030		 |$LL12@DeviceInit|
+  00018	e59f50c0	 ldr         r5, [pc, #0xC0]
+  0001c	e3a04000	 mov         r4, #0
+  00020		 |$LL12@DeviceInit|
 
-; 1425 :         {
+; 1425 : 	{
 ; 1426 :         pPrcmCm = GetCmRegisterSet(s_rgDeviceLookupTable[i].powerDomain);
 
-  00030	e5950000	 ldr         r0, [r5]
-  00034	eb000000	 bl          GetCmRegisterSet
+  00020	e5950000	 ldr         r0, [r5]
+  00024	eb000000	 bl          GetCmRegisterSet
 
 ; 1427 : 
 ; 1428 :         // update autoidle information
 ; 1429 :         if (s_rgDeviceLookupTable[i].pautoidle != NULL)
 
-  00038	e5953014	 ldr         r3, [r5, #0x14]
-  0003c	e1a08000	 mov         r8, r0
-  00040	e1b02003	 movs        r2, r3
+  00028	e5953014	 ldr         r3, [r5, #0x14]
+  0002c	e1a07000	 mov         r7, r0
+  00030	e1b02003	 movs        r2, r3
 
-; 1430 :             {
+; 1430 : 		{
 ; 1431 :             preg = (volatile unsigned int*)((UCHAR*)pPrcmCm + s_rgDeviceLookupTable[i].pautoidle->offset);
 
-  00044	15923008	 ldrne       r3, [r2, #8]
+  00034	15923008	 ldrne       r3, [r2, #8]
 
 ; 1432 :             if (INREG32(preg) & s_rgDeviceLookupTable[i].pautoidle->mask)
 
-  00048	15922004	 ldrne       r2, [r2, #4]
-  0004c	17933008	 ldrne       r3, [r3, +r8]
-  00050	11130002	 tstne       r3, r2
+  00038	15922004	 ldrne       r2, [r2, #4]
+  0003c	17933007	 ldrne       r3, [r3, +r7]
+  00040	11130002	 tstne       r3, r2
 
-; 1433 :                 {
+; 1433 : 			{
 ; 1434 :                 PrcmDeviceEnableAutoIdle(i, TRUE);
 
-  00054	13a01001	 movne       r1, #1
-  00058	11a00004	 movne       r0, r4
-  0005c	1b000000	 blne        PrcmDeviceEnableAutoIdle
+  00044	13a01001	 movne       r1, #1
+  00048	11a00004	 movne       r0, r4
+  0004c	1b000000	 blne        PrcmDeviceEnableAutoIdle
 
-; 1435 :                 }            
-; 1436 :             }
+; 1435 : 			}            
+; 1436 : 		}
 ; 1437 :         
 ; 1438 :         //Avoid reference counting DSS device to keep bootloader screen on all the way
 ; 1439 :         //to the display driver initialization
 ; 1440 :         if(i == OMAP_DEVICE_DSS || i == OMAP_DEVICE_DSS1 || i == OMAP_DEVICE_DSS2)
 
-  00060	e354003f	 cmp         r4, #0x3F
-  00064	0a000015	 beq         |$LN11@DeviceInit|
-  00068	e3540040	 cmp         r4, #0x40
-  0006c	0a000013	 beq         |$LN11@DeviceInit|
-  00070	e3540041	 cmp         r4, #0x41
-  00074	0a000011	 beq         |$LN11@DeviceInit|
+  00050	e354003f	 cmp         r4, #0x3F
+  00054	0a000015	 beq         |$LN11@DeviceInit|
+  00058	e3540040	 cmp         r4, #0x40
+  0005c	0a000013	 beq         |$LN11@DeviceInit|
+  00060	e3540041	 cmp         r4, #0x41
+  00064	0a000011	 beq         |$LN11@DeviceInit|
 
-; 1441 :             {
+; 1441 : 		{
 ; 1442 :             continue;
-; 1443 :             }
+; 1443 : 		}
 ; 1444 : 
 ; 1445 :         // update functional clock information
 ; 1446 :         if (s_rgDeviceLookupTable[i].pfclk != NULL)
 
-  00078	e5953004	 ldr         r3, [r5, #4]
-  0007c	e1b02003	 movs        r2, r3
+  00068	e5953004	 ldr         r3, [r5, #4]
+  0006c	e1b02003	 movs        r2, r3
 
-; 1447 :             {
+; 1447 : 		{
 ; 1448 :             preg = (volatile unsigned int*)((UCHAR*)pPrcmCm + s_rgDeviceLookupTable[i].pfclk->offset);
 
-  00080	15923008	 ldrne       r3, [r2, #8]
+  00070	15923008	 ldrne       r3, [r2, #8]
 
 ; 1449 :             if (INREG32(preg) & s_rgDeviceLookupTable[i].pfclk->mask)
 
-  00084	15922004	 ldrne       r2, [r2, #4]
-  00088	17933008	 ldrne       r3, [r3, +r8]
-  0008c	11130002	 tstne       r3, r2
+  00074	15922004	 ldrne       r2, [r2, #4]
+  00078	17933007	 ldrne       r3, [r3, +r7]
+  0007c	11130002	 tstne       r3, r2
 
-; 1450 :                 {
+; 1450 : 			{
 ; 1451 :                 PrcmDeviceEnableFClock(i, TRUE);
 
-  00090	13a01001	 movne       r1, #1
-  00094	11a00004	 movne       r0, r4
-  00098	1b000000	 blne        PrcmDeviceEnableFClock
+  00080	13a01001	 movne       r1, #1
+  00084	11a00004	 movne       r0, r4
+  00088	1b000000	 blne        PrcmDeviceEnableFClock
 
-; 1452 :                 }            
-; 1453 :             }
+; 1452 : 			}            
+; 1453 : 		}
 ; 1454 : 
 ; 1455 :         // update inteface clock information
 ; 1456 :         if (s_rgDeviceLookupTable[i].piclk != NULL)
 
-  0009c	e5953008	 ldr         r3, [r5, #8]
-  000a0	e1b02003	 movs        r2, r3
+  0008c	e5953008	 ldr         r3, [r5, #8]
+  00090	e1b02003	 movs        r2, r3
 
-; 1457 :             {
+; 1457 : 		{
 ; 1458 :             preg = (volatile unsigned int*)((UCHAR*)pPrcmCm + s_rgDeviceLookupTable[i].piclk->offset);
 
-  000a4	15923008	 ldrne       r3, [r2, #8]
+  00094	15923008	 ldrne       r3, [r2, #8]
 
 ; 1459 :             if (INREG32(preg) & s_rgDeviceLookupTable[i].piclk->mask)
 
-  000a8	15922004	 ldrne       r2, [r2, #4]
-  000ac	17933008	 ldrne       r3, [r3, +r8]
-  000b0	11130002	 tstne       r3, r2
+  00098	15922004	 ldrne       r2, [r2, #4]
+  0009c	17933007	 ldrne       r3, [r3, +r7]
+  000a0	11130002	 tstne       r3, r2
 
-; 1460 :                 {
+; 1460 : 			{
 ; 1461 :                 PrcmDeviceEnableIClock(i, TRUE);
 
-  000b4	13a01001	 movne       r1, #1
-  000b8	11a00004	 movne       r0, r4
-  000bc	1b000000	 blne        PrcmDeviceEnableIClock
-  000c0		 |$LN11@DeviceInit|
-  000c0	e2844001	 add         r4, r4, #1
-  000c4	e3540050	 cmp         r4, #0x50
-  000c8	e285501c	 add         r5, r5, #0x1C
-  000cc	3affffd7	 bcc         |$LL12@DeviceInit|
+  000a4	13a01001	 movne       r1, #1
+  000a8	11a00004	 movne       r0, r4
+  000ac	1b000000	 blne        PrcmDeviceEnableIClock
+  000b0		 |$LN11@DeviceInit|
+  000b0	e2844001	 add         r4, r4, #1
+  000b4	e3540050	 cmp         r4, #0x50
+  000b8	e285501c	 add         r5, r5, #0x1C
+  000bc	3affffd7	 bcc         |$LL12@DeviceInit|
 
-; 1462 :                 }            
-; 1463 :             }
-; 1464 :         }
+; 1462 : 			}            
+; 1463 : 		}
+; 1464 : 	}
 ; 1465 : 
 ; 1466 : #if 0
 ; 1467 :     {   // Enable the save and restore mechanism for the USB Host device
@@ -5551,39 +5538,33 @@
 ; 1487 : #endif
 ; 1488 :     if (!g_bSingleThreaded)
 
-  000d0	e5973000	 ldr         r3, [r7]
-  000d4	e3530000	 cmp         r3, #0
-  000d8	1a000003	 bne         |$LN18@DeviceInit|
+  000c0	e5963000	 ldr         r3, [r6]
+  000c4	e3530000	 cmp         r3, #0
 
-; 1489 :         OALMSG(OAL_FUNC, (L"-DeviceInitialize()\r\n"));
+; 1489 :         OALMSG(1, (L"-DeviceInitialize()\r\n"));
 
-  000dc	e5963440	 ldr         r3, [r6, #0x440]
-  000e0	e3130004	 tst         r3, #4
-  000e4	159f000c	 ldrne       r0, [pc, #0xC]
-  000e8	1b000000	 blne        NKDbgPrintfW
-  000ec		 |$LN18@DeviceInit|
+  000c8	059f000c	 ldreq       r0, [pc, #0xC]
+  000cc	0b000000	 bleq        NKDbgPrintfW
 
 ; 1490 : 
 ; 1491 :     return TRUE;
 
-  000ec	e3a00001	 mov         r0, #1
+  000d0	e3a00001	 mov         r0, #1
 
 ; 1492 : }
 
-  000f0	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
-  000f4	e12fff1e	 bx          lr
-  000f8		 |$LN25@DeviceInit|
-  000f8		 |$LN26@DeviceInit|
-  000f8	00000000	 DCD         |??_C@_1CM@JHENNHB@?$AA?9?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  000fc		 |$LN27@DeviceInit|
-  000fc	00000000	 DCD         |s_rgDeviceLookupTable|
-  00100		 |$LN28@DeviceInit|
-  00100	00000000	 DCD         |??_C@_1CM@PFIEEMDN@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  00104		 |$LN29@DeviceInit|
-  00104	00000000	 DCD         |dpCurSettings|
-  00108		 |$LN30@DeviceInit|
-  00108	00000000	 DCD         |g_bSingleThreaded|
-  0010c		 |$M49408|
+  000d4	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  000d8	e12fff1e	 bx          lr
+  000dc		 |$LN21@DeviceInit|
+  000dc		 |$LN22@DeviceInit|
+  000dc	00000000	 DCD         |??_C@_1CM@JHENNHB@?$AA?9?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  000e0		 |$LN23@DeviceInit|
+  000e0	00000000	 DCD         |s_rgDeviceLookupTable|
+  000e4		 |$LN24@DeviceInit|
+  000e4	00000000	 DCD         |??_C@_1CM@PFIEEMDN@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  000e8		 |$LN25@DeviceInit|
+  000e8	00000000	 DCD         |g_bSingleThreaded|
+  000ec		 |$M49401|
 
 			 ENDP  ; |DeviceInitialize|
 
@@ -5592,7 +5573,7 @@
 	IMPORT	|g_pPrcmCm|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49446| DCD	|$LN38@PrcmDevice@21|
+|$T49438| DCD	|$LN38@PrcmDevice@21|
 	DCD	0x40005701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5623,7 +5604,7 @@
 
   00000		 |$LN38@PrcmDevice@21|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M49443|
+  00004		 |$M49435|
   00004	e1a07001	 mov         r7, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -5766,7 +5747,7 @@
   000b0	e1a01007	 mov         r1, r7
   000b4	e1a00005	 mov         r0, r5
   000b8	eb000000	 bl          OALWakeupLatency_DeviceEnabled
-  000bc		 |$cleanUp$48307|
+  000bc		 |$cleanUp$48304|
   000bc	e59b3000	 ldr         r3, [r11]
 
 ; 498  : 
@@ -5851,7 +5832,7 @@
 
 ; 486  :                         goto cleanUp;
 
-  00140	eaffffdd	 b           |$cleanUp$48307|
+  00140	eaffffdd	 b           |$cleanUp$48304|
   00144		 |$LN39@PrcmDevice@21|
   00144		 |$LN40@PrcmDevice@21|
   00144	00000000	 DCD         |??_C@_1EI@GJAPLPDB@?$AA?9?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAF?$AAC?$AAl?$AAo?$AAc?$AAk?$AA_?$AAD?$AAS?$AAS?$AA?$CI?$AA?$CJ?$AA?$DN?$AA?$CF@|
@@ -5865,7 +5846,7 @@
   00154	00000000	 DCD         |s_rgDeviceLookupTable|
   00158		 |$LN45@PrcmDevice@21|
   00158	00000000	 DCD         |g_bSingleThreaded|
-  0015c		 |$M49444|
+  0015c		 |$M49436|
 
 			 ENDP  ; |_PrcmDeviceEnableFClock_DSS|
 
@@ -5873,7 +5854,7 @@
 	EXPORT	|??_C@_1FC@KOILFLNM@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAF?$AAC?$AAl?$AAo?$AAc?$AAk?$AA_?$AAU?$AAS?$AAB?$AA?$CI?$AAd?$AAe?$AAv@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49471| DCD	|$LN18@PrcmDevice@22|
+|$T49463| DCD	|$LN18@PrcmDevice@22|
 	DCD	0x40003c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5904,7 +5885,7 @@
 
   00000		 |$LN18@PrcmDevice@22|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M49468|
+  00004		 |$M49460|
   00004	e1a06001	 mov         r6, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -5941,11 +5922,11 @@
 
   00040	e3540049	 cmp         r4, #0x49
   00044	e0828103	 add         r8, r2, r3, lsl #2
-  00048	3a000018	 bcc         |$cleanUp$48330|
+  00048	3a000018	 bcc         |$cleanUp$48327|
   0004c	e354004a	 cmp         r4, #0x4A
   00050	9a00000f	 bls         |$LN5@PrcmDevice@22|
   00054	e354004d	 cmp         r4, #0x4D
-  00058	8a000014	 bhi         |$cleanUp$48330|
+  00058	8a000014	 bhi         |$cleanUp$48327|
 
 ; 534  :             break; 
 ; 535  : 
@@ -6013,7 +5994,7 @@
 ; 558  :     rc = TRUE;
 
   000ac	e3a05001	 mov         r5, #1
-  000b0		 |$cleanUp$48330|
+  000b0		 |$cleanUp$48327|
   000b0	e5993000	 ldr         r3, [r9]
 
 ; 559  : 
@@ -6051,7 +6032,7 @@
   000e8	00000000	 DCD         |dpCurSettings|
   000ec		 |$LN24@PrcmDevice@22|
   000ec	00000000	 DCD         |g_bSingleThreaded|
-  000f0		 |$M49469|
+  000f0		 |$M49461|
 
 			 ENDP  ; |_PrcmDeviceEnableFClock_USB|
 
@@ -6059,7 +6040,7 @@
 	EXPORT	|??_C@_1FC@ECCIEPHO@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAI?$AAC?$AAl?$AAo?$AAc?$AAk?$AA_?$AAU?$AAS?$AAB?$AA?$CI?$AAd?$AAe?$AAv@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49494| DCD	|$LN17@PrcmDevice@23|
+|$T49486| DCD	|$LN17@PrcmDevice@23|
 	DCD	0x40002b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -6090,7 +6071,7 @@
 
   00000		 |$LN17@PrcmDevice@23|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M49491|
+  00004		 |$M49483|
   00004	e1a06001	 mov         r6, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -6122,11 +6103,11 @@
 ; 702  :     switch (devId)
 
   00038	e3540049	 cmp         r4, #0x49
-  0003c	3a00000b	 bcc         |$cleanUp$48410|
+  0003c	3a00000b	 bcc         |$cleanUp$48407|
   00040	e354004a	 cmp         r4, #0x4A
   00044	9a000005	 bls         |$LN4@PrcmDevice@23|
   00048	e354004d	 cmp         r4, #0x4D
-  0004c	8a000007	 bhi         |$cleanUp$48410|
+  0004c	8a000007	 bhi         |$cleanUp$48407|
 
 ; 708  :             break; 
 ; 709  : 
@@ -6173,7 +6154,7 @@
 ; 730  :     rc = TRUE;
 
   0006c	e3a05001	 mov         r5, #1
-  00070		 |$cleanUp$48410|
+  00070		 |$cleanUp$48407|
 
 ; 693  :     BOOL rc = FALSE;
 ; 694  :     DeviceLookupEntry const *pEntry;
@@ -6214,7 +6195,7 @@
   000a4	00000000	 DCD         |dpCurSettings|
   000a8		 |$LN22@PrcmDevice@23|
   000a8	00000000	 DCD         |g_bSingleThreaded|
-  000ac		 |$M49492|
+  000ac		 |$M49484|
 
 			 ENDP  ; |_PrcmDeviceEnableIClock_USB|
 
@@ -6222,7 +6203,7 @@
 	EXPORT	|??_C@_1FG@OBINGANC@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAS?$AAe?$AAt?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AA_?$AAD?$AAS?$AAS?$AA?$CI?$AAd@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49528| DCD	|$LN36@PrcmDevice@24|
+|$T49520| DCD	|$LN36@PrcmDevice@24|
 	DCD	0x40005b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -6255,7 +6236,7 @@
 
   00000		 |$LN36@PrcmDevice@24|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M49525|
+  00004		 |$M49517|
   00004	e1a07002	 mov         r7, r2
   00008	e1a09001	 mov         r9, r1
   0000c	e1a04000	 mov         r4, r0
@@ -6298,7 +6279,7 @@
 ; 797  :     if (devId != OMAP_DEVICE_DSS) goto cleanUp;
 
   0004c	e354003f	 cmp         r4, #0x3F
-  00050	1a000033	 bne         |$cleanUp$48447|
+  00050	1a000033	 bne         |$cleanUp$48444|
 
 ; 798  : 
 ; 799  :     pSrcClocks = s_rgDeviceLookupTable[devId].pSrcClocks;
@@ -6323,7 +6304,7 @@
   00074	e3530007	 cmp         r3, #7
   00078	0a000003	 beq         |$LN15@PrcmDevice@24|
   0007c	e353001a	 cmp         r3, #0x1A
-  00080	1a000027	 bne         |$cleanUp$48447|
+  00080	1a000027	 bne         |$cleanUp$48444|
 
 ; 807  :                 break;
 ; 808  : 
@@ -6355,7 +6336,7 @@
   00094	e3530007	 cmp         r3, #7
   00098	0a000003	 beq         |$LN10@PrcmDevice@24|
   0009c	e353001a	 cmp         r3, #0x1A
-  000a0	1a00001f	 bne         |$cleanUp$48447|
+  000a0	1a00001f	 bne         |$cleanUp$48444|
 
 ; 821  :                 break;
 ; 822  : 
@@ -6419,7 +6400,7 @@
 ; 839  :     if (i > 0)
 
   000e8	e3520000	 cmp         r2, #0
-  000ec	0a00000c	 beq         |$cleanUp$48447|
+  000ec	0a00000c	 beq         |$cleanUp$48444|
 
 ; 840  : 	    {
 ; 841  :         if (s_rgDeviceLookupTable[devId].pfclk->refCount > 0)
@@ -6456,7 +6437,7 @@
 ; 849  :     	rc = TRUE;
 
   00120	e3a05001	 mov         r5, #1
-  00124		 |$cleanUp$48447|
+  00124		 |$cleanUp$48444|
 
 ; 782  :     UINT i;
 ; 783  : //    UINT val;
@@ -6554,13 +6535,13 @@
   00164	00000000	 DCD         |s_rgDeviceLookupTable|
   00168		 |$LN42@PrcmDevice@24|
   00168	00000000	 DCD         |??_C@_1FG@OBINGANC@?$AA?$CL?$AA_?$AAP?$AAr?$AAc?$AAm?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAS?$AAe?$AAt?$AAS?$AAo?$AAu?$AAr?$AAc?$AAe?$AAC?$AAl?$AAo?$AAc?$AAk?$AA_?$AAD?$AAS?$AAS?$AA?$CI?$AAd@|
-  0016c		 |$M49526|
+  0016c		 |$M49518|
 
 			 ENDP  ; |_PrcmDeviceSetSourceClock_DSS|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49549| DCD	|$LN17@PrcmDevice@25|
+|$T49541| DCD	|$LN17@PrcmDevice@25|
 	DCD	0x40003001
 ; Function compile flags: /Ogspy
 
@@ -6572,7 +6553,7 @@
 
   00000		 |$LN17@PrcmDevice@25|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M49546|
+  00004		 |$M49538|
   00004	e1a05002	 mov         r5, r2
   00008	e1a04000	 mov         r4, r0
 
@@ -6588,7 +6569,7 @@
 ; 924  :     if (count > 1) goto cleanUp;
 
   00010	e3510001	 cmp         r1, #1
-  00014	8a000026	 bhi         |$cleanUp$48484|
+  00014	8a000026	 bhi         |$cleanUp$48481|
 
 ; 925  :     if (rgClocks[0] != kUSBHOST_120M_FCLK && rgClocks[0] != kUSBHOST_48M_FCLK) goto cleanUp;
 
@@ -6596,7 +6577,7 @@
   0001c	e35e0043	 cmp         lr, #0x43
   00020	0a000001	 beq         |$LN10@PrcmDevice@25|
   00024	e35e003e	 cmp         lr, #0x3E
-  00028	1a000021	 bne         |$cleanUp$48484|
+  00028	1a000021	 bne         |$cleanUp$48481|
   0002c		 |$LN10@PrcmDevice@25|
 
 ; 926  : 
@@ -6610,9 +6591,9 @@
 
   00034	e354004b	 cmp         r4, #0x4B
   00038	e0811103	 add         r1, r1, r3, lsl #2
-  0003c	3a00001c	 bcc         |$cleanUp$48484|
+  0003c	3a00001c	 bcc         |$cleanUp$48481|
   00040	e354004d	 cmp         r4, #0x4D
-  00044	8a00001a	 bhi         |$cleanUp$48484|
+  00044	8a00001a	 bhi         |$cleanUp$48481|
 
 ; 930  :         {
 ; 931  :         case OMAP_DEVICE_USBHOST1:
@@ -6703,7 +6684,7 @@
 ; 965  :     rc = TRUE;
 
   000b0	e3a00001	 mov         r0, #1
-  000b4		 |$cleanUp$48484|
+  000b4		 |$cleanUp$48481|
 
 ; 966  :     
 ; 967  :     SPECIAL_DEBUG_MESSAGE_DONE(_PrcmDeviceSetSourceClock_USB, devId)
@@ -6717,14 +6698,14 @@
   000bc		 |$LN18@PrcmDevice@25|
   000bc		 |$LN19@PrcmDevice@25|
   000bc	00000000	 DCD         |s_rgDeviceLookupTable|
-  000c0		 |$M49547|
+  000c0		 |$M49539|
 
 			 ENDP  ; |_PrcmDeviceSetSourceClock_USB|
 
 	EXPORT	|SelectSourceClocks|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49563| DCD	|$LN5@SelectSour|
+|$T49555| DCD	|$LN5@SelectSour|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -6736,7 +6717,7 @@
 
   00000		 |$LN5@SelectSour|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M49560|
+  00004		 |$M49552|
 
 ; 1055 :     return PrcmDeviceSetSourceClocks(devID,count,clockID);
 
@@ -6746,14 +6727,14 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M49561|
+  00010		 |$M49553|
 
 			 ENDP  ; |SelectSourceClocks|
 
 	EXPORT	|EnableDeviceClocks|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49574| DCD	|$LN5@EnableDevi|
+|$T49566| DCD	|$LN5@EnableDevi|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -6765,7 +6746,7 @@
 
   00000		 |$LN5@EnableDevi|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M49571|
+  00004		 |$M49563|
 
 ; 1245 :     return PrcmDeviceEnableClocks(devID,bEnable);
 
@@ -6775,7 +6756,7 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M49572|
+  00010		 |$M49564|
 
 			 ENDP  ; |EnableDeviceClocks|
 

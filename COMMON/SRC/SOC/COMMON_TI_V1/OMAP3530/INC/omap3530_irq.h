@@ -109,7 +109,7 @@
 #define IRQ_UART2                       73  // UART module 2
 #define IRQ_UART3                       74  // UART module 3 (also infrared)
 #define IRQ_PBIAS                       75  // PBIASlite1 and 2
-#define IRQ_OHCI                        76  // OHCI controller HSUSB MP Host Interrupt 
+#define IRQ_OHCI                        76	// OHCI controller HSUSB MP Host Interrupt 
 #define IRQ_EHCI                        77  // EHCI controller HSUSB MP Host Interrupt
 #define IRQ_TLL                         78  // HSUSB MP TLL Interrupt
 #define IRQ_RESERVED1                   79  // unassigned 
@@ -130,7 +130,7 @@
 #define IRQ_SPI3                        91  // McSPI module 3
 #define IRQ_HSUSB_MC_NINT               92  // High-Speed USB OTG controller
 #define IRQ_HSUSB_DMA_NINT              93  // High-Speed USB OTG DMA controller
-#define IRQ_MMC3                           94    // MMC/SD module 3
+#define IRQ_MMC3						94	// MMC/SD module 3
 #define IRQ_RESERVED95                  95  // 
 
 

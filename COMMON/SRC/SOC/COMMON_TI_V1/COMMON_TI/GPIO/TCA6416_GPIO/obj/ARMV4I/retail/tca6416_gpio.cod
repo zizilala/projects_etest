@@ -147,7 +147,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37583| DCD	|$LN5@SetEvent|
+|$T37584| DCD	|$LN5@SetEvent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -159,7 +159,7 @@
 
   00000		 |$LN5@SetEvent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37580|
+  00004		 |$M37581|
 
 ; 236  : 	return EventModify(h,EVENT_SET);
 
@@ -170,7 +170,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M37581|
+  00014		 |$M37582|
 
 			 ENDP  ; |SetEvent|
 
@@ -178,7 +178,7 @@
 	IMPORT	|__GetUserKData|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37592| DCD	|$LN5@GetCurrent|
+|$T37593| DCD	|$LN5@GetCurrent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -190,7 +190,7 @@
 
   00000		 |$LN5@GetCurrent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37589|
+  00004		 |$M37590|
 
 ; 374  :     return __GetUserKData (SYSHANDLE_OFFSET + (SH_CURPROC * sizeof(HANDLE)));
 
@@ -201,7 +201,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M37590|
+  00014		 |$M37591|
 
 			 ENDP  ; |GetCurrentProcessId|
 
@@ -210,7 +210,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37606| DCD	|$LN7@IsEqualGUI|
+|$T37607| DCD	|$LN7@IsEqualGUI|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -222,7 +222,7 @@
 
   00000		 |$LN7@IsEqualGUI|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37603|
+  00004		 |$M37604|
 
 ; 494  :     return !memcmp(&rguid1, &rguid2, sizeof(GUID));
 
@@ -243,7 +243,7 @@
 
   0001c	149de004	 ldrne       lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M37604|
+  00024		 |$M37605|
 
 			 ENDP  ; |?IsEqualGUID@@YAHABU_GUID@@0@Z|, IsEqualGUID
 
@@ -253,7 +253,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\gpio\tca6416_gpio\tca6416_gpio.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37614| DCD	|$LN5@SendExtraS|
+|$T37615| DCD	|$LN5@SendExtraS|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -265,7 +265,7 @@
 
   00000		 |$LN5@SendExtraS|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37611|
+  00004		 |$M37612|
   00004	e1a04000	 mov         r4, r0
 
 ; 169  :     I2CSetManualDriveMode(hI2C,TRUE);
@@ -295,7 +295,7 @@
 
   00034	e8bd4010	 ldmia       sp!, {r4, lr}
   00038	e12fff1e	 bx          lr
-  0003c		 |$M37612|
+  0003c		 |$M37613|
 
 			 ENDP  ; |?SendExtraSCLCycle@@YAXPAX@Z|, SendExtraSCLCycle
 
@@ -303,7 +303,7 @@
 	IMPORT	|I2CWrite|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37628| DCD	|$LN5@TCA6416I2C|
+|$T37629| DCD	|$LN5@TCA6416I2C|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -315,7 +315,7 @@
 
   00000		 |$LN5@TCA6416I2C|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37625|
+  00004		 |$M37626|
   00004	e1a05000	 mov         r5, r0
 
 ; 183  :     UINT result = I2CWrite(hCtx,subAddr,pBuffer,size);
@@ -334,7 +334,7 @@
   00018	e1a00004	 mov         r0, r4
   0001c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00020	e12fff1e	 bx          lr
-  00024		 |$M37626|
+  00024		 |$M37627|
 
 			 ENDP  ; |?TCA6416I2CWrite@@YAIPAXIPBXI@Z|, TCA6416I2CWrite
 
@@ -342,7 +342,7 @@
 	IMPORT	|I2CRead|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37642| DCD	|$LN5@TCA6416I2C@2|
+|$T37643| DCD	|$LN5@TCA6416I2C@2|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -354,7 +354,7 @@
 
   00000		 |$LN5@TCA6416I2C@2|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M37639|
+  00004		 |$M37640|
   00004	e1a05000	 mov         r5, r0
 
 ; 196  :     UINT result = I2CRead(hCtx,subAddr,pBuffer,size);
@@ -373,7 +373,7 @@
   00018	e1a00004	 mov         r0, r4
   0001c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00020	e12fff1e	 bx          lr
-  00024		 |$M37640|
+  00024		 |$M37641|
 
 			 ENDP  ; |?TCA6416I2CRead@@YAIPAXI0I@Z|, TCA6416I2CRead
 
@@ -386,7 +386,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37684| DCD	|$LN39@IST|
+|$T37685| DCD	|$LN39@IST|
 	DCD	0x40007202
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\gpio\tca6416_gpio\tca6416_gpio.cpp
@@ -400,7 +400,7 @@
   00000		 |$LN39@IST|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M37681|
+  00008		 |$M37682|
   00008	e1a05000	 mov         r5, r0
 
 ; 203  :     int i,j;
@@ -601,7 +601,7 @@
   001bc	e28dd010	 add         sp, sp, #0x10
   001c0	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   001c4	e12fff1e	 bx          lr
-  001c8		 |$M37682|
+  001c8		 |$M37683|
 
 			 ENDP  ; |?IST@@YAKPAX@Z|, IST
 
@@ -614,7 +614,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37701| DCD	|$LN20@Tca6416Gpi|
+|$T37702| DCD	|$LN20@Tca6416Gpi|
 	DCD	0x40002f01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\gpio\tca6416_gpio\tca6416_gpio.cpp
@@ -627,7 +627,7 @@
 
   00000		 |$LN20@Tca6416Gpi|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M37698|
+  00004		 |$M37699|
   00004	e1b04000	 movs        r4, r0
 
 ; 354  :     BOOL rc = FALSE;
@@ -638,7 +638,7 @@
 ; 356  :     
 ; 357  :     if (pDevice == NULL)
 
-  0000c	0a000028	 beq         |$cleanUp$37071|
+  0000c	0a000028	 beq         |$cleanUp$37072|
 
 ; 358  :     {
 ; 359  :         goto cleanUp;
@@ -755,7 +755,7 @@
 ; 397  :     rc = TRUE;
 
   000b0	e3a00001	 mov         r0, #1
-  000b4		 |$cleanUp$37071|
+  000b4		 |$cleanUp$37072|
 
 ; 398  : 
 ; 399  : cleanUp:
@@ -765,13 +765,13 @@
 
   000b4	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M37699|
+  000bc		 |$M37700|
 
 			 ENDP  ; |?Tca6416GpioDeinit@@YAHPAX@Z|, Tca6416GpioDeinit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37726| DCD	|$LN15@TCA6416Set|
+|$T37727| DCD	|$LN15@TCA6416Set|
 	DCD	0x40002902
 ; Function compile flags: /Ogspy
 
@@ -784,7 +784,7 @@
   00000		 |$LN15@TCA6416Set|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37723|
+  00008		 |$M37724|
   00008	e1a08003	 mov         r8, r3
   0000c	e1a09002	 mov         r9, r2
   00010	e1a07001	 mov         r7, r1
@@ -804,7 +804,7 @@
   00030	e1a00006	 mov         r0, r6
   00034	eb000000	 bl          |?SendExtraSCLCycle@@YAXPAX@Z|
   00038	e3540001	 cmp         r4, #1
-  0003c	1a000014	 bne         |$cleanUp$37096|
+  0003c	1a000014	 bne         |$cleanUp$37097|
 
 ; 416  :     {
 ; 417  :         goto cleanUp;
@@ -840,7 +840,7 @@
   00080	e1a00006	 mov         r0, r6
   00084	eb000000	 bl          |?SendExtraSCLCycle@@YAXPAX@Z|
   00088	e3540001	 cmp         r4, #1
-  0008c	1a000000	 bne         |$cleanUp$37096|
+  0008c	1a000000	 bne         |$cleanUp$37097|
   00090		 |$LN2@TCA6416Set|
 
 ; 425  :         {
@@ -852,7 +852,7 @@
 ; 431  :     rc = TRUE;
 
   00090	e3a05001	 mov         r5, #1
-  00094		 |$cleanUp$37096|
+  00094		 |$cleanUp$37097|
 
 ; 432  : 
 ; 433  : cleanUp:
@@ -864,13 +864,13 @@
   00098	e28dd004	 add         sp, sp, #4
   0009c	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000a0	e12fff1e	 bx          lr
-  000a4		 |$M37724|
+  000a4		 |$M37725|
 
 			 ENDP  ; |?TCA6416SetRegMaskedValue@@YAHPAXKEEH@Z|, TCA6416SetRegMaskedValue
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37744| DCD	|$LN10@Tca6416Gpi@2|
+|$T37745| DCD	|$LN10@Tca6416Gpi@2|
 	DCD	0x40002302
 ; Function compile flags: /Ogspy
 
@@ -883,7 +883,7 @@
   00000		 |$LN10@Tca6416Gpi@2|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37741|
+  00008		 |$M37742|
   00008	e1a09002	 mov         r9, r2
   0000c	e1b08000	 movs        r8, r0
 
@@ -906,11 +906,11 @@
 ; 454  : 
 ; 455  :     if ((pDevice == NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))
 
-  00024	0a000014	 beq         |$cleanUp$37117|
+  00024	0a000014	 beq         |$cleanUp$37118|
   00028	e3540002	 cmp         r4, #2
-  0002c	aa000012	 bge         |$cleanUp$37117|
+  0002c	aa000012	 bge         |$cleanUp$37118|
   00030	e3530008	 cmp         r3, #8
-  00034	aa000010	 bge         |$cleanUp$37117|
+  00034	aa000010	 bge         |$cleanUp$37118|
 
 ; 456  :     {
 ; 457  :         goto cleanUp;
@@ -946,7 +946,7 @@
 
   00074	e0880106	 add         r0, r8, r6, lsl #2
   00078	eb000000	 bl          LeaveCriticalSection
-  0007c		 |$cleanUp$37117|
+  0007c		 |$cleanUp$37118|
 
 ; 468  :         
 ; 469  : cleanUp:
@@ -957,13 +957,13 @@
   00080	e28dd004	 add         sp, sp, #4
   00084	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   00088	e12fff1e	 bx          lr
-  0008c		 |$M37742|
+  0008c		 |$M37743|
 
 			 ENDP  ; |?Tca6416GpioSetMode@@YAHPAXII@Z|, Tca6416GpioSetMode
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37765| DCD	|$LN13@Tca6416Gpi@3|
+|$T37766| DCD	|$LN13@Tca6416Gpi@3|
 	DCD	0x40002502
 ; Function compile flags: /Ogspy
 
@@ -976,7 +976,7 @@
   00000		 |$LN13@Tca6416Gpi@3|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37762|
+  00008		 |$M37763|
   00008	e1b08000	 movs        r8, r0
 
 ; 483  :     DWORD mode = (DWORD) -1;       
@@ -996,11 +996,11 @@
 ; 490  : 
 ; 491  :     if ((pDevice == NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))    
 
-  00018	0a000019	 beq         |$cleanUp$37134|
+  00018	0a000019	 beq         |$cleanUp$37135|
   0001c	e3540002	 cmp         r4, #2
-  00020	aa000017	 bge         |$cleanUp$37134|
+  00020	aa000017	 bge         |$cleanUp$37135|
   00024	e3570008	 cmp         r7, #8
-  00028	aa000015	 bge         |$cleanUp$37134|
+  00028	aa000015	 bge         |$cleanUp$37135|
 
 ; 492  :     {
 ; 493  :         goto cleanUp;
@@ -1052,7 +1052,7 @@
 
   0007c	e0880109	 add         r0, r8, r9, lsl #2
   00080	eb000000	 bl          LeaveCriticalSection
-  00084		 |$cleanUp$37134|
+  00084		 |$cleanUp$37135|
 
 ; 508  : cleanUp:
 ; 509  :     return mode;
@@ -1062,13 +1062,13 @@
   00088	e28dd004	 add         sp, sp, #4
   0008c	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   00090	e12fff1e	 bx          lr
-  00094		 |$M37763|
+  00094		 |$M37764|
 
 			 ENDP  ; |?Tca6416GpioGetMode@@YAKPAXI@Z|, Tca6416GpioGetMode
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37774| DCD	|$LN7@Tca6416Gpi@4|
+|$T37775| DCD	|$LN7@Tca6416Gpi@4|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1079,8 +1079,8 @@
 ; 525  : {
 
   00000		 |$LN7@Tca6416Gpi@4|
-  00000		 |$M37771|
-  00000		 |$cleanUp$37146|
+  00000		 |$M37772|
+  00000		 |$cleanUp$37147|
 
 ; 526  :     BOOL    rc = FALSE;
 ; 527  :     if (context == NULL)
@@ -1101,13 +1101,13 @@
 ; 539  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37772|
+  00008		 |$M37773|
 
 			 ENDP  ; |?Tca6416GpioPullup@@YAHPAXII@Z|, Tca6416GpioPullup
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37783| DCD	|$LN7@Tca6416Gpi@5|
+|$T37784| DCD	|$LN7@Tca6416Gpi@5|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1118,8 +1118,8 @@
 ; 552  : {
 
   00000		 |$LN7@Tca6416Gpi@5|
-  00000		 |$M37780|
-  00000		 |$cleanUp$37155|
+  00000		 |$M37781|
+  00000		 |$cleanUp$37156|
 
 ; 553  :     BOOL    rc = FALSE;
 ; 554  :     if (context == NULL)
@@ -1140,14 +1140,14 @@
 ; 566  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37781|
+  00008		 |$M37782|
 
 			 ENDP  ; |?Tca6416GpioPulldown@@YAHPAXII@Z|, Tca6416GpioPulldown
 
 	EXPORT	|?Tca6416GpioInterruptDone@@YAHPAXI@Z|	; Tca6416GpioInterruptDone
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37792| DCD	|$LN7@Tca6416Gpi@6|
+|$T37793| DCD	|$LN7@Tca6416Gpi@6|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1158,8 +1158,8 @@
 ; 577  : {
 
   00000		 |$LN7@Tca6416Gpi@6|
-  00000		 |$M37789|
-  00000		 |$cleanUp$37164|
+  00000		 |$M37790|
+  00000		 |$cleanUp$37165|
 
 ; 578  :     BOOL    rc = FALSE;
 ; 579  :     if (context == NULL)
@@ -1176,14 +1176,14 @@
 ; 587  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37790|
+  00008		 |$M37791|
 
 			 ENDP  ; |?Tca6416GpioInterruptDone@@YAHPAXI@Z|, Tca6416GpioInterruptDone
 
 	EXPORT	|?Tca6416GpioInterruptDisable@@YAHPAXI@Z| ; Tca6416GpioInterruptDisable
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37801| DCD	|$LN7@Tca6416Gpi@7|
+|$T37802| DCD	|$LN7@Tca6416Gpi@7|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1194,8 +1194,8 @@
 ; 599  : {
 
   00000		 |$LN7@Tca6416Gpi@7|
-  00000		 |$M37798|
-  00000		 |$cleanUp$37173|
+  00000		 |$M37799|
+  00000		 |$cleanUp$37174|
 
 ; 600  :     BOOL    rc = FALSE;
 ; 601  :     if (context == NULL)
@@ -1212,13 +1212,13 @@
 ; 609  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37799|
+  00008		 |$M37800|
 
 			 ENDP  ; |?Tca6416GpioInterruptDisable@@YAHPAXI@Z|, Tca6416GpioInterruptDisable
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37816| DCD	|$LN8@Tca6416Gpi@8|
+|$T37817| DCD	|$LN8@Tca6416Gpi@8|
 	DCD	0x40001f02
 ; Function compile flags: /Ogspy
 
@@ -1231,7 +1231,7 @@
   00000		 |$LN8@Tca6416Gpi@8|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37813|
+  00008		 |$M37814|
   00008	e1b06000	 movs        r6, r0
 
 ; 623  :     BOOL rc = FALSE;
@@ -1254,11 +1254,11 @@
 ; 629  : 
 ; 630  :     if ((pDevice == NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))    
 
-  00020	0a000011	 beq         |$cleanUp$37188|
+  00020	0a000011	 beq         |$cleanUp$37189|
   00024	e3530002	 cmp         r3, #2
-  00028	aa00000f	 bge         |$cleanUp$37188|
+  00028	aa00000f	 bge         |$cleanUp$37189|
   0002c	e3520008	 cmp         r2, #8
-  00030	aa00000d	 bge         |$cleanUp$37188|
+  00030	aa00000d	 bge         |$cleanUp$37189|
 
 ; 631  :     {
 ; 632  :         goto cleanUp;
@@ -1291,7 +1291,7 @@
 
   00064	e0860105	 add         r0, r6, r5, lsl #2
   00068	eb000000	 bl          LeaveCriticalSection
-  0006c		 |$cleanUp$37188|
+  0006c		 |$cleanUp$37189|
 
 ; 643  : 
 ; 644  : cleanUp:
@@ -1302,13 +1302,13 @@
   00070	e28dd004	 add         sp, sp, #4
   00074	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00078	e12fff1e	 bx          lr
-  0007c		 |$M37814|
+  0007c		 |$M37815|
 
 			 ENDP  ; |?Tca6416GpioSetBit@@YAHPAXI@Z|, Tca6416GpioSetBit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37830| DCD	|$LN8@Tca6416Gpi@9|
+|$T37831| DCD	|$LN8@Tca6416Gpi@9|
 	DCD	0x40001f02
 ; Function compile flags: /Ogspy
 
@@ -1321,7 +1321,7 @@
   00000		 |$LN8@Tca6416Gpi@9|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37827|
+  00008		 |$M37828|
   00008	e1b07000	 movs        r7, r0
 
 ; 658  :     BOOL rc = FALSE;
@@ -1340,11 +1340,11 @@
 ; 664  : 
 ; 665  :     if ((pDevice == NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))    
 
-  00018	0a000013	 beq         |$cleanUp$37203|
+  00018	0a000013	 beq         |$cleanUp$37204|
   0001c	e3530002	 cmp         r3, #2
-  00020	aa000011	 bge         |$cleanUp$37203|
+  00020	aa000011	 bge         |$cleanUp$37204|
   00024	e3560008	 cmp         r6, #8
-  00028	aa00000f	 bge         |$cleanUp$37203|
+  00028	aa00000f	 bge         |$cleanUp$37204|
 
 ; 666  :     {
 ; 667  :         goto cleanUp;
@@ -1379,7 +1379,7 @@
 
   00064	e0870105	 add         r0, r7, r5, lsl #2
   00068	eb000000	 bl          LeaveCriticalSection
-  0006c		 |$cleanUp$37203|
+  0006c		 |$cleanUp$37204|
 
 ; 678  : 
 ; 679  : cleanUp:
@@ -1390,13 +1390,13 @@
   00070	e28dd004	 add         sp, sp, #4
   00074	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00078	e12fff1e	 bx          lr
-  0007c		 |$M37828|
+  0007c		 |$M37829|
 
 			 ENDP  ; |?Tca6416GpioClrBit@@YAHPAXI@Z|, Tca6416GpioClrBit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37851| DCD	|$LN13@Tca6416Gpi@10|
+|$T37852| DCD	|$LN13@Tca6416Gpi@10|
 	DCD	0x40001f02
 ; Function compile flags: /Ogspy
 
@@ -1409,7 +1409,7 @@
   00000		 |$LN13@Tca6416Gpi@10|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37848|
+  00008		 |$M37849|
   00008	e3500000	 cmp         r0, #0
 
 ; 693  :     DWORD value = (DWORD) -1;
@@ -1428,11 +1428,11 @@
 ; 699  : 
 ; 700  :     if ((pDevice == NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))    
 
-  00018	0a000013	 beq         |$cleanUp$37218|
+  00018	0a000013	 beq         |$cleanUp$37219|
   0001c	e35e0002	 cmp         lr, #2
-  00020	aa000011	 bge         |$cleanUp$37218|
+  00020	aa000011	 bge         |$cleanUp$37219|
   00024	e3570008	 cmp         r7, #8
-  00028	aa00000f	 bge         |$cleanUp$37218|
+  00028	aa00000f	 bge         |$cleanUp$37219|
 
 ; 701  :     {
 ; 702  :         goto cleanUp;
@@ -1449,7 +1449,7 @@
   00048	e1a00005	 mov         r0, r5
   0004c	eb000000	 bl          |?SendExtraSCLCycle@@YAXPAX@Z|
   00050	e3540001	 cmp         r4, #1
-  00054	1a000004	 bne         |$cleanUp$37218|
+  00054	1a000004	 bne         |$cleanUp$37219|
 
 ; 705  :     {
 ; 706  :         if (input & (1<<pin))
@@ -1469,7 +1469,7 @@
 ; 712  :             value = 0;
 
   00068	03a06000	 moveq       r6, #0
-  0006c		 |$cleanUp$37218|
+  0006c		 |$cleanUp$37219|
 
 ; 713  :         }
 ; 714  :     }    
@@ -1482,13 +1482,13 @@
   00070	e28dd004	 add         sp, sp, #4
   00074	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00078	e12fff1e	 bx          lr
-  0007c		 |$M37849|
+  0007c		 |$M37850|
 
 			 ENDP  ; |?Tca6416GpioGetBit@@YAKPAXI@Z|, Tca6416GpioGetBit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37858| DCD	|$LN5@Tca6416Gpi@11|
+|$T37859| DCD	|$LN5@Tca6416Gpi@11|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1499,19 +1499,19 @@
 ; 951  : {
 
   00000		 |$LN5@Tca6416Gpi@11|
-  00000		 |$M37855|
+  00000		 |$M37856|
 
 ; 952  :     UNREFERENCED_PARAMETER(hContext);
 ; 953  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37856|
+  00004		 |$M37857|
 
 			 ENDP  ; |?Tca6416GpioPowerUp@@YAXPAX@Z|, Tca6416GpioPowerUp
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37865| DCD	|$LN5@Tca6416Gpi@12|
+|$T37866| DCD	|$LN5@Tca6416Gpi@12|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1522,19 +1522,19 @@
 ; 965  : {
 
   00000		 |$LN5@Tca6416Gpi@12|
-  00000		 |$M37862|
+  00000		 |$M37863|
 
 ; 966  :     UNREFERENCED_PARAMETER(hContext);
 ; 967  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37863|
+  00004		 |$M37864|
 
 			 ENDP  ; |?Tca6416GpioPowerDown@@YAXPAX@Z|, Tca6416GpioPowerDown
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37874| DCD	|$LN5@Tca6416Gpi@13|
+|$T37875| DCD	|$LN5@Tca6416Gpi@13|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1545,7 +1545,7 @@
 ; 970  : {
 
   00000		 |$LN5@Tca6416Gpi@13|
-  00000		 |$M37871|
+  00000		 |$M37872|
 
 ; 971  :     UNREFERENCED_PARAMETER(hContext);
 ; 972  :     UNREFERENCED_PARAMETER(id);
@@ -1556,7 +1556,7 @@
 ; 974  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37872|
+  00008		 |$M37873|
 
 			 ENDP  ; |?Tca6416GpioGetSystemIrq@@YAKPAXI@Z|, Tca6416GpioGetSystemIrq
 
@@ -1567,7 +1567,7 @@
 	IMPORT	|CreateEventW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37889| DCD	|$LN18@Tca6416Gpi@14|
+|$T37890| DCD	|$LN18@Tca6416Gpi@14|
 	DCD	0x40005c02
 ; Function compile flags: /Ogspy
 
@@ -1580,7 +1580,7 @@
   00000		 |$LN18@Tca6416Gpi@14|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M37886|
+  00008		 |$M37887|
   00008	e1a0a003	 mov         r10, r3
   0000c	e1a07002	 mov         r7, r2
   00010	e1a06001	 mov         r6, r1
@@ -1598,15 +1598,15 @@
 ; 986  : 
 ; 987  :     if ((hContext == NULL) || (sysintr==NULL) || (hEvent==NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))
 
-  00020	0a00004d	 beq         |$cleanUp$37343|
+  00020	0a00004d	 beq         |$cleanUp$37344|
   00024	e3570000	 cmp         r7, #0
-  00028	0a00004b	 beq         |$cleanUp$37343|
+  00028	0a00004b	 beq         |$cleanUp$37344|
   0002c	e35a0000	 cmp         r10, #0
-  00030	0a000049	 beq         |$cleanUp$37343|
+  00030	0a000049	 beq         |$cleanUp$37344|
   00034	e3550002	 cmp         r5, #2
-  00038	aa000047	 bge         |$cleanUp$37343|
+  00038	aa000047	 bge         |$cleanUp$37344|
   0003c	e3590008	 cmp         r9, #8
-  00040	aa000045	 bge         |$cleanUp$37343|
+  00040	aa000045	 bge         |$cleanUp$37344|
 
 ; 988  :     {
 ; 989  :         goto cleanUp;
@@ -1639,7 +1639,7 @@
 
 ; 996  :         if (pDevice->hIntrEvent == NULL)
 
-  00080	0a000035	 beq         |$cleanUp$37343|
+  00080	0a000035	 beq         |$cleanUp$37344|
 
 ; 997  :         {
 ; 998  :             goto cleanUp;
@@ -1660,7 +1660,7 @@
 
 ; 1001 :         if (pDevice->hIntrthread == NULL)
 
-  000b0	0a000029	 beq         |$cleanUp$37343|
+  000b0	0a000029	 beq         |$cleanUp$37344|
 
 ; 1002 :         {
 ; 1003 :             goto cleanUp;
@@ -1673,7 +1673,7 @@
 
 ; 1006 :         if (pDevice->hGpio == NULL)
 
-  000c0	0a000025	 beq         |$cleanUp$37343|
+  000c0	0a000025	 beq         |$cleanUp$37344|
 
 ; 1007 :         {
 ; 1008 :             goto cleanUp;
@@ -1685,7 +1685,7 @@
   000cc	e2842018	 add         r2, r4, #0x18
   000d0	eb000000	 bl          GPIOInterruptInitialize
   000d4	e3500000	 cmp         r0, #0
-  000d8	0a00001f	 beq         |$cleanUp$37343|
+  000d8	0a00001f	 beq         |$cleanUp$37344|
 
 ; 1011 :         {
 ; 1012 :             goto cleanUp;
@@ -1761,7 +1761,7 @@
   00150	e1863403	 orr         r3, r6, r3, lsl #8
   00154	e5873000	 str         r3, [r7]
   00158	ea000000	 b           |$LN14@Tca6416Gpi@14|
-  0015c		 |$cleanUp$37343|
+  0015c		 |$cleanUp$37344|
 
 ; 1033 : 
 ; 1034 : cleanUp:
@@ -1778,13 +1778,13 @@
   0016c		 |$LN19@Tca6416Gpi@14|
   0016c		 |$LN20@Tca6416Gpi@14|
   0016c	00000000	 DCD         |?IST@@YAKPAX@Z|
-  00170		 |$M37887|
+  00170		 |$M37888|
 
 			 ENDP  ; |?Tca6416GpioInterruptInitialize@@YAHPAXKPAK0@Z|, Tca6416GpioInterruptInitialize
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37904| DCD	|$LN13@Tca6416Gpi@15|
+|$T37905| DCD	|$LN13@Tca6416Gpi@15|
 	DCD	0x40002b01
 ; Function compile flags: /Ogspy
 
@@ -1796,7 +1796,7 @@
 
   00000		 |$LN13@Tca6416Gpi@15|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M37901|
+  00004		 |$M37902|
   00004	e1a08003	 mov         r8, r3
   00008	e1b04000	 movs        r4, r0
 
@@ -1814,11 +1814,11 @@
 ; 1050 : 
 ; 1051 :     if ((hContext == NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))
 
-  00014	0a000022	 beq         |$cleanUp$37370|
+  00014	0a000022	 beq         |$cleanUp$37371|
   00018	e3550002	 cmp         r5, #2
-  0001c	aa000020	 bge         |$cleanUp$37370|
+  0001c	aa000020	 bge         |$cleanUp$37371|
   00020	e3570008	 cmp         r7, #8
-  00024	aa00001e	 bge         |$cleanUp$37370|
+  00024	aa00001e	 bge         |$cleanUp$37371|
 
 ; 1052 :     {
 ; 1053 :         goto cleanUp;
@@ -1899,7 +1899,7 @@
 
   0009c	e0840106	 add         r0, r4, r6, lsl #2
   000a0	eb000000	 bl          LeaveCriticalSection
-  000a4		 |$cleanUp$37370|
+  000a4		 |$cleanUp$37371|
 
 ; 1076 : 
 ; 1077 : cleanUp:
@@ -1908,13 +1908,13 @@
 
   000a4	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   000a8	e12fff1e	 bx          lr
-  000ac		 |$M37902|
+  000ac		 |$M37903|
 
 			 ENDP  ; |?Tca6416GpioInterruptMask@@YAXPAXKKH@Z|, Tca6416GpioInterruptMask
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37915| DCD	|$LN8@Tca6416Gpi@16|
+|$T37916| DCD	|$LN8@Tca6416Gpi@16|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -1926,7 +1926,7 @@
 
   00000		 |$LN8@Tca6416Gpi@16|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M37912|
+  00004		 |$M37913|
   00004	e1b07000	 movs        r7, r0
 
 ; 1088 :     int bank = id / NB_PIN_PER_BANK;
@@ -1943,11 +1943,11 @@
 ; 1093 : 
 ; 1094 :     if ((hContext == NULL) || (bank >= NB_BANK) || (pin >= NB_PIN_PER_BANK))
 
-  00010	0a000012	 beq         |$cleanUp$37389|
+  00010	0a000012	 beq         |$cleanUp$37390|
   00014	e3550002	 cmp         r5, #2
-  00018	aa000010	 bge         |$cleanUp$37389|
+  00018	aa000010	 bge         |$cleanUp$37390|
   0001c	e3560008	 cmp         r6, #8
-  00020	aa00000e	 bge         |$cleanUp$37389|
+  00020	aa00000e	 bge         |$cleanUp$37390|
 
 ; 1095 :     {
 ; 1096 :         goto cleanUp;
@@ -1979,7 +1979,7 @@
   00054	e1c33611	 bic         r3, r3, r1, lsl r6
   00058	e5c23068	 strb        r3, [r2, #0x68]
   0005c	eb000000	 bl          LeaveCriticalSection
-  00060		 |$cleanUp$37389|
+  00060		 |$cleanUp$37390|
 
 ; 1103 : 
 ; 1104 : cleanUp:
@@ -1988,13 +1988,13 @@
 
   00060	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M37913|
+  00068		 |$M37914|
 
 			 ENDP  ; |?Tca6416GpioInterruptDisable@@YAXPAXKK@Z|, Tca6416GpioInterruptDisable
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37925| DCD	|$LN5@Tca6416Gpi@17|
+|$T37926| DCD	|$LN5@Tca6416Gpi@17|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -2006,7 +2006,7 @@
 
   00000		 |$LN5@Tca6416Gpi@17|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37922|
+  00004		 |$M37923|
 
 ; 1115 :     Tca6416GpioInterruptMask(hContext,id, sysintr,FALSE);
 
@@ -2017,14 +2017,14 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M37923|
+  00014		 |$M37924|
 
 			 ENDP  ; |?Tca6416GpioInterruptDone@@YAXPAXKK@Z|, Tca6416GpioInterruptDone
 
 	IMPORT	|GPIOInterruptWakeUp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37941| DCD	|$LN14@Tca6416Gpi@18|
+|$T37942| DCD	|$LN14@Tca6416Gpi@18|
 	DCD	0x40002301
 ; Function compile flags: /Ogspy
 
@@ -2036,7 +2036,7 @@
 
   00000		 |$LN14@Tca6416Gpi@18|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M37938|
+  00004		 |$M37939|
   00004	e1a04003	 mov         r4, r3
   00008	e1a05000	 mov         r5, r0
 
@@ -2128,14 +2128,14 @@
   00080	e1a00006	 mov         r0, r6
   00084	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00088	e12fff1e	 bx          lr
-  0008c		 |$M37939|
+  0008c		 |$M37940|
 
 			 ENDP  ; |?Tca6416GpioInterruptWakeUp@@YAHPAXKKH@Z|, Tca6416GpioInterruptWakeUp
 
 	EXPORT	|?GIO_Deinit@@YAHK@Z|			; GIO_Deinit
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37951| DCD	|$LN5@GIO_Deinit|
+|$T37952| DCD	|$LN5@GIO_Deinit|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -2147,7 +2147,7 @@
 
   00000		 |$LN5@GIO_Deinit|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37948|
+  00004		 |$M37949|
 
 ; 1185 :     return Tca6416GpioDeinit((HANDLE)hDeviceContext);
 
@@ -2157,14 +2157,14 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M37949|
+  00010		 |$M37950|
 
 			 ENDP  ; |?GIO_Deinit@@YAHK@Z|, GIO_Deinit
 
 	EXPORT	|?GIO_Open@@YAKKKK@Z|			; GIO_Open
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37961| DCD	|$LN5@GIO_Open|
+|$T37962| DCD	|$LN5@GIO_Open|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -2175,7 +2175,7 @@
 ; 1193 : {
 
   00000		 |$LN5@GIO_Open|
-  00000		 |$M37958|
+  00000		 |$M37959|
 
 ; 1194 :     UNREFERENCED_PARAMETER(AccessCode);
 ; 1195 :     UNREFERENCED_PARAMETER(ShareMode);
@@ -2183,14 +2183,14 @@
 ; 1197 : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37959|
+  00004		 |$M37960|
 
 			 ENDP  ; |?GIO_Open@@YAKKKK@Z|, GIO_Open
 
 	EXPORT	|?GIO_Close@@YAHK@Z|			; GIO_Close
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37970| DCD	|$LN5@GIO_Close|
+|$T37971| DCD	|$LN5@GIO_Close|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2201,7 +2201,7 @@
 ; 1202 : {
 
   00000		 |$LN5@GIO_Close|
-  00000		 |$M37967|
+  00000		 |$M37968|
 
 ; 1203 :     UNREFERENCED_PARAMETER(hOpenContext);
 ; 1204 :     return TRUE;
@@ -2211,14 +2211,14 @@
 ; 1205 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37968|
+  00008		 |$M37969|
 
 			 ENDP  ; |?GIO_Close@@YAHK@Z|, GIO_Close
 
 	EXPORT	|?GIO_PowerDown@@YAXK@Z|		; GIO_PowerDown
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37980| DCD	|$LN7@GIO_PowerD|
+|$T37981| DCD	|$LN7@GIO_PowerD|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -2229,20 +2229,20 @@
 ; 1210 : {
 
   00000		 |$LN7@GIO_PowerD|
-  00000		 |$M37977|
+  00000		 |$M37978|
 
 ; 1211 :     Tca6416GpioPowerDown((HANDLE) hDeviceContext);
 ; 1212 : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37978|
+  00004		 |$M37979|
 
 			 ENDP  ; |?GIO_PowerDown@@YAXK@Z|, GIO_PowerDown
 
 	EXPORT	|?GIO_PowerUp@@YAXK@Z|			; GIO_PowerUp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37990| DCD	|$LN7@GIO_PowerU|
+|$T37991| DCD	|$LN7@GIO_PowerU|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -2253,13 +2253,13 @@
 ; 1216 : {
 
   00000		 |$LN7@GIO_PowerU|
-  00000		 |$M37987|
+  00000		 |$M37988|
 
 ; 1217 :     Tca6416GpioPowerUp((HANDLE) hDeviceContext);
 ; 1218 : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37988|
+  00004		 |$M37989|
 
 			 ENDP  ; |?GIO_PowerUp@@YAXK@Z|, GIO_PowerUp
 
@@ -2274,7 +2274,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38015| DCD	|$LN25@Tca6416Gpi@19|
+|$T38016| DCD	|$LN25@Tca6416Gpi@19|
 	DCD	0x40004a02
 ; Function compile flags: /Ogspy
 
@@ -2287,7 +2287,7 @@
   00000		 |$LN25@Tca6416Gpi@19|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M38012|
+  00008		 |$M38013|
   00008	e1a04002	 mov         r4, r2
   0000c	e1b05001	 movs        r5, r1
   00010	e1a08000	 mov         r8, r0
@@ -2453,7 +2453,7 @@
 ; 335  :     rc = TRUE;
 
   00104	03a07001	 moveq       r7, #1
-  00108		 |$cleanUp$37039|
+  00108		 |$cleanUp$37040|
   00108	0a000001	 beq         |$LN1@Tca6416Gpi@19|
   0010c		 |$LN22@Tca6416Gpi@19|
 
@@ -2476,7 +2476,7 @@
   00124		 |$LN26@Tca6416Gpi@19|
   00124		 |$LN27@Tca6416Gpi@19|
   00124	00000000	 DCD         |g_deviceRegParams|
-  00128		 |$M38013|
+  00128		 |$M38014|
 
 			 ENDP  ; |?Tca6416GpioInit@@YAHPBGPAPAXPAI@Z|, Tca6416GpioInit
 
@@ -2490,7 +2490,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38064| DCD	|$LN66@Tca6416Gpi@20|
+|$T38065| DCD	|$LN66@Tca6416Gpi@20|
 	DCD	0x40012702
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2546,7 +2546,7 @@
   00000		 |$LN66@Tca6416Gpi@20|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd058	 sub         sp, sp, #0x58
-  00008		 |$M38061|
+  00008		 |$M38062|
   00008	e1b04000	 movs        r4, r0
   0000c	e58d400c	 str         r4, [sp, #0xC]
   00010	e1a07003	 mov         r7, r3
@@ -2572,7 +2572,7 @@
 ; 751  :     // Check if we get correct context
 ; 752  :     if (pDevice == NULL)
 
-  0001c	0a00009c	 beq         |$cleanUp$37242|
+  0001c	0a00009c	 beq         |$cleanUp$37243|
 
 ; 753  :     {
 ; 754  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: Tca6416GpioIOControl: "
@@ -2600,7 +2600,7 @@
   0005c	0a000024	 beq         |$LN24@Tca6416Gpi@20|
   00060	e59f342c	 ldr         r3, [pc, #0x42C]
   00064	e1510003	 cmp         r1, r3
-  00068	1a000089	 bne         |$cleanUp$37242|
+  00068	1a000089	 bne         |$cleanUp$37243|
 
 ; 830  :         rc = TRUE;
 ; 831  :         break;
@@ -2668,7 +2668,7 @@
 ; 923  : 
 ; 924  : cleanUp:
 
-  000f0	ea000067	 b           |$cleanUp$37242|
+  000f0	ea000067	 b           |$cleanUp$37243|
   000f4		 |$LN24@Tca6416Gpi@20|
 
 ; 818  :         rc = TRUE;
@@ -2710,7 +2710,7 @@
 ; 920  :             rc = TRUE;
 
   00138	e3a06001	 mov         r6, #1
-  0013c	ea000054	 b           |$cleanUp$37242|
+  0013c	ea000054	 b           |$cleanUp$37243|
   00140		 |$LN28@Tca6416Gpi@20|
 
 ; 803  :             rc = TRUE;
@@ -2755,7 +2755,7 @@
 ; 920  :             rc = TRUE;
 
   00184	e3a06001	 mov         r6, #1
-  00188	ea000041	 b           |$cleanUp$37242|
+  00188	ea000041	 b           |$cleanUp$37243|
   0018c		 |$LN38@Tca6416Gpi@20|
 
 ; 760  :     {
@@ -2786,7 +2786,7 @@
 ; 923  : 
 ; 924  : cleanUp:
 
-  001ac	ea000038	 b           |$cleanUp$37242|
+  001ac	ea000038	 b           |$cleanUp$37243|
   001b0		 |$LN37@Tca6416Gpi@20|
 
 ; 771  :             goto cleanUp;
@@ -2891,7 +2891,7 @@
 ; 873  :         {
 ; 874  :             SetLastError(ERROR_INVALID_PARAMETER);
 
-  00294		 |$cleanUp$37242|
+  00294		 |$cleanUp$37243|
 
 ; 925  :     DEBUGMSG(ZONE_FUNCTION, (L"-Tca6416GpioIOControl(rc = %d)\r\n", rc));
 ; 926  :     return rc;
@@ -2970,7 +2970,7 @@
 ; 920  :             rc = TRUE;
 
   00304	e3a06001	 mov         r6, #1
-  00308	eaffffe1	 b           |$cleanUp$37242|
+  00308	eaffffe1	 b           |$cleanUp$37243|
   0030c		 |$LN49@Tca6416Gpi@20|
 
 ; 753  :     {
@@ -2990,7 +2990,7 @@
   00324	e3a03822	 mov         r3, #0x22, 16
   00328	e3833ec2	 orr         r3, r3, #0xC2, 28
   0032c	e1510003	 cmp         r1, r3
-  00330	1affffd7	 bne         |$cleanUp$37242|
+  00330	1affffd7	 bne         |$cleanUp$37243|
 
 ; 898  : 
 ; 899  :     case IOCTL_GPIO_GET_POWER_STATE:
@@ -3031,7 +3031,7 @@
 ; 920  :             rc = TRUE;
 
   00368	e3a06001	 mov         r6, #1
-  0036c	eaffffc8	 b           |$cleanUp$37242|
+  0036c	eaffffc8	 b           |$cleanUp$37243|
   00370		 |$LN1@Tca6416Gpi@20|
 
 ; 904  :             {
@@ -3047,7 +3047,7 @@
   00378	e59f30cc	 ldr         r3, [pc, #0xCC]
   0037c	e5933440	 ldr         r3, [r3, #0x440]
   00380	e3130001	 tst         r3, #1
-  00384	0affffc2	 beq         |$cleanUp$37242|
+  00384	0affffc2	 beq         |$cleanUp$37243|
   00388	e3a02fe3	 mov         r2, #0xE3, 30
 
 ; 909  :                 break;
@@ -3087,7 +3087,7 @@
   003a8	e59f309c	 ldr         r3, [pc, #0x9C]
   003ac	e5933440	 ldr         r3, [r3, #0x440]
   003b0	e3130001	 tst         r3, #1
-  003b4	0affffb6	 beq         |$cleanUp$37242|
+  003b4	0affffb6	 beq         |$cleanUp$37243|
   003b8	e3a02fdf	 mov         r2, #0xDF, 30
   003bc		 |$LN62@Tca6416Gpi@20|
   003bc	e59f0084	 ldr         r0, [pc, #0x84]
@@ -3098,7 +3098,7 @@
 
 ; 893  :                 break;
 
-  003d0	eaffffaf	 b           |$cleanUp$37242|
+  003d0	eaffffaf	 b           |$cleanUp$37243|
   003d4		 |$LN11@Tca6416Gpi@20|
 
 ; 865  :         rc = TRUE;
@@ -3199,14 +3199,14 @@
   00494	00220c0c	 DCD         0x220c0c
   00498		 |$LN90@Tca6416Gpi@20|
   00498	00220c04	 DCD         0x220c04
-  0049c		 |$M38062|
+  0049c		 |$M38063|
 
 			 ENDP  ; |?Tca6416GpioIoControl@@YAHPAXIPAEI1IPAK@Z|, Tca6416GpioIoControl
 
 	EXPORT	|?GIO_Init@@YAKPBGK@Z|			; GIO_Init
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38098| DCD	|$LN6@GIO_Init|
+|$T38099| DCD	|$LN6@GIO_Init|
 	DCD	0x40000b02
 ; Function compile flags: /Ogspy
 
@@ -3219,7 +3219,7 @@
   00000		 |$LN6@GIO_Init|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M38095|
+  00008		 |$M38096|
 
 ; 1169 :     HANDLE devCtxt;
 ; 1170 :     UINT count;
@@ -3248,14 +3248,14 @@
   00020	e28dd008	 add         sp, sp, #8
   00024	e49de004	 ldr         lr, [sp], #4
   00028	e12fff1e	 bx          lr
-  0002c		 |$M38096|
+  0002c		 |$M38097|
 
 			 ENDP  ; |?GIO_Init@@YAKPBGK@Z|, GIO_Init
 
 	EXPORT	|?GIO_IOControl@@YAHKKPAEK0KPAK@Z|	; GIO_IOControl
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38111| DCD	|$LN5@GIO_IOCont|
+|$T38112| DCD	|$LN5@GIO_IOCont|
 	DCD	0x40000c02
 ; Function compile flags: /Ogspy
 
@@ -3268,7 +3268,7 @@
   00000		 |$LN5@GIO_IOCont|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M38108|
+  00008		 |$M38109|
 
 ; 1232 :     return Tca6416GpioIoControl(
 ; 1233 :         (HANDLE)hOpenContext,
@@ -3293,7 +3293,7 @@
   00024	e28dd00c	 add         sp, sp, #0xC
   00028	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0002c	e12fff1e	 bx          lr
-  00030		 |$M38109|
+  00030		 |$M38110|
 
 			 ENDP  ; |?GIO_IOControl@@YAHKKPAEK0KPAK@Z|, GIO_IOControl
 

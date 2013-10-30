@@ -23,9 +23,9 @@ MEMORY
 ;   Name        Start     Size      Type
 ;   ---------------------   --------  --------  ----
 
-    XLDRNAND                40200000  00008FF8  RAMIMAGE
-    RAM                     4020C000  00003000  RAM
-    STACK                   4020F000  00001000  RESERVED
+    XLDRNAND	40200000  00008FF8  RAMIMAGE
+    RAM			4020C000  00003000  RAM
+    STACK		4020F000  00001000  RESERVED
 
 IF IMGHIGHSECURITY
     nk.exe:dwOEMHighSecurity       00000000  00000001  FIXUPVAR
@@ -59,8 +59,7 @@ CONFIG
     ROMSIZE=0001FFF8           
 
 
-
 MODULES
-; Name    Path                                                             Memory
+; Name    Path										Memory
 ; ------  -----------------------------------------  --------
   nk.exe  $(_RAWFILETGT)\$(WINCEDEBUG)\xldrnand.exe  XLDRNAND

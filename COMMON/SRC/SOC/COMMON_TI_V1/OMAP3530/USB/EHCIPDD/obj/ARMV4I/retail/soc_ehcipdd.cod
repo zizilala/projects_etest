@@ -75,7 +75,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\omap3530\usb\ehcipdd\soc_ehcipdd.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44539| DCD	|$LN5@SOCEhciCon|
+|$T44540| DCD	|$LN5@SOCEhciCon|
 	DCD	0x40001c01
 ; Function compile flags: /Ogspy
 
@@ -87,7 +87,7 @@
 
   00000		 |$LN5@SOCEhciCon|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M44536|
+  00004		 |$M44537|
   00004	e1a04000	 mov         r4, r0
 
 ; 63   : 	OMAP_PRCM_USBHOST_PRM_REGS* pOMAP_PRCM_USBHOST_PRM_REGS = NULL;
@@ -151,7 +151,7 @@
 
   00068	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0006c	e12fff1e	 bx          lr
-  00070		 |$M44537|
+  00070		 |$M44538|
 
 			 ENDP  ; |SOCEhciConfigure|
 

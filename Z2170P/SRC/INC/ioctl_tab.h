@@ -52,7 +52,7 @@
 { IOCTL_HAL_GET_DIEID,                  0,  OALIoCtlHalGetDieID             },
 { IOCTL_HAL_GET_CPUFAMILY,              0,  OALIoCtlHalGetCpuFamily         },
 { IOCTL_HAL_GET_CPUREVISION,            0,  OALIoCtlHalGetCpuRevision       },
-{ IOCTL_HAL_GET_CPUSPEED,              0,  OALIoCtlHalGetCpuSpeed         },
+{ IOCTL_HAL_GET_CPUSPEED,				0,  OALIoCtlHalGetCpuSpeed         },
 { IOCTL_HAL_UPDATE_MODE,                0,  OALIoCtlHalUpdateMode           },
 
 { IOCTL_HAL_GET_HWENTROPY,              0,  OALIoCtlHalGetHWEntropy         },
@@ -69,11 +69,11 @@
 { IOCTL_HAL_OEM_PROFILER,               0,  OALIoCtlHALProfiler             },
 { IOCTL_HAL_I2CHSMODE,                  0,  OALIoCtlHalI2CMode              },
 { IOCTL_HAL_I2CCOPYFNTABLE,             0,  OALIoCtlHalI2CCopyFnTable       },
-{ IOCTL_HAL_PADCFGCOPYFNTABLE,             0,  OALIoCtlHalPadCfgCopyFnTable       },
+{ IOCTL_HAL_PADCFGCOPYFNTABLE,			0,  OALIoCtlHalPadCfgCopyFnTable       },
 
 { IOCTL_HAL_GET_BSP_VERSION,            0,  OALIoCtlHalGetBspVersion        },
 { IOCTL_HAL_GET_NEON_STATS,             0,  OALIoctlHalGetNeonStats         },
-{ IOCTL_HAL_GET_ECC_TYPE,             0,  OALIoctlHalGetEccType         },
+{ IOCTL_HAL_GET_ECC_TYPE,				0,  OALIoctlHalGetEccType         },
 
 { IOCTL_HAL_CONTEXTSAVE_GETBUFFER,      0,  OALIoCtlHalContextSaveGetBuffer },
 { IOCTL_PRCM_DEVICE_GET_DEVICEMANAGEMENTTABLE, 0, OALIoCtlPrcmDeviceGetDeviceManagementTable},

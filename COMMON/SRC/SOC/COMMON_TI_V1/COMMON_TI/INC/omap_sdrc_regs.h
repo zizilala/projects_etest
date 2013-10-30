@@ -27,22 +27,18 @@
 // SMS
 //
 typedef struct {
-
-   REG32    SMS_REVISION;             //offset 0x0
+   REG32    SMS_REVISION;						//offset 0x0
    REG32    zzzReserved_1[3];
-   REG32    SMS_SYSCONFIG;            //offset 0x10, system config
-   REG32    SMS_SYSSTATUS;            //offset 0x14, system status
+   REG32    SMS_SYSCONFIG;						//offset 0x10, system config
+   REG32    SMS_SYSSTATUS;						//offset 0x14, system status
    REG32    zzzReserved_2[(0x48 - 0x18) / 4];
-
-   REG32	SMS_RG_ATT[8];			  //offset 0x48, region attributes
+   REG32	SMS_RG_ATT[8];						//offset 0x48, region attributes
    REG32    zzzReserved_3[(0x150 - 0x68) / 4];
-   
-   REG32    SMS_CLASS_ARBITER0;       //offset 0x150
-   REG32    SMS_CLASS_ARBITER1;       //offset 0x154
-   REG32    SMS_CLASS_ARBITER2;       //offset 0x158
-   REG32    zzzReserved_4;            //offset 0x15c
-   REG32    SMS_INTERCLASS_ARBITER;   //offset 0x160
-   
+   REG32    SMS_CLASS_ARBITER0;					//offset 0x150
+   REG32    SMS_CLASS_ARBITER1;					//offset 0x154
+   REG32    SMS_CLASS_ARBITER2;					//offset 0x158
+   REG32    zzzReserved_4;						//offset 0x15c
+   REG32    SMS_INTERCLASS_ARBITER;				//offset 0x160
 } OMAP_SMS_REGS;
 
 

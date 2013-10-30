@@ -47,9 +47,7 @@ static DWORD    s_dwHWEntropy[2] = { 0, 0 };
 
 static UCHAR    s_rndisMAC[6] = { 0x00, 0x24, 0x30, 0xAB, 0x12, 0x34 };
 
-
 static  BOOL    s_bInitialized = FALSE;
-
 
 //------------------------------------------------------------------------------
 //
@@ -66,17 +64,17 @@ VOID* OALArgsQuery(UINT32 type)
     VOID *pData = NULL;
     BSP_ARGS *pArgs;
 
-    OALMSG(OAL_ARGS&&OAL_FUNC, (L"+OALArgsQuery(%d)\r\n", type));
+    //OALMSG(OAL_ARGS&&OAL_FUNC, (L"+OALArgsQuery(%d)\r\n", type));
+    OALMSG(1, (L"+OALArgsQuery(%d)\r\n", type));
 
     // Get pointer to expected boot args location
     pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
 
     // Check if there is expected signature
-    if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
-        (pArgs->header.oalVersion != OAL_ARGS_VERSION) ||
+	if ((pArgs->header.signature  != OAL_ARGS_SIGNATURE) ||
+		(pArgs->header.oalVersion != OAL_ARGS_VERSION) ||
         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
         goto cleanUp;
-
 
     //  Initialize settings
     if( s_bInitialized == FALSE )
@@ -87,7 +85,8 @@ VOID* OALArgsQuery(UINT32 type)
         // Copy prefix for DEVICEID    
         count = strlen((char *)pArgs->DevicePrefix);
 
-        if (count > sizeof(s_deviceId)-1) count = sizeof(s_deviceId) -1;
+        if (count > sizeof(s_deviceId)-1) 
+        	count = sizeof(s_deviceId) -1;
         memset(s_deviceId, 0, sizeof(s_deviceId));
         memcpy(s_deviceId, pArgs->DevicePrefix, count);
 
@@ -117,7 +116,6 @@ VOID* OALArgsQuery(UINT32 type)
         s_bInitialized = TRUE;
     }
 
-
     // Depending on required args
     switch (type)
     {
@@ -129,7 +127,7 @@ VOID* OALArgsQuery(UINT32 type)
             pData = &pArgs->kitl;
             break;
 
-        case OAL_ARGS_QUERY_COLDBOOT:
+        case OAL_ARGS_QUERY_COLDBOOT:	// 64
             pData = &pArgs->coldBoot;
             break;
 
@@ -145,7 +143,7 @@ VOID* OALArgsQuery(UINT32 type)
             pData = &s_uuid;
             break;
 
-        case OAL_ARGS_QUERY_HWENTROPY:
+        case OAL_ARGS_QUERY_HWENTROPY:	// 65
             pData = s_dwHWEntropy;
             break;
 
@@ -153,11 +151,11 @@ VOID* OALArgsQuery(UINT32 type)
             pData = s_rndisMAC;
             break;
             
-        case OAL_ARGS_QUERY_OALFLAGS:
+        case OAL_ARGS_QUERY_OALFLAGS:	// 68
             pData = &pArgs->oalFlags;
             break;
 
-        case OAL_ARGS_QUERY_DISP_RES:
+        case OAL_ARGS_QUERY_DISP_RES:	// 71
             pData = &pArgs->dispRes;
             break;
 
@@ -165,17 +163,26 @@ VOID* OALArgsQuery(UINT32 type)
             pData = &pArgs->ECCtype;
             break;
 
-        case OAL_ARGS_QUERY_OPP_MODE:
+        case OAL_ARGS_QUERY_OPP_MODE:	// 73
             pData = &pArgs->opp_mode;
-            break;            
+            break;
             
+		case OAL_ARGS_QUERY_CALIBRATE:
+			pData = &pArgs->CalibBuffer;
+			break;
+
+		case OAL_ARGS_QUERY_SN:
+			pData = &pArgs->SerialNumber;
+			break;
+			
         default:
             pData = NULL;
             break;
     }
 
 cleanUp:
-    OALMSG(OAL_ARGS&&OAL_FUNC, (L"-OALArgsQuery(pData = 0x%08x)\r\n", pData));
+    //OALMSG(OAL_ARGS&&OAL_FUNC, (L"-OALArgsQuery(pData = 0x%08x)\r\n", pData));
+    
     return pData;
 }
 

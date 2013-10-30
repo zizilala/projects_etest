@@ -109,12 +109,18 @@
 |?gpioPads_37xx@?1??OEMInit@@9@9| DCW 0x82		; `OEMInit'::`2'::gpioPads_37xx
 	%	2
 	DCD	0x21
-	DCW	0x84
+	DCW	0xad
+	%	2
+	DCD	0x20
+	DCW	0xab
 	%	2
 	DCD	0x21
-	DCW	0x85
+	DCW	0xaa
 	%	2
 	DCD	0x21
+	DCW	0xa0
+	%	2
+	DCD	0x23
 	DCW	0x9a
 	%	2
 	DCD	0x20
@@ -127,12 +133,18 @@
 	DCW	0x25
 	%	2
 	DCD	0x20
+	DCW	0x27
+	%	2
+	DCD	0x20
 	DCW	0x28
 	%	2
 	DCD	0x20
 	DCW	0x29
 	%	2
 	DCD	0x20
+	DCW	0x2e
+	%	2
+	DCD	0x21
 	DCW	0xffff
 	%	2
 	DCD	0x0
@@ -140,7 +152,7 @@
 ; File c:\wince600\platform\z2170p\src\inc\bsp_padcfg.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47575| DCD	|$LN9@ConfigureP|
+|$T47569| DCD	|$LN9@ConfigureP|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -148,15 +160,15 @@
 
   00000		 |ConfigurePadArray| PROC
 
-; 589  : {
+; 575  : {
 
   00000		 |$LN9@ConfigureP|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47572|
+  00004		 |$M47566|
   00004	e1a04000	 mov         r4, r0
 
-; 590  :     int i=0;
-; 591  :     while (padArray[i].padID != (UINT16) -1)
+; 576  :     int i=0;
+; 577  :     while (padArray[i].padID != (UINT16) -1)
 
   00008	e1d420b0	 ldrh        r2, [r4]
   0000c	e3a03cff	 mov         r3, #0xFF, 24
@@ -169,15 +181,15 @@
   00028	e1a03004	 mov         r3, r4
   0002c		 |$LL2@ConfigureP|
 
-; 592  :     {
-; 593  :         SOCSetPadConfig(padArray[i].padID,(UINT16) padArray[i].Cfg);
+; 578  :     {
+; 579  :         SOCSetPadConfig(padArray[i].padID,(UINT16) padArray[i].Cfg);
 
   0002c	e5933004	 ldr         r3, [r3, #4]
   00030	e1a00002	 mov         r0, r2
   00034	e0031007	 and         r1, r3, r7
   00038	eb000000	 bl          SOCSetPadConfig
 
-; 594  :         i++;
+; 580  :         i++;
 
   0003c	e2866001	 add         r6, r6, #1
   00040	e0843186	 add         r3, r4, r6, lsl #3
@@ -186,12 +198,12 @@
   0004c	1afffff6	 bne         |$LL2@ConfigureP|
   00050		 |$LN1@ConfigureP|
 
-; 595  :     }
-; 596  : }
+; 581  :     }
+; 582  : }
 
   00050	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00054	e12fff1e	 bx          lr
-  00058		 |$M47573|
+  00058		 |$M47567|
 
 			 ENDP  ; |ConfigurePadArray|
 
@@ -211,7 +223,7 @@
 ; File c:\wince600\platform\z2170p\src\oal\oallib\init.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47599| DCD	|$LN23@OALCalibra|
+|$T47593| DCD	|$LN23@OALCalibra|
 	DCD	0x40005201
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -239,7 +251,7 @@
 
   00000		 |$LN23@OALCalibra|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M47596|
+  00004		 |$M47590|
 
 ; 496  :     DWORD dw32k_prev,dw32k, dw32k_diff;
 ; 497  :     DWORD dwSysk_prev,dwSysk, dwSys_diff;
@@ -438,14 +450,14 @@
   00140	00000000	 DCD         |??_C@_1CO@GBOCCPHF@?$AAO?$AAA?$AAL?$AAC?$AAa?$AAl?$AAi?$AAb?$AAr?$AAa?$AAt?$AAe?$AAS?$AAy?$AAs?$AAC?$AAl?$AAk?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00144		 |$LN29@OALCalibra|
   00144	00000000	 DCD         |dpCurSettings|
-  00148		 |$M47597|
+  00148		 |$M47591|
 
 			 ENDP  ; |OALCalibrateSysClk|
 
 	EXPORT	|OALMux_UpdateOnDeviceStateChange|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47614| DCD	|$LN5@OALMux_Upd|
+|$T47608| DCD	|$LN5@OALMux_Upd|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -456,7 +468,7 @@
 ; 570  : {
 
   00000		 |$LN5@OALMux_Upd|
-  00000		 |$M47611|
+  00000		 |$M47605|
 
 ; 571  :     UNREFERENCED_PARAMETER(devId);
 ; 572  :     UNREFERENCED_PARAMETER(oldState);
@@ -469,14 +481,14 @@
 ; 576  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47612|
+  00008		 |$M47606|
 
 			 ENDP  ; |OALMux_UpdateOnDeviceStateChange|
 
 	EXPORT	|OALMux_InitMuxTable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47621| DCD	|$LN5@OALMux_Ini|
+|$T47615| DCD	|$LN5@OALMux_Ini|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -487,19 +499,19 @@
 ; 580  : {
 
   00000		 |$LN5@OALMux_Ini|
-  00000		 |$M47618|
+  00000		 |$M47612|
 
 ; 581  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M47619|
+  00004		 |$M47613|
 
 			 ENDP  ; |OALMux_InitMuxTable|
 
 	EXPORT	|EnableDebugSerialClock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47633| DCD	|$LN15@EnableDebu|
+|$T47627| DCD	|$LN15@EnableDebu|
 	DCD	0x40002400
 ; Function compile flags: /Ogspy
 
@@ -510,7 +522,7 @@
 ; 584  : {  
 
   00000		 |$LN15@EnableDebu|
-  00000		 |$M47630|
+  00000		 |$M47624|
   00000	e3a03312	 mov         r3, #0x12, 6
 
 ; 585  : #define OMAP_PRCM_PER_CM_REGS_PA            0x48005000
@@ -609,7 +621,7 @@
   00088	48005020	 DCD         0x48005020
   0008c		 |$LN20@EnableDebu|
   0008c	48005010	 DCD         0x48005010
-  00090		 |$M47631|
+  00090		 |$M47625|
 
 			 ENDP  ; |EnableDebugSerialClock|
 
@@ -620,7 +632,7 @@
 	IMPORT	|Tps659xx_Gpio|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47647| DCD	|$LN7@BSPGpioIni|
+|$T47641| DCD	|$LN7@BSPGpioIni|
 	DCD	0x40001401
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -638,7 +650,7 @@
 
   00000		 |$LN7@BSPGpioIni|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47644|
+  00004		 |$M47638|
 
 ; 622  : 	OALMSG(OAL_FUNC, (L"BSPGpioInit()\r\n"));
 
@@ -675,14 +687,14 @@
   00048	00000000	 DCD         |??_C@_1CA@MCLKGBIP@?$AAB?$AAS?$AAP?$AAG?$AAp?$AAi?$AAo?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   0004c		 |$LN12@BSPGpioIni|
   0004c	00000000	 DCD         |dpCurSettings|
-  00050		 |$M47645|
+  00050		 |$M47639|
 
 			 ENDP  ; |BSPGpioInit|
 
 	EXPORT	|MmUnmapIoSpace|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47659| DCD	|$LN5@MmUnmapIoS|
+|$T47653| DCD	|$LN5@MmUnmapIoS|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -693,21 +705,21 @@
 ; 631  : {
 
   00000		 |$LN5@MmUnmapIoS|
-  00000		 |$M47656|
+  00000		 |$M47650|
 
 ; 632  :     UNREFERENCED_PARAMETER(BaseAddress);
 ; 633  :     UNREFERENCED_PARAMETER(NumberOfBytes);
 ; 634  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M47657|
+  00004		 |$M47651|
 
 			 ENDP  ; |MmUnmapIoSpace|
 
 	EXPORT	|MmMapIoSpace|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47670| DCD	|$LN5@MmMapIoSpa|
+|$T47664| DCD	|$LN5@MmMapIoSpa|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -719,7 +731,7 @@
 
   00000		 |$LN5@MmMapIoSpa|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47667|
+  00004		 |$M47661|
 
 ; 642  :     UNREFERENCED_PARAMETER(NumberOfBytes);
 ; 643  :     return OALPAtoVA(PhysicalAddress.LowPart,CacheEnable);
@@ -731,7 +743,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M47668|
+  00014		 |$M47662|
 
 			 ENDP  ; |MmMapIoSpace|
 
@@ -739,7 +751,7 @@
 	IMPORT	|g_ffContextSaveMask|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47678| DCD	|$LN5@HalContext|
+|$T47672| DCD	|$LN5@HalContext|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -750,7 +762,7 @@
 ; 649  : {
 
   00000		 |$LN5@HalContext|
-  00000		 |$M47675|
+  00000		 |$M47669|
 
 ; 650  :     g_ffContextSaveMask |= ffRegister;
 
@@ -765,7 +777,7 @@
   00014		 |$LN6@HalContext|
   00014		 |$LN7@HalContext|
   00014	00000000	 DCD         |g_ffContextSaveMask|
-  00018		 |$M47676|
+  00018		 |$M47670|
 
 			 ENDP  ; |HalContextUpdateDirtyRegister|
 
@@ -776,7 +788,7 @@
 	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47688| DCD	|$LN5@OALGPIOSet|
+|$T47682| DCD	|$LN5@OALGPIOSet|
 	DCD	0x40003401
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -796,7 +808,7 @@
 
   00000		 |$LN5@OALGPIOSet|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47685|
+  00004		 |$M47679|
 
 ; 655  :     HANDLE hGPIO = GPIOOpen();
 
@@ -929,15 +941,15 @@
   000cc		 |$LN6@OALGPIOSet|
   000cc		 |$LN7@OALGPIOSet|
   000cc	00000000	 DCD         |??_C@_1DI@EKHPOAB@?$AAO?$AAA?$AAL?$AAG?$AAP?$AAI?$AAO?$AAS?$AAe?$AAt?$AAD?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AAV?$AAa?$AAl?$AAu?$AAe?$AAs?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  000d0		 |$M47686|
+  000d0		 |$M47680|
 
 			 ENDP  ; |OALGPIOSetDefaultValues|
 
 	EXPORT	|??_C@_1DC@LBJFKMIA@?$AAO?$AAE?$AAM?$AAE?$AAn?$AAu?$AAm?$AAE?$AAx?$AAt?$AAe?$AAn?$AAs?$AAi?$AAo?$AAn?$AAD?$AAR?$AAA?$AAM?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47704| DCD	|$LN11@OEMEnumExt|
-	DCD	0x40004701
+|$T47698| DCD	|$LN11@OEMEnumExt|
+	DCD	0x40004301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DC@LBJFKMIA@?$AAO?$AAE?$AAM?$AAE?$AAn?$AAu?$AAm?$AAE?$AAx?$AAt?$AAe?$AAn?$AAs?$AAi?$AAo?$AAn?$AAD?$AAR?$AAA?$AAM?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "O"
@@ -952,169 +964,164 @@
 
   00000		 |OEMEnumExtensionDRAM| PROC
 
-; 704  : {
+; 713  : {
 
   00000		 |$LN11@OEMEnumExt|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47701|
-  00004	e1a06001	 mov         r6, r1
-  00008	e1a05000	 mov         r5, r0
+  00004		 |$M47695|
+  00004	e1a05001	 mov         r5, r1
+  00008	e1a06000	 mov         r6, r0
 
-; 705  :     DWORD cSections = 0;
-; 706  :     
-; 707  :     OALMSG(OAL_FUNC, (L"OEMEnumExtensionDRAM()\r\n"));
+; 714  :     DWORD cSections = 0;
+; 715  :     
+; 716  :     OALMSG(OAL_FUNC, (L"OEMEnumExtensionDRAM()\r\n"));
 
-  0000c	e59f3104	 ldr         r3, [pc, #0x104]
+  0000c	e59f30f4	 ldr         r3, [pc, #0xF4]
   00010	e3a04000	 mov         r4, #0
   00014	e5933440	 ldr         r3, [r3, #0x440]
   00018	e3130004	 tst         r3, #4
-  0001c	159f00f0	 ldrne       r0, [pc, #0xF0]
+  0001c	159f00e0	 ldrne       r0, [pc, #0xE0]
   00020	1b000000	 blne        NKDbgPrintfW
 
-; 708  :     // If BANK1 is enabled, give it the OS (V)
-; 709  :     if ((cSections < cMemSections) && (dwBank1Enabled == 1))
+; 717  :     // If BANK1 is enabled, give it the OS (V)
+; 718  :     if ((cSections < cMemSections) && (dwBank1Enabled == 1))
 
-  00024	e3560000	 cmp         r6, #0
-  00028	0a000035	 beq         |$LN1@OEMEnumExt|
-  0002c	e59f10dc	 ldr         r1, [pc, #0xDC]
+  00024	e3550000	 cmp         r5, #0
+  00028	0a000031	 beq         |$LN1@OEMEnumExt|
+  0002c	e59f10cc	 ldr         r1, [pc, #0xCC]
   00030	e3a0e000	 mov         lr, #0
   00034	e5913000	 ldr         r3, [r1]
   00038	e3530001	 cmp         r3, #1
-  0003c	03a03489	 moveq       r3, #0x89, 8
+  0003c	03a03322	 moveq       r3, #0x22, 6
+  00040	03a0267f	 moveq       r2, #0x7F, 12
 
-; 710  :     {
-; 711  :         pMemSections[cSections].dwFlags = 0;
-; 712  :         pMemSections[cSections].dwStart = IMAGE_WINCE_RAM_BANK1_CA;
+; 719  :     {
+; 720  :         pMemSections[cSections].dwFlags = 0;
+; 721  :         pMemSections[cSections].dwStart = IMAGE_WINCE_RAM_BANK1_CA;
 
-  00040	0383360a	 orreq       r3, r3, #0xA, 12
+  00044	03833805	 orreq       r3, r3, #5, 16
 
-; 713  :         pMemSections[cSections].dwLen = IMAGE_WINCE_RAM_BANK1_SIZE;
+; 722  :         pMemSections[cSections].dwLen = IMAGE_WINCE_RAM_BANK1_SIZE;
 
-  00044	03a02666	 moveq       r2, #0x66, 12
+  00048	0382280b	 orreq       r2, r2, #0xB, 16
 
-; 714  :         cSections++;
+; 723  :         cSections++;
 
-  00048	03a04001	 moveq       r4, #1
-  0004c	05853004	 streq       r3, [r5, #4]
-  00050	0585e000	 streq       lr, [r5]
-  00054	05852008	 streq       r2, [r5, #8]
+  0004c	03a04001	 moveq       r4, #1
+  00050	05863004	 streq       r3, [r6, #4]
+  00054	05862008	 streq       r2, [r6, #8]
+  00058	0586e000	 streq       lr, [r6]
 
-; 715  :     }
-; 716  :     // If DSP 720p region is not used for the DSP, give it to the OS (V)
-; 717  :     if ((cSections < cMemSections) && (dwBank1Enabled == 1) && (dwDSP720pEnabled != 1))
+; 724  :     }
+; 725  :     // If DSP 720p region is not used for the DSP, give it to the OS (V)
+; 726  :     if ((cSections < cMemSections) && (dwBank1Enabled == 1) && (dwDSP720pEnabled != 1))
 
-  00058	e1540006	 cmp         r4, r6
-  0005c	2a000028	 bcs         |$LN1@OEMEnumExt|
-  00060	e5913000	 ldr         r3, [r1]
-  00064	e3530001	 cmp         r3, #1
-  00068	1a00000b	 bne         |$LN3@OEMEnumExt|
-  0006c	e5913008	 ldr         r3, [r1, #8]
-  00070	e3530001	 cmp         r3, #1
-  00074	0a000008	 beq         |$LN3@OEMEnumExt|
+  0005c	e1540005	 cmp         r4, r5
+  00060	2a000023	 bcs         |$LN1@OEMEnumExt|
+  00064	e5913000	 ldr         r3, [r1]
+  00068	e3530001	 cmp         r3, #1
+  0006c	1a000009	 bne         |$LN3@OEMEnumExt|
+  00070	e5913008	 ldr         r3, [r1, #8]
+  00074	e3530001	 cmp         r3, #1
 
-; 718  :     {
-; 719  :         pMemSections[cSections].dwFlags = 0;
+; 727  :     {
+; 728  :         pMemSections[cSections].dwFlags = 0;
 
-  00078	e0843084	 add         r3, r4, r4, lsl #1
-  0007c	e1a02005	 mov         r2, r5
-  00080	e7a2e103	 str         lr, [r2, +r3, lsl #2]!
-  00084	e3a03485	 mov         r3, #0x85, 8
+  00078	10843084	 addne       r3, r4, r4, lsl #1
+  0007c	11a02006	 movne       r2, r6
+  00080	17a2e103	 strne       lr, [r2, +r3, lsl #2]!
 
-; 720  :         pMemSections[cSections].dwStart = IMAGE_DSP_720P_CA;
+; 729  :         pMemSections[cSections].dwStart = IMAGE_DSP_720P_CA;
 
-  00088	e3833502	 orr         r3, r3, #2, 10
+  00084	13a03001	 movne       r3, #1
 
-; 721  :         pMemSections[cSections].dwLen = IMAGE_DSP_720P_SIZE;
+; 730  :         pMemSections[cSections].dwLen = IMAGE_DSP_720P_SIZE;
 
-  0008c	e3a0061a	 mov         r0, #0x1A, 12
-  00090	e5823004	 str         r3, [r2, #4]
-  00094	e5820008	 str         r0, [r2, #8]
+  00088	13a00002	 movne       r0, #2
+  0008c	15823004	 strne       r3, [r2, #4]
+  00090	15820008	 strne       r0, [r2, #8]
 
-; 722  :         cSections++;
+; 731  :         cSections++;
 
-  00098	e2844001	 add         r4, r4, #1
-  0009c		 |$LN3@OEMEnumExt|
+  00094	12844001	 addne       r4, r4, #1
+  00098		 |$LN3@OEMEnumExt|
 
-; 723  :     }
-; 724  :     // If CMEM region is not used for the DSP, give it to the OS (V)
-; 725  :     if ((cSections < cMemSections) && (dwCMemDSPEnabled != 1))
+; 732  :     }
+; 733  :     // If CMEM region is not used for the DSP, give it to the OS (V)
+; 734  :     if ((cSections < cMemSections) && (dwCMemDSPEnabled != 1))
 
-  0009c	e1540006	 cmp         r4, r6
-  000a0	2a000017	 bcs         |$LN1@OEMEnumExt|
-  000a4	e5913004	 ldr         r3, [r1, #4]
-  000a8	e3530001	 cmp         r3, #1
-  000ac	0a000008	 beq         |$LN2@OEMEnumExt|
+  00098	e1540005	 cmp         r4, r5
+  0009c	2a000014	 bcs         |$LN1@OEMEnumExt|
+  000a0	e5913004	 ldr         r3, [r1, #4]
+  000a4	e3530001	 cmp         r3, #1
 
-; 726  :     {
-; 727  :         pMemSections[cSections].dwFlags = 0;
+; 735  :     {
+; 736  :         pMemSections[cSections].dwFlags = 0;
 
-  000b0	e0843084	 add         r3, r4, r4, lsl #1
-  000b4	e1a02005	 mov         r2, r5
-  000b8	e7a2e103	 str         lr, [r2, +r3, lsl #2]!
-  000bc	e3a03321	 mov         r3, #0x21, 6
+  000a8	10843084	 addne       r3, r4, r4, lsl #1
+  000ac	11a02006	 movne       r2, r6
+  000b0	17a2e103	 strne       lr, [r2, +r3, lsl #2]!
 
-; 728  :         pMemSections[cSections].dwStart = IMAGE_CMEM_CA;
+; 737  :         pMemSections[cSections].dwStart = IMAGE_CMEM_CA;
 
-  000c0	e3833502	 orr         r3, r3, #2, 10
+  000b4	13a03003	 movne       r3, #3
 
-; 729  :         pMemSections[cSections].dwLen = IMAGE_CMEM_SIZE;
+; 738  :         pMemSections[cSections].dwLen = IMAGE_CMEM_SIZE;
 
-  000c4	e3a00401	 mov         r0, #1, 8
-  000c8	e5823004	 str         r3, [r2, #4]
-  000cc	e5820008	 str         r0, [r2, #8]
+  000b8	13a00004	 movne       r0, #4
 
-; 730  :         cSections++;
+; 739  :         cSections++;
 
-  000d0	e2844001	 add         r4, r4, #1
-  000d4		 |$LN2@OEMEnumExt|
+  000bc	12844001	 addne       r4, r4, #1
+  000c0	15823004	 strne       r3, [r2, #4]
+  000c4	15820008	 strne       r0, [r2, #8]
 
-; 731  :     }
-; 732  :     // If DSP region is not used for the DSP, give it to the OS (V)
-; 733  :     if ((cSections < cMemSections) && (dwCMemDSPEnabled != 1))
+; 740  :     }
+; 741  :     // If DSP region is not used for the DSP, give it to the OS (V)
+; 742  :     if ((cSections < cMemSections) && (dwCMemDSPEnabled != 1))
 
-  000d4	e1540006	 cmp         r4, r6
-  000d8	2a000009	 bcs         |$LN1@OEMEnumExt|
-  000dc	e5913004	 ldr         r3, [r1, #4]
-  000e0	e3530001	 cmp         r3, #1
+  000c8	e1540005	 cmp         r4, r5
+  000cc	2a000008	 bcs         |$LN1@OEMEnumExt|
+  000d0	e5913004	 ldr         r3, [r1, #4]
+  000d4	e3530001	 cmp         r3, #1
 
-; 734  :     {
-; 735  :         pMemSections[cSections].dwFlags = 0;
+; 743  :     {
+; 744  :         pMemSections[cSections].dwFlags = 0;
 
-  000e4	10843084	 addne       r3, r4, r4, lsl #1
-  000e8	17a5e103	 strne       lr, [r5, +r3, lsl #2]!
-  000ec	13a03487	 movne       r3, #0x87, 8
+  000d8	10843084	 addne       r3, r4, r4, lsl #1
+  000dc	17a6e103	 strne       lr, [r6, +r3, lsl #2]!
 
-; 736  :         pMemSections[cSections].dwStart = IMAGE_DSP_CA;
+; 745  :         pMemSections[cSections].dwStart = IMAGE_DSP_CA;
 
-  000f0	13833602	 orrne       r3, r3, #2, 12
+  000e0	13a03005	 movne       r3, #5
 
-; 737  :         pMemSections[cSections].dwLen = IMAGE_DSP_SIZE;
+; 746  :         pMemSections[cSections].dwLen = IMAGE_DSP_SIZE;
 
-  000f4	13a0260e	 movne       r2, #0xE, 12
-  000f8	15853004	 strne       r3, [r5, #4]
-  000fc	15852008	 strne       r2, [r5, #8]
+  000e4	13a02006	 movne       r2, #6
+  000e8	15863004	 strne       r3, [r6, #4]
+  000ec	15862008	 strne       r2, [r6, #8]
 
-; 738  :         cSections++;
+; 747  :         cSections++;
 
-  00100	12844001	 addne       r4, r4, #1
-  00104		 |$LN1@OEMEnumExt|
+  000f0	12844001	 addne       r4, r4, #1
+  000f4		 |$LN1@OEMEnumExt|
 
-; 739  :     }    
-; 740  :     
-; 741  :     return cSections;
-; 742  : }
+; 748  :     }    
+; 749  :     
+; 750  :     return cSections;
+; 751  : }
 
-  00104	e1a00004	 mov         r0, r4
-  00108	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  0010c	e12fff1e	 bx          lr
-  00110		 |$LN12@OEMEnumExt|
-  00110		 |$LN13@OEMEnumExt|
-  00110	00000000	 DCD         |dwBank1Enabled|
-  00114		 |$LN14@OEMEnumExt|
-  00114	00000000	 DCD         |??_C@_1DC@LBJFKMIA@?$AAO?$AAE?$AAM?$AAE?$AAn?$AAu?$AAm?$AAE?$AAx?$AAt?$AAe?$AAn?$AAs?$AAi?$AAo?$AAn?$AAD?$AAR?$AAA?$AAM?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  00118		 |$LN15@OEMEnumExt|
-  00118	00000000	 DCD         |dpCurSettings|
-  0011c		 |$M47702|
+  000f4	e1a00004	 mov         r0, r4
+  000f8	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
+  000fc	e12fff1e	 bx          lr
+  00100		 |$LN12@OEMEnumExt|
+  00100		 |$LN13@OEMEnumExt|
+  00100	00000000	 DCD         |dwBank1Enabled|
+  00104		 |$LN14@OEMEnumExt|
+  00104	00000000	 DCD         |??_C@_1DC@LBJFKMIA@?$AAO?$AAE?$AAM?$AAE?$AAn?$AAu?$AAm?$AAE?$AAx?$AAt?$AAe?$AAn?$AAs?$AAi?$AAo?$AAn?$AAD?$AAR?$AAA?$AAM?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  00108		 |$LN15@OEMEnumExt|
+  00108	00000000	 DCD         |dpCurSettings|
+  0010c		 |$M47696|
 
 			 ENDP  ; |OEMEnumExtensionDRAM|
 
@@ -1181,7 +1188,7 @@
 |?allocationPool@?1??OEMInit@@9@9| % 0x800		; `OEMInit'::`2'::allocationPool
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47757| DCD	|$LN61@OEMInit|
+|$T47751| DCD	|$LN61@OEMInit|
 	DCD	0x40011002
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1379,7 +1386,7 @@
   00000		 |$LN61@OEMInit|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47754|
+  00008		 |$M47748|
   00008	e3a03a0d	 mov         r3, #0xD, 20
 
 ; 197  :     BOOL	*pColdBoot;
@@ -1702,13 +1709,13 @@
   001b8	e3500000	 cmp         r0, #0
   001bc	1a000004	 bne         |$LN13@OEMInit|
   001c0	e3130001	 tst         r3, #1
-  001c4	0a00006b	 beq         |$cleanUp$47328|
+  001c4	0a00006b	 beq         |$cleanUp$47322|
   001c8	e59f01f4	 ldr         r0, [pc, #0x1F4]
   001cc	eb000000	 bl          NKDbgPrintfW
 
 ; 329  :         goto cleanUp;
 
-  001d0	ea000068	 b           |$cleanUp$47328|
+  001d0	ea000068	 b           |$cleanUp$47322|
   001d4		 |$LN13@OEMInit|
 
 ; 330  :         }
@@ -1738,10 +1745,10 @@
 ; 340  :             ));
 
   001fc	e3130001	 tst         r3, #1
-  00200	0a00005c	 beq         |$cleanUp$47328|
+  00200	0a00005c	 beq         |$cleanUp$47322|
   00204	e59f01b0	 ldr         r0, [pc, #0x1B0]
   00208	eb000000	 bl          NKDbgPrintfW
-  0020c	ea000059	 b           |$cleanUp$47328|
+  0020c	ea000059	 b           |$cleanUp$47322|
   00210		 |$LN12@OEMInit|
 
 ; 341  :         goto cleanUp;
@@ -2024,13 +2031,13 @@
   00364	0a000002	 beq         |$LN1@OEMInit|
   00368	e5903000	 ldr         r3, [r0]
   0036c	e3530000	 cmp         r3, #0
-  00370	0a000000	 beq         |$cleanUp$47328|
+  00370	0a000000	 beq         |$cleanUp$47322|
   00374		 |$LN1@OEMInit|
 
 ; 485  :         NKForceCleanBoot();
 
   00374	eb000000	 bl          NKForceCleanBoot
-  00378		 |$cleanUp$47328|
+  00378		 |$cleanUp$47322|
 
 ; 325  :         {
 ; 326  :         OALMSG(OAL_ERROR, (
@@ -2139,7 +2146,7 @@
   00438	00000000	 DCD         |??_C@_1BG@JHBBNGEC@?$AA?$CL?$AAO?$AAE?$AAM?$AAI?$AAn?$AAi?$AAt?$AA?$AN?$AA?6?$AA?$AA@|
   0043c		 |$LN105@OEMInit|
   0043c	00000000	 DCD         |dpCurSettings|
-  00440		 |$M47755|
+  00440		 |$M47749|
 
 			 ENDP  ; |OEMInit|
 

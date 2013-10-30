@@ -8,6 +8,7 @@
 	DCB	"-defaultlib:OLDNAMES "
 
 	EXPORT	|asciiFont| [ DATA ]
+	EXPORT	|hGpio| [ DATA ]
 
   00000			 AREA	 |.data|, DATA
 	 COMMON	|g_dwLogoWidth|, 0x4
@@ -22,16 +23,15 @@
   00000			 AREA	 |.bss|, NOINIT
 |g_nHeight| %	0x4
 |g_nWidth| %	0x4
-|g_nColMax| %	0x4
-|g_nRowMax| %	0x4
 |g_wFontColor| % 0x4
 |g_dwFrameBuffer| % 0x4
+|hGpio|	%	0x4
 
   00000			 AREA	 |.data|, DATA
 |g_wBkColor| DCD 0xffffffff
 |?nWidth@?1??FillASCII@@9@9| DCD 0xb4			; `FillASCII'::`2'::nWidth
 |?cur_col@?1??FillASCII@@9@9| DCD 0xd			; `FillASCII'::`2'::cur_col
-|?cur_row@?1??FillASCII@@9@9| DCD 0x6			; `FillASCII'::`2'::cur_row
+|?cur_row@?1??FillASCII@@9@9| DCD 0x8			; `FillASCII'::`2'::cur_row
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |EdbgVendorIds| DCW 0x0
@@ -1650,7 +1650,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48665| DCD	|$LN5@TWLWriteBy|
+|$T48669| DCD	|$LN5@TWLWriteBy|
 	DCD	0x40000803
 ; Function compile flags: /Ogspy
 
@@ -1664,7 +1664,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5000	 stmdb       sp!, {r12, lr}
-  0000c		 |$M48662|
+  0000c		 |$M48666|
 
 ; 58   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 
@@ -1676,248 +1676,465 @@
 
   00018	e89d6000	 ldmia       sp, {sp, lr}
   0001c	e12fff1e	 bx          lr
-  00020		 |$M48663|
+  00020		 |$M48667|
 
 			 ENDP  ; |TWLWriteByteReg|
 
-	EXPORT	|__$ArrayPad$| [ DATA ]
-	EXPORT	|FillASCII|
-	IMPORT	|__GSHandlerCheck|
-	IMPORT	|__security_cookie|
-	IMPORT	|__security_check_cookie|
+	EXPORT	|InitGraphicsEngine|
+
+  00014			 AREA	 |.bss|, NOINIT
+|g_nBpp| %	0x4
+|g_nBpp| %	0x4
 ; File c:\wince600\platform\z2170p\src\bootloader\display\bsp_logo.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48691| DCD	|$LN22@FillASCII|
-	DCD	0xc0006402
+|$T48682| DCD	|$LN5@InitGraphi|
+	DCD	0x40000b01
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |InitGraphicsEngine| PROC
+
+; 304  : {
+
+  00000		 |$LN5@InitGraphi|
+  00000	e92d4010	 stmdb       sp!, {r4, lr}
+  00004		 |$M48679|
+  00004	e1a0e000	 mov         lr, r0
+
+; 305  : 		
+; 306  : 	g_nHeight = nHeight;
+
+  00008	e59f4018	 ldr         r4, [pc, #0x18]
+
+; 307  : 	g_nWidth  = nWidth;	
+; 308  : 	g_nBpp = (DWORD)nBpp; 
+; 309  :     g_dwFrameBuffer = (volatile DWORD *) dwFrameBuffer;
+; 310  : 	
+; 311  : 	//FillASCII();
+; 312  : 	
+; 313  : 	return TRUE;
+
+  0000c	e3a00001	 mov         r0, #1
+  00010	e5841004	 str         r1, [r4, #4]
+  00014	e584e008	 str         lr, [r4, #8]
+  00018	e5842000	 str         r2, [r4]
+  0001c	e5843010	 str         r3, [r4, #0x10]
+
+; 314  : }
+
+  00020	e8bd4010	 ldmia       sp!, {r4, lr}
+  00024	e12fff1e	 bx          lr
+  00028		 |$LN6@InitGraphi|
+  00028		 |$LN7@InitGraphi|
+  00028	00000000	 DCD         |g_nBpp|
+  0002c		 |$M48680|
+
+			 ENDP  ; |InitGraphicsEngine|
+
+	EXPORT	|FillASCII|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48706| DCD	|$LN22@FillASCII|
+	DCD	0x40004b02
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |FillASCII| PROC
+
+; 317  : {
+
+  00000		 |$LN22@FillASCII|
+  00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
+  00004	e24dd018	 sub         sp, sp, #0x18
+  00008		 |$M48703|
+  00008	e1a0a000	 mov         r10, r0
+  0000c	e58da014	 str         r10, [sp, #0x14]
+
+; 318  :     volatile DWORD *mem = g_dwFrameBuffer;
+; 319  :     //static DWORD nWidth	= 360;  
+; 320  :     static DWORD nWidth	= 180;
+; 321  :     int printMode = 0;
+; 322  : 	int printN = 10;
+; 323  : 	//BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
+; 324  : 	UINT16 tempbit, i, j;
+; 325  :     int p = 8;
+; 326  :     unsigned long offset;
+; 327  :     int offh = 0, offw = 0;
+; 328  :     unsigned char bit;
+; 329  : 	BYTE c = 0; 
+; 330  : 	static int cur_col  = 13;
+; 331  : 	static int cur_row  = 8;        //shift a row place equal a pixel, Ray 131003  
+; 332  : 	BYTE n = 0;
+; 333  : 	int shiftPalce = 8;	
+; 334  : 
+; 335  : 	
+; 336  : 	offw =  FONT_WIDTH * cur_row ;  			// offw = 8
+
+  00010	e59f1110	 ldr         r1, [pc, #0x110]
+
+; 337  : 	//printN = sizeof(showChar);
+; 338  : 	
+; 339  : 	while(n < printN)
+
+  00014	e59f2108	 ldr         r2, [pc, #0x108]
+  00018	e3a0e000	 mov         lr, #0
+  0001c	e591300c	 ldr         r3, [r1, #0xC]
+  00020	e5910008	 ldr         r0, [r1, #8]
+  00024	e5916004	 ldr         r6, [r1, #4]
+  00028	e1a05183	 mov         r5, r3, lsl #3
+  0002c	e5913000	 ldr         r3, [r1]
+  00030	e5929004	 ldr         r9, [r2, #4]
+  00034	e592b000	 ldr         r11, [r2]
+  00038	e58d3010	 str         r3, [sp, #0x10]
+  0003c	e3a03000	 mov         r3, #0
+  00040	e58d0004	 str         r0, [sp, #4]
+  00044	e58d5008	 str         r5, [sp, #8]
+  00048	e58d600c	 str         r6, [sp, #0xC]
+  0004c	e3a01008	 mov         r1, #8
+  00050	e5cde000	 strb        lr, [sp]
+  00054		 |$LL11@FillASCII|
+
+; 340  : 	{
+; 341  : 		c = showCharMode[printMode][n];
+
+  00054	e7d3800a	 ldrb        r8, [r3, +r10]
+
+; 342  : 		//c = showChar[n];
+; 343  : 		for (i=0; i<16; i++) 
+; 344  : 		{
+; 345  :         	offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
+; 346  :      
+; 347  :         	for (j=0; j<8; j++) 
+; 348  :         	{
+; 349  :             	tempbit = 1 << j; 
+; 350  :             	bit = (unsigned char)tempbit;
+; 351  :             	bit &= asciiFont[c][i];                 //do array location & bit 
+; 352  :                 offset = nWidth * offh + offw;
+; 353  :                 if (bit) {							//Non-zero is Running
+; 354  :         	  		mem[ p + offset ] = g_wFontColor;
+; 355  :                 	p--;
+; 356  :             	}else {
+; 357  :                 	mem[ p + offset ] = g_wBkColor;
+; 358  :                 	p--;
+; 359  :             	}
+; 360  :  
+; 361  :             	if(p == 0){
+; 362  :                 	p = 8;
+; 363  :             	}
+; 364  :         	}
+; 365  :     	}
+; 366  : 		offw += shiftPalce;
+; 367  : 		n++;
+
+  00058	e59da010	 ldr         r10, [sp, #0x10]
+  0005c	e59de004	 ldr         lr, [sp, #4]
+  00060	e5cd8001	 strb        r8, [sp, #1]
+  00064	e3a02000	 mov         r2, #0
+  00068	e3a04000	 mov         r4, #0
+  0006c		 |$LL9@FillASCII|
+  0006c	e082320e	 add         r3, r2, lr, lsl #4
+  00070	e0205396	 mla         r0, r6, r3, r5
+  00074	e0827208	 add         r7, r2, r8, lsl #4
+  00078	e59f80a0	 ldr         r8, [pc, #0xA0]
+  0007c	e3a06000	 mov         r6, #0
+  00080	e3a05001	 mov         r5, #1
+  00084	e3a02000	 mov         r2, #0
+  00088		 |$LL6@FillASCII|
+  00088	e7d73008	 ldrb        r3, [r7, +r8]
+  0008c	e1130215	 tst         r3, r5, lsl r2
+  00090	e0803001	 add         r3, r0, r1
+  00094	e0893103	 add         r3, r9, r3, lsl #2
+  00098	1583b000	 strne       r11, [r3]
+  0009c	0583a000	 streq       r10, [r3]
+  000a0	e2863001	 add         r3, r6, #1
+  000a4	e2411001	 sub         r1, r1, #1
+  000a8	e1a02803	 mov         r2, r3, lsl #16
+  000ac	e3510000	 cmp         r1, #0
+  000b0	e1a02822	 mov         r2, r2, lsr #16
+  000b4	03a01008	 moveq       r1, #8
+  000b8	e1a06002	 mov         r6, r2
+  000bc	e3520008	 cmp         r2, #8
+  000c0	3afffff0	 bcc         |$LL6@FillASCII|
+  000c4	e2843001	 add         r3, r4, #1
+  000c8	e1a02803	 mov         r2, r3, lsl #16
+  000cc	e1a02822	 mov         r2, r2, lsr #16
+  000d0	e59d5008	 ldr         r5, [sp, #8]
+  000d4	e5dd8001	 ldrb        r8, [sp, #1]
+  000d8	e59de004	 ldr         lr, [sp, #4]
+  000dc	e59d600c	 ldr         r6, [sp, #0xC]
+  000e0	e1a04002	 mov         r4, r2
+  000e4	e3520010	 cmp         r2, #0x10
+  000e8	3affffdf	 bcc         |$LL9@FillASCII|
+  000ec	e5dde000	 ldrb        lr, [sp]
+  000f0	e2855008	 add         r5, r5, #8
+  000f4	e59da014	 ldr         r10, [sp, #0x14]
+  000f8	e28e3001	 add         r3, lr, #1
+  000fc	e203e0ff	 and         lr, r3, #0xFF
+  00100	e5cde000	 strb        lr, [sp]
+  00104	e1a0300e	 mov         r3, lr
+  00108	e35e000a	 cmp         lr, #0xA
+  0010c	e58d5008	 str         r5, [sp, #8]
+  00110	baffffcf	 blt         |$LL11@FillASCII|
+
+; 368  : 	}
+; 369  : }
+
+  00114	e28dd018	 add         sp, sp, #0x18
+  00118	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  0011c	e12fff1e	 bx          lr
+  00120		 |$LN23@FillASCII|
+  00120		 |$LN24@FillASCII|
+  00120	00000000	 DCD         |asciiFont|
+  00124		 |$LN25@FillASCII|
+  00124	00000000	 DCD         |g_wFontColor|
+  00128		 |$LN26@FillASCII|
+  00128	00000000	 DCD         |g_wBkColor|
+  0012c		 |$M48704|
+
+			 ENDP  ; |FillASCII|
+
+	EXPORT	|__$ArrayPad$| [ DATA ]
+	EXPORT	|FillASCIIMode|
+	IMPORT	|__GSHandlerCheck|
+	IMPORT	|__security_cookie|
+	IMPORT	|__security_check_cookie|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48724| DCD	|$LN12@FillASCIIM|
+	DCD	0xc0006b02
 
   00000			 AREA	 |.xdata|, DATA
-|$T48687| DCD	0xffffffd8
+|$T48720| DCD	0xffffffd8
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T48687|
+  00004	00000000	 DCD         |$T48720|
 
-  00008		 |FillASCII| PROC
+  00008		 |FillASCIIMode| PROC
 
-; 527  : {
+; 372  : {
 
-  00008		 |$LN22@FillASCII|
+  00008		 |$LN12@FillASCIIM|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M48688|
-  00010	e59f317c	 ldr         r3, [pc, #0x17C]
+  0000c	e24dd02c	 sub         sp, sp, #0x2C
+  00010		 |$M48721|
+  00010	e59f3198	 ldr         r3, [pc, #0x198]
   00014	e5933000	 ldr         r3, [r3]
-  00018	e58d3020	 str         r3, [sp, #0x20]
+  00018	e58d3028	 str         r3, [sp, #0x28]
 
-; 528  :     volatile DWORD *mem = g_dwFrameBuffer;
-; 529  :     //static DWORD nWidth	= 360;  
-; 530  :     static DWORD nWidth	= 180;
-; 531  :     //static DWORD nWidth	= 10;
-; 532  :     //DWORD d4sec = 4000000;
-; 533  : //    DWORD d50msec = 50000;
-; 534  : 	int printN=0;
-; 535  : 	BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
-; 536  : 	UINT16 tempbit, i, j;
-; 537  :     int p = 8;
-; 538  :     unsigned long offset;
-; 539  :     int offh = 0, offw = 0;
-; 540  :     unsigned char bit;
-; 541  : 	BYTE c = 0; 
-; 542  : 	//BYTE c = 35;
-; 543  : 	static int cur_col  = 13;
-; 544  : 	static int cur_row  = 6;        //shift a row place equal a pixel, Ray 13-10-03  
-; 545  : 	BYTE n = 0;
-; 546  : 	int shiftPalce = 8;	
-; 547  : 	//DWORD	dwLength 	= 0;
-; 548  : 	
-; 549  : 	offw =  FONT_WIDTH * cur_row ;  			// offw = 8
+; 373  :     BYTE showCharMode[4][10] = {{54,81,69,66,85,70,15,15,15},	      //Update... 
 
-  0001c	e59f116c	 ldr         r1, [pc, #0x16C]
+  0001c	e3a03036	 mov         r3, #0x36
+  00020	e5cd3000	 strb        r3, [sp]
+  00024	e3a03000	 mov         r3, #0
+  00028	e5cd3009	 strb        r3, [sp, #9]
 
-; 550  : 	printN = sizeof(showChar);
-; 551  : 
-; 552  : 	while(n < printN)
+; 374  :                                 {51,70,84,70,83,87,70,69,15,15},      //Reserved
+; 375  :                                 {51,70,84,70,83,87,70,69,15,15},
+; 376  :                                 {51,70,84,70,83,87,70,69,15,15}};
 
-  00020	e59f2164	 ldr         r2, [pc, #0x164]
-  00024	e3a0a048	 mov         r10, #0x48
-  00028	e591300c	 ldr         r3, [r1, #0xC]
-  0002c	e5910008	 ldr         r0, [r1, #8]
-  00030	e5916004	 ldr         r6, [r1, #4]
-  00034	e1a05183	 mov         r5, r3, lsl #3
-  00038	e5913000	 ldr         r3, [r1]
-  0003c	e58d000c	 str         r0, [sp, #0xC]
-  00040	e3a00050	 mov         r0, #0x50
-  00044	e58d3010	 str         r3, [sp, #0x10]
-  00048	e3a0302d	 mov         r3, #0x2D
-  0004c	e5cd3014	 strb        r3, [sp, #0x14]
-  00050	e3a0300f	 mov         r3, #0xF
-  00054	e5cd301b	 strb        r3, [sp, #0x1B]
-  00058	e3a0300f	 mov         r3, #0xF
-  0005c	e5cd301c	 strb        r3, [sp, #0x1C]
-  00060	e3a0300f	 mov         r3, #0xF
-  00064	e5929004	 ldr         r9, [r2, #4]
-  00068	e592b000	 ldr         r11, [r2]
-  0006c	e5cd0015	 strb        r0, [sp, #0x15]
-  00070	e3a0e042	 mov         lr, #0x42
-  00074	e3a04045	 mov         r4, #0x45
-  00078	e3a0704a	 mov         r7, #0x4A
-  0007c	e3a0804f	 mov         r8, #0x4F
-  00080	e3a00000	 mov         r0, #0
-  00084	e5cd301d	 strb        r3, [sp, #0x1D]
-  00088	e5cda01a	 strb        r10, [sp, #0x1A]
-  0008c	e3a03000	 mov         r3, #0
-  00090	e58d5004	 str         r5, [sp, #4]
-  00094	e58d6008	 str         r6, [sp, #8]
-  00098	e5cde016	 strb        lr, [sp, #0x16]
-  0009c	e5cd4017	 strb        r4, [sp, #0x17]
-  000a0	e5cd7018	 strb        r7, [sp, #0x18]
-  000a4	e5cd8019	 strb        r8, [sp, #0x19]
-  000a8	e3a02008	 mov         r2, #8
-  000ac	e5cd0000	 strb        r0, [sp]
-  000b0	e28da014	 add         r10, sp, #0x14
-  000b4		 |$LL11@FillASCII|
+  0002c	e3a03033	 mov         r3, #0x33
+  00030	e5cd300a	 strb        r3, [sp, #0xA]
+  00034	e3a03054	 mov         r3, #0x54
+  00038	e5cd3016	 strb        r3, [sp, #0x16]
+  0003c	e3a03046	 mov         r3, #0x46
+  00040	e5cd3017	 strb        r3, [sp, #0x17]
+  00044	e3a03053	 mov         r3, #0x53
+  00048	e5cd3018	 strb        r3, [sp, #0x18]
+  0004c	e3a03057	 mov         r3, #0x57
+  00050	e5cd3019	 strb        r3, [sp, #0x19]
+  00054	e3a03046	 mov         r3, #0x46
+  00058	e5cd301a	 strb        r3, [sp, #0x1A]
+  0005c	e3a03045	 mov         r3, #0x45
+  00060	e5cd301b	 strb        r3, [sp, #0x1B]
+  00064	e3a0300f	 mov         r3, #0xF
+  00068	e5cd301c	 strb        r3, [sp, #0x1C]
+  0006c	e3a0300f	 mov         r3, #0xF
+  00070	e5cd301d	 strb        r3, [sp, #0x1D]
+  00074	e3a03033	 mov         r3, #0x33
+  00078	e5cd301e	 strb        r3, [sp, #0x1E]
+  0007c	e3a03046	 mov         r3, #0x46
+  00080	e5cd301f	 strb        r3, [sp, #0x1F]
+  00084	e3a03054	 mov         r3, #0x54
+  00088	e5cd3020	 strb        r3, [sp, #0x20]
+  0008c	e3a03046	 mov         r3, #0x46
+  00090	e5cd3021	 strb        r3, [sp, #0x21]
+  00094	e3a03053	 mov         r3, #0x53
+  00098	e5cd3022	 strb        r3, [sp, #0x22]
+  0009c	e3a03057	 mov         r3, #0x57
+  000a0	e5cd3023	 strb        r3, [sp, #0x23]
+  000a4	e3a03046	 mov         r3, #0x46
+  000a8	e3a02051	 mov         r2, #0x51
+  000ac	e3a01045	 mov         r1, #0x45
+  000b0	e3a0e042	 mov         lr, #0x42
+  000b4	e3a04055	 mov         r4, #0x55
+  000b8	e3a05046	 mov         r5, #0x46
+  000bc	e3a0600f	 mov         r6, #0xF
+  000c0	e3a0700f	 mov         r7, #0xF
+  000c4	e3a0800f	 mov         r8, #0xF
+  000c8	e5cd3024	 strb        r3, [sp, #0x24]
+  000cc	e5cd2001	 strb        r2, [sp, #1]
+  000d0	e5cd1002	 strb        r1, [sp, #2]
+  000d4	e5cde003	 strb        lr, [sp, #3]
+  000d8	e5cd4004	 strb        r4, [sp, #4]
+  000dc	e5cd5005	 strb        r5, [sp, #5]
+  000e0	e5cd6006	 strb        r6, [sp, #6]
+  000e4	e5cd7007	 strb        r7, [sp, #7]
+  000e8	e5cd8008	 strb        r8, [sp, #8]
+  000ec	e3a03045	 mov         r3, #0x45
+  000f0	e3a02046	 mov         r2, #0x46
+  000f4	e3a01054	 mov         r1, #0x54
+  000f8	e3a0e046	 mov         lr, #0x46
+  000fc	e3a04053	 mov         r4, #0x53
+  00100	e3a05057	 mov         r5, #0x57
+  00104	e3a06046	 mov         r6, #0x46
+  00108	e3a07045	 mov         r7, #0x45
+  0010c	e3a0800f	 mov         r8, #0xF
+  00110	e3a0900f	 mov         r9, #0xF
+  00114	e3a0a033	 mov         r10, #0x33
+  00118	e3a0b046	 mov         r11, #0x46
+  0011c	e5cd3025	 strb        r3, [sp, #0x25]
+  00120	e5cd200b	 strb        r2, [sp, #0xB]
+  00124	e5cd100c	 strb        r1, [sp, #0xC]
+  00128	e5cde00d	 strb        lr, [sp, #0xD]
+  0012c	e5cd400e	 strb        r4, [sp, #0xE]
+  00130	e5cd500f	 strb        r5, [sp, #0xF]
+  00134	e5cd6010	 strb        r6, [sp, #0x10]
+  00138	e5cd7011	 strb        r7, [sp, #0x11]
+  0013c	e5cd8012	 strb        r8, [sp, #0x12]
+  00140	e5cd9013	 strb        r9, [sp, #0x13]
+  00144	e5cda014	 strb        r10, [sp, #0x14]
+  00148	e5cdb015	 strb        r11, [sp, #0x15]
+  0014c	e3a0300f	 mov         r3, #0xF
+  00150	e3a0200f	 mov         r2, #0xF
+  00154	e5cd3026	 strb        r3, [sp, #0x26]
+  00158	e5cd2027	 strb        r2, [sp, #0x27]
 
-; 553  : 	{
-; 554  : 		c = showChar[n];
+; 377  :    switch(mode)
 
-  000b4	e7d3800a	 ldrb        r8, [r3, +r10]
+  0015c	e3500001	 cmp         r0, #1
+  00160	0a00000b	 beq         |$LN4@FillASCIIM|
+  00164	e3500002	 cmp         r0, #2
+  00168	0a000007	 beq         |$LN3@FillASCIIM|
+  0016c	e3500003	 cmp         r0, #3
+  00170	0a000003	 beq         |$LN2@FillASCIIM|
+  00174	e3500004	 cmp         r0, #4
+  00178	1a000007	 bne         |$LN5@FillASCIIM|
 
-; 555  : 		for (i=0; i<16; i++) 
-; 556  : 		{
-; 557  :         	//g_nWidth -= 80;
-; 558  :         	offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
-; 559  :             //OALLog(L"Round: %d \r\n", i);
-; 560  :         	//OALLog(L"=============================\r\n");
-; 561  :         	//LcdStall(d2sec);
-; 562  :         	for (j=0; j<8; j++) 
+; 388  :         case 4:
+; 389  :             FillASCII((showCharMode+3));
 
-  000b8	e59da010	 ldr         r10, [sp, #0x10]
-  000bc	e59d000c	 ldr         r0, [sp, #0xC]
-  000c0	e5cd8001	 strb        r8, [sp, #1]
-  000c4	e3a01000	 mov         r1, #0
-  000c8	e3a04000	 mov         r4, #0
-  000cc		 |$LL9@FillASCII|
-  000cc	e0813200	 add         r3, r1, r0, lsl #4
-  000d0	e02e5396	 mla         lr, r6, r3, r5
-  000d4	e0817208	 add         r7, r1, r8, lsl #4
-  000d8	e59f80a8	 ldr         r8, [pc, #0xA8]
+  0017c	e28d001e	 add         r0, sp, #0x1E
 
-; 563  :         	{
-; 564  :             	tempbit = 1 << j; //OALLog(L"j: %d \r\n", j);
-; 565  :             	bit = (unsigned char)tempbit;
-; 566  :             	bit &= asciiFont[c][i];                 //do array location & bit 
-; 567  :                 //OALLog(L"bit: %c,\tasciiFont: %d  \r\n",bit , asciiFont[c][i]);
-; 568  : 				//offset = g_nHeight * offh + offw;     //240*16+ 8   
-; 569  :                 offset = nWidth * offh + offw;
+; 390  :             break;
 
-  000dc	e3a06000	 mov         r6, #0
-  000e0	e3a05001	 mov         r5, #1
-  000e4	e3a01000	 mov         r1, #0
-  000e8		 |$LL6@FillASCII|
+  00180	ea000004	 b           |$LN9@FillASCIIM|
+  00184		 |$LN2@FillASCIIM|
 
-; 570  :                   /*if(j== 0)
-; 571  :                   {
-; 572  :                     OALLog(L"offh:    %d \r\n", offh);
-; 573  :                     OALLog(L"offw:    %d \r\n", offw);
-; 574  :                     OALLog(L"nWidth:  %d \r\n", nWidth);  
-; 575  :                     //OALLog(L"g_nWidth: %d \r\n", g_nWidth);  
-; 576  :                     OALLog(L"offset:  %d \r\n", offset);
-; 577  :                     OALLog(L"-----------------------------\r\n");
-; 578  :                   }*/
-; 579  :                 if (bit) {							//Non-zero is Running
+; 385  :         case 3:
+; 386  :             FillASCII((showCharMode+2));
 
-  000e8	e7d73008	 ldrb        r3, [r7, +r8]
-  000ec	e1130115	 tst         r3, r5, lsl r1
+  00184	e28d0014	 add         r0, sp, #0x14
 
-; 580  :         	  		mem[ p + offset ] = g_wFontColor;
+; 387  :             break;
 
-  000f0	e08e3002	 add         r3, lr, r2
-  000f4	e0893103	 add         r3, r9, r3, lsl #2
-  000f8	1583b000	 strne       r11, [r3]
+  00188	ea000002	 b           |$LN9@FillASCIIM|
+  0018c		 |$LN3@FillASCIIM|
 
-; 581  :                    	//mem[ p + offset ] = g_wFontColor2;
-; 582  :                    	//mem[ p + offset ] = g_wFontColor3;
-; 583  :                 	p--;
-; 584  :             	}else {
-; 585  :                 	mem[ p + offset ] = g_wBkColor;
+; 381  :             break;
+; 382  :         case 2:
+; 383  :             FillASCII((showCharMode+1));
 
-  000fc	0583a000	 streq       r10, [r3]
-  00100	e2863001	 add         r3, r6, #1
-  00104	e2422001	 sub         r2, r2, #1
-  00108	e1a01803	 mov         r1, r3, lsl #16
+  0018c	e28d000a	 add         r0, sp, #0xA
 
-; 586  :          	  		//mem[ p + offset ] = g_wBkColor2;
-; 587  :            	  		//mem[ p + offset ] = g_wBkColor3;
-; 588  :                 	p--;
-; 589  :             	}
-; 590  :                 //LcdStall(d50msec);
-; 591  :             	if(p == 0){
+; 384  :             break;
 
-  0010c	e3520000	 cmp         r2, #0
-  00110	e1a01821	 mov         r1, r1, lsr #16
+  00190	ea000000	 b           |$LN9@FillASCIIM|
+  00194		 |$LN4@FillASCIIM|
 
-; 592  :                 	p = 8;
+; 378  :    {
+; 379  :         case 1:
+; 380  :             FillASCII((showCharMode+0));
 
-  00114	03a02008	 moveq       r2, #8
-  00118	e1a06001	 mov         r6, r1
-  0011c	e3510008	 cmp         r1, #8
-  00120	3afffff0	 bcc         |$LL6@FillASCII|
-  00124	e2843001	 add         r3, r4, #1
-  00128	e1a01803	 mov         r1, r3, lsl #16
-  0012c	e1a01821	 mov         r1, r1, lsr #16
-  00130	e59d5004	 ldr         r5, [sp, #4]
-  00134	e5dd8001	 ldrb        r8, [sp, #1]
-  00138	e59d000c	 ldr         r0, [sp, #0xC]
-  0013c	e59d6008	 ldr         r6, [sp, #8]
-  00140	e1a04001	 mov         r4, r1
-  00144	e3510010	 cmp         r1, #0x10
-  00148	3affffdf	 bcc         |$LL9@FillASCII|
+  00194	e28d0000	 add         r0, sp, #0
+  00198		 |$LN9@FillASCIIM|
+  00198	eb000000	 bl          FillASCII
+  0019c		 |$LN5@FillASCIIM|
+  0019c	e59d0028	 ldr         r0, [sp, #0x28]
+  001a0	eb000000	 bl          __security_check_cookie
 
-; 593  :             	}
-; 594  :         	}
-; 595  :     	}
-; 596  : 		offw += shiftPalce;
-; 597  : 		n++;
+; 391  :    }
+; 392  : }
 
-  0014c	e5dd0000	 ldrb        r0, [sp]
-  00150	e2855008	 add         r5, r5, #8
-  00154	e58d5004	 str         r5, [sp, #4]
-  00158	e2803001	 add         r3, r0, #1
-  0015c	e20300ff	 and         r0, r3, #0xFF
-  00160	e5cd0000	 strb        r0, [sp]
-  00164	e1a03000	 mov         r3, r0
-  00168	e350000a	 cmp         r0, #0xA
-  0016c	e28da014	 add         r10, sp, #0x14
-  00170	baffffcf	 blt         |$LL11@FillASCII|
-  00174	e59d0020	 ldr         r0, [sp, #0x20]
-  00178	eb000000	 bl          __security_check_cookie
+  001a4	e28dd02c	 add         sp, sp, #0x2C
+  001a8	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  001ac	e12fff1e	 bx          lr
+  001b0		 |$LN13@FillASCIIM|
+  001b0		 |$LN14@FillASCIIM|
+  001b0	00000000	 DCD         |__security_cookie|
+  001b4		 |$M48722|
 
-; 598  : 	}
-; 599  : }
+			 ENDP  ; |FillASCIIMode|
 
-  0017c	e28dd024	 add         sp, sp, #0x24
-  00180	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  00184	e12fff1e	 bx          lr
-  00188		 |$LN23@FillASCII|
-  00188		 |$LN24@FillASCII|
-  00188	00000000	 DCD         |asciiFont|
-  0018c		 |$LN25@FillASCII|
-  0018c	00000000	 DCD         |g_wFontColor|
-  00190		 |$LN26@FillASCII|
-  00190	00000000	 DCD         |g_wBkColor|
-  00194		 |$LN27@FillASCII|
-  00194	00000000	 DCD         |__security_cookie|
-  00198		 |$M48689|
+	EXPORT	|ClearDisplayBuffer|
+	IMPORT	|LcdPdd_GetMemory|
 
-			 ENDP  ; |FillASCII|
+  00000			 AREA	 |.pdata|, PDATA
+|$T48736| DCD	|$LN10@ClearDispl|
+	DCD	0x40000f02
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |ClearDisplayBuffer| PROC
+
+; 651  : {
+
+  00000		 |$LN10@ClearDispl|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004	e24dd004	 sub         sp, sp, #4
+  00008		 |$M48733|
+
+; 652  : 	DWORD framebufferPA;
+; 653  : 	DWORD i, len;
+; 654  : 	
+; 655  : 	len = (320 * 240 * 3) / 4;
+; 656  : 	LcdPdd_GetMemory( NULL, &framebufferPA );
+
+  00008	e28d1000	 add         r1, sp, #0
+  0000c	e3a00000	 mov         r0, #0
+  00010	eb000000	 bl          LcdPdd_GetMemory
+  00014	e3a02000	 mov         r2, #0
+  00018	e3a01000	 mov         r1, #0
+  0001c		 |$LL3@ClearDispl|
+
+; 657  : 	for( i=0 ; i<len ; i++ )
+; 658  : 		*((DWORD *)framebufferPA + i) = 0x0;
+
+  0001c	e59d3000	 ldr         r3, [sp]
+  00020	e7821003	 str         r1, [r2, +r3]
+  00024	e2822004	 add         r2, r2, #4
+  00028	e3520be1	 cmp         r2, #0xE1, 22
+  0002c	3afffffa	 bcc         |$LL3@ClearDispl|
+
+; 659  : }
+
+  00030	e28dd004	 add         sp, sp, #4
+  00034	e49de004	 ldr         lr, [sp], #4
+  00038	e12fff1e	 bx          lr
+  0003c		 |$M48734|
+
+			 ENDP  ; |ClearDisplayBuffer|
 
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48713| DCD	|$LN10@FlipFrameB|
+|$T48752| DCD	|$LN10@FlipFrameB|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -1925,341 +2142,226 @@
 
   00000		 |FlipFrameBuffer| PROC
 
-; 671  : {
+; 662  : {
 
   00000		 |$LN10@FlipFrameB|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M48710|
+  00004		 |$M48749|
   00004	e1a07003	 mov         r7, r3
   00008	e1a04002	 mov         r4, r2
   0000c	e1a05000	 mov         r5, r0
 
-; 672  :     DWORD y;
-; 673  :     PUCHAR top;
-; 674  :     PUCHAR bottom;
-; 675  : 
-; 676  :     top = fb;						//framebuffer (start address)
-; 677  :     bottom = fb + ((h-1)*lineSize);	//bottom = 0 + 239*960 (i.e: Area)
+; 663  :     DWORD y;
+; 664  :     PUCHAR top;
+; 665  :     PUCHAR bottom;
+; 666  : 
+; 667  :     top = fb;
+; 668  :     bottom = fb + ((h-1)*lineSize);
 
   00010	e241e001	 sub         lr, r1, #1
   00014	e026549e	 mla         r6, lr, r4, r5
 
-; 678  :     
-; 679  :     for (y=0; y < h/2; y++)
+; 669  :     
+; 670  :     for (y=0;y<h/2;y++)
 
   00018	e1b080a1	 movs        r8, r1, lsr #1
   0001c	0a00000f	 beq         |$LN1@FlipFrameB|
   00020		 |$LL3@FlipFrameB|
 
-; 680  :     {
-; 681  :         memcpy(temporaryBuffer, top, lineSize);	    //copy "top(source)" how much "lineSize(number)" to temporaryBuffer(destination) 
+; 671  :     {
+; 672  :         memcpy(temporaryBuffer,top,lineSize);
 
   00020	e1a02004	 mov         r2, r4
   00024	e1a01005	 mov         r1, r5
   00028	e1a00007	 mov         r0, r7
   0002c	eb000000	 bl          memcpy
 
-; 682  :         memcpy(top, bottom, lineSize);              //960 -> 0
+; 673  :         memcpy(top,bottom,lineSize);
 
   00030	e1a02004	 mov         r2, r4
   00034	e1a01006	 mov         r1, r6
   00038	e1a00005	 mov         r0, r5
   0003c	eb000000	 bl          memcpy
 
-; 683  :         memcpy(bottom, temporaryBuffer, lineSize);  //960 -> temp
+; 674  :         memcpy(bottom,temporaryBuffer,lineSize);
 
   00040	e1a02004	 mov         r2, r4
   00044	e1a01007	 mov         r1, r7
   00048	e1a00006	 mov         r0, r6
   0004c	eb000000	 bl          memcpy
 
-; 684  :         top += lineSize;                            //top = 0+960
+; 675  :         top += lineSize;
 
   00050	e0855004	 add         r5, r5, r4
 
-; 685  :         bottom -= lineSize;                         //bottom = 229440 -960
+; 676  :         bottom -= lineSize;
 
   00054	e0466004	 sub         r6, r6, r4
   00058	e2588001	 subs        r8, r8, #1
   0005c	1affffef	 bne         |$LL3@FlipFrameB|
   00060		 |$LN1@FlipFrameB|
 
-; 686  :      }
-; 687  : }
+; 677  :     }
+; 678  : }
 
   00060	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M48711|
+  00068		 |$M48750|
 
 			 ENDP  ; |FlipFrameBuffer|
 
-	EXPORT	|BLSDtoFlash|
-	EXPORT	|??_C@_1BM@GEPNOGL@?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BI@CGMPOLFK@?$AAE?$AAB?$AAO?$AAO?$AAT?$AAS?$AAD?$AA?4?$AAn?$AAb?$AA0?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|NKDbgPrintfW|
-	IMPORT	|BLSDCardToFlash|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T48722| DCD	|$LN7@BLSDtoFlas|
-	DCD	0x40000f01
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@GEPNOGL@?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?6?$AA?$AA@| DCB "-"
-	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
-	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BI@CGMPOLFK@?$AAE?$AAB?$AAO?$AAO?$AAT?$AAS?$AAD?$AA?4?$AAn?$AAb?$AA0?$AA?$AA@| DCB "E"
-	DCB	0x0, "B", 0x0, "O", 0x0, "O", 0x0, "T", 0x0, "S", 0x0, "D"
-	DCB	0x0, ".", 0x0, "n", 0x0, "b", 0x0, "0", 0x0, 0x0, 0x0 ; `string'
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |BLSDtoFlash| PROC
-
-; 1086 : {
-
-  00000		 |$LN7@BLSDtoFlas|
-  00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48719|
-
-; 1087 : 	//if(BLSDCardToFlash(L"OUT_DATA.txt")){
-; 1088 : 	if(BLSDCardToFlash(L"EBOOTSD.nb0")){
-
-  00004	e59f002c	 ldr         r0, [pc, #0x2C]
-  00008	eb000000	 bl          BLSDCardToFlash
-  0000c	e3500000	 cmp         r0, #0
-  00010	0a000004	 beq         |$LN2@BLSDtoFlas|
-
-; 1089 :         OALLog(L"------------\n");
-
-  00014	e59f0018	 ldr         r0, [pc, #0x18]
-  00018	eb000000	 bl          NKDbgPrintfW
-
-; 1090 :         return	TRUE;
-
-  0001c	e3a00001	 mov         r0, #1
-
-; 1093 :     }
-; 1094 : }
-
-  00020	e49de004	 ldr         lr, [sp], #4
-  00024	e12fff1e	 bx          lr
-  00028		 |$LN2@BLSDtoFlas|
-
-; 1091 :     }else{
-; 1092 :         return	FALSE;
-
-  00028	e3a00000	 mov         r0, #0
-
-; 1093 :     }
-; 1094 : }
-
-  0002c	e49de004	 ldr         lr, [sp], #4
-  00030	e12fff1e	 bx          lr
-  00034		 |$LN8@BLSDtoFlas|
-  00034		 |$LN9@BLSDtoFlas|
-  00034	00000000	 DCD         |??_C@_1BM@GEPNOGL@?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?6?$AA?$AA@|
-  00038		 |$LN10@BLSDtoFlas|
-  00038	00000000	 DCD         |??_C@_1BI@CGMPOLFK@?$AAE?$AAB?$AAO?$AAO?$AAT?$AAS?$AAD?$AA?4?$AAn?$AAb?$AA0?$AA?$AA@|
-  0003c		 |$M48720|
-
-			 ENDP  ; |BLSDtoFlash|
-
 	EXPORT	|reset_display_controller|
-	EXPORT	|??_C@_1DI@KLJGKAKC@?$AAr?$AAe?$AAs?$AAe?$AAt?$AA_?$AAd?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA_?$AAc?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAl?$AAe?$AAr?$AA?9?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DI@GNPJKJCF@?$AAr?$AAe?$AAs?$AAe?$AAt?$AA_?$AAd?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA_?$AAc?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAl?$AAe?$AAr?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|dpCurSettings|
 	IMPORT	|OALPAtoVA|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48752| DCD	|$LN22@reset_disp|
-	DCD	0x40003601
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DI@KLJGKAKC@?$AAr?$AAe?$AAs?$AAe?$AAt?$AA_?$AAd?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA_?$AAc?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAl?$AAe?$AAr?$AA?9?$AA?$AN?$AA?6?$AA?$AA@| DCB "r"
-	DCB	0x0, "e", 0x0, "s", 0x0, "e", 0x0, "t", 0x0, "_", 0x0, "d"
-	DCB	0x0, "i", 0x0, "s", 0x0, "p", 0x0, "l", 0x0, "a", 0x0, "y"
-	DCB	0x0, "_", 0x0, "c", 0x0, "o", 0x0, "n", 0x0, "t", 0x0, "r"
-	DCB	0x0, "o", 0x0, "l", 0x0, "l", 0x0, "e", 0x0, "r", 0x0, "-"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DI@GNPJKJCF@?$AAr?$AAe?$AAs?$AAe?$AAt?$AA_?$AAd?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA_?$AAc?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAl?$AAe?$AAr?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| DCB "r"
-	DCB	0x0, "e", 0x0, "s", 0x0, "e", 0x0, "t", 0x0, "_", 0x0, "d"
-	DCB	0x0, "i", 0x0, "s", 0x0, "p", 0x0, "l", 0x0, "a", 0x0, "y"
-	DCB	0x0, "_", 0x0, "c", 0x0, "o", 0x0, "n", 0x0, "t", 0x0, "r"
-	DCB	0x0, "o", 0x0, "l", 0x0, "l", 0x0, "e", 0x0, "r", 0x0, "+"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
+|$T48775| DCD	|$LN18@reset_disp|
+	DCD	0x40002901
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |reset_display_controller| PROC
 
-; 1114 : {
+; 874  : {
 
-  00000		 |$LN22@reset_disp|
-  00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M48749|
+  00000		 |$LN18@reset_disp|
+  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
+  00004		 |$M48772|
   00004	e3a03312	 mov         r3, #0x12, 6
 
-; 1115 :     
-; 1116 :     UINT32 reg_val;
-; 1117 :     UINT16 count;
-; 1118 :     UINT32 timeout;
-; 1119 :     UINT32 fclk, iclk;
-; 1120 :     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
+; 875  :     
+; 876  :     UINT32 reg_val;
+; 877  :     UINT16 count;
+; 878  :     UINT32 timeout;
+; 879  :     UINT32 fclk, iclk;
+; 880  :     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
 
   00008	e3830c4e	 orr         r0, r3, #0x4E, 24
   0000c	e3a01000	 mov         r1, #0
   00010	eb000000	 bl          OALPAtoVA
-  00014	e1a05000	 mov         r5, r0
+  00014	e1a04000	 mov         r4, r0
 
-; 1121 :     OMAP_DISPC_REGS  *pDisplayRegs = OALPAtoUA(OMAP_DISC1_REGS_PA);
+; 881  :     OMAP_DISPC_REGS  *pDisplayRegs = OALPAtoUA(OMAP_DISC1_REGS_PA);
 
-  00018	e59f00b4	 ldr         r0, [pc, #0xB4]
+  00018	e59f0080	 ldr         r0, [pc, #0x80]
   0001c	e3a01000	 mov         r1, #0
   00020	eb000000	 bl          OALPAtoVA
 
-; 1122 :     
-; 1123 : 	OALMSG(OAL_INFO, (L"reset_display_controller+\r\n"));
+; 882  :     
+; 883  : 	//OALMSG(OAL_INFO, (L"reset_display_controller+\r\n"));
+; 884  : 
+; 885  :     // enable all display clocks
+; 886  :     fclk = INREG32(&pPrcmRegs->CM_FCLKEN_DSS); // functional clock
+; 887  :     iclk = INREG32(&pPrcmRegs->CM_ICLKEN_DSS); // interconnect clock
 
-  00024	e59f60a4	 ldr         r6, [pc, #0xA4]
-  00028	e1a04000	 mov         r4, r0
-  0002c	e5963440	 ldr         r3, [r6, #0x440]
-  00030	e3130008	 tst         r3, #8
-  00034	159f0090	 ldrne       r0, [pc, #0x90]
-  00038	1b000000	 blne        NKDbgPrintfW
+  00024	e594e000	 ldr         lr, [r4]
+  00028	e1a01004	 mov         r1, r4
+  0002c	e5b15010	 ldr         r5, [r1, #0x10]!
 
-; 1124 : 
-; 1125 :     // enable all display clocks
-; 1126 :     fclk = INREG32(&pPrcmRegs->CM_FCLKEN_DSS); // functional clock
-; 1127 :     iclk = INREG32(&pPrcmRegs->CM_ICLKEN_DSS); // interconnect clock
+; 888  : 
+; 889  :     OUTREG32(&pPrcmRegs->CM_FCLKEN_DSS, (fclk | CM_CLKEN_DSS1 | CM_CLKEN_DSS2));
 
-  0003c	e5950000	 ldr         r0, [r5]
-  00040	e1a01005	 mov         r1, r5
-  00044	e5b1e010	 ldr         lr, [r1, #0x10]!
+  00030	e38e3003	 orr         r3, lr, #3
+  00034	e5843000	 str         r3, [r4]
 
-; 1128 : 
-; 1129 :     OUTREG32(&pPrcmRegs->CM_FCLKEN_DSS, (fclk | CM_CLKEN_DSS1 | CM_CLKEN_DSS2));
-; 1130 :     OUTREG32(&pPrcmRegs->CM_ICLKEN_DSS, (iclk | CM_CLKEN_DSS));
-; 1131 :   
-; 1132 :     // disable the display controller
-; 1133 :     //disable_dss();
-; 1134 : 
-; 1135 :     // reset the display controller
-; 1136 :     OUTREG32(&pDisplayRegs->DISPC_SYSCONFIG, DISPC_SYSCONFIG_SOFTRESET);
+; 890  :     OUTREG32(&pPrcmRegs->CM_ICLKEN_DSS, (iclk | CM_CLKEN_DSS));
+; 891  :   
+; 892  :     // disable the display controller
+; 893  :     //disable_dss();
+; 894  : 
+; 895  :     // reset the display controller
+; 896  :     OUTREG32(&pDisplayRegs->DISPC_SYSCONFIG, DISPC_SYSCONFIG_SOFTRESET);
+; 897  :     
+; 898  :     // wait until reset completes OR timeout occurs
+; 899  :     timeout=10000;
+; 900  :     while(!((reg_val=INREG32(&pDisplayRegs->DISPC_SYSSTATUS)) & DISPC_SYSSTATUS_RESETDONE) && (timeout > 0))
 
-  00048	e3803003	 orr         r3, r0, #3
-  0004c	e5853000	 str         r3, [r5]
+  00038	e3a02c27	 mov         r2, #0x27, 24
+  0003c	e3853001	 orr         r3, r5, #1
+  00040	e5813000	 str         r3, [r1]
+  00044	e3a03002	 mov         r3, #2
+  00048	e5803010	 str         r3, [r0, #0x10]
+  0004c	e3822010	 orr         r2, r2, #0x10
+  00050	ea000008	 b           |$LN15@reset_disp|
+  00054		 |$LL6@reset_disp|
+  00054	e3520000	 cmp         r2, #0
+  00058	0a000009	 beq         |$LN13@reset_disp|
 
-; 1137 :     
-; 1138 :     // wait until reset completes OR timeout occurs
-; 1139 :     timeout=10000;
-; 1140 :     while(!((reg_val=INREG32(&pDisplayRegs->DISPC_SYSSTATUS)) & DISPC_SYSSTATUS_RESETDONE) && (timeout > 0))
+; 901  :     {
+; 902  :         // delay
+; 903  :         for(count=0;count<DELAY_COUNT;++count);
 
-  00050	e3a02c27	 mov         r2, #0x27, 24
-  00054	e38e3001	 orr         r3, lr, #1
-  00058	e5813000	 str         r3, [r1]
-  0005c	e3a03002	 mov         r3, #2
-  00060	e5843010	 str         r3, [r4, #0x10]
-  00064	e3822010	 orr         r2, r2, #0x10
-  00068	ea000008	 b           |$LN19@reset_disp|
-  0006c		 |$LL6@reset_disp|
-  0006c	e3520000	 cmp         r2, #0
-  00070	0a000009	 beq         |$LN17@reset_disp|
+  0005c	e3a03000	 mov         r3, #0
+  00060		 |$LL4@reset_disp|
+  00060	e2833001	 add         r3, r3, #1
+  00064	e1a03803	 mov         r3, r3, lsl #16
+  00068	e1a03823	 mov         r3, r3, lsr #16
+  0006c	e3530064	 cmp         r3, #0x64
+  00070	3afffffa	 bcc         |$LL4@reset_disp|
 
-; 1141 :     {
-; 1142 :         // delay
-; 1143 :         for(count=0;count<DELAY_COUNT;++count);
+; 904  :         timeout--;
 
-  00074	e3a03000	 mov         r3, #0
-  00078		 |$LL4@reset_disp|
-  00078	e2833001	 add         r3, r3, #1
-  0007c	e1a03803	 mov         r3, r3, lsl #16
-  00080	e1a03823	 mov         r3, r3, lsr #16
-  00084	e3530064	 cmp         r3, #0x64
-  00088	3afffffa	 bcc         |$LL4@reset_disp|
+  00074	e2422001	 sub         r2, r2, #1
+  00078		 |$LN15@reset_disp|
 
-; 1144 :         timeout--;
+; 901  :     {
+; 902  :         // delay
+; 903  :         for(count=0;count<DELAY_COUNT;++count);
 
-  0008c	e2422001	 sub         r2, r2, #1
-  00090		 |$LN19@reset_disp|
+  00078	e5903014	 ldr         r3, [r0, #0x14]
 
-; 1141 :     {
-; 1142 :         // delay
-; 1143 :         for(count=0;count<DELAY_COUNT;++count);
+; 904  :         timeout--;
 
-  00090	e5943014	 ldr         r3, [r4, #0x14]
+  0007c	e3130001	 tst         r3, #1
+  00080	0afffff3	 beq         |$LL6@reset_disp|
+  00084		 |$LN13@reset_disp|
 
-; 1144 :         timeout--;
+; 905  :     }
+; 906  : 
+; 907  :     if(!(reg_val & DISPC_SYSSTATUS_RESETDONE))
+; 908  :     {
+; 909  :         // OALMSG(OAL_INFO, (L"reset_display_controller: DSS reset timeout\r\n"));
+; 910  :     }
+; 911  :     
+; 912  :     reg_val=INREG32(&pDisplayRegs->DISPC_SYSCONFIG);
 
-  00094	e3130001	 tst         r3, #1
-  00098	0afffff3	 beq         |$LL6@reset_disp|
-  0009c		 |$LN17@reset_disp|
+  00084	e5903010	 ldr         r3, [r0, #0x10]
 
-; 1145 :     }
-; 1146 : 
-; 1147 :     if(!(reg_val & DISPC_SYSSTATUS_RESETDONE))
-; 1148 :     {
-; 1149 :         // OALMSG(OAL_INFO, (L"reset_display_controller: DSS reset timeout\r\n"));
-; 1150 :     }
-; 1151 :     
-; 1152 :     reg_val=INREG32(&pDisplayRegs->DISPC_SYSCONFIG);
+; 913  :     reg_val &=~(DISPC_SYSCONFIG_SOFTRESET);
 
-  0009c	e5943010	 ldr         r3, [r4, #0x10]
+  00088	e3c33002	 bic         r3, r3, #2
 
-; 1153 :     reg_val &=~(DISPC_SYSCONFIG_SOFTRESET);
+; 914  :     OUTREG32(&pDisplayRegs->DISPC_SYSCONFIG,reg_val);
 
-  000a0	e3c33002	 bic         r3, r3, #2
+  0008c	e5803010	 str         r3, [r0, #0x10]
 
-; 1154 :     OUTREG32(&pDisplayRegs->DISPC_SYSCONFIG,reg_val);
+; 915  : 
+; 916  :     // restore old clock settings
+; 917  :     OUTREG32(&pPrcmRegs->CM_FCLKEN_DSS, fclk);
 
-  000a4	e5843010	 str         r3, [r4, #0x10]
+  00090	e584e000	 str         lr, [r4]
 
-; 1155 : 
-; 1156 : 
-; 1157 :     // restore old clock settings
-; 1158 :     OUTREG32(&pPrcmRegs->CM_FCLKEN_DSS, fclk);
+; 918  :     OUTREG32(&pPrcmRegs->CM_ICLKEN_DSS, iclk);
 
-  000a8	e5850000	 str         r0, [r5]
+  00094	e5815000	 str         r5, [r1]
 
-; 1159 :     OUTREG32(&pPrcmRegs->CM_ICLKEN_DSS, iclk);
+; 919  :     
+; 920  : 	//OALMSG(OAL_INFO, (L"reset_display_controller-\r\n"));
+; 921  : }
 
-  000ac	e581e000	 str         lr, [r1]
-
-; 1160 :     
-; 1161 : 	OALMSG(OAL_INFO, (L"reset_display_controller-\r\n"));
-
-  000b0	e5963440	 ldr         r3, [r6, #0x440]
-  000b4	e3130008	 tst         r3, #8
-  000b8	159f0008	 ldrne       r0, [pc, #8]
-  000bc	1b000000	 blne        NKDbgPrintfW
-
-; 1162 : }
-
-  000c0	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  000c4	e12fff1e	 bx          lr
-  000c8		 |$LN23@reset_disp|
-  000c8		 |$LN24@reset_disp|
-  000c8	00000000	 DCD         |??_C@_1DI@KLJGKAKC@?$AAr?$AAe?$AAs?$AAe?$AAt?$AA_?$AAd?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA_?$AAc?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAl?$AAe?$AAr?$AA?9?$AA?$AN?$AA?6?$AA?$AA@|
-  000cc		 |$LN25@reset_disp|
-  000cc	00000000	 DCD         |??_C@_1DI@GNPJKJCF@?$AAr?$AAe?$AAs?$AAe?$AAt?$AA_?$AAd?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA_?$AAc?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAl?$AAe?$AAr?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@|
-  000d0		 |$LN26@reset_disp|
-  000d0	00000000	 DCD         |dpCurSettings|
-  000d4		 |$LN27@reset_disp|
-  000d4	48050400	 DCD         0x48050400
-  000d8		 |$M48750|
+  00098	e8bd4030	 ldmia       sp!, {r4, r5, lr}
+  0009c	e12fff1e	 bx          lr
+  000a0		 |$LN19@reset_disp|
+  000a0		 |$LN20@reset_disp|
+  000a0	48050400	 DCD         0x48050400
+  000a4		 |$M48773|
 
 			 ENDP  ; |reset_display_controller|
 
 	EXPORT	|disable_dss|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48764| DCD	|$LN5@disable_ds|
+|$T48784| DCD	|$LN5@disable_ds|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -2267,122 +2369,78 @@
 
   00000		 |disable_dss| PROC
 
-; 1208 : {
+; 969  : {
 
   00000		 |$LN5@disable_ds|
-  00000		 |$M48761|
+  00000		 |$M48781|
 
-; 1209 :      //OALMSG(OAL_INFO, (L"disable_dss+\r\n"));
-; 1210 : 
-; 1211 :      //OALMSG(OAL_INFO, (L"disable_dss-\r\n"));
-; 1212 : }
+; 970  :      //OALMSG(OAL_INFO, (L"disable_dss+\r\n"));
+; 971  : 
+; 972  :      //OALMSG(OAL_INFO, (L"disable_dss-\r\n"));
+; 973  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M48762|
+  00004		 |$M48782|
 
 			 ENDP  ; |disable_dss|
 
 	EXPORT	|enable_lcd_power|
-	EXPORT	|??_C@_1EG@LOGBCLGD@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAS?$AAS?$AA_?$AAL?$AA3?$AA_?$AAI?$AAC?$AAL?$AAK?$AA?0?$AA?5?$AAD?$AAS?$AAS?$AA_?$AAL?$AA4?$AA_?$AAI?$AAC?$AAL?$AAK?$AA?0@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1FG@DIGPAKMB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAS?$AAS?$AA1?$AA_?$AAA?$AAL?$AAW?$AAO?$AAN?$AA_?$AAF?$AAC?$AAL?$AAK?$AA?0?$AA?5?$AAD?$AAS?$AAS?$AA2?$AA_?$AAA?$AAL?$AAW@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48778| DCD	|$LN9@enable_lcd|
-	DCD	0x40001c01
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EG@LOGBCLGD@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAS?$AAS?$AA_?$AAL?$AA3?$AA_?$AAI?$AAC?$AAL?$AAK?$AA?0?$AA?5?$AAD?$AAS?$AAS?$AA_?$AAL?$AA4?$AA_?$AAI?$AAC?$AAL?$AAK?$AA?0@| DCB "e"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, " "
-	DCB	0x0, "D", 0x0, "S", 0x0, "S", 0x0, "_", 0x0, "L", 0x0, "3"
-	DCB	0x0, "_", 0x0, "I", 0x0, "C", 0x0, "L", 0x0, "K", 0x0, ","
-	DCB	0x0, " ", 0x0, "D", 0x0, "S", 0x0, "S", 0x0, "_", 0x0, "L"
-	DCB	0x0, "4", 0x0, "_", 0x0, "I", 0x0, "C", 0x0, "L", 0x0, "K"
-	DCB	0x0, ",", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1FG@DIGPAKMB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAS?$AAS?$AA1?$AA_?$AAA?$AAL?$AAW?$AAO?$AAN?$AA_?$AAF?$AAC?$AAL?$AAK?$AA?0?$AA?5?$AAD?$AAS?$AAS?$AA2?$AA_?$AAA?$AAL?$AAW@| DCB "e"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, " "
-	DCB	0x0, "D", 0x0, "S", 0x0, "S", 0x0, "1", 0x0, "_", 0x0, "A"
-	DCB	0x0, "L", 0x0, "W", 0x0, "O", 0x0, "N", 0x0, "_", 0x0, "F"
-	DCB	0x0, "C", 0x0, "L", 0x0, "K", 0x0, ",", 0x0, " ", 0x0, "D"
-	DCB	0x0, "S", 0x0, "S", 0x0, "2", 0x0, "_", 0x0, "A", 0x0, "L"
-	DCB	0x0, "W", 0x0, "O", 0x0, "N", 0x0, "_", 0x0, "F", 0x0, "C"
-	DCB	0x0, "L", 0x0, "K", 0x0, ",", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
+|$T48794| DCD	|$LN5@enable_lcd|
+	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |enable_lcd_power| PROC
 
-; 1221 : {
+; 982  : {
 
-  00000		 |$LN9@enable_lcd|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M48775|
+  00000		 |$LN5@enable_lcd|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M48791|
   00004	e3a03312	 mov         r3, #0x12, 6
 
-; 1222 :     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
+; 983  :     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
 
   00008	e3830c4e	 orr         r0, r3, #0x4E, 24
   0000c	e3a01000	 mov         r1, #0
   00010	eb000000	 bl          OALPAtoVA
+  00014	e1a02000	 mov         r2, r0
 
-; 1223 :     
-; 1224 : 	OALMSG(OAL_INFO, (L"enable DSS1_ALWON_FCLK, DSS2_ALWON_FCLK,\r\n"));
+; 984  :     
+; 985  : 	//OALMSG(OAL_INFO, (L"enable DSS1_ALWON_FCLK, DSS2_ALWON_FCLK,\r\n"));
+; 986  : 	//OALMSG(OAL_INFO, (L"enable DSS_L3_ICLK, DSS_L4_ICLK,\r\n"));
+; 987  :     SETREG32(&pPrcmRegs->CM_FCLKEN_DSS, (CM_CLKEN_DSS1 | CM_CLKEN_DSS2));
 
-  00014	e59f5050	 ldr         r5, [pc, #0x50]
-  00018	e1a04000	 mov         r4, r0
-  0001c	e5953440	 ldr         r3, [r5, #0x440]
-  00020	e3130008	 tst         r3, #8
-  00024	0a000002	 beq         |$LN3@enable_lcd|
-  00028	e59f0038	 ldr         r0, [pc, #0x38]
-  0002c	eb000000	 bl          NKDbgPrintfW
-  00030	e5953440	 ldr         r3, [r5, #0x440]
-  00034		 |$LN3@enable_lcd|
+  00018	e5923000	 ldr         r3, [r2]
 
-; 1225 : 	OALMSG(OAL_INFO, (L"enable DSS_L3_ICLK, DSS_L4_ICLK,\r\n"));
+; 988  :     SETREG32(&pPrcmRegs->CM_ICLKEN_DSS, (CM_CLKEN_DSS));
+; 989  : 
+; 990  : 	//OALMSG(OAL_INFO, (L"enable_lcd_power-\r\n"));
+; 991  : 
+; 992  :     return ERROR_SUCCESS;
 
-  00034	e3130008	 tst         r3, #8
-  00038	159f0024	 ldrne       r0, [pc, #0x24]
-  0003c	1b000000	 blne        NKDbgPrintfW
+  0001c	e3a00000	 mov         r0, #0
+  00020	e3833003	 orr         r3, r3, #3
+  00024	e5823000	 str         r3, [r2]
+  00028	e5b23010	 ldr         r3, [r2, #0x10]!
+  0002c	e3833001	 orr         r3, r3, #1
+  00030	e5823000	 str         r3, [r2]
 
-; 1226 :     SETREG32(&pPrcmRegs->CM_FCLKEN_DSS, (CM_CLKEN_DSS1 | CM_CLKEN_DSS2));
+; 993  : }
 
-  00040	e5943000	 ldr         r3, [r4]
-
-; 1227 :     SETREG32(&pPrcmRegs->CM_ICLKEN_DSS, (CM_CLKEN_DSS));
-; 1228 : 
-; 1229 : 	//OALMSG(OAL_INFO, (L"enable_lcd_power-\r\n"));
-; 1230 : 
-; 1231 :     return ERROR_SUCCESS;
-
-  00044	e3a00000	 mov         r0, #0
-  00048	e3833003	 orr         r3, r3, #3
-  0004c	e5843000	 str         r3, [r4]
-  00050	e5b43010	 ldr         r3, [r4, #0x10]!
-  00054	e3833001	 orr         r3, r3, #1
-  00058	e5843000	 str         r3, [r4]
-
-; 1232 : }
-
-  0005c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00060	e12fff1e	 bx          lr
-  00064		 |$LN10@enable_lcd|
-  00064		 |$LN11@enable_lcd|
-  00064	00000000	 DCD         |??_C@_1EG@LOGBCLGD@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAS?$AAS?$AA_?$AAL?$AA3?$AA_?$AAI?$AAC?$AAL?$AAK?$AA?0?$AA?5?$AAD?$AAS?$AAS?$AA_?$AAL?$AA4?$AA_?$AAI?$AAC?$AAL?$AAK?$AA?0@|
-  00068		 |$LN12@enable_lcd|
-  00068	00000000	 DCD         |??_C@_1FG@DIGPAKMB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAD?$AAS?$AAS?$AA1?$AA_?$AAA?$AAL?$AAW?$AAO?$AAN?$AA_?$AAF?$AAC?$AAL?$AAK?$AA?0?$AA?5?$AAD?$AAS?$AAS?$AA2?$AA_?$AAA?$AAL?$AAW@|
-  0006c		 |$LN13@enable_lcd|
-  0006c	00000000	 DCD         |dpCurSettings|
-  00070		 |$M48776|
+  00034	e49de004	 ldr         lr, [sp], #4
+  00038	e12fff1e	 bx          lr
+  0003c		 |$M48792|
 
 			 ENDP  ; |enable_lcd_power|
 
 	EXPORT	|disable_lcd_power|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48792| DCD	|$LN5@disable_lc|
+|$T48804| DCD	|$LN5@disable_lc|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -2390,31 +2448,31 @@
 
   00000		 |disable_lcd_power| PROC
 
-; 1241 : {
+; 1002 : {
 
   00000		 |$LN5@disable_lc|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48789|
+  00004		 |$M48801|
   00004	e3a03312	 mov         r3, #0x12, 6
 
-; 1242 :     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
+; 1003 :     OMAP_PRCM_DSS_CM_REGS *pPrcmRegs = OALPAtoUA(OMAP_PRCM_DSS_CM_REGS_PA);
 
   00008	e3830c4e	 orr         r0, r3, #0x4E, 24
   0000c	e3a01000	 mov         r1, #0
   00010	eb000000	 bl          OALPAtoVA
   00014	e1a02000	 mov         r2, r0
 
-; 1243 : 
-; 1244 :      //OALMSG(OAL_INFO, (L"disable_lcd_power+\r\n"));
-; 1245 : 
-; 1246 :     CLRREG32(&pPrcmRegs->CM_FCLKEN_DSS, (CM_CLKEN_DSS1 | CM_CLKEN_DSS2));
+; 1004 : 
+; 1005 :      //OALMSG(OAL_INFO, (L"disable_lcd_power+\r\n"));
+; 1006 : 
+; 1007 :     CLRREG32(&pPrcmRegs->CM_FCLKEN_DSS, (CM_CLKEN_DSS1 | CM_CLKEN_DSS2));
 
   00018	e5923000	 ldr         r3, [r2]
 
-; 1247 :     CLRREG32(&pPrcmRegs->CM_ICLKEN_DSS, (CM_CLKEN_DSS));
-; 1248 :     
-; 1249 :      //OALMSG(OAL_INFO, (L"disable_lcd_power-\r\n"));
-; 1250 :     return ERROR_SUCCESS;
+; 1008 :     CLRREG32(&pPrcmRegs->CM_ICLKEN_DSS, (CM_CLKEN_DSS));
+; 1009 :     
+; 1010 :      //OALMSG(OAL_INFO, (L"disable_lcd_power-\r\n"));
+; 1011 :     return ERROR_SUCCESS;
 
   0001c	e3a00000	 mov         r0, #0
   00020	e3c33003	 bic         r3, r3, #3
@@ -2423,155 +2481,22 @@
   0002c	e3c33001	 bic         r3, r3, #1
   00030	e5823000	 str         r3, [r2]
 
-; 1251 : }
+; 1012 : }
 
   00034	e49de004	 ldr         lr, [sp], #4
   00038	e12fff1e	 bx          lr
-  0003c		 |$M48790|
+  0003c		 |$M48802|
 
 			 ENDP  ; |disable_lcd_power|
 
-	EXPORT	|enable_lcd_backlight|
-	EXPORT	|??_C@_1DA@ILMFHDEF@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA_?$AAl?$AAc?$AAd?$AA_?$AAb?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|disable_lcd_backlight|
 	IMPORT	|TWLClose|
 	IMPORT	|TWLOpen|
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48820| DCD	|$LN15@enable_lcd@2|
-	DCD	0x40002e02
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DA@ILMFHDEF@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA_?$AAl?$AAc?$AAd?$AA_?$AAb?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| DCB "e"
-	DCB	0x0, "n", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e", 0x0, "_"
-	DCB	0x0, "l", 0x0, "c", 0x0, "d", 0x0, "_", 0x0, "b", 0x0, "a"
-	DCB	0x0, "c", 0x0, "k", 0x0, "l", 0x0, "i", 0x0, "g", 0x0, "h"
-	DCB	0x0, "t", 0x0, "+", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-; Function compile flags: /Ogspy
-; File c:\wince600\platform\z2170p\src\bootloader\display\bsp_logo.c
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |enable_lcd_backlight| PROC
-
-; 1260 : {
-
-  00000		 |$LN15@enable_lcd@2|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M48817|
-
-; 1261 :     void* hTwl;
-; 1262 :     
-; 1263 : 	OALMSG(OAL_INFO, (L"enable_lcd_backlight+\r\n"));
-
-  00008	e59f30a4	 ldr         r3, [pc, #0xA4]
-  0000c	e5933440	 ldr         r3, [r3, #0x440]
-  00010	e3130008	 tst         r3, #8
-  00014	159f0094	 ldrne       r0, [pc, #0x94]
-  00018	1b000000	 blne        NKDbgPrintfW
-
-; 1264 : 
-; 1265 :     // Enable LEDA on TPS659XX
-; 1266 :     hTwl = TWLOpen();
-
-  0001c	eb000000	 bl          TWLOpen
-  00020	e3a05801	 mov         r5, #1, 16
-
-; 1267 : 
-; 1268 : 	TWLWriteByteReg(hTwl, TWL_PMBR1, 0x04); // PWM0 function is enabled
-
-  00024	e3a0e004	 mov         lr, #4
-  00028	e3851092	 orr         r1, r5, #0x92
-  0002c	e3a03001	 mov         r3, #1
-  00030	e28d2000	 add         r2, sp, #0
-  00034	e5cde000	 strb        lr, [sp]
-  00038	e1a04000	 mov         r4, r0
-  0003c	eb000000	 bl          TWLWriteRegs
-
-; 1269 : 	TWLWriteByteReg(hTwl, TWL_GPBR1, 0x05); // PWM0_ENABLE & PWM0_CLK_ENABLE
-
-  00040	e3a03005	 mov         r3, #5
-  00044	e5cd3000	 strb        r3, [sp]
-  00048	e3a03001	 mov         r3, #1
-  0004c	e28d2000	 add         r2, sp, #0
-  00050	e3851091	 orr         r1, r5, #0x91
-  00054	e1a00004	 mov         r0, r4
-  00058	eb000000	 bl          TWLWriteRegs
-  0005c	e3a05802	 mov         r5, #2, 16
-
-; 1270 : 	TWLWriteByteReg(hTwl, TWL_PWM0OFF, 0x7F);
-
-  00060	e3a0e07f	 mov         lr, #0x7F
-  00064	e38510f9	 orr         r1, r5, #0xF9
-  00068	e3a03001	 mov         r3, #1
-  0006c	e28d2000	 add         r2, sp, #0
-  00070	e1a00004	 mov         r0, r4
-  00074	e5cde000	 strb        lr, [sp]
-  00078	eb000000	 bl          TWLWriteRegs
-
-; 1271 : 	TWLWriteByteReg(hTwl, TWL_PWM0ON, 0x40);
-
-  0007c	e3a03040	 mov         r3, #0x40
-  00080	e5cd3000	 strb        r3, [sp]
-  00084	e3a03001	 mov         r3, #1
-  00088	e28d2000	 add         r2, sp, #0
-  0008c	e38510f8	 orr         r1, r5, #0xF8
-  00090	e1a00004	 mov         r0, r4
-  00094	eb000000	 bl          TWLWriteRegs
-
-; 1272 : /*#ifdef BSP_EVM2
-; 1273 :     TWLWriteByteReg(hTwl, TWL_LEDEN, 0x11);
-; 1274 :     // Set PWM registers to same value to trigger 100% duty cycle
-; 1275 :     TWLWriteByteReg(hTwl, TWL_PWMAOFF, 0x00);
-; 1276 :     TWLWriteByteReg(hTwl, TWL_PWMAON, 0x00);
-; 1277 : #else
-; 1278 :     // The hardware design is completely backwards.  
-; 1279 :     // In order to get 100% brightness, the LEDPWM must 
-; 1280 :     // be disabled.
-; 1281 :     // Clear LEDAON, LEDAPWM
-; 1282 :     TWLWriteByteReg(hTwl, TWL_LEDEN, 0x00);
-; 1283 : #endif */   
-; 1284 :     TWLClose(hTwl);
-
-  00098	e1a00004	 mov         r0, r4
-  0009c	eb000000	 bl          TWLClose
-
-; 1285 :     
-; 1286 :      //OALMSG(OAL_INFO, (L"enable_lcd_backlight-\r\n"));
-; 1287 :     return ERROR_SUCCESS;
-
-  000a0	e3a00000	 mov         r0, #0
-
-; 1288 : }
-
-  000a4	e28dd004	 add         sp, sp, #4
-  000a8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  000ac	e12fff1e	 bx          lr
-  000b0		 |$LN16@enable_lcd@2|
-  000b0		 |$LN17@enable_lcd@2|
-  000b0	00000000	 DCD         |??_C@_1DA@ILMFHDEF@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AA_?$AAl?$AAc?$AAd?$AA_?$AAb?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@|
-  000b4		 |$LN18@enable_lcd@2|
-  000b4	00000000	 DCD         |dpCurSettings|
-  000b8		 |$M48818|
-
-			 ENDP  ; |enable_lcd_backlight|
-
-	EXPORT	|disable_lcd_backlight|
-	EXPORT	|??_C@_1DC@LNCCCMGG@?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA_?$AAl?$AAc?$AAd?$AA_?$AAb?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T48847| DCD	|$LN13@disable_lc@2|
-	DCD	0x40002702
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DC@LNCCCMGG@?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA_?$AAl?$AAc?$AAd?$AA_?$AAb?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| DCB "d"
-	DCB	0x0, "i", 0x0, "s", 0x0, "a", 0x0, "b", 0x0, "l", 0x0, "e"
-	DCB	0x0, "_", 0x0, "l", 0x0, "c", 0x0, "d", 0x0, "_", 0x0, "b"
-	DCB	0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l", 0x0, "i", 0x0, "g"
-	DCB	0x0, "h", 0x0, "t", 0x0, "+", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
+|$T48826| DCD	|$LN11@disable_lc@2|
+	DCD	0x40002002
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\z2170p\src\bootloader\display\bsp_logo.c
 
@@ -2579,346 +2504,288 @@
 
   00000		 |disable_lcd_backlight| PROC
 
-; 1297 : {
+; 1074 : {
 
-  00000		 |$LN13@disable_lc@2|
+  00000		 |$LN11@disable_lc@2|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M48844|
+  00008		 |$M48823|
 
-; 1298 :     HANDLE hTwl;
-; 1299 : 
-; 1300 : 	OALMSG(OAL_INFO, (L"disable_lcd_backlight+\r\n"));
+; 1075 :     HANDLE hTwl;
+; 1076 : 
+; 1077 : 	//OALMSG(OAL_INFO, (L"disable_lcd_backlight+\r\n"));
+; 1078 :     // Enable LEDA on TPS659XX
+; 1079 :     hTwl = TWLOpen();
 
-  00008	e59f3088	 ldr         r3, [pc, #0x88]
-  0000c	e5933440	 ldr         r3, [r3, #0x440]
-  00010	e3130008	 tst         r3, #8
-  00014	159f0078	 ldrne       r0, [pc, #0x78]
-  00018	1b000000	 blne        NKDbgPrintfW
+  00008	eb000000	 bl          TWLOpen
+  0000c	e3a05801	 mov         r5, #1, 16
 
-; 1301 :     // Enable LEDA on TPS659XX
-; 1302 :     hTwl = TWLOpen();
+; 1080 : 	TWLWriteByteReg(hTwl, TWL_PMBR1, 0x00);
 
-  0001c	eb000000	 bl          TWLOpen
-  00020	e3a05801	 mov         r5, #1, 16
+  00010	e3a0e000	 mov         lr, #0
+  00014	e3851092	 orr         r1, r5, #0x92
+  00018	e3a03001	 mov         r3, #1
+  0001c	e28d2000	 add         r2, sp, #0
+  00020	e5cde000	 strb        lr, [sp]
+  00024	e1a04000	 mov         r4, r0
+  00028	eb000000	 bl          TWLWriteRegs
 
-; 1303 : 	TWLWriteByteReg(hTwl, TWL_PMBR1, 0x00);
+; 1081 : 	TWLWriteByteReg(hTwl, TWL_GPBR1, 0x00);
 
-  00024	e3a0e000	 mov         lr, #0
-  00028	e3851092	 orr         r1, r5, #0x92
-  0002c	e3a03001	 mov         r3, #1
-  00030	e28d2000	 add         r2, sp, #0
-  00034	e5cde000	 strb        lr, [sp]
-  00038	e1a04000	 mov         r4, r0
-  0003c	eb000000	 bl          TWLWriteRegs
+  0002c	e3a03000	 mov         r3, #0
+  00030	e5cd3000	 strb        r3, [sp]
+  00034	e3a03001	 mov         r3, #1
+  00038	e28d2000	 add         r2, sp, #0
+  0003c	e3851091	 orr         r1, r5, #0x91
+  00040	e1a00004	 mov         r0, r4
+  00044	eb000000	 bl          TWLWriteRegs
+  00048	e3a03802	 mov         r3, #2, 16
 
-; 1304 : 	TWLWriteByteReg(hTwl, TWL_GPBR1, 0x00);
+; 1082 : 	TWLWriteByteReg(hTwl, TWL_PWM0OFF, 0x7F);
 
-  00040	e3a03000	 mov         r3, #0
-  00044	e5cd3000	 strb        r3, [sp]
-  00048	e3a03001	 mov         r3, #1
-  0004c	e28d2000	 add         r2, sp, #0
-  00050	e3851091	 orr         r1, r5, #0x91
-  00054	e1a00004	 mov         r0, r4
-  00058	eb000000	 bl          TWLWriteRegs
-  0005c	e3a03802	 mov         r3, #2, 16
+  0004c	e38310f9	 orr         r1, r3, #0xF9
+  00050	e3a0e07f	 mov         lr, #0x7F
+  00054	e3a03001	 mov         r3, #1
+  00058	e28d2000	 add         r2, sp, #0
+  0005c	e1a00004	 mov         r0, r4
+  00060	e5cde000	 strb        lr, [sp]
+  00064	eb000000	 bl          TWLWriteRegs
 
-; 1305 : 	TWLWriteByteReg(hTwl, TWL_PWM0OFF, 0x7F);
+; 1083 : /*#ifdef BSP_EVM2
+; 1084 :     TWLWriteByteReg(hTwl, TWL_LEDEN, 0x00);
+; 1085 : #else
+; 1086 :     // The hardware design is completely backwards.  In order
+; 1087 :     // to disable the LED control signal, the LEDPWM signal must 
+; 1088 :     // be enabled 100%
+; 1089 :     // Set LEDAON, LEDAPWM
+; 1090 :     TWLWriteByteReg(hTwl, TWL_LEDEN, 0x11);
+; 1091 :     // Set PWM registers to same value to trigger 100% duty cycle
+; 1092 :     TWLWriteByteReg(hTwl, TWL_PWMAOFF, 0x00);
+; 1093 :     TWLWriteByteReg(hTwl, TWL_PWMAON, 0x00);
+; 1094 : #endif
+; 1095 : */    
+; 1096 :     TWLClose(hTwl);
 
-  00060	e38310f9	 orr         r1, r3, #0xF9
-  00064	e3a0e07f	 mov         lr, #0x7F
-  00068	e3a03001	 mov         r3, #1
-  0006c	e28d2000	 add         r2, sp, #0
-  00070	e1a00004	 mov         r0, r4
-  00074	e5cde000	 strb        lr, [sp]
-  00078	eb000000	 bl          TWLWriteRegs
+  00068	e1a00004	 mov         r0, r4
+  0006c	eb000000	 bl          TWLClose
 
-; 1306 : /*#ifdef BSP_EVM2
-; 1307 :     TWLWriteByteReg(hTwl, TWL_LEDEN, 0x00);
-; 1308 : #else
-; 1309 :     // The hardware design is completely backwards.  In order
-; 1310 :     // to disable the LED control signal, the LEDPWM signal must 
-; 1311 :     // be enabled 100%
-; 1312 :     // Set LEDAON, LEDAPWM
-; 1313 :     TWLWriteByteReg(hTwl, TWL_LEDEN, 0x11);
-; 1314 :     // Set PWM registers to same value to trigger 100% duty cycle
-; 1315 :     TWLWriteByteReg(hTwl, TWL_PWMAOFF, 0x00);
-; 1316 :     TWLWriteByteReg(hTwl, TWL_PWMAON, 0x00);
-; 1317 : #endif
-; 1318 : */    
-; 1319 :     TWLClose(hTwl);
+; 1097 :      //OALMSG(OAL_INFO, (L"disable_lcd_backlight-\r\n"));
+; 1098 :     return ERROR_SUCCESS;
 
-  0007c	e1a00004	 mov         r0, r4
-  00080	eb000000	 bl          TWLClose
+  00070	e3a00000	 mov         r0, #0
 
-; 1320 :      //OALMSG(OAL_INFO, (L"disable_lcd_backlight-\r\n"));
-; 1321 :     return ERROR_SUCCESS;
+; 1099 : }
 
-  00084	e3a00000	 mov         r0, #0
-
-; 1322 : }
-
-  00088	e28dd004	 add         sp, sp, #4
-  0008c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00090	e12fff1e	 bx          lr
-  00094		 |$LN14@disable_lc@2|
-  00094		 |$LN15@disable_lc@2|
-  00094	00000000	 DCD         |??_C@_1DC@LNCCCMGG@?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA_?$AAl?$AAc?$AAd?$AA_?$AAb?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@|
-  00098		 |$LN16@disable_lc@2|
-  00098	00000000	 DCD         |dpCurSettings|
-  0009c		 |$M48845|
+  00074	e28dd004	 add         sp, sp, #4
+  00078	e8bd4030	 ldmia       sp!, {r4, r5, lr}
+  0007c	e12fff1e	 bx          lr
+  00080		 |$M48824|
 
 			 ENDP  ; |disable_lcd_backlight|
 
 	EXPORT	|configure_dss|
-	EXPORT	|??_C@_1CC@JGDIOEGJ@?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAe?$AA_?$AAd?$AAs?$AAs?$AA?9?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CG@GJLGPOAN@?$AA?$AN?$AA?6?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAe?$AA_?$AAd?$AAs?$AAs?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|GPIOClose|
 	IMPORT	|LcdPdd_LCD_Initialize|
-	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48866| DCD	|$LN9@configure_|
-	DCD	0x40004d01
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CC@JGDIOEGJ@?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAe?$AA_?$AAd?$AAs?$AAs?$AA?9?$AA?$AN?$AA?6?$AA?$AA@| DCB "c"
-	DCB	0x0, "o", 0x0, "n", 0x0, "f", 0x0, "i", 0x0, "g", 0x0, "u"
-	DCB	0x0, "r", 0x0, "e", 0x0, "_", 0x0, "d", 0x0, "s", 0x0, "s"
-	DCB	0x0, "-", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CG@GJLGPOAN@?$AA?$AN?$AA?6?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAe?$AA_?$AAd?$AAs?$AAs?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
-	DCB	0x0, 0xa, 0x0, "c", 0x0, "o", 0x0, "n", 0x0, "f", 0x0, "i"
-	DCB	0x0, "g", 0x0, "u", 0x0, "r", 0x0, "e", 0x0, "_", 0x0, "d"
-	DCB	0x0, "s", 0x0, "s", 0x0, "+", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
+|$T48837| DCD	|$LN5@configure_|
+	DCD	0x40003c01
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |configure_dss| PROC
 
-; 1331 : {
+; 1108 : {
 
-  00000		 |$LN9@configure_|
-  00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M48863|
-  00004	e1a08000	 mov         r8, r0
+  00000		 |$LN5@configure_|
+  00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
+  00004		 |$M48834|
+  00004	e1a05000	 mov         r5, r0
   00008	e3a03312	 mov         r3, #0x12, 6
 
-; 1332 :     OMAP_DSS_REGS   *pDSSRegs		= OALPAtoUA(OMAP_DSS1_REGS_PA);
+; 1109 :     OMAP_DSS_REGS   *pDSSRegs = OALPAtoUA(OMAP_DSS1_REGS_PA);
 
   0000c	e3830805	 orr         r0, r3, #5, 16
   00010	e3a01000	 mov         r1, #0
   00014	eb000000	 bl          OALPAtoVA
-  00018	e1a07000	 mov         r7, r0
+  00018	e1a04000	 mov         r4, r0
 
-; 1333 :     OMAP_DISPC_REGS *pDisplayRegs	= OALPAtoUA(OMAP_DISC1_REGS_PA);
+; 1110 :     OMAP_DISPC_REGS *pDisplayRegs = OALPAtoUA(OMAP_DISC1_REGS_PA);
 
-  0001c	e59f010c	 ldr         r0, [pc, #0x10C]
+  0001c	e59f00c8	 ldr         r0, [pc, #0xC8]
   00020	e3a01000	 mov         r1, #0
   00024	eb000000	 bl          OALPAtoVA
   00028	e1a06000	 mov         r6, r0
 
-; 1334 :     OMAP_RFBI_REGS	*pRfbiRegs		= OALPAtoUA(OMAP_RFBI1_REGS_PA);
+; 1111 :     OMAP_RFBI_REGS *pRfbiRegs = OALPAtoUA(OMAP_RFBI1_REGS_PA);
 
-  0002c	e59f00f8	 ldr         r0, [pc, #0xF8]
+  0002c	e59f00b4	 ldr         r0, [pc, #0xB4]
   00030	e3a01000	 mov         r1, #0
   00034	eb000000	 bl          OALPAtoVA
-  00038	e1a09000	 mov         r9, r0
 
-; 1335 :     HANDLE hGpio = GPIOOpen();
+; 1112 :     //HANDLE hGpio = GPIOOpen();
+; 1113 : 
+; 1114 : 	//OALMSG(OAL_INFO, (L"\r\nconfigure_dss+\r\n"));
+; 1115 : 
+; 1116 :     //  Configure the clock source
+; 1117 :     OUTREG32( &pDSSRegs->DSS_CONTROL, 
+; 1118 : 			DSS_CONTROL_DISPC_CLK_SWITCH_DSS1_ALWON | DSS_CONTROL_DSI_CLK_SWITCH_DSS1_ALWON);
 
-  0003c	eb000000	 bl          GPIOOpen
+  00038	e3a03a01	 mov         r3, #1, 20
+  0003c	e3a08000	 mov         r8, #0
 
-; 1336 : 
-; 1337 : 	OALMSG(OAL_INFO, (L"\r\nconfigure_dss+\r\n"));
+; 1119 :     
+; 1120 :     //  Configure interconnect parameters
+; 1121 :     OUTREG32( &pDSSRegs->DSS_SYSCONFIG, DISPC_SYSCONFIG_AUTOIDLE );
+; 1122 :     OUTREG32( &pDisplayRegs->DISPC_SYSCONFIG, DISPC_SYSCONFIG_AUTOIDLE|SYSCONFIG_NOIDLE|SYSCONFIG_NOSTANDBY );
 
-  00040	e59f50e0	 ldr         r5, [pc, #0xE0]
-  00044	e1a04000	 mov         r4, r0
-  00048	e5953440	 ldr         r3, [r5, #0x440]
-  0004c	e3130008	 tst         r3, #8
-  00050	159f00cc	 ldrne       r0, [pc, #0xCC]
-  00054	1b000000	 blne        NKDbgPrintfW
+  00040	e3a07001	 mov         r7, #1
+  00044	e5848040	 str         r8, [r4, #0x40]
+  00048	e3833009	 orr         r3, r3, #9
+  0004c	e5847010	 str         r7, [r4, #0x10]
+  00050	e5863010	 str         r3, [r6, #0x10]
+  00054	e1a02000	 mov         r2, r0
 
-; 1338 : 
-; 1339 :     //  Configure the clock source
-; 1340 :     OUTREG32( &pDSSRegs->DSS_CONTROL, 
-; 1341 : 			DSS_CONTROL_DISPC_CLK_SWITCH_DSS1_ALWON | DSS_CONTROL_DSI_CLK_SWITCH_DSS1_ALWON);
+; 1123 : 
+; 1124 :     // Not enabling any interrupts
+; 1125 :     OUTREG32( &pDisplayRegs->DISPC_IRQENABLE, 0x00000000 );
+; 1126 :     
+; 1127 :     //  Configure the LCD
+; 1128 :     LcdPdd_LCD_Initialize( pDSSRegs, pDisplayRegs, pRfbiRegs, NULL);
 
-  00058	e3a03a01	 mov         r3, #1, 20
-  0005c	e3a0b000	 mov         r11, #0
+  00058	e3a03000	 mov         r3, #0
+  0005c	e1a01006	 mov         r1, r6
+  00060	e1a00004	 mov         r0, r4
+  00064	e586801c	 str         r8, [r6, #0x1C]
+  00068	eb000000	 bl          LcdPdd_LCD_Initialize
 
-; 1342 :     
-; 1343 :     //  Configure interconnect parameters
-; 1344 :     OUTREG32( &pDSSRegs->DSS_SYSCONFIG, DISPC_SYSCONFIG_AUTOIDLE );
-; 1345 :     OUTREG32( &pDisplayRegs->DISPC_SYSCONFIG, DISPC_SYSCONFIG_AUTOIDLE|SYSCONFIG_NOIDLE|SYSCONFIG_NOSTANDBY );
+; 1129 :     	
+; 1130 :     //  Over-ride default LCD config
+; 1131 :     OUTREG32(&pDisplayRegs->DISPC_CONFIG,BSP_LCD_CONFIG);
+; 1132 :     
+; 1133 :     
+; 1134 :     // Configure Graphics Window
+; 1135 :     //--------------------------
+; 1136 :     
+; 1137 :     OUTREG32(&pDisplayRegs->DISPC_GFX_BA0 ,framebuffer );
+; 1138 :  
+; 1139 :     // configure the position of graphics window
+; 1140 :     OUTREG32(&pDisplayRegs->DISPC_GFX_POSITION,BSP_GFX_POS);
 
-  00060	e3a0a001	 mov         r10, #1
-  00064	e587b040	 str         r11, [r7, #0x40]
-  00068	e3833009	 orr         r3, r3, #9
-  0006c	e587a010	 str         r10, [r7, #0x10]
-  00070	e5863010	 str         r3, [r6, #0x10]
+  0006c	e59f3070	 ldr         r3, [pc, #0x70]
+  00070	e59f2068	 ldr         r2, [pc, #0x68]
+  00074	e3a01f81	 mov         r1, #0x81, 30
+  00078	e5861044	 str         r1, [r6, #0x44]
+  0007c	e5865080	 str         r5, [r6, #0x80]
+  00080	e5931000	 ldr         r1, [r3]
+  00084	e5923000	 ldr         r3, [r2]
 
-; 1346 : 
-; 1347 :     // Not enabling any interrupts
-; 1348 :     OUTREG32( &pDisplayRegs->DISPC_IRQENABLE, 0x00000000 );
-; 1349 :     
-; 1350 :     //  Configure the LCD
-; 1351 :     LcdPdd_LCD_Initialize( pDSSRegs, pDisplayRegs, pRfbiRegs, NULL);
+; 1141 :     
+; 1142 :     // size of graphics window
+; 1143 :     OUTREG32(&pDisplayRegs->DISPC_GFX_SIZE,BSP_GFX_SIZE);
 
-  00074	e3a03000	 mov         r3, #0
-  00078	e1a02009	 mov         r2, r9
-  0007c	e1a01006	 mov         r1, r6
-  00080	e1a00007	 mov         r0, r7
-  00084	e586b01c	 str         r11, [r6, #0x1C]
-  00088	eb000000	 bl          LcdPdd_LCD_Initialize
+  00088	e59f204c	 ldr         r2, [pc, #0x4C]
+  0008c	e59f0044	 ldr         r0, [pc, #0x44]
+  00090	e1813803	 orr         r3, r1, r3, lsl #16
+  00094	e5863088	 str         r3, [r6, #0x88]
+  00098	e5922000	 ldr         r2, [r2]
+  0009c	e5903000	 ldr         r3, [r0]
+  000a0	e2422001	 sub         r2, r2, #1
+  000a4	e2433001	 sub         r3, r3, #1
+  000a8	e1833802	 orr         r3, r3, r2, lsl #16
+  000ac	e586308c	 str         r3, [r6, #0x8C]
 
-; 1352 :     	
-; 1353 :     //  Over-ride default LCD config
-; 1354 :     OUTREG32(&pDisplayRegs->DISPC_CONFIG,BSP_LCD_CONFIG);
-; 1355 :     
-; 1356 :     
-; 1357 :     // Configure Graphics Window
-; 1358 :     //--------------------------
-; 1359 :     
-; 1360 :     OUTREG32(&pDisplayRegs->DISPC_GFX_BA0 ,framebuffer );
-; 1361 :  
-; 1362 :     // configure the position of graphics window
-; 1363 :     OUTREG32(&pDisplayRegs->DISPC_GFX_POSITION,BSP_GFX_POS);
+; 1144 :     
+; 1145 :     // GW Enabled, RGB24 packed, Little Endian
+; 1146 :     OUTREG32(&pDisplayRegs->DISPC_GFX_ATTRIBUTES,LOGO_GFX_ATTRIBUTES);
 
-  0008c	e59f308c	 ldr         r3, [pc, #0x8C]
-  00090	e59f2084	 ldr         r2, [pc, #0x84]
-  00094	e3a01f81	 mov         r1, #0x81, 30
-  00098	e5861044	 str         r1, [r6, #0x44]
-  0009c	e5868080	 str         r8, [r6, #0x80]
-  000a0	e5931000	 ldr         r1, [r3]
-  000a4	e5923000	 ldr         r3, [r2]
+  000b0	e3a03013	 mov         r3, #0x13
+  000b4	e3a0273f	 mov         r2, #0x3F, 14
+  000b8	e58630a0	 str         r3, [r6, #0xA0]
 
-; 1364 :     
-; 1365 :     // size of graphics window
-; 1366 :     OUTREG32(&pDisplayRegs->DISPC_GFX_SIZE,BSP_GFX_SIZE);
+; 1147 :     
+; 1148 :     OUTREG32(&pDisplayRegs->DISPC_GFX_FIFO_THRESHOLD,BSP_GFX_FIFO_THRESHOLD);
 
-  000a8	e59f2068	 ldr         r2, [pc, #0x68]
-  000ac	e59f0060	 ldr         r0, [pc, #0x60]
-  000b0	e1813803	 orr         r3, r1, r3, lsl #16
-  000b4	e5863088	 str         r3, [r6, #0x88]
-  000b8	e5922000	 ldr         r2, [r2]
-  000bc	e5903000	 ldr         r3, [r0]
-  000c0	e2422001	 sub         r2, r2, #1
-  000c4	e2433001	 sub         r3, r3, #1
-  000c8	e1833802	 orr         r3, r3, r2, lsl #16
-  000cc	e586308c	 str         r3, [r6, #0x8C]
+  000bc	e38230c0	 orr         r3, r2, #0xC0
+  000c0	e58630a4	 str         r3, [r6, #0xA4]
 
-; 1367 :     
-; 1368 :     // GW Enabled, RGB24 packed, Little Endian
-; 1369 :     OUTREG32(&pDisplayRegs->DISPC_GFX_ATTRIBUTES,LOGO_GFX_ATTRIBUTES);
+; 1149 :     OUTREG32(&pDisplayRegs->DISPC_GFX_ROW_INC,BSP_GFX_ROW_INC); 
 
-  000d0	e3a03013	 mov         r3, #0x13
-  000d4	e3a0273f	 mov         r2, #0x3F, 14
-  000d8	e58630a0	 str         r3, [r6, #0xA0]
+  000c4	e58670ac	 str         r7, [r6, #0xAC]
 
-; 1370 :     
-; 1371 :     OUTREG32(&pDisplayRegs->DISPC_GFX_FIFO_THRESHOLD,BSP_GFX_FIFO_THRESHOLD);
+; 1150 :     OUTREG32(&pDisplayRegs->DISPC_GFX_PIXEL_INC,BSP_GFX_PIXEL_INC); 
 
-  000dc	e38230c0	 orr         r3, r2, #0xC0
-  000e0	e58630a4	 str         r3, [r6, #0xA4]
+  000c8	e58670b0	 str         r7, [r6, #0xB0]
 
-; 1372 :     OUTREG32(&pDisplayRegs->DISPC_GFX_ROW_INC,BSP_GFX_ROW_INC); 
+; 1151 :     OUTREG32(&pDisplayRegs->DISPC_GFX_WINDOW_SKIP,BSP_GFX_WINDOW_SKIP);
 
-  000e4	e586a0ac	 str         r10, [r6, #0xAC]
+  000cc	e58680b4	 str         r8, [r6, #0xB4]
 
-; 1373 :     OUTREG32(&pDisplayRegs->DISPC_GFX_PIXEL_INC,BSP_GFX_PIXEL_INC); 
+; 1152 : 
+; 1153 :     //OALMSG(OAL_INFO, (L"configure_dss-\r\n"));
+; 1154 : 
+; 1155 : 	//GPIOClose(hGpio);
+; 1156 : }
 
-  000e8	e586a0b0	 str         r10, [r6, #0xB0]
-
-; 1374 :     OUTREG32(&pDisplayRegs->DISPC_GFX_WINDOW_SKIP,BSP_GFX_WINDOW_SKIP);
-
-  000ec	e586b0b4	 str         r11, [r6, #0xB4]
-
-; 1375 : 
-; 1376 :     OALMSG(OAL_INFO, (L"configure_dss-\r\n"));
-
-  000f0	e5953440	 ldr         r3, [r5, #0x440]
-  000f4	e3130008	 tst         r3, #8
-  000f8	159f0010	 ldrne       r0, [pc, #0x10]
-  000fc	1b000000	 blne        NKDbgPrintfW
-
-; 1377 : 
-; 1378 : 	GPIOClose(hGpio);
-
-  00100	e1a00004	 mov         r0, r4
-  00104	eb000000	 bl          GPIOClose
-
-; 1379 : }
-
-  00108	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  0010c	e12fff1e	 bx          lr
-  00110		 |$LN10@configure_|
-  00110		 |$LN11@configure_|
-  00110	00000000	 DCD         |??_C@_1CC@JGDIOEGJ@?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAe?$AA_?$AAd?$AAs?$AAs?$AA?9?$AA?$AN?$AA?6?$AA?$AA@|
-  00114		 |$LN12@configure_|
-  00114	00000000	 DCD         |g_dwLogoWidth|
-  00118		 |$LN13@configure_|
-  00118	00000000	 DCD         |g_dwLogoHeight|
-  0011c		 |$LN14@configure_|
-  0011c	00000000	 DCD         |g_dwLogoPosY|
-  00120		 |$LN15@configure_|
-  00120	00000000	 DCD         |g_dwLogoPosX|
-  00124		 |$LN16@configure_|
-  00124	00000000	 DCD         |??_C@_1CG@GJLGPOAN@?$AA?$AN?$AA?6?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAe?$AA_?$AAd?$AAs?$AAs?$AA?$CL?$AA?$AN?$AA?6?$AA?$AA@|
-  00128		 |$LN17@configure_|
-  00128	00000000	 DCD         |dpCurSettings|
-  0012c		 |$LN18@configure_|
-  0012c	48050800	 DCD         0x48050800
-  00130		 |$LN19@configure_|
-  00130	48050400	 DCD         0x48050400
-  00134		 |$M48864|
+  000d0	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
+  000d4	e12fff1e	 bx          lr
+  000d8		 |$LN6@configure_|
+  000d8		 |$LN7@configure_|
+  000d8	00000000	 DCD         |g_dwLogoWidth|
+  000dc		 |$LN8@configure_|
+  000dc	00000000	 DCD         |g_dwLogoHeight|
+  000e0		 |$LN9@configure_|
+  000e0	00000000	 DCD         |g_dwLogoPosY|
+  000e4		 |$LN10@configure_|
+  000e4	00000000	 DCD         |g_dwLogoPosX|
+  000e8		 |$LN11@configure_|
+  000e8	48050800	 DCD         0x48050800
+  000ec		 |$LN12@configure_|
+  000ec	48050400	 DCD         0x48050400
+  000f0		 |$M48835|
 
 			 ENDP  ; |configure_dss|
 
 	EXPORT	|display_lcd_image|
-	IMPORT	|LcdPdd_SetPowerLevel|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48890| DCD	|$LN15@display_lc|
-	DCD	0x40001901
+|$T48858| DCD	|$LN15@display_lc|
+	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |display_lcd_image| PROC
 
-; 1388 : {
+; 1165 : {
 
   00000		 |$LN15@display_lc|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48887|
+  00004		 |$M48855|
 
-; 1389 :     UINT8  count, timeout = DELAY_COUNT  ;
-; 1390 :     UINT16 ctrl;
-; 1391 :     OMAP_DISPC_REGS *pDisplayRegs = OALPAtoUA(OMAP_DISC1_REGS_PA);
+; 1166 :     UINT8  count, timeout = DELAY_COUNT  ;
+; 1167 :     UINT16 ctrl;
+; 1168 :     OMAP_DISPC_REGS *pDisplayRegs = OALPAtoUA(OMAP_DISC1_REGS_PA);
 
-  00004	e59f0054	 ldr         r0, [pc, #0x54]
+  00004	e59f004c	 ldr         r0, [pc, #0x4C]
   00008	e3a01000	 mov         r1, #0
   0000c	e3a04064	 mov         r4, #0x64
   00010	eb000000	 bl          OALPAtoVA
 
-; 1392 :     
-; 1393 :     // Apply display configuration
-; 1394 :     SETREG32(&pDisplayRegs->DISPC_CONTROL,DISPC_CONTROL_GOLCD);
+; 1169 :     
+; 1170 :     // Apply display configuration
+; 1171 :     SETREG32(&pDisplayRegs->DISPC_CONTROL,DISPC_CONTROL_GOLCD);
 
   00014	e5903040	 ldr         r3, [r0, #0x40]
   00018	e3833020	 orr         r3, r3, #0x20
   0001c	e5803040	 str         r3, [r0, #0x40]
   00020		 |$LL7@display_lc|
 
-; 1395 :     
-; 1396 :     // wait for configuration to take effect
-; 1397 :     do
-; 1398 :     {
-; 1399 :         for(count=0;count<DELAY_COUNT;++count);
+; 1172 :     
+; 1173 :     // wait for configuration to take effect
+; 1174 :     do
+; 1175 :     {
+; 1176 :         for(count=0;count<DELAY_COUNT;++count);
 
   00020	e3a03000	 mov         r3, #0
   00024		 |$LL4@display_lc|
@@ -2927,17 +2794,17 @@
   0002c	e3530064	 cmp         r3, #0x64
   00030	3afffffb	 bcc         |$LL4@display_lc|
 
-; 1400 :         ctrl=INREG16(&pDisplayRegs->DISPC_CONTROL);
+; 1177 :         ctrl=INREG16(&pDisplayRegs->DISPC_CONTROL);
 
   00034	e1d024b0	 ldrh        r2, [r0, #0x40]
 
-; 1401 :         timeout-- ;
+; 1178 :         timeout-- ;
 
   00038	e28430ff	 add         r3, r4, #0xFF
   0003c	e20340ff	 and         r4, r3, #0xFF
 
-; 1402 :     }
-; 1403 :     while((ctrl & DISPC_CONTROL_GOLCD) && (timeout > 0));
+; 1179 :     }
+; 1180 :     while((ctrl & DISPC_CONTROL_GOLCD) && (timeout > 0));
 
   00040	e3120020	 tst         r2, #0x20
   00044	0a000001	 beq         |$LN1@display_lc|
@@ -2945,23 +2812,19 @@
   0004c	1afffff3	 bne         |$LL7@display_lc|
   00050		 |$LN1@display_lc|
 
-; 1404 :     
-; 1405 :     // Power up and start scanning
-; 1406 :     LcdPdd_SetPowerLevel(D0);   
+; 1181 :     
+; 1182 : 	// Power up and start scanning
+; 1183 :     // LcdPdd_SetPowerLevel(D0);   
+; 1184 :     
+; 1185 : 	// OALMSG(OAL_INFO, (L"display_lcd_image-\r\n"));
+; 1186 : }
 
-  00050	e3a00000	 mov         r0, #0
-  00054	eb000000	 bl          LcdPdd_SetPowerLevel
-
-; 1407 :     
-; 1408 :      //OALMSG(OAL_INFO, (L"display_lcd_image-\r\n"));
-; 1409 : }
-
-  00058	e8bd4010	 ldmia       sp!, {r4, lr}
-  0005c	e12fff1e	 bx          lr
-  00060		 |$LN16@display_lc|
-  00060		 |$LN17@display_lc|
-  00060	48050400	 DCD         0x48050400
-  00064		 |$M48888|
+  00050	e8bd4010	 ldmia       sp!, {r4, lr}
+  00054	e12fff1e	 bx          lr
+  00058		 |$LN16@display_lc|
+  00058		 |$LN17@display_lc|
+  00058	48050400	 DCD         0x48050400
+  0005c		 |$M48856|
 
 			 ENDP  ; |display_lcd_image|
 
@@ -2969,7 +2832,7 @@
 	IMPORT	|OALStall|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48900| DCD	|$LN5@LcdStall|
+|$T48868| DCD	|$LN5@LcdStall|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -2977,28 +2840,28 @@
 
   00000		 |LcdStall| PROC
 
-; 1413 : {
+; 1190 : {
 
   00000		 |$LN5@LcdStall|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48897|
+  00004		 |$M48865|
 
-; 1414 :     OALStall(dwMicroseconds);
+; 1191 :     OALStall(dwMicroseconds);
 
   00004	eb000000	 bl          OALStall
 
-; 1415 : }
+; 1192 : }
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M48898|
+  00010		 |$M48866|
 
 			 ENDP  ; |LcdStall|
 
 	EXPORT	|LcdSleep|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48908| DCD	|$LN5@LcdSleep|
+|$T48876| DCD	|$LN5@LcdSleep|
 	DCD	0x40000601
 ; Function compile flags: /Ogspy
 
@@ -3006,209 +2869,1215 @@
 
   00000		 |LcdSleep| PROC
 
-; 1418 : {
+; 1195 : {
 
   00000		 |$LN5@LcdSleep|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48905|
+  00004		 |$M48873|
 
-; 1419 :     OALStall(1000 * dwMilliseconds);
+; 1196 :     OALStall(1000 * dwMilliseconds);
 
   00004	e3a02ffa	 mov         r2, #0xFA, 30
   00008	e0000092	 mul         r0, r2, r0
   0000c	eb000000	 bl          OALStall
 
-; 1420 : }
+; 1197 : }
 
   00010	e49de004	 ldr         lr, [sp], #4
   00014	e12fff1e	 bx          lr
-  00018		 |$M48906|
+  00018		 |$M48874|
 
 			 ENDP  ; |LcdSleep|
 
-	EXPORT	|SetupDisplaySize|
+	EXPORT	|spiWrBitHigh|
+	IMPORT	|GPIOClrBit|
+	IMPORT	|GPIOSetBit|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48917| DCD	|$LN5@SetupDispl|
-	DCD	0x40000700
+|$T48889| DCD	|$LN9@spiWrBitHi|
+	DCD	0x40001501
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |SetupDisplaySize| PROC
+  00000		 |spiWrBitHigh| PROC
 
-; 1425 : {
+; 399  : {
 
-  00000		 |$LN5@SetupDispl|
-  00000		 |$M48914|
-
-; 1426 : 	PDWORD adjustHeight =  dwLcdHeight;
-; 1427 : 	PDWORD adjustWidth  =  dwLcdWidth;
-; 1428 : 	*adjustHeight 	/=2;
-
-  00000	e5903000	 ldr         r3, [r0]
-  00004	e1a030a3	 mov         r3, r3, lsr #1
-  00008	e5803000	 str         r3, [r0]
-
-; 1429 : 	*adjustWidth 	/=2;
-
-  0000c	e5913000	 ldr         r3, [r1]
-  00010	e1a030a3	 mov         r3, r3, lsr #1
-  00014	e5813000	 str         r3, [r1]
-
-; 1430 : }
-
-  00018	e12fff1e	 bx          lr
-  0001c		 |$M48915|
-
-			 ENDP  ; |SetupDisplaySize|
-
-	EXPORT	|InitGraphicsEngine|
-
-  00018			 AREA	 |.bss|, NOINIT
-|g_nBpp| %	0x4
-|g_nBpp| %	0x4
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T48930| DCD	|$LN5@InitGraphi|
-	DCD	0x40000f01
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |InitGraphicsEngine| PROC
-
-; 395  : {
-
-  00000		 |$LN5@InitGraphi|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M48927|
-
-; 396  : 	
-; 397  : 	/*if(nBpp != (PUCHAR)checkbpp)	//how to check values??
-; 398  : 		return FALSE;*/
-; 399  : 		
-; 400  : 	g_nHeight = nHeight;
-
-  00004	e59f502c	 ldr         r5, [pc, #0x2C]
-
-; 401  : 	g_nWidth  = nWidth;
-; 402  : 	
-; 403  : 	g_nColMax = g_nWidth  / FONT_WIDTH;			//nWidth(240) / 8   = 30(g_nColMax)
-
-  00008	e1a0e1a0	 mov         lr, r0, lsr #3
-
-; 404  : 	g_nRowMax = g_nHeight / FONT_HEIGHT;		//nHeight(320) / 16 = 20(g_nRowMax )
-
-  0000c	e1a04221	 mov         r4, r1, lsr #4
-  00010	e5851004	 str         r1, [r5, #4]
-  00014	e5850008	 str         r0, [r5, #8]
-  00018	e585e00c	 str         lr, [r5, #0xC]
-  0001c	e5854010	 str         r4, [r5, #0x10]
-
-; 405  : 	
-; 406  : 	g_nBpp = (DWORD)nBpp; 
-
-  00020	e5852000	 str         r2, [r5]
-
-; 407  :     g_dwFrameBuffer = (volatile DWORD *) dwFrameBuffer;
-
-  00024	e5853018	 str         r3, [r5, #0x18]
-
-; 408  : 
-; 409  : 	/*for (y = 0; y < g_nHeight; y++)		
-; 410  : 	{
-; 411  : 		for( x = 0; x < g_nWidth; x++ )	
-; 412  :         {
-; 413  : 			*g_nBpp++ = 0xfa;    //  Blue	
-; 414  :             *g_nBpp++ = 0xce;    //  Green
-; 415  :             *g_nBpp++ = 0x87;    //  Red
-; 416  : 		}
-; 417  : 	}*/
-; 418  : 	
-; 419  : 	FillASCII();
-
-  00028	eb000000	 bl          FillASCII
-
-; 420  : 	
-; 421  :     //size = (sizeof(asciiFont)/16); 
-; 422  : 	//PrintStringN(str, size);
-; 423  : 	//PrintStringN();
-; 424  : 	return TRUE;
-
-  0002c	e3a00001	 mov         r0, #1
-
-; 425  : }
-
-  00030	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00034	e12fff1e	 bx          lr
-  00038		 |$LN6@InitGraphi|
-  00038		 |$LN7@InitGraphi|
-  00038	00000000	 DCD         |g_nBpp|
-  0003c		 |$M48928|
-
-			 ENDP  ; |InitGraphicsEngine|
-
-	EXPORT	|lcd_config|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T48940| DCD	|$LN5@lcd_config|
-	DCD	0x40000a01
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |lcd_config| PROC
-
-; 1171 : {    
-
-  00000		 |$LN5@lcd_config|
+  00000		 |$LN9@spiWrBitHi|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48937|
-  00004	e1a04000	 mov         r4, r0
+  00004		 |$M48886|
 
-; 1172 :     reset_display_controller();
+; 400  :     DWORD delay = 10;
+; 401  : 
+; 402  :     GPIOSetBit(hGpio, SPI_DOUT_PIN);
 
-  00008	eb000000	 bl          reset_display_controller
+  00004	e59f4044	 ldr         r4, [pc, #0x44]
+  00008	e3a010ac	 mov         r1, #0xAC
+  0000c	e5940000	 ldr         r0, [r4]
+  00010	eb000000	 bl          GPIOSetBit
 
-; 1173 : 
-; 1174 :     // Enable LCD clocks
-; 1175 :     enable_lcd_power();
+; 403  : 
+; 404  :     GPIOClrBit(hGpio, SPI_CLK_PIN);
 
-  0000c	eb000000	 bl          enable_lcd_power
+  00014	e5940000	 ldr         r0, [r4]
+  00018	e3a010ab	 mov         r1, #0xAB
+  0001c	eb000000	 bl          GPIOClrBit
 
-; 1176 : 
-; 1177 :     // Configure the DSS registers
-; 1178 :     configure_dss(framebuffer);
+; 405  :     LcdStall(delay);
 
-  00010	e1a00004	 mov         r0, r4
-  00014	eb000000	 bl          configure_dss
+  00020	e3a0000a	 mov         r0, #0xA
+  00024	eb000000	 bl          OALStall
 
-; 1179 :       
-; 1180 :     // Display data on LCD
-; 1181 :     display_lcd_image() ;
+; 406  :     GPIOSetBit(hGpio, SPI_CLK_PIN);
 
-  00018	eb000000	 bl          display_lcd_image
+  00028	e5940000	 ldr         r0, [r4]
+  0002c	e3a010ab	 mov         r1, #0xAB
+  00030	eb000000	 bl          GPIOSetBit
 
-; 1182 :     
-; 1183 : 	// Turn on backlight last
-; 1184 : 	enable_lcd_backlight();
+; 407  :     LcdStall(delay);
 
-  0001c	eb000000	 bl          enable_lcd_backlight
+  00034	e3a0000a	 mov         r0, #0xA
+  00038	eb000000	 bl          OALStall
 
-; 1185 : 
-; 1186 : }
+; 408  :     GPIOClrBit(hGpio, SPI_CLK_PIN);
 
-  00020	e8bd4010	 ldmia       sp!, {r4, lr}
-  00024	e12fff1e	 bx          lr
-  00028		 |$M48938|
+  0003c	e5940000	 ldr         r0, [r4]
+  00040	e3a010ab	 mov         r1, #0xAB
+  00044	eb000000	 bl          GPIOClrBit
 
-			 ENDP  ; |lcd_config|
+; 409  : }
+
+  00048	e8bd4010	 ldmia       sp!, {r4, lr}
+  0004c	e12fff1e	 bx          lr
+  00050		 |$LN10@spiWrBitHi|
+  00050		 |$LN11@spiWrBitHi|
+  00050	00000000	 DCD         |hGpio|
+  00054		 |$M48887|
+
+			 ENDP  ; |spiWrBitHigh|
+
+	EXPORT	|spiWrBitLow|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48904| DCD	|$LN9@spiWrBitLo|
+	DCD	0x40001501
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |spiWrBitLow| PROC
+
+; 412  : {
+
+  00000		 |$LN9@spiWrBitLo|
+  00000	e92d4010	 stmdb       sp!, {r4, lr}
+  00004		 |$M48901|
+
+; 413  :     int delay = 10;
+; 414  :     
+; 415  :     GPIOClrBit(hGpio, SPI_DOUT_PIN);
+
+  00004	e59f4044	 ldr         r4, [pc, #0x44]
+  00008	e3a010ac	 mov         r1, #0xAC
+  0000c	e5940000	 ldr         r0, [r4]
+  00010	eb000000	 bl          GPIOClrBit
+
+; 416  : 
+; 417  :     GPIOClrBit(hGpio, SPI_CLK_PIN);
+
+  00014	e5940000	 ldr         r0, [r4]
+  00018	e3a010ab	 mov         r1, #0xAB
+  0001c	eb000000	 bl          GPIOClrBit
+
+; 418  :     LcdStall(delay);
+
+  00020	e3a0000a	 mov         r0, #0xA
+  00024	eb000000	 bl          OALStall
+
+; 419  :     GPIOSetBit(hGpio, SPI_CLK_PIN);
+
+  00028	e5940000	 ldr         r0, [r4]
+  0002c	e3a010ab	 mov         r1, #0xAB
+  00030	eb000000	 bl          GPIOSetBit
+
+; 420  :     LcdStall(delay);
+
+  00034	e3a0000a	 mov         r0, #0xA
+  00038	eb000000	 bl          OALStall
+
+; 421  :     GPIOClrBit(hGpio, SPI_CLK_PIN);
+
+  0003c	e5940000	 ldr         r0, [r4]
+  00040	e3a010ab	 mov         r1, #0xAB
+  00044	eb000000	 bl          GPIOClrBit
+
+; 422  : }
+
+  00048	e8bd4010	 ldmia       sp!, {r4, lr}
+  0004c	e12fff1e	 bx          lr
+  00050		 |$LN10@spiWrBitLo|
+  00050		 |$LN11@spiWrBitLo|
+  00050	00000000	 DCD         |hGpio|
+  00054		 |$M48902|
+
+			 ENDP  ; |spiWrBitLow|
+
+	EXPORT	|spi_SendData|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48917| DCD	|$LN12@spi_SendDa|
+	DCD	0x40001701
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |spi_SendData| PROC
+
+; 425  : {
+
+  00000		 |$LN12@spi_SendDa|
+  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
+  00004		 |$M48914|
+  00004	e1a06000	 mov         r6, r0
+
+; 426  :     short iCount = 0;
+; 427  : 	
+; 428  : 	GPIOClrBit(hGpio, SPI_CS0_PIN);
+
+  00008	e59f5048	 ldr         r5, [pc, #0x48]
+  0000c	e3a010ae	 mov         r1, #0xAE
+  00010	e5950000	 ldr         r0, [r5]
+  00014	eb000000	 bl          GPIOClrBit
+
+; 429  :     for(iCount=8; iCount>=0; iCount--)
+
+  00018	e3a04008	 mov         r4, #8
+  0001c	e3a07001	 mov         r7, #1
+  00020		 |$LL5@spi_SendDa|
+
+; 430  :     {
+; 431  : 		if(iSendData & (1<<iCount)) 
+
+  00020	e1160417	 tst         r6, r7, lsl r4
+  00024	0a000001	 beq         |$LN2@spi_SendDa|
+
+; 432  : 			spiWrBitHigh();
+
+  00028	eb000000	 bl          spiWrBitHigh
+
+; 433  : 		else 
+
+  0002c	ea000000	 b           |$LN4@spi_SendDa|
+  00030		 |$LN2@spi_SendDa|
+
+; 434  : 			spiWrBitLow();
+
+  00030	eb000000	 bl          spiWrBitLow
+  00034		 |$LN4@spi_SendDa|
+
+; 429  :     for(iCount=8; iCount>=0; iCount--)
+
+  00034	e2443001	 sub         r3, r4, #1
+  00038	e1a04803	 mov         r4, r3, lsl #16
+  0003c	e1b04844	 movs        r4, r4, asr #16
+  00040	5afffff6	 bpl         |$LL5@spi_SendDa|
+
+; 435  : 	}
+; 436  : 	GPIOSetBit(hGpio, SPI_CS0_PIN);
+
+  00044	e5950000	 ldr         r0, [r5]
+  00048	e3a010ae	 mov         r1, #0xAE
+  0004c	eb000000	 bl          GPIOSetBit
+
+; 437  : }
+
+  00050	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  00054	e12fff1e	 bx          lr
+  00058		 |$LN13@spi_SendDa|
+  00058		 |$LN14@spi_SendDa|
+  00058	00000000	 DCD         |hGpio|
+  0005c		 |$M48915|
+
+			 ENDP  ; |spi_SendData|
+
+	EXPORT	|WMLCDCOMD|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48927| DCD	|$LN5@WMLCDCOMD|
+	DCD	0x40000401
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |WMLCDCOMD| PROC
+
+; 440  : {
+
+  00000		 |$LN5@WMLCDCOMD|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M48924|
+
+; 441  :     spi_SendData(cmd);
+
+  00004	eb000000	 bl          spi_SendData
+
+; 442  : }
+
+  00008	e49de004	 ldr         lr, [sp], #4
+  0000c	e12fff1e	 bx          lr
+  00010		 |$M48925|
+
+			 ENDP  ; |WMLCDCOMD|
+
+	EXPORT	|WMLCDDATA|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48935| DCD	|$LN5@WMLCDDATA|
+	DCD	0x40000701
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |WMLCDDATA| PROC
+
+; 445  : {
+
+  00000		 |$LN5@WMLCDDATA|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M48932|
+
+; 446  : 	dat |= 0x0100;
+
+  00004	e3803c01	 orr         r3, r0, #1, 24
+
+; 447  : 	spi_SendData(dat);
+
+  00008	e1a00803	 mov         r0, r3, lsl #16
+  0000c	e1a00840	 mov         r0, r0, asr #16
+  00010	eb000000	 bl          spi_SendData
+
+; 448  : }
+
+  00014	e49de004	 ldr         lr, [sp], #4
+  00018	e12fff1e	 bx          lr
+  0001c		 |$M48933|
+
+			 ENDP  ; |WMLCDDATA|
+
+	EXPORT	|LCD_Initial_Code|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T49587| DCD	|$LN345@LCD_Initia|
+	DCD	0x40015e01
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |LCD_Initial_Code| PROC
+
+; 451  : {
+
+  00000		 |$LN345@LCD_Initia|
+  00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
+  00004		 |$M49584|
+
+; 452  : 	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+
+  00004	e3a000b0	 mov         r0, #0xB0
+  00008	eb000000	 bl          spi_SendData
+
+; 453  :     WMLCDDATA(0x3F);
+
+  0000c	e3a06c01	 mov         r6, #1, 24
+  00010	e386003f	 orr         r0, r6, #0x3F
+  00014	eb000000	 bl          spi_SendData
+
+; 454  : 	WMLCDDATA(0x3F);
+
+  00018	e386003f	 orr         r0, r6, #0x3F
+  0001c	eb000000	 bl          spi_SendData
+  00020	e3a03c13	 mov         r3, #0x13, 24
+
+; 455  : 	LcdSleep(5);
+
+  00024	e3830088	 orr         r0, r3, #0x88
+  00028	eb000000	 bl          OALStall
+
+; 456  : 	
+; 457  : 	WMLCDCOMD(0xFE);
+
+  0002c	e3a000fe	 mov         r0, #0xFE
+  00030	eb000000	 bl          spi_SendData
+
+; 458  : 	WMLCDDATA(0x00);
+
+  00034	e3a00c01	 mov         r0, #1, 24
+  00038	eb000000	 bl          spi_SendData
+
+; 459  : 	WMLCDDATA(0x00);
+
+  0003c	e3a00c01	 mov         r0, #1, 24
+  00040	eb000000	 bl          spi_SendData
+
+; 460  : 	WMLCDDATA(0x00);
+
+  00044	e3a00c01	 mov         r0, #1, 24
+  00048	eb000000	 bl          spi_SendData
+
+; 461  : 	WMLCDDATA(0x21);
+
+  0004c	e3860021	 orr         r0, r6, #0x21
+  00050	eb000000	 bl          spi_SendData
+
+; 462  : 	WMLCDDATA(0xB4);
+
+  00054	e3a00f6d	 mov         r0, #0x6D, 30
+  00058	eb000000	 bl          spi_SendData
+
+; 463  : 	
+; 464  : 	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+
+  0005c	e3a000b3	 mov         r0, #0xB3
+  00060	eb000000	 bl          spi_SendData
+
+; 465  : 	WMLCDDATA(0x00);
+
+  00064	e3a00c01	 mov         r0, #1, 24
+  00068	eb000000	 bl          spi_SendData
+
+; 466  : 	WMLCDDATA(0x10);
+
+  0006c	e3a00e11	 mov         r0, #0x11, 28
+  00070	eb000000	 bl          spi_SendData
+
+; 467  : 	
+; 468  : 	WMLCDCOMD(0xE0); // NVM Access Control
+
+  00074	e3a000e0	 mov         r0, #0xE0
+  00078	eb000000	 bl          spi_SendData
+
+; 469  : 	WMLCDDATA(0x00); // NVAE: NVM access enable register. NVM access is enabled when NVAE=1
+
+  0007c	e3a00c01	 mov         r0, #1, 24
+  00080	eb000000	 bl          spi_SendData
+
+; 470  : 	WMLCDDATA(0x40); // FTT: NVM control bit.
+
+  00084	e3a00d05	 mov         r0, #5, 26
+  00088	eb000000	 bl          spi_SendData
+  0008c	e3a03c27	 mov         r3, #0x27, 24
+
+; 471  : 	//Sleep(10);
+; 472  : 	LcdSleep(10);
+
+  00090	e3830010	 orr         r0, r3, #0x10
+  00094	eb000000	 bl          OALStall
+
+; 473  : 	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+
+  00098	e3a000b3	 mov         r0, #0xB3
+  0009c	eb000000	 bl          spi_SendData
+
+; 474  : 	WMLCDDATA(0x00);
+
+  000a0	e3a00c01	 mov         r0, #1, 24
+  000a4	eb000000	 bl          spi_SendData
+
+; 475  : 	WMLCDDATA(0x00);
+
+  000a8	e3a00c01	 mov         r0, #1, 24
+  000ac	eb000000	 bl          spi_SendData
+
+; 476  : 	
+; 477  : 	WMLCDCOMD(0xFE); // MAGIC - TODO
+
+  000b0	e3a000fe	 mov         r0, #0xFE
+  000b4	eb000000	 bl          spi_SendData
+
+; 478  : 	WMLCDDATA(0x00);
+
+  000b8	e3a00c01	 mov         r0, #1, 24
+  000bc	eb000000	 bl          spi_SendData
+
+; 479  : 	WMLCDDATA(0x00);
+
+  000c0	e3a00c01	 mov         r0, #1, 24
+  000c4	eb000000	 bl          spi_SendData
+
+; 480  : 	WMLCDDATA(0x00);
+
+  000c8	e3a00c01	 mov         r0, #1, 24
+  000cc	eb000000	 bl          spi_SendData
+
+; 481  : 	WMLCDDATA(0x21);
+
+  000d0	e3860021	 orr         r0, r6, #0x21
+  000d4	eb000000	 bl          spi_SendData
+
+; 482  : 	WMLCDDATA(0x30);
+
+  000d8	e3a00e13	 mov         r0, #0x13, 28
+  000dc	eb000000	 bl          spi_SendData
+
+; 483  : 	
+; 484  : 	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+
+  000e0	e3a000b0	 mov         r0, #0xB0
+  000e4	eb000000	 bl          spi_SendData
+
+; 485  : 	WMLCDDATA(0x3F);
+
+  000e8	e386003f	 orr         r0, r6, #0x3F
+  000ec	eb000000	 bl          spi_SendData
+
+; 486  : 	WMLCDDATA(0x3F); 
+
+  000f0	e386003f	 orr         r0, r6, #0x3F
+  000f4	eb000000	 bl          spi_SendData
+
+; 487  : 	
+; 488  : 	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+
+  000f8	e3a000b3	 mov         r0, #0xB3
+  000fc	eb000000	 bl          spi_SendData
+
+; 489  : 	WMLCDDATA(0x02);
+
+  00100	e3860002	 orr         r0, r6, #2
+  00104	eb000000	 bl          spi_SendData
+
+; 490  : 	WMLCDDATA(0x00);
+
+  00108	e3a00c01	 mov         r0, #1, 24
+  0010c	eb000000	 bl          spi_SendData
+
+; 491  : 	WMLCDDATA(0x00);
+
+  00110	e3a00c01	 mov         r0, #1, 24
+  00114	eb000000	 bl          spi_SendData
+
+; 492  : 	WMLCDDATA(0x00);
+
+  00118	e3a00c01	 mov         r0, #1, 24
+  0011c	eb000000	 bl          spi_SendData
+
+; 493  : 	        	   	
+; 494  : 	WMLCDCOMD(0xB4); //SET interface
+
+  00120	e3a000b4	 mov         r0, #0xB4
+  00124	eb000000	 bl          spi_SendData
+
+; 495  : 	WMLCDDATA(0x10);
+
+  00128	e3a00e11	 mov         r0, #0x11, 28
+  0012c	eb000000	 bl          spi_SendData
+
+; 496  : 	
+; 497  : 	WMLCDCOMD(0xC0); //Panel Driving Setting
+
+  00130	e3a000c0	 mov         r0, #0xC0
+  00134	eb000000	 bl          spi_SendData
+
+; 498  : 	WMLCDDATA(0x03); //GIP REV  SM GS BGR SS
+
+  00138	e3860003	 orr         r0, r6, #3
+  0013c	eb000000	 bl          spi_SendData
+  00140	e3a05c01	 mov         r5, #1, 24
+
+; 499  : 	WMLCDDATA(0x4F);
+
+  00144	e385004f	 orr         r0, r5, #0x4F
+  00148	eb000000	 bl          spi_SendData
+
+; 500  : 	WMLCDDATA(0x00);
+
+  0014c	e3a00c01	 mov         r0, #1, 24
+  00150	eb000000	 bl          spi_SendData
+
+; 501  : 	WMLCDDATA(0x10);
+
+  00154	e3a00e11	 mov         r0, #0x11, 28
+  00158	eb000000	 bl          spi_SendData
+
+; 502  : 	WMLCDDATA(0xA2); //BLV=0 LINE
+
+  0015c	e38500a2	 orr         r0, r5, #0xA2
+  00160	eb000000	 bl          spi_SendData
+
+; 503  : 	WMLCDDATA(0x00);
+
+  00164	e3a00c01	 mov         r0, #1, 24
+  00168	eb000000	 bl          spi_SendData
+
+; 504  : 	WMLCDDATA(0x01);
+
+  0016c	e3850001	 orr         r0, r5, #1
+  00170	eb000000	 bl          spi_SendData
+
+; 505  : 	WMLCDDATA(0x00);
+
+  00174	e3a00c01	 mov         r0, #1, 24
+  00178	eb000000	 bl          spi_SendData
+
+; 506  : 	
+; 507  : 	WMLCDCOMD(0xC1); //Display Timing Setting for Normal/Partial Mode
+
+  0017c	e3a000c1	 mov         r0, #0xC1
+  00180	eb000000	 bl          spi_SendData
+
+; 508  : 	WMLCDDATA(0x01);
+
+  00184	e3850001	 orr         r0, r5, #1
+  00188	eb000000	 bl          spi_SendData
+
+; 509  : 	WMLCDDATA(0x02);
+
+  0018c	e3860002	 orr         r0, r6, #2
+  00190	eb000000	 bl          spi_SendData
+
+; 510  : 	WMLCDDATA(0x19);
+
+  00194	e3850019	 orr         r0, r5, #0x19
+  00198	eb000000	 bl          spi_SendData
+
+; 511  : 	WMLCDDATA(0x08);
+
+  0019c	e3a00f42	 mov         r0, #0x42, 30
+  001a0	eb000000	 bl          spi_SendData
+
+; 512  : 	WMLCDDATA(0x08);
+
+  001a4	e3a00f42	 mov         r0, #0x42, 30
+  001a8	eb000000	 bl          spi_SendData
+
+; 513  : 
+; 514  :     LcdSleep(25);
+
+  001ac	e3a04c61	 mov         r4, #0x61, 24
+  001b0	e38400a8	 orr         r0, r4, #0xA8
+  001b4	eb000000	 bl          OALStall
+
+; 515  : 	WMLCDCOMD(0xC3); //PRTIAL MODE
+
+  001b8	e3a000c3	 mov         r0, #0xC3
+  001bc	eb000000	 bl          spi_SendData
+
+; 516  : 	WMLCDDATA(0x01);
+
+  001c0	e3850001	 orr         r0, r5, #1
+  001c4	eb000000	 bl          spi_SendData
+
+; 517  : 	WMLCDDATA(0x00);
+
+  001c8	e3a00c01	 mov         r0, #1, 24
+  001cc	eb000000	 bl          spi_SendData
+
+; 518  : 	WMLCDDATA(0x28);
+
+  001d0	e3a00f4a	 mov         r0, #0x4A, 30
+  001d4	eb000000	 bl          spi_SendData
+
+; 519  : 	WMLCDDATA(0x08);
+
+  001d8	e3a00f42	 mov         r0, #0x42, 30
+  001dc	eb000000	 bl          spi_SendData
+
+; 520  : 	WMLCDDATA(0x08);
+
+  001e0	e3a00f42	 mov         r0, #0x42, 30
+  001e4	eb000000	 bl          spi_SendData
+
+; 521  : 
+; 522  : 	LcdSleep(25);
+
+  001e8	e38400a8	 orr         r0, r4, #0xA8
+  001ec	eb000000	 bl          OALStall
+
+; 523  : 	WMLCDCOMD(0xC4);
+
+  001f0	e3a000c4	 mov         r0, #0xC4
+  001f4	eb000000	 bl          spi_SendData
+
+; 524  : 	WMLCDDATA(0x11);
+
+  001f8	e3850011	 orr         r0, r5, #0x11
+  001fc	eb000000	 bl          spi_SendData
+
+; 525  : 	WMLCDDATA(0x01);
+
+  00200	e3850001	 orr         r0, r5, #1
+  00204	eb000000	 bl          spi_SendData
+
+; 526  : 	WMLCDDATA(0x43);
+
+  00208	e3850043	 orr         r0, r5, #0x43
+  0020c	eb000000	 bl          spi_SendData
+
+; 527  : 	WMLCDDATA(0x04);
+
+  00210	e3a00f41	 mov         r0, #0x41, 30
+  00214	eb000000	 bl          spi_SendData
+
+; 528  : 	
+; 529  : 	WMLCDCOMD(0xC8); //set gamma
+
+  00218	e3a000c8	 mov         r0, #0xC8
+  0021c	eb000000	 bl          spi_SendData
+
+; 530  : 	WMLCDDATA(0x0C);
+
+  00220	e3a00f43	 mov         r0, #0x43, 30
+  00224	eb000000	 bl          spi_SendData
+
+; 531  : 	WMLCDDATA(0x0C);
+
+  00228	e3a00f43	 mov         r0, #0x43, 30
+  0022c	eb000000	 bl          spi_SendData
+
+; 532  : 	WMLCDDATA(0x0D);
+
+  00230	e385000d	 orr         r0, r5, #0xD
+  00234	eb000000	 bl          spi_SendData
+
+; 533  : 	WMLCDDATA(0x14);
+
+  00238	e3a00f45	 mov         r0, #0x45, 30
+  0023c	eb000000	 bl          spi_SendData
+
+; 534  : 	WMLCDDATA(0x18);
+
+  00240	e3a00f46	 mov         r0, #0x46, 30
+  00244	eb000000	 bl          spi_SendData
+
+; 535  : 	WMLCDDATA(0x0E);
+
+  00248	e385000e	 orr         r0, r5, #0xE
+  0024c	eb000000	 bl          spi_SendData
+
+; 536  : 	WMLCDDATA(0x09);
+
+  00250	e3850009	 orr         r0, r5, #9
+  00254	eb000000	 bl          spi_SendData
+
+; 537  : 	WMLCDDATA(0x09);
+
+  00258	e3850009	 orr         r0, r5, #9
+  0025c	eb000000	 bl          spi_SendData
+
+; 538  : 	WMLCDDATA(0x03);
+
+  00260	e3860003	 orr         r0, r6, #3
+  00264	eb000000	 bl          spi_SendData
+
+; 539  : 	WMLCDDATA(0x05);
+
+  00268	e3850005	 orr         r0, r5, #5
+  0026c	eb000000	 bl          spi_SendData
+
+; 540  : 	WMLCDDATA(0x00);
+
+  00270	e3a00c01	 mov         r0, #1, 24
+  00274	eb000000	 bl          spi_SendData
+
+; 541  : 	WMLCDDATA(0x03);
+
+  00278	e3860003	 orr         r0, r6, #3
+  0027c	eb000000	 bl          spi_SendData
+
+; 542  : 	WMLCDDATA(0x08);
+
+  00280	e3a00f42	 mov         r0, #0x42, 30
+  00284	eb000000	 bl          spi_SendData
+
+; 543  : 	WMLCDDATA(0x07);
+
+  00288	e3850007	 orr         r0, r5, #7
+  0028c	eb000000	 bl          spi_SendData
+
+; 544  : 	WMLCDDATA(0x0E);
+
+  00290	e385000e	 orr         r0, r5, #0xE
+  00294	eb000000	 bl          spi_SendData
+
+; 545  : 	WMLCDDATA(0x15);
+
+  00298	e3850015	 orr         r0, r5, #0x15
+  0029c	eb000000	 bl          spi_SendData
+
+; 546  : 	WMLCDDATA(0x12);
+
+  002a0	e3850012	 orr         r0, r5, #0x12
+  002a4	eb000000	 bl          spi_SendData
+
+; 547  : 	WMLCDDATA(0x0A);
+
+  002a8	e385000a	 orr         r0, r5, #0xA
+  002ac	eb000000	 bl          spi_SendData
+
+; 548  : 	WMLCDDATA(0x0E);
+
+  002b0	e385000e	 orr         r0, r5, #0xE
+  002b4	eb000000	 bl          spi_SendData
+
+; 549  : 	WMLCDDATA(0x0A);
+
+  002b8	e385000a	 orr         r0, r5, #0xA
+  002bc	eb000000	 bl          spi_SendData
+
+; 550  : 	WMLCDDATA(0x0A);
+
+  002c0	e385000a	 orr         r0, r5, #0xA
+  002c4	eb000000	 bl          spi_SendData
+
+; 551  : 	WMLCDDATA(0x00);
+
+  002c8	e3a00c01	 mov         r0, #1, 24
+  002cc	eb000000	 bl          spi_SendData
+
+; 552  : 	
+; 553  : 	WMLCDCOMD(0xC9); //set gamma
+
+  002d0	e3a000c9	 mov         r0, #0xC9
+  002d4	eb000000	 bl          spi_SendData
+
+; 554  : 	WMLCDDATA(0x0C);
+
+  002d8	e3a00f43	 mov         r0, #0x43, 30
+  002dc	eb000000	 bl          spi_SendData
+
+; 555  : 	WMLCDDATA(0x0C);
+
+  002e0	e3a00f43	 mov         r0, #0x43, 30
+  002e4	eb000000	 bl          spi_SendData
+
+; 556  : 	WMLCDDATA(0x0D);
+
+  002e8	e385000d	 orr         r0, r5, #0xD
+  002ec	eb000000	 bl          spi_SendData
+
+; 557  : 	WMLCDDATA(0x14);
+
+  002f0	e3a00f45	 mov         r0, #0x45, 30
+  002f4	eb000000	 bl          spi_SendData
+
+; 558  : 	WMLCDDATA(0x18);
+
+  002f8	e3a00f46	 mov         r0, #0x46, 30
+  002fc	eb000000	 bl          spi_SendData
+
+; 559  : 	WMLCDDATA(0x0E);
+
+  00300	e385000e	 orr         r0, r5, #0xE
+  00304	eb000000	 bl          spi_SendData
+
+; 560  : 	WMLCDDATA(0x09);
+
+  00308	e3850009	 orr         r0, r5, #9
+  0030c	eb000000	 bl          spi_SendData
+
+; 561  : 	WMLCDDATA(0x09);
+
+  00310	e3850009	 orr         r0, r5, #9
+  00314	eb000000	 bl          spi_SendData
+
+; 562  : 	WMLCDDATA(0x03);
+
+  00318	e3860003	 orr         r0, r6, #3
+  0031c	eb000000	 bl          spi_SendData
+
+; 563  : 	WMLCDDATA(0x05);
+
+  00320	e3850005	 orr         r0, r5, #5
+  00324	eb000000	 bl          spi_SendData
+
+; 564  : 	WMLCDDATA(0x00);
+
+  00328	e3a00c01	 mov         r0, #1, 24
+  0032c	eb000000	 bl          spi_SendData
+
+; 565  : 	WMLCDDATA(0x03);
+
+  00330	e3860003	 orr         r0, r6, #3
+  00334	eb000000	 bl          spi_SendData
+
+; 566  : 	WMLCDDATA(0x08);
+
+  00338	e3a00f42	 mov         r0, #0x42, 30
+  0033c	eb000000	 bl          spi_SendData
+
+; 567  : 	WMLCDDATA(0x07);
+
+  00340	e3850007	 orr         r0, r5, #7
+  00344	eb000000	 bl          spi_SendData
+
+; 568  : 	WMLCDDATA(0x0E);
+
+  00348	e385000e	 orr         r0, r5, #0xE
+  0034c	eb000000	 bl          spi_SendData
+
+; 569  : 	WMLCDDATA(0x15);
+
+  00350	e3850015	 orr         r0, r5, #0x15
+  00354	eb000000	 bl          spi_SendData
+
+; 570  : 	WMLCDDATA(0x12);
+
+  00358	e3850012	 orr         r0, r5, #0x12
+  0035c	eb000000	 bl          spi_SendData
+
+; 571  : 	WMLCDDATA(0x0A);
+
+  00360	e385000a	 orr         r0, r5, #0xA
+  00364	eb000000	 bl          spi_SendData
+
+; 572  : 	WMLCDDATA(0x0E);
+
+  00368	e385000e	 orr         r0, r5, #0xE
+  0036c	eb000000	 bl          spi_SendData
+
+; 573  : 	WMLCDDATA(0x0A);
+
+  00370	e385000a	 orr         r0, r5, #0xA
+  00374	eb000000	 bl          spi_SendData
+
+; 574  : 	WMLCDDATA(0x0A);
+
+  00378	e385000a	 orr         r0, r5, #0xA
+  0037c	eb000000	 bl          spi_SendData
+
+; 575  : 	WMLCDDATA(0x00);
+
+  00380	e3a00c01	 mov         r0, #1, 24
+  00384	eb000000	 bl          spi_SendData
+
+; 576  : 	
+; 577  : 	WMLCDCOMD(0xCA); //set gamma
+
+  00388	e3a000ca	 mov         r0, #0xCA
+  0038c	eb000000	 bl          spi_SendData
+
+; 578  : 	WMLCDDATA(0x0C);
+
+  00390	e3a00f43	 mov         r0, #0x43, 30
+  00394	eb000000	 bl          spi_SendData
+
+; 579  : 	WMLCDDATA(0x0C);
+
+  00398	e3a00f43	 mov         r0, #0x43, 30
+  0039c	eb000000	 bl          spi_SendData
+
+; 580  : 	WMLCDDATA(0x0D);
+
+  003a0	e385000d	 orr         r0, r5, #0xD
+  003a4	eb000000	 bl          spi_SendData
+
+; 581  : 	WMLCDDATA(0x14);
+
+  003a8	e3a00f45	 mov         r0, #0x45, 30
+  003ac	eb000000	 bl          spi_SendData
+
+; 582  : 	WMLCDDATA(0x18);
+
+  003b0	e3a00f46	 mov         r0, #0x46, 30
+  003b4	eb000000	 bl          spi_SendData
+
+; 583  : 	WMLCDDATA(0x0E);
+
+  003b8	e385000e	 orr         r0, r5, #0xE
+  003bc	eb000000	 bl          spi_SendData
+
+; 584  : 	WMLCDDATA(0x09);
+
+  003c0	e3850009	 orr         r0, r5, #9
+  003c4	eb000000	 bl          spi_SendData
+
+; 585  : 	WMLCDDATA(0x09);
+
+  003c8	e3850009	 orr         r0, r5, #9
+  003cc	eb000000	 bl          spi_SendData
+
+; 586  : 	WMLCDDATA(0x03);
+
+  003d0	e3860003	 orr         r0, r6, #3
+  003d4	eb000000	 bl          spi_SendData
+
+; 587  : 	WMLCDDATA(0x05);
+
+  003d8	e3850005	 orr         r0, r5, #5
+  003dc	eb000000	 bl          spi_SendData
+
+; 588  : 	WMLCDDATA(0x00);
+
+  003e0	e3a00c01	 mov         r0, #1, 24
+  003e4	eb000000	 bl          spi_SendData
+
+; 589  : 	WMLCDDATA(0x03);
+
+  003e8	e3860003	 orr         r0, r6, #3
+  003ec	eb000000	 bl          spi_SendData
+
+; 590  : 	WMLCDDATA(0x08);
+
+  003f0	e3a00f42	 mov         r0, #0x42, 30
+  003f4	eb000000	 bl          spi_SendData
+
+; 591  : 	WMLCDDATA(0x07);
+
+  003f8	e3850007	 orr         r0, r5, #7
+  003fc	eb000000	 bl          spi_SendData
+
+; 592  : 	WMLCDDATA(0x0E);
+
+  00400	e385000e	 orr         r0, r5, #0xE
+  00404	eb000000	 bl          spi_SendData
+
+; 593  : 	WMLCDDATA(0x15);
+
+  00408	e3850015	 orr         r0, r5, #0x15
+  0040c	eb000000	 bl          spi_SendData
+
+; 594  : 	WMLCDDATA(0x12);
+
+  00410	e3850012	 orr         r0, r5, #0x12
+  00414	eb000000	 bl          spi_SendData
+
+; 595  : 	WMLCDDATA(0x0A);
+
+  00418	e385000a	 orr         r0, r5, #0xA
+  0041c	eb000000	 bl          spi_SendData
+
+; 596  : 	WMLCDDATA(0x0E);
+
+  00420	e385000e	 orr         r0, r5, #0xE
+  00424	eb000000	 bl          spi_SendData
+
+; 597  : 	WMLCDDATA(0x0A);
+
+  00428	e385000a	 orr         r0, r5, #0xA
+  0042c	eb000000	 bl          spi_SendData
+
+; 598  : 	WMLCDDATA(0x0A);
+
+  00430	e385000a	 orr         r0, r5, #0xA
+  00434	eb000000	 bl          spi_SendData
+
+; 599  : 	WMLCDDATA(0x00);
+
+  00438	e3a00c01	 mov         r0, #1, 24
+  0043c	eb000000	 bl          spi_SendData
+
+; 600  : 	
+; 601  : 	WMLCDCOMD(0xD0); //Power Setting
+
+  00440	e3a000d0	 mov         r0, #0xD0
+  00444	eb000000	 bl          spi_SendData
+
+; 602  : 	WMLCDDATA(0x63); //BT[2:0]=110  VCI+VCI2¡Á2  :5   -(VCI2¡Á2):
+
+  00448	e3850063	 orr         r0, r5, #0x63
+  0044c	eb000000	 bl          spi_SendData
+
+; 603  : 	WMLCDDATA(0x53);
+
+  00450	e3850053	 orr         r0, r5, #0x53
+  00454	eb000000	 bl          spi_SendData
+
+; 604  : 	WMLCDDATA(0x82); //VC2[2:0]=010,VCI2=5V
+
+  00458	e3850082	 orr         r0, r5, #0x82
+  0045c	eb000000	 bl          spi_SendData
+
+; 605  : 	WMLCDDATA(0x3F); //VREG=5.0V 
+
+  00460	e386003f	 orr         r0, r6, #0x3F
+  00464	eb000000	 bl          spi_SendData
+
+; 606  : 	
+; 607  : 	WMLCDCOMD(0xD1); //set vcom
+
+  00468	e3a000d1	 mov         r0, #0xD1
+  0046c	eb000000	 bl          spi_SendData
+
+; 608  : 	WMLCDDATA(0x6A); //VCOMH
+
+  00470	e385006a	 orr         r0, r5, #0x6A
+  00474	eb000000	 bl          spi_SendData
+
+; 609  : 	WMLCDDATA(0x64); //VDV
+
+  00478	e3a00f59	 mov         r0, #0x59, 30
+  0047c	eb000000	 bl          spi_SendData
+
+; 610  : 	
+; 611  : 	WMLCDCOMD(0xD2); //Power Setting (Note 1) for Normal/Partial Mode
+
+  00480	e3a000d2	 mov         r0, #0xD2
+  00484	eb000000	 bl          spi_SendData
+
+; 612  : 	WMLCDDATA(0x03);
+
+  00488	e3860003	 orr         r0, r6, #3
+  0048c	eb000000	 bl          spi_SendData
+
+; 613  : 	WMLCDDATA(0x24);
+
+  00490	e3a00f49	 mov         r0, #0x49, 30
+  00494	eb000000	 bl          spi_SendData
+
+; 614  : 	
+; 615  : 	WMLCDCOMD(0xD4); //Power Setting (Note 1) for Idle Mode
+
+  00498	e3a000d4	 mov         r0, #0xD4
+  0049c	eb000000	 bl          spi_SendData
+
+; 616  : 	WMLCDDATA(0x03);
+
+  004a0	e3860003	 orr         r0, r6, #3
+  004a4	eb000000	 bl          spi_SendData
+
+; 617  : 	WMLCDDATA(0x24);
+
+  004a8	e3a00f49	 mov         r0, #0x49, 30
+  004ac	eb000000	 bl          spi_SendData
+
+; 618  : 	
+; 619  : 	WMLCDCOMD(0xE2); //NVM Load Control
+
+  004b0	e3a000e2	 mov         r0, #0xE2
+  004b4	eb000000	 bl          spi_SendData
+
+; 620  : 	WMLCDDATA(0x3F);
+
+  004b8	e386003f	 orr         r0, r6, #0x3F
+  004bc	eb000000	 bl          spi_SendData
+
+; 621  : 
+; 622  : 	WMLCDCOMD(0x35); //set_tear_on
+
+  004c0	e3a00035	 mov         r0, #0x35
+  004c4	eb000000	 bl          spi_SendData
+
+; 623  : 	WMLCDDATA(0x00);
+
+  004c8	e3a00c01	 mov         r0, #1, 24
+  004cc	eb000000	 bl          spi_SendData
+
+; 624  : 	
+; 625  : 	WMLCDCOMD(0x36);
+
+  004d0	e3a00036	 mov         r0, #0x36
+  004d4	eb000000	 bl          spi_SendData
+
+; 626  : 	WMLCDDATA(0x00);
+
+  004d8	e3a00c01	 mov         r0, #1, 24
+  004dc	eb000000	 bl          spi_SendData
+
+; 627  : 	
+; 628  : 	WMLCDCOMD(0x3A); //set_pixel_format
+
+  004e0	e3a0003a	 mov         r0, #0x3A
+  004e4	eb000000	 bl          spi_SendData
+
+; 629  : 	WMLCDDATA(0x66); // 66 18-bits
+
+  004e8	e3850066	 orr         r0, r5, #0x66
+  004ec	eb000000	 bl          spi_SendData
+
+; 630  : 	
+; 631  : 	WMLCDCOMD(0x2A); //set_column_address
+
+  004f0	e3a0002a	 mov         r0, #0x2A
+  004f4	eb000000	 bl          spi_SendData
+
+; 632  : 	WMLCDDATA(0x00);
+
+  004f8	e3a00c01	 mov         r0, #1, 24
+  004fc	eb000000	 bl          spi_SendData
+
+; 633  : 	WMLCDDATA(0x00);
+
+  00500	e3a00c01	 mov         r0, #1, 24
+  00504	eb000000	 bl          spi_SendData
+
+; 634  : 	WMLCDDATA(0x00);
+
+  00508	e3a00c01	 mov         r0, #1, 24
+  0050c	eb000000	 bl          spi_SendData
+
+; 635  : 	WMLCDDATA(0xEF);
+
+  00510	e38500ef	 orr         r0, r5, #0xEF
+  00514	eb000000	 bl          spi_SendData
+
+; 636  : 	
+; 637  : 	WMLCDCOMD(0x2B); //set_page_address:
+
+  00518	e3a0002b	 mov         r0, #0x2B
+  0051c	eb000000	 bl          spi_SendData
+
+; 638  : 	WMLCDDATA(0x00);
+
+  00520	e3a00c01	 mov         r0, #1, 24
+  00524	eb000000	 bl          spi_SendData
+
+; 639  : 	WMLCDDATA(0x00);
+
+  00528	e3a00c01	 mov         r0, #1, 24
+  0052c	eb000000	 bl          spi_SendData
+
+; 640  : 	WMLCDDATA(0x01);
+
+  00530	e3850001	 orr         r0, r5, #1
+  00534	eb000000	 bl          spi_SendData
+
+; 641  : 	WMLCDDATA(0x3F);
+
+  00538	e386003f	 orr         r0, r6, #0x3F
+  0053c	eb000000	 bl          spi_SendData
+
+; 642  : 	\
+; 643  : 	WMLCDCOMD(0x11); //exit_sleep_mode
+
+  00540	e3a00011	 mov         r0, #0x11
+  00544	eb000000	 bl          spi_SendData
+  00548	e3a03b75	 mov         r3, #0x75, 22
+
+; 644  : 	LcdSleep(120);
+
+  0054c	e38300c0	 orr         r0, r3, #0xC0
+  00550	eb000000	 bl          OALStall
+
+; 645  : 	WMLCDCOMD(0x29); //set_display_on
+
+  00554	e3a00029	 mov         r0, #0x29
+  00558	eb000000	 bl          spi_SendData
+  0055c	e3a03c75	 mov         r3, #0x75, 24
+
+; 646  : 	LcdSleep(30);
+
+  00560	e3830030	 orr         r0, r3, #0x30
+  00564	eb000000	 bl          OALStall
+
+; 647  : 	WMLCDCOMD(0x2C); //send DDRAM set
+
+  00568	e3a0002c	 mov         r0, #0x2C
+  0056c	eb000000	 bl          spi_SendData
+
+; 648  : }
+
+  00570	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
+  00574	e12fff1e	 bx          lr
+  00578		 |$M49585|
+
+			 ENDP  ; |LCD_Initial_Code|
 
 	EXPORT	|lcd_shutdown|
+	IMPORT	|LcdPdd_SetPowerLevel|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48947| DCD	|$LN5@lcd_shutdo|
+|$T49594| DCD	|$LN5@lcd_shutdo|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -3216,80 +4085,371 @@
 
   00000		 |lcd_shutdown| PROC
 
-; 1195 : {
+; 956  : {
 
   00000		 |$LN5@lcd_shutdo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48944|
+  00004		 |$M49591|
 
-; 1196 :     disable_lcd_backlight();
+; 957  :     disable_lcd_backlight();
 
   00004	eb000000	 bl          disable_lcd_backlight
 
-; 1197 :     LcdPdd_SetPowerLevel(D4);
+; 958  :     LcdPdd_SetPowerLevel(D4);
 
   00008	e3a00004	 mov         r0, #4
   0000c	eb000000	 bl          LcdPdd_SetPowerLevel
 
-; 1198 :     disable_lcd_power();
+; 959  :     disable_lcd_power();
 
   00010	eb000000	 bl          disable_lcd_power
 
-; 1199 : }   
+; 960  : }   
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
-  0001c		 |$M48945|
+  0001c		 |$M49592|
 
 			 ENDP  ; |lcd_shutdown|
 
-	EXPORT	|DrawingScreen|
-	IMPORT	|OALFlashStoreClose|
-	IMPORT	|OALFlashStoreBufferedRead|
-	IMPORT	|OALFlashStoreOpen|
-	IMPORT	|LcdPdd_GetMemory|
-	IMPORT	|LcdPdd_LCD_GetMode|
+	EXPORT	|enable_lcd_backlight|
+	EXPORT	|??_C@_1DA@HJDMHHHF@?$AAL?$AAC?$AAD?$AA?5?$AAs?$AAe?$AAn?$AAd?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAC?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	IMPORT	|GPIOClose|
+	IMPORT	|NKDbgPrintfW|
+	IMPORT	|GPIOSetMode|
+	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48993| DCD	|$LN40@DrawingScr|
-	DCD	0x40009a02
+|$T49606| DCD	|$LN10@enable_lcd@2|
+	DCD	0x40003d01
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DA@HJDMHHHF@?$AAL?$AAC?$AAD?$AA?5?$AAs?$AAe?$AAn?$AAd?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAC?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@| DCB "L"
+	DCB	0x0, "C", 0x0, "D", 0x0, " ", 0x0, "s", 0x0, "e", 0x0, "n"
+	DCB	0x0, "d", 0x0, " ", 0x0, "I", 0x0, "n", 0x0, "i", 0x0, "t"
+	DCB	0x0, "i", 0x0, "a", 0x0, "l", 0x0, " ", 0x0, "C", 0x0, "o"
+	DCB	0x0, "d", 0x0, "e", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |DrawingScreen| PROC
+  00000		 |enable_lcd_backlight| PROC
 
-; 849  : {
+; 1021 : {
 
-  00000		 |$LN40@DrawingScr|
+  00000		 |$LN10@enable_lcd@2|
+  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
+  00004		 |$M49603|
+
+; 1022 : #ifdef BSP_Z2000
+; 1023 :     void* hTwl;
+; 1024 : 
+; 1025 :     // Enable LEDA on TPS659XX
+; 1026 :     hTwl = TWLOpen();
+; 1027 : 	TWLWriteByteReg(hTwl, TWL_PMBR1, 0x04); // PWM0 function is enabled
+; 1028 : 	TWLWriteByteReg(hTwl, TWL_GPBR1, 0x05); // PWM0_ENABLE & PWM0_CLK_ENABLE
+; 1029 : 	TWLWriteByteReg(hTwl, TWL_PWM0OFF, 0x7F);
+; 1030 : 	TWLWriteByteReg(hTwl, TWL_PWM0ON, 0x40);
+; 1031 : 
+; 1032 :     TWLClose(hTwl);
+; 1033 : #else
+; 1034 : 	int i = 25;
+
+  00004	e3a05019	 mov         r5, #0x19
+
+; 1035 : 	
+; 1036 : 	hGpio = GPIOOpen();
+
+  00008	eb000000	 bl          GPIOOpen
+  0000c	e59f40dc	 ldr         r4, [pc, #0xDC]
+  00010	e1a03000	 mov         r3, r0
+
+; 1037 : 
+; 1038 : 	GPIOSetMode(hGpio, SPI_CS0_PIN, GPIO_DIR_OUTPUT);
+
+  00014	e3a02000	 mov         r2, #0
+  00018	e3a010ae	 mov         r1, #0xAE
+  0001c	e5843000	 str         r3, [r4]
+  00020	eb000000	 bl          GPIOSetMode
+
+; 1039 : 	GPIOSetMode(hGpio, SPI_DOUT_PIN, GPIO_DIR_OUTPUT);
+
+  00024	e5940000	 ldr         r0, [r4]
+  00028	e3a02000	 mov         r2, #0
+  0002c	e3a010ac	 mov         r1, #0xAC
+  00030	eb000000	 bl          GPIOSetMode
+
+; 1040 : 	GPIOSetMode(hGpio, SPI_CLK_PIN, GPIO_DIR_OUTPUT);
+
+  00034	e5940000	 ldr         r0, [r4]
+  00038	e3a02000	 mov         r2, #0
+  0003c	e3a010ab	 mov         r1, #0xAB
+  00040	eb000000	 bl          GPIOSetMode
+
+; 1041 : 	
+; 1042 :     GPIOSetBit(hGpio, SPI_CS0_PIN);
+
+  00044	e5940000	 ldr         r0, [r4]
+  00048	e3a010ae	 mov         r1, #0xAE
+  0004c	eb000000	 bl          GPIOSetBit
+
+; 1043 :     GPIOSetBit(hGpio, SPI_CLK_PIN);
+
+  00050	e5940000	 ldr         r0, [r4]
+  00054	e3a010ab	 mov         r1, #0xAB
+  00058	eb000000	 bl          GPIOSetBit
+
+; 1044 :     GPIOSetBit(hGpio, SPI_DOUT_PIN);
+
+  0005c	e5940000	 ldr         r0, [r4]
+  00060	e3a010ac	 mov         r1, #0xAC
+  00064	eb000000	 bl          GPIOSetBit
+
+; 1045 :     
+; 1046 :     OALMSG(1, (L"LCD send Initial Code\r\n"));
+
+  00068	e59f007c	 ldr         r0, [pc, #0x7C]
+  0006c	eb000000	 bl          NKDbgPrintfW
+
+; 1047 :     LCD_Initial_Code();
+
+  00070	eb000000	 bl          LCD_Initial_Code
+
+; 1048 :     
+; 1049 :     GPIOClrBit(hGpio, BL_EN_SET_GPIO);
+
+  00074	e5940000	 ldr         r0, [r4]
+  00078	e3a0103d	 mov         r1, #0x3D
+  0007c	eb000000	 bl          GPIOClrBit
+
+; 1050 :     OALStall(1000);
+
+  00080	e3a00ffa	 mov         r0, #0xFA, 30
+  00084	eb000000	 bl          OALStall
+
+; 1051 : 	GPIOSetBit(hGpio, BL_EN_SET_GPIO);
+
+  00088	e5940000	 ldr         r0, [r4]
+  0008c	e3a0103d	 mov         r1, #0x3D
+  00090	eb000000	 bl          GPIOSetBit
+
+; 1052 : 	OALStall(1);
+
+  00094	e3a00001	 mov         r0, #1
+  00098	eb000000	 bl          OALStall
+  0009c		 |$LL3@enable_lcd@2|
+
+; 1053 :     for(; i > 0; i --)
+; 1054 :     {
+; 1055 :         GPIOClrBit(hGpio, BL_EN_SET_GPIO);
+
+  0009c	e5940000	 ldr         r0, [r4]
+  000a0	e3a0103d	 mov         r1, #0x3D
+  000a4	eb000000	 bl          GPIOClrBit
+
+; 1056 :         OALStall(1);
+
+  000a8	e3a00001	 mov         r0, #1
+  000ac	eb000000	 bl          OALStall
+
+; 1057 :         GPIOSetBit(hGpio, BL_EN_SET_GPIO);
+
+  000b0	e5940000	 ldr         r0, [r4]
+  000b4	e3a0103d	 mov         r1, #0x3D
+  000b8	eb000000	 bl          GPIOSetBit
+
+; 1058 :         OALStall(1);
+
+  000bc	e3a00001	 mov         r0, #1
+  000c0	eb000000	 bl          OALStall
+  000c4	e2455001	 sub         r5, r5, #1
+  000c8	e3550000	 cmp         r5, #0
+  000cc	cafffff2	 bgt         |$LL3@enable_lcd@2|
+
+; 1059 :     }
+; 1060 : 	GPIOClose(hGpio);
+
+  000d0	e5940000	 ldr         r0, [r4]
+  000d4	eb000000	 bl          GPIOClose
+
+; 1061 : 	hGpio = NULL;
+
+  000d8	e3a03000	 mov         r3, #0
+  000dc	e5843000	 str         r3, [r4]
+
+; 1062 : #endif
+; 1063 : 
+; 1064 :     return ERROR_SUCCESS;
+
+  000e0	e3a00000	 mov         r0, #0
+
+; 1065 : }
+
+  000e4	e8bd4030	 ldmia       sp!, {r4, r5, lr}
+  000e8	e12fff1e	 bx          lr
+  000ec		 |$LN11@enable_lcd@2|
+  000ec		 |$LN12@enable_lcd@2|
+  000ec	00000000	 DCD         |??_C@_1DA@HJDMHHHF@?$AAL?$AAC?$AAD?$AA?5?$AAs?$AAe?$AAn?$AAd?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAC?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
+  000f0		 |$LN13@enable_lcd@2|
+  000f0	00000000	 DCD         |hGpio|
+  000f4		 |$M49604|
+
+			 ENDP  ; |enable_lcd_backlight|
+
+	EXPORT	|HideLogo|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T49619| DCD	|$LN7@HideLogo|
+	DCD	0x40000701
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |HideLogo| PROC
+
+; 863  : {
+
+  00000		 |$LN7@HideLogo|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M49616|
+
+; 864  :     lcd_shutdown();
+
+  00004	eb000000	 bl          disable_lcd_backlight
+  00008	e3a00004	 mov         r0, #4
+  0000c	eb000000	 bl          LcdPdd_SetPowerLevel
+  00010	eb000000	 bl          disable_lcd_power
+
+; 865  : }
+
+  00014	e49de004	 ldr         lr, [sp], #4
+  00018	e12fff1e	 bx          lr
+  0001c		 |$M49617|
+
+			 ENDP  ; |HideLogo|
+
+	EXPORT	|lcd_config|
+	EXPORT	|??_C@_1BK@ENFEEAKA@?$AAl?$AAc?$AAd?$AA_?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	IMPORT	|dpCurSettings|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T49629| DCD	|$LN7@lcd_config|
+	DCD	0x40001101
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BK@ENFEEAKA@?$AAl?$AAc?$AAd?$AA_?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AA?$AN?$AA?6?$AA?$AA@| DCB "l"
+	DCB	0x0, "c", 0x0, "d", 0x0, "_", 0x0, "c", 0x0, "o", 0x0, "n"
+	DCB	0x0, "f", 0x0, "i", 0x0, "g", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
+	DCB	0x0					; `string'
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |lcd_config| PROC
+
+; 930  : {
+
+  00000		 |$LN7@lcd_config|
+  00000	e92d4010	 stmdb       sp!, {r4, lr}
+  00004		 |$M49626|
+  00004	e1a04000	 mov         r4, r0
+
+; 931  : 	OALMSG(OAL_INFO, (L"lcd_config\r\n"));
+
+  00008	e59f3030	 ldr         r3, [pc, #0x30]
+  0000c	e5933440	 ldr         r3, [r3, #0x440]
+  00010	e3130008	 tst         r3, #8
+  00014	159f0020	 ldrne       r0, [pc, #0x20]
+  00018	1b000000	 blne        NKDbgPrintfW
+
+; 932  : 	
+; 933  :     reset_display_controller();
+
+  0001c	eb000000	 bl          reset_display_controller
+
+; 934  : 
+; 935  :     // Enable LCD clocks
+; 936  :     enable_lcd_power();
+
+  00020	eb000000	 bl          enable_lcd_power
+
+; 937  : 
+; 938  :     // Configure the DSS registers
+; 939  :     configure_dss(framebuffer);
+
+  00024	e1a00004	 mov         r0, r4
+  00028	eb000000	 bl          configure_dss
+
+; 940  :       
+; 941  :     // Display data on LCD
+; 942  :     display_lcd_image() ;
+
+  0002c	eb000000	 bl          display_lcd_image
+
+; 943  :     
+; 944  : 	// Turn on backlight last
+; 945  : 	enable_lcd_backlight();
+
+  00030	eb000000	 bl          enable_lcd_backlight
+
+; 946  : 
+; 947  : }
+
+  00034	e8bd4010	 ldmia       sp!, {r4, lr}
+  00038	e12fff1e	 bx          lr
+  0003c		 |$LN8@lcd_config|
+  0003c		 |$LN9@lcd_config|
+  0003c	00000000	 DCD         |??_C@_1BK@ENFEEAKA@?$AAl?$AAc?$AAd?$AA_?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AA?$AN?$AA?6?$AA?$AA@|
+  00040		 |$LN10@lcd_config|
+  00040	00000000	 DCD         |dpCurSettings|
+  00044		 |$M49627|
+
+			 ENDP  ; |lcd_config|
+
+	EXPORT	|ShowLogo|
+	IMPORT	|OALFlashStoreClose|
+	IMPORT	|OALFlashStoreBufferedRead|
+	IMPORT	|OALFlashStoreOpen|
+	IMPORT	|LcdPdd_LCD_GetMode|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T49674| DCD	|$LN39@ShowLogo|
+	DCD	0x40009302
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |ShowLogo| PROC
+
+; 686  : {
+
+  00000		 |$LN39@ShowLogo|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M48990|
+  00008		 |$M49671|
   00008	e1a06001	 mov         r6, r1
   0000c	e1a05000	 mov         r5, r0
 
-; 850  :     HANDLE hFlash = NULL;
-; 851  :     DWORD frameBuffer,
-; 852  :           frameBufferPA;
-; 853  :     PUCHAR pChar;
-; 854  :     DWORD dwOffset = 0;
+; 687  :     HANDLE  hFlash = NULL;
+; 688  :     DWORD	framebuffer;
+; 689  :     DWORD	framebufferPA;
+; 690  :     PUCHAR  pChar;
+; 691  :     ULONG   x, y;
+; 692  :     WORD	wSignature = 0;
 
   00010	e3a03000	 mov         r3, #0
 
-; 855  :     DWORD dwLcdWidth,
-; 856  :           dwLcdHeight,
-; 857  :           dwLcdFrameArea;
-; 858  :     WORD wSignature = 0;
+; 693  :     DWORD   dwOffset = 0;
 
   00014	e3a02000	 mov         r2, #0
-  00018	e58d3010	 str         r3, [sp, #0x10]
-  0001c	e1cd20b4	 strh        r2, [sp, #4]
+  00018	e1cd30b4	 strh        r3, [sp, #4]
+  0001c	e58d2010	 str         r2, [sp, #0x10]
 
-; 859  : 	ULONG   y;
-; 860  : 	ULONG   x;
-; 861  : 
-; 862  :     //Get the LCD width and height 	//original 320(RGB)*240, modify 240(RGB)*320 
-; 863  :     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+; 694  :     DWORD   dwLcdWidth, dwLcdHeight;
+; 695  :     DWORD   dwLength;
+; 696  : 
+; 697  :     //  Get the LCD width and height
+; 698  :     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
 
   00020	e3a03000	 mov         r3, #0
   00024	e28d2008	 add         r2, sp, #8
@@ -3297,340 +4457,321 @@
   0002c	e3a00000	 mov         r0, #0
   00030	eb000000	 bl          LcdPdd_LCD_GetMode
 
-; 864  :     dwLcdFrameArea = BYTES_PER_PIXEL * LOGO_WIDTH_ETD024FM * LOGO_HEIGHT_ETD024FM;
-; 865  : 
-; 866  :     //Get the video memory
-; 867  :     LcdPdd_GetMemory( NULL, &frameBufferPA);
+; 699  : 	
+; 700  :     dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+; 701  : 
+; 702  :     //  Get the video memory
+; 703  :     LcdPdd_GetMemory( NULL, &framebufferPA );
 
   00034	e28d1014	 add         r1, sp, #0x14
   00038	e3a00000	 mov         r0, #0
   0003c	eb000000	 bl          LcdPdd_GetMemory
 
-; 868  :     frameBuffer = (DWORD)OALPAtoUA(frameBufferPA); 
+; 704  :     framebuffer = (DWORD) OALPAtoUA(framebufferPA);
 
   00040	e59d0014	 ldr         r0, [sp, #0x14]
   00044	e3a01000	 mov         r1, #0
   00048	eb000000	 bl          OALPAtoVA
 
-; 869  :     pChar = (PUCHAR)frameBuffer;
-; 870  :     
-; 871  :     if (flashAddr != -1)		
+; 705  :     pChar = (PUCHAR)framebuffer;
+; 706  :     
+; 707  :     if (flashAddr != -1)
 
   0004c	e3a03c4d	 mov         r3, #0x4D, 24
-  00050	e59f920c	 ldr         r9, [pc, #0x20C]
-  00054	e59fa204	 ldr         r10, [pc, #0x204]
-  00058	e59fb1fc	 ldr         r11, [pc, #0x1FC]
-  0005c	e59f81f4	 ldr         r8, [pc, #0x1F4]
+  00050	e59f91f0	 ldr         r9, [pc, #0x1F0]
+  00054	e59fa1e8	 ldr         r10, [pc, #0x1E8]
+  00058	e59fb1e0	 ldr         r11, [pc, #0x1E0]
+  0005c	e59f81d8	 ldr         r8, [pc, #0x1D8]
   00060	e3837042	 orr         r7, r3, #0x42
   00064	e1a04000	 mov         r4, r0
-  00068	e3750001	 cmn         r5, #1
-  0006c	0a000040	 beq         |$LN19@DrawingScr|
+  00068	e3a0e000	 mov         lr, #0
+  0006c	e3750001	 cmn         r5, #1
+  00070	0a000041	 beq         |$LN19@ShowLogo|
 
-; 872  :     {
-; 873  :         // Open flash storage
-; 874  :         hFlash = OALFlashStoreOpen(flashAddr);
+; 708  :     {
+; 709  :         // Open flash storage
+; 710  :         hFlash = OALFlashStoreOpen(flashAddr);
 
-  00070	e1a00005	 mov         r0, r5
-  00074	eb000000	 bl          OALFlashStoreOpen
-  00078	e1b05000	 movs        r5, r0
+  00074	e1a00005	 mov         r0, r5
+  00078	eb000000	 bl          OALFlashStoreOpen
+  0007c	e1b05000	 movs        r5, r0
 
-; 875  :         
-; 876  :         if( hFlash != NULL )
-
-  0007c	0a00003c	 beq         |$LN19@DrawingScr|
-
-; 877  :         {
-; 878  :             // The LOGO reserved NAND flash region contains the BMP file
-; 879  :             OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
+; 711  :         if( hFlash != NULL )
+; 712  :         {
+; 713  :             //  The LOGO reserved NAND flash region contains the BMP file
+; 714  :             OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
 
   00080	e3a0e000	 mov         lr, #0
-  00084	e3a03002	 mov         r3, #2
-  00088	e28d2004	 add         r2, sp, #4
-  0008c	e1a01006	 mov         r1, r6
-  00090	e1a00005	 mov         r0, r5
-  00094	e58de000	 str         lr, [sp]
-  00098	eb000000	 bl          OALFlashStoreBufferedRead
+  00084	0a00003c	 beq         |$LN19@ShowLogo|
+  00088	e3a03002	 mov         r3, #2
+  0008c	e28d2004	 add         r2, sp, #4
+  00090	e1a01006	 mov         r1, r6
+  00094	e1a00005	 mov         r0, r5
+  00098	e58de000	 str         lr, [sp]
+  0009c	eb000000	 bl          OALFlashStoreBufferedRead
 
-; 880  : 
-; 881  :             //  Check for 'BM' signature
-; 882  :             if( wSignature == 0x4D42 )  
+; 715  : 
+; 716  :             //  Check for 'BM' signature
+; 717  :             if( wSignature == 0x4D42 )  
 
-  0009c	e1dd30b4	 ldrh        r3, [sp, #4]
-  000a0	e1530007	 cmp         r3, r7
-  000a4	1a00000e	 bne         |$LN14@DrawingScr|
+  000a0	e1dd30b4	 ldrh        r3, [sp, #4]
+  000a4	e1530007	 cmp         r3, r7
+  000a8	1a00000e	 bne         |$LN14@ShowLogo|
 
-; 883  :             {
-; 884  :                 //  Read the offset to the pixel data
-; 885  :                 OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
+; 718  :             {
+; 719  :                 //  Read the offset to the pixel data
+; 720  :                 OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
 
-  000a8	e3a0e000	 mov         lr, #0
-  000ac	e3a03004	 mov         r3, #4
-  000b0	e28d2010	 add         r2, sp, #0x10
-  000b4	e286100a	 add         r1, r6, #0xA
-  000b8	e1a00005	 mov         r0, r5
-  000bc	e58de000	 str         lr, [sp]
-  000c0	eb000000	 bl          OALFlashStoreBufferedRead
+  000ac	e3a0e000	 mov         lr, #0
+  000b0	e3a03004	 mov         r3, #4
+  000b4	e28d2010	 add         r2, sp, #0x10
+  000b8	e286100a	 add         r1, r6, #0xA
+  000bc	e1a00005	 mov         r0, r5
+  000c0	e58de000	 str         lr, [sp]
+  000c4	eb000000	 bl          OALFlashStoreBufferedRead
 
-; 886  : 
-; 887  :                 //  Read the pixel data with the given offset
-; 888  :                 OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, 
-; 889  :                                            dwLcdFrameArea, FALSE );
+; 721  : 
+; 722  :                 //  Read the pixel data with the given offset
+; 723  :                 OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, dwLength, FALSE );
 
-  000c4	e59d1010	 ldr         r1, [sp, #0x10]
-  000c8	e3a0e000	 mov         lr, #0
-  000cc	e3a03be1	 mov         r3, #0xE1, 22
-  000d0	e0811006	 add         r1, r1, r6
-  000d4	e1a02004	 mov         r2, r4
-  000d8	e1a00005	 mov         r0, r5
-  000dc	e58de000	 str         lr, [sp]
-  000e0	eb000000	 bl          OALFlashStoreBufferedRead
-  000e4		 |$LN14@DrawingScr|
+  000c8	e59d1010	 ldr         r1, [sp, #0x10]
+  000cc	e3a0e000	 mov         lr, #0
+  000d0	e3a03be1	 mov         r3, #0xE1, 22
+  000d4	e0811006	 add         r1, r1, r6
+  000d8	e1a02004	 mov         r2, r4
+  000dc	e1a00005	 mov         r0, r5
+  000e0	e58de000	 str         lr, [sp]
+  000e4	eb000000	 bl          OALFlashStoreBufferedRead
+  000e8		 |$LN14@ShowLogo|
 
-; 890  :             }
-; 891  :            
-; 892  :             // Close store
-; 893  :             OALFlashStoreClose(hFlash);
+; 724  :             }
+; 725  :            
+; 726  :             //  Close store
+; 727  :             OALFlashStoreClose(hFlash);
 
-  000e4	e1a00005	 mov         r0, r5
-  000e8	eb000000	 bl          OALFlashStoreClose
+  000e8	e1a00005	 mov         r0, r5
+  000ec	eb000000	 bl          OALFlashStoreClose
 
-; 894  :         
-; 895  :             // Compute position and size of logo image 
-; 896  :             g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH_ETD024FM)/2;
+; 728  :         
+; 729  :             //  Compute position and size of logo image 
+; 730  :             g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
 
-  000ec	e59d300c	 ldr         r3, [sp, #0xC]
+  000f0	e59d300c	 ldr         r3, [sp, #0xC]
 
-; 897  :             g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT_ETD024FM)/2;
+; 731  :             g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
 
-  000f0	e59d2008	 ldr         r2, [sp, #8]
-  000f4	e3a0190e	 mov         r1, #0xE, 18
-  000f8	e24330f0	 sub         r3, r3, #0xF0
-  000fc	e2422d05	 sub         r2, r2, #5, 26
-  00100	e1a030a3	 mov         r3, r3, lsr #1
-  00104	e1a020a2	 mov         r2, r2, lsr #1
+  000f4	e59d2008	 ldr         r2, [sp, #8]
+  000f8	e3a0190e	 mov         r1, #0xE, 18
+  000fc	e24330f0	 sub         r3, r3, #0xF0
+  00100	e2422d05	 sub         r2, r2, #5, 26
+  00104	e1a030a3	 mov         r3, r3, lsr #1
+  00108	e1a020a2	 mov         r2, r2, lsr #1
 
-; 898  :             g_dwLogoWidth  = LOGO_WIDTH_ETD024FM;
+; 732  :             g_dwLogoWidth  = LOGO_WIDTH;
 
-  00108	e3a000f0	 mov         r0, #0xF0
+  0010c	e3a000f0	 mov         r0, #0xF0
 
-; 899  :             g_dwLogoHeight = LOGO_HEIGHT_ETD024FM;
+; 733  :             g_dwLogoHeight = LOGO_HEIGHT;
 
-  0010c	e3a0ed05	 mov         lr, #5, 26
+  00110	e3a0ed05	 mov         lr, #5, 26
 
-; 900  :             
-; 901  :             //As BMP are stored upside down, we need to flip the frame buffer's content
-; 902  :             FlipFrameBuffer((PUCHAR)frameBuffer, LOGO_HEIGHT_ETD024FM, LOGO_WIDTH_ETD024FM * BYTES_PER_PIXEL,
-; 903  :                             (PUCHAR)frameBuffer + dwLcdFrameArea);
+; 734  :             
+; 735  :             //As BMP are stored upside down, we need to flip the frame buffer's content
+; 736  :             FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
 
-  00110	e3811e13	 orr         r1, r1, #0x13, 28
-  00114	e5883000	 str         r3, [r8]
-  00118	e3a080a0	 mov         r8, #0xA0
-  0011c	e58b2000	 str         r2, [r11]
-  00120	e58a0000	 str         r0, [r10]
-  00124	e589e000	 str         lr, [r9]
-  00128	e1a05004	 mov         r5, r4
-  0012c	e0846001	 add         r6, r4, r1
-  00130		 |$LL21@DrawingScr|
-  00130	e3a02e2d	 mov         r2, #0x2D, 28
-  00134	e1a01005	 mov         r1, r5
-  00138	e2840be1	 add         r0, r4, #0xE1, 22
-  0013c	eb000000	 bl          memcpy
-  00140	e3a02e2d	 mov         r2, #0x2D, 28
-  00144	e1a01006	 mov         r1, r6
-  00148	e1a00005	 mov         r0, r5
-  0014c	eb000000	 bl          memcpy
-  00150	e3a02e2d	 mov         r2, #0x2D, 28
-  00154	e2841be1	 add         r1, r4, #0xE1, 22
-  00158	e1a00006	 mov         r0, r6
-  0015c	eb000000	 bl          memcpy
-  00160	e2855e2d	 add         r5, r5, #0x2D, 28
-  00164	e2466e2d	 sub         r6, r6, #0x2D, 28
-  00168	e2588001	 subs        r8, r8, #1
-  0016c	1affffef	 bne         |$LL21@DrawingScr|
-  00170	e59f80e0	 ldr         r8, [pc, #0xE0]
-  00174		 |$LN19@DrawingScr|
+  00114	e3811e13	 orr         r1, r1, #0x13, 28
+  00118	e5883000	 str         r3, [r8]
+  0011c	e3a080a0	 mov         r8, #0xA0
+  00120	e58b2000	 str         r2, [r11]
+  00124	e58a0000	 str         r0, [r10]
+  00128	e589e000	 str         lr, [r9]
+  0012c	e1a05004	 mov         r5, r4
+  00130	e0846001	 add         r6, r4, r1
+  00134		 |$LL21@ShowLogo|
+  00134	e3a02e2d	 mov         r2, #0x2D, 28
+  00138	e1a01005	 mov         r1, r5
+  0013c	e2840be1	 add         r0, r4, #0xE1, 22
+  00140	eb000000	 bl          memcpy
+  00144	e3a02e2d	 mov         r2, #0x2D, 28
+  00148	e1a01006	 mov         r1, r6
+  0014c	e1a00005	 mov         r0, r5
+  00150	eb000000	 bl          memcpy
+  00154	e3a02e2d	 mov         r2, #0x2D, 28
+  00158	e2841be1	 add         r1, r4, #0xE1, 22
+  0015c	e1a00006	 mov         r0, r6
+  00160	eb000000	 bl          memcpy
+  00164	e2855e2d	 add         r5, r5, #0x2D, 28
+  00168	e2466e2d	 sub         r6, r6, #0x2D, 28
+  0016c	e2588001	 subs        r8, r8, #1
+  00170	1affffef	 bne         |$LL21@ShowLogo|
+  00174	e59f80c0	 ldr         r8, [pc, #0xC0]
+  00178	e3a0e000	 mov         lr, #0
+  0017c		 |$LN19@ShowLogo|
 
-; 904  :         }
-; 905  :     }
-; 906  :     
-; 907  : 	//  If bitmap signature is valid, display the logo, otherwise fill screen with pattern
-; 908  :     if(wSignature != 0X4D42)
+; 737  :         }
+; 738  :     }
+; 739  : 
+; 740  :     //  If bitmap signature is valid, display the logo, otherwise fill screen with pattern
+; 741  :     if( wSignature != 0x4D42 )
 
-  00174	e1dd30b4	 ldrh        r3, [sp, #4]
-  00178	e1530007	 cmp         r3, r7
-  0017c	0a00002b	 beq         |$LN10@DrawingScr|
+  0017c	e1dd30b4	 ldrh        r3, [sp, #4]
+  00180	e1530007	 cmp         r3, r7
+  00184	0a000027	 beq         |$LN10@ShowLogo|
 
-; 909  :     {
-; 910  :         //  Adjust color bars to LCD size
-; 911  :         g_dwLogoPosX   = 0;
-; 912  :         g_dwLogoPosY   = 0;
-; 913  : 
-; 914  : 		g_dwLogoWidth  = dwLcdWidth;	//240
+; 742  :     {
+; 743  :         //  Adjust color bars to LCD size
+; 744  :         g_dwLogoPosX   = 0;
+; 745  :         g_dwLogoPosY   = 0;
+; 746  :         g_dwLogoWidth  = dwLcdWidth;
 
-  00180	e59d300c	 ldr         r3, [sp, #0xC]
+  00188	e59d300c	 ldr         r3, [sp, #0xC]
 
-; 915  :         g_dwLogoHeight = dwLcdHeight;	//320	
+; 747  :         g_dwLogoHeight = dwLcdHeight;
 
-  00184	e59d2008	 ldr         r2, [sp, #8]
-  00188	e3a00000	 mov         r0, #0
-  0018c	e3a01000	 mov         r1, #0
-  00190	e58b0000	 str         r0, [r11]
-  00194	e58a3000	 str         r3, [r10]
-  00198	e5892000	 str         r2, [r9]
+  0018c	e59d2008	 ldr         r2, [sp, #8]
+  00190	e3a00000	 mov         r0, #0
+  00194	e3a01000	 mov         r1, #0
+  00198	e58b0000	 str         r0, [r11]
+  0019c	e58a3000	 str         r3, [r10]
+  001a0	e5892000	 str         r2, [r9]
 
-; 916  :     
-; 917  : 		for (y = 0; y < dwLcdHeight; y++)
+; 748  :         
+; 749  :         for (y= 0; y < dwLcdHeight; y++)
 
-  0019c	e3520000	 cmp         r2, #0
-  001a0	e5881000	 str         r1, [r8]
-  001a4	e3a00000	 mov         r0, #0
-  001a8	0a000020	 beq         |$LN10@DrawingScr|
-  001ac	e3a0e0ff	 mov         lr, #0xFF
-  001b0		 |$LL12@DrawingScr|
+  001a4	e3520000	 cmp         r2, #0
+  001a8	e5881000	 str         r1, [r8]
+  001ac	e3a00000	 mov         r0, #0
+  001b0	0a00001c	 beq         |$LN10@ShowLogo|
+  001b4	e3a050ff	 mov         r5, #0xFF
+  001b8		 |$LL12@ShowLogo|
 
-; 918  :         {
-; 919  :             for( x = 0; x < dwLcdWidth; x++ )
+; 750  :         {
+; 751  :             for( x = 0; x < dwLcdWidth; x++ )
 
-  001b0	e3a01000	 mov         r1, #0
-  001b4	e3530000	 cmp         r3, #0
-  001b8	0a000019	 beq         |$LN11@DrawingScr|
-  001bc		 |$LL9@DrawingScr|
+  001b8	e3a01000	 mov         r1, #0
+  001bc	e3530000	 cmp         r3, #0
+  001c0	0a000015	 beq         |$LN11@ShowLogo|
+  001c4		 |$LL9@ShowLogo|
 
-; 920  :             {
-; 921  :                 if( y < dwLcdHeight/2 )
+; 752  :             {
+; 753  :                 if( y < dwLcdHeight/2 )
 
-  001bc	e15000a2	 cmp         r0, r2, lsr #1
-  001c0	2a000008	 bcs         |$LN6@DrawingScr|
+  001c4	e15000a2	 cmp         r0, r2, lsr #1
+  001c8	2a000006	 bcs         |$LN6@ShowLogo|
 
-; 922  :                 {
-; 923  :                     if( x < dwLcdWidth/2 )
+; 754  :                 {
+; 755  :                     if( x < dwLcdWidth/2 )
+; 756  :                     {
+; 757  :                         *pChar++ = 0x00;    //  Blue
 
-  001c4	e15100a3	 cmp         r1, r3, lsr #1
+  001cc	e4c4e001	 strb        lr, [r4], #1
+  001d0	e15100a3	 cmp         r1, r3, lsr #1
 
-; 924  :                     {
-; 925  :                         *pChar++ = 0xFF;    //  Blue
+; 758  :                         *pChar++ = 0x00;    //  Green
 
-  001c8	34c4e001	 strccb      lr, [r4], #1
+  001d4	34c4e001	 strccb      lr, [r4], #1
+  001d8	3a000009	 bcc         |$LN35@ShowLogo|
 
-; 926  :                         *pChar++ = 0xFF;    //  Green
+; 759  :                         *pChar++ = 0xFF;    //  Red
+; 760  :                     }
+; 761  :                     else
+; 762  :                     {
+; 763  :                         *pChar++ = 0x00;    //  Blue
+; 764  :                         *pChar++ = 0xFF;    //  Green
 
-  001cc	34c4e001	 strccb      lr, [r4], #1
-  001d0	3a00000d	 bcc         |$LN36@DrawingScr|
+  001dc	e4c45001	 strb        r5, [r4], #1
 
-; 927  :                         *pChar++ = 0xFF;    //  Red
-; 928  :                     }
-; 929  :                     else
-; 930  :                     {
-; 931  :                         *pChar++ = 0x00;    //  Blue
+; 774  :                         *pChar++ = 0x00;    //  Red
 
-  001d4	e3a02000	 mov         r2, #0
-  001d8	e4c42001	 strb        r2, [r4], #1
+  001e0	e4c4e001	 strb        lr, [r4], #1
 
-; 932  :                         *pChar++ = 0xFF;    //  Green
+; 775  :                     }
+; 776  :                     else
 
-  001dc	e4c4e001	 strb        lr, [r4], #1
+  001e4	ea000007	 b           |$LN8@ShowLogo|
+  001e8		 |$LN6@ShowLogo|
 
-; 942  :                         *pChar++ = 0x00;    //  Red
-
-  001e0	e4c42001	 strb        r2, [r4], #1
-
-; 943  :                     }
-; 944  :                     else
-
-  001e4	ea000009	 b           |$LN8@DrawingScr|
-  001e8		 |$LN6@DrawingScr|
-
-; 933  :                         *pChar++ = 0x00;    //  Red
-; 934  :                     }
-; 935  :                 }
-; 936  :                 else
-; 937  :                 {
-; 938  :                     if( x < dwLcdWidth/2 )
+; 765  :                         *pChar++ = 0x00;    //  Red
+; 766  :                     }
+; 767  :                 }
+; 768  :                 else
+; 769  :                 {
+; 770  :                     if( x < dwLcdWidth/2 )
 
   001e8	e15100a3	 cmp         r1, r3, lsr #1
 
-; 939  :                     {
-; 940  :                         *pChar++ = 0xFF;    //  Blue
+; 771  :                     {
+; 772  :                         *pChar++ = 0xFF;    //  Blue
 
-  001ec	34c4e001	 strccb      lr, [r4], #1
+  001ec	34c45001	 strccb      r5, [r4], #1
 
-; 941  :                         *pChar++ = 0x00;    //  Green
+; 773  :                         *pChar++ = 0x00;    //  Green
 
-  001f0	33a02000	 movcc       r2, #0
-  001f4	34c42001	 strccb      r2, [r4], #1
+  001f0	34c4e001	 strccb      lr, [r4], #1
 
-; 942  :                         *pChar++ = 0x00;    //  Red
+; 774  :                         *pChar++ = 0x00;    //  Red
 
-  001f8	34c42001	 strccb      r2, [r4], #1
-  001fc	3a000003	 bcc         |$LN8@DrawingScr|
+  001f4	34c4e001	 strccb      lr, [r4], #1
+  001f8	3a000002	 bcc         |$LN8@ShowLogo|
 
-; 945  :                     {
-; 946  :                         *pChar++ = 0x00;    //  Blue
+; 777  :                     {
+; 778  :                         *pChar++ = 0x00;    //  Blue
 
-  00200	e3a03000	 mov         r3, #0
-  00204	e4c43001	 strb        r3, [r4], #1
+  001fc	e4c4e001	 strb        lr, [r4], #1
 
-; 947  :                         *pChar++ = 0x00;    //  Green
+; 779  :                         *pChar++ = 0xFF;    //  Green
 
-  00208	e4c43001	 strb        r3, [r4], #1
-  0020c		 |$LN36@DrawingScr|
+  00200	e4c45001	 strb        r5, [r4], #1
+  00204		 |$LN35@ShowLogo|
 
-; 948  :                         *pChar++ = 0xFF;    //  Red
+; 780  :                         *pChar++ = 0xFF;    //  Red
 
-  0020c	e4c4e001	 strb        lr, [r4], #1
-  00210		 |$LN8@DrawingScr|
-  00210	e59d300c	 ldr         r3, [sp, #0xC]
-  00214	e2811001	 add         r1, r1, #1
-  00218	e59d2008	 ldr         r2, [sp, #8]
-  0021c	e1510003	 cmp         r1, r3
-  00220	3affffe5	 bcc         |$LL9@DrawingScr|
-  00224		 |$LN11@DrawingScr|
+  00204	e4c45001	 strb        r5, [r4], #1
+  00208		 |$LN8@ShowLogo|
+  00208	e59d300c	 ldr         r3, [sp, #0xC]
+  0020c	e2811001	 add         r1, r1, #1
+  00210	e59d2008	 ldr         r2, [sp, #8]
+  00214	e1510003	 cmp         r1, r3
+  00218	3affffe9	 bcc         |$LL9@ShowLogo|
+  0021c		 |$LN11@ShowLogo|
 
-; 916  :     
-; 917  : 		for (y = 0; y < dwLcdHeight; y++)
+; 748  :         
+; 749  :         for (y= 0; y < dwLcdHeight; y++)
 
-  00224	e2800001	 add         r0, r0, #1
-  00228	e1500002	 cmp         r0, r2
-  0022c	3affffdf	 bcc         |$LL12@DrawingScr|
-  00230		 |$LN10@DrawingScr|
+  0021c	e2800001	 add         r0, r0, #1
+  00220	e1500002	 cmp         r0, r2
+  00224	3affffe3	 bcc         |$LL12@ShowLogo|
+  00228		 |$LN10@ShowLogo|
 
-; 949  :                     }
-; 950  :                 }
-; 951  :             }
-; 952  :         }
-; 953  : 		
-; 954  : 	}
-; 955  : 	
-; 956  :    // InitGraphicsEngine(dwLcdWidth, dwLcdHeight, pChar, frameBuffer);
-; 957  :    //InitGraphicsEngine(LOGO_WIDTH_ETD024FM, LOGO_HEIGHT_ETD024FM, pChar, frameBuffer);
-; 958  : 	//  Fire up the LCD
-; 959  :     lcd_config(frameBufferPA); 
+; 781  :                     }
+; 782  :                 }
+; 783  :             }
+; 784  :         }
+; 785  :     }
+; 786  : 	
+; 787  :     //  Fire up the LCD
+; 788  :     lcd_config(framebufferPA);       
 
-  00230	e59d4014	 ldr         r4, [sp, #0x14]
-  00234	eb000000	 bl          reset_display_controller
-  00238	eb000000	 bl          enable_lcd_power
-  0023c	e1a00004	 mov         r0, r4
-  00240	eb000000	 bl          configure_dss
-  00244	eb000000	 bl          display_lcd_image
-  00248	eb000000	 bl          enable_lcd_backlight
+  00228	e59d0014	 ldr         r0, [sp, #0x14]
+  0022c	eb000000	 bl          lcd_config
 
-; 960  : }
+; 789  : }
 
-  0024c	e28dd018	 add         sp, sp, #0x18
-  00250	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  00254	e12fff1e	 bx          lr
-  00258		 |$LN41@DrawingScr|
-  00258		 |$LN42@DrawingScr|
-  00258	00000000	 DCD         |g_dwLogoPosX|
-  0025c		 |$LN43@DrawingScr|
-  0025c	00000000	 DCD         |g_dwLogoPosY|
-  00260		 |$LN44@DrawingScr|
-  00260	00000000	 DCD         |g_dwLogoWidth|
-  00264		 |$LN45@DrawingScr|
-  00264	00000000	 DCD         |g_dwLogoHeight|
-  00268		 |$M48991|
+  00230	e28dd018	 add         sp, sp, #0x18
+  00234	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  00238	e12fff1e	 bx          lr
+  0023c		 |$LN40@ShowLogo|
+  0023c		 |$LN41@ShowLogo|
+  0023c	00000000	 DCD         |g_dwLogoPosX|
+  00240		 |$LN42@ShowLogo|
+  00240	00000000	 DCD         |g_dwLogoPosY|
+  00244		 |$LN43@ShowLogo|
+  00244	00000000	 DCD         |g_dwLogoWidth|
+  00248		 |$LN44@ShowLogo|
+  00248	00000000	 DCD         |g_dwLogoHeight|
+  0024c		 |$M49672|
 
-			 ENDP  ; |DrawingScreen|
+			 ENDP  ; |ShowLogo|
 
 	EXPORT	|ShowSDLogo|
 	EXPORT	|??_C@_1GK@BOLHCJDJ@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg@| [ DATA ] ; `string'
@@ -3640,14 +4781,11 @@
 	EXPORT	|??_C@_1DO@ENJNNPID@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAL?$AAO?$AAG?$AAO?$AA_?$AAH?$AAE?$AAI?$AAG?$AAH?$AAT?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DM@PDMEKHDN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAL?$AAO?$AAG?$AAO?$AA_?$AAW?$AAI?$AAD?$AAT?$AAH?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1EG@DJLDILPN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAB?$AAY?$AAT?$AAE?$AAS?$AA_?$AAP?$AAE?$AAR?$AA_?$AAP?$AAI?$AAX?$AAE?$AAL?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1FG@OMGJIHIC@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAf?$AAr?$AAa?$AAm?$AAe?$AAb?$AAu?$AAf?$AAf?$AAe?$AAr?$AA?5?$AAO?$AAA?$AAL?$AAP?$AAA?$AAt?$AAo?$AAU@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1EC@EIHFLIJH@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAf?$AAr?$AAa?$AAm?$AAe?$AAb?$AAu?$AAf?$AAf?$AAe?$AAr?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1GA@FFGKMOGE@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAd?$AAw?$AAL?$AAc?$AAd?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AA?5?$AAd?$AAw?$AAL@| [ DATA ] ; `string'
 	IMPORT	|BLSDCardReadLogo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T49046| DCD	|$LN33@ShowSDLogo|
-	DCD	0x40009502
+|$T49719| DCD	|$LN27@ShowSDLogo|
+	DCD	0x40007f02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GK@BOLHCJDJ@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg@| DCB "S"
@@ -3711,354 +4849,264 @@
 	DCB	0x0, "E", 0x0, "R", 0x0, "_", 0x0, "P", 0x0, "I", 0x0, "X"
 	DCB	0x0, "E", 0x0, "L", 0x0, " ", 0x0, "=", 0x0, " ", 0x0, "%"
 	DCB	0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1FG@OMGJIHIC@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAf?$AAr?$AAa?$AAm?$AAe?$AAb?$AAu?$AAf?$AAf?$AAe?$AAr?$AA?5?$AAO?$AAA?$AAL?$AAP?$AAA?$AAt?$AAo?$AAU@| DCB "S"
-	DCB	0x0, "h", 0x0, "o", 0x0, "w", 0x0, "S", 0x0, "D", 0x0, "L"
-	DCB	0x0, "o", 0x0, "g", 0x0, "o", 0x0, ":", 0x0, " ", 0x0, "f"
-	DCB	0x0, "r", 0x0, "a", 0x0, "m", 0x0, "e", 0x0, "b", 0x0, "u"
-	DCB	0x0, "f", 0x0, "f", 0x0, "e", 0x0, "r", 0x0, " ", 0x0, "O"
-	DCB	0x0, "A", 0x0, "L", 0x0, "P", 0x0, "A", 0x0, "t", 0x0, "o"
-	DCB	0x0, "U", 0x0, "A", 0x0, " ", 0x0, "=", 0x0, " ", 0x0, "0"
-	DCB	0x0, "x", 0x0, "%", 0x0, "x", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EC@EIHFLIJH@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAf?$AAr?$AAa?$AAm?$AAe?$AAb?$AAu?$AAf?$AAf?$AAe?$AAr?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6@| DCB "S"
-	DCB	0x0, "h", 0x0, "o", 0x0, "w", 0x0, "S", 0x0, "D", 0x0, "L"
-	DCB	0x0, "o", 0x0, "g", 0x0, "o", 0x0, ":", 0x0, " ", 0x0, "f"
-	DCB	0x0, "r", 0x0, "a", 0x0, "m", 0x0, "e", 0x0, "b", 0x0, "u"
-	DCB	0x0, "f", 0x0, "f", 0x0, "e", 0x0, "r", 0x0, " ", 0x0, "="
-	DCB	0x0, " ", 0x0, "0", 0x0, "x", 0x0, "%", 0x0, "x", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1GA@FFGKMOGE@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAd?$AAw?$AAL?$AAc?$AAd?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AA?5?$AAd?$AAw?$AAL@| DCB "S"
-	DCB	0x0, "h", 0x0, "o", 0x0, "w", 0x0, "S", 0x0, "D", 0x0, "L"
-	DCB	0x0, "o", 0x0, "g", 0x0, "o", 0x0, ":", 0x0, " ", 0x0, "d"
-	DCB	0x0, "w", 0x0, "L", 0x0, "c", 0x0, "d", 0x0, "W", 0x0, "i"
-	DCB	0x0, "d", 0x0, "t", 0x0, "h", 0x0, " ", 0x0, "=", 0x0, " "
-	DCB	0x0, "%", 0x0, "d", 0x0, ",", 0x0, " ", 0x0, "d", 0x0, "w"
-	DCB	0x0, "L", 0x0, "c", 0x0, "d", 0x0, "H", 0x0, "e", 0x0, "i"
-	DCB	0x0, "g", 0x0, "h", 0x0, "t", 0x0, " ", 0x0, "=", 0x0, " "
-	DCB	0x0, "%", 0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |ShowSDLogo| PROC
 
-; 1026 : {
+; 799  : {
 
-  00000		 |$LN33@ShowSDLogo|
+  00000		 |$LN27@ShowSDLogo|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M49043|
+  00008		 |$M49716|
 
-; 1027 :     DWORD	framebuffer = 0;
-; 1028 :     DWORD	framebufferPA = 0;
+; 800  :     DWORD framebuffer = 0;
+; 801  :     DWORD framebufferPA = 0;
 
   00008	e3a03000	 mov         r3, #0
 
-; 1029 :     DWORD	dwLcdWidth 	= 0;
+; 802  :     DWORD dwLcdWidth = 0;
 
   0000c	e3a02000	 mov         r2, #0
 
-; 1030 :     DWORD	dwLcdHeight = 0;
+; 803  :     DWORD dwLcdHeight = 0;
 
   00010	e3a01000	 mov         r1, #0
-  00014	e58d3008	 str         r3, [sp, #8]
+  00014	e58d3000	 str         r3, [sp]
   00018	e58d2004	 str         r2, [sp, #4]
-  0001c	e58d1000	 str         r1, [sp]
+  0001c	e58d1008	 str         r1, [sp, #8]
 
-; 1031 : 	DWORD	dwLcdFrameArea 	= 0;
-; 1032 : 	PUCHAR 	pChar;
-; 1033 : 	
-; 1034 :     // Get the LCD width and height
-; 1035 :     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+; 804  : 	DWORD dwLength = 0;
+; 805  : 	PUCHAR 	pChar;          //Ray 131028
+; 806  :     // Get the LCD width and height
+; 807  :     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
 
   00020	e3a03000	 mov         r3, #0
-  00024	e28d2000	 add         r2, sp, #0
+  00024	e28d2008	 add         r2, sp, #8
   00028	e28d1004	 add         r1, sp, #4
   0002c	e3a00000	 mov         r0, #0
   00030	eb000000	 bl          LcdPdd_LCD_GetMode
 
-; 1036 : 
-; 1037 :     OALMSG(OAL_INFO, (L"ShowSDLogo: dwLcdWidth = %d, dwLcdHeight = %d\r\n",dwLcdWidth,dwLcdHeight));
+; 808  : 	//OALMSG(OAL_INFO, (L"ShowSDLogo: dwLcdWidth = %d, dwLcdHeight = %d\r\n",dwLcdWidth,dwLcdHeight));
+; 809  : 	
+; 810  : 	// Get the frame buffer
+; 811  : 	LcdPdd_GetMemory( NULL, &framebufferPA );
 
-  00034	e59f4214	 ldr         r4, [pc, #0x214]
-  00038	e5943440	 ldr         r3, [r4, #0x440]
-  0003c	e3130008	 tst         r3, #8
-  00040	159d2000	 ldrne       r2, [sp]
-  00044	159d1004	 ldrne       r1, [sp, #4]
-  00048	159f01fc	 ldrne       r0, [pc, #0x1FC]
-  0004c	1b000000	 blne        NKDbgPrintfW
+  00034	e28d1000	 add         r1, sp, #0
+  00038	e3a00000	 mov         r0, #0
+  0003c	eb000000	 bl          LcdPdd_GetMemory
 
-; 1038 : 
-; 1039 : 	// Get the frame buffer
-; 1040 : 	LcdPdd_GetMemory( NULL, &framebufferPA );
+; 812  : 	//OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer = 0x%x\r\n",framebufferPA));
+; 813  :     framebuffer = (DWORD) OALPAtoUA(framebufferPA);
 
-  00050	e28d1008	 add         r1, sp, #8
-  00054	e3a00000	 mov         r0, #0
-  00058	eb000000	 bl          LcdPdd_GetMemory
+  00040	e59d0000	 ldr         r0, [sp]
+  00044	e3a01000	 mov         r1, #0
+  00048	eb000000	 bl          OALPAtoVA
 
-; 1041 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer = 0x%x\r\n",framebuffer));
+; 814  : 	//OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer OALPAtoUA = 0x%x\r\n",framebuffer));
+; 815  : 	pChar = (PUCHAR)framebuffer;     //Ray 131028
+; 816  : 	
+; 817  : 	// Compute the size
+; 818  : 	dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+; 819  : 	OALMSG(OAL_INFO, (L"ShowSDLogo: BYTES_PER_PIXEL = %d\r\n",BYTES_PER_PIXEL));
 
-  0005c	e5943440	 ldr         r3, [r4, #0x440]
-  00060	e3130008	 tst         r3, #8
-  00064	159f01dc	 ldrne       r0, [pc, #0x1DC]
-  00068	13a01000	 movne       r1, #0
-  0006c	1b000000	 blne        NKDbgPrintfW
+  0004c	e59f51a4	 ldr         r5, [pc, #0x1A4]
+  00050	e1a04000	 mov         r4, r0
+  00054	e5953440	 ldr         r3, [r5, #0x440]
+  00058	e3130008	 tst         r3, #8
+  0005c	0a000003	 beq         |$LN4@ShowSDLogo|
+  00060	e59f018c	 ldr         r0, [pc, #0x18C]
+  00064	e3a01003	 mov         r1, #3
+  00068	eb000000	 bl          NKDbgPrintfW
+  0006c	e5953440	 ldr         r3, [r5, #0x440]
+  00070		 |$LN4@ShowSDLogo|
 
-; 1042 :     framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+; 820  : 	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_WIDTH = %d\r\n",LOGO_WIDTH));
 
-  00070	e59d0008	 ldr         r0, [sp, #8]
-  00074	e3a01000	 mov         r1, #0
-  00078	eb000000	 bl          OALPAtoVA
+  00070	e3130008	 tst         r3, #8
+  00074	0a000003	 beq         |$LN6@ShowSDLogo|
+  00078	e59f0170	 ldr         r0, [pc, #0x170]
+  0007c	e3a010f0	 mov         r1, #0xF0
+  00080	eb000000	 bl          NKDbgPrintfW
+  00084	e5953440	 ldr         r3, [r5, #0x440]
+  00088		 |$LN6@ShowSDLogo|
 
-; 1043 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer OALPAtoUA = 0x%x\r\n",framebuffer));
+; 821  : 	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_HEIGHT = %d\r\n",LOGO_HEIGHT));
 
-  0007c	e5943440	 ldr         r3, [r4, #0x440]
-  00080	e1a05000	 mov         r5, r0
-  00084	e3130008	 tst         r3, #8
-  00088	0a000003	 beq         |$LN8@ShowSDLogo|
-  0008c	e59f01b0	 ldr         r0, [pc, #0x1B0]
-  00090	e1a01005	 mov         r1, r5
-  00094	eb000000	 bl          NKDbgPrintfW
-  00098	e5943440	 ldr         r3, [r4, #0x440]
-  0009c		 |$LN8@ShowSDLogo|
+  00088	e3130008	 tst         r3, #8
+  0008c	0a000003	 beq         |$LN8@ShowSDLogo|
+  00090	e59f0154	 ldr         r0, [pc, #0x154]
+  00094	e3a01d05	 mov         r1, #5, 26
+  00098	eb000000	 bl          NKDbgPrintfW
+  0009c	e5953440	 ldr         r3, [r5, #0x440]
+  000a0		 |$LN8@ShowSDLogo|
 
-; 1044 : 	pChar = (PUCHAR)framebuffer;
-; 1045 : 	
-; 1046 : 	// Compute the size
-; 1047 : 	dwLcdFrameArea = BYTES_PER_PIXEL * LOGO_WIDTH_ETD024FM * LOGO_HEIGHT_ETD024FM;
-; 1048 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: BYTES_PER_PIXEL = %d\r\n",BYTES_PER_PIXEL));
+; 822  : 	OALMSG(OAL_INFO, (L"ShowSDLogo: size = %d\r\n",dwLength));
 
-  0009c	e3130008	 tst         r3, #8
-  000a0	0a000003	 beq         |$LN10@ShowSDLogo|
-  000a4	e59f0194	 ldr         r0, [pc, #0x194]
-  000a8	e3a01003	 mov         r1, #3
-  000ac	eb000000	 bl          NKDbgPrintfW
-  000b0	e5943440	 ldr         r3, [r4, #0x440]
-  000b4		 |$LN10@ShowSDLogo|
+  000a0	e3130008	 tst         r3, #8
+  000a4	159f013c	 ldrne       r0, [pc, #0x13C]
+  000a8	13a01be1	 movne       r1, #0xE1, 22
+  000ac	1b000000	 blne        NKDbgPrintfW
 
-; 1049 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_WIDTH = %d\r\n",LOGO_WIDTH_ETD024FM));
+; 823  : 	
+; 824  : #ifdef BSP_Z2000    //Ray 131024	
+; 825  : 	if (!BLSDCardReadLogo(L"Logo.bmp", (UCHAR*)framebuffer, dwLength))
+; 826  : 	{
+; 827  : 		return FALSE;
+; 828  : 	}
+; 829  : #else
+; 830  :     if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLength))
 
-  000b4	e3130008	 tst         r3, #8
-  000b8	0a000003	 beq         |$LN12@ShowSDLogo|
-  000bc	e59f0178	 ldr         r0, [pc, #0x178]
-  000c0	e3a010f0	 mov         r1, #0xF0
-  000c4	eb000000	 bl          NKDbgPrintfW
-  000c8	e5943440	 ldr         r3, [r4, #0x440]
-  000cc		 |$LN12@ShowSDLogo|
+  000b0	e59f012c	 ldr         r0, [pc, #0x12C]
+  000b4	e3a02be1	 mov         r2, #0xE1, 22
+  000b8	e1a01004	 mov         r1, r4
+  000bc	eb000000	 bl          BLSDCardReadLogo
+  000c0	e3500000	 cmp         r0, #0
 
-; 1050 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_HEIGHT = %d\r\n",LOGO_HEIGHT_ETD024FM));
+; 831  : 	{
+; 832  : 		return FALSE;
 
-  000cc	e3130008	 tst         r3, #8
-  000d0	0a000003	 beq         |$LN14@ShowSDLogo|
-  000d4	e59f015c	 ldr         r0, [pc, #0x15C]
-  000d8	e3a01d05	 mov         r1, #5, 26
-  000dc	eb000000	 bl          NKDbgPrintfW
-  000e0	e5943440	 ldr         r3, [r4, #0x440]
-  000e4		 |$LN14@ShowSDLogo|
+  000c4	03a00000	 moveq       r0, #0
+  000c8	0a00003b	 beq         |$LN2@ShowSDLogo|
 
-; 1051 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: size = %d\r\n",dwLcdFrameArea));
+; 833  : 	}
+; 834  : #endif
+; 835  : 
+; 836  :     //  Compute position and size of logo image 
+; 837  :     g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
+; 838  :     g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
 
-  000e4	e3130008	 tst         r3, #8
-  000e8	159f0144	 ldrne       r0, [pc, #0x144]
-  000ec	13a01be1	 movne       r1, #0xE1, 22
-  000f0	1b000000	 blne        NKDbgPrintfW
+  000cc	e59d2008	 ldr         r2, [sp, #8]
+  000d0	e59d3004	 ldr         r3, [sp, #4]
+  000d4	e59fe104	 ldr         lr, [pc, #0x104]
+  000d8	e59f00fc	 ldr         r0, [pc, #0xFC]
 
-; 1052 : 
-; 1053 : 	//Loader file name(LOGO.bmp), Ray 13-08-01
-; 1054 : 	if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLcdFrameArea))	
+; 839  :     g_dwLogoWidth  = LOGO_WIDTH;
 
-  000f4	e59f0134	 ldr         r0, [pc, #0x134]
-  000f8	e3a02be1	 mov         r2, #0xE1, 22
-  000fc	e1a01005	 mov         r1, r5
-  00100	eb000000	 bl          BLSDCardReadLogo
-  00104	e3500000	 cmp         r0, #0
+  000dc	e59f70f4	 ldr         r7, [pc, #0xF4]
 
-; 1055 : 	{
-; 1056 : 		return FALSE;	//BLSDCardReadLogo() it has reading logo is TRUE ,if is not; it will return FALSE, Ray 13-09-04 
+; 840  :     g_dwLogoHeight = LOGO_HEIGHT;
 
-  00108	03a00000	 moveq       r0, #0
-  0010c	0a00003e	 beq         |$LN2@ShowSDLogo|
+  000e0	e59f80ec	 ldr         r8, [pc, #0xEC]
 
-; 1057 : 	}
-; 1058 : 
-; 1059 :     //  Compute position and size of logo image 
-; 1060 :     g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH_ETD024FM)/2;
-; 1061 :     g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT_ETD024FM)/2;
+; 841  : 	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoPosX = %d,g_dwLogoPosY = %d\r\n",g_dwLogoPosX,g_dwLogoPosY));
 
-  00110	e59d2000	 ldr         r2, [sp]
-  00114	e59d3004	 ldr         r3, [sp, #4]
-  00118	e59fe10c	 ldr         lr, [pc, #0x10C]
-  0011c	e59f0104	 ldr         r0, [pc, #0x104]
+  000e4	e5956440	 ldr         r6, [r5, #0x440]
+  000e8	e2422d05	 sub         r2, r2, #5, 26
+  000ec	e24330f0	 sub         r3, r3, #0xF0
+  000f0	e1a090a2	 mov         r9, r2, lsr #1
+  000f4	e3a02d05	 mov         r2, #5, 26
+  000f8	e1a030a3	 mov         r3, r3, lsr #1
+  000fc	e3a010f0	 mov         r1, #0xF0
+  00100	e5882000	 str         r2, [r8]
+  00104	e58e3000	 str         r3, [lr]
+  00108	e5809000	 str         r9, [r0]
+  0010c	e5871000	 str         r1, [r7]
+  00110	e3160008	 tst         r6, #8
+  00114	0a000006	 beq         |$LN12@ShowSDLogo|
+  00118	e59f00b0	 ldr         r0, [pc, #0xB0]
+  0011c	e1a02009	 mov         r2, r9
+  00120	e1a01003	 mov         r1, r3
+  00124	eb000000	 bl          NKDbgPrintfW
+  00128	e5956440	 ldr         r6, [r5, #0x440]
+  0012c	e5971000	 ldr         r1, [r7]
+  00130	e5982000	 ldr         r2, [r8]
+  00134		 |$LN12@ShowSDLogo|
 
-; 1062 :     g_dwLogoWidth  = LOGO_WIDTH_ETD024FM;
+; 842  : 	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoWidth = %d,g_dwLogoHeight = %d\r\n",g_dwLogoWidth,g_dwLogoHeight));
 
-  00120	e59f70fc	 ldr         r7, [pc, #0xFC]
+  00134	e3160008	 tst         r6, #8
+  00138	159f008c	 ldrne       r0, [pc, #0x8C]
+  0013c	1b000000	 blne        NKDbgPrintfW
+  00140	e3a0390e	 mov         r3, #0xE, 18
 
-; 1063 :     g_dwLogoHeight = LOGO_HEIGHT_ETD024FM;
+; 843  :     //As BMP are stored upside down, we need to flip the frame buffer's content
+; 844  :     FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
 
-  00124	e59f80f4	 ldr         r8, [pc, #0xF4]
+  00144	e3833e13	 orr         r3, r3, #0x13, 28
+  00148	e0845003	 add         r5, r4, r3
+  0014c	e1a06004	 mov         r6, r4
+  00150	e3a070a0	 mov         r7, #0xA0
+  00154		 |$LL18@ShowSDLogo|
+  00154	e3a02e2d	 mov         r2, #0x2D, 28
+  00158	e1a01006	 mov         r1, r6
+  0015c	e2840be1	 add         r0, r4, #0xE1, 22
+  00160	eb000000	 bl          memcpy
+  00164	e3a02e2d	 mov         r2, #0x2D, 28
+  00168	e1a01005	 mov         r1, r5
+  0016c	e1a00006	 mov         r0, r6
+  00170	eb000000	 bl          memcpy
+  00174	e3a02e2d	 mov         r2, #0x2D, 28
+  00178	e2841be1	 add         r1, r4, #0xE1, 22
+  0017c	e1a00005	 mov         r0, r5
+  00180	eb000000	 bl          memcpy
+  00184	e2866e2d	 add         r6, r6, #0x2D, 28
+  00188	e2455e2d	 sub         r5, r5, #0x2D, 28
+  0018c	e2577001	 subs        r7, r7, #1
+  00190	1affffef	 bne         |$LL18@ShowSDLogo|
 
-; 1064 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoPosX = %d,g_dwLogoPosY = %d\r\n",g_dwLogoPosX,g_dwLogoPosY));
+; 845  : 
+; 846  :     //Initial graphics engine and draw ASCII function, Ray 131025
+; 847  :     //Check them size is right dwLcdWidth, dwLcdHeight?, Ray 131028
+; 848  : 	InitGraphicsEngine(LOGO_WIDTH, LOGO_HEIGHT, pChar, framebuffer);
 
-  00128	e5946440	 ldr         r6, [r4, #0x440]
-  0012c	e2422d05	 sub         r2, r2, #5, 26
-  00130	e24330f0	 sub         r3, r3, #0xF0
-  00134	e1a090a2	 mov         r9, r2, lsr #1
-  00138	e3a02d05	 mov         r2, #5, 26
-  0013c	e1a030a3	 mov         r3, r3, lsr #1
-  00140	e3a010f0	 mov         r1, #0xF0
-  00144	e5882000	 str         r2, [r8]
-  00148	e58e3000	 str         r3, [lr]
-  0014c	e5809000	 str         r9, [r0]
-  00150	e5871000	 str         r1, [r7]
-  00154	e3160008	 tst         r6, #8
-  00158	0a000006	 beq         |$LN18@ShowSDLogo|
-  0015c	e59f00b8	 ldr         r0, [pc, #0xB8]
-  00160	e1a02009	 mov         r2, r9
-  00164	e1a01003	 mov         r1, r3
-  00168	eb000000	 bl          NKDbgPrintfW
-  0016c	e5946440	 ldr         r6, [r4, #0x440]
-  00170	e5971000	 ldr         r1, [r7]
-  00174	e5982000	 ldr         r2, [r8]
-  00178		 |$LN18@ShowSDLogo|
+  00194	e59f302c	 ldr         r3, [pc, #0x2C]
 
-; 1065 : 	OALMSG(OAL_INFO, (L"ShowSDLogo: g_dwLogoWidth = %d,g_dwLogoHeight = %d\r\n",g_dwLogoWidth,g_dwLogoHeight));
+; 849  : 
+; 850  :     //  Fire up the LCD
+; 851  :     lcd_config(framebufferPA);
 
-  00178	e3160008	 tst         r6, #8
-  0017c	159f0094	 ldrne       r0, [pc, #0x94]
-  00180	1b000000	 blne        NKDbgPrintfW
-  00184	e3a0390e	 mov         r3, #0xE, 18
+  00198	e59d0000	 ldr         r0, [sp]
+  0019c	e3a02d05	 mov         r2, #5, 26
+  001a0	e3a010f0	 mov         r1, #0xF0
+  001a4	e5832004	 str         r2, [r3, #4]
+  001a8	e5831008	 str         r1, [r3, #8]
+  001ac	e5834000	 str         r4, [r3]
+  001b0	e5834010	 str         r4, [r3, #0x10]
+  001b4	eb000000	 bl          lcd_config
 
-; 1066 :     
-; 1067 : 	//As BMP are stored upside down, we need to flip the frame buffer's content
-; 1068 :     FlipFrameBuffer((PUCHAR)framebuffer, LOGO_HEIGHT_ETD024FM, LOGO_WIDTH_ETD024FM * BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLcdFrameArea);
+; 852  : 
+; 853  : 	return TRUE;
 
-  00188	e3833e13	 orr         r3, r3, #0x13, 28
-  0018c	e0854003	 add         r4, r5, r3
-  00190	e1a06005	 mov         r6, r5
-  00194	e3a070a0	 mov         r7, #0xA0
-  00198		 |$LL24@ShowSDLogo|
-  00198	e3a02e2d	 mov         r2, #0x2D, 28
-  0019c	e1a01006	 mov         r1, r6
-  001a0	e2850be1	 add         r0, r5, #0xE1, 22
-  001a4	eb000000	 bl          memcpy
-  001a8	e3a02e2d	 mov         r2, #0x2D, 28
-  001ac	e1a01004	 mov         r1, r4
-  001b0	e1a00006	 mov         r0, r6
-  001b4	eb000000	 bl          memcpy
-  001b8	e3a02e2d	 mov         r2, #0x2D, 28
-  001bc	e2851be1	 add         r1, r5, #0xE1, 22
-  001c0	e1a00004	 mov         r0, r4
-  001c4	eb000000	 bl          memcpy
-  001c8	e2866e2d	 add         r6, r6, #0x2D, 28
-  001cc	e2444e2d	 sub         r4, r4, #0x2D, 28
-  001d0	e2577001	 subs        r7, r7, #1
-  001d4	1affffef	 bne         |$LL24@ShowSDLogo|
+  001b8	e3a00001	 mov         r0, #1
+  001bc		 |$LN2@ShowSDLogo|
 
-; 1069 : 
-; 1070 :     //initial graphics engine & Call function draw ASCII, Ray 13-08-30
-; 1071 : 	InitGraphicsEngine(dwLcdWidth, dwLcdHeight, pChar, framebuffer);
+; 854  : }
 
-  001d8	e59d1000	 ldr         r1, [sp]
-  001dc	e59d0004	 ldr         r0, [sp, #4]
-  001e0	e1a03005	 mov         r3, r5
-  001e4	e1a02005	 mov         r2, r5
-  001e8	eb000000	 bl          InitGraphicsEngine
-
-; 1072 : 
-; 1073 : 	//  Fire up the LCD
-; 1074 :     lcd_config(framebufferPA);
-
-  001ec	e59d4008	 ldr         r4, [sp, #8]
-  001f0	eb000000	 bl          reset_display_controller
-  001f4	eb000000	 bl          enable_lcd_power
-  001f8	e1a00004	 mov         r0, r4
-  001fc	eb000000	 bl          configure_dss
-  00200	eb000000	 bl          display_lcd_image
-  00204	eb000000	 bl          enable_lcd_backlight
-
-; 1075 : 
-; 1076 : 	return TRUE;
-
-  00208	e3a00001	 mov         r0, #1
-  0020c		 |$LN2@ShowSDLogo|
-
-; 1077 : }
-
-  0020c	e28dd00c	 add         sp, sp, #0xC
-  00210	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
-  00214	e12fff1e	 bx          lr
-  00218		 |$LN34@ShowSDLogo|
-  00218		 |$LN35@ShowSDLogo|
-  00218	00000000	 DCD         |??_C@_1GK@BOLHCJDJ@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg@|
-  0021c		 |$LN36@ShowSDLogo|
-  0021c	00000000	 DCD         |??_C@_1GE@MOPAKJBC@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAP?$AAo?$AAs?$AAX?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg?$AA_@|
-  00220		 |$LN37@ShowSDLogo|
-  00220	00000000	 DCD         |g_dwLogoHeight|
-  00224		 |$LN38@ShowSDLogo|
-  00224	00000000	 DCD         |g_dwLogoWidth|
-  00228		 |$LN39@ShowSDLogo|
-  00228	00000000	 DCD         |g_dwLogoPosY|
-  0022c		 |$LN40@ShowSDLogo|
-  0022c	00000000	 DCD         |g_dwLogoPosX|
-  00230		 |$LN41@ShowSDLogo|
-  00230	00000000	 DCD         |??_C@_1BK@DIIBPNGC@?$AAL?$AAO?$AAG?$AAO?$AA_?$AAV?$AAE?$AAR?$AA?4?$AAb?$AAm?$AAp?$AA?$AA@|
-  00234		 |$LN42@ShowSDLogo|
-  00234	00000000	 DCD         |??_C@_1DA@IPAEADDN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAs?$AAi?$AAz?$AAe?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  00238		 |$LN43@ShowSDLogo|
-  00238	00000000	 DCD         |??_C@_1DO@ENJNNPID@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAL?$AAO?$AAG?$AAO?$AA_?$AAH?$AAE?$AAI?$AAG?$AAH?$AAT?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  0023c		 |$LN44@ShowSDLogo|
-  0023c	00000000	 DCD         |??_C@_1DM@PDMEKHDN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAL?$AAO?$AAG?$AAO?$AA_?$AAW?$AAI?$AAD?$AAT?$AAH?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  00240		 |$LN45@ShowSDLogo|
-  00240	00000000	 DCD         |??_C@_1EG@DJLDILPN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAB?$AAY?$AAT?$AAE?$AAS?$AA_?$AAP?$AAE?$AAR?$AA_?$AAP?$AAI?$AAX?$AAE?$AAL?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd@|
-  00244		 |$LN46@ShowSDLogo|
-  00244	00000000	 DCD         |??_C@_1FG@OMGJIHIC@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAf?$AAr?$AAa?$AAm?$AAe?$AAb?$AAu?$AAf?$AAf?$AAe?$AAr?$AA?5?$AAO?$AAA?$AAL?$AAP?$AAA?$AAt?$AAo?$AAU@|
-  00248		 |$LN47@ShowSDLogo|
-  00248	00000000	 DCD         |??_C@_1EC@EIHFLIJH@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAf?$AAr?$AAa?$AAm?$AAe?$AAb?$AAu?$AAf?$AAf?$AAe?$AAr?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6@|
-  0024c		 |$LN48@ShowSDLogo|
-  0024c	00000000	 DCD         |??_C@_1GA@FFGKMOGE@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAd?$AAw?$AAL?$AAc?$AAd?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AA?5?$AAd?$AAw?$AAL@|
-  00250		 |$LN49@ShowSDLogo|
-  00250	00000000	 DCD         |dpCurSettings|
-  00254		 |$M49044|
+  001bc	e28dd00c	 add         sp, sp, #0xC
+  001c0	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
+  001c4	e12fff1e	 bx          lr
+  001c8		 |$LN28@ShowSDLogo|
+  001c8		 |$LN29@ShowSDLogo|
+  001c8	00000000	 DCD         |g_nBpp|
+  001cc		 |$LN30@ShowSDLogo|
+  001cc	00000000	 DCD         |??_C@_1GK@BOLHCJDJ@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg@|
+  001d0		 |$LN31@ShowSDLogo|
+  001d0	00000000	 DCD         |??_C@_1GE@MOPAKJBC@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAP?$AAo?$AAs?$AAX?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg?$AA_@|
+  001d4		 |$LN32@ShowSDLogo|
+  001d4	00000000	 DCD         |g_dwLogoHeight|
+  001d8		 |$LN33@ShowSDLogo|
+  001d8	00000000	 DCD         |g_dwLogoWidth|
+  001dc		 |$LN34@ShowSDLogo|
+  001dc	00000000	 DCD         |g_dwLogoPosY|
+  001e0		 |$LN35@ShowSDLogo|
+  001e0	00000000	 DCD         |g_dwLogoPosX|
+  001e4		 |$LN36@ShowSDLogo|
+  001e4	00000000	 DCD         |??_C@_1BK@DIIBPNGC@?$AAL?$AAO?$AAG?$AAO?$AA_?$AAV?$AAE?$AAR?$AA?4?$AAb?$AAm?$AAp?$AA?$AA@|
+  001e8		 |$LN37@ShowSDLogo|
+  001e8	00000000	 DCD         |??_C@_1DA@IPAEADDN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAs?$AAi?$AAz?$AAe?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  001ec		 |$LN38@ShowSDLogo|
+  001ec	00000000	 DCD         |??_C@_1DO@ENJNNPID@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAL?$AAO?$AAG?$AAO?$AA_?$AAH?$AAE?$AAI?$AAG?$AAH?$AAT?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  001f0		 |$LN39@ShowSDLogo|
+  001f0	00000000	 DCD         |??_C@_1DM@PDMEKHDN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAL?$AAO?$AAG?$AAO?$AA_?$AAW?$AAI?$AAD?$AAT?$AAH?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  001f4		 |$LN40@ShowSDLogo|
+  001f4	00000000	 DCD         |??_C@_1EG@DJLDILPN@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAB?$AAY?$AAT?$AAE?$AAS?$AA_?$AAP?$AAE?$AAR?$AA_?$AAP?$AAI?$AAX?$AAE?$AAL?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd@|
+  001f8		 |$LN41@ShowSDLogo|
+  001f8	00000000	 DCD         |dpCurSettings|
+  001fc		 |$M49717|
 
 			 ENDP  ; |ShowSDLogo|
-
-	EXPORT	|HideLogo|
-
-  00000			 AREA	 |.pdata|, PDATA
-|$T49072| DCD	|$LN7@HideLogo|
-	DCD	0x40000701
-; Function compile flags: /Ogspy
-
-  00000			 AREA	 |.text|, CODE, ARM
-
-  00000		 |HideLogo| PROC
-
-; 1103 : {
-
-  00000		 |$LN7@HideLogo|
-  00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M49069|
-
-; 1104 :     lcd_shutdown();
-
-  00004	eb000000	 bl          disable_lcd_backlight
-  00008	e3a00004	 mov         r0, #4
-  0000c	eb000000	 bl          LcdPdd_SetPowerLevel
-  00010	eb000000	 bl          disable_lcd_power
-
-; 1105 : }
-
-  00014	e49de004	 ldr         lr, [sp], #4
-  00018	e12fff1e	 bx          lr
-  0001c		 |$M49070|
-
-			 ENDP  ; |HideLogo|
 
 	END

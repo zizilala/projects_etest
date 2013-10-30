@@ -47,9 +47,9 @@ xldr_romimage_raw:
     copy /b $(_TGT)\xldrnand.1block + $(_TGT)\xldrnand.1block + $(_TGT)\xldrnand.1block + $(_TGT)\xldrnand.1block $(_TGT)\xldrnand.4blocks
     del $(_TGT)\xldrnand.1block >nul
 
-    copy /b $(_TGT)\xldrnand.4blocks + $(_TGT)\ebootnd.nb0 $(_TGT)\OMAP35xx-nand.raw
+    copy /b $(_TGT)\xldrnand.4blocks + $(_TGT)\ebootnd.nb0 $(_TGT)\Z2170P-nand.raw
 
-    copy /b $(_TGT)\OMAP35xx-nand.raw + $(_FILES)\Logo.bmp $(_TGT)\OMAP35xx-nand-logo.raw
+    copy /b $(_TGT)\Z2170P-nand.raw + $(_FILES)\LOGO_VER.bmp $(_TGT)\Z2170Pnd.raw
     del $(_TGT)\xldrnand.4blocks >nul
 
 !if "$(WINCEREL)"=="1"

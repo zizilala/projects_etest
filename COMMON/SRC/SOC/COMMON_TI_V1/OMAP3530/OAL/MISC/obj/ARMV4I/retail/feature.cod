@@ -122,7 +122,7 @@
 
   00000		 |OALIsProcessorFeaturePresent| PROC
 
-; 110  : {
+; 107  : {
 
   00000		 |$LN17@OALIsProce|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
@@ -130,26 +130,26 @@
   00008		 |$M46315|
   00008	e1a06000	 mov         r6, r0
 
-; 111  :     BOOL rc = FALSE;
+; 108  :     BOOL rc = FALSE;
 
   0000c	e3a04000	 mov         r4, #0
 
-; 112  :     IdCode_t idCode;
-; 113  :     ULONG idx;
-; 114  : 
-; 115  :     // Cortex-A8 doesn't support feature query by architecture ID anymore
-; 116  :     // Returning ARM features supported by OMAP35XX
-; 117  :     idCode.code = OALGetIdCode();
+; 109  :     IdCode_t idCode;
+; 110  :     ULONG idx;
+; 111  : 
+; 112  :     // Cortex-A8 doesn't support feature query by architecture ID anymore
+; 113  :     // Returning ARM features supported by OMAP35XX
+; 114  :     idCode.code = OALGetIdCode();
 
   00010	eb000000	 bl          OALGetIdCode
 
-; 118  :     idCode.architecture = ARCH_7;
-; 119  : 
-; 120  :     OALMSG(OAL_INFO&&OAL_VERBOSE, (
-; 121  :         L"OALIsProcessorFeaturePresent: (0x%08x) %c 0x%02x 0x%03x 0x%03x 0x%02x\r\n",
-; 122  :         idCode.code, idCode.implementor, idCode.variant, idCode.architecture, 
-; 123  :         idCode.partNumber, idCode.revision
-; 124  :         ));
+; 115  :     idCode.architecture = ARCH_7;
+; 116  : 
+; 117  :     OALMSG(OAL_INFO&&OAL_VERBOSE, ( 
+; 118  :         L"OALIsProcessorFeaturePresent: (0x%08x) %c 0x%02x 0x%03x 0x%03x 0x%02x\r\n",
+; 119  :         idCode.code, idCode.implementor, idCode.variant, idCode.architecture, 
+; 120  :         idCode.partNumber, idCode.revision
+; 121  :         ));
 
   00014	e59f30b8	 ldr         r3, [pc, #0xB8]
   00018	e3c02807	 bic         r2, r0, #7, 16
@@ -175,17 +175,17 @@
   00068	eb000000	 bl          NKDbgPrintfW
   0006c		 |$LN8@OALIsProce|
 
-; 125  :     
-; 126  :     // Is it possible that this feature can be supported?
-; 127  :     for (idx = 0; idx < dimof(s_featureToArchitectureMask); ++idx)
+; 122  :     
+; 123  :     // Is it possible that this feature can be supported?
+; 124  :     for (idx = 0; idx < dimof(s_featureToArchitectureMask); ++idx)
 
   0006c	e59f0058	 ldr         r0, [pc, #0x58]
   00070	e3a02000	 mov         r2, #0
   00074	e1a01000	 mov         r1, r0
   00078		 |$LL5@OALIsProce|
 
-; 128  :         {
-; 129  :         if (s_featureToArchitectureMask[idx].feature == feature) break;
+; 125  : 	{
+; 126  :         if (s_featureToArchitectureMask[idx].feature == feature) 
 
   00078	e5913000	 ldr         r3, [r1]
   0007c	e1530006	 cmp         r3, r6
@@ -196,17 +196,18 @@
   00090	3afffff8	 bcc         |$LL5@OALIsProce|
   00094		 |$LN13@OALIsProce|
 
-; 130  :         }
-; 131  : 
-; 132  :     if (idx < dimof(s_featureToArchitectureMask))
+; 127  :         	break;
+; 128  : 	}
+; 129  : 
+; 130  :     if (idx < dimof(s_featureToArchitectureMask))
 
   00094	e352000b	 cmp         r2, #0xB
   00098	2a000007	 bcs         |$LN11@OALIsProce|
 
-; 133  :         {
-; 134  :         // Yes, so now see if this CPU supports this feature.
-; 135  :         UINT32 mask = (1 << idCode.architecture);
-; 136  :         rc = (s_featureToArchitectureMask[idx].mask & mask) != 0;
+; 131  : 	{
+; 132  :         // Yes, so now see if this CPU supports this feature.
+; 133  :         UINT32 mask = (1 << idCode.architecture);
+; 134  :         rc = (s_featureToArchitectureMask[idx].mask & mask) != 0;
 
   0009c	e0803182	 add         r3, r0, r2, lsl #3
   000a0	e5932004	 ldr         r2, [r3, #4]
@@ -218,9 +219,10 @@
   000b8	03a04000	 moveq       r4, #0
   000bc		 |$LN11@OALIsProce|
 
-; 137  :         }
-; 138  :     return rc;
-; 139  : }
+; 135  : 	}
+; 136  : 	
+; 137  :     return rc;
+; 138  : }
 
   000bc	e1a00004	 mov         r0, r4
   000c0	e28dd00c	 add         sp, sp, #0xC

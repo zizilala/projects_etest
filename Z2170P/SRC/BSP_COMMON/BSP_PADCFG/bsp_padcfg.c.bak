@@ -67,7 +67,8 @@ PAD_INFO* BSPGetAllPadsInfo()
     return g_allowedPadCfg;
 }
 const PAD_INFO* BSPGetDevicePadInfo(OMAP_DEVICE device)
-{    
+{
+	RETAILMSG(1,(L"BSPGetDevicePadInfo : %d\r\n",device)); 
     switch (device)
     {
         case OMAP_DEVICE_DSS:return DSSPadConfig_37XX;        

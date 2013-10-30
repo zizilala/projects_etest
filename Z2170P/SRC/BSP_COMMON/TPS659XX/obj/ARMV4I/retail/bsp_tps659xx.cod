@@ -73,7 +73,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46143| DCD	|$LN5@TWLWriteBy|
+|$T46151| DCD	|$LN5@TWLWriteBy|
 	DCD	0x40000803
 ; Function compile flags: /Ogspy
 
@@ -87,7 +87,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5000	 stmdb       sp!, {r12, lr}
-  0000c		 |$M46140|
+  0000c		 |$M46148|
 
 ; 58   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 
@@ -99,14 +99,14 @@
 
   00018	e89d6000	 ldmia       sp, {sp, lr}
   0001c	e12fff1e	 bx          lr
-  00020		 |$M46141|
+  00020		 |$M46149|
 
 			 ENDP  ; |TWLWriteByteReg|
 
 ; File c:\wince600\platform\z2170p\src\bsp_common\tps659xx\bsp_tps659xx.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46153| DCD	|$LN7@DecideTwlV|
+|$T46161| DCD	|$LN7@DecideTwlV|
 	DCD	0x40000700
 ; Function compile flags: /Ogspy
 
@@ -117,7 +117,7 @@
 ; 40   : {
 
   00000		 |$LN7@DecideTwlV|
-  00000		 |$M46150|
+  00000		 |$M46158|
 
 ; 41   :     if(slot == 0)   // SLOT1
 
@@ -153,18 +153,26 @@
 ; 52   : }
 
   00018	e12fff1e	 bx          lr
-  0001c		 |$M46151|
+  0001c		 |$M46159|
 
 			 ENDP  ; |DecideTwlVMMC|
 
 	EXPORT	|InitTwlPower|
+	EXPORT	|??_C@_1BO@CFFFPGIM@?$AAI?$AAn?$AAi?$AAt?$AAT?$AAw?$AAl?$AAP?$AAo?$AAw?$AAe?$AAr?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|TWLClose|
 	IMPORT	|TWLOpen|
+	IMPORT	|NKDbgPrintfW|
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46369| DCD	|$LN111@InitTwlPow|
-	DCD	0x40016102
+|$T46377| DCD	|$LN111@InitTwlPow|
+	DCD	0x40016402
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BO@CFFFPGIM@?$AAI?$AAn?$AAi?$AAt?$AAT?$AAw?$AAl?$AAP?$AAo?$AAw?$AAe?$AAr?$AA?$AN?$AA?6?$AA?$AA@| DCB "I"
+	DCB	0x0, "n", 0x0, "i", 0x0, "t", 0x0, "T", 0x0, "w", 0x0, "l"
+	DCB	0x0, "P", 0x0, "o", 0x0, "w", 0x0, "e", 0x0, "r", 0x0, 0xd
+	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\z2170p\src\bsp_common\tps659xx\bsp_tps659xx.c
 
@@ -172,872 +180,833 @@
 
   00000		 |InitTwlPower| PROC
 
-; 70   : {
+; 68   : {
 
   00000		 |$LN111@InitTwlPow|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M46366|
+  00008		 |$M46374|
 
-; 71   :     void* hTwl;
-; 72   :     UINT16 val;
-; 73   : 
-; 74   :     // initialize T2 power level and grouping
-; 75   :     hTwl = TWLOpen();
+; 69   :     void* hTwl;
+; 70   :     UINT16 val;
+; 71   : 
+; 72   : 	OALLog(L"InitTwlPower\r\n");
 
-  00008	eb000000	 bl          TWLOpen
+  00008	e59f057c	 ldr         r0, [pc, #0x57C]
+  0000c	eb000000	 bl          NKDbgPrintfW
 
-; 76   : 
-; 77   :     // unsecure registers
-; 78   :     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0xCE);
+; 73   :     // initialize T2 power level and grouping
+; 74   :     hTwl = TWLOpen();
 
-  0000c	e3a05803	 mov         r5, #3, 16
-  00010	e3a0e0ce	 mov         lr, #0xCE
-  00014	e3851044	 orr         r1, r5, #0x44
-  00018	e3a03001	 mov         r3, #1
-  0001c	e28d2000	 add         r2, sp, #0
-  00020	e5cde000	 strb        lr, [sp]
-  00024	e1a04000	 mov         r4, r0
-  00028	eb000000	 bl          TWLWriteRegs
+  00010	eb000000	 bl          TWLOpen
 
-; 79   :     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0xEC);
+; 75   : 
+; 76   :     // unsecure registers
+; 77   :     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0xCE);
 
-  0002c	e3a030ec	 mov         r3, #0xEC
-  00030	e5cd3000	 strb        r3, [sp]
-  00034	e3a03001	 mov         r3, #1
-  00038	e28d2000	 add         r2, sp, #0
-  0003c	e3851044	 orr         r1, r5, #0x44
-  00040	e1a00004	 mov         r0, r4
-  00044	eb000000	 bl          TWLWriteRegs
-  00048	e3a06803	 mov         r6, #3, 16
+  00014	e3a05803	 mov         r5, #3, 16
+  00018	e3a0e0ce	 mov         lr, #0xCE
+  0001c	e3851044	 orr         r1, r5, #0x44
+  00020	e3a03001	 mov         r3, #1
+  00024	e28d2000	 add         r2, sp, #0
+  00028	e5cde000	 strb        lr, [sp]
+  0002c	e1a04000	 mov         r4, r0
+  00030	eb000000	 bl          TWLWriteRegs
 
-; 80   : 
-; 81   : /*
-; 82   :     SHOW_T2_REG(TWL_CFG_P1_TRANSITION);
-; 83   :     SHOW_T2_REG(TWL_CFG_P2_TRANSITION);
-; 84   :     SHOW_T2_REG(TWL_CFG_P3_TRANSITION);
-; 85   :     SHOW_T2_REG(TWL_CFG_P123_TRANSITION);
-; 86   :     SHOW_T2_REG(TWL_STS_BOOT);
-; 87   :     SHOW_T2_REG(TWL_CFG_BOOT);
-; 88   :     SHOW_T2_REG(TWL_SHUNDAN);
-; 89   :     SHOW_T2_REG(TWL_BOOT_BCI);
-; 90   :     SHOW_T2_REG(TWL_CFG_PWRANA1);
-; 91   :     SHOW_T2_REG(TWL_CFG_PWRANA2);
-; 92   :     SHOW_T2_REG(TWL_BGAP_TRIM);
-; 93   :     SHOW_T2_REG(TWL_BACKUP_MISC_STS);
-; 94   :     SHOW_T2_REG(TWL_BACKUP_MISC_CFG);
-; 95   :     SHOW_T2_REG(TWL_BACKUP_MISC_TST);
-; 96   :     SHOW_T2_REG(TWL_PROTECT_KEY);
-; 97   :     SHOW_T2_REG(TWL_STS_HW_CONDITIONS);
-; 98   :     SHOW_T2_REG(TWL_P1_SW_EVENTS);
-; 99   :     SHOW_T2_REG(TWL_P2_SW_EVENTS);
-; 100  :     SHOW_T2_REG(TWL_P3_SW_EVENTS);
-; 101  :     SHOW_T2_REG(TWL_STS_P123_STATE);
-; 102  :     SHOW_T2_REG(TWL_PB_CFG);
-; 103  :     SHOW_T2_REG(TWL_PB_WORD_MSB);
-; 104  :     SHOW_T2_REG(TWL_PB_WORD_LSB);
-; 105  :     SHOW_T2_REG(TWL_RESERVED_A);
-; 106  :     SHOW_T2_REG(TWL_RESERVED_B);
-; 107  :     SHOW_T2_REG(TWL_RESERVED_C);
-; 108  :     SHOW_T2_REG(TWL_RESERVED_D);
-; 109  :     SHOW_T2_REG(TWL_RESERVED_E);
-; 110  :     SHOW_T2_REG(TWL_SEQ_ADD_W2P);
-; 111  :     SHOW_T2_REG(TWL_SEQ_ADD_P2A);
-; 112  :     SHOW_T2_REG(TWL_SEQ_ADD_A2W);
-; 113  :     SHOW_T2_REG(TWL_SEQ_ADD_A2S);
-; 114  :     SHOW_T2_REG(TWL_SEQ_ADD_S2A12);
-; 115  :     SHOW_T2_REG(TWL_SEQ_ADD_S2A3);
-; 116  :     SHOW_T2_REG(TWL_SEQ_ADD_WARM);
-; 117  :     SHOW_T2_REG(TWL_MEMORY_ADDRESS);
-; 118  :     SHOW_T2_REG(TWL_MEMORY_DATA);
-; 119  : 
-; 120  :     // pm receiver (un)secure mode
-; 121  :     SHOW_T2_REG(TWL_SC_CONFIG);
-; 122  :     SHOW_T2_REG(TWL_SC_DETECT1);
-; 123  :     SHOW_T2_REG(TWL_SC_DETECT2);
-; 124  :     SHOW_T2_REG(TWL_WATCHDOG_CFG);
-; 125  :     SHOW_T2_REG(TWL_IT_CHECK_CFG);
-; 126  :     SHOW_T2_REG(TWL_VIBRATOR_CFG);
-; 127  :     SHOW_T2_REG(TWL_DCDC_GLOBAL_CFG);
-; 128  :     SHOW_T2_REG(TWL_VDD1_TRIM1);
-; 129  :     SHOW_T2_REG(TWL_VDD1_TRIM2);
-; 130  :     SHOW_T2_REG(TWL_VDD2_TRIM1);
-; 131  :     SHOW_T2_REG(TWL_VDD2_TRIM2);
-; 132  :     SHOW_T2_REG(TWL_VIO_TRIM1);
-; 133  :     SHOW_T2_REG(TWL_VIO_TRIM2);
-; 134  :     SHOW_T2_REG(TWL_MISC_CFG);
-; 135  :     SHOW_T2_REG(TWL_LS_TST_A);
-; 136  :     SHOW_T2_REG(TWL_LS_TST_B);
-; 137  :     SHOW_T2_REG(TWL_LS_TST_C);
-; 138  :     SHOW_T2_REG(TWL_LS_TST_D);
-; 139  :     SHOW_T2_REG(TWL_BB_CFG);
-; 140  :     SHOW_T2_REG(TWL_MISC_TST);
-; 141  :     SHOW_T2_REG(TWL_TRIM1);
-; 142  :     SHOW_T2_REG(TWL_TRIM2);
-; 143  :     SHOW_T2_REG(TWL_DCDC_TIMEOUT);
-; 144  :     SHOW_T2_REG(TWL_VAUX1_DEV_GRP);
-; 145  :     SHOW_T2_REG(TWL_VAUX1_TYPE);
-; 146  :     SHOW_T2_REG(TWL_VAUX1_REMAP);
-; 147  :     SHOW_T2_REG(TWL_VAUX1_DEDICATED);
-; 148  :     SHOW_T2_REG(TWL_VAUX2_DEV_GRP);
-; 149  :     SHOW_T2_REG(TWL_VAUX2_TYPE);
-; 150  :     SHOW_T2_REG(TWL_VAUX2_REMAP);
-; 151  :     SHOW_T2_REG(TWL_VAUX2_DEDICATED);
-; 152  :     SHOW_T2_REG(TWL_VAUX3_DEV_GRP);
-; 153  :     SHOW_T2_REG(TWL_VAUX3_TYPE);
-; 154  :     SHOW_T2_REG(TWL_VAUX3_REMAP);
-; 155  :     SHOW_T2_REG(TWL_VAUX3_DEDICATED);
-; 156  :     SHOW_T2_REG(TWL_VAUX4_DEV_GRP);
-; 157  :     SHOW_T2_REG(TWL_VAUX4_TYPE);
-; 158  :     SHOW_T2_REG(TWL_VAUX4_REMAP);
-; 159  :     SHOW_T2_REG(TWL_VAUX4_DEDICATED);
-; 160  :     SHOW_T2_REG(TWL_VMMC1_DEV_GRP);
-; 161  :     SHOW_T2_REG(TWL_VMMC1_TYPE);
-; 162  :     SHOW_T2_REG(TWL_VMMC1_REMAP);
-; 163  :     SHOW_T2_REG(TWL_VMMC1_DEDICATED);
-; 164  :     SHOW_T2_REG(TWL_VMMC2_DEV_GRP);
-; 165  :     SHOW_T2_REG(TWL_VMMC2_TYPE);
-; 166  :     SHOW_T2_REG(TWL_VMMC2_REMAP);
-; 167  :     SHOW_T2_REG(TWL_VMMC2_DEDICATED);
-; 168  :     SHOW_T2_REG(TWL_VPLL1_DEV_GRP);
-; 169  :     SHOW_T2_REG(TWL_VPLL1_TYPE);
-; 170  :     SHOW_T2_REG(TWL_VPLL1_REMAP);
-; 171  :     SHOW_T2_REG(TWL_VPLL1_DEDICATED);
-; 172  :     SHOW_T2_REG(TWL_VPLL2_DEV_GRP);
-; 173  :     SHOW_T2_REG(TWL_VPLL2_TYPE);
-; 174  :     SHOW_T2_REG(TWL_VPLL2_REMAP);
-; 175  :     SHOW_T2_REG(TWL_VPLL2_DEDICATED);
-; 176  :     SHOW_T2_REG(TWL_VSIM_DEV_GRP);
-; 177  :     SHOW_T2_REG(TWL_VSIM_TYPE);
-; 178  :     SHOW_T2_REG(TWL_VSIM_REMAP);
-; 179  :     SHOW_T2_REG(TWL_VSIM_DEDICATED);
-; 180  :     SHOW_T2_REG(TWL_VDAC_DEV_GRP);
-; 181  :     SHOW_T2_REG(TWL_VDAC_TYPE);
-; 182  :     SHOW_T2_REG(TWL_VDAC_REMAP);
-; 183  :     SHOW_T2_REG(TWL_VDAC_DEDICATED);
-; 184  :     SHOW_T2_REG(TWL_VINTANA1_DEV_GRP);
-; 185  :     SHOW_T2_REG(TWL_VINTANA1_TYPE);
-; 186  :     SHOW_T2_REG(TWL_VINTANA1_REMAP);
-; 187  :     SHOW_T2_REG(TWL_VINTANA1_DEDICATED);
-; 188  :     SHOW_T2_REG(TWL_VINTANA2_DEV_GRP);
-; 189  :     SHOW_T2_REG(TWL_VINTANA2_TYPE);
-; 190  :     SHOW_T2_REG(TWL_VINTANA2_REMAP);
-; 191  :     SHOW_T2_REG(TWL_VINTANA2_DEDICATED);
-; 192  :     SHOW_T2_REG(TWL_VINTDIG_DEV_GRP);
-; 193  :     SHOW_T2_REG(TWL_VINTDIG_TYPE);
-; 194  :     SHOW_T2_REG(TWL_VINTDIG_REMAP);
-; 195  :     SHOW_T2_REG(TWL_VINTDIG_DEDICATED);
-; 196  :     SHOW_T2_REG(TWL_VIO_DEV_GRP);
-; 197  :     SHOW_T2_REG(TWL_VIO_TYPE);
-; 198  :     SHOW_T2_REG(TWL_VIO_REMAP);
-; 199  :     SHOW_T2_REG(TWL_VIO_CFG);
-; 200  :     SHOW_T2_REG(TWL_VIO_MISC_CFG);
-; 201  :     SHOW_T2_REG(TWL_VIO_TEST1);
-; 202  :     SHOW_T2_REG(TWL_VIO_TEST2);
-; 203  :     SHOW_T2_REG(TWL_VIO_OSC);
-; 204  :     SHOW_T2_REG(TWL_VIO_RESERVED);
-; 205  :     SHOW_T2_REG(TWL_VIO_VSEL);
-; 206  :     SHOW_T2_REG(TWL_VDD1_DEV_GRP);
-; 207  :     SHOW_T2_REG(TWL_VDD1_TYPE);
-; 208  :     SHOW_T2_REG(TWL_VDD1_REMAP);
-; 209  :     SHOW_T2_REG(TWL_VDD1_CFG);
-; 210  :     SHOW_T2_REG(TWL_VDD1_MISC_CFG);
-; 211  :     SHOW_T2_REG(TWL_VDD1_TEST1);
-; 212  :     SHOW_T2_REG(TWL_VDD1_TEST2);
-; 213  :     SHOW_T2_REG(TWL_VDD1_OSC);
-; 214  :     SHOW_T2_REG(TWL_VDD1_RESERVED);
-; 215  :     SHOW_T2_REG(TWL_VDD1_VSEL);
-; 216  :     SHOW_T2_REG(TWL_VDD1_VMODE_CFG);
-; 217  :     SHOW_T2_REG(TWL_VDD1_VFLOOR);
-; 218  :     SHOW_T2_REG(TWL_VDD1_VROOF);
-; 219  :     SHOW_T2_REG(TWL_VDD1_STEP);
-; 220  :     SHOW_T2_REG(TWL_VDD2_DEV_GRP);
-; 221  :     SHOW_T2_REG(TWL_VDD2_TYPE);
-; 222  :     SHOW_T2_REG(TWL_VDD2_REMAP);
-; 223  :     SHOW_T2_REG(TWL_VDD2_CFG);
-; 224  :     SHOW_T2_REG(TWL_VDD2_MISC_CFG);
-; 225  :     SHOW_T2_REG(TWL_VDD2_TEST1);
-; 226  :     SHOW_T2_REG(TWL_VDD2_TEST2);
-; 227  :     SHOW_T2_REG(TWL_VDD2_OSC);
-; 228  :     SHOW_T2_REG(TWL_VDD2_RESERVED);
-; 229  :     SHOW_T2_REG(TWL_VDD2_VSEL);
-; 230  :     SHOW_T2_REG(TWL_VDD2_VMODE_CFG);
-; 231  :     SHOW_T2_REG(TWL_VDD2_VFLOOR);
-; 232  :     SHOW_T2_REG(TWL_VDD2_VROOF);
-; 233  :     SHOW_T2_REG(TWL_VDD2_STEP);
-; 234  :     SHOW_T2_REG(TWL_VUSB1V5_DEV_GRP);
-; 235  :     SHOW_T2_REG(TWL_VUSB1V5_TYPE);
-; 236  :     SHOW_T2_REG(TWL_VUSB1V5_REMAP);
-; 237  :     SHOW_T2_REG(TWL_VUSB1V8_DEV_GRP);
-; 238  :     SHOW_T2_REG(TWL_VUSB1V8_TYPE);
-; 239  :     SHOW_T2_REG(TWL_VUSB1V8_REMAP);
-; 240  :     SHOW_T2_REG(TWL_VUSB3V1_DEV_GRP);
-; 241  :     SHOW_T2_REG(TWL_VUSB3V1_TYPE);
-; 242  :     SHOW_T2_REG(TWL_VUSB3V1_REMAP);
-; 243  :     SHOW_T2_REG(TWL_VUSBCP_DEV_GRP);
-; 244  :     SHOW_T2_REG(TWL_VUSBCP_TYPE);
-; 245  :     SHOW_T2_REG(TWL_VUSBCP_REMAP);
-; 246  :     SHOW_T2_REG(TWL_VUSB_DEDICATED1);
-; 247  :     SHOW_T2_REG(TWL_VUSB_DEDICATED2);
-; 248  :     SHOW_T2_REG(TWL_REGEN_DEV_GRP);
-; 249  :     SHOW_T2_REG(TWL_REGEN_TYPE);
-; 250  :     SHOW_T2_REG(TWL_REGEN_REMAP);
-; 251  :     SHOW_T2_REG(TWL_NRESPWRON_DEV_GRP);
-; 252  :     SHOW_T2_REG(TWL_NRESPWRON_TYPE);
-; 253  :     SHOW_T2_REG(TWL_NRESPWRON_REMAP);
-; 254  :     SHOW_T2_REG(TWL_CLKEN_DEV_GRP);
-; 255  :     SHOW_T2_REG(TWL_CLKEN_TYPE);
-; 256  :     SHOW_T2_REG(TWL_CLKEN_REMAP);
-; 257  :     SHOW_T2_REG(TWL_SYSEN_DEV_GRP);
-; 258  :     SHOW_T2_REG(TWL_SYSEN_TYPE);
-; 259  :     SHOW_T2_REG(TWL_SYSEN_REMAP);
-; 260  :     SHOW_T2_REG(TWL_HFCLKOUT_DEV_GRP);
-; 261  :     SHOW_T2_REG(TWL_HFCLKOUT_TYPE);
-; 262  :     SHOW_T2_REG(TWL_HFCLKOUT_REMAP);
-; 263  :     SHOW_T2_REG(TWL_32KCLKOUT_DEV_GRP);
-; 264  :     SHOW_T2_REG(TWL_32KCLKOUT_TYPE);
-; 265  :     SHOW_T2_REG(TWL_32KCLKOUT_REMAP);
-; 266  :     SHOW_T2_REG(TWL_TRITON_RESET_DEV_GRP);
-; 267  :     SHOW_T2_REG(TWL_TRITON_RESET_TYPE);
-; 268  :     SHOW_T2_REG(TWL_TRITON_RESET_REMAP);
-; 269  :     SHOW_T2_REG(TWL_MAINREF_DEV_GRP);
-; 270  :     SHOW_T2_REG(TWL_MAINREF_TYPE);
-; 271  :     SHOW_T2_REG(TWL_MAINREF_REMAP);
-; 272  : */
-; 273  : 
-; 274  :     // enable MADC and USB CP clock
-; 275  :     TWLWriteByteReg(hTwl, TWL_CFG_BOOT, 0x0A); // HFCLK_FREQ = 26MHz
+; 78   :     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0xEC);
 
-  0004c	e3a0e00a	 mov         lr, #0xA
-  00050	e386103b	 orr         r1, r6, #0x3B
-  00054	e3a03001	 mov         r3, #1
-  00058	e28d2000	 add         r2, sp, #0
-  0005c	e1a00004	 mov         r0, r4
-  00060	e5cde000	 strb        lr, [sp]
-  00064	eb000000	 bl          TWLWriteRegs
+  00034	e3a030ec	 mov         r3, #0xEC
+  00038	e5cd3000	 strb        r3, [sp]
+  0003c	e3a03001	 mov         r3, #1
+  00040	e28d2000	 add         r2, sp, #0
+  00044	e3851044	 orr         r1, r5, #0x44
+  00048	e1a00004	 mov         r0, r4
+  0004c	eb000000	 bl          TWLWriteRegs
+  00050	e3a06803	 mov         r6, #3, 16
 
-; 276  :     
-; 277  :     // secure registers
-; 278  :     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0x00);
+; 79   : 
+; 80   : /*
+; 81   :     SHOW_T2_REG(TWL_CFG_P1_TRANSITION);
+; 82   :     SHOW_T2_REG(TWL_CFG_P2_TRANSITION);
+; 83   :     SHOW_T2_REG(TWL_CFG_P3_TRANSITION);
+; 84   :     SHOW_T2_REG(TWL_CFG_P123_TRANSITION);
+; 85   :     SHOW_T2_REG(TWL_STS_BOOT);
+; 86   :     SHOW_T2_REG(TWL_CFG_BOOT);
+; 87   :     SHOW_T2_REG(TWL_SHUNDAN);
+; 88   :     SHOW_T2_REG(TWL_BOOT_BCI);
+; 89   :     SHOW_T2_REG(TWL_CFG_PWRANA1);
+; 90   :     SHOW_T2_REG(TWL_CFG_PWRANA2);
+; 91   :     SHOW_T2_REG(TWL_BGAP_TRIM);
+; 92   :     SHOW_T2_REG(TWL_BACKUP_MISC_STS);
+; 93   :     SHOW_T2_REG(TWL_BACKUP_MISC_CFG);
+; 94   :     SHOW_T2_REG(TWL_BACKUP_MISC_TST);
+; 95   :     SHOW_T2_REG(TWL_PROTECT_KEY);
+; 96   :     SHOW_T2_REG(TWL_STS_HW_CONDITIONS);
+; 97   :     SHOW_T2_REG(TWL_P1_SW_EVENTS);
+; 98   :     SHOW_T2_REG(TWL_P2_SW_EVENTS);
+; 99   :     SHOW_T2_REG(TWL_P3_SW_EVENTS);
+; 100  :     SHOW_T2_REG(TWL_STS_P123_STATE);
+; 101  :     SHOW_T2_REG(TWL_PB_CFG);
+; 102  :     SHOW_T2_REG(TWL_PB_WORD_MSB);
+; 103  :     SHOW_T2_REG(TWL_PB_WORD_LSB);
+; 104  :     SHOW_T2_REG(TWL_RESERVED_A);
+; 105  :     SHOW_T2_REG(TWL_RESERVED_B);
+; 106  :     SHOW_T2_REG(TWL_RESERVED_C);
+; 107  :     SHOW_T2_REG(TWL_RESERVED_D);
+; 108  :     SHOW_T2_REG(TWL_RESERVED_E);
+; 109  :     SHOW_T2_REG(TWL_SEQ_ADD_W2P);
+; 110  :     SHOW_T2_REG(TWL_SEQ_ADD_P2A);
+; 111  :     SHOW_T2_REG(TWL_SEQ_ADD_A2W);
+; 112  :     SHOW_T2_REG(TWL_SEQ_ADD_A2S);
+; 113  :     SHOW_T2_REG(TWL_SEQ_ADD_S2A12);
+; 114  :     SHOW_T2_REG(TWL_SEQ_ADD_S2A3);
+; 115  :     SHOW_T2_REG(TWL_SEQ_ADD_WARM);
+; 116  :     SHOW_T2_REG(TWL_MEMORY_ADDRESS);
+; 117  :     SHOW_T2_REG(TWL_MEMORY_DATA);
+; 118  : 
+; 119  :     // pm receiver (un)secure mode
+; 120  :     SHOW_T2_REG(TWL_SC_CONFIG);
+; 121  :     SHOW_T2_REG(TWL_SC_DETECT1);
+; 122  :     SHOW_T2_REG(TWL_SC_DETECT2);
+; 123  :     SHOW_T2_REG(TWL_WATCHDOG_CFG);
+; 124  :     SHOW_T2_REG(TWL_IT_CHECK_CFG);
+; 125  :     SHOW_T2_REG(TWL_VIBRATOR_CFG);
+; 126  :     SHOW_T2_REG(TWL_DCDC_GLOBAL_CFG);
+; 127  :     SHOW_T2_REG(TWL_VDD1_TRIM1);
+; 128  :     SHOW_T2_REG(TWL_VDD1_TRIM2);
+; 129  :     SHOW_T2_REG(TWL_VDD2_TRIM1);
+; 130  :     SHOW_T2_REG(TWL_VDD2_TRIM2);
+; 131  :     SHOW_T2_REG(TWL_VIO_TRIM1);
+; 132  :     SHOW_T2_REG(TWL_VIO_TRIM2);
+; 133  :     SHOW_T2_REG(TWL_MISC_CFG);
+; 134  :     SHOW_T2_REG(TWL_LS_TST_A);
+; 135  :     SHOW_T2_REG(TWL_LS_TST_B);
+; 136  :     SHOW_T2_REG(TWL_LS_TST_C);
+; 137  :     SHOW_T2_REG(TWL_LS_TST_D);
+; 138  :     SHOW_T2_REG(TWL_BB_CFG);
+; 139  :     SHOW_T2_REG(TWL_MISC_TST);
+; 140  :     SHOW_T2_REG(TWL_TRIM1);
+; 141  :     SHOW_T2_REG(TWL_TRIM2);
+; 142  :     SHOW_T2_REG(TWL_DCDC_TIMEOUT);
+; 143  :     SHOW_T2_REG(TWL_VAUX1_DEV_GRP);
+; 144  :     SHOW_T2_REG(TWL_VAUX1_TYPE);
+; 145  :     SHOW_T2_REG(TWL_VAUX1_REMAP);
+; 146  :     SHOW_T2_REG(TWL_VAUX1_DEDICATED);
+; 147  :     SHOW_T2_REG(TWL_VAUX2_DEV_GRP);
+; 148  :     SHOW_T2_REG(TWL_VAUX2_TYPE);
+; 149  :     SHOW_T2_REG(TWL_VAUX2_REMAP);
+; 150  :     SHOW_T2_REG(TWL_VAUX2_DEDICATED);
+; 151  :     SHOW_T2_REG(TWL_VAUX3_DEV_GRP);
+; 152  :     SHOW_T2_REG(TWL_VAUX3_TYPE);
+; 153  :     SHOW_T2_REG(TWL_VAUX3_REMAP);
+; 154  :     SHOW_T2_REG(TWL_VAUX3_DEDICATED);
+; 155  :     SHOW_T2_REG(TWL_VAUX4_DEV_GRP);
+; 156  :     SHOW_T2_REG(TWL_VAUX4_TYPE);
+; 157  :     SHOW_T2_REG(TWL_VAUX4_REMAP);
+; 158  :     SHOW_T2_REG(TWL_VAUX4_DEDICATED);
+; 159  :     SHOW_T2_REG(TWL_VMMC1_DEV_GRP);
+; 160  :     SHOW_T2_REG(TWL_VMMC1_TYPE);
+; 161  :     SHOW_T2_REG(TWL_VMMC1_REMAP);
+; 162  :     SHOW_T2_REG(TWL_VMMC1_DEDICATED);
+; 163  :     SHOW_T2_REG(TWL_VMMC2_DEV_GRP);
+; 164  :     SHOW_T2_REG(TWL_VMMC2_TYPE);
+; 165  :     SHOW_T2_REG(TWL_VMMC2_REMAP);
+; 166  :     SHOW_T2_REG(TWL_VMMC2_DEDICATED);
+; 167  :     SHOW_T2_REG(TWL_VPLL1_DEV_GRP);
+; 168  :     SHOW_T2_REG(TWL_VPLL1_TYPE);
+; 169  :     SHOW_T2_REG(TWL_VPLL1_REMAP);
+; 170  :     SHOW_T2_REG(TWL_VPLL1_DEDICATED);
+; 171  :     SHOW_T2_REG(TWL_VPLL2_DEV_GRP);
+; 172  :     SHOW_T2_REG(TWL_VPLL2_TYPE);
+; 173  :     SHOW_T2_REG(TWL_VPLL2_REMAP);
+; 174  :     SHOW_T2_REG(TWL_VPLL2_DEDICATED);
+; 175  :     SHOW_T2_REG(TWL_VSIM_DEV_GRP);
+; 176  :     SHOW_T2_REG(TWL_VSIM_TYPE);
+; 177  :     SHOW_T2_REG(TWL_VSIM_REMAP);
+; 178  :     SHOW_T2_REG(TWL_VSIM_DEDICATED);
+; 179  :     SHOW_T2_REG(TWL_VDAC_DEV_GRP);
+; 180  :     SHOW_T2_REG(TWL_VDAC_TYPE);
+; 181  :     SHOW_T2_REG(TWL_VDAC_REMAP);
+; 182  :     SHOW_T2_REG(TWL_VDAC_DEDICATED);
+; 183  :     SHOW_T2_REG(TWL_VINTANA1_DEV_GRP);
+; 184  :     SHOW_T2_REG(TWL_VINTANA1_TYPE);
+; 185  :     SHOW_T2_REG(TWL_VINTANA1_REMAP);
+; 186  :     SHOW_T2_REG(TWL_VINTANA1_DEDICATED);
+; 187  :     SHOW_T2_REG(TWL_VINTANA2_DEV_GRP);
+; 188  :     SHOW_T2_REG(TWL_VINTANA2_TYPE);
+; 189  :     SHOW_T2_REG(TWL_VINTANA2_REMAP);
+; 190  :     SHOW_T2_REG(TWL_VINTANA2_DEDICATED);
+; 191  :     SHOW_T2_REG(TWL_VINTDIG_DEV_GRP);
+; 192  :     SHOW_T2_REG(TWL_VINTDIG_TYPE);
+; 193  :     SHOW_T2_REG(TWL_VINTDIG_REMAP);
+; 194  :     SHOW_T2_REG(TWL_VINTDIG_DEDICATED);
+; 195  :     SHOW_T2_REG(TWL_VIO_DEV_GRP);
+; 196  :     SHOW_T2_REG(TWL_VIO_TYPE);
+; 197  :     SHOW_T2_REG(TWL_VIO_REMAP);
+; 198  :     SHOW_T2_REG(TWL_VIO_CFG);
+; 199  :     SHOW_T2_REG(TWL_VIO_MISC_CFG);
+; 200  :     SHOW_T2_REG(TWL_VIO_TEST1);
+; 201  :     SHOW_T2_REG(TWL_VIO_TEST2);
+; 202  :     SHOW_T2_REG(TWL_VIO_OSC);
+; 203  :     SHOW_T2_REG(TWL_VIO_RESERVED);
+; 204  :     SHOW_T2_REG(TWL_VIO_VSEL);
+; 205  :     SHOW_T2_REG(TWL_VDD1_DEV_GRP);
+; 206  :     SHOW_T2_REG(TWL_VDD1_TYPE);
+; 207  :     SHOW_T2_REG(TWL_VDD1_REMAP);
+; 208  :     SHOW_T2_REG(TWL_VDD1_CFG);
+; 209  :     SHOW_T2_REG(TWL_VDD1_MISC_CFG);
+; 210  :     SHOW_T2_REG(TWL_VDD1_TEST1);
+; 211  :     SHOW_T2_REG(TWL_VDD1_TEST2);
+; 212  :     SHOW_T2_REG(TWL_VDD1_OSC);
+; 213  :     SHOW_T2_REG(TWL_VDD1_RESERVED);
+; 214  :     SHOW_T2_REG(TWL_VDD1_VSEL);
+; 215  :     SHOW_T2_REG(TWL_VDD1_VMODE_CFG);
+; 216  :     SHOW_T2_REG(TWL_VDD1_VFLOOR);
+; 217  :     SHOW_T2_REG(TWL_VDD1_VROOF);
+; 218  :     SHOW_T2_REG(TWL_VDD1_STEP);
+; 219  :     SHOW_T2_REG(TWL_VDD2_DEV_GRP);
+; 220  :     SHOW_T2_REG(TWL_VDD2_TYPE);
+; 221  :     SHOW_T2_REG(TWL_VDD2_REMAP);
+; 222  :     SHOW_T2_REG(TWL_VDD2_CFG);
+; 223  :     SHOW_T2_REG(TWL_VDD2_MISC_CFG);
+; 224  :     SHOW_T2_REG(TWL_VDD2_TEST1);
+; 225  :     SHOW_T2_REG(TWL_VDD2_TEST2);
+; 226  :     SHOW_T2_REG(TWL_VDD2_OSC);
+; 227  :     SHOW_T2_REG(TWL_VDD2_RESERVED);
+; 228  :     SHOW_T2_REG(TWL_VDD2_VSEL);
+; 229  :     SHOW_T2_REG(TWL_VDD2_VMODE_CFG);
+; 230  :     SHOW_T2_REG(TWL_VDD2_VFLOOR);
+; 231  :     SHOW_T2_REG(TWL_VDD2_VROOF);
+; 232  :     SHOW_T2_REG(TWL_VDD2_STEP);
+; 233  :     SHOW_T2_REG(TWL_VUSB1V5_DEV_GRP);
+; 234  :     SHOW_T2_REG(TWL_VUSB1V5_TYPE);
+; 235  :     SHOW_T2_REG(TWL_VUSB1V5_REMAP);
+; 236  :     SHOW_T2_REG(TWL_VUSB1V8_DEV_GRP);
+; 237  :     SHOW_T2_REG(TWL_VUSB1V8_TYPE);
+; 238  :     SHOW_T2_REG(TWL_VUSB1V8_REMAP);
+; 239  :     SHOW_T2_REG(TWL_VUSB3V1_DEV_GRP);
+; 240  :     SHOW_T2_REG(TWL_VUSB3V1_TYPE);
+; 241  :     SHOW_T2_REG(TWL_VUSB3V1_REMAP);
+; 242  :     SHOW_T2_REG(TWL_VUSBCP_DEV_GRP);
+; 243  :     SHOW_T2_REG(TWL_VUSBCP_TYPE);
+; 244  :     SHOW_T2_REG(TWL_VUSBCP_REMAP);
+; 245  :     SHOW_T2_REG(TWL_VUSB_DEDICATED1);
+; 246  :     SHOW_T2_REG(TWL_VUSB_DEDICATED2);
+; 247  :     SHOW_T2_REG(TWL_REGEN_DEV_GRP);
+; 248  :     SHOW_T2_REG(TWL_REGEN_TYPE);
+; 249  :     SHOW_T2_REG(TWL_REGEN_REMAP);
+; 250  :     SHOW_T2_REG(TWL_NRESPWRON_DEV_GRP);
+; 251  :     SHOW_T2_REG(TWL_NRESPWRON_TYPE);
+; 252  :     SHOW_T2_REG(TWL_NRESPWRON_REMAP);
+; 253  :     SHOW_T2_REG(TWL_CLKEN_DEV_GRP);
+; 254  :     SHOW_T2_REG(TWL_CLKEN_TYPE);
+; 255  :     SHOW_T2_REG(TWL_CLKEN_REMAP);
+; 256  :     SHOW_T2_REG(TWL_SYSEN_DEV_GRP);
+; 257  :     SHOW_T2_REG(TWL_SYSEN_TYPE);
+; 258  :     SHOW_T2_REG(TWL_SYSEN_REMAP);
+; 259  :     SHOW_T2_REG(TWL_HFCLKOUT_DEV_GRP);
+; 260  :     SHOW_T2_REG(TWL_HFCLKOUT_TYPE);
+; 261  :     SHOW_T2_REG(TWL_HFCLKOUT_REMAP);
+; 262  :     SHOW_T2_REG(TWL_32KCLKOUT_DEV_GRP);
+; 263  :     SHOW_T2_REG(TWL_32KCLKOUT_TYPE);
+; 264  :     SHOW_T2_REG(TWL_32KCLKOUT_REMAP);
+; 265  :     SHOW_T2_REG(TWL_TRITON_RESET_DEV_GRP);
+; 266  :     SHOW_T2_REG(TWL_TRITON_RESET_TYPE);
+; 267  :     SHOW_T2_REG(TWL_TRITON_RESET_REMAP);
+; 268  :     SHOW_T2_REG(TWL_MAINREF_DEV_GRP);
+; 269  :     SHOW_T2_REG(TWL_MAINREF_TYPE);
+; 270  :     SHOW_T2_REG(TWL_MAINREF_REMAP);
+; 271  : */
+; 272  : 
+; 273  :     // enable MADC and USB CP clock
+; 274  :     TWLWriteByteReg(hTwl, TWL_CFG_BOOT, 0x0A); // HFCLK_FREQ = 26MHz
 
-  00068	e3a03000	 mov         r3, #0
-  0006c	e5cd3000	 strb        r3, [sp]
-  00070	e3a03001	 mov         r3, #1
-  00074	e28d2000	 add         r2, sp, #0
-  00078	e3851044	 orr         r1, r5, #0x44
-  0007c	e1a00004	 mov         r0, r4
-  00080	eb000000	 bl          TWLWriteRegs
+  00054	e3a0e00a	 mov         lr, #0xA
+  00058	e386103b	 orr         r1, r6, #0x3B
+  0005c	e3a03001	 mov         r3, #1
+  00060	e28d2000	 add         r2, sp, #0
+  00064	e1a00004	 mov         r0, r4
+  00068	e5cde000	 strb        lr, [sp]
+  0006c	eb000000	 bl          TWLWriteRegs
 
-; 279  :     
-; 280  :     // vdd1 (mpu & dsp) - group 1
-; 281  :     TWLWriteByteReg(hTwl, TWL_VDD1_DEV_GRP, TWL_DEV_GROUP_P1);    
+; 275  :     
+; 276  :     // secure registers
+; 277  :     TWLWriteByteReg(hTwl, TWL_PROTECT_KEY, 0x00);
 
-  00084	e3a03020	 mov         r3, #0x20
-  00088	e5cd3000	 strb        r3, [sp]
-  0008c	e3a03001	 mov         r3, #1
-  00090	e28d2000	 add         r2, sp, #0
-  00094	e38610b0	 orr         r1, r6, #0xB0
-  00098	e1a00004	 mov         r0, r4
-  0009c	eb000000	 bl          TWLWriteRegs
+  00070	e3a03000	 mov         r3, #0
+  00074	e5cd3000	 strb        r3, [sp]
+  00078	e3a03001	 mov         r3, #1
+  0007c	e28d2000	 add         r2, sp, #0
+  00080	e3851044	 orr         r1, r5, #0x44
+  00084	e1a00004	 mov         r0, r4
+  00088	eb000000	 bl          TWLWriteRegs
 
-; 282  :     TWLWriteByteReg(hTwl, TWL_VDD1_STEP, BSP_TWL_VDD1_STEP);
+; 278  :     
+; 279  :     // vdd1 (mpu & dsp) - group 1
+; 280  :     TWLWriteByteReg(hTwl, TWL_VDD1_DEV_GRP, TWL_DEV_GROUP_P1);    
 
-  000a0	e3a03000	 mov         r3, #0
-  000a4	e5cd3000	 strb        r3, [sp]
-  000a8	e3a03001	 mov         r3, #1
-  000ac	e28d2000	 add         r2, sp, #0
-  000b0	e38610bd	 orr         r1, r6, #0xBD
-  000b4	e1a00004	 mov         r0, r4
-  000b8	eb000000	 bl          TWLWriteRegs
+  0008c	e3a03020	 mov         r3, #0x20
+  00090	e5cd3000	 strb        r3, [sp]
+  00094	e3a03001	 mov         r3, #1
+  00098	e28d2000	 add         r2, sp, #0
+  0009c	e38610b0	 orr         r1, r6, #0xB0
+  000a0	e1a00004	 mov         r0, r4
+  000a4	eb000000	 bl          TWLWriteRegs
 
-; 283  :     TWLWriteByteReg(hTwl, TWL_VDD1_REMAP, 0);
+; 281  :     TWLWriteByteReg(hTwl, TWL_VDD1_STEP, BSP_TWL_VDD1_STEP);
 
-  000bc	e3a03000	 mov         r3, #0
-  000c0	e5cd3000	 strb        r3, [sp]
-  000c4	e3a03001	 mov         r3, #1
-  000c8	e28d2000	 add         r2, sp, #0
-  000cc	e38610b2	 orr         r1, r6, #0xB2
-  000d0	e1a00004	 mov         r0, r4
-  000d4	eb000000	 bl          TWLWriteRegs
+  000a8	e3a03000	 mov         r3, #0
+  000ac	e5cd3000	 strb        r3, [sp]
+  000b0	e3a03001	 mov         r3, #1
+  000b4	e28d2000	 add         r2, sp, #0
+  000b8	e38610bd	 orr         r1, r6, #0xBD
+  000bc	e1a00004	 mov         r0, r4
+  000c0	eb000000	 bl          TWLWriteRegs
 
-; 284  :         
-; 285  :     TWLWriteByteReg(hTwl, TWL_VDD2_DEV_GRP, TWL_DEV_GROUP_P1);
+; 282  :     TWLWriteByteReg(hTwl, TWL_VDD1_REMAP, 0);
 
-  000d8	e3a03020	 mov         r3, #0x20
-  000dc	e5cd3000	 strb        r3, [sp]
-  000e0	e3a03001	 mov         r3, #1
-  000e4	e28d2000	 add         r2, sp, #0
-  000e8	e38610be	 orr         r1, r6, #0xBE
-  000ec	e1a00004	 mov         r0, r4
-  000f0	eb000000	 bl          TWLWriteRegs
+  000c4	e3a03000	 mov         r3, #0
+  000c8	e5cd3000	 strb        r3, [sp]
+  000cc	e3a03001	 mov         r3, #1
+  000d0	e28d2000	 add         r2, sp, #0
+  000d4	e38610b2	 orr         r1, r6, #0xB2
+  000d8	e1a00004	 mov         r0, r4
+  000dc	eb000000	 bl          TWLWriteRegs
 
-; 286  :     TWLWriteByteReg(hTwl, TWL_VDD2_STEP, BSP_TWL_VDD2_STEP);
+; 283  :         
+; 284  :     TWLWriteByteReg(hTwl, TWL_VDD2_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  000f4	e3a03000	 mov         r3, #0
-  000f8	e5cd3000	 strb        r3, [sp]
-  000fc	e3a03001	 mov         r3, #1
-  00100	e28d2000	 add         r2, sp, #0
-  00104	e38610cb	 orr         r1, r6, #0xCB
-  00108	e1a00004	 mov         r0, r4
-  0010c	eb000000	 bl          TWLWriteRegs
+  000e0	e3a03020	 mov         r3, #0x20
+  000e4	e5cd3000	 strb        r3, [sp]
+  000e8	e3a03001	 mov         r3, #1
+  000ec	e28d2000	 add         r2, sp, #0
+  000f0	e38610be	 orr         r1, r6, #0xBE
+  000f4	e1a00004	 mov         r0, r4
+  000f8	eb000000	 bl          TWLWriteRegs
 
-; 287  :     TWLWriteByteReg(hTwl, TWL_VDD2_REMAP, 0);
+; 285  :     TWLWriteByteReg(hTwl, TWL_VDD2_STEP, BSP_TWL_VDD2_STEP);
 
-  00110	e3a03000	 mov         r3, #0
-  00114	e5cd3000	 strb        r3, [sp]
-  00118	e3a03001	 mov         r3, #1
-  0011c	e28d2000	 add         r2, sp, #0
-  00120	e38610c0	 orr         r1, r6, #0xC0
-  00124	e1a00004	 mov         r0, r4
-  00128	eb000000	 bl          TWLWriteRegs
+  000fc	e3a03000	 mov         r3, #0
+  00100	e5cd3000	 strb        r3, [sp]
+  00104	e3a03001	 mov         r3, #1
+  00108	e28d2000	 add         r2, sp, #0
+  0010c	e38610cb	 orr         r1, r6, #0xCB
+  00110	e1a00004	 mov         r0, r4
+  00114	eb000000	 bl          TWLWriteRegs
 
-; 288  : 
-; 289  :     // EVM2: EHCI (1.8v) - group 1
-; 290  :     TWLWriteByteReg(hTwl, TWL_VAUX2_DEDICATED, TWL_VAUX2_1P80);
+; 286  :     TWLWriteByteReg(hTwl, TWL_VDD2_REMAP, 0);
 
-  0012c	e3a03005	 mov         r3, #5
-  00130	e5cd3000	 strb        r3, [sp]
-  00134	e3a03001	 mov         r3, #1
-  00138	e28d2000	 add         r2, sp, #0
-  0013c	e3861079	 orr         r1, r6, #0x79
-  00140	e1a00004	 mov         r0, r4
-  00144	eb000000	 bl          TWLWriteRegs
+  00118	e3a03000	 mov         r3, #0
+  0011c	e5cd3000	 strb        r3, [sp]
+  00120	e3a03001	 mov         r3, #1
+  00124	e28d2000	 add         r2, sp, #0
+  00128	e38610c0	 orr         r1, r6, #0xC0
+  0012c	e1a00004	 mov         r0, r4
+  00130	eb000000	 bl          TWLWriteRegs
 
-; 291  :     TWLWriteByteReg(hTwl, TWL_VAUX2_DEV_GRP, TWL_DEV_GROUP_P1);
+; 287  : 
+; 288  :     // EVM2: EHCI (1.8v) - group 1
+; 289  :     TWLWriteByteReg(hTwl, TWL_VAUX2_DEDICATED, TWL_VAUX2_1P80);
 
-  00148	e3a03020	 mov         r3, #0x20
-  0014c	e5cd3000	 strb        r3, [sp]
-  00150	e3a03001	 mov         r3, #1
-  00154	e28d2000	 add         r2, sp, #0
-  00158	e3861076	 orr         r1, r6, #0x76
-  0015c	e1a00004	 mov         r0, r4
-  00160	eb000000	 bl          TWLWriteRegs
+  00134	e3a03005	 mov         r3, #5
+  00138	e5cd3000	 strb        r3, [sp]
+  0013c	e3a03001	 mov         r3, #1
+  00140	e28d2000	 add         r2, sp, #0
+  00144	e3861079	 orr         r1, r6, #0x79
+  00148	e1a00004	 mov         r0, r4
+  0014c	eb000000	 bl          TWLWriteRegs
 
-; 292  : 
-; 293  :     // Camera CSI2 requires 1.8V from AUX4
-; 294  :     TWLWriteByteReg(hTwl, TWL_VAUX4_DEDICATED, 0x05);
+; 290  :     TWLWriteByteReg(hTwl, TWL_VAUX2_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  00164	e3a03005	 mov         r3, #5
-  00168	e5cd3000	 strb        r3, [sp]
-  0016c	e3a03001	 mov         r3, #1
-  00170	e28d2000	 add         r2, sp, #0
-  00174	e3861081	 orr         r1, r6, #0x81
-  00178	e1a00004	 mov         r0, r4
-  0017c	eb000000	 bl          TWLWriteRegs
+  00150	e3a03020	 mov         r3, #0x20
+  00154	e5cd3000	 strb        r3, [sp]
+  00158	e3a03001	 mov         r3, #1
+  0015c	e28d2000	 add         r2, sp, #0
+  00160	e3861076	 orr         r1, r6, #0x76
+  00164	e1a00004	 mov         r0, r4
+  00168	eb000000	 bl          TWLWriteRegs
 
-; 295  :     TWLWriteByteReg(hTwl, TWL_VAUX4_DEV_GRP, TWL_DEV_GROUP_P1);
+; 291  : 
+; 292  :     // Camera CSI2 requires 1.8V from AUX4
+; 293  :     TWLWriteByteReg(hTwl, TWL_VAUX4_DEDICATED, 0x05);
 
-  00180	e3a03020	 mov         r3, #0x20
-  00184	e5cd3000	 strb        r3, [sp]
-  00188	e3a03001	 mov         r3, #1
-  0018c	e28d2000	 add         r2, sp, #0
-  00190	e386107e	 orr         r1, r6, #0x7E
-  00194	e1a00004	 mov         r0, r4
-  00198	eb000000	 bl          TWLWriteRegs
+  0016c	e3a03005	 mov         r3, #5
+  00170	e5cd3000	 strb        r3, [sp]
+  00174	e3a03001	 mov         r3, #1
+  00178	e28d2000	 add         r2, sp, #0
+  0017c	e3861081	 orr         r1, r6, #0x81
+  00180	e1a00004	 mov         r0, r4
+  00184	eb000000	 bl          TWLWriteRegs
 
-; 296  :     
-; 297  :     // LCD and backlight - group 1
-; 298  :     TWLWriteByteReg(hTwl, TWL_VAUX3_DEDICATED, TWL_VAUX3_2P80);
+; 294  :     TWLWriteByteReg(hTwl, TWL_VAUX4_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  0019c	e3a03003	 mov         r3, #3
-  001a0	e5cd3000	 strb        r3, [sp]
-  001a4	e3a03001	 mov         r3, #1
-  001a8	e28d2000	 add         r2, sp, #0
-  001ac	e386107d	 orr         r1, r6, #0x7D
-  001b0	e1a00004	 mov         r0, r4
-  001b4	eb000000	 bl          TWLWriteRegs
+  00188	e3a03020	 mov         r3, #0x20
+  0018c	e5cd3000	 strb        r3, [sp]
+  00190	e3a03001	 mov         r3, #1
+  00194	e28d2000	 add         r2, sp, #0
+  00198	e386107e	 orr         r1, r6, #0x7E
+  0019c	e1a00004	 mov         r0, r4
+  001a0	eb000000	 bl          TWLWriteRegs
 
-; 299  :     TWLWriteByteReg(hTwl, TWL_VAUX3_DEV_GRP, TWL_DEV_GROUP_P1);
+; 295  :     
+; 296  :     // LCD and backlight - group 1
+; 297  :     TWLWriteByteReg(hTwl, TWL_VAUX3_DEDICATED, TWL_VAUX3_2P80);
 
-  001b8	e3a03020	 mov         r3, #0x20
-  001bc	e5cd3000	 strb        r3, [sp]
-  001c0	e3a03001	 mov         r3, #1
-  001c4	e28d2000	 add         r2, sp, #0
-  001c8	e386107a	 orr         r1, r6, #0x7A
-  001cc	e1a00004	 mov         r0, r4
-  001d0	eb000000	 bl          TWLWriteRegs
+  001a4	e3a03003	 mov         r3, #3
+  001a8	e5cd3000	 strb        r3, [sp]
+  001ac	e3a03001	 mov         r3, #1
+  001b0	e28d2000	 add         r2, sp, #0
+  001b4	e386107d	 orr         r1, r6, #0x7D
+  001b8	e1a00004	 mov         r0, r4
+  001bc	eb000000	 bl          TWLWriteRegs
 
-; 300  : 
-; 301  :     // DSI,SDI power supplies driven by PLL2 
-; 302  :     // Configure for 1.8V instead of default 1.2V and move to P1
-; 303  :     TWLWriteByteReg(hTwl, TWL_VPLL2_DEDICATED, TWL_VPLL2_1P80);
+; 298  :     TWLWriteByteReg(hTwl, TWL_VAUX3_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  001d4	e3a03005	 mov         r3, #5
-  001d8	e5cd3000	 strb        r3, [sp]
-  001dc	e3a03001	 mov         r3, #1
-  001e0	e28d2000	 add         r2, sp, #0
-  001e4	e3861091	 orr         r1, r6, #0x91
-  001e8	e1a00004	 mov         r0, r4
-  001ec	eb000000	 bl          TWLWriteRegs
+  001c0	e3a03020	 mov         r3, #0x20
+  001c4	e5cd3000	 strb        r3, [sp]
+  001c8	e3a03001	 mov         r3, #1
+  001cc	e28d2000	 add         r2, sp, #0
+  001d0	e386107a	 orr         r1, r6, #0x7A
+  001d4	e1a00004	 mov         r0, r4
+  001d8	eb000000	 bl          TWLWriteRegs
 
-; 304  :     TWLWriteByteReg(hTwl, TWL_VPLL2_DEV_GRP, TWL_DEV_GROUP_P1);
+; 299  : 
+; 300  :     // DSI,SDI power supplies driven by PLL2 
+; 301  :     // Configure for 1.8V instead of default 1.2V and move to P1
+; 302  :     TWLWriteByteReg(hTwl, TWL_VPLL2_DEDICATED, TWL_VPLL2_1P80);
 
-  001f0	e3a03020	 mov         r3, #0x20
-  001f4	e5cd3000	 strb        r3, [sp]
-  001f8	e3a03001	 mov         r3, #1
-  001fc	e28d2000	 add         r2, sp, #0
-  00200	e386108e	 orr         r1, r6, #0x8E
-  00204	e1a00004	 mov         r0, r4
-  00208	eb000000	 bl          TWLWriteRegs
+  001dc	e3a03005	 mov         r3, #5
+  001e0	e5cd3000	 strb        r3, [sp]
+  001e4	e3a03001	 mov         r3, #1
+  001e8	e28d2000	 add         r2, sp, #0
+  001ec	e3861091	 orr         r1, r6, #0x91
+  001f0	e1a00004	 mov         r0, r4
+  001f4	eb000000	 bl          TWLWriteRegs
 
-; 305  : 
-; 306  :     // sd / mmc - group 1
-; 307  :     val = DecideTwlVMMC(0);
-; 308  :     TWLWriteByteReg(hTwl, TWL_VMMC1_DEDICATED, (UINT8)val);
+; 303  :     TWLWriteByteReg(hTwl, TWL_VPLL2_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  0020c	e3a03002	 mov         r3, #2
-  00210	e5cd3000	 strb        r3, [sp]
-  00214	e3a03001	 mov         r3, #1
-  00218	e28d2000	 add         r2, sp, #0
-  0021c	e3861085	 orr         r1, r6, #0x85
-  00220	e1a00004	 mov         r0, r4
-  00224	eb000000	 bl          TWLWriteRegs
+  001f8	e3a03020	 mov         r3, #0x20
+  001fc	e5cd3000	 strb        r3, [sp]
+  00200	e3a03001	 mov         r3, #1
+  00204	e28d2000	 add         r2, sp, #0
+  00208	e386108e	 orr         r1, r6, #0x8E
+  0020c	e1a00004	 mov         r0, r4
+  00210	eb000000	 bl          TWLWriteRegs
 
-; 309  :     TWLWriteByteReg(hTwl, TWL_VMMC1_DEV_GRP, TWL_DEV_GROUP_P1);
+; 304  : 
+; 305  :     // sd / mmc - group 1
+; 306  :     val = DecideTwlVMMC(0);
+; 307  :     TWLWriteByteReg(hTwl, TWL_VMMC1_DEDICATED, (UINT8)val);
 
-  00228	e3a03020	 mov         r3, #0x20
-  0022c	e5cd3000	 strb        r3, [sp]
-  00230	e3a03001	 mov         r3, #1
-  00234	e28d2000	 add         r2, sp, #0
-  00238	e3861082	 orr         r1, r6, #0x82
-  0023c	e1a00004	 mov         r0, r4
-  00240	eb000000	 bl          TWLWriteRegs
+  00214	e3a03002	 mov         r3, #2
+  00218	e5cd3000	 strb        r3, [sp]
+  0021c	e3a03001	 mov         r3, #1
+  00220	e28d2000	 add         r2, sp, #0
+  00224	e3861085	 orr         r1, r6, #0x85
+  00228	e1a00004	 mov         r0, r4
+  0022c	eb000000	 bl          TWLWriteRegs
 
-; 310  : 
-; 311  :     val = DecideTwlVMMC(1);
-; 312  :     TWLWriteByteReg(hTwl, TWL_VMMC2_DEDICATED, (UINT8)val);
+; 308  :     TWLWriteByteReg(hTwl, TWL_VMMC1_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  00244	e3a03006	 mov         r3, #6
-  00248	e5cd3000	 strb        r3, [sp]
-  0024c	e3a03001	 mov         r3, #1
-  00250	e28d2000	 add         r2, sp, #0
-  00254	e3861089	 orr         r1, r6, #0x89
-  00258	e1a00004	 mov         r0, r4
-  0025c	eb000000	 bl          TWLWriteRegs
+  00230	e3a03020	 mov         r3, #0x20
+  00234	e5cd3000	 strb        r3, [sp]
+  00238	e3a03001	 mov         r3, #1
+  0023c	e28d2000	 add         r2, sp, #0
+  00240	e3861082	 orr         r1, r6, #0x82
+  00244	e1a00004	 mov         r0, r4
+  00248	eb000000	 bl          TWLWriteRegs
 
-; 313  :     TWLWriteByteReg(hTwl, TWL_VMMC2_DEV_GRP, TWL_DEV_GROUP_P1);
+; 309  : 
+; 310  :     val = DecideTwlVMMC(1);
+; 311  :     TWLWriteByteReg(hTwl, TWL_VMMC2_DEDICATED, (UINT8)val);
 
-  00260	e3a03020	 mov         r3, #0x20
-  00264	e5cd3000	 strb        r3, [sp]
-  00268	e3a03001	 mov         r3, #1
-  0026c	e28d2000	 add         r2, sp, #0
-  00270	e3861086	 orr         r1, r6, #0x86
-  00274	e1a00004	 mov         r0, r4
-  00278	eb000000	 bl          TWLWriteRegs
+  0024c	e3a03006	 mov         r3, #6
+  00250	e5cd3000	 strb        r3, [sp]
+  00254	e3a03001	 mov         r3, #1
+  00258	e28d2000	 add         r2, sp, #0
+  0025c	e3861089	 orr         r1, r6, #0x89
+  00260	e1a00004	 mov         r0, r4
+  00264	eb000000	 bl          TWLWriteRegs
 
-; 314  : 
-; 315  :     // tv out - group 1 (1.8 v)
-; 316  :     TWLWriteByteReg(hTwl, TWL_VDAC_DEDICATED, TWL_VDAC_1P80);
+; 312  :     TWLWriteByteReg(hTwl, TWL_VMMC2_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  0027c	e3a03002	 mov         r3, #2
-  00280	e5cd3000	 strb        r3, [sp]
-  00284	e3a03001	 mov         r3, #1
-  00288	e28d2000	 add         r2, sp, #0
-  0028c	e3861099	 orr         r1, r6, #0x99
-  00290	e1a00004	 mov         r0, r4
-  00294	eb000000	 bl          TWLWriteRegs
+  00268	e3a03020	 mov         r3, #0x20
+  0026c	e5cd3000	 strb        r3, [sp]
+  00270	e3a03001	 mov         r3, #1
+  00274	e28d2000	 add         r2, sp, #0
+  00278	e3861086	 orr         r1, r6, #0x86
+  0027c	e1a00004	 mov         r0, r4
+  00280	eb000000	 bl          TWLWriteRegs
 
-; 317  :     TWLWriteByteReg(hTwl, TWL_VDAC_DEV_GRP, TWL_DEV_GROUP_P1);
+; 313  : 
+; 314  :     // tv out - group 1 (1.8 v)
+; 315  :     TWLWriteByteReg(hTwl, TWL_VDAC_DEDICATED, TWL_VDAC_1P80);
 
-  00298	e3a03020	 mov         r3, #0x20
-  0029c	e5cd3000	 strb        r3, [sp]
-  002a0	e3a03001	 mov         r3, #1
-  002a4	e28d2000	 add         r2, sp, #0
-  002a8	e3861096	 orr         r1, r6, #0x96
-  002ac	e1a00004	 mov         r0, r4
-  002b0	eb000000	 bl          TWLWriteRegs
+  00284	e3a03002	 mov         r3, #2
+  00288	e5cd3000	 strb        r3, [sp]
+  0028c	e3a03001	 mov         r3, #1
+  00290	e28d2000	 add         r2, sp, #0
+  00294	e3861099	 orr         r1, r6, #0x99
+  00298	e1a00004	 mov         r0, r4
+  0029c	eb000000	 bl          TWLWriteRegs
 
-; 318  : 
-; 319  :     // usb
-; 320  :     TWLWriteByteReg(hTwl, TWL_VUSB_DEDICATED1, 0x18);
+; 316  :     TWLWriteByteReg(hTwl, TWL_VDAC_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  002b4	e3a03018	 mov         r3, #0x18
-  002b8	e5cd3000	 strb        r3, [sp]
-  002bc	e3a03001	 mov         r3, #1
-  002c0	e28d2000	 add         r2, sp, #0
-  002c4	e38610d8	 orr         r1, r6, #0xD8
-  002c8	e1a00004	 mov         r0, r4
-  002cc	eb000000	 bl          TWLWriteRegs
+  002a0	e3a03020	 mov         r3, #0x20
+  002a4	e5cd3000	 strb        r3, [sp]
+  002a8	e3a03001	 mov         r3, #1
+  002ac	e28d2000	 add         r2, sp, #0
+  002b0	e3861096	 orr         r1, r6, #0x96
+  002b4	e1a00004	 mov         r0, r4
+  002b8	eb000000	 bl          TWLWriteRegs
 
-; 321  :     TWLWriteByteReg(hTwl, TWL_VUSB_DEDICATED2, 0x0);
+; 317  : 
+; 318  :     // usb
+; 319  :     TWLWriteByteReg(hTwl, TWL_VUSB_DEDICATED1, 0x18);
 
-  002d0	e3a03000	 mov         r3, #0
-  002d4	e5cd3000	 strb        r3, [sp]
-  002d8	e3a03001	 mov         r3, #1
-  002dc	e28d2000	 add         r2, sp, #0
-  002e0	e38610d9	 orr         r1, r6, #0xD9
-  002e4	e1a00004	 mov         r0, r4
-  002e8	eb000000	 bl          TWLWriteRegs
+  002bc	e3a03018	 mov         r3, #0x18
+  002c0	e5cd3000	 strb        r3, [sp]
+  002c4	e3a03001	 mov         r3, #1
+  002c8	e28d2000	 add         r2, sp, #0
+  002cc	e38610d8	 orr         r1, r6, #0xD8
+  002d0	e1a00004	 mov         r0, r4
+  002d4	eb000000	 bl          TWLWriteRegs
 
-; 322  : 
-; 323  :     TWLWriteByteReg(hTwl, TWL_VUSB3V1_DEV_GRP, TWL_DEV_GROUP_P1);
+; 320  :     TWLWriteByteReg(hTwl, TWL_VUSB_DEDICATED2, 0x0);
 
-  002ec	e3a03020	 mov         r3, #0x20
-  002f0	e5cd3000	 strb        r3, [sp]
-  002f4	e3a03001	 mov         r3, #1
-  002f8	e28d2000	 add         r2, sp, #0
-  002fc	e38610d2	 orr         r1, r6, #0xD2
-  00300	e1a00004	 mov         r0, r4
-  00304	eb000000	 bl          TWLWriteRegs
+  002d8	e3a03000	 mov         r3, #0
+  002dc	e5cd3000	 strb        r3, [sp]
+  002e0	e3a03001	 mov         r3, #1
+  002e4	e28d2000	 add         r2, sp, #0
+  002e8	e38610d9	 orr         r1, r6, #0xD9
+  002ec	e1a00004	 mov         r0, r4
+  002f0	eb000000	 bl          TWLWriteRegs
 
-; 324  :     TWLWriteByteReg(hTwl, TWL_VUSB1V5_DEV_GRP, TWL_DEV_GROUP_P1);
+; 321  : 
+; 322  :     TWLWriteByteReg(hTwl, TWL_VUSB3V1_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  00308	e3a03020	 mov         r3, #0x20
-  0030c	e5cd3000	 strb        r3, [sp]
-  00310	e3a03001	 mov         r3, #1
-  00314	e28d2000	 add         r2, sp, #0
-  00318	e38610cc	 orr         r1, r6, #0xCC
-  0031c	e1a00004	 mov         r0, r4
-  00320	eb000000	 bl          TWLWriteRegs
+  002f4	e3a03020	 mov         r3, #0x20
+  002f8	e5cd3000	 strb        r3, [sp]
+  002fc	e3a03001	 mov         r3, #1
+  00300	e28d2000	 add         r2, sp, #0
+  00304	e38610d2	 orr         r1, r6, #0xD2
+  00308	e1a00004	 mov         r0, r4
+  0030c	eb000000	 bl          TWLWriteRegs
 
-; 325  :     TWLWriteByteReg(hTwl, TWL_VUSB1V8_DEV_GRP, TWL_DEV_GROUP_P1);
+; 323  :     TWLWriteByteReg(hTwl, TWL_VUSB1V5_DEV_GRP, TWL_DEV_GROUP_P1);
 
-  00324	e3a03020	 mov         r3, #0x20
-  00328	e5cd3000	 strb        r3, [sp]
-  0032c	e3a03001	 mov         r3, #1
-  00330	e28d2000	 add         r2, sp, #0
-  00334	e38610cf	 orr         r1, r6, #0xCF
-  00338	e1a00004	 mov         r0, r4
-  0033c	eb000000	 bl          TWLWriteRegs
+  00310	e3a03020	 mov         r3, #0x20
+  00314	e5cd3000	 strb        r3, [sp]
+  00318	e3a03001	 mov         r3, #1
+  0031c	e28d2000	 add         r2, sp, #0
+  00320	e38610cc	 orr         r1, r6, #0xCC
+  00324	e1a00004	 mov         r0, r4
+  00328	eb000000	 bl          TWLWriteRegs
 
+; 324  :     TWLWriteByteReg(hTwl, TWL_VUSB1V8_DEV_GRP, TWL_DEV_GROUP_P1);
+
+  0032c	e3a03020	 mov         r3, #0x20
+  00330	e5cd3000	 strb        r3, [sp]
+  00334	e3a03001	 mov         r3, #1
+  00338	e28d2000	 add         r2, sp, #0
+  0033c	e38610cf	 orr         r1, r6, #0xCF
+  00340	e1a00004	 mov         r0, r4
+  00344	eb000000	 bl          TWLWriteRegs
+
+; 325  : 
 ; 326  : 
-; 327  : 
-; 328  :     // Enable I2C access to the Power Bus 
-; 329  :     TWLWriteByteReg(hTwl, TWL_PB_CFG, 0x02);
+; 327  :     // Enable I2C access to the Power Bus 
+; 328  :     TWLWriteByteReg(hTwl, TWL_PB_CFG, 0x02);
 
-  00340	e3a03002	 mov         r3, #2
-  00344	e5cd3000	 strb        r3, [sp]
-  00348	e3a03001	 mov         r3, #1
-  0034c	e28d2000	 add         r2, sp, #0
-  00350	e386104a	 orr         r1, r6, #0x4A
-  00354	e1a00004	 mov         r0, r4
-  00358	eb000000	 bl          TWLWriteRegs
+  00348	e3a03002	 mov         r3, #2
+  0034c	e5cd3000	 strb        r3, [sp]
+  00350	e3a03001	 mov         r3, #1
+  00354	e28d2000	 add         r2, sp, #0
+  00358	e386104a	 orr         r1, r6, #0x4A
+  0035c	e1a00004	 mov         r0, r4
+  00360	eb000000	 bl          TWLWriteRegs
 
-; 330  :     
-; 331  :     // disable vibrator
-; 332  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX1_RES_ID, TWL_RES_OFF);
-; 333  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 329  :     
+; 330  :     // disable vibrator
+; 331  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX1_RES_ID, TWL_RES_OFF);
+; 332  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  0035c	e3a03020	 mov         r3, #0x20
-  00360	e5cd3000	 strb        r3, [sp]
-  00364	e3a03001	 mov         r3, #1
-  00368	e386104b	 orr         r1, r6, #0x4B
-  0036c	e28d2000	 add         r2, sp, #0
-  00370	e1a00004	 mov         r0, r4
-  00374	eb000000	 bl          TWLWriteRegs
+  00364	e3a03020	 mov         r3, #0x20
+  00368	e5cd3000	 strb        r3, [sp]
+  0036c	e3a03001	 mov         r3, #1
+  00370	e386104b	 orr         r1, r6, #0x4B
+  00374	e28d2000	 add         r2, sp, #0
+  00378	e1a00004	 mov         r0, r4
+  0037c	eb000000	 bl          TWLWriteRegs
 
-; 334  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 333  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  00378	e3a03010	 mov         r3, #0x10
-  0037c	e5cd3000	 strb        r3, [sp]
-  00380	e3a03001	 mov         r3, #1
-  00384	e386104c	 orr         r1, r6, #0x4C
-  00388	e28d2000	 add         r2, sp, #0
-  0038c	e1a00004	 mov         r0, r4
-  00390	eb000000	 bl          TWLWriteRegs
+  00380	e3a03010	 mov         r3, #0x10
+  00384	e5cd3000	 strb        r3, [sp]
+  00388	e3a03001	 mov         r3, #1
+  0038c	e386104c	 orr         r1, r6, #0x4C
+  00390	e28d2000	 add         r2, sp, #0
+  00394	e1a00004	 mov         r0, r4
+  00398	eb000000	 bl          TWLWriteRegs
 
-; 335  : 
-; 336  :     // enable camera
-; 337  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX2_RES_ID, TWL_RES_ACTIVE);
-; 338  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 334  : 
+; 335  :     // enable camera
+; 336  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX2_RES_ID, TWL_RES_ACTIVE);
+; 337  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  00394	e3a03020	 mov         r3, #0x20
-  00398	e5cd3000	 strb        r3, [sp]
-  0039c	e3a03001	 mov         r3, #1
-  003a0	e28d2000	 add         r2, sp, #0
-  003a4	e386104b	 orr         r1, r6, #0x4B
-  003a8	e1a00004	 mov         r0, r4
-  003ac	eb000000	 bl          TWLWriteRegs
+  0039c	e3a03020	 mov         r3, #0x20
+  003a0	e5cd3000	 strb        r3, [sp]
+  003a4	e3a03001	 mov         r3, #1
+  003a8	e28d2000	 add         r2, sp, #0
+  003ac	e386104b	 orr         r1, r6, #0x4B
+  003b0	e1a00004	 mov         r0, r4
+  003b4	eb000000	 bl          TWLWriteRegs
 
-; 339  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 338  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  003b0	e3a0302e	 mov         r3, #0x2E
-  003b4	e5cd3000	 strb        r3, [sp]
-  003b8	e3a03001	 mov         r3, #1
-  003bc	e28d2000	 add         r2, sp, #0
-  003c0	e386104c	 orr         r1, r6, #0x4C
-  003c4	e1a00004	 mov         r0, r4
-  003c8	eb000000	 bl          TWLWriteRegs
+  003b8	e3a0302e	 mov         r3, #0x2E
+  003bc	e5cd3000	 strb        r3, [sp]
+  003c0	e3a03001	 mov         r3, #1
+  003c4	e28d2000	 add         r2, sp, #0
+  003c8	e386104c	 orr         r1, r6, #0x4C
+  003cc	e1a00004	 mov         r0, r4
+  003d0	eb000000	 bl          TWLWriteRegs
 
-; 340  : 
-; 341  :     // enable csi2 aux4 voltage output
-; 342  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX4_RES_ID, TWL_RES_ACTIVE);
-; 343  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 339  : 
+; 340  :     // enable csi2 aux4 voltage output
+; 341  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX4_RES_ID, TWL_RES_ACTIVE);
+; 342  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  003cc	e3a03020	 mov         r3, #0x20
-  003d0	e5cd3000	 strb        r3, [sp]
-  003d4	e3a03001	 mov         r3, #1
-  003d8	e28d2000	 add         r2, sp, #0
-  003dc	e386104b	 orr         r1, r6, #0x4B
-  003e0	e1a00004	 mov         r0, r4
-  003e4	eb000000	 bl          TWLWriteRegs
+  003d4	e3a03020	 mov         r3, #0x20
+  003d8	e5cd3000	 strb        r3, [sp]
+  003dc	e3a03001	 mov         r3, #1
+  003e0	e28d2000	 add         r2, sp, #0
+  003e4	e386104b	 orr         r1, r6, #0x4B
+  003e8	e1a00004	 mov         r0, r4
+  003ec	eb000000	 bl          TWLWriteRegs
 
-; 344  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 343  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  003e8	e3a0304e	 mov         r3, #0x4E
-  003ec	e5cd3000	 strb        r3, [sp]
-  003f0	e3a03001	 mov         r3, #1
-  003f4	e28d2000	 add         r2, sp, #0
-  003f8	e386104c	 orr         r1, r6, #0x4C
-  003fc	e1a00004	 mov         r0, r4
-  00400	eb000000	 bl          TWLWriteRegs
+  003f0	e3a0304e	 mov         r3, #0x4E
+  003f4	e5cd3000	 strb        r3, [sp]
+  003f8	e3a03001	 mov         r3, #1
+  003fc	e28d2000	 add         r2, sp, #0
+  00400	e386104c	 orr         r1, r6, #0x4C
+  00404	e1a00004	 mov         r0, r4
+  00408	eb000000	 bl          TWLWriteRegs
 
-; 345  : 
-; 346  :     // disable LCD and backligt
-; 347  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX3_RES_ID, TWL_RES_OFF);
-; 348  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 344  : 
+; 345  :     // disable LCD and backligt
+; 346  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VAUX3_RES_ID, TWL_RES_OFF);
+; 347  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  00404	e3a03020	 mov         r3, #0x20
-  00408	e5cd3000	 strb        r3, [sp]
-  0040c	e3a03001	 mov         r3, #1
-  00410	e28d2000	 add         r2, sp, #0
-  00414	e386104b	 orr         r1, r6, #0x4B
-  00418	e1a00004	 mov         r0, r4
-  0041c	eb000000	 bl          TWLWriteRegs
+  0040c	e3a03020	 mov         r3, #0x20
+  00410	e5cd3000	 strb        r3, [sp]
+  00414	e3a03001	 mov         r3, #1
+  00418	e28d2000	 add         r2, sp, #0
+  0041c	e386104b	 orr         r1, r6, #0x4B
+  00420	e1a00004	 mov         r0, r4
+  00424	eb000000	 bl          TWLWriteRegs
 
-; 349  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 348  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  00420	e3a03030	 mov         r3, #0x30
-  00424	e5cd3000	 strb        r3, [sp]
-  00428	e3a03001	 mov         r3, #1
-  0042c	e28d2000	 add         r2, sp, #0
-  00430	e386104c	 orr         r1, r6, #0x4C
-  00434	e1a00004	 mov         r0, r4
-  00438	eb000000	 bl          TWLWriteRegs
+  00428	e3a03030	 mov         r3, #0x30
+  0042c	e5cd3000	 strb        r3, [sp]
+  00430	e3a03001	 mov         r3, #1
+  00434	e28d2000	 add         r2, sp, #0
+  00438	e386104c	 orr         r1, r6, #0x4C
+  0043c	e1a00004	 mov         r0, r4
+  00440	eb000000	 bl          TWLWriteRegs
 
-; 350  : 
-; 351  : //    val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VPLL2_RES_ID, TWL_RES_OFF);
-; 352  : //    TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
-; 353  : //    TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
-; 354  : 
-; 355  :     // disable sd
-; 356  : //    val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC1_RES_ID, TWL_RES_OFF);
-; 357  : //    TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
-; 358  : //    TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
-; 359  :     
-; 360  :     // enable sd
-; 361  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC1_RES_ID, TWL_RES_ACTIVE);
-; 362  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 349  : 
+; 350  : 	// val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VPLL2_RES_ID, TWL_RES_OFF);
+; 351  : 	// TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 352  : 	// TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 353  : 
+; 354  :     // disable sd
+; 355  : 	// val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC1_RES_ID, TWL_RES_OFF);
+; 356  : 	// TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 357  : 	// TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 358  :     
+; 359  :     // enable sd
+; 360  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC1_RES_ID, TWL_RES_ACTIVE);
+; 361  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  0043c	e3a03020	 mov         r3, #0x20
-  00440	e5cd3000	 strb        r3, [sp]
-  00444	e3a03001	 mov         r3, #1
-  00448	e28d2000	 add         r2, sp, #0
-  0044c	e386104b	 orr         r1, r6, #0x4B
-  00450	e1a00004	 mov         r0, r4
-  00454	eb000000	 bl          TWLWriteRegs
+  00444	e3a03020	 mov         r3, #0x20
+  00448	e5cd3000	 strb        r3, [sp]
+  0044c	e3a03001	 mov         r3, #1
+  00450	e28d2000	 add         r2, sp, #0
+  00454	e386104b	 orr         r1, r6, #0x4B
+  00458	e1a00004	 mov         r0, r4
+  0045c	eb000000	 bl          TWLWriteRegs
 
-; 363  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 362  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  00458	e3a0305e	 mov         r3, #0x5E
-  0045c	e5cd3000	 strb        r3, [sp]
-  00460	e3a03001	 mov         r3, #1
-  00464	e28d2000	 add         r2, sp, #0
-  00468	e386104c	 orr         r1, r6, #0x4C
-  0046c	e1a00004	 mov         r0, r4
-  00470	eb000000	 bl          TWLWriteRegs
+  00460	e3a0305e	 mov         r3, #0x5E
+  00464	e5cd3000	 strb        r3, [sp]
+  00468	e3a03001	 mov         r3, #1
+  0046c	e28d2000	 add         r2, sp, #0
+  00470	e386104c	 orr         r1, r6, #0x4C
+  00474	e1a00004	 mov         r0, r4
+  00478	eb000000	 bl          TWLWriteRegs
 
-; 364  : 
-; 365  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC2_RES_ID, TWL_RES_OFF);
-; 366  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 363  : 
+; 364  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC2_RES_ID, TWL_RES_OFF);
+; 365  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  00474	e3a03020	 mov         r3, #0x20
-  00478	e5cd3000	 strb        r3, [sp]
-  0047c	e3a03001	 mov         r3, #1
-  00480	e28d2000	 add         r2, sp, #0
-  00484	e386104b	 orr         r1, r6, #0x4B
-  00488	e1a00004	 mov         r0, r4
-  0048c	eb000000	 bl          TWLWriteRegs
+  0047c	e3a03020	 mov         r3, #0x20
+  00480	e5cd3000	 strb        r3, [sp]
+  00484	e3a03001	 mov         r3, #1
+  00488	e28d2000	 add         r2, sp, #0
+  0048c	e386104b	 orr         r1, r6, #0x4B
+  00490	e1a00004	 mov         r0, r4
+  00494	eb000000	 bl          TWLWriteRegs
 
-; 367  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 366  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  00490	e3a03060	 mov         r3, #0x60
-  00494	e5cd3000	 strb        r3, [sp]
-  00498	e3a03001	 mov         r3, #1
-  0049c	e28d2000	 add         r2, sp, #0
-  004a0	e386104c	 orr         r1, r6, #0x4C
-  004a4	e1a00004	 mov         r0, r4
-  004a8	eb000000	 bl          TWLWriteRegs
+  00498	e3a03060	 mov         r3, #0x60
+  0049c	e5cd3000	 strb        r3, [sp]
+  004a0	e3a03001	 mov         r3, #1
+  004a4	e28d2000	 add         r2, sp, #0
+  004a8	e386104c	 orr         r1, r6, #0x4C
+  004ac	e1a00004	 mov         r0, r4
+  004b0	eb000000	 bl          TWLWriteRegs
 
-; 368  : 
-; 369  :     // disable usb 
-; 370  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VUSB_1V5_RES_ID, TWL_RES_OFF);
-; 371  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 367  : 
+; 368  :     // disable usb 
+; 369  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VUSB_1V5_RES_ID, TWL_RES_OFF);
+; 370  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  004ac	e3a03021	 mov         r3, #0x21
-  004b0	e5cd3000	 strb        r3, [sp]
-  004b4	e3a03001	 mov         r3, #1
-  004b8	e28d2000	 add         r2, sp, #0
-  004bc	e386104b	 orr         r1, r6, #0x4B
-  004c0	e1a00004	 mov         r0, r4
-  004c4	eb000000	 bl          TWLWriteRegs
+  004b4	e3a03021	 mov         r3, #0x21
+  004b8	e5cd3000	 strb        r3, [sp]
+  004bc	e3a03001	 mov         r3, #1
+  004c0	e28d2000	 add         r2, sp, #0
+  004c4	e386104b	 orr         r1, r6, #0x4B
+  004c8	e1a00004	 mov         r0, r4
+  004cc	eb000000	 bl          TWLWriteRegs
 
-; 372  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 371  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  004c8	e3a03010	 mov         r3, #0x10
-  004cc	e5cd3000	 strb        r3, [sp]
-  004d0	e3a03001	 mov         r3, #1
-  004d4	e28d2000	 add         r2, sp, #0
-  004d8	e386104c	 orr         r1, r6, #0x4C
-  004dc	e1a00004	 mov         r0, r4
-  004e0	eb000000	 bl          TWLWriteRegs
+  004d0	e3a03010	 mov         r3, #0x10
+  004d4	e5cd3000	 strb        r3, [sp]
+  004d8	e3a03001	 mov         r3, #1
+  004dc	e28d2000	 add         r2, sp, #0
+  004e0	e386104c	 orr         r1, r6, #0x4C
+  004e4	e1a00004	 mov         r0, r4
+  004e8	eb000000	 bl          TWLWriteRegs
 
-; 373  : 
-; 374  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VUSB_1V8_RES_ID, TWL_RES_OFF);
-; 375  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 372  : 
+; 373  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VUSB_1V8_RES_ID, TWL_RES_OFF);
+; 374  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  004e4	e3a03021	 mov         r3, #0x21
-  004e8	e5cd3000	 strb        r3, [sp]
-  004ec	e3a03001	 mov         r3, #1
-  004f0	e28d2000	 add         r2, sp, #0
-  004f4	e386104b	 orr         r1, r6, #0x4B
-  004f8	e1a00004	 mov         r0, r4
-  004fc	eb000000	 bl          TWLWriteRegs
+  004ec	e3a03021	 mov         r3, #0x21
+  004f0	e5cd3000	 strb        r3, [sp]
+  004f4	e3a03001	 mov         r3, #1
+  004f8	e28d2000	 add         r2, sp, #0
+  004fc	e386104b	 orr         r1, r6, #0x4B
+  00500	e1a00004	 mov         r0, r4
+  00504	eb000000	 bl          TWLWriteRegs
 
-; 376  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 375  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  00500	e3a03020	 mov         r3, #0x20
-  00504	e5cd3000	 strb        r3, [sp]
-  00508	e3a03001	 mov         r3, #1
-  0050c	e28d2000	 add         r2, sp, #0
-  00510	e386104c	 orr         r1, r6, #0x4C
-  00514	e1a00004	 mov         r0, r4
-  00518	eb000000	 bl          TWLWriteRegs
+  00508	e3a0e020	 mov         lr, #0x20
+  0050c	e3a03001	 mov         r3, #1
+  00510	e28d2000	 add         r2, sp, #0
+  00514	e386104c	 orr         r1, r6, #0x4C
+  00518	e1a00004	 mov         r0, r4
+  0051c	e5cde000	 strb        lr, [sp]
+  00520	eb000000	 bl          TWLWriteRegs
 
-; 377  : 
-; 378  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VUSB_3V1_RES_ID, TWL_RES_OFF);
-; 379  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+; 376  : 
+; 377  :     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VUSB_3V1_RES_ID, TWL_RES_OFF);
+; 378  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
 
-  0051c	e3a03021	 mov         r3, #0x21
-  00520	e5cd3000	 strb        r3, [sp]
-  00524	e3a03001	 mov         r3, #1
-  00528	e28d2000	 add         r2, sp, #0
-  0052c	e386104b	 orr         r1, r6, #0x4B
-  00530	e1a00004	 mov         r0, r4
-  00534	eb000000	 bl          TWLWriteRegs
+  00524	e3a03021	 mov         r3, #0x21
+  00528	e5cd3000	 strb        r3, [sp]
+  0052c	e3a03001	 mov         r3, #1
+  00530	e28d2000	 add         r2, sp, #0
+  00534	e386104b	 orr         r1, r6, #0x4B
+  00538	e1a00004	 mov         r0, r4
+  0053c	eb000000	 bl          TWLWriteRegs
 
-; 380  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+; 379  :     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-  00538	e3a03030	 mov         r3, #0x30
-  0053c	e5cd3000	 strb        r3, [sp]
-  00540	e3a03001	 mov         r3, #1
-  00544	e28d2000	 add         r2, sp, #0
-  00548	e386104c	 orr         r1, r6, #0x4C
-  0054c	e1a00004	 mov         r0, r4
-  00550	eb000000	 bl          TWLWriteRegs
+  00540	e3a03030	 mov         r3, #0x30
+  00544	e5cd3000	 strb        r3, [sp]
+  00548	e3a03001	 mov         r3, #1
+  0054c	e28d2000	 add         r2, sp, #0
+  00550	e386104c	 orr         r1, r6, #0x4C
+  00554	e1a00004	 mov         r0, r4
+  00558	eb000000	 bl          TWLWriteRegs
 
-; 381  : 
-; 382  :     // Enable the update of VDD1 and VDD2 through Voltage Controller I2C 
-; 383  :     TWLWriteByteReg(hTwl, TWL_DCDC_GLOBAL_CFG, BSP_TWL_DCDC_GLOBAL_CFG);    
+; 380  : 
+; 381  :     // Enable the update of VDD1 and VDD2 through Voltage Controller I2C 
+; 382  :     TWLWriteByteReg(hTwl, TWL_DCDC_GLOBAL_CFG, BSP_TWL_DCDC_GLOBAL_CFG);    
 
-  00554	e3a03008	 mov         r3, #8
-  00558	e5cd3000	 strb        r3, [sp]
-  0055c	e3a03001	 mov         r3, #1
-  00560	e28d2000	 add         r2, sp, #0
-  00564	e3861061	 orr         r1, r6, #0x61
-  00568	e1a00004	 mov         r0, r4
-  0056c	eb000000	 bl          TWLWriteRegs
-
-; 384  : 
-; 385  :     TWLClose(hTwl);
-
+  0055c	e3a03008	 mov         r3, #8
+  00560	e5cd3000	 strb        r3, [sp]
+  00564	e3a03001	 mov         r3, #1
+  00568	e28d2000	 add         r2, sp, #0
+  0056c	e3861061	 orr         r1, r6, #0x61
   00570	e1a00004	 mov         r0, r4
-  00574	eb000000	 bl          TWLClose
+  00574	eb000000	 bl          TWLWriteRegs
 
-; 386  : }
+; 383  : 
+; 384  :     TWLClose(hTwl);
 
-  00578	e28dd004	 add         sp, sp, #4
-  0057c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  00580	e12fff1e	 bx          lr
-  00584		 |$M46367|
+  00578	e1a00004	 mov         r0, r4
+  0057c	eb000000	 bl          TWLClose
+
+; 385  : }
+
+  00580	e28dd004	 add         sp, sp, #4
+  00584	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
+  00588	e12fff1e	 bx          lr
+  0058c		 |$LN112@InitTwlPow|
+  0058c		 |$LN113@InitTwlPow|
+  0058c	00000000	 DCD         |??_C@_1BO@CFFFPGIM@?$AAI?$AAn?$AAi?$AAt?$AAT?$AAw?$AAl?$AAP?$AAo?$AAw?$AAe?$AAr?$AA?$AN?$AA?6?$AA?$AA@|
+  00590		 |$M46375|
 
 			 ENDP  ; |InitTwlPower|
 
 	EXPORT	|BSPSetT2MSECURE|
-	IMPORT	|GPIOClose|
-	IMPORT	|GPIOClrBit|
-	IMPORT	|GPIOSetBit|
-	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46380| DCD	|$LN8@BSPSetT2MS|
-	DCD	0x40001301
+|$T46388| DCD	|$LN5@BSPSetT2MS|
+	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |BSPSetT2MSECURE| PROC
 
-; 389  : {
+; 388  : {
 
-  00000		 |$LN8@BSPSetT2MS|
-  00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M46377|
-  00004	e1a05000	 mov         r5, r0
+  00000		 |$LN5@BSPSetT2MS|
+  00000		 |$M46385|
 
-; 390  : #ifdef BSP_EVM2
-; 391  :     HANDLE hGPIO = GPIOOpen();
+; 389  : /*#ifdef BSP_EVM2
+; 390  :     HANDLE hGPIO = GPIOOpen();
+; 391  :                 
+; 392  :     if (hGPIO == NULL) return FALSE;
+; 393  :     
+; 394  :     if (fSet)
+; 395  :         GPIOSetBit(hGPIO,TPS659XX_MSECURE_GPIO);
+; 396  :     else
+; 397  :         GPIOClrBit(hGPIO,TPS659XX_MSECURE_GPIO);
+; 398  : 
+; 399  :     GPIOClose(hGPIO);
+; 400  : #else*/
+; 401  :     UNREFERENCED_PARAMETER(fSet);
+; 402  : //#endif
+; 403  :     return TRUE;
 
-  00008	eb000000	 bl          GPIOOpen
-  0000c	e1b04000	 movs        r4, r0
+  00000	e3a00001	 mov         r0, #1
 
-; 392  :                 
-; 393  :     if (hGPIO == NULL) return FALSE;
+; 404  : }
 
-  00010	03a00000	 moveq       r0, #0
-
-; 405  : }
-
-  00014	08bd4030	 ldmeqia     sp!, {r4, r5, lr}
-  00018	012fff1e	 bxeq        lr
-
-; 394  :     
-; 395  :     if (fSet)
-
-  0001c	e3550000	 cmp         r5, #0
-
-; 396  :         GPIOSetBit(hGPIO,TPS659XX_MSECURE_GPIO);
-
-  00020	e3a01040	 mov         r1, #0x40
-  00024	e1a00004	 mov         r0, r4
-
-; 394  :     
-; 395  :     if (fSet)
-
-  00028	0a000001	 beq         |$LN2@BSPSetT2MS|
-
-; 396  :         GPIOSetBit(hGPIO,TPS659XX_MSECURE_GPIO);
-
-  0002c	eb000000	 bl          GPIOSetBit
-
-; 397  :     else
-
-  00030	ea000000	 b           |$LN1@BSPSetT2MS|
-  00034		 |$LN2@BSPSetT2MS|
-
-; 398  :         GPIOClrBit(hGPIO,TPS659XX_MSECURE_GPIO);
-
-  00034	eb000000	 bl          GPIOClrBit
-  00038		 |$LN1@BSPSetT2MS|
-
-; 399  : 
-; 400  :     GPIOClose(hGPIO);
-
-  00038	e1a00004	 mov         r0, r4
-  0003c	eb000000	 bl          GPIOClose
-
-; 401  : #else
-; 402  :     UNREFERENCED_PARAMETER(fSet);
-; 403  : #endif
-; 404  :     return TRUE;
-
-  00040	e3a00001	 mov         r0, #1
-
-; 405  : }
-
-  00044	e8bd4030	 ldmia       sp!, {r4, r5, lr}
-  00048	e12fff1e	 bx          lr
-  0004c		 |$M46378|
+  00004	e12fff1e	 bx          lr
+  00008		 |$M46386|
 
 			 ENDP  ; |BSPSetT2MSECURE|
 

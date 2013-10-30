@@ -816,12 +816,6 @@
 	DCW	0x82
 	%	2
 	DCD	0x39
-	DCW	0x84
-	%	2
-	DCD	0x39
-	DCW	0x85
-	%	2
-	DCD	0x39
 	DCW	0x516
 	%	2
 	DCD	0x1
@@ -1007,6 +1001,9 @@
 	DCW	0x521
 	%	2
 	DCD	0x18
+	DCW	0xd0
+	%	2
+	DCD	0x20
 	DCW	0xac
 	%	2
 	DCD	0x20
@@ -1019,37 +1016,7 @@
 	DCW	0xffff
 	%	2
 	DCD	0x0
-|GPMCPads| DCW	0x25
-	%	2
-	DCD	0x0
-	DCW	0x26
-	%	2
-	DCD	0x0
-	DCW	0x27
-	%	2
-	DCD	0x0
-	DCW	0x28
-	%	2
-	DCD	0x0
-	DCW	0x29
-	%	2
-	DCD	0x0
-	DCW	0x2a
-	%	2
-	DCD	0x0
-	DCW	0x2b
-	%	2
-	DCD	0x0
-	DCW	0x2c
-	%	2
-	DCD	0x0
-	DCW	0x2d
-	%	2
-	DCD	0x0
-	DCW	0x2e
-	%	2
-	DCD	0x0
-	DCW	0x2f
+|GPMCPads| DCW	0x2f
 	%	2
 	DCD	0x1
 	DCW	0x30
@@ -1100,21 +1067,6 @@
 	DCW	0x3f
 	%	2
 	DCD	0x0
-	DCW	0x40
-	%	2
-	DCD	0x0
-	DCW	0x41
-	%	2
-	DCD	0x0
-	DCW	0x42
-	%	2
-	DCD	0x0
-	DCW	0x44
-	%	2
-	DCD	0x0
-	DCW	0x46
-	%	2
-	DCD	0x0
 	DCW	0x47
 	%	2
 	DCD	0x0
@@ -1136,9 +1088,6 @@
 	DCW	0x4e
 	%	2
 	DCD	0x7
-	DCW	0x4f
-	%	2
-	DCD	0x21
 	DCW	0xffff
 	%	2
 	DCD	0x0
@@ -1225,10 +1174,10 @@
 	DCD	0x0
 |I2C3Pads| DCW	0xc9
 	%	2
-	DCD	0x25
+	DCD	0x1
 	DCW	0xca
 	%	2
-	DCD	0x25
+	DCD	0x1
 	DCW	0xffff
 	%	2
 	DCD	0x0
@@ -1243,16 +1192,16 @@
 	DCD	0x0
 |MCSPI1Pads| DCW 0xcf
 	%	2
-	DCD	0x20
+	DCD	0x0
 	DCW	0xce
 	%	2
-	DCD	0x21
+	DCD	0x1
 	DCW	0xcd
 	%	2
-	DCD	0x20
+	DCD	0x0
 	DCW	0xcc
 	%	2
-	DCD	0x21
+	DCD	0x1
 	DCW	0xffff
 	%	2
 	DCD	0x0
@@ -1488,7 +1437,7 @@
 ; File c:\wince600\platform\z2170p\src\bsp_common\bsp_padcfg\bsp_padcfg.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48219| DCD	|$LN5@BSPGetAllP|
+|$T48180| DCD	|$LN5@BSPGetAllP|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -1499,7 +1448,7 @@
 ; 66   : {    
 
   00000		 |$LN5@BSPGetAllP|
-  00000		 |$M48216|
+  00000		 |$M48177|
 
 ; 67   :     return g_allowedPadCfg;
 
@@ -1511,7 +1460,7 @@
   00008		 |$LN6@BSPGetAllP|
   00008		 |$LN7@BSPGetAllP|
   00008	00000000	 DCD         |g_allowedPadCfg|
-  0000c		 |$M48217|
+  0000c		 |$M48178|
 
 			 ENDP  ; |BSPGetAllPadsInfo|
 
@@ -1520,7 +1469,7 @@
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48234| DCD	|$LN27@BSPGetDevi|
+|$T48195| DCD	|$LN27@BSPGetDevi|
 	DCD	0x40007201
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1540,7 +1489,7 @@
 
   00000		 |$LN27@BSPGetDevi|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48231|
+  00004		 |$M48192|
   00004	e1a04000	 mov         r4, r0
 
 ; 71   : 	RETAILMSG(1,(L"BSPGetDevicePadInfo : %d\r\n",device)); 
@@ -1552,11 +1501,11 @@
 ; 72   :     switch (device)
 
   00014	e3540012	 cmp         r4, #0x12
-  00018	8a000034	 bhi         |$LN22@BSPGetDevi|
-  0001c	0a00002f	 beq         |$LN7@BSPGetDevi|
+  00018	8a000035	 bhi         |$LN22@BSPGetDevi|
+  0001c	0a000030	 beq         |$LN7@BSPGetDevi|
   00020	e354000c	 cmp         r4, #0xC
-  00024	8a00001b	 bhi         |$LN23@BSPGetDevi|
-  00028	0a000016	 beq         |$LN11@BSPGetDevi|
+  00024	8a00001c	 bhi         |$LN23@BSPGetDevi|
+  00028	0a000017	 beq         |$LN11@BSPGetDevi|
   0002c	e3540003	 cmp         r4, #3
   00030	0a000011	 beq         |$LN2@BSPGetDevi|
   00034	e3540006	 cmp         r4, #6
@@ -1569,7 +1518,7 @@
 ; 77   :         case OMAP_DEVICE_UART2: return UART2Pads;
 
   0004c	e59f3168	 ldr         r3, [pc, #0x168]
-  00050	e2830e27	 add         r0, r3, #0x27, 28
+  00050	e2830f7e	 add         r0, r3, #0x7E, 30
 
 ; 93   : }
 
@@ -1577,10 +1526,10 @@
   00058	e12fff1e	 bx          lr
   0005c		 |$LN15@BSPGetDevi|
 
-; 76   :         case OMAP_DEVICE_UART1: return UART1Pads;
+; 76   :         case OMAP_DEVICE_UART1: return UART1Pads;		// 10
 
   0005c	e59f3158	 ldr         r3, [pc, #0x158]
-  00060	e2830f92	 add         r0, r3, #0x92, 30
+  00060	e2830e1d	 add         r0, r3, #0x1D, 28
 
 ; 93   : }
 
@@ -1591,7 +1540,7 @@
 ; 85   :     	case OMAP_DEVICE_MCBSP1: return MCBSP1Pads;
 
   0006c	e59f3148	 ldr         r3, [pc, #0x148]
-  00070	e2830fea	 add         r0, r3, #0xEA, 30
+  00070	e2830e33	 add         r0, r3, #0x33, 28
 
 ; 93   : }
 
@@ -1599,142 +1548,142 @@
   00078	e12fff1e	 bx          lr
   0007c		 |$LN2@BSPGetDevi|
 
-; 89   :     	case OMAP_DEVICE_HSOTGUSB : return USBOTGPads;
+; 89   :     	case OMAP_DEVICE_HSOTGUSB : return USBOTGPads;	// 3
 
-  0007c	e59f013c	 ldr         r0, [pc, #0x13C]
-
-; 93   : }
-
-  00080	e8bd4010	 ldmia       sp!, {r4, lr}
-  00084	e12fff1e	 bx          lr
-  00088		 |$LN11@BSPGetDevi|
-
-; 80   :         case OMAP_DEVICE_I2C1: return I2C1Pads;
-
-  00088	e59f312c	 ldr         r3, [pc, #0x12C]
-  0008c	e2830e2f	 add         r0, r3, #0x2F, 28
+  0007c	e59f3138	 ldr         r3, [pc, #0x138]
+  00080	e2830e45	 add         r0, r3, #0x45, 28
 
 ; 93   : }
 
-  00090	e8bd4010	 ldmia       sp!, {r4, lr}
-  00094	e12fff1e	 bx          lr
-  00098		 |$LN23@BSPGetDevi|
+  00084	e8bd4010	 ldmia       sp!, {r4, lr}
+  00088	e12fff1e	 bx          lr
+  0008c		 |$LN11@BSPGetDevi|
+
+; 80   :         case OMAP_DEVICE_I2C1: return I2C1Pads;			// 12
+
+  0008c	e59f3128	 ldr         r3, [pc, #0x128]
+  00090	e2830f9e	 add         r0, r3, #0x9E, 30
+
+; 93   : }
+
+  00094	e8bd4010	 ldmia       sp!, {r4, lr}
+  00098	e12fff1e	 bx          lr
+  0009c		 |$LN23@BSPGetDevi|
 
 ; 72   :     switch (device)
 
-  00098	e354000d	 cmp         r4, #0xD
-  0009c	0a00000b	 beq         |$LN10@BSPGetDevi|
-  000a0	e354000e	 cmp         r4, #0xE
-  000a4	0a000005	 beq         |$LN9@BSPGetDevi|
-  000a8	e354000f	 cmp         r4, #0xF
-  000ac	1a000033	 bne         |$LN18@BSPGetDevi|
+  0009c	e354000d	 cmp         r4, #0xD
+  000a0	0a00000b	 beq         |$LN10@BSPGetDevi|
+  000a4	e354000e	 cmp         r4, #0xE
+  000a8	0a000005	 beq         |$LN9@BSPGetDevi|
+  000ac	e354000f	 cmp         r4, #0xF
+  000b0	1a000032	 bne         |$LN18@BSPGetDevi|
 
 ; 83   :         case OMAP_DEVICE_MCSPI1: return MCSPI1Pads;
 
-  000b0	e59f3104	 ldr         r3, [pc, #0x104]
-  000b4	e2830e35	 add         r0, r3, #0x35, 28
+  000b4	e59f3100	 ldr         r3, [pc, #0x100]
+  000b8	e2830fb6	 add         r0, r3, #0xB6, 30
 
 ; 93   : }
 
-  000b8	e8bd4010	 ldmia       sp!, {r4, lr}
-  000bc	e12fff1e	 bx          lr
-  000c0		 |$LN9@BSPGetDevi|
+  000bc	e8bd4010	 ldmia       sp!, {r4, lr}
+  000c0	e12fff1e	 bx          lr
+  000c4		 |$LN9@BSPGetDevi|
 
-; 82   :         case OMAP_DEVICE_I2C3: return I2C3Pads;
+; 82   :         case OMAP_DEVICE_I2C3: return I2C3Pads;			// 14
 
-  000c0	e59f30f4	 ldr         r3, [pc, #0xF4]
-  000c4	e2830e32	 add         r0, r3, #0x32, 28
+  000c4	e59f30f0	 ldr         r3, [pc, #0xF0]
+  000c8	e2830faa	 add         r0, r3, #0xAA, 30
 
 ; 93   : }
 
-  000c8	e8bd4010	 ldmia       sp!, {r4, lr}
-  000cc	e12fff1e	 bx          lr
-  000d0		 |$LN10@BSPGetDevi|
+  000cc	e8bd4010	 ldmia       sp!, {r4, lr}
+  000d0	e12fff1e	 bx          lr
+  000d4		 |$LN10@BSPGetDevi|
 
 ; 81   :         case OMAP_DEVICE_I2C2: return I2C2Pads;
 
-  000d0	e59f30e4	 ldr         r3, [pc, #0xE4]
-  000d4	e2830fc2	 add         r0, r3, #0xC2, 30
+  000d4	e59f30e0	 ldr         r3, [pc, #0xE0]
+  000d8	e2830e29	 add         r0, r3, #0x29, 28
 
 ; 93   : }
 
-  000d8	e8bd4010	 ldmia       sp!, {r4, lr}
-  000dc	e12fff1e	 bx          lr
-  000e0		 |$LN7@BSPGetDevi|
+  000dc	e8bd4010	 ldmia       sp!, {r4, lr}
+  000e0	e12fff1e	 bx          lr
+  000e4		 |$LN7@BSPGetDevi|
 
-; 84   :         case OMAP_DEVICE_MCSPI4: return MCSPI4Pads; //20130522-brian
+; 84   :         case OMAP_DEVICE_MCSPI4: return MCSPI4Pads;		//20130522-brian
 
-  000e0	e59f30d4	 ldr         r3, [pc, #0xD4]
-  000e4	e2830fde	 add         r0, r3, #0xDE, 30
+  000e4	e59f30d0	 ldr         r3, [pc, #0xD0]
+  000e8	e2830c03	 add         r0, r3, #3, 24
 
 ; 93   : }
 
-  000e8	e8bd4010	 ldmia       sp!, {r4, lr}
-  000ec	e12fff1e	 bx          lr
-  000f0		 |$LN22@BSPGetDevi|
+  000ec	e8bd4010	 ldmia       sp!, {r4, lr}
+  000f0	e12fff1e	 bx          lr
+  000f4		 |$LN22@BSPGetDevi|
 
 ; 72   :     switch (device)
 
-  000f0	e3540043	 cmp         r4, #0x43
-  000f4	8a00001b	 bhi         |$LN24@BSPGetDevi|
-  000f8	0a000016	 beq         |$LN1@BSPGetDevi|
-  000fc	e3540015	 cmp         r4, #0x15
-  00100	0a000010	 beq         |$LN12@BSPGetDevi|
-  00104	e3540032	 cmp         r4, #0x32
-  00108	0a00000a	 beq         |$LN5@BSPGetDevi|
-  0010c	e354003d	 cmp         r4, #0x3D
-  00110	0a000004	 beq         |$LN13@BSPGetDevi|
-  00114	e354003f	 cmp         r4, #0x3F
-  00118	1a000018	 bne         |$LN18@BSPGetDevi|
+  000f4	e3540043	 cmp         r4, #0x43
+  000f8	8a00001a	 bhi         |$LN24@BSPGetDevi|
+  000fc	0a000016	 beq         |$LN1@BSPGetDevi|
+  00100	e3540015	 cmp         r4, #0x15
+  00104	0a000010	 beq         |$LN12@BSPGetDevi|
+  00108	e3540032	 cmp         r4, #0x32
+  0010c	0a00000a	 beq         |$LN5@BSPGetDevi|
+  00110	e354003d	 cmp         r4, #0x3D
+  00114	0a000004	 beq         |$LN13@BSPGetDevi|
+  00118	e354003f	 cmp         r4, #0x3F
+  0011c	1a000017	 bne         |$LN18@BSPGetDevi|
 
 ; 73   :     {
-; 74   :         case OMAP_DEVICE_DSS:return DSSPadConfig_37XX;        
+; 74   :         case OMAP_DEVICE_DSS:return DSSPadConfig_37XX;	// 63
 
-  0011c	e59f0098	 ldr         r0, [pc, #0x98]
+  00120	e59f0094	 ldr         r0, [pc, #0x94]
 
 ; 93   : }
 
-  00120	e8bd4010	 ldmia       sp!, {r4, lr}
-  00124	e12fff1e	 bx          lr
-  00128		 |$LN13@BSPGetDevi|
+  00124	e8bd4010	 ldmia       sp!, {r4, lr}
+  00128	e12fff1e	 bx          lr
+  0012c		 |$LN13@BSPGetDevi|
 
 ; 78   :     	case OMAP_DEVICE_UART3: return UART3Pads;
 
-  00128	e59f308c	 ldr         r3, [pc, #0x8C]
-  0012c	e2830e29	 add         r0, r3, #0x29, 28
+  0012c	e59f3088	 ldr         r3, [pc, #0x88]
+  00130	e2830f86	 add         r0, r3, #0x86, 30
 
 ; 93   : }
 
-  00130	e8bd4010	 ldmia       sp!, {r4, lr}
-  00134	e12fff1e	 bx          lr
-  00138		 |$LN5@BSPGetDevi|
+  00134	e8bd4010	 ldmia       sp!, {r4, lr}
+  00138	e12fff1e	 bx          lr
+  0013c		 |$LN5@BSPGetDevi|
 
 ; 86   :     	case OMAP_DEVICE_MCBSP2: return MCBSP2Pads;
 
-  00138	e59f307c	 ldr         r3, [pc, #0x7C]
-  0013c	e2830e3d	 add         r0, r3, #0x3D, 28
+  0013c	e59f3078	 ldr         r3, [pc, #0x78]
+  00140	e2830fd6	 add         r0, r3, #0xD6, 30
 
 ; 93   : }
 
-  00140	e8bd4010	 ldmia       sp!, {r4, lr}
-  00144	e12fff1e	 bx          lr
-  00148		 |$LN12@BSPGetDevi|
+  00144	e8bd4010	 ldmia       sp!, {r4, lr}
+  00148	e12fff1e	 bx          lr
+  0014c		 |$LN12@BSPGetDevi|
 
 ; 79   :         case OMAP_DEVICE_MMC1: return MMC1Pads;
 
-  00148	e59f306c	 ldr         r3, [pc, #0x6C]
-  0014c	e2830fae	 add         r0, r3, #0xAE, 30
+  0014c	e59f3068	 ldr         r3, [pc, #0x68]
+  00150	e2830d09	 add         r0, r3, #9, 26
 
 ; 93   : }
 
-  00150	e8bd4010	 ldmia       sp!, {r4, lr}
-  00154	e12fff1e	 bx          lr
-  00158		 |$LN1@BSPGetDevi|
+  00154	e8bd4010	 ldmia       sp!, {r4, lr}
+  00158	e12fff1e	 bx          lr
+  0015c		 |$LN1@BSPGetDevi|
 
 ; 90   :         case OMAP_DEVICE_CAMERA: return CameraPads;
 
-  00158	e59f305c	 ldr         r3, [pc, #0x5C]
-  0015c	e2830e53	 add         r0, r3, #0x53, 28
+  0015c	e59f005c	 ldr         r0, [pc, #0x5C]
 
 ; 93   : }
 
@@ -1763,10 +1712,10 @@
   00188	e12fff1e	 bx          lr
   0018c		 |$LN16@BSPGetDevi|
 
-; 75   :         case OMAP_DEVICE_GPMC: return GPMCPads;
+; 75   :         case OMAP_DEVICE_GPMC: return GPMCPads;			// 83
 
   0018c	e59f3028	 ldr         r3, [pc, #0x28]
-  00190	e2830c01	 add         r0, r3, #1, 24
+  00190	e2830f42	 add         r0, r3, #0x42, 30
 
 ; 93   : }
 
@@ -1777,7 +1726,7 @@
 ; 88   :     	case OMAP_DEVICE_USBHOST2: return USBHost2Pads;
 
   0019c	e59f3018	 ldr         r3, [pc, #0x18]
-  001a0	e2830e45	 add         r0, r3, #0x45, 28
+  001a0	e2830ff6	 add         r0, r3, #0xF6, 30
 
 ; 93   : }
 
@@ -1788,7 +1737,7 @@
 ; 87   :     	case OMAP_DEVICE_USBHOST1: return USBHost1Pads;
 
   001ac	e59f3008	 ldr         r3, [pc, #8]
-  001b0	e2830ffe	 add         r0, r3, #0xFE, 30
+  001b0	e2830d0e	 add         r0, r3, #0xE, 26
 
 ; 93   : }
 
@@ -1798,10 +1747,10 @@
   001bc		 |$LN29@BSPGetDevi|
   001bc	00000000	 DCD         |DSSPadConfig_37XX|
   001c0		 |$LN30@BSPGetDevi|
-  001c0	00000000	 DCD         |USBOTGPads|
+  001c0	00000000	 DCD         |CameraPads|
   001c4		 |$LN31@BSPGetDevi|
   001c4	00000000	 DCD         |??_C@_1DG@KEGIJFGI@?$AAB?$AAS?$AAP?$AAG?$AAe?$AAt?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAP?$AAa?$AAd?$AAI?$AAn?$AAf?$AAo?$AA?5?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  001c8		 |$M48232|
+  001c8		 |$M48193|
 
 			 ENDP  ; |BSPGetDevicePadInfo|
 

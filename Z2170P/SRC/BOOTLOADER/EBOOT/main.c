@@ -26,35 +26,15 @@
 #include "boot_cfg.h"
 #include "oal_alloc.h"
 #include "ceddkex.h"
-//
+
 #include "bsp_cfg.h"
 #include "bsp_padcfg.h"
 #include "tps659xx.h"
 #include "omap_cpuver.h"
-//
-//Initialization the "MC serial port interface (SPI1)" buses,
-#define SPI_CS0_PIN     174         //mcspi1_cs0
-#define SPI_CLK_PIN     171         //mcspi1_clk
-#define SPI_DOUT_PIN    172         //mcspi1_simo
-#define SPI_DIN_PIN     173         //mcspi1_somi does not use.  
-//and declare SPI finction action,  Ray 13-09-23 
-void spi_SendData(short);
-void spiWrBitHigh(void);
-void spiWrBitLow(void);
-void WMLCDCOMD(short);
-void WMLCDDATA(short);
-void spi_Open(void);
-void LcdStall(DWORD);
-void LcdSleep(DWORD);
-void* I2COpen(UINT); 
-//
-#define I2C3_SCL_GPIO    184             //i2c3_scl
-#define I2C3_SDA_GPIO    185             //i2c3_sda
+//#include "sdk_spi.h"
 
-BOOL BLShowLogo(void); //initialization 2.4" TFT-LCD, Ray 13-09-25 
-    
-//------------------------------------------------------------------------------
 UINT16 DefaultMacAddress[] = DEFAULT_MAC_ADDRESS;
+
 
 //------------------------------------------------------------------------------
 //
@@ -84,6 +64,7 @@ UCHAR g_ecctype;
 //
 EBOOT_CONTEXT g_eboot;
 
+
 //------------------------------------------------------------------------------
 // External Variables
 extern DEVICE_IFC_GPIO Omap_Gpio;
@@ -104,29 +85,36 @@ VOID JumpTo(UINT32 address);
 VOID OEMDeinitDebugSerial();
 extern BOOL EnableDeviceClocks(UINT devId, BOOL bEnable);
 extern BOOL WriteFlashNK(UINT32 address, UINT32 size);
-//Add call function hotkey.c, Ray 13-08-13 
-//VOID HotKey(BOOL);
+//extern void HotKeyFunction(HANDLE hTwl);          //Ray 131030
+extern void HotKeyInit(HANDLE hTwl);
+extern BOOL omap_mcspi_init();
+extern void ClearDisplayBuffer();
+//------------------------------------------------------------------------------
+//Add Functionality 
 
+void HotKeyColdReset(HANDLE);                        //Ray 131025
+extern void HotKeyColdReset(HANDLE ghTwl);           //Ray 131030
 
+//------------------------------------------------------------------------------
+//Add Variable
 
+static HANDLE ghTwl;           //Ray 131029
 //------------------------------------------------------------------------------
 //  Local Functions
 
 void BSPGpioInit()
 {
-   BSPInsertGpioDevice(0, &Omap_Gpio, NULL);
+   BSPInsertGpioDevice(0,&Omap_Gpio,NULL);
    BSPInsertGpioDevice(TRITON_GPIO_PINID_START, &Tps659xx_Gpio, NULL);
 }
 
 void main()
 {
-	UINT32 CpuRevision;
-
+	//UINT32 CpuRevision;
 	// Get CPU family
-	g_CPUFamily = CPU_FAMILY_OMAP35XX;
-	CpuRevision = Get_CPUVersion();
-	g_CPUFamily = CPU_FAMILY(CpuRevision);
-
+	//g_CPUFamily = CPU_FAMILY_OMAP35XX;
+	//CpuRevision = Get_CPUVersion();
+	//g_CPUFamily = CPU_FAMILY(CpuRevision);
     EnableDeviceClocks(BSPGetDebugUARTConfig()->dev,TRUE);
     BootloaderMain();
 }
@@ -145,24 +133,16 @@ BOOL OEMPlatformInit()
     UINT32 CpuRevision, version;
     HANDLE hTwl,hGPIO;
     static UCHAR allocationPool[512];
-    
-    /*static const PAD_INFO ebootPinMux[] = {
-            DSS_PADS
-            GPIO_PADS
-			USBOTG_PADS
-            END_OF_PAD_ARRAY
-    };*/
-    static const PAD_INFO ebootPinMux_37XX[] = 
-    {
+    static const PAD_INFO ebootPinMux_37XX[] = {
             DSS_PADS_37XX
             GPIO_PADS_37XX
 	     	USBOTG_PADS
-	     	MCSPI1_PADS                     //Addition to MCSPI1 functional, Ray 13-09-24
-            I2C3_PADS                       //Addition to MCSPI1 functional, Ray 13-10-21
+	     	MCSPI1_EBOOT_PADS
             END_OF_PAD_ARRAY
     };
-    
-    OALLocalAllocInit(allocationPool, sizeof(allocationPool));
+	
+	
+    OALLocalAllocInit(allocationPool,sizeof(allocationPool));
 
     // Get processor and companion chip versions
 	g_CPUFamily = CPU_FAMILY_OMAP35XX;
@@ -172,23 +152,17 @@ BOOL OEMPlatformInit()
 
 	// Set GPTIMER1 regs pointer
 	pTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
-
-    //if(g_CPUFamily == CPU_FAMILY_DM37XX)
-    //{
+	
 	ConfigurePadArray(ebootPinMux_37XX);
-    //}
-    //else
-    //{
-    //    ConfigurePadArray(ebootPinMux);
-    //}
-
-    OALLog(L"ZEBEX Windows CE EBOOT for Z-2170 plus - Ray Testing"		//Ray 13-07-31 
-	//OALLog(L"ZEBEX Windows CE EBOOT for Z-2170 plus - Brain"		
-        L"\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );
-    /*OALLog(
-        L"EBOOT Version %d.%d, BSP " BSP_VERSION_STRING L"\r\n", 
-        EBOOT_VERSION_MAJOR, EBOOT_VERSION_MINOR        
-        );*/
+	
+	//Bootstrap message(1), Ray 131024
+    OALLog(L"ZEBEX Windows CE EBOOT for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );  
+    
+#if BUILDING_EBOOT_SD           //Bootstrap message(2), Ray
+    OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");
+#else
+	OALLog(L"Version: " BSP_EBLD_NAND_VERSION_STRING L"\r\n");
+#endif
 
     // Soft reset GPTIMER1
     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET);
@@ -202,70 +176,46 @@ BOOL OEMPlatformInit()
     OUTREG32(&pTimerRegs->TCLR, GPTIMER_TCLR_AR|GPTIMER_TCLR_ST);
     
 	// Enable device clocks used by the bootloader
-    EnableDeviceClocks(OMAP_DEVICE_GPIO1, TRUE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO2, TRUE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO3, TRUE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO4, TRUE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO5, TRUE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO6, TRUE);
-
+    EnableDeviceClocks(OMAP_DEVICE_GPIO1,TRUE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO2,TRUE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO3,TRUE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO4,TRUE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO5,TRUE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO6,TRUE);
+    
+	EnableDeviceClocks(OMAP_DEVICE_MCSPI1,TRUE);
+	
     // configure i2c devices
-    OALI2CInit(OMAP_DEVICE_I2C1);
-    OALI2CInit(OMAP_DEVICE_I2C2);
-    OALI2CInit(OMAP_DEVICE_I2C3);
+    OALI2CInit(OMAP_DEVICE_I2C1); // TPS65650_I2CCNTL
+    //OALI2CInit(OMAP_DEVICE_I2C2); // G-sensor for Z-2000
+    OALI2CInit(OMAP_DEVICE_I2C3); // BQ27410
 
     GPIOInit();
     // Note that T2 accesses must occur after I2C initialization
     hTwl = TWLOpen();
     hGPIO = GPIOOpen(); 
-    
-    
+   
+    //if( omap_mcspi_init() )
+    //	OALLog(L"omap_mcspi_init: success!!!\r\n");
+    	
     // Clear Reset on ethernet controller        
     //GPIOSetBit(hGPIO,LAN9115_RESET_GPIO);            
     //GPIOSetMode(hGPIO, LAN9115_RESET_GPIO,GPIO_DIR_OUTPUT);
 	// test GPIO 
-	GPIOClrBit(hGPIO, 136); 	// VIBRATOR
-	GPIOSetMode(hGPIO, 136, GPIO_DIR_OUTPUT);
-    GPIOClrBit(hGPIO, 16); 		// WLAN_EN
-	GPIOSetMode(hGPIO, 16, GPIO_DIR_OUTPUT);
-	GPIOClrBit(hGPIO, 15); 		// BT_EN
-	GPIOSetMode(hGPIO, 15, GPIO_DIR_OUTPUT);
-	GPIOSetBit(hGPIO, 61); 		// BACKLIGHT_EN, Ray
-	GPIOSetMode(hGPIO, 61, GPIO_DIR_OUTPUT);
+	GPIOClrBit(hGPIO,15); // BT_EN
+	GPIOSetMode(hGPIO, 15,GPIO_DIR_OUTPUT);
+	GPIOClrBit(hGPIO,136); // VIBRATOR
+	GPIOSetMode(hGPIO, 136,GPIO_DIR_OUTPUT);
+    GPIOClrBit(hGPIO,16); // WLAN_EN
+	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
+	
+    //GPIOSetBit(hGPIO,15);  // test 
+	HotKeyInit(hTwl);       //HotKey Initial ,Ray
+    ghTwl = hTwl;
+    //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
 
-	//Initialization Side key GPIO, Ray 13-08-12
-	GPIOSetMode(hGPIO, 114, GPIO_DIR_INPUT);     // SIDE_KEY1(KEY_2_4)
-	GPIOSetMode(hGPIO, 115, GPIO_DIR_INPUT);     // SIDE_KEY3(KEY_1_4)
-
-	//Initialization the "MC serial port interface (SPI1)" buses, Ray 13-09-24
-    GPIOSetMode(hGPIO, SPI_CS0_PIN, GPIO_DIR_OUTPUT);
-    GPIOSetMode(hGPIO, SPI_CLK_PIN, GPIO_DIR_OUTPUT);
-    GPIOSetMode(hGPIO, SPI_DOUT_PIN, GPIO_DIR_OUTPUT);
-    GPIOSetMode(hGPIO, SPI_DIN_PIN, GPIO_DIR_INPUT);
-
-    //Initialization the "I-suqare-c (i2c3)" buses, Ray 13-10-07
-    /*GPIOSetMode(hGPIO, I2C3_SCL_GPIO, INPUT_ENABLED);
-    GPIOSetMode(hGPIO, I2C3_SDA_GPIO, INPUT_ENABLED);*/
-
-    /*GPIOSetBit(hGPIO, I2C3_SCL_GPIO); 
-    GPIOSetMode(hGPIO, I2C3_SCL_GPIO, GPIO_DIR_OUTPUT);
-    GPIOSetBit(hGPIO, I2C3_SDA_GPIO); 
-    GPIOSetMode(hGPIO, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);*/
-    
-
-   
-	//SPI LCM setup
-	/*XX
-	GPIOSetBit(hGPIO,184); // PCM_EN serial clock 
-	GPIOSetMode(hGPIO, 184, GPIO_PULLUP_ENABLE);
-	//GPIOSetMode(hGPIO, 184, GPIO_DIR_OUTPUT);
-
-	GPIOSetBit(hGPIO,185); // PCM_EN serial data
-	GPIOSetMode(hGPIO, 185, GPIO_PULLUP_ENABLE);
-	//GPIOSetMode(hGPIO, 185, GPIO_DIR_OUTPUT);*/
-
-
-     OALLog(L"\r\nTI OMAP%x Version 0x%08x (%s)\r\n", CPU_ID(CpuRevision), CPU_REVISION(CpuRevision),        
+    //Bootstrap message(3), Ray
+    OALLog(L"TI OMAP%x Version 0x%08x (%s)\r\n", CPU_ID(CpuRevision), CPU_REVISION(CpuRevision),        
         version == CPU_FAMILY_35XX_REVISION_ES_1_0 ? L"ES1.0" :
         version == CPU_FAMILY_35XX_REVISION_ES_2_0 ? L"ES2.0" :
         version == CPU_FAMILY_35XX_REVISION_ES_2_1 ? L"ES2.1" :
@@ -277,7 +227,6 @@ BOOL OEMPlatformInit()
         version == CPU_FAMILY_37XX_REVISION_ES_1_1? L"ES1.1" :
         version == CPU_FAMILY_37XX_REVISION_ES_1_2? L"ES1.2" :
         L"Unknown" );  
-
     /* Initialize Device Prefix */
     if(g_CPUFamily == CPU_FAMILY_DM37XX)
     {
@@ -292,362 +241,22 @@ BOOL OEMPlatformInit()
         OALLog(L"INFO: UnKnown CPU family:%d....\r\n", g_CPUFamily);
         gDevice_prefix = BSP_DEVICE_35xx_PREFIX;
     }
-
     version = TWLReadIDCode(hTwl);
 
+    //Bootstrap message(4), Ray
     OALLog(L"TPS659XX Version 0x%02x (%s)\r\n", version,
         version == 0x00 ? L"ES1.0" : 
         version == 0x10 ? L"ES1.1" : 
         version == 0x20 ? L"ES1.2" : 
         version == 0x30 ? L"ES1.3" : L"Unknown" );
-		
+	
     g_ecctype = (UCHAR)dwEbootECCtype;
 
+	//Bootstrap message(5), Ray
+	//HotKeyFunction(hTwl);   // Function Locate is right? would to changes it.      
+	//GPIOClrBit(hGPIO,15); // test high puls 20ms
     // Done
     return TRUE;
-}
-//------------------------------------------------------------------------------
-//
-//  Set up the "MCSPI1" function active, Ray 13-09-23
-//
-void spiWrBitHigh(void)
-{
-    DWORD delay = 10;
-    HANDLE hGPIO;
-    hGPIO = GPIOOpen(); 
-
-    GPIOSetBit(hGPIO, SPI_DOUT_PIN);
-
-    GPIOClrBit(hGPIO, SPI_CLK_PIN);
-    LcdStall(delay);
-    GPIOSetBit(hGPIO, SPI_CLK_PIN);
-    LcdStall(delay);
-    GPIOClrBit(hGPIO, SPI_CLK_PIN);
-    GPIOClose(hGPIO); 
-}
-//
-void spiWrBitLow(void)
-{
-    int delay = 10;
-    HANDLE hGPIO;
-    hGPIO = GPIOOpen(); 
-    
-    GPIOClrBit(hGPIO, SPI_DOUT_PIN);
-
-    GPIOClrBit(hGPIO, SPI_CLK_PIN);
-    LcdStall(delay);
-    //LcdStall(10);
-    GPIOSetBit(hGPIO, SPI_CLK_PIN);
-    LcdStall(delay);
-    //LcdStall(10);
-    GPIOClrBit(hGPIO, SPI_CLK_PIN);
-    GPIOClose(hGPIO); 
-}
-//
-void spi_SendData(short iSendData)
-{
-    HANDLE hGPIO;
-    short iCount = 0;
-	
-	hGPIO = GPIOOpen();
-	GPIOClrBit(hGPIO, SPI_CS0_PIN);
-    for(iCount=8; iCount>=0; iCount--)
-    {
-		if(iSendData & (1<<iCount)) 
-			spiWrBitHigh();
-		else 
-			spiWrBitLow();
-	}
-	GPIOSetBit(hGPIO, SPI_CS0_PIN);
-}
-//
-void WMLCDCOMD(short cmd)
-{
-    //spi_SendData(&cmd);
-    spi_SendData(cmd);
-}
-//
-void WMLCDDATA(short dat)
-{
-	dat |= 0x0100;
-	//spi_SendData(&dat);
-	spi_SendData(dat);
-}
-//
-void spi_Low(void)
-{
-    //DWORD dTime = 5000000;
-
-    HANDLE hGPIO;
-    hGPIO = GPIOOpen(); 
-    //Set the initialize status of each SPI interface, Ray 13-09-23
-    GPIOClrBit(hGPIO, SPI_CS0_PIN);
-    GPIOClrBit(hGPIO, SPI_CLK_PIN);
-    GPIOClrBit(hGPIO, SPI_DOUT_PIN);
-
-    //LcdStall(dTime);
-    GPIOClose(hGPIO); 
-}
-//
-void spi_Open(void)
-{
-    HANDLE hGPIO;
-    hGPIO = GPIOOpen(); 
-    //Set the initialize status of each SPI interface, Ray 13-09-23
-    GPIOSetBit(hGPIO, SPI_CS0_PIN);
-    GPIOSetBit(hGPIO, SPI_CLK_PIN);
-    GPIOSetBit(hGPIO, SPI_DOUT_PIN);
-
-    GPIOClose(hGPIO);
-}
-//
-void LCD_SPI_Init(void)
-{
-    spi_Open();     //SPI status initialize, Ray 13-09-24 
- 
-	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect -ok
-    WMLCDDATA(0x3F);
-	WMLCDDATA(0x3F);
-    //Sleep(5);
-	LcdSleep(5);
-	
-	WMLCDCOMD(0xFE);   //??
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x21);
-	WMLCDDATA(0xB4);
-	
-	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x10);
-	
-	WMLCDCOMD(0xE0); // NVM Access Control
-	WMLCDDATA(0x00); // NVAE: NVM access enable register. NVM access is enabled when NVAE=1
-	WMLCDDATA(0x40); // FTT: NVM control bit.
-	//Sleep(10);
-	LcdSleep(10);
-	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	
-	WMLCDCOMD(0xFE); // MAGIC - TODO
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x21);
-	WMLCDDATA(0x30);
-	
-	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
-	WMLCDDATA(0x3F);
-	WMLCDDATA(0x3F);    //??
-	
-	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting -ok
-	WMLCDDATA(0x02);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	        	   	
-	WMLCDCOMD(0xB4); //SET interface -ok
-	WMLCDDATA(0x10);
-	
-	WMLCDCOMD(0xC0); //Panel Driving Setting -ok
-	WMLCDDATA(0x03); //GIP REV  SM GS BGR SS
-	WMLCDDATA(0x4F);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x10);
-	WMLCDDATA(0xA2); //BLV=0 LINE
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x01);
-	WMLCDDATA(0x00);
-	
-	WMLCDCOMD(0xC1); //Display Timing Setting for Normal/Partial Mode
-	WMLCDDATA(0x01);
-	WMLCDDATA(0x02);
-	WMLCDDATA(0x19);
-	WMLCDDATA(0x08);
-	WMLCDDATA(0x08);
-	//Sleep(25);
-    LcdSleep(25);
-	WMLCDCOMD(0xC3); //PRTIAL MODE  -ok
-	WMLCDDATA(0x01);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x28);
-	WMLCDDATA(0x08);
-	WMLCDDATA(0x08);
-	//Sleep(25);
-	LcdSleep(25);
-	WMLCDCOMD(0xC4);    //-ok
-	WMLCDDATA(0x11);
-	WMLCDDATA(0x01);
-	WMLCDDATA(0x43);
-	WMLCDDATA(0x04);
-	
-	WMLCDCOMD(0xC8); //set gamma
-	WMLCDDATA(0x0C);
-	WMLCDDATA(0x0C);
-	WMLCDDATA(0x0D);
-	WMLCDDATA(0x14);
-	WMLCDDATA(0x18);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x09);
-	WMLCDDATA(0x09);
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x05);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x08);
-	WMLCDDATA(0x07);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x15);
-	WMLCDDATA(0x12);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x00);
-	
-	WMLCDCOMD(0xC9); //set gamma
-	WMLCDDATA(0x0C);
-	WMLCDDATA(0x0C);
-	WMLCDDATA(0x0D);
-	WMLCDDATA(0x14);
-	WMLCDDATA(0x18);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x09);
-	WMLCDDATA(0x09);
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x05);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x08);
-	WMLCDDATA(0x07);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x15);
-	WMLCDDATA(0x12);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x00);
-	
-	WMLCDCOMD(0xCA); //set gamma
-	WMLCDDATA(0x0C);
-	WMLCDDATA(0x0C);
-	WMLCDDATA(0x0D);
-	WMLCDDATA(0x14);
-	WMLCDDATA(0x18);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x09);
-	WMLCDDATA(0x09);
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x05);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x08);
-	WMLCDDATA(0x07);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x15);
-	WMLCDDATA(0x12);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x0E);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x0A);
-	WMLCDDATA(0x00);    // -ok
-	
-	WMLCDCOMD(0xD0); //Power Setting    -ok
-	WMLCDDATA(0x63); //BT[2:0]=110  VCI+VCI2¡Á2  :5   -(VCI2¡Á2): //??
-	WMLCDDATA(0x53);
-	WMLCDDATA(0x82); //VC2[2:0]=010,VCI2=5V
-	WMLCDDATA(0x3F); //VREG=5.0V        //??
-	
-	WMLCDCOMD(0xD1); //set vcom //-ok
-	WMLCDDATA(0x6A); //VCOMH
-	WMLCDDATA(0x64); //VDV
-	
-	WMLCDCOMD(0xD2); //Power Setting (Note 1) for Normal/Partial Mode
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x24);
-	
-	WMLCDCOMD(0xD4); //Power Setting (Note 1) for Idle Mode
-	WMLCDDATA(0x03);
-	WMLCDDATA(0x24);
-	
-	WMLCDCOMD(0xE2); //NVM Load Control
-	WMLCDDATA(0x3F);
-
-	WMLCDCOMD(0x35); //set_tear_on
-	WMLCDDATA(0x00);
-	
-	WMLCDCOMD(0x36);
-	WMLCDDATA(0x00);
-	
-	WMLCDCOMD(0x3A); //set_pixel_format
-	WMLCDDATA(0x66); // 66 18-bits
-	
-	WMLCDCOMD(0x2A); //set_column_address
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0xEF);
-	
-	WMLCDCOMD(0x2B); //set_page_address:
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x00);
-	WMLCDDATA(0x01);
-	WMLCDDATA(0x3F);
-	
-	WMLCDCOMD(0x11); //exit_sleep_mode
-	//Sleep(120);
-	LcdSleep(120);
-	WMLCDCOMD(0x29); //set_display_on
-	//Sleep(30);
-	LcdSleep(30);
-	//WMLCDCOMD(0xFF); //send DDRAM set
-	WMLCDCOMD(0x2C);
-
-    //ShowLogo();   //13-09-27
-    
-	//SPIClose(hSPI);
-}
-//------------------------------------------------------------------------------
-//
-//  Set up the I2C3 GPIO active for testing, Ray 13-10-21
-//
-DWORD dTime = 5000000;
-
-void I2C3_High(void)
-{
-    HANDLE hGPIO;
-    hGPIO = GPIOOpen();
-    GPIOSetBit(hGPIO, I2C3_SCL_GPIO);
-    GPIOSetBit(hGPIO, I2C3_SDA_GPIO);
-
-    /*HANDLE hI2C;
-    hI2C = I2COpen(OMAP_DEVICE_I2C3);
-    GPIOSetBit(hI2C, I2C3_SCL_GPIO);
-    GPIOSetBit(hI2C, I2C3_SDA_GPIO);*/
-
-    LcdStall(dTime);
-    GPIOClose(hGPIO);
-    //I2CClose(hI2C);
-}
-//
-void I2C3_Low(void)
-{
-    HANDLE hGPIO;
-    hGPIO = GPIOOpen();
-    GPIOClrBit(hGPIO, I2C3_SCL_GPIO);
-    GPIOClrBit(hGPIO, I2C3_SDA_GPIO);
-
-    /*HANDLE hI2C; 
-    hI2C = I2COpen(OMAP_DEVICE_I2C3);
-    GPIOSetBit(hI2C, I2C3_SCL_GPIO);
-    GPIOSetBit(hI2C, I2C3_SDA_GPIO);*/
-
-    LcdStall(dTime);
-    GPIOClose(hGPIO);
-    //I2CClose(hI2C);
 }
 
 //------------------------------------------------------------------------------
@@ -664,12 +273,14 @@ static VOID OEMPlatformDeinit()
     while ((INREG32(&pTimerRegs->TISTAT) & GPTIMER_TISTAT_RESETDONE) == 0);
 
 	// Disable device clocks that were used by the bootloader
+	OALLog(L"INFO: OEMPlatformDeinit -  Disable device clocks\r\n");
     EnableDeviceClocks(OMAP_DEVICE_GPIO1,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_GPIO2,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_GPIO3,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_GPIO4,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_GPIO5,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_GPIO6,FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_MCSPI1,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_GPTIMER2,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_UART1,FALSE);
 	EnableDeviceClocks(OMAP_DEVICE_UART2,FALSE);
@@ -677,7 +288,7 @@ static VOID OEMPlatformDeinit()
     EnableDeviceClocks(OMAP_DEVICE_MMC1,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_MMC2,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_I2C1,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_I2C2,FALSE);
+    //EnableDeviceClocks(OMAP_DEVICE_I2C2,FALSE);
     EnableDeviceClocks(OMAP_DEVICE_I2C3,FALSE);
 }
 /*
@@ -780,8 +391,7 @@ static void CpuGpioOutput(DWORD GpioNumber, DWORD Value)
     OUTREG32(&pPrcmPerCM->CM_FCLKEN_PER, fPer);
     OUTREG32(&pPrcmPerCM->CM_ICLKEN_PER, iPer);
 }*/
-
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 //
 //  Function:  OEMPreDownload
 //
@@ -797,19 +407,25 @@ ULONG OEMPreDownload()
     ULONG dwTemp;
     UINT32 *pStatusControlAddr = OALPAtoUA(OMAP_STATUS_CONTROL_REGS_PA);
     UINT32 dwSysBootCfg;
+#ifdef BUILDING_EBOOT_SD    
+	//BYTE CalibBuffer[CALIBRATE_SIZE];
+#endif
 
-    OALLog(L"INFO: Predownload.......\r\n");
+    //OALLog(L"INFO: Predownload....%d...\r\n",sizeof(BSP_ARGS));
 
     // We need to support multi bin notify
     g_pOEMMultiBINNotify = OEMMultiBinNotify;
 
     // Ensure bootloader blocks are marked as reserved
-    BLReserveBootBlocks();
-
-    // Read saved configration
+#ifdef BUILDING_EBOOT_SD // brian    
+    BLReserveBootBlocks(); // brian
+#endif
+	
+	BLShowLogo(); // brian 
+	
+    // Read saved configration      //Bootstrap message(LCD init after), Ray
     if (BLReadBootCfg(&g_bootCfg) &&
-        (g_bootCfg.signature == BOOT_CFG_SIGNATURE) &&
-        (g_bootCfg.version == BOOT_CFG_VERSION))
+        (g_bootCfg.signature == BOOT_CFG_SIGNATURE) && (g_bootCfg.version == BOOT_CFG_VERSION))
 	{
         OALLog(L"INFO: Boot configuration found\r\n");
 	}
@@ -830,7 +446,7 @@ ULONG OEMPreDownload()
         g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_VMINI;
         g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_EXTNAME;
 
-        g_bootCfg.displayRes = OMAP_LCD_DEFAULT;
+        //g_bootCfg.displayRes = OMAP_LCD_DEFAULT;
 
         
         if(g_CPUFamily == CPU_FAMILY_DM37XX)
@@ -882,94 +498,122 @@ ULONG OEMPreDownload()
 
         default:
             // UART,  Ethernet Boot
-            g_bootCfg.bootDevLoc.LogicalLoc = BSP_LAN9115_REGS_PA;
-            g_bootCfg.kitlDevLoc.LogicalLoc = BSP_LAN9115_REGS_PA;
+            g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
+            g_bootCfg.kitlDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
             break;
         }            
         if (g_bootCfg.kitlDevLoc.LogicalLoc == 0)
         {
-            g_bootCfg.kitlDevLoc.LogicalLoc = BSP_LAN9115_REGS_PA;
-        };
-        g_bootCfg.deviceID = 0;
+            g_bootCfg.kitlDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
+        }
+        //g_bootCfg.deviceID = 0;
+        wcscpy(g_bootCfg.SerialNumber, L"");
         g_bootCfg.osPartitionSize = IMAGE_WINCE_CODE_SIZE;
         wcscpy(g_bootCfg.filename, L"nk.bin");
 	}
-
+	g_bootCfg.displayRes = OMAP_LCD_DEFAULT;
+	
 	// Initialize flash partitions if needed
-	//brian    BLConfigureFlashPartitions(FALSE);
-
+#ifdef BUILDING_EBOOT_SD // brian
+	BLConfigureFlashPartitions(FALSE); //brian
+#endif
     // Initialize ARGS structure
     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
         (pArgs->header.oalVersion != OAL_ARGS_VERSION) ||
         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
 	{
+		OALLog(L"Clear share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);
 		memset(pArgs, 0, IMAGE_SHARE_ARGS_SIZE);
 	}        
     
-    // Save reset type
+    // Save reset type  //Bootstrap message(final); Determine Clod or Warm Reset, Ray 131024
     dwTemp = INREG32(&pPrmGlobal->PRM_RSTST);
     if (dwTemp & (GLOBALWARM_RST /* actually SW reset */ | EXTERNALWARM_RST))
     {
         pArgs->coldBoot = FALSE;
+        OALLog(L"\r>>> Now entry warm-reset... \r\n");
     }
     else
     {
         pArgs->coldBoot = TRUE;
         OALLog(L"\r\n>>> Forcing cold boot (non-persistent registry and other data will be wiped) <<< \r\n");
+        OALLog(L"\r>>> Now entry cold-reset... \r\n");
+        HotKeyColdReset(ghTwl);
+        //OALLog(L"******hTwl: %X....\r\n", ghTwl);   //address-2, Ray
     }
     
     // Don't force the boot menu, use default action unless user breaks
     // into menu
     bForceBootMenu = FALSE;
-   
+    
 retryBootMenu:
 	// Call configuration menu
     BLMenu(bForceBootMenu);
-	//HotKey(bForceBootMenu);			//Ray 13-08-13
     
     // Update ARGS structure if necessary
     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
         (pArgs->header.oalVersion != OAL_ARGS_VERSION) || 
         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
-        {
-			pArgs->header.signature = OAL_ARGS_SIGNATURE;
-			pArgs->header.oalVersion = OAL_ARGS_VERSION;
-			pArgs->header.bspVersion = BSP_ARGS_VERSION;
-			pArgs->kitl.flags = g_bootCfg.kitlFlags;
-			pArgs->kitl.devLoc = g_bootCfg.kitlDevLoc;
-			pArgs->kitl.ipAddress = g_bootCfg.ipAddress;
-			pArgs->kitl.ipMask = g_bootCfg.ipMask;
-			pArgs->kitl.ipRoute = g_bootCfg.ipRoute;
-			memcpy(pArgs->kitl.mac, g_bootCfg.mac, sizeof(pArgs->kitl.mac)); 
- 			pArgs->updateMode = FALSE;
-			pArgs->deviceID = g_bootCfg.deviceID;
-			pArgs->oalFlags = g_bootCfg.oalFlags;
-			pArgs->dispRes = g_bootCfg.displayRes;
-			pArgs->ECCtype = g_bootCfg.ECCtype; 
-			pArgs->opp_mode = g_bootCfg.opp_mode;
-			memcpy(pArgs->DevicePrefix, gDevice_prefix, sizeof(pArgs->DevicePrefix));
-        }  
+	{
+		OALLog(L"Initialize share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);
+		//OALLog(L"Initialize share ARGS - %s\r\n",g_bootCfg.SerialNumber);
+        pArgs->header.signature = OAL_ARGS_SIGNATURE;
+        pArgs->header.oalVersion = OAL_ARGS_VERSION;
+        pArgs->header.bspVersion = BSP_ARGS_VERSION;
+        pArgs->kitl.flags = g_bootCfg.kitlFlags;
+        pArgs->kitl.devLoc = g_bootCfg.kitlDevLoc;
+        //pArgs->kitl.ipAddress = g_bootCfg.ipAddress;
+        //pArgs->kitl.ipMask = g_bootCfg.ipMask;
+        //pArgs->kitl.ipRoute = g_bootCfg.ipRoute;
+		memcpy(pArgs->kitl.mac,g_bootCfg.mac,sizeof(pArgs->kitl.mac)); 
+ 	    pArgs->updateMode = FALSE;
+        //pArgs->deviceID = g_bootCfg.deviceID;
+        pArgs->oalFlags = g_bootCfg.oalFlags;
+        pArgs->dispRes = g_bootCfg.displayRes;
+        pArgs->ECCtype = g_bootCfg.ECCtype; 
+        pArgs->opp_mode = g_bootCfg.opp_mode;
+        memcpy(pArgs->DevicePrefix, gDevice_prefix, sizeof(pArgs->DevicePrefix));
+        memcpy(pArgs->SerialNumber, g_bootCfg.SerialNumber, sizeof(pArgs->SerialNumber));
+        //memcpy((BYTE *)SERIAL_NUMBER_STORE_ADDR, g_bootCfg.SerialNumber, sizeof(g_bootCfg.SerialNumber));
+        //OALLog(L"Initialize share ARGS - %s\r\n",pArgs->SerialNumber);
+	}  
     
     // Initialize display
-		//BLShowLogo();					//Ray 13-07-31
-		//BLShowLogo(TRUE);
-		//BLShowLogo(FALSE);
-		//BBLShowLogo(bForceBootMenu);	
-
+	//BLShowLogo();	// cfg.c
+	
+	// Read touch Calibration data
+#ifdef BUILDING_EBOOT_SD
+	/*memset(pArgs->CalibBuffer, 0, CALIBRATE_SIZE);
+	if( BLSDCardReadCalibData(TOUCHCALIB_EBOOT_FILE, CalibBuffer, CALIBRATE_SIZE) )
+	{
+		//int i;
+		memcpy(pArgs->CalibBuffer, CalibBuffer, CALIBRATE_SIZE);
+		OALLog(L"BLSDCardReadCalibData: %d bytes\r\n", CalibBuffer[1]);
+		//for( i=0 ; i<120 ; i++)
+		//	OALLog(L"BLSDCardReadCalibData: %d = 0x%x\r\n", i, pArgs->CalibBuffer[i]);
+	}*/
+	
     // Image download depends on protocol
-    g_eboot.bootDeviceType = OALKitlDeviceType(&g_bootCfg.bootDevLoc, g_bootDevices);
+	g_eboot.bootDeviceType = BOOT_SDCARD_TYPE;
+#else
+	g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;
+	g_eboot.bootDeviceType = OAL_KITL_TYPE_FLASH;
+#endif
+    //g_eboot.bootDeviceType = OALKitlDeviceType(&g_bootCfg.bootDevLoc, g_bootDevices);
 
+	OALLog(L"bootDeviceType = %d\r\n", g_eboot.bootDeviceType);
+	OALLog(L"LogicalLoc = 0x%x\r\n", g_bootCfg.bootDevLoc.LogicalLoc);
 	switch (g_eboot.bootDeviceType)
 	{
-		case BOOT_SDCARD_TYPE:
+		case BOOT_SDCARD_TYPE: // 4
             rc = BLSDCardDownload(g_bootCfg.filename); // \PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\BOOT\SDMEMORY
             break;
-        case OAL_KITL_TYPE_FLASH:
+        case OAL_KITL_TYPE_FLASH: // 3
             rc = BLFlashDownload(&g_bootCfg, g_bootDevices);
             break;
-        case OAL_KITL_TYPE_ETH:
-            rc = BLEthDownload(&g_bootCfg, g_bootDevices);
-            break;
+        //case OAL_KITL_TYPE_ETH:
+        //    rc = BLEthDownload(&g_bootCfg, g_bootDevices);
+        //    break;
 	}
         
 	if (rc == BL_ERROR)
@@ -989,60 +633,49 @@ retryBootMenu:
 //  This function is the last one called by the boot framework and it is
 //  responsible for to launching the image.
 //
-VOID OEMLaunch( 
-                ULONG start, 
-                ULONG size, 
-                ULONG launch, 
-                const ROMHDR *pRomHeader
-               )
+VOID OEMLaunch(ULONG start, ULONG size, ULONG launch, const ROMHDR *pRomHeader)
 {
     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
 
 	UNREFERENCED_PARAMETER(size);
 	UNREFERENCED_PARAMETER(pRomHeader);
 
-    OALMSG(OAL_INFO, (L"+OEMLaunch(0x%08x, 0x%08x, 0x%08x, 0x%08x - %d/%d)\r\n", start, size,
-        launch, pRomHeader, g_eboot.bootDeviceType, g_eboot.type));
+    OALMSG(1, (L"+OEMLaunch(0x%08x, 0x%08x, 0x%08x, 0x%08x - %d/%d)\r\n", start, size,
+        launch, pRomHeader, g_eboot.bootDeviceType, g_eboot.type)); // OAL_INFO
 
     // Depending on protocol there can be some action required
     switch (g_eboot.bootDeviceType)
-        {
+	{
 #if BUILDING_EBOOT_SD
-        case BOOT_SDCARD_TYPE:            
+        case BOOT_SDCARD_TYPE: // 4
             switch (g_eboot.type)
-                {
+			{
 #if 0
-/*
-                case DOWNLOAD_TYPE_FLASHRAM:
+/*				case DOWNLOAD_TYPE_FLASHRAM:
                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
-                        {
-                        OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: "
-                            L"Image load from flash memory failed\r\n"
-                            ));
+					{
+                        OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Image load from flash memory failed\r\n"));
                         goto cleanUp;
-                        }
+					}
                     launch = g_eboot.launchAddress;
                     break;
 */
 #endif
-                case DOWNLOAD_TYPE_RAM:
+                case DOWNLOAD_TYPE_RAM: // 1
                     launch = (UINT32)OEMMapMemAddr(start, launch);
                     break;
 					
-                case DOWNLOAD_TYPE_FLASHNAND:
+                case DOWNLOAD_TYPE_FLASHNAND: // 6
                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
-                        {
-                        OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: "
-                            L"Image load from flash memory failed\r\n"
-                            ));
+					{
+                        OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Image load from flash memory failed\r\n"));
                         goto cleanUp;
-                        }
+					}
                     launch = g_eboot.launchAddress;
                     break;
 					
 #if 0
-/*
-                case DOWNLOAD_TYPE_EBOOT:
+/*				case DOWNLOAD_TYPE_EBOOT:
                 case DOWNLOAD_TYPE_XLDR:
                     OALMSG(OAL_INFO, (L"INFO: "
                         L"XLDR/EBOOT/IPL downloaded, spin forever\r\n"
@@ -1055,7 +688,7 @@ VOID OEMLaunch(
                     OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown download type, spin forever\r\n"));
                     for(;;);
                     break;
-                }
+			}
             break;
 
 #endif
@@ -1063,7 +696,7 @@ VOID OEMLaunch(
         case OAL_KITL_TYPE_ETH:
             BLEthConfig(pArgs);
             switch (g_eboot.type)
-                {
+			{
 #ifdef IMGMULTIXIP
                 case DOWNLOAD_TYPE_EXT:
 #endif					
@@ -1072,8 +705,7 @@ VOID OEMLaunch(
                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
                         {
                         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: "
-                            L"Image load from flash memory failed\r\n"
-                            ));
+                            L"Image load from flash memory failed\r\n"));
                         goto cleanUp;
                         }
                     launch = g_eboot.launchAddress;
@@ -1085,16 +717,12 @@ VOID OEMLaunch(
 
                 case DOWNLOAD_TYPE_EBOOT:
                 case DOWNLOAD_TYPE_XLDR:
-                    OALMSG(OAL_INFO, (L"INFO: "
-                        L"XLDR/EBOOT/IPL downloaded, spin forever\r\n"
-                        ));
+                    OALMSG(OAL_INFO, (L"INFO: XLDR/EBOOT/IPL downloaded, spin forever\r\n"));
                     for(;;);
                     break;
 
 				case DOWNLOAD_TYPE_LOGO:
-                    OALMSG(OAL_INFO, (L"INFO: "
-                        L"Splashcreen logo downloaded, spin forever\r\n"
-                        ));
+                    OALMSG(OAL_INFO, (L"INFO: Splashcreen logo downloaded, spin forever\r\n"));
                     for(;;);
                     break;
 
@@ -1102,7 +730,7 @@ VOID OEMLaunch(
                     OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown download type, spin forever\r\n"));
                     for(;;);
                     break;
-                }
+			}
             break;
 
         default:        
@@ -1111,34 +739,30 @@ VOID OEMLaunch(
         }
 
 #ifndef BSP_NO_NAND_IN_SDBOOT
-    if ((g_bootCfg.flashNKFlags & ENABLE_FLASH_NK) &&       
-        /* if loading from NAND then do not need to flash NAND again */      
-        (g_eboot.bootDeviceType != OAL_KITL_TYPE_FLASH) && 
-	    (start != (IMAGE_WINCE_CODE_CA + NAND_ROMOFFSET)) &&
-	    (start != (IMAGE_WINCE_CODE_CA + NOR_ROMOFFSET))) {
-            if( !WriteFlashNK(start, size))
-	            OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: "
-	                L"Flash NK.bin failed, start=%x\r\n", start
-	                ));
-    	}
+	/* if loading from NAND then do not need to flash NAND again */
+    if ((g_bootCfg.flashNKFlags & ENABLE_FLASH_NK) && (g_eboot.bootDeviceType != OAL_KITL_TYPE_FLASH) && 
+	    (start != (IMAGE_WINCE_CODE_CA + NAND_ROMOFFSET)) && // 0x80002000 + 0x40000000
+	    (start != (IMAGE_WINCE_CODE_CA + NOR_ROMOFFSET)))	 // 0x80002000 + 0x60000000
+	{
+		OALMSG(1, (L"WriteFlashNK: start = 0x%x,size = 0x%x\r\n",start,size));	
+		if( !WriteFlashNK(start, size))
+			OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Flash NK.bin failed, start=%x\r\n", start));
+	}
 #endif
 
     // Check if we get launch address
     if (launch == (UINT32)INVALID_HANDLE_VALUE)
-        {
-        OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: "
-            L"Unknown image launch address, spin forever\r\n"
-            ));
+	{
+        OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown image launch address, spin forever\r\n"));
         for(;;);
-        }        
+	}        
 
     // Print message, flush caches and jump to image
-    OALLog(
-        L"Launch Windows CE image by jumping to 0x%08x...\r\n\r\n", launch
-        );
+    OALLog(L"Launch Windows CE image by jumping to 0x%08x...\r\n\r\n", launch);
 
 	OEMDeinitDebugSerial();
     OEMPlatformDeinit();
+    ClearDisplayBuffer();
     JumpTo(OALVAtoPA((UCHAR*)launch));
 
 cleanUp:
@@ -1149,10 +773,7 @@ cleanUp:
 //
 //  Function:   OEMMultiBinNotify
 //
-VOID
-OEMMultiBinNotify(
-    MultiBINInfo *pInfo
-    )
+VOID OEMMultiBinNotify(MultiBINInfo *pInfo)
 {
     BOOL rc = FALSE;
     UINT32 base = OALVAtoPA((UCHAR*)IMAGE_WINCE_CODE_CA);
@@ -1160,8 +781,8 @@ OEMMultiBinNotify(
     UINT32 ix;
 
     //OALMSG(OAL_INFO, (L"+OEMMultiBinNotify(0x%08x -> %d)\r\n", pInfo, pInfo->dwNumRegions));
-    OALMSG(OAL_INFO, (L"Download file information:\r\n"));
-    OALMSG(OAL_INFO, (L"-----------------------------------------------------------\r\n"));
+    OALMSG(1, (L"Download file information:\r\n"));
+    OALMSG(1, (L"-----------------------------------------------------------\r\n"));
 
     // Copy information to EBOOT structure and set also save address
     g_eboot.numRegions = pInfo->dwNumRegions;
@@ -1171,10 +792,10 @@ OEMMultiBinNotify(
         g_eboot.region[ix].length = pInfo->Region[ix].dwRegionLength;
         g_eboot.region[ix].base = base;
         base += g_eboot.region[ix].length;
-        OALMSG(OAL_INFO, (L"[%d]: Address=0x%08x  Length=0x%08x  Save=0x%08x\r\n",
+        OALMSG(1, (L"[%d]: Address=0x%08x  Length=0x%08x  Save=0x%08x\r\n",
             ix, g_eboot.region[ix].start, g_eboot.region[ix].length,g_eboot.region[ix].base));
 	}
-    OALMSG(OAL_INFO, (L"-----------------------------------------------------------\r\n"));
+    OALMSG(1, (L"-----------------------------------------------------------\r\n"));
 
 #ifndef IMGMULTIXIP
 
@@ -1191,34 +812,34 @@ OEMMultiBinNotify(
     length = g_eboot.region[0].length; 
     
     if (start == IMAGE_XLDR_CODE_PA)
-        {
+	{
         g_eboot.type = DOWNLOAD_TYPE_XLDR;
         memset(OALPAtoCA(base), 0xFF, length);
-        } 
+	} 
     else if (start == IMAGE_EBOOT_CODE_CA)
-        {
+	{
         g_eboot.type = DOWNLOAD_TYPE_EBOOT;
         memset(OALPAtoCA(base), 0xFF, length);
-        }
+	}
     else if (start == (IMAGE_WINCE_CODE_CA + NAND_ROMOFFSET))
-        {
+	{
         g_eboot.type = DOWNLOAD_TYPE_FLASHNAND;
         memset(OALPAtoCA(base), 0xFF, length);
-        } 
+	} 
 #ifdef IMGMULTIXIP
     else if (start == (IMAGE_WINCE_EXT_CA))
-        {
+	{
         g_eboot.type = DOWNLOAD_TYPE_EXT;
         memset(OALPAtoCA(base), 0xFF, length);
-        } 
+	} 
 #endif	
     else if (start == (IMAGE_WINCE_CODE_CA + NOR_ROMOFFSET))
-        {
+	{
         g_eboot.type = DOWNLOAD_TYPE_FLASHNOR;
         memset(OALPAtoCA(base), 0xFF, length);
-        } 
+	} 
 	else if (start == 0) // Probably a NB0 file, let's fint out
-		{
+	{
 		// Convert the file name to lower case
 		CHAR szFileName[MAX_PATH];
 		int i = 0;
@@ -1258,23 +879,23 @@ OEMMultiBinNotify(
 		    OALMSG(OAL_ERROR, (L"Unsupported downloaded file\r\n"));
 			goto cleanUp;
 		}
-		}
+	}
     else 
-        {
-        g_eboot.type = DOWNLOAD_TYPE_RAM;
-        }
+	{
+        g_eboot.type = DOWNLOAD_TYPE_RAM; // 1
+	}
 
-    OALMSG(OAL_INFO, (L"Download file type: %d\r\n", g_eboot.type));
+    OALMSG(1, (L"Download file type: %d\r\n", g_eboot.type));
     
     rc = TRUE;
 
 cleanUp:
     if (!rc) 
 	{
-        OALMSG(OAL_ERROR, (L"Spin for ever...\r\n"));
+        OALMSG(1, (L"Spin for ever...\r\n"));
         for(;;);
 	}
-    OALMSG(OAL_INFO, (L"-OEMMultiBinNotify\r\n"));
+    OALMSG(1, (L"-OEMMultiBinNotify\r\n"));
 }
 
 //------------------------------------------------------------------------------
@@ -1291,18 +912,20 @@ UINT8* OEMMapMemAddr(DWORD image, DWORD address)
 {
     UINT8 *pAddress = NULL;
 
-    //OALMSG(OAL_INFO, (L"+OEMMapMemAddr(0x%08x, 0x%08x)\r\n", image, address));
+    //OALMSG(1, (L"+OEMMapMemAddr(0x%08x, 0x%08x)\r\n", image, address));
+    //OALMSG(1, (L"+OEMMapMemAddr(g_eboot.type = 0x%08x)\r\n", g_eboot.type));
     
     switch (g_eboot.type) {
 
-    case DOWNLOAD_TYPE_XLDR:
+        
+    case DOWNLOAD_TYPE_XLDR: // 3
     case DOWNLOAD_TYPE_EBOOT:   
 	case DOWNLOAD_TYPE_LOGO:
         //  Map to scratch RAM prior to flashing
         pAddress = (UINT8*)g_eboot.region[0].base + (address - image);
         break;
 
-    case DOWNLOAD_TYPE_RAM:            
+    case DOWNLOAD_TYPE_RAM: // 1
         //  RAM based NK.BIN and EBOOT.BIN files are given in virtual memory addresses
         pAddress = (UINT8*)address;
         break;
@@ -1327,7 +950,7 @@ UINT8* OEMMapMemAddr(DWORD image, DWORD address)
 
     }
 
-    //OALMSGS(OAL_INFO, (L"-OEMMapMemAddr(pAddress = 0x%08x)\r\n", pAddress));
+    //OALMSGS(1, (L"-OEMMapMemAddr(pAddress = 0x%08x)\r\n", pAddress));
     return pAddress;
 }
 
@@ -1341,16 +964,13 @@ UINT8* OEMMapMemAddr(DWORD image, DWORD address)
 //  EBOOT decision depends on download type. Download type is
 //  set in OMEMultiBinNotify.
 //
-BOOL
-OEMIsFlashAddr(
-    ULONG address
-    )
+BOOL OEMIsFlashAddr(ULONG address)
 {
     BOOL rc;
 
 	UNREFERENCED_PARAMETER(address);
 
-    OALMSG(OAL_INFO, (L"+OEMIsFlashAddr(0x%08x)\r\n", address));
+    //OALMSG(OAL_INFO, (L"+OEMIsFlashAddr(0x%08x)\r\n", address));
 
     // Depending on download type
     switch (g_eboot.type)
@@ -1368,7 +988,7 @@ OEMIsFlashAddr(
             break;
         }
 
-    OALMSG(OAL_INFO, (L"-OEMIsFlashAddr(rc = %d)\r\n", rc));
+    //OALMSG(OAL_INFO, (L"-OEMIsFlashAddr(rc = %d)\r\n", rc));
     return rc;
 }
 
@@ -1379,21 +999,18 @@ OEMIsFlashAddr(
 //  This function is called to read data from the transport during
 //  the download process.
 //
-BOOL
-OEMReadData(
-    ULONG size, 
-    UCHAR *pData
-    )
+BOOL OEMReadData(ULONG size, UCHAR *pData)
 {
     BOOL rc = FALSE;
     switch (g_eboot.bootDeviceType)
         {
         #if BUILDING_EBOOT_SD
-        case BOOT_SDCARD_TYPE:
+        case BOOT_SDCARD_TYPE: // 4
+        	//OALMSG(1, (L"OEMReadData(size = 0x%x, pData = 0x%x)\r\n", size, pData));
             rc = BLSDCardReadData(size, pData);
             break;
         #endif
-        case OAL_KITL_TYPE_ETH:
+        case OAL_KITL_TYPE_ETH: // 2
             rc = BLEthReadData(size, pData);
             break;
         }
@@ -1407,10 +1024,7 @@ OEMReadData(
 //  This function is called during the download process to visualise
 //  download progress.
 //
-VOID
-OEMShowProgress(
-    ULONG packetNumber
-    )
+VOID OEMShowProgress(ULONG packetNumber)
 {
     UNREFERENCED_PARAMETER(packetNumber);
     RETAILMSG(1,(TEXT(".")));
@@ -1420,49 +1034,39 @@ OEMShowProgress(
 //
 //  Function:  OALGetTickCount
 //
-UINT32
-OALGetTickCount(
-    )
+UINT32 OALGetTickCount()
 {
     OMAP_GPTIMER_REGS *pGPTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
     return INREG32(&pGPTimerRegs->TCRR) >> 5;
 }
 
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 //
 //  Function:  OEMEthGetSecs
 //
 //  This function returns relative time in seconds.
 //
-DWORD
-OEMEthGetSecs(
-    )
+DWORD OEMEthGetSecs()
 {
     return OALGetTickCount()/1000;
 }
 
-
-void
-GetDisplayResolutionFromBootArgs(
-    DWORD * pDispRes
-    )
+void GetDisplayResolutionFromBootArgs(DWORD * pDispRes)
 {
     *pDispRes=g_bootCfg.displayRes;
 }
 
-BOOL
-IsDVIMode()
+BOOL IsDVIMode()
 {
-    DWORD dispRes;    
+    /*DWORD dispRes;    
     GetDisplayResolutionFromBootArgs(&dispRes);
-    if (dispRes==OMAP_LCD_DEFAULT)
-        return FALSE;
-    else
-        return TRUE;        
+    if (dispRes==OMAP_LCD_DEFAULT)*/
+	return FALSE;
+    //else
+	//return TRUE;        
 }
 
-DWORD 
-ConvertCAtoPA(DWORD * va)
+DWORD ConvertCAtoPA(DWORD * va)
 {   
     return OALVAtoPA(va);
 }

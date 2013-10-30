@@ -316,13 +316,10 @@ PrcmCapturePrevPowerState()
 
 
 //-----------------------------------------------------------------------------
-OMAP_CM_REGS*
-GetCmRegisterSet(
-    UINT powerDomain
-    )
+OMAP_CM_REGS* GetCmRegisterSet(UINT powerDomain)
 {
     switch (powerDomain)
-        {
+	{
         case POWERDOMAIN_WAKEUP:
             return (OMAP_CM_REGS*)g_pPrcmCm->pOMAP_WKUP_CM;
 
@@ -347,27 +344,24 @@ GetCmRegisterSet(
         case POWERDOMAIN_NEON:
             return (OMAP_CM_REGS*)g_pPrcmCm->pOMAP_NEON_CM;
 
-        case POWERDOMAIN_IVA2:
-            return (OMAP_CM_REGS*)g_pPrcmCm->pOMAP_IVA2_CM;
+        /*case POWERDOMAIN_IVA2:
+            return (OMAP_CM_REGS*)g_pPrcmCm->pOMAP_IVA2_CM;*/
 
         case POWERDOMAIN_CAMERA:
             return (OMAP_CM_REGS*)g_pPrcmCm->pOMAP_CAM_CM;
 
         case POWERDOMAIN_SGX:
             return (OMAP_CM_REGS*)g_pPrcmCm->pOMAP_SGX_CM;
-        }
+	}
 
     return NULL;
 }
 
 //-----------------------------------------------------------------------------
-OMAP_PRM_REGS*
-GetPrmRegisterSet(
-    UINT powerDomain
-    )
+OMAP_PRM_REGS* GetPrmRegisterSet(UINT powerDomain)
 {
     switch (powerDomain)
-        {
+	{
         case POWERDOMAIN_WAKEUP:
             return (OMAP_PRM_REGS*)g_pPrcmPrm->pOMAP_WKUP_PRM;
 
@@ -392,15 +386,15 @@ GetPrmRegisterSet(
         case POWERDOMAIN_NEON:
             return (OMAP_PRM_REGS*)g_pPrcmPrm->pOMAP_NEON_PRM;
 
-        case POWERDOMAIN_IVA2:
-            return (OMAP_PRM_REGS*)g_pPrcmPrm->pOMAP_IVA2_PRM;
+        /*case POWERDOMAIN_IVA2:
+            return (OMAP_PRM_REGS*)g_pPrcmPrm->pOMAP_IVA2_PRM;*/
 
         case POWERDOMAIN_CAMERA:
             return (OMAP_PRM_REGS*)g_pPrcmPrm->pOMAP_CAM_PRM;
 
         case POWERDOMAIN_SGX:
             return (OMAP_PRM_REGS*)g_pPrcmPrm->pOMAP_SGX_PRM;
-        }
+	}
 
     return NULL;
 }
@@ -538,7 +532,7 @@ BOOL OALSRAMFnInit()
 {
     pInvalidateTlb  fnInvalidateTlb;
 
-    OALMSG(OAL_FUNC, (L"+OALSRAMFnInit()\r\n"));
+    OALMSG(1, (L"+OALSRAMFnInit()\r\n")); // OAL_FUNC
 
 #pragma warning (push)
 #pragma warning (disable:4152) //disable warning that prevents using function pointers as data pointers
@@ -595,7 +589,7 @@ BOOL OALSRAMFnInit()
 
 #pragma warning (pop)
 
-    OALMSG(OAL_FUNC, (L"-OALSRAMFnInit()\r\n"));
+    OALMSG(1, (L"-OALSRAMFnInit()\r\n"));
 
     return TRUE;
 }
@@ -796,7 +790,7 @@ PrcmInit(
     PrcmInitInfo   *pInfo
     )
 {
-    OALMSG(OAL_FUNC, (L"+PrcmInit()\r\n"));
+    OALMSG(1, (L"+PrcmInit()\r\n"));
 
     // initialize global pointer to the PRCM registers
     g_pPrcmPrm  = pInfo->pPrcmPrm;
@@ -808,7 +802,7 @@ PrcmInit(
     ClockInitialize();
     DeviceInitialize();
 
-    OALMSG(OAL_FUNC, (L"-PrcmInit()\r\n"));
+    OALMSG(1, (L"-PrcmInit()\r\n"));
 }
 
 //-----------------------------------------------------------------------------
@@ -821,7 +815,7 @@ void
 PrcmPostInit()
 {
     int i;
-    OALMSG(OAL_FUNC, (L"+PrcmPostInit()\r\n"));
+    OALMSG(1, (L"+PrcmPostInit()\r\n"));
 
     // initialize synchronization objects
     for (i = 0; i < Mutex_Count; ++i)
@@ -832,7 +826,7 @@ PrcmPostInit()
     // update flag indicating PRCM library is fully initialized
     g_PrcmPostInit = TRUE;
 
-    OALMSG(OAL_FUNC, (L"-PrcmPostInit()\r\n"));
+    OALMSG(1, (L"-PrcmPostInit()\r\n"));
 };
 
 //-----------------------------------------------------------------------------
@@ -914,8 +908,7 @@ PrcmContextRestore()
 //  to try to enter full retention.  The external preconditions for full
 //  retentions must be met for full retention to be entered.
 //
-void
-PrcmSuspend()
+void PrcmSuspend()
 {
     DWORD latencyState;
     UINT32 prevCoreState;

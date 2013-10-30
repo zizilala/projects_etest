@@ -56,6 +56,7 @@
 	DCB	"E", 0x0, "r", 0x0, "r", 0x0, "o", 0x0, "r", 0x0, 0x0, 0x0
 	%	52
 	DCD	0xc003
+|g_nTimeout| DCD 0xffffffff
 	EXPORT	|?ConvertStringToGuid@@YAHPBGPAU_GUID@@@Z| ; ConvertStringToGuid
 	EXPORT	|??_C@_1GI@LBPPMOKF@?$AA?$HL?$AA?$CF?$AA0?$AA8?$AAl?$AAX?$AA?9?$AA?$CF?$AA0?$AA4?$AAX?$AA?9?$AA?$CF?$AA0?$AA4?$AAX?$AA?9?$AA?$CF?$AA0?$AA2?$AAX?$AA?$CF?$AA0?$AA2?$AAX?$AA?9?$AA?$CF?$AA0?$AA2?$AAX?$AA?$CF?$AA0@| [ DATA ] ; `string'
 	IMPORT	|swscanf|
@@ -63,15 +64,15 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\backlight\bkldrvmain.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32577| DCD	|$LN23@ConvertStr|
+|$T32601| DCD	|$LN23@ConvertStr|
 	DCD	0xc0003204
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32579| DCD	|$LN9@ConvertStr|
+|$T32603| DCD	|$LN9@ConvertStr|
 	DCD	0x40000602
 
   00000			 AREA	 |.xdata|, DATA
-|$T32575| DCD	0x1
+|$T32599| DCD	0x1
 	DCD	|$LN13@ConvertStr|
 	DCD	|$LN14@ConvertStr|
 	DCD	|$LN9@ConvertStr|
@@ -93,11 +94,11 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T32575|
+  00004	00000000	 DCD         |$T32599|
 
   00008		 |?ConvertStringToGuid@@YAHPBGPAU_GUID@@@Z| PROC ; ConvertStringToGuid
 
-; 69   : {
+; 74   : {
 
   00008		 |$LN23@ConvertStr|
   00008	e1a0c00d	 mov         r12, sp
@@ -108,29 +109,29 @@
   00018	e1a02001	 mov         r2, r1
   0001c	e50b2050	 str         r2, [r11, #-0x50]
 
-; 70   :     // ConvertStringToGuid
-; 71   :     // this routine converts a string into a GUID and returns TRUE if the
-; 72   :     // conversion was successful.
-; 73   : 
-; 74   :     // Local variables.
-; 75   :     UINT Data4[8];
-; 76   :     int  Count;
-; 77   :     BOOL Ok = FALSE;
+; 75   :     // ConvertStringToGuid
+; 76   :     // this routine converts a string into a GUID and returns TRUE if the
+; 77   :     // conversion was successful.
+; 78   : 
+; 79   :     // Local variables.
+; 80   :     UINT Data4[8];
+; 81   :     int  Count;
+; 82   :     BOOL Ok = FALSE;
 
   00020	e3a03000	 mov         r3, #0
   00024	e50b3054	 str         r3, [r11, #-0x54]
   00028		 |$LN13@ConvertStr|
 
-; 78   :     LPWSTR GuidFormat = L"{%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}";
-; 79   : 
-; 80   :     DEBUGCHK(Guid != NULL && GuidString != NULL);
-; 81   : 
-; 82   :     __try 
-; 83   :     {
+; 83   :     LPWSTR GuidFormat = L"{%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}";
 ; 84   : 
-; 85   :       if (_stscanf(GuidString, GuidFormat, &Guid->Data1, 
-; 86   :         &Guid->Data2, &Guid->Data3, &Data4[0], &Data4[1], &Data4[2], &Data4[3], 
-; 87   :         &Data4[4], &Data4[5], &Data4[6], &Data4[7]) == 11) 
+; 85   :     DEBUGCHK(Guid != NULL && GuidString != NULL);
+; 86   : 
+; 87   :     __try 
+; 88   :     {
+; 89   : 
+; 90   :       if (_stscanf(GuidString, GuidFormat, &Guid->Data1, 
+; 91   :         &Guid->Data2, &Guid->Data3, &Data4[0], &Data4[1], &Data4[2], &Data4[3], 
+; 92   :         &Data4[4], &Data4[5], &Data4[6], &Data4[7]) == 11) 
 
   00028	e59f10b4	 ldr         r1, [pc, #0xB4]
   0002c	e24be02c	 sub         lr, r11, #0x2C
@@ -157,17 +158,17 @@
   00080	e350000b	 cmp         r0, #0xB
   00084	1a000008	 bne         |$LN1@ConvertStr|
 
-; 88   :       {
-; 89   : 
-; 90   :           for (Count = 0; Count < (sizeof(Data4) / sizeof(Data4[0])); Count++) 
+; 93   :       {
+; 94   : 
+; 95   :           for (Count = 0; Count < (sizeof(Data4) / sizeof(Data4[0])); Count++) 
 
   00088	e3a01000	 mov         r1, #0
   0008c		 |$LN20@ConvertStr|
   0008c	e50b104c	 str         r1, [r11, #-0x4C]
   00090	e3510008	 cmp         r1, #8
 
-; 91   :           {
-; 92   :               Guid->Data4[Count] = (UCHAR) Data4[Count];
+; 96   :           {
+; 97   :               Guid->Data4[Count] = (UCHAR) Data4[Count];
 
   00094	324b3048	 subcc       r3, r11, #0x48
   00098	37932101	 ldrcc       r2, [r3, +r1, lsl #2]
@@ -175,43 +176,43 @@
   000a0	35c32008	 strccb      r2, [r3, #8]
   000a4	32811001	 addcc       r1, r1, #1
 
-; 88   :       {
-; 89   : 
-; 90   :           for (Count = 0; Count < (sizeof(Data4) / sizeof(Data4[0])); Count++) 
+; 93   :       {
+; 94   : 
+; 95   :           for (Count = 0; Count < (sizeof(Data4) / sizeof(Data4[0])); Count++) 
 
   000a8	3afffff7	 bcc         |$LN20@ConvertStr|
   000ac		 |$LN1@ConvertStr|
 
-; 93   :           }
-; 94   :       }
-; 95   : 
-; 96   :       Ok = TRUE;
+; 98   :           }
+; 99   :       }
+; 100  : 
+; 101  :       Ok = TRUE;
 
   000ac	e3a00001	 mov         r0, #1
   000b0	e50b0054	 str         r0, [r11, #-0x54]
   000b4		 |$LN14@ConvertStr|
 
-; 97   :     }
+; 102  :     }
 
   000b4	ea000002	 b           |$LN6@ConvertStr|
   000b8		 |$LN10@ConvertStr|
 
-; 98   :     __except(EXCEPTION_EXECUTE_HANDLER) 
+; 103  :     __except(EXCEPTION_EXECUTE_HANDLER) 
 
   000b8	e51b0054	 ldr         r0, [r11, #-0x54]
   000bc	ea000000	 b           |$LN6@ConvertStr|
   000c0		 |$LN19@ConvertStr|
 
-; 99   :     {
-; 100  :         DEBUGMSG(ZONE_ERROR, (TEXT("exception in convertstringtoguid\r\n")));
-; 101  :     }
-; 102  : 
-; 103  :     return Ok;
+; 104  :     {
+; 105  :         DEBUGMSG(ZONE_ERROR, (TEXT("exception in convertstringtoguid\r\n")));
+; 106  :     }
+; 107  : 
+; 108  :     return Ok;
 
   000c0	e51b0050	 ldr         r0, [r11, #-0x50]
   000c4		 |$LN6@ConvertStr|
 
-; 104  : }
+; 109  : }
 
   000c4	e24bd028	 sub         sp, r11, #0x28
   000c8	e89d6ff0	 ldmia       sp, {r4 - r11, sp, lr}
@@ -222,7 +223,7 @@
   000d0		 |$LN9@ConvertStr|
   000d0		 |$LN22@ConvertStr|
 
-; 98   :     __except(EXCEPTION_EXECUTE_HANDLER) 
+; 103  :     __except(EXCEPTION_EXECUTE_HANDLER) 
 
   000d0	e52de004	 str         lr, [sp, #-4]!
   000d4	e24dd024	 sub         sp, sp, #0x24
@@ -243,7 +244,7 @@
 	IMPORT	|WaitForAPIReady|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32596| DCD	|$LN15@UpdateACSt|
+|$T32620| DCD	|$LN15@UpdateACSt|
 	DCD	0x40002402
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -262,20 +263,20 @@
 
   00000		 |?UpdateACStatus@@YAXPAUBKL_MDD_INFO@@@Z| PROC ; UpdateACStatus
 
-; 110  : {
+; 112  : {
 
   00000		 |$LN15@UpdateACSt|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd038	 sub         sp, sp, #0x38
-  00008		 |$M32593|
+  00008		 |$M32617|
   00008	e1a04000	 mov         r4, r0
 
-; 111  :     SYSTEM_POWER_STATUS_EX2 SysPower;
-; 112  : 
-; 113  :     static fFirstTime = TRUE;
+; 113  :     SYSTEM_POWER_STATUS_EX2 SysPower;
 ; 114  : 
-; 115  :     // make sure that GWES APIs ready before calling: 
-; 116  :     if (WAIT_OBJECT_0 != WaitForAPIReady(SH_GDI, INFINITE))
+; 115  :     static fFirstTime = TRUE;
+; 116  : 
+; 117  :     // make sure that GWES APIs ready before calling: 
+; 118  :     if (WAIT_OBJECT_0 != WaitForAPIReady(SH_GDI, INFINITE))
 
   0000c	e3e01000	 mvn         r1, #0
   00010	e3a00050	 mov         r0, #0x50
@@ -283,8 +284,8 @@
   00018	e3500000	 cmp         r0, #0
   0001c	0a000006	 beq         |$LN7@UpdateACSt|
 
-; 117  :     {
-; 118  :         RETAILMSG(ZONE_ERROR, (TEXT("Backlight driver: WaitForAPIReady failed.\r\n")));
+; 119  :     {
+; 120  :         RETAILMSG(ZONE_ERROR, (TEXT("Backlight driver: WaitForAPIReady failed.\r\n")));
 
   00020	e59f3064	 ldr         r3, [pc, #0x64]
   00024	e5933440	 ldr         r3, [r3, #0x440]
@@ -293,21 +294,21 @@
   00030	e59f0050	 ldr         r0, [pc, #0x50]
   00034	eb000000	 bl          NKDbgPrintfW
 
-; 119  :         return;
+; 121  :         return;
 
   00038	ea00000f	 b           |$LN1@UpdateACSt|
   0003c		 |$LN7@UpdateACSt|
 
-; 120  :     }
-; 121  : 
-; 122  :     if (pBKLinfo->pfnGetSystemPowerStatusEx2) 
+; 122  :     }
+; 123  : 
+; 124  :     if (pBKLinfo->pfnGetSystemPowerStatusEx2) 
 
   0003c	e594322c	 ldr         r3, [r4, #0x22C]
   00040	e3530000	 cmp         r3, #0
   00044	0a00000a	 beq         |$LN6@UpdateACSt|
 
-; 123  :     {
-; 124  :         if ((*pBKLinfo->pfnGetSystemPowerStatusEx2)(&SysPower, sizeof(SysPower), FALSE))
+; 125  :     {
+; 126  :         if ((*pBKLinfo->pfnGetSystemPowerStatusEx2)(&SysPower, sizeof(SysPower), FALSE))
 
   00048	e3a02000	 mov         r2, #0
   0004c	e3a01038	 mov         r1, #0x38
@@ -317,46 +318,46 @@
   0005c	e3500000	 cmp         r0, #0
   00060	0a000005	 beq         |$LN1@UpdateACSt|
 
-; 125  :         {
-; 126  :             if (SysPower.ACLineStatus & AC_LINE_ONLINE)
+; 127  :         {
+; 128  :             if (SysPower.ACLineStatus & AC_LINE_ONLINE)
 
   00064	e5dd3000	 ldrb        r3, [sp]
   00068	e3130001	 tst         r3, #1
 
-; 127  :             {
-; 128  :                 pBKLinfo->fOnAC = TRUE;
-; 129  :             }
-; 130  :             else
-; 131  :             {
-; 132  :                 pBKLinfo->fOnAC = FALSE;
+; 129  :             {
+; 130  :                 pBKLinfo->fOnAC = TRUE;
+; 131  :             }
+; 132  :             else
+; 133  :             {
+; 134  :                 pBKLinfo->fOnAC = FALSE;
 
   0006c	03a03000	 moveq       r3, #0
   00070	0a000000	 beq         |$LN12@UpdateACSt|
   00074		 |$LN6@UpdateACSt|
 
-; 133  :             }
-; 134  :         }
-; 135  :         else
-; 136  :         {
-; 137  :             DEBUGMSG(ZONE_BACKLIGHT, (TEXT("GetSystemPowerStstusEx2 failed with error 0x%x.\r\n"), GetLastError()));
-; 138  :             
-; 139  :         }
-; 140  :     }
-; 141  :     else 
-; 142  :     {
-; 143  :         // There are no battery APIs so assume that we are always on AC power.
-; 144  :         pBKLinfo->fOnAC = TRUE;
+; 135  :             }
+; 136  :         }
+; 137  :         else
+; 138  :         {
+; 139  :             DEBUGMSG(ZONE_BACKLIGHT, (TEXT("GetSystemPowerStstusEx2 failed with error 0x%x.\r\n"), GetLastError()));
+; 140  :             
+; 141  :         }
+; 142  :     }
+; 143  :     else 
+; 144  :     {
+; 145  :         // There are no battery APIs so assume that we are always on AC power.
+; 146  :         pBKLinfo->fOnAC = TRUE;
 
   00074	e3a03001	 mov         r3, #1
   00078		 |$LN12@UpdateACSt|
   00078	e5843210	 str         r3, [r4, #0x210]
   0007c		 |$LN1@UpdateACSt|
 
-; 145  :     }
-; 146  :     
-; 147  :     return;    
+; 147  :     }
 ; 148  :     
-; 149  : }
+; 149  :     return;    
+; 150  :     
+; 151  : }
 
   0007c	e28dd038	 add         sp, sp, #0x38
   00080	e8bd4010	 ldmia       sp!, {r4, lr}
@@ -366,14 +367,14 @@
   00088	00000000	 DCD         |??_C@_1FI@GIAHMGCK@?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAd?$AAr?$AAi?$AAv?$AAe?$AAr?$AA?3?$AA?5?$AAW?$AAa?$AAi?$AAt?$AAF?$AAo?$AAr?$AAA?$AAP?$AAI?$AAR?$AAe?$AAa?$AAd@|
   0008c		 |$LN18@UpdateACSt|
   0008c	00000000	 DCD         |?dpCurSettings@@3U_DBGPARAM@@A|
-  00090		 |$M32594|
+  00090		 |$M32618|
 
 			 ENDP  ; |?UpdateACStatus@@YAXPAUBKL_MDD_INFO@@@Z|, UpdateACStatus
 
 	EXPORT	|?GetBestSupportedState@@YAHPAUBKL_MDD_INFO@@W4_CEDEVICE_POWER_STATE@@PAW42@@Z| ; GetBestSupportedState
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32616| DCD	|$LN37@GetBestSup|
+|$T32640| DCD	|$LN37@GetBestSup|
 	DCD	0x40002900
 ; Function compile flags: /Ogspy
 
@@ -381,19 +382,19 @@
 
   00000		 |?GetBestSupportedState@@YAHPAUBKL_MDD_INFO@@W4_CEDEVICE_POWER_STATE@@PAW42@@Z| PROC ; GetBestSupportedState
 
-; 166  : {
+; 168  : {
 
   00000		 |$LN37@GetBestSup|
-  00000		 |$M32613|
+  00000		 |$M32637|
   00000	e3510000	 cmp         r1, #0
   00004	e1a03000	 mov         r3, r0
 
-; 167  :     BOOL fRet = TRUE;   // assume there's a suitable state we can go to
+; 169  :     BOOL fRet = TRUE;   // assume there's a suitable state we can go to
 
   00008	e3a00001	 mov         r0, #1
 
-; 168  :     
-; 169  :     switch(ReqDx)
+; 170  :     
+; 171  :     switch(ReqDx)
 
   0000c	0a000021	 beq         |$LN26@GetBestSup|
   00010	e3510001	 cmp         r1, #1
@@ -405,251 +406,251 @@
   00028	e3510004	 cmp         r1, #4
   0002c	1a00001b	 bne         |$LN27@GetBestSup|
 
-; 220  :             }
-; 221  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
-; 222  :             {
-; 223  :                 *SetDx = D4;
-; 224  :             }
-; 225  :             else
-; 226  :             {
-; 227  :                 fRet = FALSE;
-; 228  :             }
-; 229  :             break;
-; 230  :         case D4:
-; 231  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
+; 222  :             }
+; 223  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
+; 224  :             {
+; 225  :                 *SetDx = D4;
+; 226  :             }
+; 227  :             else
+; 228  :             {
+; 229  :                 fRet = FALSE;
+; 230  :             }
+; 231  :             break;
+; 232  :         case D4:
+; 233  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
 
   00030	e5d33218	 ldrb        r3, [r3, #0x218]
   00034		 |$LN8@GetBestSup|
   00034	e3130010	 tst         r3, #0x10
   00038	0a000014	 beq         |$LN18@GetBestSup|
 
-; 232  :             {
-; 233  :                 *SetDx = D4;
+; 234  :             {
+; 235  :                 *SetDx = D4;
 
   0003c	e3a03004	 mov         r3, #4
 
-; 170  :     {
-; 171  :         case D0:
-; 172  :             *SetDx = D0;
+; 172  :     {
+; 173  :         case D0:
+; 174  :             *SetDx = D0;
 
   00040	e5823000	 str         r3, [r2]
 
-; 234  :             }
-; 235  :             else
-; 236  :             {
-; 237  :                 fRet = FALSE;
-; 238  :             }
-; 239  :             break;  
-; 240  :         default:
-; 241  :             ASSERT(FALSE);
-; 242  :             break;
-; 243  :             
-; 244  :     }   
-; 245  : 
-; 246  :     return fRet;
-; 247  : }
+; 236  :             }
+; 237  :             else
+; 238  :             {
+; 239  :                 fRet = FALSE;
+; 240  :             }
+; 241  :             break;  
+; 242  :         default:
+; 243  :             ASSERT(FALSE);
+; 244  :             break;
+; 245  :             
+; 246  :     }   
+; 247  : 
+; 248  :     return fRet;
+; 249  : }
 
   00044	e12fff1e	 bx          lr
   00048		 |$LN9@GetBestSup|
 
-; 201  :             }
-; 202  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D3])
-; 203  :             {
-; 204  :                 *SetDx = D3;
-; 205  :             }
-; 206  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
-; 207  :             {
-; 208  :                 *SetDx = D4;
-; 209  :             }                       
-; 210  :             else
-; 211  :             {
-; 212  :                 fRet = FALSE;
-; 213  :             }
-; 214  :             break;
-; 215  : 
-; 216  :         case D3:
-; 217  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D3])
+; 203  :             }
+; 204  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D3])
+; 205  :             {
+; 206  :                 *SetDx = D3;
+; 207  :             }
+; 208  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
+; 209  :             {
+; 210  :                 *SetDx = D4;
+; 211  :             }                       
+; 212  :             else
+; 213  :             {
+; 214  :                 fRet = FALSE;
+; 215  :             }
+; 216  :             break;
+; 217  : 
+; 218  :         case D3:
+; 219  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D3])
 
   00048	e5d33218	 ldrb        r3, [r3, #0x218]
   0004c		 |$LN15@GetBestSup|
   0004c	e3130008	 tst         r3, #8
   00050	0afffff7	 beq         |$LN8@GetBestSup|
 
-; 218  :             {
-; 219  :                 *SetDx = D3;
+; 220  :             {
+; 221  :                 *SetDx = D3;
 
   00054	e3a03003	 mov         r3, #3
 
-; 170  :     {
-; 171  :         case D0:
-; 172  :             *SetDx = D0;
+; 172  :     {
+; 173  :         case D0:
+; 174  :             *SetDx = D0;
 
   00058	e5823000	 str         r3, [r2]
 
-; 234  :             }
-; 235  :             else
-; 236  :             {
-; 237  :                 fRet = FALSE;
-; 238  :             }
-; 239  :             break;  
-; 240  :         default:
-; 241  :             ASSERT(FALSE);
-; 242  :             break;
-; 243  :             
-; 244  :     }   
-; 245  : 
-; 246  :     return fRet;
-; 247  : }
+; 236  :             }
+; 237  :             else
+; 238  :             {
+; 239  :                 fRet = FALSE;
+; 240  :             }
+; 241  :             break;  
+; 242  :         default:
+; 243  :             ASSERT(FALSE);
+; 244  :             break;
+; 245  :             
+; 246  :     }   
+; 247  : 
+; 248  :     return fRet;
+; 249  : }
 
   0005c	e12fff1e	 bx          lr
   00060		 |$LN16@GetBestSup|
 
-; 194  :             }
-; 195  :             break;
-; 196  :         
-; 197  :         case D2:
-; 198  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D2])
+; 196  :             }
+; 197  :             break;
+; 198  :         
+; 199  :         case D2:
+; 200  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D2])
 
   00060	e5d33218	 ldrb        r3, [r3, #0x218]
   00064		 |$LN24@GetBestSup|
   00064	e3130004	 tst         r3, #4
   00068	0afffff7	 beq         |$LN15@GetBestSup|
 
-; 199  :             {
-; 200  :                 *SetDx = D2;
+; 201  :             {
+; 202  :                 *SetDx = D2;
 
   0006c	e3a03002	 mov         r3, #2
 
-; 170  :     {
-; 171  :         case D0:
-; 172  :             *SetDx = D0;
+; 172  :     {
+; 173  :         case D0:
+; 174  :             *SetDx = D0;
 
   00070	e5823000	 str         r3, [r2]
 
-; 234  :             }
-; 235  :             else
-; 236  :             {
-; 237  :                 fRet = FALSE;
-; 238  :             }
-; 239  :             break;  
-; 240  :         default:
-; 241  :             ASSERT(FALSE);
-; 242  :             break;
-; 243  :             
-; 244  :     }   
-; 245  : 
-; 246  :     return fRet;
-; 247  : }
+; 236  :             }
+; 237  :             else
+; 238  :             {
+; 239  :                 fRet = FALSE;
+; 240  :             }
+; 241  :             break;  
+; 242  :         default:
+; 243  :             ASSERT(FALSE);
+; 244  :             break;
+; 245  :             
+; 246  :     }   
+; 247  : 
+; 248  :     return fRet;
+; 249  : }
 
   00074	e12fff1e	 bx          lr
   00078		 |$LN25@GetBestSup|
 
-; 173  :             break;
-; 174  :         case D1:
-; 175  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D1])
+; 175  :             break;
+; 176  :         case D1:
+; 177  :             if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D1])
 
   00078	e5d33218	 ldrb        r3, [r3, #0x218]
   0007c	e3130002	 tst         r3, #2
   00080	0afffff7	 beq         |$LN24@GetBestSup|
 
-; 176  :             {
-; 177  :                 *SetDx = D1;
+; 178  :             {
+; 179  :                 *SetDx = D1;
 
   00084	e3a03001	 mov         r3, #1
 
-; 170  :     {
-; 171  :         case D0:
-; 172  :             *SetDx = D0;
+; 172  :     {
+; 173  :         case D0:
+; 174  :             *SetDx = D0;
 
   00088	e5823000	 str         r3, [r2]
 
-; 234  :             }
-; 235  :             else
-; 236  :             {
-; 237  :                 fRet = FALSE;
-; 238  :             }
-; 239  :             break;  
-; 240  :         default:
-; 241  :             ASSERT(FALSE);
-; 242  :             break;
-; 243  :             
-; 244  :     }   
-; 245  : 
-; 246  :     return fRet;
-; 247  : }
+; 236  :             }
+; 237  :             else
+; 238  :             {
+; 239  :                 fRet = FALSE;
+; 240  :             }
+; 241  :             break;  
+; 242  :         default:
+; 243  :             ASSERT(FALSE);
+; 244  :             break;
+; 245  :             
+; 246  :     }   
+; 247  : 
+; 248  :     return fRet;
+; 249  : }
 
   0008c	e12fff1e	 bx          lr
   00090		 |$LN18@GetBestSup|
 
-; 178  :             }            
-; 179  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D2])
-; 180  :             {
-; 181  :                 *SetDx = D2;
-; 182  :             }
-; 183  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D3])
-; 184  :             {
-; 185  :                 *SetDx = D3;
-; 186  :             }
-; 187  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
-; 188  :             {
-; 189  :                 *SetDx = D4;
-; 190  :             }
-; 191  :             else
-; 192  :             {
-; 193  :                 fRet = FALSE;
+; 180  :             }            
+; 181  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D2])
+; 182  :             {
+; 183  :                 *SetDx = D2;
+; 184  :             }
+; 185  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D3])
+; 186  :             {
+; 187  :                 *SetDx = D3;
+; 188  :             }
+; 189  :             else if(pBKLinfo->ucSupportedStatesMask & DeviceStateMasks[D4])
+; 190  :             {
+; 191  :                 *SetDx = D4;
+; 192  :             }
+; 193  :             else
+; 194  :             {
+; 195  :                 fRet = FALSE;
 
   00090	e3a00000	 mov         r0, #0
 
-; 234  :             }
-; 235  :             else
-; 236  :             {
-; 237  :                 fRet = FALSE;
-; 238  :             }
-; 239  :             break;  
-; 240  :         default:
-; 241  :             ASSERT(FALSE);
-; 242  :             break;
-; 243  :             
-; 244  :     }   
-; 245  : 
-; 246  :     return fRet;
-; 247  : }
+; 236  :             }
+; 237  :             else
+; 238  :             {
+; 239  :                 fRet = FALSE;
+; 240  :             }
+; 241  :             break;  
+; 242  :         default:
+; 243  :             ASSERT(FALSE);
+; 244  :             break;
+; 245  :             
+; 246  :     }   
+; 247  : 
+; 248  :     return fRet;
+; 249  : }
 
   00094	e12fff1e	 bx          lr
   00098		 |$LN26@GetBestSup|
 
-; 170  :     {
-; 171  :         case D0:
-; 172  :             *SetDx = D0;
+; 172  :     {
+; 173  :         case D0:
+; 174  :             *SetDx = D0;
 
   00098	e3a03000	 mov         r3, #0
   0009c	e5823000	 str         r3, [r2]
   000a0		 |$LN27@GetBestSup|
 
-; 234  :             }
-; 235  :             else
-; 236  :             {
-; 237  :                 fRet = FALSE;
-; 238  :             }
-; 239  :             break;  
-; 240  :         default:
-; 241  :             ASSERT(FALSE);
-; 242  :             break;
-; 243  :             
-; 244  :     }   
-; 245  : 
-; 246  :     return fRet;
-; 247  : }
+; 236  :             }
+; 237  :             else
+; 238  :             {
+; 239  :                 fRet = FALSE;
+; 240  :             }
+; 241  :             break;  
+; 242  :         default:
+; 243  :             ASSERT(FALSE);
+; 244  :             break;
+; 245  :             
+; 246  :     }   
+; 247  : 
+; 248  :     return fRet;
+; 249  : }
 
   000a0	e12fff1e	 bx          lr
-  000a4		 |$M32614|
+  000a4		 |$M32638|
 
 			 ENDP  ; |?GetBestSupportedState@@YAHPAUBKL_MDD_INFO@@W4_CEDEVICE_POWER_STATE@@PAW42@@Z|, GetBestSupportedState
 
 	EXPORT	|?IsTapOn@@YAHPAUBKL_MDD_INFO@@@Z|	; IsTapOn
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32632| DCD	|$LN13@IsTapOn|
+|$T32656| DCD	|$LN13@IsTapOn|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -657,89 +658,80 @@
 
   00000		 |?IsTapOn@@YAHPAUBKL_MDD_INFO@@@Z| PROC ; IsTapOn
 
-; 253  : {
+; 255  : {
 
   00000		 |$LN13@IsTapOn|
-  00000		 |$M32629|
+  00000		 |$M32653|
 
-; 254  :     if(pBKLinfo->fOnAC)
+; 256  :     if(pBKLinfo->fOnAC)
 
   00000	e5903210	 ldr         r3, [r0, #0x210]
   00004	e3530000	 cmp         r3, #0
 
-; 255  :     {
-; 256  :         return (pBKLinfo->fExternalTapOn? TRUE : FALSE);
+; 257  :     {
+; 258  :         return (pBKLinfo->fExternalTapOn? TRUE : FALSE);
 
   00008	15903204	 ldrne       r3, [r0, #0x204]
 
-; 257  :     }
-; 258  :     else
-; 259  :     {
-; 260  :         return (pBKLinfo->fBatteryTapOn? TRUE : FALSE);
+; 259  :     }
+; 260  :     else
+; 261  :     {
+; 262  :         return (pBKLinfo->fBatteryTapOn? TRUE : FALSE);
 
   0000c	05903200	 ldreq       r3, [r0, #0x200]
   00010	e3530000	 cmp         r3, #0
   00014	13a00001	 movne       r0, #1
   00018	03a00000	 moveq       r0, #0
 
-; 261  :     }
-; 262  :     
-; 263  : }
+; 263  :     }
+; 264  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M32630|
+  00020		 |$M32654|
 
 			 ENDP  ; |?IsTapOn@@YAHPAUBKL_MDD_INFO@@@Z|, IsTapOn
 
 	EXPORT	|?GetTimeout@@YAKPAUBKL_MDD_INFO@@@Z|	; GetTimeout
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32642| DCD	|$LN7@GetTimeout|
-	DCD	0x40000500
+|$T32666| DCD	|$LN5@GetTimeout|
+	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |?GetTimeout@@YAKPAUBKL_MDD_INFO@@@Z| PROC ; GetTimeout
 
-; 266  : {
+; 267  : {
 
-  00000		 |$LN7@GetTimeout|
-  00000		 |$M32639|
+  00000		 |$LN5@GetTimeout|
+  00000		 |$M32663|
 
-; 267  :     if(pBKLinfo->fOnAC)
+; 268  :     /*if(pBKLinfo->fOnAC)
+; 269  :     {
+; 270  :         return pBKLinfo->dwACTimeout;        
+; 271  :     }
+; 272  :     else
+; 273  :     {
+; 274  :         return pBKLinfo->dwBattTimeout;        
+; 275  :     }*/
+; 276  : 	return pBKLinfo->nLcdTimeout;
 
-  00000	e5903210	 ldr         r3, [r0, #0x210]
-  00004	e3530000	 cmp         r3, #0
+  00000	e5900208	 ldr         r0, [r0, #0x208]
 
-; 268  :     {
-; 269  :         return pBKLinfo->dwACTimeout;        
+; 277  : }
 
-  00008	1590020c	 ldrne       r0, [r0, #0x20C]
-
-; 270  :     }
-; 271  :     else
-; 272  :     {
-; 273  :         return pBKLinfo->dwBattTimeout;        
-
-  0000c	05900208	 ldreq       r0, [r0, #0x208]
-
-; 274  :     }
-; 275  : 
-; 276  : }
-
-  00010	e12fff1e	 bx          lr
-  00014		 |$M32640|
+  00004	e12fff1e	 bx          lr
+  00008		 |$M32664|
 
 			 ENDP  ; |?GetTimeout@@YAKPAUBKL_MDD_INFO@@@Z|, GetTimeout
 
 	EXPORT	|__$ArrayPad$| [ DATA ]
 	EXPORT	|?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z| ; BacklightUpdateMDDRegSettings
-	EXPORT	|??_C@_1BE@PJBHBNNG@?$AAA?$AAC?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BO@PELGLPFE@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CC@FKEHPNLB@?$AAA?$AAC?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AAO?$AAn?$AAT?$AAa?$AAp?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BO@BFBCCLIP@?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AAO?$AAn?$AAT?$AAa?$AAp?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CO@MGKPHPG@?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAP?$AAa?$AAn?$AAe?$AAl?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BI@OAMEINBK@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BC@IEBAKMLI@?$AAL?$AAC?$AAD?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BA@BKONPLFM@?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DA@OIBOMNLJ@?$AAS?$AAO?$AAF?$AAT?$AAW?$AAA?$AAR?$AAE?$AA?2?$AAA?$AAp?$AAp?$AAs?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|RegCloseKey|
 	IMPORT	|RegQueryValueExW|
 	IMPORT	|RegOpenKeyExW|
@@ -748,92 +740,84 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32658| DCD	|$LN12@BacklightU|
-	DCD	0xc0005e02
+|$T32683| DCD	|$LN11@BacklightU|
+	DCD	0xc0005002
 
   00000			 AREA	 |.xdata|, DATA
-|$T32654| DCD	0xffffffe8
+|$T32679| DCD	0xffffffe8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BE@PJBHBNNG@?$AAA?$AAC?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@| DCB "A"
-	DCB	0x0, "C", 0x0, "T", 0x0, "i", 0x0, "m", 0x0, "e", 0x0, "o"
-	DCB	0x0, "u", 0x0, "t", 0x0, 0x0, 0x0	; `string'
+|??_C@_1BI@OAMEINBK@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@| DCB "K"
+	DCB	0x0, "e", 0x0, "y", 0x0, "p", 0x0, "a", 0x0, "d", 0x0, " "
+	DCB	0x0, "M", 0x0, "o", 0x0, "d", 0x0, "e", 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@PELGLPFE@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@| DCB "B"
-	DCB	0x0, "a", 0x0, "t", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, "y"
-	DCB	0x0, "T", 0x0, "i", 0x0, "m", 0x0, "e", 0x0, "o", 0x0, "u"
-	DCB	0x0, "t", 0x0, 0x0, 0x0			; `string'
+|??_C@_1BC@IEBAKMLI@?$AAL?$AAC?$AAD?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@| DCB "L"
+	DCB	0x0, "C", 0x0, "D", 0x0, " ", 0x0, "M", 0x0, "o", 0x0, "d"
+	DCB	0x0, "e", 0x0, 0x0, 0x0			; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CC@FKEHPNLB@?$AAA?$AAC?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AAO?$AAn?$AAT?$AAa?$AAp?$AA?$AA@| DCB "A"
-	DCB	0x0, "C", 0x0, "B", 0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l"
-	DCB	0x0, "i", 0x0, "g", 0x0, "h", 0x0, "t", 0x0, "O", 0x0, "n"
-	DCB	0x0, "T", 0x0, "a", 0x0, "p", 0x0, 0x0, 0x0 ; `string'
+|??_C@_1BA@BKONPLFM@?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@| DCB "T", 0x0
+	DCB	"i", 0x0, "m", 0x0, "e", 0x0, "o", 0x0, "u", 0x0, "t", 0x0
+	DCB	0x0, 0x0				; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@BFBCCLIP@?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AAO?$AAn?$AAT?$AAa?$AAp?$AA?$AA@| DCB "B"
-	DCB	0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l", 0x0, "i", 0x0, "g"
-	DCB	0x0, "h", 0x0, "t", 0x0, "O", 0x0, "n", 0x0, "T", 0x0, "a"
-	DCB	0x0, "p", 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CO@MGKPHPG@?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAP?$AAa?$AAn?$AAe?$AAl?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@| DCB "C"
-	DCB	0x0, "o", 0x0, "n", 0x0, "t", 0x0, "r", 0x0, "o", 0x0, "l"
-	DCB	0x0, "P", 0x0, "a", 0x0, "n", 0x0, "e", 0x0, "l", 0x0, "\\"
-	DCB	0x0, "B", 0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l", 0x0, "i"
-	DCB	0x0, "g", 0x0, "h", 0x0, "t", 0x0, 0x0, 0x0 ; `string'
+|??_C@_1DA@OIBOMNLJ@?$AAS?$AAO?$AAF?$AAT?$AAW?$AAA?$AAR?$AAE?$AA?2?$AAA?$AAp?$AAp?$AAs?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@| DCB "S"
+	DCB	0x0, "O", 0x0, "F", 0x0, "T", 0x0, "W", 0x0, "A", 0x0, "R"
+	DCB	0x0, "E", 0x0, "\\", 0x0, "A", 0x0, "p", 0x0, "p", 0x0, "s"
+	DCB	0x0, "\\", 0x0, "B", 0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l"
+	DCB	0x0, "i", 0x0, "g", 0x0, "h", 0x0, "t", 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T32654|
+  00004	00000000	 DCD         |$T32679|
 
   00008		 |?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z| PROC ; BacklightUpdateMDDRegSettings
 
-; 282  : {
+; 283  : {
 
-  00008		 |$LN12@BacklightU|
+  00008		 |$LN11@BacklightU|
   00008	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   0000c	e24ddf47	 sub         sp, sp, #0x47, 30
-  00010		 |$M32655|
+  00010		 |$M32680|
   00010	e1a05000	 mov         r5, r0
-  00014	e59f3160	 ldr         r3, [pc, #0x160]
+  00014	e59f3128	 ldr         r3, [pc, #0x128]
   00018	e5933000	 ldr         r3, [r3]
   0001c	e58d3118	 str         r3, [sp, #0x118]
 
-; 283  :     DWORD   retCode;
-; 284  :     BYTE    ValueData[MAX_PATH];
-; 285  :     DWORD    dwType;
-; 286  :     void    *bData = ValueData;
-; 287  :     DWORD   cbData;
-; 288  :     HKEY    hKey;
-; 289  : 
-; 290  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("+BacklightReadMDDReg\r\n")));
-; 291  :     retCode = RegOpenKeyEx (HKEY_CURRENT_USER, BACKLIGHT_REGKEY, 0, KEY_ALL_ACCESS, &hKey);
+; 284  :     DWORD   retCode;
+; 285  :     BYTE    ValueData[MAX_PATH];
+; 286  :     DWORD    dwType;
+; 287  :     void    *bData = ValueData;
+; 288  :     DWORD   cbData;
+; 289  :     HKEY    hKey;
+; 290  : 
+; 291  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("+BacklightReadMDDReg\r\n")));
+; 292  :     retCode = RegOpenKeyEx(HKEY_LOCAL_MACHINE, BACKLIGHT_REGKEY, 0, KEY_ALL_ACCESS, &hKey);
 
-  00020	e59f1150	 ldr         r1, [pc, #0x150]
+  00020	e59f1118	 ldr         r1, [pc, #0x118]
   00024	e3a0380f	 mov         r3, #0xF, 16
   00028	e28de010	 add         lr, sp, #0x10
   0002c	e383303f	 orr         r3, r3, #0x3F
   00030	e3a02000	 mov         r2, #0
-  00034	e3a00106	 mov         r0, #6, 2
+  00034	e3a0010a	 mov         r0, #0xA, 2
   00038	e58de000	 str         lr, [sp]
   0003c	eb000000	 bl          RegOpenKeyExW
   00040	e3500000	 cmp         r0, #0
 
-; 292  :     if (retCode == ERROR_SUCCESS)
+; 293  :     if (retCode == ERROR_SUCCESS)
 
-  00044	1a00003f	 bne         |$exit$32370|
+  00044	1a000031	 bne         |$exit$32382|
 
-; 293  :     {
-; 294  :         //Battery Tap
-; 295  :         dwType=REG_DWORD;
-; 296  :         cbData = MAX_PATH;
-; 297  :         retCode = RegQueryValueEx(hKey, TEXT("BacklightOnTap"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 294  :     {
+; 295  :         // Backlight Timeout.
+; 296  :         dwType = REG_DWORD;
+; 297  :         cbData = MAX_PATH;
+; 298  :         retCode = RegQueryValueEx(hKey, BACKLIGHT_REGVALUE_TIMEOUT, NULL, &dwType, (LPBYTE) bData, (LPDWORD) &cbData);
 
-  00048	e59f1124	 ldr         r1, [pc, #0x124]
+  00048	e59f10ec	 ldr         r1, [pc, #0xEC]
   0004c	e59d0010	 ldr         r0, [sp, #0x10]
   00050	e3a06004	 mov         r6, #4
   00054	e3a07f41	 mov         r7, #0x41, 30
@@ -848,140 +832,148 @@
   00078	eb000000	 bl          RegQueryValueExW
   0007c	e3500000	 cmp         r0, #0
 
-; 298  :         if (retCode == ERROR_SUCCESS)
-; 299  :         {
-; 300  :             pBKLinfo->fBatteryTapOn = (*(DWORD *)bData );
+; 299  :         if(retCode == ERROR_SUCCESS)
+; 300  :         {
+; 301  :             pBKLinfo->nLcdTimeout = (*(INT *) bData);
+; 302  :             g_nTimeout = pBKLinfo->nLcdTimeout;
 
-  00080	059d3014	 ldreq       r3, [sp, #0x14]
+  00080	059f20b0	 ldreq       r2, [pc, #0xB0]
+  00084	059d3014	 ldreq       r3, [sp, #0x14]
 
-; 301  :         }
-; 302  :         //External Tap
-; 303  :         dwType=REG_DWORD;
-; 304  :         cbData = MAX_PATH;
-; 305  :         retCode = RegQueryValueEx(hKey, TEXT("ACBacklightOnTap"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 303  :         }
+; 304  : 
+; 305  :         // Backlight Mode.
+; 306  :         dwType = REG_DWORD;
+; 307  :         cbData = MAX_PATH;
+; 308  :         retCode = RegQueryValueEx(hKey, BACKLIGHT_REGVALUE_MODE, NULL, &dwType, (LPBYTE) bData, (LPDWORD) &cbData);
 
-  00084	e59f10e4	 ldr         r1, [pc, #0xE4]
-  00088	e59d0010	 ldr         r0, [sp, #0x10]
-  0008c	05853200	 streq       r3, [r5, #0x200]
-  00090	e3a06004	 mov         r6, #4
-  00094	e3a07f41	 mov         r7, #0x41, 30
-  00098	e28de008	 add         lr, sp, #8
-  0009c	e28d4014	 add         r4, sp, #0x14
-  000a0	e28d300c	 add         r3, sp, #0xC
-  000a4	e3a02000	 mov         r2, #0
-  000a8	e58d600c	 str         r6, [sp, #0xC]
-  000ac	e58d7008	 str         r7, [sp, #8]
-  000b0	e58de004	 str         lr, [sp, #4]
-  000b4	e58d4000	 str         r4, [sp]
-  000b8	eb000000	 bl          RegQueryValueExW
-  000bc	e3500000	 cmp         r0, #0
+  00088	e59f10a4	 ldr         r1, [pc, #0xA4]
+  0008c	e59d0010	 ldr         r0, [sp, #0x10]
+  00090	05853208	 streq       r3, [r5, #0x208]
+  00094	05823000	 streq       r3, [r2]
+  00098	e3a06004	 mov         r6, #4
+  0009c	e3a07f41	 mov         r7, #0x41, 30
+  000a0	e28de008	 add         lr, sp, #8
+  000a4	e28d4014	 add         r4, sp, #0x14
+  000a8	e28d300c	 add         r3, sp, #0xC
+  000ac	e3a02000	 mov         r2, #0
+  000b0	e58d600c	 str         r6, [sp, #0xC]
+  000b4	e58d7008	 str         r7, [sp, #8]
+  000b8	e58de004	 str         lr, [sp, #4]
+  000bc	e58d4000	 str         r4, [sp]
+  000c0	eb000000	 bl          RegQueryValueExW
+  000c4	e3500000	 cmp         r0, #0
 
-; 306  :         if (retCode == ERROR_SUCCESS)
-; 307  :         {
-; 308  :             pBKLinfo->fExternalTapOn = (*(DWORD *)bData );
+; 309  :         if(retCode == ERROR_SUCCESS)
+; 310  :         {
+; 311  :             pBKLinfo->dwBackLiteMode = (*(DWORD *) bData);
 
-  000c0	059d3014	 ldreq       r3, [sp, #0x14]
+  000c8	059d3014	 ldreq       r3, [sp, #0x14]
 
-; 309  :         }
-; 310  :         //Backlight on battery timeout (we may need to turn the backlight off)
-; 311  :         dwType=REG_DWORD;
-; 312  :         cbData = MAX_PATH;
-; 313  :         retCode = RegQueryValueEx(hKey, TEXT("BatteryTimeout"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 312  :         }
+; 313  : 
+; 314  :         // Keypad Backlight Mode.
+; 315  :         dwType = REG_DWORD;
+; 316  :         cbData = MAX_PATH;
+; 317  :         retCode = RegQueryValueEx(hKey, KEYPADBACKLIGHT_REGVALUE_MODE, NULL, &dwType, (LPBYTE) bData, (LPDWORD) &cbData);
 
-  000c4	e59f10a0	 ldr         r1, [pc, #0xA0]
-  000c8	e59d0010	 ldr         r0, [sp, #0x10]
-  000cc	05853204	 streq       r3, [r5, #0x204]
-  000d0	e3a06004	 mov         r6, #4
-  000d4	e3a07f41	 mov         r7, #0x41, 30
-  000d8	e28de008	 add         lr, sp, #8
-  000dc	e28d4014	 add         r4, sp, #0x14
-  000e0	e28d300c	 add         r3, sp, #0xC
-  000e4	e3a02000	 mov         r2, #0
-  000e8	e58d600c	 str         r6, [sp, #0xC]
-  000ec	e58d7008	 str         r7, [sp, #8]
-  000f0	e58de004	 str         lr, [sp, #4]
-  000f4	e58d4000	 str         r4, [sp]
-  000f8	eb000000	 bl          RegQueryValueExW
-  000fc	e3500000	 cmp         r0, #0
+  000cc	e59f105c	 ldr         r1, [pc, #0x5C]
+  000d0	e59d0010	 ldr         r0, [sp, #0x10]
+  000d4	0585320c	 streq       r3, [r5, #0x20C]
+  000d8	e3a06004	 mov         r6, #4
+  000dc	e3a07f41	 mov         r7, #0x41, 30
+  000e0	e28de008	 add         lr, sp, #8
+  000e4	e28d4014	 add         r4, sp, #0x14
+  000e8	e28d300c	 add         r3, sp, #0xC
+  000ec	e3a02000	 mov         r2, #0
+  000f0	e58d600c	 str         r6, [sp, #0xC]
+  000f4	e58d7008	 str         r7, [sp, #8]
+  000f8	e58de004	 str         lr, [sp, #4]
+  000fc	e58d4000	 str         r4, [sp]
+  00100	eb000000	 bl          RegQueryValueExW
+  00104	e3500000	 cmp         r0, #0
 
-; 314  :         if (retCode == ERROR_SUCCESS)
-; 315  :         {
-; 316  :             pBKLinfo->dwBattTimeout = (*(DWORD *)bData );
+; 318  :         if(retCode == ERROR_SUCCESS)
+; 319  :         {
+; 320  :             pBKLinfo->dwKBLMode = (*(DWORD *) bData);
 
-  00100	059d3014	 ldreq       r3, [sp, #0x14]
+  00108	059d3014	 ldreq       r3, [sp, #0x14]
+  0010c	05853234	 streq       r3, [r5, #0x234]
+  00110		 |$exit$32382|
 
-; 317  :         }
-; 318  :         //Backlight on AC timeout
-; 319  :         dwType=REG_DWORD;
-; 320  :         cbData = MAX_PATH;        
-; 321  :         retCode = RegQueryValueEx(hKey, TEXT("ACTimeout"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 321  :         }
+; 322  : /*        //Battery Tap
+; 323  :         dwType=REG_DWORD;
+; 324  :         cbData = MAX_PATH;
+; 325  :         retCode = RegQueryValueEx(hKey, TEXT("BacklightOnTap"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 326  :         if (retCode == ERROR_SUCCESS)
+; 327  :         {
+; 328  :             pBKLinfo->fBatteryTapOn = (*(DWORD *)bData );
+; 329  :         }
+; 330  :         //External Tap
+; 331  :         dwType=REG_DWORD;
+; 332  :         cbData = MAX_PATH;
+; 333  :         retCode = RegQueryValueEx(hKey, TEXT("ACBacklightOnTap"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 334  :         if (retCode == ERROR_SUCCESS)
+; 335  :         {
+; 336  :             pBKLinfo->fExternalTapOn = (*(DWORD *)bData );
+; 337  :         }
+; 338  :         //Backlight on battery timeout (we may need to turn the backlight off)
+; 339  :         dwType=REG_DWORD;
+; 340  :         cbData = MAX_PATH;
+; 341  :         retCode = RegQueryValueEx(hKey, TEXT("BatteryTimeout"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 342  :         if (retCode == ERROR_SUCCESS)
+; 343  :         {
+; 344  :             pBKLinfo->dwBattTimeout = (*(DWORD *)bData );
+; 345  :         }
+; 346  :         //Backlight on AC timeout
+; 347  :         dwType=REG_DWORD;
+; 348  :         cbData = MAX_PATH;        
+; 349  :         retCode = RegQueryValueEx(hKey, TEXT("ACTimeout"), NULL, &dwType, (LPBYTE) bData, (LPDWORD)&cbData);
+; 350  :         if (retCode == ERROR_SUCCESS)
+; 351  :         {
+; 352  :             pBKLinfo->dwACTimeout = (*(DWORD *)bData );
+; 353  :         }*/
+; 354  :     }
+; 355  : 
+; 356  :     goto exit;
+; 357  :     
+; 358  : exit:
+; 359  :     if(hKey)
 
-  00104	e59f105c	 ldr         r1, [pc, #0x5C]
-  00108	e59d0010	 ldr         r0, [sp, #0x10]
-  0010c	05853208	 streq       r3, [r5, #0x208]
-  00110	e3a06004	 mov         r6, #4
-  00114	e3a07f41	 mov         r7, #0x41, 30
-  00118	e28de008	 add         lr, sp, #8
-  0011c	e28d4014	 add         r4, sp, #0x14
-  00120	e28d300c	 add         r3, sp, #0xC
-  00124	e3a02000	 mov         r2, #0
-  00128	e58d600c	 str         r6, [sp, #0xC]
-  0012c	e58d7008	 str         r7, [sp, #8]
-  00130	e58de004	 str         lr, [sp, #4]
-  00134	e58d4000	 str         r4, [sp]
-  00138	eb000000	 bl          RegQueryValueExW
-  0013c	e3500000	 cmp         r0, #0
+  00110	e59d0010	 ldr         r0, [sp, #0x10]
+  00114	e3500000	 cmp         r0, #0
 
-; 322  :         if (retCode == ERROR_SUCCESS)
-; 323  :         {
-; 324  :             pBKLinfo->dwACTimeout = (*(DWORD *)bData );
+; 360  :     {
+; 361  :         RegCloseKey(hKey);
 
-  00140	059d3014	 ldreq       r3, [sp, #0x14]
-  00144	0585320c	 streq       r3, [r5, #0x20C]
-  00148		 |$exit$32370|
+  00118	1b000000	 blne        RegCloseKey
+  0011c	e59d0118	 ldr         r0, [sp, #0x118]
+  00120	eb000000	 bl          __security_check_cookie
 
-; 325  :         }
-; 326  :         
-; 327  :     }
-; 328  : 
-; 329  :     goto exit;
-; 330  :     
-; 331  : exit:
-; 332  :     if(hKey)
+; 362  :     }
+; 363  : 
+; 364  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("-BacklightReadMDDReg\r\n")));
+; 365  :     
+; 366  : }
 
-  00148	e59d0010	 ldr         r0, [sp, #0x10]
-  0014c	e3500000	 cmp         r0, #0
-
-; 333  :     {
-; 334  :         RegCloseKey(hKey);
-
-  00150	1b000000	 blne        RegCloseKey
-  00154	e59d0118	 ldr         r0, [sp, #0x118]
-  00158	eb000000	 bl          __security_check_cookie
-
-; 335  :     }
-; 336  : 
-; 337  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("-BacklightReadMDDReg\r\n")));
-; 338  :     
-; 339  : }
-
-  0015c	e28ddf47	 add         sp, sp, #0x47, 30
-  00160	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  00164	e12fff1e	 bx          lr
-  00168		 |$LN13@BacklightU|
-  00168		 |$LN14@BacklightU|
-  00168	00000000	 DCD         |??_C@_1BE@PJBHBNNG@?$AAA?$AAC?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@|
-  0016c		 |$LN15@BacklightU|
-  0016c	00000000	 DCD         |??_C@_1BO@PELGLPFE@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@|
-  00170		 |$LN16@BacklightU|
-  00170	00000000	 DCD         |??_C@_1CC@FKEHPNLB@?$AAA?$AAC?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AAO?$AAn?$AAT?$AAa?$AAp?$AA?$AA@|
-  00174		 |$LN17@BacklightU|
-  00174	00000000	 DCD         |??_C@_1BO@BFBCCLIP@?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AAO?$AAn?$AAT?$AAa?$AAp?$AA?$AA@|
-  00178		 |$LN18@BacklightU|
-  00178	00000000	 DCD         |??_C@_1CO@MGKPHPG@?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAP?$AAa?$AAn?$AAe?$AAl?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@|
-  0017c		 |$LN19@BacklightU|
-  0017c	00000000	 DCD         |__security_cookie|
-  00180		 |$M32656|
+  00124	e28ddf47	 add         sp, sp, #0x47, 30
+  00128	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  0012c	e12fff1e	 bx          lr
+  00130		 |$LN12@BacklightU|
+  00130		 |$LN13@BacklightU|
+  00130	00000000	 DCD         |??_C@_1BI@OAMEINBK@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@|
+  00134		 |$LN14@BacklightU|
+  00134	00000000	 DCD         |??_C@_1BC@IEBAKMLI@?$AAL?$AAC?$AAD?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@|
+  00138		 |$LN15@BacklightU|
+  00138	00000000	 DCD         |g_nTimeout|
+  0013c		 |$LN16@BacklightU|
+  0013c	00000000	 DCD         |??_C@_1BA@BKONPLFM@?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@|
+  00140		 |$LN17@BacklightU|
+  00140	00000000	 DCD         |??_C@_1DA@OIBOMNLJ@?$AAS?$AAO?$AAF?$AAT?$AAW?$AAA?$AAR?$AAE?$AA?2?$AAA?$AAp?$AAp?$AAs?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@|
+  00144		 |$LN18@BacklightU|
+  00144	00000000	 DCD         |__security_cookie|
+  00148		 |$M32681|
 
 			 ENDP  ; |?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z|, BacklightUpdateMDDRegSettings
 
@@ -989,7 +981,7 @@
 	IMPORT	|SetDevicePower|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32675| DCD	|$LN5@BKL_SetDev|
+|$T32700| DCD	|$LN5@BKL_SetDev|
 	DCD	0x40000601
 ; Function compile flags: /Ogspy
 
@@ -997,777 +989,1168 @@
 
   00000		 |?BKL_SetDevicePower@@YAXPAUBKL_MDD_INFO@@W4_CEDEVICE_POWER_STATE@@@Z| PROC ; BKL_SetDevicePower
 
-; 347  : {
+; 374  : {
 
   00000		 |$LN5@BKL_SetDev|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M32672|
+  00004		 |$M32697|
   00004	e1a02001	 mov         r2, r1
 
-; 348  :     SetDevicePower(pBKLinfo->szName, POWER_NAME, bklPowerState);
+; 375  :     SetDevicePower(pBKLinfo->szName, POWER_NAME, bklPowerState);
 
   00008	e3a01001	 mov         r1, #1
   0000c	eb000000	 bl          SetDevicePower
 
-; 349  :     
-; 350  :     return;
-; 351  : }
+; 376  :     
+; 377  :     return;
+; 378  : }
 
   00010	e49de004	 ldr         lr, [sp], #4
   00014	e12fff1e	 bx          lr
-  00018		 |$M32673|
+  00018		 |$M32698|
 
 			 ENDP  ; |?BKL_SetDevicePower@@YAXPAUBKL_MDD_INFO@@W4_CEDEVICE_POWER_STATE@@@Z|, BKL_SetDevicePower
 
 	EXPORT	|?UpdateBacklight@@YAXPAUBKL_MDD_INFO@@K@Z| ; UpdateBacklight
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32749| DCD	|$LN53@UpdateBack|
-	DCD	0x40004001
+|$T32770| DCD	|$LN49@UpdateBack|
+	DCD	0x40003c01
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |?UpdateBacklight@@YAXPAUBKL_MDD_INFO@@K@Z| PROC ; UpdateBacklight
 
-; 358  : {
+; 385  : {
 
-  00000		 |$LN53@UpdateBack|
+  00000		 |$LN49@UpdateBack|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M32746|
+  00004		 |$M32767|
   00004	e1a04000	 mov         r4, r0
 
-; 359  :     BOOL    fTapOnPrev, fTapOnNew;
-; 360  :     DWORD   dwTimeoutPrev, dwTimeoutNew;
-; 361  :     BOOL    fSetPowerOff = FALSE;
-; 362  :     BOOL    fReleasePwrOff = FALSE;
-; 363  :     
-; 364  :     fTapOnPrev = IsTapOn(pBKLinfo);
+; 386  :     BOOL    fTapOnPrev, fTapOnNew;
+; 387  :     DWORD   dwTimeoutPrev, dwTimeoutNew;
+; 388  :     BOOL    fSetPowerOff = FALSE;
+; 389  :     BOOL    fReleasePwrOff = FALSE;
+; 390  :     
+; 391  :     fTapOnPrev = IsTapOn(pBKLinfo);
 
   00008	e5943210	 ldr         r3, [r4, #0x210]
-  0000c	e1b02003	 movs        r2, r3
-  00010	15943204	 ldrne       r3, [r4, #0x204]
-  00014	05943200	 ldreq       r3, [r4, #0x200]
-  00018	e3530000	 cmp         r3, #0
-  0001c	13a05001	 movne       r5, #1
-  00020	03a05000	 moveq       r5, #0
 
-; 365  :     dwTimeoutPrev = GetTimeout(pBKLinfo);
+; 392  :     dwTimeoutPrev = GetTimeout(pBKLinfo);
 
-  00024	e3520000	 cmp         r2, #0
-  00028	1594620c	 ldrne       r6, [r4, #0x20C]
-  0002c	05946208	 ldreq       r6, [r4, #0x208]
+  0000c	e5946208	 ldr         r6, [r4, #0x208]
+  00010	e3530000	 cmp         r3, #0
+  00014	15943204	 ldrne       r3, [r4, #0x204]
+  00018	05943200	 ldreq       r3, [r4, #0x200]
+  0001c	e3530000	 cmp         r3, #0
+  00020	13a05001	 movne       r5, #1
+  00024	03a05000	 moveq       r5, #0
 
-; 366  : 
-; 367  :     switch(dwReason)
+; 393  : 
+; 394  :     switch(dwReason)
 
-  00030	e3510000	 cmp         r1, #0
-  00034	0a000004	 beq         |$LN5@UpdateBack|
-  00038	e3510001	 cmp         r1, #1
-  0003c	1a000004	 bne         |$LN6@UpdateBack|
+  00028	e3510000	 cmp         r1, #0
+  0002c	0a000004	 beq         |$LN5@UpdateBack|
+  00030	e3510001	 cmp         r1, #1
+  00034	1a000004	 bne         |$LN6@UpdateBack|
 
-; 372  :             break;
-; 373  : 
-; 374  :         case BKL_EVENT_POWER_MSG:
-; 375  :             // AC Status changed?
-; 376  :             UpdateACStatus(pBKLinfo);
+; 399  :             break;
+; 400  : 
+; 401  :         case BKL_EVENT_POWER_MSG:
+; 402  :             // AC Status changed?
+; 403  :             UpdateACStatus(pBKLinfo);
 
-  00040	e1a00004	 mov         r0, r4
-  00044	eb000000	 bl          |?UpdateACStatus@@YAXPAUBKL_MDD_INFO@@@Z|
+  00038	e1a00004	 mov         r0, r4
+  0003c	eb000000	 bl          |?UpdateACStatus@@YAXPAUBKL_MDD_INFO@@@Z|
 
-; 377  :             break;
+; 404  :             break;
 
-  00048	ea000001	 b           |$LN6@UpdateBack|
-  0004c		 |$LN5@UpdateBack|
-
-; 368  :     {
-; 369  :         case BKL_EVENT_REG:
-; 370  :             // Have registry keys changed?
-; 371  :             BacklightUpdateMDDRegSettings(pBKLinfo);  
-
-  0004c	e1a00004	 mov         r0, r4
-  00050	eb000000	 bl          |?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z|
-  00054		 |$LN6@UpdateBack|
-
-; 378  :     };
-; 379  :     
-; 380  :     dwTimeoutNew = GetTimeout(pBKLinfo);
-
-  00054	e5943210	 ldr         r3, [r4, #0x210]
-  00058	e3530000	 cmp         r3, #0
-  0005c	1594120c	 ldrne       r1, [r4, #0x20C]
-  00060	05941208	 ldreq       r1, [r4, #0x208]
-
-; 381  :     fTapOnNew = IsTapOn(pBKLinfo);
-
-  00064	e3530000	 cmp         r3, #0
-  00068	15943204	 ldrne       r3, [r4, #0x204]
-  0006c	05943200	 ldreq       r3, [r4, #0x200]
-  00070	e3530000	 cmp         r3, #0
-  00074	13a03001	 movne       r3, #1
-  00078	03a03000	 moveq       r3, #0
-
-; 382  :     
-; 383  :     // 'Tap On' settings just unchecked or 'Turn off backlight' timer option just selected:
-; 384  :     fSetPowerOff = ( ((dwTimeoutPrev != TURNOFFIMMEDIATELY) && (dwTimeoutNew == TURNOFFIMMEDIATELY)) \
-; 385  :                     || ((fTapOnPrev && !fTapOnNew)));
-
-  0007c	e3760001	 cmn         r6, #1
-  00080	0a000001	 beq         |$LN10@UpdateBack|
-  00084	e3710001	 cmn         r1, #1
-  00088	0a000003	 beq         |$LN12@UpdateBack|
-  0008c		 |$LN10@UpdateBack|
-  0008c	e3550000	 cmp         r5, #0
-  00090	0a000003	 beq         |$LN11@UpdateBack|
-  00094	e3530000	 cmp         r3, #0
-  00098	1a000001	 bne         |$LN11@UpdateBack|
-  0009c		 |$LN12@UpdateBack|
-  0009c	e3a02001	 mov         r2, #1
-  000a0	ea000000	 b           |$LN13@UpdateBack|
-  000a4		 |$LN11@UpdateBack|
-  000a4	e3a02000	 mov         r2, #0
-  000a8		 |$LN13@UpdateBack|
-
-; 386  :     // 'Tap On' setting just checked or 'Turn off backlight' timer option just deselected:
-; 387  :     fReleasePwrOff = (((dwTimeoutPrev == TURNOFFIMMEDIATELY) && (dwTimeoutNew != TURNOFFIMMEDIATELY) ) \
-; 388  :                     || (!fTapOnPrev && fTapOnNew));
-
-  000a8	e3760001	 cmn         r6, #1
-  000ac	1a000001	 bne         |$LN14@UpdateBack|
-  000b0	e3710001	 cmn         r1, #1
-  000b4	1a000003	 bne         |$LN16@UpdateBack|
-  000b8		 |$LN14@UpdateBack|
-  000b8	e3550000	 cmp         r5, #0
-  000bc	1a000003	 bne         |$LN15@UpdateBack|
-  000c0	e3530000	 cmp         r3, #0
-  000c4	0a000001	 beq         |$LN15@UpdateBack|
-  000c8		 |$LN16@UpdateBack|
-  000c8	e3a03001	 mov         r3, #1
-  000cc	ea000000	 b           |$LN17@UpdateBack|
-  000d0		 |$LN15@UpdateBack|
-  000d0	e3a03000	 mov         r3, #0
-  000d4		 |$LN17@UpdateBack|
-
-; 389  :     
-; 390  :     if(fSetPowerOff)   
-
-  000d4	e3520000	 cmp         r2, #0
-
-; 391  :     {
-; 392  :         BKL_SetDevicePower(pBKLinfo, D4);
-
-  000d8	13a02004	 movne       r2, #4
-  000dc	1a000002	 bne         |$LN50@UpdateBack|
-
-; 393  :     }
-; 394  :     else if (fReleasePwrOff) 
-
-  000e0	e3530000	 cmp         r3, #0
-  000e4	0a000003	 beq         |$LN44@UpdateBack|
+  00040	ea000001	 b           |$LN6@UpdateBack|
+  00044		 |$LN5@UpdateBack|
 
 ; 395  :     {
-; 396  :         BKL_SetDevicePower(pBKLinfo, PwrDeviceUnspecified);
+; 396  :         case BKL_EVENT_REG:
+; 397  :             // Have registry keys changed?
+; 398  :             BacklightUpdateMDDRegSettings(pBKLinfo);  
 
-  000e8	e3e02000	 mvn         r2, #0
-  000ec		 |$LN50@UpdateBack|
-  000ec	e3a01001	 mov         r1, #1
-  000f0	e1a00004	 mov         r0, r4
-  000f4	eb000000	 bl          SetDevicePower
-  000f8		 |$LN44@UpdateBack|
+  00044	e1a00004	 mov         r0, r4
+  00048	eb000000	 bl          |?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z|
+  0004c		 |$LN6@UpdateBack|
 
-; 397  :     }
-; 398  :     
-; 399  : 
-; 400  : }
+; 405  :     };
+; 406  :     
+; 407  :     dwTimeoutNew = GetTimeout(pBKLinfo);
+; 408  :     fTapOnNew = IsTapOn(pBKLinfo);
 
-  000f8	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  000fc	e12fff1e	 bx          lr
-  00100		 |$M32747|
+  0004c	e5943210	 ldr         r3, [r4, #0x210]
+  00050	e5941208	 ldr         r1, [r4, #0x208]
+  00054	e3530000	 cmp         r3, #0
+  00058	15943204	 ldrne       r3, [r4, #0x204]
+  0005c	05943200	 ldreq       r3, [r4, #0x200]
+  00060	e3530000	 cmp         r3, #0
+  00064	13a03001	 movne       r3, #1
+  00068	03a03000	 moveq       r3, #0
+
+; 409  :     
+; 410  :     // 'Tap On' settings just unchecked or 'Turn off backlight' timer option just selected:
+; 411  :     fSetPowerOff = ( ((dwTimeoutPrev != TURNOFFIMMEDIATELY) && (dwTimeoutNew == TURNOFFIMMEDIATELY)) \
+; 412  :                     || ((fTapOnPrev && !fTapOnNew)));
+
+  0006c	e3760001	 cmn         r6, #1
+  00070	0a000001	 beq         |$LN10@UpdateBack|
+  00074	e3710001	 cmn         r1, #1
+  00078	0a000003	 beq         |$LN12@UpdateBack|
+  0007c		 |$LN10@UpdateBack|
+  0007c	e3550000	 cmp         r5, #0
+  00080	0a000003	 beq         |$LN11@UpdateBack|
+  00084	e3530000	 cmp         r3, #0
+  00088	1a000001	 bne         |$LN11@UpdateBack|
+  0008c		 |$LN12@UpdateBack|
+  0008c	e3a02001	 mov         r2, #1
+  00090	ea000000	 b           |$LN13@UpdateBack|
+  00094		 |$LN11@UpdateBack|
+  00094	e3a02000	 mov         r2, #0
+  00098		 |$LN13@UpdateBack|
+
+; 413  :     // 'Tap On' setting just checked or 'Turn off backlight' timer option just deselected:
+; 414  :     fReleasePwrOff = (((dwTimeoutPrev == TURNOFFIMMEDIATELY) && (dwTimeoutNew != TURNOFFIMMEDIATELY) ) \
+; 415  :                     || (!fTapOnPrev && fTapOnNew));
+
+  00098	e3760001	 cmn         r6, #1
+  0009c	1a000001	 bne         |$LN14@UpdateBack|
+  000a0	e3710001	 cmn         r1, #1
+  000a4	1a000003	 bne         |$LN16@UpdateBack|
+  000a8		 |$LN14@UpdateBack|
+  000a8	e3550000	 cmp         r5, #0
+  000ac	1a000003	 bne         |$LN15@UpdateBack|
+  000b0	e3530000	 cmp         r3, #0
+  000b4	0a000001	 beq         |$LN15@UpdateBack|
+  000b8		 |$LN16@UpdateBack|
+  000b8	e3a03001	 mov         r3, #1
+  000bc	ea000000	 b           |$LN17@UpdateBack|
+  000c0		 |$LN15@UpdateBack|
+  000c0	e3a03000	 mov         r3, #0
+  000c4		 |$LN17@UpdateBack|
+
+; 416  :     
+; 417  :     if(fSetPowerOff)   
+
+  000c4	e3520000	 cmp         r2, #0
+
+; 418  :     {
+; 419  :         BKL_SetDevicePower(pBKLinfo, D4);
+
+  000c8	13a02004	 movne       r2, #4
+  000cc	1a000002	 bne         |$LN46@UpdateBack|
+
+; 420  :     }
+; 421  :     else if (fReleasePwrOff) 
+
+  000d0	e3530000	 cmp         r3, #0
+  000d4	0a000003	 beq         |$LN40@UpdateBack|
+
+; 422  :     {
+; 423  :         BKL_SetDevicePower(pBKLinfo, PwrDeviceUnspecified);
+
+  000d8	e3e02000	 mvn         r2, #0
+  000dc		 |$LN46@UpdateBack|
+  000dc	e3a01001	 mov         r1, #1
+  000e0	e1a00004	 mov         r0, r4
+  000e4	eb000000	 bl          SetDevicePower
+  000e8		 |$LN40@UpdateBack|
+
+; 424  :     }
+; 425  : }
+
+  000e8	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
+  000ec	e12fff1e	 bx          lr
+  000f0		 |$M32768|
 
 			 ENDP  ; |?UpdateBacklight@@YAXPAUBKL_MDD_INFO@@K@Z|, UpdateBacklight
 
 	EXPORT	|__$ArrayPad$| [ DATA ]
 	EXPORT	|?fnBackLightThread@@YAKPAX@Z|		; fnBackLightThread
-	EXPORT	|??_C@_1EO@BHDHHEGO@?$AA?$HL?$AAE?$AAB?$AA9?$AA1?$AAC?$AA7?$AAC?$AA9?$AA?9?$AA8?$AAB?$AAF?$AA6?$AA?9?$AA4?$AAa?$AA2?$AAd?$AA?9?$AA9?$AAA?$AAB?$AA8?$AA?9?$AA6?$AA9?$AA7?$AA2?$AA4?$AAE?$AAE@| [ DATA ] ; `string'
-	IMPORT	|CeFindNextRegChange|
+	EXPORT	|??_C@_1DI@PNMBKCMA@?$AA?6?$AA?$AN?$AAB?$AAK?$AAL?$AA?3?$AA?5?$AAC?$AAr?$AAe?$AAa?$AAt?$AAe?$AAE?$AAv?$AAe?$AAn?$AAt?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1FO@KKOMLDMD@?$AA?6?$AA?$AN?$AA?$CK?$AA?$CK?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAm?$AAd?$AAd?$AA?5?$AAr?$AAe?$AAg?$AAi?$AAs?$AAt?$AAr?$AAy?$AA?5?$AAc@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BG@FGGFONDG@?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DE@MOLILJAA@?$AA?6?$AA?$AN?$AAB?$AAK?$AAL?$AA?3?$AA?5?$AAc?$AAr?$AAe?$AAa?$AAt?$AAe?$AA?5?$AA?$CF?$AAs?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1FA@MJLPMKKO@?$AAP?$AAo?$AAw?$AAe?$AAr?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAr?$AA?1?$AAA?$AAc?$AAt?$AAi?$AAv?$AAi?$AAt?$AAy?$AAT?$AAi?$AAm?$AAe?$AAr?$AA?1?$AAU?$AAs?$AAe?$AAr?$AAA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CI@EAOMMMCM@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?1?$AAU?$AAs?$AAe?$AAr?$AAA?$AAc?$AAt?$AAi?$AAv?$AAi?$AAt?$AAy?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BE@OJJMIIHJ@?$AAB?$AAk?$AAl?$AAA?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|CeFindCloseRegChange|
-	IMPORT	|StopDeviceNotifications|
 	IMPORT	|CloseMsgQueue|
 	IMPORT	|StopPowerNotifications|
+	IMPORT	|CeFindNextRegChange|
 	IMPORT	|ReadMsgQueue|
 	IMPORT	|WaitForMultipleObjects|
-	IMPORT	|?g_pBacklight@@3PAVCBacklightRoot@@A|	; g_pBacklight
 	IMPORT	|CeFindFirstRegChange|
-	IMPORT	|RequestDeviceNotifications|
+	IMPORT	|?g_pBacklight@@3PAVCBacklightRoot@@A|	; g_pBacklight
+	IMPORT	|RegSetValueExW|
+	IMPORT	|RegCreateKeyExW|
 	IMPORT	|RequestPowerNotifications|
 	IMPORT	|CreateMsgQueue|
-	IMPORT	|memcpy|
+	IMPORT	|CreateEventW|
+	IMPORT	|OpenEventW|
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T32777| DCD	|$LN49@fnBackLigh|
-	DCD	0xc000b802
+|$T32835| DCD	|$LN88@fnBackLigh|
+	DCD	0xc0017602
 
   00000			 AREA	 |.xdata|, DATA
-|$T32773| DCD	0xffffffd8
+|$T32831| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1EO@BHDHHEGO@?$AA?$HL?$AAE?$AAB?$AA9?$AA1?$AAC?$AA7?$AAC?$AA9?$AA?9?$AA8?$AAB?$AAF?$AA6?$AA?9?$AA4?$AAa?$AA2?$AAd?$AA?9?$AA9?$AAA?$AAB?$AA8?$AA?9?$AA6?$AA9?$AA7?$AA2?$AA4?$AAE?$AAE@| DCB "{"
-	DCB	0x0, "E", 0x0, "B", 0x0, "9", 0x0, "1", 0x0, "C", 0x0, "7"
-	DCB	0x0, "C", 0x0, "9", 0x0, "-", 0x0, "8", 0x0, "B", 0x0, "F"
-	DCB	0x0, "6", 0x0, "-", 0x0, "4", 0x0, "a", 0x0, "2", 0x0, "d"
-	DCB	0x0, "-", 0x0, "9", 0x0, "A", 0x0, "B", 0x0, "8", 0x0, "-"
-	DCB	0x0, "6", 0x0, "9", 0x0, "7", 0x0, "2", 0x0, "4", 0x0, "E"
-	DCB	0x0, "E", 0x0, "D", 0x0, "9", 0x0, "7", 0x0, "D", 0x0, "1"
-	DCB	0x0, "}", 0x0, 0x0, 0x0			; `string'
+|??_C@_1DI@PNMBKCMA@?$AA?6?$AA?$AN?$AAB?$AAK?$AAL?$AA?3?$AA?5?$AAC?$AAr?$AAe?$AAa?$AAt?$AAe?$AAE?$AAv?$AAe?$AAn?$AAt?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xa
+	DCB	0x0, 0xd, 0x0, "B", 0x0, "K", 0x0, "L", 0x0, ":", 0x0, " "
+	DCB	0x0, "C", 0x0, "r", 0x0, "e", 0x0, "a", 0x0, "t", 0x0, "e"
+	DCB	0x0, "E", 0x0, "v", 0x0, "e", 0x0, "n", 0x0, "t", 0x0, " "
+	DCB	0x0, "f", 0x0, "a", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "d"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1FO@KKOMLDMD@?$AA?6?$AA?$AN?$AA?$CK?$AA?$CK?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAm?$AAd?$AAd?$AA?5?$AAr?$AAe?$AAg?$AAi?$AAs?$AAt?$AAr?$AAy?$AA?5?$AAc@| DCB 0xa
+	DCB	0x0, 0xd, 0x0, "*", 0x0, "*", 0x0, "*", 0x0, "*", 0x0, "*"
+	DCB	0x0, " ", 0x0, "B", 0x0, "a", 0x0, "c", 0x0, "k", 0x0, "l"
+	DCB	0x0, "i", 0x0, "g", 0x0, "h", 0x0, "t", 0x0, " ", 0x0, "m"
+	DCB	0x0, "d", 0x0, "d", 0x0, " ", 0x0, "r", 0x0, "e", 0x0, "g"
+	DCB	0x0, "i", 0x0, "s", 0x0, "t", 0x0, "r", 0x0, "y", 0x0, " "
+	DCB	0x0, "c", 0x0, "h", 0x0, "a", 0x0, "n", 0x0, "g", 0x0, "e"
+	DCB	0x0, " ", 0x0, "!", 0x0, " ", 0x0, "*", 0x0, "*", 0x0, "*"
+	DCB	0x0, "*", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BG@FGGFONDG@?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?$AA@| DCB "B"
+	DCB	0x0, "r", 0x0, "i", 0x0, "g", 0x0, "h", 0x0, "t", 0x0, "n"
+	DCB	0x0, "e", 0x0, "s", 0x0, "s", 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DE@MOLILJAA@?$AA?6?$AA?$AN?$AAB?$AAK?$AAL?$AA?3?$AA?5?$AAc?$AAr?$AAe?$AAa?$AAt?$AAe?$AA?5?$AA?$CF?$AAs?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xa
+	DCB	0x0, 0xd, 0x0, "B", 0x0, "K", 0x0, "L", 0x0, ":", 0x0, " "
+	DCB	0x0, "c", 0x0, "r", 0x0, "e", 0x0, "a", 0x0, "t", 0x0, "e"
+	DCB	0x0, " ", 0x0, "%", 0x0, "s", 0x0, " ", 0x0, "f", 0x0, "a"
+	DCB	0x0, "i", 0x0, "l", 0x0, "e", 0x0, "d", 0x0, 0xd, 0x0, 0xa
+	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1FA@MJLPMKKO@?$AAP?$AAo?$AAw?$AAe?$AAr?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAr?$AA?1?$AAA?$AAc?$AAt?$AAi?$AAv?$AAi?$AAt?$AAy?$AAT?$AAi?$AAm?$AAe?$AAr?$AA?1?$AAU?$AAs?$AAe?$AAr?$AAA@| DCB "P"
+	DCB	0x0, "o", 0x0, "w", 0x0, "e", 0x0, "r", 0x0, "M", 0x0, "a"
+	DCB	0x0, "n", 0x0, "a", 0x0, "g", 0x0, "e", 0x0, "r", 0x0, "/"
+	DCB	0x0, "A", 0x0, "c", 0x0, "t", 0x0, "i", 0x0, "v", 0x0, "i"
+	DCB	0x0, "t", 0x0, "y", 0x0, "T", 0x0, "i", 0x0, "m", 0x0, "e"
+	DCB	0x0, "r", 0x0, "/", 0x0, "U", 0x0, "s", 0x0, "e", 0x0, "r"
+	DCB	0x0, "A", 0x0, "c", 0x0, "t", 0x0, "i", 0x0, "v", 0x0, "i"
+	DCB	0x0, "t", 0x0, "y", 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CI@EAOMMMCM@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?1?$AAU?$AAs?$AAe?$AAr?$AAA?$AAc?$AAt?$AAi?$AAv?$AAi?$AAt?$AAy?$AA?$AA@| DCB "K"
+	DCB	0x0, "e", 0x0, "y", 0x0, "p", 0x0, "a", 0x0, "d", 0x0, "/"
+	DCB	0x0, "U", 0x0, "s", 0x0, "e", 0x0, "r", 0x0, "A", 0x0, "c"
+	DCB	0x0, "t", 0x0, "i", 0x0, "v", 0x0, "i", 0x0, "t", 0x0, "y"
+	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BE@OJJMIIHJ@?$AAB?$AAk?$AAl?$AAA?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?$AA@| DCB "B"
+	DCB	0x0, "k", 0x0, "l", 0x0, "A", 0x0, "c", 0x0, "t", 0x0, "i"
+	DCB	0x0, "v", 0x0, "e", 0x0, 0x0, 0x0	; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T32773|
+  00004	00000000	 DCD         |$T32831|
 
   00008		 |?fnBackLightThread@@YAKPAX@Z| PROC	; fnBackLightThread
 
-; 408  : { 
+; 433  : { 
 
-  00008		 |$LN49@fnBackLigh|
+  00008		 |$LN88@fnBackLigh|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  0000c	e24ddf61	 sub         sp, sp, #0x61, 30
-  00010		 |$M32774|
-  00010	e59f32cc	 ldr         r3, [pc, #0x2CC]
+  0000c	e24dd06c	 sub         sp, sp, #0x6C
+  00010		 |$M32832|
+  00010	e59f35c4	 ldr         r3, [pc, #0x5C4]
   00014	e5933000	 ldr         r3, [r3]
-  00018	e58d3180	 str         r3, [sp, #0x180]
+  00018	e58d3068	 str         r3, [sp, #0x68]
 
-; 409  :     DWORD    dwResult;
-; 410  :     MSGQUEUEOPTIONS msgopts;
-; 411  :     HANDLE  hPwrNotification = NULL;
-; 412  :     HANDLE  hPowerNotificationMsgs = NULL;    
-; 413  :     HKEY    hKey = NULL;
+; 434  :     DWORD    dwResult;
+; 435  :     MSGQUEUEOPTIONS msgopts;
+; 436  :     HANDLE  hPwrNotification = NULL;
+; 437  :     HANDLE  hPowerNotificationMsgs = NULL;    
+; 438  :     HKEY    hKey = NULL;
 
   0001c	e3a03000	 mov         r3, #0
-  00020	e58d3008	 str         r3, [sp, #8]
-  00024	e1b06000	 movs        r6, r0
+  00020	e58d3014	 str         r3, [sp, #0x14]
 
-; 414  :     HANDLE  WaitEvents[BKL_NUM_EVENTS];    
-; 415  :     HANDLE  hEventRegistryChange = NULL;
+; 439  :     HANDLE  WaitEvents[BKL_NUM_EVENTS];    
+; 440  :     HANDLE  hEventRegistryChange = NULL;
+; 441  :     DWORD   dwSize;    
+; 442  :     DWORD   dwFlags;
+; 443  :     HANDLE  hGweNotifications = NULL;
+; 444  :     BKL_MDD_INFO *pBKLinfo = NULL;
+; 445  :     HANDLE  hKBNotifications = NULL;
+; 446  :     BOOL SetKeypadBacklightTimeout = FALSE;
+; 447  :     DWORD dwTimeout = 5000;
 
-  00028	e3a04000	 mov         r4, #0
+  00024	e3a03c13	 mov         r3, #0x13, 24
+  00028	e1b05000	 movs        r5, r0
+  0002c	e3833088	 orr         r3, r3, #0x88
+  00030	e3a00000	 mov         r0, #0
+  00034	e58d3020	 str         r3, [sp, #0x20]
+  00038	e58d001c	 str         r0, [sp, #0x1C]
+  0003c	e3a0b000	 mov         r11, #0
+  00040	e3a07000	 mov         r7, #0
+  00044	e3a08000	 mov         r8, #0
 
-; 416  :     DWORD   dwSize;    
-; 417  :     DWORD   dwFlags;
-; 418  :     HANDLE  hDisplayNotifications = NULL;
-
-  0002c	e3a08000	 mov         r8, #0
-
-; 419  :     HANDLE  hDisplayNotificationMsgs = NULL;
-
-  00030	e3a05000	 mov         r5, #0
-
-; 420  :     GUID    idInterface;
-; 421  :     BKL_MDD_INFO *pBKLinfo = NULL;
-; 422  :     
-; 423  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("+fnBackLightRegThread\r\n")));
-; 424  : 
-; 425  :     // Verify context
-; 426  :     if(! pvArgument)
-; 427  :     {
-; 428  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: BacklightThread: "
-; 429  :             L"Incorrect context paramer\r\n" ));
-; 430  : 
-; 431  :         return FALSE;
-
-  00034	0a00008a	 beq         |$LN1@fnBackLigh|
-
-; 432  :     }
-; 433  : 
-; 434  :     pBKLinfo = (BKL_MDD_INFO*) pvArgument;
-; 435  : 
-; 436  : 
-; 437  :     // create msg queue for power status change notification (AC->Battery and vice versa)
-; 438  :     memset(&msgopts, 0, sizeof(msgopts));
-
-  00038	e3a02014	 mov         r2, #0x14
-  0003c	e3a01000	 mov         r1, #0
-  00040	e28d001c	 add         r0, sp, #0x1C
-  00044	eb000000	 bl          memset
-
-; 439  :     msgopts.dwSize = sizeof(msgopts);
-; 440  :     msgopts.dwFlags = 0;
-; 441  :     msgopts.dwMaxMessages = 0;                  // no max number of messages
-
-  00048	e3a01000	 mov         r1, #0
-
-; 442  :     msgopts.cbMaxMessage = sizeof(POWER_BROADCAST);   // max size of each msg
-
-  0004c	e3a00010	 mov         r0, #0x10
-
-; 443  :     msgopts.bReadAccess = TRUE;
-
-  00050	e58d1024	 str         r1, [sp, #0x24]
-  00054	e58d0028	 str         r0, [sp, #0x28]
-  00058	e3a03014	 mov         r3, #0x14
-  0005c	e3a02000	 mov         r2, #0
-  00060	e3a0e001	 mov         lr, #1
-
-; 444  :     hPowerNotificationMsgs = CreateMsgQueue(NULL, &msgopts);
-
-  00064	e28d101c	 add         r1, sp, #0x1C
-  00068	e3a00000	 mov         r0, #0
-  0006c	e58d301c	 str         r3, [sp, #0x1C]
-  00070	e58d2020	 str         r2, [sp, #0x20]
-  00074	e58de02c	 str         lr, [sp, #0x2C]
-  00078	eb000000	 bl          CreateMsgQueue
-  0007c	e1b09000	 movs        r9, r0
-
-; 445  : 
-; 446  :     if (!hPowerNotificationMsgs) 
-
-  00080	0a000074	 beq         |$LN2@fnBackLigh|
-
-; 447  :     {
-; 448  :         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: Create message queue failed\r\n")));
-; 449  :         goto exit;
-; 450  :     }
-; 451  :     // request notification of power status changes:
-; 452  :     hPwrNotification = RequestPowerNotifications(hPowerNotificationMsgs, PBT_POWERSTATUSCHANGE);
-
-  00084	e3a01004	 mov         r1, #4
-  00088	e1a00009	 mov         r0, r9
-  0008c	eb000000	 bl          RequestPowerNotifications
-  00090	e1b0a000	 movs        r10, r0
-  00094	e58da010	 str         r10, [sp, #0x10]
-
-; 453  :     if (!hPwrNotification) 
-
-  00098	0a000063	 beq         |$LN6@fnBackLigh|
-
+; 448  :     HANDLE hBklNotifications = NULL;
+; 449  :     
+; 450  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("+fnBackLightRegThread\r\n")));
+; 451  : 
+; 452  :     // Verify context
+; 453  :     if(! pvArgument)
 ; 454  :     {
-; 455  :         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: register power notification failed\r\n")));
-; 456  :         goto exit;
+; 455  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: BacklightThread: Incorrect context paramer\r\n" ));
+; 456  :         return FALSE;
+
+  00048	0a000150	 beq         |$LN1@fnBackLigh|
+
 ; 457  :     }
-; 458  : 
-; 459  :     // create msg queue for display device interface notifications:
-; 460  :     msgopts.cbMaxMessage = PNP_QUEUE_SIZE;
+; 458  :     pBKLinfo = (BKL_MDD_INFO*) pvArgument;
+; 459  : 
+; 460  :     hGweNotifications = OpenEvent(EVENT_ALL_ACCESS, FALSE, GWE_USER_ACTIVE_NOTIFY);
 
-  0009c	e3a03e12	 mov         r3, #0x12, 28
+  0004c	e59f2584	 ldr         r2, [pc, #0x584]
+  00050	e3a0381f	 mov         r3, #0x1F, 16
+  00054	e3830003	 orr         r0, r3, #3
+  00058	e3a01000	 mov         r1, #0
+  0005c	eb000000	 bl          OpenEventW
 
-; 461  :     hDisplayNotificationMsgs = CreateMsgQueue(NULL, &msgopts);
+; 461  :     hKBNotifications  = CreateEvent(NULL, FALSE, FALSE, KEYPAD_BACKLIGHT_NOTIFY);
 
-  000a0	e28d101c	 add         r1, sp, #0x1C
-  000a4	e3a00000	 mov         r0, #0
-  000a8	e58d3028	 str         r3, [sp, #0x28]
-  000ac	eb000000	 bl          CreateMsgQueue
-  000b0	e1b05000	 movs        r5, r0
+  00060	e59f356c	 ldr         r3, [pc, #0x56C]
+  00064	e1a04000	 mov         r4, r0
+  00068	e3a00000	 mov         r0, #0
+  0006c	e3a02000	 mov         r2, #0
+  00070	e3a01000	 mov         r1, #0
+  00074	eb000000	 bl          CreateEventW
 
-; 462  :     if (!hDisplayNotificationMsgs) 
+; 462  :     hBklNotifications = CreateEvent(NULL, FALSE, FALSE, LCD_BACKLIGHT_ACTIVE_NOTIFY);
 
-  000b4	0a00005a	 beq         |$exit$32421|
+  00078	e59f3550	 ldr         r3, [pc, #0x550]
+  0007c	e1a09000	 mov         r9, r0
+  00080	e3a00000	 mov         r0, #0
+  00084	e3a02000	 mov         r2, #0
+  00088	e3a01000	 mov         r1, #0
+  0008c	eb000000	 bl          CreateEventW
+  00090	e1a0a000	 mov         r10, r0
 
-; 463  :     {
-; 464  :         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: Create message queue failed\r\n")));
-; 465  :         goto exit;
-; 466  :     }
-; 467  : 
-; 468  :     if(!ConvertStringToGuid(PMCLASS_DISPLAY, &idInterface)) 
+; 463  : 
+; 464  :     if(!hGweNotifications || !hKBNotifications || !hBklNotifications)
 
-  000b8	e59f0220	 ldr         r0, [pc, #0x220]
-  000bc	e28d1040	 add         r1, sp, #0x40
-  000c0	eb000000	 bl          |?ConvertStringToGuid@@YAHPBGPAU_GUID@@@Z|
-  000c4	e3500000	 cmp         r0, #0
-  000c8	0a000055	 beq         |$exit$32421|
+  00094	e3540000	 cmp         r4, #0
+  00098	0a00012d	 beq         |$LN49@fnBackLigh|
+  0009c	e3590000	 cmp         r9, #0
+  000a0	0a00012b	 beq         |$LN49@fnBackLigh|
+  000a4	e35a0000	 cmp         r10, #0
+  000a8	0a000129	 beq         |$LN49@fnBackLigh|
 
-; 469  :     {
-; 470  :         DEBUGMSG(ZONE_ERROR, (TEXT("can't convert PMCLASS_DISPLAY string to GUID\r\n")));  
-; 471  :         goto exit;
-; 472  :     }
-; 473  : 
-; 474  :     hDisplayNotifications = RequestDeviceNotifications(&idInterface, hDisplayNotificationMsgs, TRUE);
+; 467  :         goto exit_thread;
+; 468  :     }
+; 469  : 
+; 470  :     // create msg queue for power status change notification (AC->Battery and vice versa)
+; 471  :     memset(&msgopts, 0, sizeof(msgopts));
 
-  000cc	e3a02001	 mov         r2, #1
-  000d0	e1a01005	 mov         r1, r5
-  000d4	e28d0040	 add         r0, sp, #0x40
-  000d8	eb000000	 bl          RequestDeviceNotifications
-  000dc	e1b08000	 movs        r8, r0
-  000e0	e58d8018	 str         r8, [sp, #0x18]
+  000ac	e3a02014	 mov         r2, #0x14
+  000b0	e3a01000	 mov         r1, #0
+  000b4	e28d0024	 add         r0, sp, #0x24
+  000b8	eb000000	 bl          memset
 
-; 475  :     // get display driver name (required to keep display driver on with SetPowerRequirement):
-; 476  :     if(!hDisplayNotifications)
+; 472  :     msgopts.dwSize = sizeof(msgopts);
+; 473  :     msgopts.dwFlags = 0;
+; 474  :     msgopts.dwMaxMessages = 0;                  // no max number of messages
 
-  000e4	0a00004e	 beq         |$exit$32421|
+  000bc	e3a01000	 mov         r1, #0
 
-; 477  :     {
-; 478  :         DEBUGMSG(ZONE_ERROR, (TEXT("RequestDeviceNotifications failed\r\n")));
-; 479  :         goto exit;
-; 480  :     }    
-; 481  :     
-; 482  :     dwResult = RegOpenKeyEx(HKEY_CURRENT_USER, BACKLIGHT_REGKEY, 0, KEY_NOTIFY, &hKey);
+; 475  :     msgopts.cbMaxMessage = sizeof(POWER_BROADCAST);   // max size of each msg
 
-  000e8	e59f11ec	 ldr         r1, [pc, #0x1EC]
-  000ec	e28de008	 add         lr, sp, #8
-  000f0	e3a03010	 mov         r3, #0x10
-  000f4	e3a02000	 mov         r2, #0
-  000f8	e3a00106	 mov         r0, #6, 2
-  000fc	e58de000	 str         lr, [sp]
-  00100	eb000000	 bl          RegOpenKeyExW
+  000c0	e3a00010	 mov         r0, #0x10
+
+; 476  :     msgopts.bReadAccess = TRUE;
+
+  000c4	e58d102c	 str         r1, [sp, #0x2C]
+  000c8	e58d0030	 str         r0, [sp, #0x30]
+  000cc	e3a03014	 mov         r3, #0x14
+  000d0	e3a02000	 mov         r2, #0
+  000d4	e3a0e001	 mov         lr, #1
+
+; 477  :     hPowerNotificationMsgs = CreateMsgQueue(NULL, &msgopts);
+
+  000d8	e28d1024	 add         r1, sp, #0x24
+  000dc	e3a00000	 mov         r0, #0
+  000e0	e58d3024	 str         r3, [sp, #0x24]
+  000e4	e58d2028	 str         r2, [sp, #0x28]
+  000e8	e58de034	 str         lr, [sp, #0x34]
+  000ec	eb000000	 bl          CreateMsgQueue
+  000f0	e1b0b000	 movs        r11, r0
+
+; 478  : 
+; 479  :     if (!hPowerNotificationMsgs) 
+
+  000f4	0a000122	 beq         |$LN2@fnBackLigh|
+
+; 480  :     {
+; 481  :         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: Create message queue failed\r\n")));
+; 482  :         goto exit_thread;
+; 483  :     }
+; 484  :     // request notification of power status changes:
+; 485  :     hPwrNotification = RequestPowerNotifications(hPowerNotificationMsgs, PBT_POWERSTATUSCHANGE);
+
+  000f8	e3a01004	 mov         r1, #4
+  000fc	e1a0000b	 mov         r0, r11
+  00100	eb000000	 bl          RequestPowerNotifications
   00104	e3500000	 cmp         r0, #0
+  00108	e58d001c	 str         r0, [sp, #0x1C]
 
-; 483  :     if(ERROR_SUCCESS  != dwResult)
+; 486  :     if (!hPwrNotification) 
 
-  00108	1a000045	 bne         |$exit$32421|
+  0010c	0a000116	 beq         |$LN4@fnBackLigh|
 
-; 484  :     {
-; 485  :         goto exit;
-; 486  :     }
-; 487  :     // Request notification of backlight registry changes:
-; 488  :     hEventRegistryChange = CeFindFirstRegChange(hKey, FALSE, REG_NOTIFY_CHANGE_LAST_SET);
+; 487  :     {
+; 488  :         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: register power notification failed\r\n")));
+; 489  :         goto exit_thread;
+; 490  :     }
+; 491  : 
+; 492  : 	dwResult = RegOpenKeyEx(HKEY_LOCAL_MACHINE, BACKLIGHT_REGKEY, 0, KEY_NOTIFY, &hKey);
 
-  0010c	e59d0008	 ldr         r0, [sp, #8]
-  00110	e3a02004	 mov         r2, #4
-  00114	e3a01000	 mov         r1, #0
-  00118	eb000000	 bl          CeFindFirstRegChange
-  0011c	e1a04000	 mov         r4, r0
+  00110	e59f14a4	 ldr         r1, [pc, #0x4A4]
+  00114	e28de014	 add         lr, sp, #0x14
+  00118	e3a03010	 mov         r3, #0x10
+  0011c	e3a02000	 mov         r2, #0
+  00120	e3a0010a	 mov         r0, #0xA, 2
+  00124	e58de000	 str         lr, [sp]
+  00128	eb000000	 bl          RegOpenKeyExW
+  0012c	e3500000	 cmp         r0, #0
+  00130	e3a06000	 mov         r6, #0
 
-; 489  :     if(INVALID_HANDLE_VALUE == hEventRegistryChange)
+; 493  : 	if(ERROR_SUCCESS != dwResult)
 
-  00120	e3740001	 cmn         r4, #1
-  00124	0a00003e	 beq         |$exit$32421|
+  00134	0a000049	 beq         |$LN33@fnBackLigh|
+  00138	e3a0380f	 mov         r3, #0xF, 16
 
-; 490  :     {   
-; 491  :         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: CeFindFirstRegChange failed\r\n")));        
-; 492  :         goto exit;
-; 493  :     }
-; 494  :     RegCloseKey(hKey);
+; 494  : 	{
+; 495  :         DWORD  dwSize, dwValue;
+; 496  :         if(RegCreateKeyEx(HKEY_LOCAL_MACHINE , BACKLIGHT_REGKEY, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwSize) == ERROR_SUCCESS)
 
-  00128	e59d0008	 ldr         r0, [sp, #8]
-  0012c	eb000000	 bl          RegCloseKey
+  0013c	e59f1478	 ldr         r1, [pc, #0x478]
+  00140	e383303f	 orr         r3, r3, #0x3F
+  00144	e58d3004	 str         r3, [sp, #4]
+  00148	e28de04c	 add         lr, sp, #0x4C
+  0014c	e28d4014	 add         r4, sp, #0x14
+  00150	e3a03000	 mov         r3, #0
+  00154	e3a02000	 mov         r2, #0
+  00158	e3a0010a	 mov         r0, #0xA, 2
+  0015c	e58de010	 str         lr, [sp, #0x10]
+  00160	e58d400c	 str         r4, [sp, #0xC]
+  00164	e58d6008	 str         r6, [sp, #8]
+  00168	e58d6000	 str         r6, [sp]
+  0016c	eb000000	 bl          RegCreateKeyExW
+  00170	e3500000	 cmp         r0, #0
+  00174	1a000035	 bne         |$LN42@fnBackLigh|
 
-; 495  :     hKey = NULL;
+; 497  :         {
+; 498  :             dwValue=0x02; //enable backlight timer
+; 499  :             if(RegSetValueEx(hKey, BACKLIGHT_REGVALUE_MODE, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
 
-  00130	e3a03000	 mov         r3, #0
+  00178	e59d0014	 ldr         r0, [sp, #0x14]
+  0017c	e59f1448	 ldr         r1, [pc, #0x448]
+  00180	e3a04002	 mov         r4, #2
+  00184	e28de018	 add         lr, sp, #0x18
+  00188	e3a06004	 mov         r6, #4
+  0018c	e3a03004	 mov         r3, #4
+  00190	e3a02000	 mov         r2, #0
+  00194	e58d4018	 str         r4, [sp, #0x18]
+  00198	e58d6004	 str         r6, [sp, #4]
+  0019c	e58de000	 str         lr, [sp]
+  001a0	eb000000	 bl          RegSetValueExW
+  001a4	e3500000	 cmp         r0, #0
 
-; 496  : 
-; 497  :     BacklightUpdateMDDRegSettings(pBKLinfo);
+; 500  :             {
+; 501  :                 RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGVALUE_MODE));
 
-  00134	e1a00006	 mov         r0, r6
-  00138	e58d3008	 str         r3, [sp, #8]
-  0013c	eb000000	 bl          |?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z|
+  001a8	159f141c	 ldrne       r1, [pc, #0x41C]
+  001ac	1a000028	 bne         |$LN85@fnBackLigh|
 
-; 498  :     UpdateACStatus(pBKLinfo);
-
-  00140	e1a00006	 mov         r0, r6
-  00144	eb000000	 bl          |?UpdateACStatus@@YAXPAUBKL_MDD_INFO@@@Z|
-
-; 499  : 
-; 500  :     WaitEvents[BKL_EVENT_REG] = hEventRegistryChange;
-; 501  :     WaitEvents[BKL_EVENT_POWER_MSG] = hPowerNotificationMsgs;
-; 502  :     WaitEvents[BKL_EVENT_EXIT] = pBKLinfo->hExitEvent;
-
-  00148	e596321c	 ldr         r3, [r6, #0x21C]
-
-; 503  :     WaitEvents[BKL_EVENT_DISPLAY_MSG] = hDisplayNotificationMsgs;
+; 502  :                 goto exit_thread;
+; 503  :             }
 ; 504  : 
-; 505  :     pBKLinfo->fExit = FALSE;
+; 505  :             dwValue = 30; //timer set to 15 sec
+; 506  :             if(RegSetValueEx(hKey, BACKLIGHT_REGVALUE_TIMEOUT, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
 
-  0014c	e3a02000	 mov         r2, #0
-  00150	e59f7180	 ldr         r7, [pc, #0x180]
-  00154	e58d3038	 str         r3, [sp, #0x38]
-  00158	e58d4030	 str         r4, [sp, #0x30]
-  0015c	e58d9034	 str         r9, [sp, #0x34]
-  00160	e58d503c	 str         r5, [sp, #0x3C]
-  00164	e5862228	 str         r2, [r6, #0x228]
-  00168	e28db014	 add         r11, sp, #0x14
-  0016c	e28da014	 add         r10, sp, #0x14
-  00170	e3a08000	 mov         r8, #0
-  00174		 |$LL24@fnBackLigh|
+  001b0	e59d0014	 ldr         r0, [sp, #0x14]
+  001b4	e59f140c	 ldr         r1, [pc, #0x40C]
+  001b8	e3a0401e	 mov         r4, #0x1E
+  001bc	e28de018	 add         lr, sp, #0x18
+  001c0	e3a03004	 mov         r3, #4
+  001c4	e3a02000	 mov         r2, #0
+  001c8	e58d4018	 str         r4, [sp, #0x18]
+  001cc	e58d6004	 str         r6, [sp, #4]
+  001d0	e58de000	 str         lr, [sp]
+  001d4	eb000000	 bl          RegSetValueExW
+  001d8	e3500000	 cmp         r0, #0
 
-; 506  :     
-; 507  :     while(!pBKLinfo->fExit)
-; 508  :     {
-; 509  :         dwResult = WaitForMultipleObjects(BKL_NUM_EVENTS, &WaitEvents[0], FALSE, INFINITE);
+; 507  :             {
+; 508  :                 RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGVALUE_TIMEOUT));
 
-  00174	e3e03000	 mvn         r3, #0
-  00178	e3a02000	 mov         r2, #0
-  0017c	e28d1030	 add         r1, sp, #0x30
-  00180	e3a00004	 mov         r0, #4
-  00184	eb000000	 bl          WaitForMultipleObjects
-  00188	e3500000	 cmp         r0, #0
+  001dc	159f13e4	 ldrne       r1, [pc, #0x3E4]
+  001e0	1a00001b	 bne         |$LN85@fnBackLigh|
 
-; 510  :         switch(dwResult)
+; 509  :                 goto exit_thread;
+; 510  :             }
+; 511  : 
+; 512  :             dwValue = 70; //Backlight Level
+; 513  :             if(RegSetValueEx(hKey, BACKLIGHT_REGVALUE_LEVEL, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
 
-  0018c	0a00004b	 beq         |$LN20@fnBackLigh|
-  00190	e3500001	 cmp         r0, #1
-  00194	0a000038	 beq         |$LN19@fnBackLigh|
-  00198	e3500003	 cmp         r0, #3
-  0019c	1a00001b	 bne         |$LN7@fnBackLigh|
+  001e4	e59d0014	 ldr         r0, [sp, #0x14]
+  001e8	e59f13d4	 ldr         r1, [pc, #0x3D4]
+  001ec	e3a04046	 mov         r4, #0x46
+  001f0	e28de018	 add         lr, sp, #0x18
+  001f4	e3a03004	 mov         r3, #4
+  001f8	e3a02000	 mov         r2, #0
+  001fc	e58d4018	 str         r4, [sp, #0x18]
+  00200	e58d6004	 str         r6, [sp, #4]
+  00204	e58de000	 str         lr, [sp]
+  00208	eb000000	 bl          RegSetValueExW
+  0020c	e3500000	 cmp         r0, #0
 
-; 547  : 
-; 548  :             case (WAIT_OBJECT_0 + BKL_EVENT_DISPLAY_MSG):
-; 549  :             {
-; 550  :                 union 
-; 551  :                 {
-; 552  :                     UCHAR deviceBuf[PNP_QUEUE_SIZE];
-; 553  :                     DEVDETAIL devDetail;
-; 554  :                 } u;
-; 555  :                 
-; 556  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Display driver interface notification\r\n")));
-; 557  :                 if (!ReadMsgQueue(hDisplayNotificationMsgs, u.deviceBuf, PNP_QUEUE_SIZE, &dwSize, 0, &dwFlags)) 
+; 514  :             {
+; 515  :                 RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGVALUE_LEVEL));
 
-  001a0	e28d300c	 add         r3, sp, #0xC
-  001a4	e3a02e12	 mov         r2, #0x12, 28
-  001a8	e28d1060	 add         r1, sp, #0x60
-  001ac	e1a00005	 mov         r0, r5
-  001b0	e58db004	 str         r11, [sp, #4]
-  001b4	e58d8000	 str         r8, [sp]
-  001b8	eb000000	 bl          ReadMsgQueue
-  001bc	e3500000	 cmp         r0, #0
-  001c0	0a000012	 beq         |$LN7@fnBackLigh|
+  00210	159f13ac	 ldrne       r1, [pc, #0x3AC]
+  00214	1a00000e	 bne         |$LN85@fnBackLigh|
 
-; 558  :                 {
-; 559  :                     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("ReadMsgQueue failed\r\n")));  
-; 560  :                     ASSERT(FALSE);
-; 561  :                 }
-; 562  :                 else if(dwSize >= sizeof(DEVDETAIL)) 
-
-  001c4	e59d300c	 ldr         r3, [sp, #0xC]
-  001c8	e3530020	 cmp         r3, #0x20
-  001cc	3a00000f	 bcc         |$LN7@fnBackLigh|
-
-; 563  :                 {
-; 564  :                     PDEVDETAIL pDevDetail = &u.devDetail;
-; 565  : 
-; 566  :                     if (pDevDetail->cbName < 0)
-
-  001d0	e59d7078	 ldr         r7, [sp, #0x78]
-  001d4	e3570000	 cmp         r7, #0
-  001d8	4a00000b	 bmi         |$LN45@fnBackLigh|
-
-; 567  :                     {
-; 568  :                         DEBUGMSG(ZONE_ERROR,(TEXT("Invalid cbName value\r\n")));                        
-; 569  :                     }
-; 570  :                     else if(( (pDevDetail->cbName + sizeof(TCHAR) < sizeof(pBKLinfo->szDisplayInterface) ) 
-; 571  :                         && ( (int)(pDevDetail->cbName + sizeof(TCHAR)) > pDevDetail->cbName) ))
-
-  001dc	e2873002	 add         r3, r7, #2
-  001e0	e3530c01	 cmp         r3, #1, 24
-  001e4	2a000008	 bcs         |$LN45@fnBackLigh|
-  001e8	e1530007	 cmp         r3, r7
-  001ec	da000006	 ble         |$LN45@fnBackLigh|
-
-; 572  :                     {
-; 573  :                         memcpy(pBKLinfo->szDisplayInterface, pDevDetail->szName, pDevDetail->cbName);
-
-  001f0	e1a02007	 mov         r2, r7
-  001f4	e28d107c	 add         r1, sp, #0x7C
-  001f8	e2860c01	 add         r0, r6, #1, 24
-  001fc	eb000000	 bl          memcpy
-
-; 574  :                         // make sure it's null terminated:
-; 575  :                         pBKLinfo->szDisplayInterface[pDevDetail->cbName] = '\0';
-
-  00200	e0863087	 add         r3, r6, r7, lsl #1
-  00204	e2833c01	 add         r3, r3, #1, 24
-  00208	e1c380b0	 strh        r8, [r3]
-  0020c		 |$LN45@fnBackLigh|
-
-; 517  : 
-; 518  :                 CeFindNextRegChange(hEventRegistryChange);      
-
-  0020c	e59f70c4	 ldr         r7, [pc, #0xC4]
-  00210		 |$LN7@fnBackLigh|
-  00210	e5963228	 ldr         r3, [r6, #0x228]
-  00214	e3530000	 cmp         r3, #0
-  00218	0affffd5	 beq         |$LL24@fnBackLigh|
-  0021c	e59d8018	 ldr         r8, [sp, #0x18]
-  00220	e59da010	 ldr         r10, [sp, #0x10]
-  00224		 |$exit$32421|
-
-; 576  :                     } 
-; 577  :                 }
-; 578  :                 else
-; 579  :                 {
-; 580  :                     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("insufficient buffer for device message\r\n")));  
-; 581  :                 }
-; 582  :             }
-; 583  :             break;
-; 584  : 
-; 585  :             case(WAIT_OBJECT_0 + BKL_EVENT_EXIT):
-; 586  :             {
-; 587  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight exiting\r\n")));                
-; 588  :             }
-; 589  :             break;
-; 590  :             
-; 591  :             default:
-; 592  :             {
-; 593  :                 ASSERT(FALSE);
-; 594  :             }
-; 595  :             
-; 596  :         }
-; 597  :         
-; 598  :     }
-; 599  : 
-; 600  :     exit:
-; 601  :         
-; 602  :     if (hPwrNotification)
-; 603  :     {
-; 604  :         StopPowerNotifications(hPwrNotification);
-
-  00224	e1a0000a	 mov         r0, r10
-  00228	eb000000	 bl          StopPowerNotifications
-  0022c		 |$LN6@fnBackLigh|
-
-; 605  :     }
-; 606  :     if (hPowerNotificationMsgs)
-; 607  :     {
-; 608  :         CloseMsgQueue(hPowerNotificationMsgs);
-
-  0022c	e1a00009	 mov         r0, r9
-  00230	eb000000	 bl          CloseMsgQueue
-
-; 609  :     }
-; 610  :     if (hDisplayNotifications)
-
-  00234	e3580000	 cmp         r8, #0
-
-; 611  :     {
-; 612  :         StopDeviceNotifications(hDisplayNotifications);
-
-  00238	11a00008	 movne       r0, r8
-  0023c	1b000000	 blne        StopDeviceNotifications
-
-; 613  :     }    
-; 614  :     if (hDisplayNotificationMsgs)
-
-  00240	e3550000	 cmp         r5, #0
-
-; 615  :     {
-; 616  :         CloseMsgQueue(hDisplayNotificationMsgs);
-
-  00244	11a00005	 movne       r0, r5
-  00248	1b000000	 blne        CloseMsgQueue
-
-; 617  :     }
-; 618  :     if(hEventRegistryChange)
-
-  0024c	e3540000	 cmp         r4, #0
-
-; 619  :     {
-; 620  :         CeFindCloseRegChange(hEventRegistryChange);
-
-  00250	11a00004	 movne       r0, r4
-  00254	1b000000	 blne        CeFindCloseRegChange
-  00258		 |$LN2@fnBackLigh|
-
-; 621  :     }
-; 622  :     if(hKey)
-
-  00258	e59d0008	 ldr         r0, [sp, #8]
-  0025c	e3500000	 cmp         r0, #0
-
-; 623  :     {
-; 624  :         RegCloseKey(hKey);
-
-  00260	1b000000	 blne        RegCloseKey
-  00264		 |$LN1@fnBackLigh|
-
-; 625  :     }
-; 626  :     
-; 627  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("-fnBackLightRegThread\r\n")));
-; 628  : 
-; 629  :     return 0;
-
-  00264	e59d0180	 ldr         r0, [sp, #0x180]
-  00268	eb000000	 bl          __security_check_cookie
-  0026c	e3a00000	 mov         r0, #0
-
-; 630  : }
-
-  00270	e28ddf61	 add         sp, sp, #0x61, 30
-  00274	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  00278	e12fff1e	 bx          lr
-  0027c		 |$LN19@fnBackLigh|
-
+; 516  :                 goto exit_thread;
+; 517  :             }
+; 518  : 
 ; 519  : 
-; 520  :                 // Tell PDD that the backlight reg settings changed:
-; 521  : //MYS                 BacklightRegChanged( pBKLinfo->dwPddContext );
-; 522  :             }
-; 523  :             break;
-; 524  :             
-; 525  :             case (WAIT_OBJECT_0 + BKL_EVENT_POWER_MSG):
-; 526  :             {
-; 527  :                 POWER_BROADCAST PwrMsgBuf;
-; 528  :                 
-; 529  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Power status change to/from AC\r\n")));
-; 530  :                 if (!ReadMsgQueue(hPowerNotificationMsgs, &PwrMsgBuf, sizeof(PwrMsgBuf), &dwSize, 0, &dwFlags)) 
+; 520  :             dwValue = 0x02; //enable keypad backlight timer
+; 521  :             if(RegSetValueEx(hKey, KEYPADBACKLIGHT_REGVALUE_MODE, 0, REG_DWORD, (LPBYTE)&dwValue, sizeof(DWORD)) != ERROR_SUCCESS)
 
-  0027c	e28d300c	 add         r3, sp, #0xC
-  00280	e3a02010	 mov         r2, #0x10
-  00284	e28d1050	 add         r1, sp, #0x50
-  00288	e1a00009	 mov         r0, r9
-  0028c	e58da004	 str         r10, [sp, #4]
-  00290	e58d8000	 str         r8, [sp]
-  00294	eb000000	 bl          ReadMsgQueue
+  00218	e59d0014	 ldr         r0, [sp, #0x14]
+  0021c	e59f139c	 ldr         r1, [pc, #0x39C]
+  00220	e3a04002	 mov         r4, #2
+  00224	e28de018	 add         lr, sp, #0x18
+  00228	e3a03004	 mov         r3, #4
+  0022c	e3a02000	 mov         r2, #0
+  00230	e58d4018	 str         r4, [sp, #0x18]
+  00234	e58d6004	 str         r6, [sp, #4]
+  00238	e58de000	 str         lr, [sp]
+  0023c	eb000000	 bl          RegSetValueExW
+  00240	e3500000	 cmp         r0, #0
+  00244	0a000005	 beq         |$LN33@fnBackLigh|
 
-; 531  :                 {
-; 532  :                     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("ReadMsgQueue failed\r\n")));  
-; 533  :                     ASSERT(FALSE);
-; 534  :                 }
-; 535  : 
-; 536  :                 UpdateBacklight(pBKLinfo, BKL_EVENT_POWER_MSG);
+; 522  :             {
+; 523  :                 RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), KEYPADBACKLIGHT_REGVALUE_MODE));
 
-  00298	e3a01001	 mov         r1, #1
-  0029c	e1a00006	 mov         r0, r6
-  002a0	eb000000	 bl          |?UpdateBacklight@@YAXPAUBKL_MDD_INFO@@K@Z|
+  00248	e59f1370	 ldr         r1, [pc, #0x370]
 
-; 537  :                 if (pBKLinfo->fOnAC)
-; 538  : DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Power status change %s\r\n"),pBKLinfo->fOnAC ? L"to AC" :L"to Batt"));
-; 539  : 
-; 540  :                 // tell PDD that power source changed:
-; 541  : //MYS                BacklightPwrSrcChanged(pBKLinfo->fOnAC, pBKLinfo->dwPddContext );
-; 542  :                g_pBacklight->SetPowerState(pBKLinfo->dwCurState);
+; 663  : 
+; 664  :             case(WAIT_OBJECT_0 + BKL_EVENT_EXIT):
+; 665  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight exiting\r\n")));
+; 666  : 				break;
+; 667  :             
+; 668  :             default:
+; 669  :                 ASSERT(FALSE);
+; 670  :             
+; 671  :         }
+; 672  :         
+; 673  :     }
+; 674  : 
+; 675  : exit_thread:
 
-  002a4	e5970000	 ldr         r0, [r7]
-  002a8	e5961214	 ldr         r1, [r6, #0x214]
-  002ac	e5903000	 ldr         r3, [r0]
-  002b0	e5933008	 ldr         r3, [r3, #8]
-  002b4	e1a0e00f	 mov         lr, pc
-  002b8	e12fff13	 bx          r3
+  0024c	ea000000	 b           |$LN85@fnBackLigh|
+  00250		 |$LN42@fnBackLigh|
 
-; 543  : 
-; 544  :                 
-; 545  :             }
-; 546  :             break;
+; 524  :                 goto exit_thread;
+; 525  :             }
+; 526  :         }
+; 527  :         else
+; 528  :         {
+; 529  :             RETAILMSG(1, (TEXT("\n\rBKL: create %s failed\r\n"), BACKLIGHT_REGKEY));
 
-  002bc	eaffffd3	 b           |$LN7@fnBackLigh|
-  002c0		 |$LN20@fnBackLigh|
+  00250	e59f1364	 ldr         r1, [pc, #0x364]
+  00254		 |$LN85@fnBackLigh|
+  00254	e59f035c	 ldr         r0, [pc, #0x35C]
+  00258	eb000000	 bl          NKDbgPrintfW
 
-; 511  :         {
-; 512  :             case(WAIT_OBJECT_0 + BKL_EVENT_REG):
-; 513  :             {
-; 514  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight mdd registry change\r\n")));
-; 515  : 
-; 516  :                 UpdateBacklight(pBKLinfo, BKL_EVENT_REG);
+; 663  : 
+; 664  :             case(WAIT_OBJECT_0 + BKL_EVENT_EXIT):
+; 665  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight exiting\r\n")));
+; 666  : 				break;
+; 667  :             
+; 668  :             default:
+; 669  :                 ASSERT(FALSE);
+; 670  :             
+; 671  :         }
+; 672  :         
+; 673  :     }
+; 674  : 
+; 675  : exit_thread:
 
-  002c0	e3a01000	 mov         r1, #0
-  002c4	e1a00006	 mov         r0, r6
-  002c8	eb000000	 bl          |?UpdateBacklight@@YAXPAUBKL_MDD_INFO@@K@Z|
+  0025c	ea0000be	 b           |$exit_thread$32438|
+  00260		 |$LN33@fnBackLigh|
 
-; 517  : 
-; 518  :                 CeFindNextRegChange(hEventRegistryChange);      
+; 530  :             goto exit_thread;
+; 531  :         }
+; 532  : 	}
+; 533  : 
+; 534  :     BacklightUpdateMDDRegSettings(pBKLinfo);
 
-  002cc	e1a00004	 mov         r0, r4
-  002d0	eb000000	 bl          CeFindNextRegChange
-  002d4	eaffffcd	 b           |$LN7@fnBackLigh|
-  002d8		 |$LN50@fnBackLigh|
-  002d8		 |$LN51@fnBackLigh|
-  002d8	00000000	 DCD         |?g_pBacklight@@3PAVCBacklightRoot@@A|
-  002dc		 |$LN52@fnBackLigh|
-  002dc	00000000	 DCD         |??_C@_1CO@MGKPHPG@?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAP?$AAa?$AAn?$AAe?$AAl?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@|
-  002e0		 |$LN53@fnBackLigh|
-  002e0	00000000	 DCD         |??_C@_1EO@BHDHHEGO@?$AA?$HL?$AAE?$AAB?$AA9?$AA1?$AAC?$AA7?$AAC?$AA9?$AA?9?$AA8?$AAB?$AAF?$AA6?$AA?9?$AA4?$AAa?$AA2?$AAd?$AA?9?$AA9?$AAA?$AAB?$AA8?$AA?9?$AA6?$AA9?$AA7?$AA2?$AA4?$AAE?$AAE@|
-  002e4		 |$LN54@fnBackLigh|
-  002e4	00000000	 DCD         |__security_cookie|
-  002e8		 |$M32775|
+  00260	e1a00005	 mov         r0, r5
+  00264	eb000000	 bl          |?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z|
+
+; 535  :     g_pBacklight->BacklightRegChanged();
+
+  00268	e59f4344	 ldr         r4, [pc, #0x344]
+  0026c	e5940000	 ldr         r0, [r4]
+  00270	e5903000	 ldr         r3, [r0]
+  00274	e593301c	 ldr         r3, [r3, #0x1C]
+  00278	e1a0e00f	 mov         lr, pc
+  0027c	e12fff13	 bx          r3
+
+; 536  : 
+; 537  :     if(pBKLinfo->dwKBLMode < 2)
+
+  00280	e5951234	 ldr         r1, [r5, #0x234]
+  00284	e3510002	 cmp         r1, #2
+  00288	2a000005	 bcs         |$LN31@fnBackLigh|
+
+; 538  :     {
+; 539  :         g_pBacklight->SetKeypadBacklight((BOOL)pBKLinfo->dwKBLMode);
+
+  0028c	e5940000	 ldr         r0, [r4]
+  00290	e5903000	 ldr         r3, [r0]
+  00294	e5933014	 ldr         r3, [r3, #0x14]
+  00298	e1a0e00f	 mov         lr, pc
+  0029c	e12fff13	 bx          r3
+
+; 540  :         SetKeypadBacklightTimeout = FALSE;
+
+  002a0	e3a08000	 mov         r8, #0
+  002a4		 |$LN31@fnBackLigh|
+
+; 541  :     }
+; 542  : 
+; 543  :     // Request notification of backlight registry changes:
+; 544  :     hEventRegistryChange = CeFindFirstRegChange(hKey, FALSE, REG_NOTIFY_CHANGE_LAST_SET);
+
+  002a4	e59d0014	 ldr         r0, [sp, #0x14]
+  002a8	e3a02004	 mov         r2, #4
+  002ac	e3a01000	 mov         r1, #0
+  002b0	eb000000	 bl          CeFindFirstRegChange
+  002b4	e1a07000	 mov         r7, r0
+
+; 545  :     if(INVALID_HANDLE_VALUE == hEventRegistryChange)
+
+  002b8	e3770001	 cmn         r7, #1
+  002bc	0a0000a6	 beq         |$exit_thread$32438|
+
+; 546  :     {   
+; 547  :         DEBUGMSG(ZONE_ERROR, (TEXT("BKL: CeFindFirstRegChange failed\r\n")));        
+; 548  :         goto exit_thread;
+; 549  :     }
+; 550  :     RegCloseKey(hKey);
+
+  002c0	e59d0014	 ldr         r0, [sp, #0x14]
+  002c4	eb000000	 bl          RegCloseKey
+
+; 551  :     hKey = NULL;
+
+  002c8	e3a03000	 mov         r3, #0
+
+; 552  : 
+; 553  :     UpdateACStatus(pBKLinfo);
+
+  002cc	e1a00005	 mov         r0, r5
+  002d0	e58d3014	 str         r3, [sp, #0x14]
+  002d4	eb000000	 bl          |?UpdateACStatus@@YAXPAUBKL_MDD_INFO@@@Z|
+
+; 554  :     g_nTimeout = GetTimeout(pBKLinfo);
+
+  002d8	e59f62d0	 ldr         r6, [pc, #0x2D0]
+  002dc	e5953208	 ldr         r3, [r5, #0x208]
+
+; 555  : 
+; 556  :     WaitEvents[BKL_EVENT_REG] = hEventRegistryChange;
+; 557  :     WaitEvents[BKL_EVENT_POWER_MSG] = hPowerNotificationMsgs;
+; 558  :     WaitEvents[BKL_EVENT_EXIT] = pBKLinfo->hExitEvent;
+
+  002e0	e595221c	 ldr         r2, [r5, #0x21C]
+
+; 559  :     WaitEvents[BKL_KEYPAD_MSG] = hKBNotifications;
+; 560  :     WaitEvents[BKL_ACTIVE_MSG] = hBklNotifications;
+; 561  :     //WaitEvents[BKL_EVENT_GWE_MSG] = hGweNotifications;
+; 562  : 
+; 563  :     pBKLinfo->fExit = FALSE;
+
+  002e4	e58d9044	 str         r9, [sp, #0x44]
+  002e8	e5863000	 str         r3, [r6]
+  002ec	e3a03000	 mov         r3, #0
+  002f0	e5853228	 str         r3, [r5, #0x228]
+  002f4	e3a03c01	 mov         r3, #1, 24
+  002f8	e58da048	 str         r10, [sp, #0x48]
+  002fc	e59da020	 ldr         r10, [sp, #0x20]
+  00300	e3839002	 orr         r9, r3, #2
+  00304	e58d2040	 str         r2, [sp, #0x40]
+  00308	e58d7038	 str         r7, [sp, #0x38]
+  0030c	e58db03c	 str         r11, [sp, #0x3C]
+  00310		 |$LL28@fnBackLigh|
+
+; 564  :     
+; 565  :     while(!pBKLinfo->fExit)
+; 566  :     {
+; 567  :         dwResult = WaitForMultipleObjects(BKL_NUM_EVENTS, &WaitEvents[0], FALSE, dwTimeout);
+
+  00310	e1a0300a	 mov         r3, r10
+  00314	e3a02000	 mov         r2, #0
+  00318	e28d1038	 add         r1, sp, #0x38
+  0031c	e3a00005	 mov         r0, #5
+  00320	eb000000	 bl          WaitForMultipleObjects
+
+; 568  : 
+; 569  :         if(dwResult != WAIT_TIMEOUT)
+
+  00324	e1500009	 cmp         r0, r9
+
+; 570  :         {
+; 571  :             dwTimeout = 5000;
+
+  00328	13a03c13	 movne       r3, #0x13, 24
+  0032c	1383a088	 orrne       r10, r3, #0x88
+
+; 572  :         }
+; 573  : 
+; 574  :         switch(dwResult)
+
+  00330	e3500000	 cmp         r0, #0
+  00334	0a000069	 beq         |$LN17@fnBackLigh|
+  00338	e3500001	 cmp         r0, #1
+  0033c	0a000049	 beq         |$LN14@fnBackLigh|
+  00340	e3500003	 cmp         r0, #3
+  00344	0a00002f	 beq         |$LN9@fnBackLigh|
+  00348	e3500004	 cmp         r0, #4
+  0034c	0a000022	 beq         |$LN11@fnBackLigh|
+  00350	e1500009	 cmp         r0, r9
+  00354	1a00007a	 bne         |$LN15@fnBackLigh|
+
+; 575  :         {
+; 576  :             case WAIT_TIMEOUT:
+; 577  :                 if(pBKLinfo->dwBackLiteMode == 2)
+
+  00358	e595320c	 ldr         r3, [r5, #0x20C]
+  0035c	e3530002	 cmp         r3, #2
+  00360	1a000009	 bne         |$LN83@fnBackLigh|
+
+; 578  :                 {
+; 579  :                     g_nTimeout -= 5;
+
+  00364	e5963000	 ldr         r3, [r6]
+  00368	e2433005	 sub         r3, r3, #5
+
+; 580  :                     if(g_nTimeout <= 0)
+; 581  :                     {
+; 582  :                         g_pBacklight->SetBacklightBrightness(0);
+
+  0036c	e3530000	 cmp         r3, #0
+  00370	d5940000	 ldrle       r0, [r4]
+  00374	e5863000	 str         r3, [r6]
+  00378	d3a01000	 movle       r1, #0
+  0037c	d5903000	 ldrle       r3, [r0]
+  00380	d5933010	 ldrle       r3, [r3, #0x10]
+  00384	d1a0e00f	 movle       lr, pc
+  00388	d12fff13	 bxle        r3
+  0038c		 |$LN83@fnBackLigh|
+
+; 583  :                     }
+; 584  :                 }
+; 585  :                 if((pBKLinfo->dwKBLMode == 2) && SetKeypadBacklightTimeout)
+
+  0038c	e5953234	 ldr         r3, [r5, #0x234]
+  00390	e3530002	 cmp         r3, #2
+  00394	1a000008	 bne         |$LN20@fnBackLigh|
+  00398	e3580000	 cmp         r8, #0
+  0039c	0a000006	 beq         |$LN20@fnBackLigh|
+
+; 586  :                 {
+; 587  :                     g_pBacklight->SetKeypadBacklight(FALSE);
+
+  003a0	e5940000	 ldr         r0, [r4]
+  003a4	e3a01000	 mov         r1, #0
+  003a8	e5903000	 ldr         r3, [r0]
+  003ac	e5933014	 ldr         r3, [r3, #0x14]
+  003b0	e1a0e00f	 mov         lr, pc
+  003b4	e12fff13	 bx          r3
+
+; 588  :                     SetKeypadBacklightTimeout = FALSE;
+
+  003b8	e3a08000	 mov         r8, #0
+  003bc		 |$LN20@fnBackLigh|
+  003bc	e5963000	 ldr         r3, [r6]
+
+; 589  :                 }
+; 590  :                 if((g_nTimeout <= 0) || (pBKLinfo->dwBackLiteMode < 2))
+
+  003c0	e3530000	 cmp         r3, #0
+  003c4	da000002	 ble         |$LN18@fnBackLigh|
+  003c8	e595320c	 ldr         r3, [r5, #0x20C]
+  003cc	e3530002	 cmp         r3, #2
+  003d0	2a00005b	 bcs         |$LN15@fnBackLigh|
+  003d4		 |$LN18@fnBackLigh|
+
+; 591  :                 {
+; 592  :                     dwTimeout = INFINITE;
+
+  003d4	e3e0a000	 mvn         r10, #0
+
+; 593  :                 }
+; 594  :                 break;
+
+  003d8	ea000059	 b           |$LN15@fnBackLigh|
+  003dc		 |$LN11@fnBackLigh|
+
+; 635  : 
+; 636  : 
+; 637  :             //case (WAIT_OBJECT_0 + BKL_EVENT_GWE_MSG): break;
+; 638  :             case(WAIT_OBJECT_0 + BKL_ACTIVE_MSG):
+; 639  :                 RETAILMSG(0, (TEXT("\n\r***** BKL_ACTIVE_MSG ****\r\n")));
+; 640  :                 if(pBKLinfo->dwBackLiteMode == 2)
+
+  003dc	e595320c	 ldr         r3, [r5, #0x20C]
+
+; 641  :                 {
+; 642  :                     g_nTimeout = GetTimeout(pBKLinfo);
+; 643  :                 }
+; 644  : 
+; 645  :                 g_pBacklight->SetBacklightBrightness(-1);
+
+  003e0	e5940000	 ldr         r0, [r4]
+  003e4	e3e01000	 mvn         r1, #0
+  003e8	e3530002	 cmp         r3, #2
+  003ec	05953208	 ldreq       r3, [r5, #0x208]
+  003f0	05863000	 streq       r3, [r6]
+  003f4	e5903000	 ldr         r3, [r0]
+  003f8	e5933010	 ldr         r3, [r3, #0x10]
+  003fc	e1a0e00f	 mov         lr, pc
+  00400	e12fff13	 bx          r3
+
+; 646  : 				break;
+
+  00404	ea00004e	 b           |$LN15@fnBackLigh|
+  00408		 |$LN9@fnBackLigh|
+
+; 647  : 
+; 648  :             case(WAIT_OBJECT_0 + BKL_KEYPAD_MSG):
+; 649  :             	RETAILMSG(0, (TEXT("\n\r***** BKL_KEYPAD_MSG ****\r\n")));
+; 650  :                 if(pBKLinfo->dwKBLMode)
+
+  00408	e5953234	 ldr         r3, [r5, #0x234]
+  0040c	e3530000	 cmp         r3, #0
+  00410	0a000009	 beq         |$LN73@fnBackLigh|
+
+; 651  :                 {
+; 652  :                     g_pBacklight->SetKeypadBacklight(TRUE);
+
+  00414	e5940000	 ldr         r0, [r4]
+  00418	e3a01001	 mov         r1, #1
+  0041c	e5903000	 ldr         r3, [r0]
+  00420	e5933014	 ldr         r3, [r3, #0x14]
+  00424	e1a0e00f	 mov         lr, pc
+  00428	e12fff13	 bx          r3
+
+; 653  :                     SetKeypadBacklightTimeout = (pBKLinfo->dwKBLMode == 2) ? TRUE : FALSE;
+
+  0042c	e5953234	 ldr         r3, [r5, #0x234]
+  00430	e3530002	 cmp         r3, #2
+  00434	03a08001	 moveq       r8, #1
+  00438	13a08000	 movne       r8, #0
+  0043c		 |$LN73@fnBackLigh|
+
+; 654  :                 }
+; 655  : 
+; 656  :                 if(pBKLinfo->dwBackLiteMode == 2)
+
+  0043c	e595320c	 ldr         r3, [r5, #0x20C]
+
+; 657  :                 {
+; 658  :                     g_nTimeout = GetTimeout(pBKLinfo);
+; 659  :                 }
+; 660  : 
+; 661  :                 g_pBacklight->SetBacklightBrightness(-1);
+
+  00440	e5940000	 ldr         r0, [r4]
+  00444	e3e01000	 mvn         r1, #0
+  00448	e3530002	 cmp         r3, #2
+  0044c	05953208	 ldreq       r3, [r5, #0x208]
+  00450	05863000	 streq       r3, [r6]
+  00454	e5903000	 ldr         r3, [r0]
+  00458	e5933010	 ldr         r3, [r3, #0x10]
+  0045c	e1a0e00f	 mov         lr, pc
+  00460	e12fff13	 bx          r3
+
+; 662  : 				break;
+
+  00464	ea000036	 b           |$LN15@fnBackLigh|
+  00468		 |$LN14@fnBackLigh|
+
+; 612  :                 }
+; 613  : 				break;
+; 614  :             
+; 615  :             case (WAIT_OBJECT_0 + BKL_EVENT_POWER_MSG):
+; 616  :                 POWER_BROADCAST PwrMsgBuf;
+; 617  :                 
+; 618  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Power status change to/from AC\r\n")));
+; 619  :                 if (!ReadMsgQueue(hPowerNotificationMsgs, &PwrMsgBuf, sizeof(PwrMsgBuf), &dwSize, 0, &dwFlags)) 
+
+  00468	e28de054	 add         lr, sp, #0x54
+  0046c	e58de004	 str         lr, [sp, #4]
+  00470	e3a0e000	 mov         lr, #0
+  00474	e28d3050	 add         r3, sp, #0x50
+  00478	e3a02010	 mov         r2, #0x10
+  0047c	e28d1058	 add         r1, sp, #0x58
+  00480	e1a0000b	 mov         r0, r11
+  00484	e58de000	 str         lr, [sp]
+  00488	eb000000	 bl          ReadMsgQueue
+
+; 620  :                 {
+; 621  :                     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("ReadMsgQueue failed\r\n")));  
+; 622  :                     ASSERT(FALSE);
+; 623  :                 }
+; 624  :                 UpdateBacklight(pBKLinfo, BKL_EVENT_POWER_MSG);
+
+  0048c	e3a01001	 mov         r1, #1
+  00490	e1a00005	 mov         r0, r5
+  00494	eb000000	 bl          |?UpdateBacklight@@YAXPAUBKL_MDD_INFO@@K@Z|
+
+; 625  : 
+; 626  :                 // tell PDD that power source changed:
+; 627  :                 g_pBacklight->BacklightPwrSrcChanged(pBKLinfo->fOnAC);
+
+  00498	e5940000	 ldr         r0, [r4]
+  0049c	e5951210	 ldr         r1, [r5, #0x210]
+  004a0	e5903000	 ldr         r3, [r0]
+  004a4	e5933018	 ldr         r3, [r3, #0x18]
+  004a8	e1a0e00f	 mov         lr, pc
+  004ac	e12fff13	 bx          r3
+
+; 628  : 
+; 629  :                 if(pBKLinfo->dwBackLiteMode == 2)
+
+  004b0	e595320c	 ldr         r3, [r5, #0x20C]
+  004b4	e3530002	 cmp         r3, #2
+  004b8	1a000021	 bne         |$LN15@fnBackLigh|
+
+; 630  :                 {
+; 631  :                     g_nTimeout = GetTimeout(pBKLinfo);
+; 632  :                     g_pBacklight->SetBacklightBrightness(-1);
+
+  004bc	e5940000	 ldr         r0, [r4]
+  004c0	e5952208	 ldr         r2, [r5, #0x208]
+  004c4	e3e01000	 mvn         r1, #0
+  004c8	e5903000	 ldr         r3, [r0]
+  004cc	e5862000	 str         r2, [r6]
+  004d0	e5933010	 ldr         r3, [r3, #0x10]
+  004d4	e1a0e00f	 mov         lr, pc
+  004d8	e12fff13	 bx          r3
+
+; 633  :                 }
+; 634  : 				break;
+
+  004dc	ea000018	 b           |$LN15@fnBackLigh|
+  004e0		 |$LN17@fnBackLigh|
+
+; 595  : 
+; 596  :             case(WAIT_OBJECT_0 + BKL_EVENT_REG):
+; 597  :                 RETAILMSG(1, (TEXT("\n\r***** Backlight mdd registry change ! ****\r\n")));
+
+  004e0	e59f00c4	 ldr         r0, [pc, #0xC4]
+  004e4	eb000000	 bl          NKDbgPrintfW
+
+; 598  :                 BacklightUpdateMDDRegSettings(pBKLinfo);
+
+  004e8	e1a00005	 mov         r0, r5
+  004ec	eb000000	 bl          |?BacklightUpdateMDDRegSettings@@YAXPAUBKL_MDD_INFO@@@Z|
+
+; 599  :                 CeFindNextRegChange(hEventRegistryChange);
+
+  004f0	e1a00007	 mov         r0, r7
+  004f4	eb000000	 bl          CeFindNextRegChange
+
+; 600  : 
+; 601  :                 // Tell PDD that the backlight reg settings changed:
+; 602  :                 g_pBacklight->BacklightRegChanged();
+
+  004f8	e5940000	 ldr         r0, [r4]
+  004fc	e5903000	 ldr         r3, [r0]
+  00500	e593301c	 ldr         r3, [r3, #0x1C]
+  00504	e1a0e00f	 mov         lr, pc
+  00508	e12fff13	 bx          r3
+
+; 603  :                 if(pBKLinfo->dwKBLMode < 2)
+; 604  :                 {
+; 605  :                     g_pBacklight->SetKeypadBacklight((BOOL)pBKLinfo->dwKBLMode);
+
+  0050c	e5940000	 ldr         r0, [r4]
+  00510	e5951234	 ldr         r1, [r5, #0x234]
+  00514	e5903000	 ldr         r3, [r0]
+  00518	e3510002	 cmp         r1, #2
+  0051c	e5933014	 ldr         r3, [r3, #0x14]
+  00520	2a000003	 bcs         |$LN16@fnBackLigh|
+  00524	e1a0e00f	 mov         lr, pc
+  00528	e12fff13	 bx          r3
+
+; 606  :                     SetKeypadBacklightTimeout = FALSE;
+
+  0052c	e3a08000	 mov         r8, #0
+
+; 607  :                 }
+; 608  :                 else
+
+  00530	ea000003	 b           |$LN15@fnBackLigh|
+  00534		 |$LN16@fnBackLigh|
+
+; 609  :                 {
+; 610  :                     g_pBacklight->SetKeypadBacklight(FALSE);
+
+  00534	e3a01000	 mov         r1, #0
+  00538	e1a0e00f	 mov         lr, pc
+  0053c	e12fff13	 bx          r3
+
+; 611  :                     SetKeypadBacklightTimeout = TRUE;
+
+  00540	e3a08001	 mov         r8, #1
+  00544		 |$LN15@fnBackLigh|
+  00544	e5953228	 ldr         r3, [r5, #0x228]
+  00548	e3530000	 cmp         r3, #0
+  0054c	0affff6f	 beq         |$LL28@fnBackLigh|
+
+; 663  : 
+; 664  :             case(WAIT_OBJECT_0 + BKL_EVENT_EXIT):
+; 665  :                 DEBUGMSG(ZONE_BACKLIGHT,(TEXT("Backlight exiting\r\n")));
+; 666  : 				break;
+; 667  :             
+; 668  :             default:
+; 669  :                 ASSERT(FALSE);
+; 670  :             
+; 671  :         }
+; 672  :         
+; 673  :     }
+; 674  : 
+; 675  : exit_thread:
+
+  00550	ea000001	 b           |$exit_thread$32438|
+  00554		 |$LN49@fnBackLigh|
+
+; 465  :     {
+; 466  :         RETAILMSG(1, (TEXT("\n\rBKL: CreateEvent failed\r\n")));
+
+  00554	e59f004c	 ldr         r0, [pc, #0x4C]
+  00558	eb000000	 bl          NKDbgPrintfW
+  0055c		 |$exit_thread$32438|
+
+; 676  :         
+; 677  :     if (hPwrNotification)
+
+  0055c	e59d301c	 ldr         r3, [sp, #0x1C]
+  00560	e3530000	 cmp         r3, #0
+
+; 678  :     {
+; 679  :         StopPowerNotifications(hPwrNotification);
+
+  00564	11a00003	 movne       r0, r3
+  00568	1b000000	 blne        StopPowerNotifications
+  0056c		 |$LN4@fnBackLigh|
+
+; 680  :     }
+; 681  :     if (hPowerNotificationMsgs)
+
+  0056c	e35b0000	 cmp         r11, #0
+
+; 682  :     {
+; 683  :         CloseMsgQueue(hPowerNotificationMsgs);
+
+  00570	11a0000b	 movne       r0, r11
+  00574	1b000000	 blne        CloseMsgQueue
+
+; 684  :     }
+; 685  : 
+; 686  :     if(hEventRegistryChange)
+
+  00578	e3570000	 cmp         r7, #0
+
+; 687  :     {
+; 688  :         CeFindCloseRegChange(hEventRegistryChange);
+
+  0057c	11a00007	 movne       r0, r7
+  00580	1b000000	 blne        CeFindCloseRegChange
+  00584		 |$LN2@fnBackLigh|
+
+; 689  :     }
+; 690  :     if(hKey)
+
+  00584	e59d0014	 ldr         r0, [sp, #0x14]
+  00588	e3500000	 cmp         r0, #0
+
+; 691  :     {
+; 692  :         RegCloseKey(hKey);
+
+  0058c	1b000000	 blne        RegCloseKey
+  00590		 |$LN1@fnBackLigh|
+
+; 693  :     }
+; 694  :     
+; 695  :     DEBUGMSG(ZONE_BACKLIGHT,(TEXT("-fnBackLightRegThread\r\n")));
+; 696  : 
+; 697  :     return 0;
+
+  00590	e59d0068	 ldr         r0, [sp, #0x68]
+  00594	eb000000	 bl          __security_check_cookie
+  00598	e3a00000	 mov         r0, #0
+
+; 698  : }
+
+  0059c	e28dd06c	 add         sp, sp, #0x6C
+  005a0	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  005a4	e12fff1e	 bx          lr
+  005a8		 |$LN89@fnBackLigh|
+  005a8		 |$LN90@fnBackLigh|
+  005a8	00000000	 DCD         |??_C@_1DI@PNMBKCMA@?$AA?6?$AA?$AN?$AAB?$AAK?$AAL?$AA?3?$AA?5?$AAC?$AAr?$AAe?$AAa?$AAt?$AAe?$AAE?$AAv?$AAe?$AAn?$AAt?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  005ac		 |$LN91@fnBackLigh|
+  005ac	00000000	 DCD         |??_C@_1FO@KKOMLDMD@?$AA?6?$AA?$AN?$AA?$CK?$AA?$CK?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAm?$AAd?$AAd?$AA?5?$AAr?$AAe?$AAg?$AAi?$AAs?$AAt?$AAr?$AAy?$AA?5?$AAc@|
+  005b0		 |$LN92@fnBackLigh|
+  005b0	00000000	 DCD         |g_nTimeout|
+  005b4		 |$LN93@fnBackLigh|
+  005b4	00000000	 DCD         |?g_pBacklight@@3PAVCBacklightRoot@@A|
+  005b8		 |$LN94@fnBackLigh|
+  005b8	00000000	 DCD         |??_C@_1DE@MOLILJAA@?$AA?6?$AA?$AN?$AAB?$AAK?$AAL?$AA?3?$AA?5?$AAc?$AAr?$AAe?$AAa?$AAt?$AAe?$AA?5?$AA?$CF?$AAs?$AA?5?$AAf?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  005bc		 |$LN95@fnBackLigh|
+  005bc	00000000	 DCD         |??_C@_1DA@OIBOMNLJ@?$AAS?$AAO?$AAF?$AAT?$AAW?$AAA?$AAR?$AAE?$AA?2?$AAA?$AAp?$AAp?$AAs?$AA?2?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?$AA@|
+  005c0		 |$LN96@fnBackLigh|
+  005c0	00000000	 DCD         |??_C@_1BI@OAMEINBK@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@|
+  005c4		 |$LN97@fnBackLigh|
+  005c4	00000000	 DCD         |??_C@_1BG@FGGFONDG@?$AAB?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?$AA@|
+  005c8		 |$LN98@fnBackLigh|
+  005c8	00000000	 DCD         |??_C@_1BA@BKONPLFM@?$AAT?$AAi?$AAm?$AAe?$AAo?$AAu?$AAt?$AA?$AA@|
+  005cc		 |$LN99@fnBackLigh|
+  005cc	00000000	 DCD         |??_C@_1BC@IEBAKMLI@?$AAL?$AAC?$AAD?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@|
+  005d0		 |$LN100@fnBackLigh|
+  005d0	00000000	 DCD         |??_C@_1BE@OJJMIIHJ@?$AAB?$AAk?$AAl?$AAA?$AAc?$AAt?$AAi?$AAv?$AAe?$AA?$AA@|
+  005d4		 |$LN101@fnBackLigh|
+  005d4	00000000	 DCD         |??_C@_1CI@EAOMMMCM@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?1?$AAU?$AAs?$AAe?$AAr?$AAA?$AAc?$AAt?$AAi?$AAv?$AAi?$AAt?$AAy?$AA?$AA@|
+  005d8		 |$LN102@fnBackLigh|
+  005d8	00000000	 DCD         |??_C@_1FA@MJLPMKKO@?$AAP?$AAo?$AAw?$AAe?$AAr?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAr?$AA?1?$AAA?$AAc?$AAt?$AAi?$AAv?$AAi?$AAt?$AAy?$AAT?$AAi?$AAm?$AAe?$AAr?$AA?1?$AAU?$AAs?$AAe?$AAr?$AAA@|
+  005dc		 |$LN103@fnBackLigh|
+  005dc	00000000	 DCD         |__security_cookie|
+  005e0		 |$M32833|
 
 			 ENDP  ; |?fnBackLightThread@@YAKPAX@Z|, fnBackLightThread
 

@@ -411,7 +411,7 @@
 
   00008	e5903024	 ldr         r3, [r0, #0x24]
   0000c	e3a02010	 mov         r2, #0x10
-  00010	e3a01008	 mov         r1, #8
+  00010	e3a0100d	 mov         r1, #0xD
   00014	e3530001	 cmp         r3, #1
   00018	e58d2008	 str         r2, [sp, #8]
   0001c	e58d100c	 str         r1, [sp, #0xC]
@@ -901,7 +901,7 @@
 
   00008	e5903024	 ldr         r3, [r0, #0x24]
   0000c	e3a02010	 mov         r2, #0x10
-  00010	e3a0100a	 mov         r1, #0xA
+  00010	e3a01009	 mov         r1, #9
   00014	e3530001	 cmp         r3, #1
   00018	e58d2008	 str         r2, [sp, #8]
   0001c	e58d100c	 str         r1, [sp, #0xC]
@@ -1009,7 +1009,7 @@
 
   00008	e5903024	 ldr         r3, [r0, #0x24]
   0000c	e3a02010	 mov         r2, #0x10
-  00010	e3a01009	 mov         r1, #9
+  00010	e3a01008	 mov         r1, #8
   00014	e3530001	 cmp         r3, #1
   00018	e58d2008	 str         r2, [sp, #8]
   0001c	e58d100c	 str         r1, [sp, #0xC]
@@ -1870,7 +1870,7 @@
 
   00038	e5961024	 ldr         r1, [r6, #0x24]
   0003c	e1a05000	 mov         r5, r0
-  00040	e3a00008	 mov         r0, #8
+  00040	e3a0000d	 mov         r0, #0xD
   00044	e1a02007	 mov         r2, r7
   00048	eb000000	 bl          |?NotifyDomainCallbacks@@YAXIIK@Z|
   0004c		 |$LN1@UpdatePowe@4|
@@ -2162,7 +2162,7 @@
 
   00038	e5961024	 ldr         r1, [r6, #0x24]
   0003c	e1a05000	 mov         r5, r0
-  00040	e3a0000a	 mov         r0, #0xA
+  00040	e3a00009	 mov         r0, #9
   00044	e1a02007	 mov         r2, r7
   00048	eb000000	 bl          |?NotifyDomainCallbacks@@YAXIIK@Z|
   0004c		 |$LN1@UpdatePowe@8|
@@ -2235,7 +2235,7 @@
 
   00038	e5961024	 ldr         r1, [r6, #0x24]
   0003c	e1a05000	 mov         r5, r0
-  00040	e3a00009	 mov         r0, #9
+  00040	e3a00008	 mov         r0, #8
   00044	e1a02007	 mov         r2, r7
   00048	eb000000	 bl          |?NotifyDomainCallbacks@@YAXIIK@Z|
   0004c		 |$LN1@UpdatePowe@9|

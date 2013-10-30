@@ -299,7 +299,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46541| DCD	|$LN5@PulseEvent|
+|$T46542| DCD	|$LN5@PulseEvent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -311,7 +311,7 @@
 
   00000		 |$LN5@PulseEvent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46538|
+  00004		 |$M46539|
 
 ; 212  : 	return EventModify(h,EVENT_PULSE);
 
@@ -322,14 +322,14 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M46539|
+  00014		 |$M46540|
 
 			 ENDP  ; |PulseEvent|
 
 	EXPORT	|ResetEvent|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46551| DCD	|$LN5@ResetEvent|
+|$T46552| DCD	|$LN5@ResetEvent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -341,7 +341,7 @@
 
   00000		 |$LN5@ResetEvent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46548|
+  00004		 |$M46549|
 
 ; 224  : 	return EventModify(h,EVENT_RESET);
 
@@ -352,14 +352,14 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M46549|
+  00014		 |$M46550|
 
 			 ENDP  ; |ResetEvent|
 
 	EXPORT	|SetEvent|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46561| DCD	|$LN5@SetEvent|
+|$T46562| DCD	|$LN5@SetEvent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -371,7 +371,7 @@
 
   00000		 |$LN5@SetEvent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46558|
+  00004		 |$M46559|
 
 ; 236  : 	return EventModify(h,EVENT_SET);
 
@@ -382,14 +382,14 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M46559|
+  00014		 |$M46560|
 
 			 ENDP  ; |SetEvent|
 
 	EXPORT	|GetCurrentThread|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46570| DCD	|$LN5@GetCurrent|
+|$T46571| DCD	|$LN5@GetCurrent|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -400,7 +400,7 @@
 ; 351  : _inline HANDLE GetCurrentThread(void) {
 
   00000		 |$LN5@GetCurrent|
-  00000		 |$M46567|
+  00000		 |$M46568|
 
 ; 352  : 	return ((HANDLE)(SH_CURTHREAD+SYS_HANDLE_BASE));
 
@@ -409,7 +409,7 @@
 ; 353  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M46568|
+  00008		 |$M46569|
 
 			 ENDP  ; |GetCurrentThread|
 
@@ -419,7 +419,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46586| DCD	|$LN8@DmaConfigu|
+|$T46587| DCD	|$LN8@DmaConfigu|
 	DCD	0x40003901
 ; Function compile flags: /Ogspy
 
@@ -431,7 +431,7 @@
 
   00000		 |$LN8@DmaConfigu|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M46583|
+  00004		 |$M46584|
   00004	e1a04003	 mov         r4, r3
   00008	e1a09002	 mov         r9, r2
   0000c	e1a06001	 mov         r6, r1
@@ -446,9 +446,9 @@
 
 ; 169  :     if (pDmaLcReg == NULL || pConfigInfo == NULL)
 
-  00020	0a00002c	 beq         |$cleanUp$43822|
+  00020	0a00002c	 beq         |$cleanUp$43823|
   00024	e3560000	 cmp         r6, #0
-  00028	0a00002a	 beq         |$cleanUp$43822|
+  00028	0a00002a	 beq         |$cleanUp$43823|
 
 ; 170  :         {
 ; 171  :         goto cleanUp;
@@ -572,7 +572,7 @@
   000cc	e5873030	 str         r3, [r7, #0x30]
   000d0	e5963028	 ldr         r3, [r6, #0x28]
   000d4	e5873008	 str         r3, [r7, #8]
-  000d8		 |$cleanUp$43822|
+  000d8		 |$cleanUp$43823|
 
 ; 233  : 
 ; 234  : cleanUp:
@@ -582,14 +582,14 @@
   000d8	e1a00008	 mov         r0, r8
   000dc	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000e0	e12fff1e	 bx          lr
-  000e4		 |$M46584|
+  000e4		 |$M46585|
 
 			 ENDP  ; |DmaConfigure|
 
 	EXPORT	|DmaSetDstBuffer|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46596| DCD	|$LN6@DmaSetDstB|
+|$T46597| DCD	|$LN6@DmaSetDstB|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -600,7 +600,7 @@
 ; 330  : {
 
   00000		 |$LN6@DmaSetDstB|
-  00000		 |$M46593|
+  00000		 |$M46594|
 
 ; 331  :     // save values
 ; 332  :     //
@@ -630,14 +630,14 @@
 ; 343  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M46594|
+  00020		 |$M46595|
 
 			 ENDP  ; |DmaSetDstBuffer|
 
 	EXPORT	|DmaSetSrcBuffer|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46606| DCD	|$LN6@DmaSetSrcB|
+|$T46607| DCD	|$LN6@DmaSetSrcB|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -648,7 +648,7 @@
 ; 358  : {
 
   00000		 |$LN6@DmaSetSrcB|
-  00000		 |$M46603|
+  00000		 |$M46604|
 
 ; 359  :     // save values
 ; 360  :     //
@@ -678,14 +678,14 @@
 ; 371  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M46604|
+  00020		 |$M46605|
 
 			 ENDP  ; |DmaSetSrcBuffer|
 
 	EXPORT	|DmaSetElementAndFrameCount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46616| DCD	|$LN5@DmaSetElem|
+|$T46617| DCD	|$LN5@DmaSetElem|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -696,7 +696,7 @@
 ; 386  : {
 
   00000		 |$LN5@DmaSetElem|
-  00000		 |$M46613|
+  00000		 |$M46614|
 
 ; 387  :     // setup frame and element count for destination side
 ; 388  :     //
@@ -713,14 +713,14 @@
 ; 391  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M46614|
+  00014		 |$M46615|
 
 			 ENDP  ; |DmaSetElementAndFrameCount|
 
 	EXPORT	|IsDmaEnable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46626| DCD	|$LN8@IsDmaEnabl|
+|$T46627| DCD	|$LN8@IsDmaEnabl|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -732,7 +732,7 @@
 
   00000		 |$LN8@IsDmaEnabl|
   00000	e24dd004	 sub         sp, sp, #4
-  00004		 |$M46623|
+  00004		 |$M46624|
   00004	e3500000	 cmp         r0, #0
 
 ; 405  :     volatile ULONG ulCCR;
@@ -769,14 +769,14 @@
 
   00028	028dd004	 addeq       sp, sp, #4
   0002c	e12fff1e	 bx          lr
-  00030		 |$M46624|
+  00030		 |$M46625|
 
 			 ENDP  ; |IsDmaEnable|
 
 	EXPORT	|DmaStop|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46637| DCD	|$LN12@DmaStop|
+|$T46638| DCD	|$LN12@DmaStop|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -788,7 +788,7 @@
 
   00000		 |$LN12@DmaStop|
   00000	e24dd004	 sub         sp, sp, #4
-  00004		 |$M46634|
+  00004		 |$M46635|
 
 ; 450  :     volatile ULONG ulCCR;
 ; 451  :     BOOL breakLoop = FALSE;
@@ -842,14 +842,14 @@
 
   00040	e28dd004	 add         sp, sp, #4
   00044	e12fff1e	 bx          lr
-  00048		 |$M46635|
+  00048		 |$M46636|
 
 			 ENDP  ; |DmaStop|
 
 	EXPORT	|DmaStart|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46645| DCD	|$LN5@DmaStart|
+|$T46646| DCD	|$LN5@DmaStart|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -860,7 +860,7 @@
 ; 487  : {
 
   00000		 |$LN5@DmaStart|
-  00000		 |$M46642|
+  00000		 |$M46643|
 
 ; 488  :     // enable the dma channel
 ; 489  :     //
@@ -874,14 +874,14 @@
 ; 491  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M46643|
+  00014		 |$M46644|
 
 			 ENDP  ; |DmaStart|
 
 	EXPORT	|DmaGetLastWritePos|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46656| DCD	|$LN5@DmaGetLast|
+|$T46657| DCD	|$LN5@DmaGetLast|
 	DCD	0x40000700
 ; Function compile flags: /Ogspy
 
@@ -892,7 +892,7 @@
 ; 504  : {
 
   00000		 |$LN5@DmaGetLast|
-  00000		 |$M46653|
+  00000		 |$M46654|
 
 ; 505  :     UINT32  offset;
 ; 506  :     offset = INREG32(&pDataInfo->pDmaLcReg->CDAC) - pDataInfo->PhysAddrDstBuffer;
@@ -910,14 +910,14 @@
 ; 508  : }
 
   00018	e12fff1e	 bx          lr
-  0001c		 |$M46654|
+  0001c		 |$M46655|
 
 			 ENDP  ; |DmaGetLastWritePos|
 
 	EXPORT	|DmaGetStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46666| DCD	|$LN5@DmaGetStat|
+|$T46667| DCD	|$LN5@DmaGetStat|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -928,7 +928,7 @@
 ; 559  : {
 
   00000		 |$LN5@DmaGetStat|
-  00000		 |$M46663|
+  00000		 |$M46664|
 
 ; 560  :     return INREG32(&pDataInfo->pDmaLcReg->CSR);
 
@@ -938,14 +938,14 @@
 ; 561  : }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M46664|
+  0000c		 |$M46665|
 
 			 ENDP  ; |DmaGetStatus|
 
 	EXPORT	|DmaClearStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46675| DCD	|$LN5@DmaClearSt|
+|$T46676| DCD	|$LN5@DmaClearSt|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -956,7 +956,7 @@
 ; 575  : {
 
   00000		 |$LN5@DmaClearSt|
-  00000		 |$M46672|
+  00000		 |$M46673|
 
 ; 576  :     OUTREG32(&pDataInfo->pDmaLcReg->CSR, dwStatus);
 
@@ -966,7 +966,7 @@
 ; 577  : }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M46673|
+  0000c		 |$M46674|
 
 			 ENDP  ; |DmaClearStatus|
 
@@ -975,7 +975,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46685| DCD	|$LN11@SetDeviceC|
+|$T46686| DCD	|$LN11@SetDeviceC|
 	DCD	0x40000e01
 ; Function compile flags: /Ogspy
 
@@ -987,7 +987,7 @@
 
   00000		 |$LN11@SetDeviceC|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46682|
+  00004		 |$M46683|
   00004	e3510000	 cmp         r1, #0
 
 ; 309  : 	switch(dx)
@@ -1029,7 +1029,7 @@
 
   00030	e49de004	 ldr         lr, [sp], #4
   00034	e12fff1e	 bx          lr
-  00038		 |$M46683|
+  00038		 |$M46684|
 
 			 ENDP  ; |SetDeviceClockState|
 
@@ -1039,7 +1039,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46747| DCD	|$LN34@UpdateDMAR|
+|$T46748| DCD	|$LN34@UpdateDMAR|
 	DCD	0x40006502
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -1053,7 +1053,7 @@
   00000		 |$LN34@UpdateDMAR|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M46744|
+  00008		 |$M46745|
   00008	e1a0a002	 mov         r10, r2
   0000c	e1a05001	 mov         r5, r1
   00010	e1a08000	 mov         r8, r0
@@ -1205,7 +1205,7 @@
 
   000dc	30473005	 subcc       r3, r7, r5
   000e0	32431001	 subcc       r1, r3, #1
-  000e4	3a000005	 bcc         |$cleanUp$44808|
+  000e4	3a000005	 bcc         |$cleanUp$44809|
 
 ; 408  :         bConfig = TRUE;
 ; 409  :         goto cleanUp;
@@ -1228,7 +1228,7 @@
 
   000f8	e0423005	 sub         r3, r2, r5
   000fc	e0831006	 add         r1, r3, r6
-  00100		 |$cleanUp$44808|
+  00100		 |$cleanUp$44809|
 
 ; 419  :         bConfig = TRUE;
 ; 420  :         goto cleanUp;
@@ -1321,14 +1321,14 @@
   00188	e28dd004	 add         sp, sp, #4
   0018c	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   00190	e12fff1e	 bx          lr
-  00194		 |$M46745|
+  00194		 |$M46746|
 
 			 ENDP  ; |UpdateDMARxPointer|
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46769| DCD	|$LN12@RxDmaStop|
+|$T46770| DCD	|$LN12@RxDmaStop|
 	DCD	0x40001c01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -1341,7 +1341,7 @@
 
   00000		 |$LN12@RxDmaStop|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M46766|
+  00004		 |$M46767|
   00004	e1a08001	 mov         r8, r1
   00008	e1a07000	 mov         r7, r0
 
@@ -1402,13 +1402,13 @@
 
   00068	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   0006c	e12fff1e	 bx          lr
-  00070		 |$M46767|
+  00070		 |$M46768|
 
 			 ENDP  ; |RxDmaStop|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46777| DCD	|$LN5@SetDefault|
+|$T46778| DCD	|$LN5@SetDefault|
 	DCD	0x40001501
 ; Function compile flags: /Ogspy
 
@@ -1420,7 +1420,7 @@
 
   00000		 |$LN5@SetDefault|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M46774|
+  00004		 |$M46775|
 
 ; 503  : 
 ; 504  :     // Initialize Default DCB
@@ -1467,7 +1467,7 @@
 
   0004c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00050	e12fff1e	 bx          lr
-  00054		 |$M46775|
+  00054		 |$M46776|
 
 			 ENDP  ; |SetDefaultDCB|
 
@@ -1478,7 +1478,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46793| DCD	|$LN11@SetAutoIdl|
+|$T46794| DCD	|$LN11@SetAutoIdl|
 	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -1491,7 +1491,7 @@
 
   00000		 |$LN11@SetAutoIdl|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M46790|
+  00004		 |$M46791|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -1576,13 +1576,13 @@
 
   0006c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00070	e12fff1e	 bx          lr
-  00074		 |$M46791|
+  00074		 |$M46792|
 
 			 ENDP  ; |SetAutoIdle|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46807| DCD	|$LN8@SetAutoRTS|
+|$T46808| DCD	|$LN8@SetAutoRTS|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -1594,7 +1594,7 @@
 
   00000		 |$LN8@SetAutoRTS|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M46804|
+  00004		 |$M46805|
   00004	e1a04001	 mov         r4, r1
   00008	e1a06000	 mov         r6, r0
 
@@ -1670,13 +1670,13 @@
 
   00054	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M46805|
+  0005c		 |$M46806|
 
 			 ENDP  ; |SetAutoRTS|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46821| DCD	|$LN8@SetAutoCTS|
+|$T46822| DCD	|$LN8@SetAutoCTS|
 	DCD	0x40001401
 ; Function compile flags: /Ogspy
 
@@ -1688,7 +1688,7 @@
 
   00000		 |$LN8@SetAutoCTS|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M46818|
+  00004		 |$M46819|
   00004	e1a04001	 mov         r4, r1
   00008	e1a06000	 mov         r6, r0
 
@@ -1754,14 +1754,14 @@
 
   00048	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M46819|
+  00050		 |$M46820|
 
 			 ENDP  ; |SetAutoCTS|
 
 	IMPORT	|EvaluateEventFlag|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46834| DCD	|$LN12@ReadLineSt|
+|$T46835| DCD	|$LN12@ReadLineSt|
 	DCD	0x40002f01
 ; Function compile flags: /Ogspy
 
@@ -1773,7 +1773,7 @@
 
   00000		 |$LN12@ReadLineSt|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46831|
+  00004		 |$M46832|
   00004	e1a04000	 mov         r4, r0
 
 ; 680  :     OMAP_UART_REGS *pUartRegs = pPdd->pUartRegs;
@@ -1913,13 +1913,13 @@
   000b0	e1a00006	 mov         r0, r6
   000b4	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   000b8	e12fff1e	 bx          lr
-  000bc		 |$M46832|
+  000bc		 |$M46833|
 
 			 ENDP  ; |ReadLineStat|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46847| DCD	|$LN9@ReadModemS|
+|$T46848| DCD	|$LN9@ReadModemS|
 	DCD	0x40001001
 ; Function compile flags: /Ogspy
 
@@ -1931,7 +1931,7 @@
 
   00000		 |$LN9@ReadModemS|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46844|
+  00004		 |$M46845|
 
 ; 748  :     OMAP_UART_REGS *pUartRegs = pPdd->pUartRegs;
 
@@ -1987,13 +1987,13 @@
   00034	e1a00004	 mov         r0, r4
   00038	e8bd4010	 ldmia       sp!, {r4, lr}
   0003c	e12fff1e	 bx          lr
-  00040		 |$M46845|
+  00040		 |$M46846|
 
 			 ENDP  ; |ReadModemStat|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46863| DCD	|$LN13@SetBaudRat|
+|$T46864| DCD	|$LN13@SetBaudRat|
 	DCD	0x40002c01
 ; Function compile flags: /Ogspy
 
@@ -2005,7 +2005,7 @@
 
   00000		 |$LN13@SetBaudRat|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46860|
+  00004		 |$M46861|
   00004	e1a02001	 mov         r2, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -2024,7 +2024,7 @@
 ; 794  :     if (baudRate < 300)
 
   00014	e3520f4b	 cmp         r2, #0x4B, 30
-  00018	3a000022	 bcc         |$cleanUp$44962|
+  00018	3a000022	 bcc         |$cleanUp$44963|
 
 ; 795  :     {
 ; 796  :         goto cleanUp;
@@ -2042,7 +2042,7 @@
 ; 803  :     else if (baudRate <= 3686400)
 
   00034	e35209e1	 cmp         r2, #0xE1, 18
-  00038	8a00001a	 bhi         |$cleanUp$44962|
+  00038	8a00001a	 bhi         |$cleanUp$44963|
 
 ; 804  :     {
 ; 805  :         mdr1 = UART_MDR1_UART13;
@@ -2122,7 +2122,7 @@
 ; 832  :     rc = TRUE;
 
   000a4	e3a00001	 mov         r0, #1
-  000a8		 |$cleanUp$44962|
+  000a8		 |$cleanUp$44963|
 
 ; 833  : 
 ; 834  : cleanUp:
@@ -2132,13 +2132,13 @@
 
   000a8	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   000ac	e12fff1e	 bx          lr
-  000b0		 |$M46861|
+  000b0		 |$M46862|
 
 			 ENDP  ; |SetBaudRate|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46877| DCD	|$LN7@SetWordLen|
+|$T46878| DCD	|$LN7@SetWordLen|
 	DCD	0x40001501
 ; Function compile flags: /Ogspy
 
@@ -2150,7 +2150,7 @@
 
   00000		 |$LN7@SetWordLen|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M46874|
+  00004		 |$M46875|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -2167,9 +2167,9 @@
 ; 858  :     if ((wordLength < 5) || (wordLength > 8)) goto cleanUp;
 
   00014	e3540005	 cmp         r4, #5
-  00018	3a00000b	 bcc         |$cleanUp$45000|
+  00018	3a00000b	 bcc         |$cleanUp$45001|
   0001c	e3540008	 cmp         r4, #8
-  00020	8a000009	 bhi         |$cleanUp$45000|
+  00020	8a000009	 bhi         |$cleanUp$45001|
 
 ; 859  : 
 ; 860  :     EnterCriticalSection(&pPdd->hwCS);
@@ -2200,7 +2200,7 @@
 ; 868  :     rc = TRUE;
 
   00048	e3a00001	 mov         r0, #1
-  0004c		 |$cleanUp$45000|
+  0004c		 |$cleanUp$45001|
 
 ; 869  : 
 ; 870  : cleanUp:
@@ -2210,13 +2210,13 @@
 
   0004c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00050	e12fff1e	 bx          lr
-  00054		 |$M46875|
+  00054		 |$M46876|
 
 			 ENDP  ; |SetWordLength|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46892| DCD	|$LN13@SetParity|
+|$T46893| DCD	|$LN13@SetParity|
 	DCD	0x40002201
 ; Function compile flags: /Ogspy
 
@@ -2228,7 +2228,7 @@
 
   00000		 |$LN13@SetParity|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M46889|
+  00004		 |$M46890|
   00004	e1a05000	 mov         r5, r0
 
 ; 888  :     BOOL rc = FALSE;
@@ -2253,7 +2253,7 @@
   00028	e3530003	 cmp         r3, #3
   0002c	0a000003	 beq         |$LN3@SetParity|
   00030	e3530004	 cmp         r3, #4
-  00034	1a000011	 bne         |$cleanUp$45026|
+  00034	1a000011	 bne         |$cleanUp$45027|
 
 ; 909  :     case SPACEPARITY:
 ; 910  :         mask = UART_LCR_PARITY_EN | (3 << 4);
@@ -2334,7 +2334,7 @@
 ; 926  :     rc = TRUE;
 
   0007c	e3a00001	 mov         r0, #1
-  00080		 |$cleanUp$45026|
+  00080		 |$cleanUp$45027|
 
 ; 927  : 
 ; 928  : cleanUp:
@@ -2344,13 +2344,13 @@
 
   00080	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00084	e12fff1e	 bx          lr
-  00088		 |$M46890|
+  00088		 |$M46891|
 
 			 ENDP  ; |SetParity|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46907| DCD	|$LN10@SetStopBit|
+|$T46908| DCD	|$LN10@SetStopBit|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -2362,7 +2362,7 @@
 
   00000		 |$LN10@SetStopBit|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M46904|
+  00004		 |$M46905|
   00004	e1a05000	 mov         r5, r0
 
 ; 946  :     BOOL rc = FALSE;
@@ -2382,7 +2382,7 @@
   00014	0a000004	 beq         |$LN3@SetStopBit|
   00018	e2433001	 sub         r3, r3, #1
   0001c	e3530001	 cmp         r3, #1
-  00020	8a00000b	 bhi         |$cleanUp$45049|
+  00020	8a00000b	 bhi         |$cleanUp$45050|
 
 ; 957  :         break;
 ; 958  :     case ONE5STOPBITS:
@@ -2432,7 +2432,7 @@
 ; 974  :     rc = TRUE;
 
   00050	e3a00001	 mov         r0, #1
-  00054		 |$cleanUp$45049|
+  00054		 |$cleanUp$45050|
 
 ; 975  : 
 ; 976  : cleanUp:
@@ -2442,7 +2442,7 @@
 
   00054	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M46905|
+  0005c		 |$M46906|
 
 			 ENDP  ; |SetStopBits|
 
@@ -2455,7 +2455,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46955| DCD	|$LN47@SetPower|
+|$T46956| DCD	|$LN47@SetPower|
 	DCD	0x4000a101
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -2468,7 +2468,7 @@
 
   00000		 |$LN47@SetPower|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M46952|
+  00004		 |$M46953|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -2881,7 +2881,7 @@
   00278	e1a00006	 mov         r0, r6
   0027c	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   00280	e12fff1e	 bx          lr
-  00284		 |$M46953|
+  00284		 |$M46954|
 
 			 ENDP  ; |SetPower|
 
@@ -2889,7 +2889,7 @@
 	IMPORT	|malloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46965| DCD	|$LN6@GetSerialO|
+|$T46966| DCD	|$LN6@GetSerialO|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -2901,7 +2901,7 @@
 
   00000		 |$LN6@GetSerialO|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46962|
+  00004		 |$M46963|
 
 ; 1153 :     PHWOBJ pHWObj;
 ; 1154 : 
@@ -2928,7 +2928,7 @@
   0001c	15803008	 strne       r3, [r0, #8]
   00020	15802000	 strne       r2, [r0]
   00024	15801004	 strne       r1, [r0, #4]
-  00028		 |$cleanUp$45116|
+  00028		 |$cleanUp$45117|
 
 ; 1166 : 
 ; 1167 : cleanUp:
@@ -2941,7 +2941,7 @@
   00030		 |$LN7@GetSerialO|
   00030		 |$LN8@GetSerialO|
   00030	00000000	 DCD         |g_pddVTbl|
-  00034		 |$M46963|
+  00034		 |$M46964|
 
 			 ENDP  ; |GetSerialObject|
 
@@ -2952,7 +2952,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47022| DCD	|$LN44@IST_RxDMA|
+|$T47023| DCD	|$LN44@IST_RxDMA|
 	DCD	0x40005902
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -2966,7 +2966,7 @@
   00000		 |$LN44@IST_RxDMA|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47019|
+  00008		 |$M47020|
   00008	e1a05000	 mov         r5, r0
 
 ; 1180 :     UINT32 status;
@@ -2987,7 +2987,7 @@
   0001c	e595012c	 ldr         r0, [r5, #0x12C]
   00020	eb000000	 bl          DmaEnableInterrupts
   00024	e3500000	 cmp         r0, #0
-  00028	0a000049	 beq         |$cleanUp$45127|
+  00028	0a000049	 beq         |$cleanUp$45128|
   0002c	e3a06001	 mov         r6, #1
   00030		 |$LL14@IST_RxDMA|
 
@@ -3013,7 +3013,7 @@
 
   00044	e5953138	 ldr         r3, [r5, #0x138]
   00048	e3530001	 cmp         r3, #1
-  0004c	0a000040	 beq         |$cleanUp$45127|
+  0004c	0a000040	 beq         |$cleanUp$45128|
 
 ; 1200 :             // get cause of wake-up
 ; 1201 :             status = DmaGetStatus(pPdd->RxDmaInfo);
@@ -3044,7 +3044,7 @@
   00070	e595012c	 ldr         r0, [r5, #0x12C]
   00074	eb000000	 bl          DmaInterruptDone
   00078	e3500000	 cmp         r0, #0
-  0007c	0a000034	 beq         |$cleanUp$45127|
+  0007c	0a000034	 beq         |$cleanUp$45128|
 
 ; 1209 :                     {
 ; 1210 :                         DEBUGMSG(ZONE_ERROR, (L"ERROR: IST_RxDMA: "
@@ -3183,7 +3183,7 @@
 ; 1261 :     }
 
   00150	eaffffb6	 b           |$LL14@IST_RxDMA|
-  00154		 |$cleanUp$45127|
+  00154		 |$cleanUp$45128|
 
 ; 1262 : 
 ; 1263 : cleanUp:
@@ -3197,13 +3197,13 @@
   00158	e28dd004	 add         sp, sp, #4
   0015c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00160	e12fff1e	 bx          lr
-  00164		 |$M47020|
+  00164		 |$M47021|
 
 			 ENDP  ; |IST_RxDMA|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47033| DCD	|$LN15@Initialize|
+|$T47034| DCD	|$LN15@Initialize|
 	DCD	0x40004b01
 ; Function compile flags: /Ogspy
 
@@ -3215,7 +3215,7 @@
 
   00000		 |$LN15@Initialize|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47030|
+  00004		 |$M47031|
 
 ; 1276 :     OMAP_UART_REGS *pUartRegs = pPdd->pUartRegs;
 
@@ -3453,7 +3453,7 @@
 
   00124	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00128	e12fff1e	 bx          lr
-  0012c		 |$M47031|
+  0012c		 |$M47032|
 
 			 ENDP  ; |InitializeUART|
 
@@ -3461,7 +3461,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47061| DCD	|$LN11@Initialize@2|
+|$T47062| DCD	|$LN11@Initialize@2|
 	DCD	0x40001f01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -3474,7 +3474,7 @@
 
   00000		 |$LN11@Initialize@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47058|
+  00004		 |$M47059|
   00004	e1a04000	 mov         r4, r0
 
 ; 1391 :     BOOL rc = TRUE;
@@ -3531,7 +3531,7 @@
   00078		 |$LN12@Initialize@2|
   00078		 |$LN13@Initialize@2|
   00078	00000000	 DCD         |TxDmaSettings|
-  0007c		 |$M47059|
+  0007c		 |$M47060|
 
 			 ENDP  ; |InitializeTxDMA|
 
@@ -3539,7 +3539,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47100| DCD	|$LN13@Initialize@3|
+|$T47101| DCD	|$LN13@Initialize@3|
 	DCD	0x40003201
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -3552,7 +3552,7 @@
 
   00000		 |$LN13@Initialize@3|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47097|
+  00004		 |$M47098|
   00004	e1a05000	 mov         r5, r0
 
 ; 1416 :     OMAP_DMA_LC_REGS *pDmaLcReg;
@@ -3642,13 +3642,13 @@
   000c4		 |$LN14@Initialize@3|
   000c4		 |$LN15@Initialize@3|
   000c4	00000000	 DCD         |RxDmaSettings|
-  000c8		 |$M47098|
+  000c8		 |$M47099|
 
 			 ENDP  ; |InitializeRxDMA|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47183| DCD	|$LN56@SetDCB|
+|$T47184| DCD	|$LN56@SetDCB|
 	DCD	0x40008001
 ; Function compile flags: /Ogspy
 
@@ -3660,7 +3660,7 @@
 
   00000		 |$LN56@SetDCB|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M47180|
+  00004		 |$M47181|
   00004	e1a04002	 mov         r4, r2
   00008	e1a06001	 mov         r6, r1
   0000c	e1a05000	 mov         r5, r0
@@ -3676,7 +3676,7 @@
   00010	e5953054	 ldr         r3, [r5, #0x54]
   00014	e3a08000	 mov         r8, #0
   00018	e3530000	 cmp         r3, #0
-  0001c	0a000074	 beq         |$cleanUp$45252|
+  0001c	0a000074	 beq         |$cleanUp$45253|
 
 ; 1454 :     {
 ; 1455 :         if ((force == TRUE) || (pDCB->BaudRate != pPdd->dcb.BaudRate))
@@ -3696,7 +3696,7 @@
   0003c	e1a00005	 mov         r0, r5
   00040	eb000000	 bl          SetBaudRate
   00044	e3500000	 cmp         r0, #0
-  00048	0a000069	 beq         |$cleanUp$45252|
+  00048	0a000069	 beq         |$cleanUp$45253|
   0004c		 |$LN19@SetDCB|
 
 ; 1458 :         }
@@ -3708,7 +3708,7 @@
   00054	e5d5206a	 ldrb        r2, [r5, #0x6A]
   00058	e5d63012	 ldrb        r3, [r6, #0x12]
   0005c	e1530002	 cmp         r3, r2
-  00060	0a00000e	 beq         |$cleanUp$47114|
+  00060	0a00000e	 beq         |$cleanUp$47115|
   00064		 |$LN17@SetDCB|
 
 ; 1461 :         {
@@ -3717,9 +3717,9 @@
   00064	e5d67012	 ldrb        r7, [r6, #0x12]
   00068	e5959024	 ldr         r9, [r5, #0x24]
   0006c	e3570005	 cmp         r7, #5
-  00070	3a00005f	 bcc         |$cleanUp$45252|
+  00070	3a00005f	 bcc         |$cleanUp$45253|
   00074	e3570008	 cmp         r7, #8
-  00078	8a00005d	 bhi         |$cleanUp$45252|
+  00078	8a00005d	 bhi         |$cleanUp$45253|
   0007c	e2850098	 add         r0, r5, #0x98
   00080	eb000000	 bl          EnterCriticalSection
   00084	e5d9300c	 ldrb        r3, [r9, #0xC]
@@ -3729,7 +3729,7 @@
   00094	e1833002	 orr         r3, r3, r2
   00098	e5c9300c	 strb        r3, [r9, #0xC]
   0009c	eb000000	 bl          LeaveCriticalSection
-  000a0		 |$cleanUp$47114|
+  000a0		 |$cleanUp$47115|
 
 ; 1463 :         }
 ; 1464 : 
@@ -3750,7 +3750,7 @@
   000bc	e1a00005	 mov         r0, r5
   000c0	eb000000	 bl          SetParity
   000c4	e3500000	 cmp         r0, #0
-  000c8	0a000049	 beq         |$cleanUp$45252|
+  000c8	0a000049	 beq         |$cleanUp$45253|
   000cc		 |$LN13@SetDCB|
 
 ; 1468 :         }
@@ -3762,7 +3762,7 @@
   000d4	e5d5206c	 ldrb        r2, [r5, #0x6C]
   000d8	e5d63014	 ldrb        r3, [r6, #0x14]
   000dc	e1530002	 cmp         r3, r2
-  000e0	0a000011	 beq         |$cleanUp$47128|
+  000e0	0a000011	 beq         |$cleanUp$47129|
   000e4		 |$LN11@SetDCB|
 
 ; 1471 :         {
@@ -3774,7 +3774,7 @@
   000f0	0a000004	 beq         |$LN31@SetDCB|
   000f4	e2433001	 sub         r3, r3, #1
   000f8	e3530001	 cmp         r3, #1
-  000fc	8a00003c	 bhi         |$cleanUp$45252|
+  000fc	8a00003c	 bhi         |$cleanUp$45253|
   00100	e3a04004	 mov         r4, #4
   00104	ea000000	 b           |$LN32@SetDCB|
   00108		 |$LN31@SetDCB|
@@ -3788,7 +3788,7 @@
   00120	e1833004	 orr         r3, r3, r4
   00124	e5c7300c	 strb        r3, [r7, #0xC]
   00128	eb000000	 bl          LeaveCriticalSection
-  0012c		 |$cleanUp$47128|
+  0012c		 |$cleanUp$47129|
 
 ; 1473 :         }
 ; 1474 : 
@@ -3889,7 +3889,7 @@
 ; 1497 :         bRC = TRUE;
 
   001f0	e3a08001	 mov         r8, #1
-  001f4		 |$cleanUp$45252|
+  001f4		 |$cleanUp$45253|
 
 ; 1498 :     }
 ; 1499 : 
@@ -3900,14 +3900,14 @@
   001f4	e1a00008	 mov         r0, r8
   001f8	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   001fc	e12fff1e	 bx          lr
-  00200		 |$M47181|
+  00200		 |$M47182|
 
 			 ENDP  ; |SetDCB|
 
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47196| DCD	|$LN13@RestoreUAR|
+|$T47197| DCD	|$LN13@RestoreUAR|
 	DCD	0x40003c01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -3920,7 +3920,7 @@
 
   00000		 |$LN13@RestoreUAR|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47193|
+  00004		 |$M47194|
   00004	e1a05000	 mov         r5, r0
 
 ; 1512 :     DEBUGMSG(ZONE_FUNCTION, (L"+RestoreUARTContext\r\n"));
@@ -4082,13 +4082,13 @@
 
   000e8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000ec	e12fff1e	 bx          lr
-  000f0		 |$M47194|
+  000f0		 |$M47195|
 
 			 ENDP  ; |RestoreUARTContext|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47207| DCD	|$LN6@HWPostInit|
+|$T47208| DCD	|$LN6@HWPostInit|
 	DCD	0x40000b00
 ; Function compile flags: /Ogspy
 
@@ -4099,7 +4099,7 @@
 ; 1960 : {
 
   00000		 |$LN6@HWPostInit|
-  00000		 |$M47204|
+  00000		 |$M47205|
 
 ; 1961 :     UARTPDD *pPdd = (UARTPDD *)pvContext;
 ; 1962 :     PHW_INDEP_INFO  pSerialHead = (PHW_INDEP_INFO)pPdd->pMdd;
@@ -4142,7 +4142,7 @@
 ; 1979 : }
 
   00028	e12fff1e	 bx          lr
-  0002c		 |$M47205|
+  0002c		 |$M47206|
 
 			 ENDP  ; |HWPostInit|
 
@@ -4160,7 +4160,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47221| DCD	|$LN19@HWDeinit|
+|$T47222| DCD	|$LN19@HWDeinit|
 	DCD	0x40006602
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4185,7 +4185,7 @@
   00000		 |$LN19@HWDeinit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47218|
+  00008		 |$M47219|
   00008	e1a04000	 mov         r4, r0
 
 ; 1994 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -4464,7 +4464,7 @@
   00190	00000000	 DCD         |??_C@_1FG@LMAMANNM@?$AAU?$AAA?$AAR?$AAT?$AA?3?$AAH?$AAW?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?3?$AAD?$AAm?$AAa?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt@|
   00194		 |$LN22@HWDeinit|
   00194	010100d8	 DCD         0x10100d8
-  00198		 |$M47219|
+  00198		 |$M47220|
 
 			 ENDP  ; |HWDeinit|
 
@@ -4472,7 +4472,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47243| DCD	|$LN19@PowerThrea|
+|$T47244| DCD	|$LN19@PowerThrea|
 	DCD	0x40002801
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -4485,7 +4485,7 @@
 
   00000		 |$LN19@PowerThrea|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47240|
+  00004		 |$M47241|
   00004	e1a04000	 mov         r4, r0
 
 ; 2095 :     DWORD nTimeout = INFINITE;
@@ -4616,7 +4616,7 @@
 ; 2144 :         else
 
   0009c	eafffff1	 b           |$LN1@PowerThrea|
-  000a0		 |$M47241|
+  000a0		 |$M47242|
 
 			 ENDP  ; |PowerThreadProc|
 
@@ -4625,7 +4625,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47320| DCD	|$LN32@HWOpen|
+|$T47321| DCD	|$LN32@HWOpen|
 	DCD	0x4000aa02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -4639,7 +4639,7 @@
   00000		 |$LN32@HWOpen|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47317|
+  00008		 |$M47318|
   00008	e1a05000	 mov         r5, r0
 
 ; 2162 :     BOOL rc = FALSE;
@@ -4656,7 +4656,7 @@
   0000c	e5953054	 ldr         r3, [r5, #0x54]
   00010	e3a04000	 mov         r4, #0
   00014	e3530000	 cmp         r3, #0
-  00018	1a00009d	 bne         |$cleanUp$45494|
+  00018	1a00009d	 bne         |$cleanUp$45495|
 
 ; 2172 : 
 ; 2173 :     // We have set hardware to D0
@@ -4739,7 +4739,7 @@
 ; 2194 : 
 ; 2195 :     if (pPdd->hPowerThread == NULL)
 
-  000d4	0a00006e	 beq         |$cleanUp$45494|
+  000d4	0a00006e	 beq         |$cleanUp$45495|
 
 ; 2196 :     {
 ; 2197 :         DEBUGMSG(ZONE_ERROR, (L"ERROR: HWOpen: "
@@ -4760,9 +4760,9 @@
   000e0	e5d5406a	 ldrb        r4, [r5, #0x6A]
   000e4	e5956024	 ldr         r6, [r5, #0x24]
   000e8	e3540005	 cmp         r4, #5
-  000ec	3a00000a	 bcc         |$cleanUp$47258|
+  000ec	3a00000a	 bcc         |$cleanUp$47259|
   000f0	e3540008	 cmp         r4, #8
-  000f4	8a000008	 bhi         |$cleanUp$47258|
+  000f4	8a000008	 bhi         |$cleanUp$47259|
   000f8	e2850098	 add         r0, r5, #0x98
   000fc	eb000000	 bl          EnterCriticalSection
   00100	e5d6300c	 ldrb        r3, [r6, #0xC]
@@ -4772,7 +4772,7 @@
   00110	e1833002	 orr         r3, r3, r2
   00114	e5c6300c	 strb        r3, [r6, #0xC]
   00118	eb000000	 bl          LeaveCriticalSection
-  0011c		 |$cleanUp$47258|
+  0011c		 |$cleanUp$47259|
 
 ; 2207 :     SetStopBits(pPdd, pPdd->dcb.StopBits);
 
@@ -4782,7 +4782,7 @@
   00128	0a000004	 beq         |$LN14@HWOpen|
   0012c	e2433001	 sub         r3, r3, #1
   00130	e3530001	 cmp         r3, #1
-  00134	8a00000a	 bhi         |$cleanUp$47272|
+  00134	8a00000a	 bhi         |$cleanUp$47273|
   00138	e3a04004	 mov         r4, #4
   0013c	ea000000	 b           |$LN15@HWOpen|
   00140		 |$LN14@HWOpen|
@@ -4796,7 +4796,7 @@
   00158	e1833004	 orr         r3, r3, r4
   0015c	e5c6300c	 strb        r3, [r6, #0xC]
   00160	eb000000	 bl          LeaveCriticalSection
-  00164		 |$cleanUp$47272|
+  00164		 |$cleanUp$47273|
 
 ; 2208 :     SetParity(pPdd, pPdd->dcb.Parity);
 
@@ -4963,7 +4963,7 @@
 ; 2256 :     rc = TRUE;
 
   00290	e3a04001	 mov         r4, #1
-  00294		 |$cleanUp$45494|
+  00294		 |$cleanUp$45495|
 
 ; 2257 : 
 ; 2258 : cleanUp:
@@ -4979,14 +4979,14 @@
   002a4		 |$LN33@HWOpen|
   002a4		 |$LN34@HWOpen|
   002a4	00000000	 DCD         |PowerThreadProc|
-  002a8		 |$M47318|
+  002a8		 |$M47319|
 
 			 ENDP  ; |HWOpen|
 
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47355| DCD	|$LN23@HWClose|
+|$T47356| DCD	|$LN23@HWClose|
 	DCD	0x40005e01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -4999,7 +4999,7 @@
 
   00000		 |$LN23@HWClose|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M47352|
+  00004		 |$M47353|
   00004	e1a05000	 mov         r5, r0
 
 ; 2272 :     ULONG rc = (ULONG)-1;
@@ -5012,7 +5012,7 @@
   00008	e5953054	 ldr         r3, [r5, #0x54]
   0000c	e3e06000	 mvn         r6, #0
   00010	e3530000	 cmp         r3, #0
-  00014	0a000054	 beq         |$cleanUp$45521|
+  00014	0a000054	 beq         |$cleanUp$45522|
 
 ; 2278 : 
 ; 2279 :     //CETK test case put Device in D4 state. CETK called some API's which is not supported
@@ -5217,7 +5217,7 @@
 ; 2344 :     rc = 0;
 
   00168	e3a06000	 mov         r6, #0
-  0016c		 |$cleanUp$45521|
+  0016c		 |$cleanUp$45522|
 
 ; 2345 : 
 ; 2346 : cleanUp:
@@ -5229,14 +5229,14 @@
   0016c	e1a00006	 mov         r0, r6
   00170	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   00174	e12fff1e	 bx          lr
-  00178		 |$M47353|
+  00178		 |$M47354|
 
 			 ENDP  ; |HWClose|
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47419| DCD	|$LN57@HWGetInter|
+|$T47420| DCD	|$LN57@HWGetInter|
 	DCD	0x4000a502
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -5250,7 +5250,7 @@
   00000		 |$LN57@HWGetInter|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47416|
+  00008		 |$M47417|
   00008	e1a04000	 mov         r4, r0
 
 ; 2366 :     UARTPDD *pPdd = (UARTPDD *)pvContext;
@@ -5275,7 +5275,7 @@
 
   0001c	e5943084	 ldr         r3, [r4, #0x84]
   00020	e3530000	 cmp         r3, #0
-  00024	1a000096	 bne         |$cleanUp$45547|
+  00024	1a000096	 bne         |$cleanUp$45548|
 
 ; 2379 :         {
 ; 2380 :             type = INTR_RX;
@@ -5288,7 +5288,7 @@
 ; 2382 :         }
 ; 2383 :         goto cleanUp;
 
-  00034	ea000092	 b           |$cleanUp$45547|
+  00034	ea000092	 b           |$cleanUp$45548|
   00038		 |$LN27@HWGetInter|
 
 ; 2384 :     }
@@ -5298,7 +5298,7 @@
 
   00038	e5943054	 ldr         r3, [r4, #0x54]
   0003c	e3530000	 cmp         r3, #0
-  00040	0a00008f	 beq         |$cleanUp$45547|
+  00040	0a00008f	 beq         |$cleanUp$45548|
 
 ; 2388 :         goto cleanUp;
 ; 2389 :     }
@@ -5391,7 +5391,7 @@
   000c0	13855004	 orrne       r5, r5, #4
   000c4	1584708c	 strne       r7, [r4, #0x8C]
   000c8	e3530000	 cmp         r3, #0
-  000cc	0a00006c	 beq         |$cleanUp$45547|
+  000cc	0a00006c	 beq         |$cleanUp$45548|
 
 ; 2446 :     {
 ; 2447 :         goto cleanUp;
@@ -5552,7 +5552,7 @@
 
   001c8	05847144	 streq       r7, [r4, #0x144]
   001cc	03a05002	 moveq       r5, #2
-  001d0	0a00002b	 beq         |$cleanUp$45547|
+  001d0	0a00002b	 beq         |$cleanUp$45548|
 
 ; 2484 :             type = INTR_RX;
 ; 2485 :             goto cleanUp;
@@ -5568,7 +5568,7 @@
 
   001dc	05847148	 streq       r7, [r4, #0x148]
   001e0	03a05002	 moveq       r5, #2
-  001e4	0a000026	 beq         |$cleanUp$45547|
+  001e4	0a000026	 beq         |$cleanUp$45548|
 
 ; 2491 :             type = INTR_RX;
 ; 2492 :             goto cleanUp;
@@ -5631,7 +5631,7 @@
 ; 2511 :         if ((type & INTR_LINE) != 0)
 
   00240	e3150001	 tst         r5, #1
-  00244	0a00000e	 beq         |$cleanUp$45547|
+  00244	0a00000e	 beq         |$cleanUp$45548|
 
 ; 2512 :         {
 ; 2513 :             DEBUGMSG(ZONE_FUNCTION, (L"+HWGetInterruptType Starting DMA(INTR_LINE)\r\n"));
@@ -5682,7 +5682,7 @@
   0027c	e2840098	 add         r0, r4, #0x98
   00280		 |$LN51@HWGetInter|
   00280	eb000000	 bl          LeaveCriticalSection
-  00284		 |$cleanUp$45547|
+  00284		 |$cleanUp$45548|
 
 ; 2526 :         }
 ; 2527 :     }
@@ -5699,7 +5699,7 @@
   00288	e28dd004	 add         sp, sp, #4
   0028c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00290	e12fff1e	 bx          lr
-  00294		 |$M47417|
+  00294		 |$M47418|
 
 			 ENDP  ; |HWGetInterruptType|
 
@@ -5707,7 +5707,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47450| DCD	|$LN29@HWRxDMAInt|
+|$T47451| DCD	|$LN29@HWRxDMAInt|
 	DCD	0x40005401
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -5720,7 +5720,7 @@
 
   00000		 |$LN29@HWRxDMAInt|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M47447|
+  00004		 |$M47448|
   00004	e1a07002	 mov         r7, r2
   00008	e1a08001	 mov         r8, r1
   0000c	e1a06000	 mov         r6, r0
@@ -5926,14 +5926,14 @@
   00144	e1a00004	 mov         r0, r4
   00148	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   0014c	e12fff1e	 bx          lr
-  00150		 |$M47448|
+  00150		 |$M47449|
 
 			 ENDP  ; |HWRxDMAIntr|
 
 	EXPORT	|HWRxNoDMAIntr|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47477| DCD	|$LN22@HWRxNoDMAI|
+|$T47478| DCD	|$LN22@HWRxNoDMAI|
 	DCD	0x40004002
 ; Function compile flags: /Ogspy
 
@@ -5946,7 +5946,7 @@
   00000		 |$LN22@HWRxNoDMAI|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47474|
+  00008		 |$M47475|
   00008	e1a0a002	 mov         r10, r2
   0000c	e1a0b001	 mov         r11, r1
   00010	e1a04000	 mov         r4, r0
@@ -6092,13 +6092,13 @@
   000f4	e28dd004	 add         sp, sp, #4
   000f8	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   000fc	e12fff1e	 bx          lr
-  00100		 |$M47475|
+  00100		 |$M47476|
 
 			 ENDP  ; |HWRxNoDMAIntr|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47490| DCD	|$LN9@HWRxIntr|
+|$T47491| DCD	|$LN9@HWRxIntr|
 	DCD	0x40001e01
 ; Function compile flags: /Ogspy
 
@@ -6110,7 +6110,7 @@
 
   00000		 |$LN9@HWRxIntr|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47487|
+  00004		 |$M47488|
   00004	e1a04000	 mov         r4, r0
 
 ; 2689 :     UARTPDD *pPdd = (UARTPDD *)pvContext;
@@ -6226,7 +6226,7 @@
   00064	e5940078	 ldr         r0, [r4, #0x78]
   00068	e3a03000	 mov         r3, #0
   0006c	e5843078	 str         r3, [r4, #0x78]
-  00070		 |$cleanUp$45656|
+  00070		 |$cleanUp$45657|
 
 ; 2724 : 
 ; 2725 : cleanUp:
@@ -6238,7 +6238,7 @@
 
   00070	e8bd4010	 ldmia       sp!, {r4, lr}
   00074	e12fff1e	 bx          lr
-  00078		 |$M47488|
+  00078		 |$M47489|
 
 			 ENDP  ; |HWRxIntr|
 
@@ -6252,7 +6252,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47578| DCD	|$LN72@HWTxIntr|
+|$T47579| DCD	|$LN72@HWTxIntr|
 	DCD	0x4000dc02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -6319,7 +6319,7 @@
   00000		 |$LN72@HWTxIntr|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47575|
+  00008		 |$M47576|
   00008	e1a05002	 mov         r5, r2
   0000c	e58d5000	 str         r5, [sp]
   00010	e1a0a001	 mov         r10, r1
@@ -6361,7 +6361,7 @@
 
 ; 2769 :         goto cleanUp;
 
-  00034	ea0000c4	 b           |$cleanUp$45682|
+  00034	ea0000c4	 b           |$cleanUp$45683|
   00038		 |$LN25@HWTxIntr|
 
 ; 2770 :     }
@@ -6913,12 +6913,12 @@
   00330	e58d3000	 str         r3, [sp]
   00334	e59d3000	 ldr         r3, [sp]
   00338	e3130080	 tst         r3, #0x80
-  0033c	1a000002	 bne         |$cleanUp$45682|
+  0033c	1a000002	 bne         |$cleanUp$45683|
   00340		 |$LN53@HWTxIntr|
   00340	e3a01000	 mov         r1, #0
   00344	e1a00004	 mov         r0, r4
   00348	eb000000	 bl          SetAutoIdle
-  0034c		 |$cleanUp$45682|
+  0034c		 |$cleanUp$45683|
 
 ; 2966 : 
 ; 2967 : cleanUp:
@@ -6943,14 +6943,14 @@
   00368	00000000	 DCD         |??_C@_1DE@BIEHKFMC@?$AA?$CB?$AA?$CB?$AA?$CB?$AA?$CB?$AA?5?$AAD?$AAM?$AAA?$AA?5?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?5?$AAi?$AAs?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
   0036c		 |$LN79@HWTxIntr|
   0036c	00000000	 DCD         |??_C@_1GM@FFDJCNJM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAS?$AAi?$AAg?$AAn?$AAa?$AAl?$AA?5?$AAD?$AAM?$AAA?$AA?5?$AAT?$AAX?$AA?5?$AAi@|
-  00370		 |$M47576|
+  00370		 |$M47577|
 
 			 ENDP  ; |HWTxIntr|
 
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47602| DCD	|$LN11@HWModemInt|
+|$T47603| DCD	|$LN11@HWModemInt|
 	DCD	0x40002201
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -6963,7 +6963,7 @@
 
   00000		 |$LN11@HWModemInt|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47599|
+  00004		 |$M47600|
   00004	e1a04000	 mov         r4, r0
 
 ; 2987 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7061,13 +7061,13 @@
 
   00080	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00084	e12fff1e	 bx          lr
-  00088		 |$M47600|
+  00088		 |$M47601|
 
 			 ENDP  ; |HWModemIntr|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47615| DCD	|$LN12@HWLineIntr|
+|$T47616| DCD	|$LN12@HWLineIntr|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -7079,7 +7079,7 @@
 
   00000		 |$LN12@HWLineIntr|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47612|
+  00004		 |$M47613|
   00004	e1a04000	 mov         r4, r0
 
 ; 3043 :     UARTPDD *pPdd = (UARTPDD *)pvContext;
@@ -7150,13 +7150,13 @@
 
   00050	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00054	e12fff1e	 bx          lr
-  00058		 |$M47613|
+  00058		 |$M47614|
 
 			 ENDP  ; |HWLineIntr|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47625| DCD	|$LN5@HWGetRxBuf|
+|$T47626| DCD	|$LN5@HWGetRxBuf|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -7167,7 +7167,7 @@
 ; 3086 : {
 
   00000		 |$LN5@HWGetRxBuf|
-  00000		 |$M47622|
+  00000		 |$M47623|
 
 ; 3087 :     UARTPDD *pPdd = (UARTPDD *)pvContext;
 ; 3088 : 
@@ -7180,13 +7180,13 @@
 ; 3092 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47623|
+  00008		 |$M47624|
 
 			 ENDP  ; |HWGetRxBufferSize|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47634| DCD	|$LN5@HWPowerOff|
+|$T47635| DCD	|$LN5@HWPowerOff|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -7197,7 +7197,7 @@
 ; 3106 : {
 
   00000		 |$LN5@HWPowerOff|
-  00000		 |$M47631|
+  00000		 |$M47632|
 
 ; 3107 :     UNREFERENCED_PARAMETER(pvContext);
 ; 3108 :     return TRUE;
@@ -7207,13 +7207,13 @@
 ; 3109 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47632|
+  00008		 |$M47633|
 
 			 ENDP  ; |HWPowerOff|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47643| DCD	|$LN5@HWPowerOn|
+|$T47644| DCD	|$LN5@HWPowerOn|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -7224,7 +7224,7 @@
 ; 3123 : {
 
   00000		 |$LN5@HWPowerOn|
-  00000		 |$M47640|
+  00000		 |$M47641|
 
 ; 3124 :     UNREFERENCED_PARAMETER(pvContext);
 ; 3125 :     return TRUE;
@@ -7234,13 +7234,13 @@
 ; 3126 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47641|
+  00008		 |$M47642|
 
 			 ENDP  ; |HWPowerOn|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47652| DCD	|$LN5@HWClearDTR|
+|$T47653| DCD	|$LN5@HWClearDTR|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -7252,7 +7252,7 @@
 
   00000		 |$LN5@HWClearDTR|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47649|
+  00004		 |$M47650|
   00004	e1a05000	 mov         r5, r0
 
 ; 3140 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7290,13 +7290,13 @@
 
   00034	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00038	e12fff1e	 bx          lr
-  0003c		 |$M47650|
+  0003c		 |$M47651|
 
 			 ENDP  ; |HWClearDTR|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47661| DCD	|$LN5@HWSetDTR|
+|$T47662| DCD	|$LN5@HWSetDTR|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -7308,7 +7308,7 @@
 
   00000		 |$LN5@HWSetDTR|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47658|
+  00004		 |$M47659|
   00004	e1a05000	 mov         r5, r0
 
 ; 3169 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7346,13 +7346,13 @@
 
   00034	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00038	e12fff1e	 bx          lr
-  0003c		 |$M47659|
+  0003c		 |$M47660|
 
 			 ENDP  ; |HWSetDTR|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47671| DCD	|$LN8@HWClearRTS|
+|$T47672| DCD	|$LN8@HWClearRTS|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -7364,7 +7364,7 @@
 
   00000		 |$LN8@HWClearRTS|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47668|
+  00004		 |$M47669|
   00004	e1a04000	 mov         r4, r0
 
 ; 3198 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7435,13 +7435,13 @@
 
   00058	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0005c	e12fff1e	 bx          lr
-  00060		 |$M47669|
+  00060		 |$M47670|
 
 			 ENDP  ; |HWClearRTS|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47681| DCD	|$LN8@HWSetRTS|
+|$T47682| DCD	|$LN8@HWSetRTS|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -7453,7 +7453,7 @@
 
   00000		 |$LN8@HWSetRTS|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47678|
+  00004		 |$M47679|
   00004	e1a04000	 mov         r4, r0
 
 ; 3238 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7524,13 +7524,13 @@
 
   00058	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0005c	e12fff1e	 bx          lr
-  00060		 |$M47679|
+  00060		 |$M47680|
 
 			 ENDP  ; |HWSetRTS|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47690| DCD	|$LN5@HWEnableIR|
+|$T47691| DCD	|$LN5@HWEnableIR|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -7541,7 +7541,7 @@
 ; 3274 : {
 
   00000		 |$LN5@HWEnableIR|
-  00000		 |$M47687|
+  00000		 |$M47688|
 
 ; 3275 :     UNREFERENCED_PARAMETER(pvContext);
 ; 3276 :     UNREFERENCED_PARAMETER(baudRate);
@@ -7554,13 +7554,13 @@
 ; 3280 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47688|
+  00008		 |$M47689|
 
 			 ENDP  ; |HWEnableIR|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47699| DCD	|$LN5@HWDisableI|
+|$T47700| DCD	|$LN5@HWDisableI|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -7571,7 +7571,7 @@
 ; 3289 : {
 
   00000		 |$LN5@HWDisableI|
-  00000		 |$M47696|
+  00000		 |$M47697|
 
 ; 3290 : 
 ; 3291 :     UNREFERENCED_PARAMETER(pvContext);
@@ -7584,13 +7584,13 @@
 ; 3295 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47697|
+  00008		 |$M47698|
 
 			 ENDP  ; |HWDisableIR|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47708| DCD	|$LN5@HWClearBre|
+|$T47709| DCD	|$LN5@HWClearBre|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -7602,7 +7602,7 @@
 
   00000		 |$LN5@HWClearBre|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47705|
+  00004		 |$M47706|
   00004	e1a05000	 mov         r5, r0
 
 ; 3309 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7637,13 +7637,13 @@
 
   00028	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0002c	e12fff1e	 bx          lr
-  00030		 |$M47706|
+  00030		 |$M47707|
 
 			 ENDP  ; |HWClearBreak|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47717| DCD	|$LN5@HWSetBreak|
+|$T47718| DCD	|$LN5@HWSetBreak|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -7655,7 +7655,7 @@
 
   00000		 |$LN5@HWSetBreak|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47714|
+  00004		 |$M47715|
   00004	e1a05000	 mov         r5, r0
 
 ; 3337 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7688,13 +7688,13 @@
 
   00028	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0002c	e12fff1e	 bx          lr
-  00030		 |$M47715|
+  00030		 |$M47716|
 
 			 ENDP  ; |HWSetBreak|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47726| DCD	|$LN5@HWReset|
+|$T47727| DCD	|$LN5@HWReset|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -7706,7 +7706,7 @@
 
   00000		 |$LN5@HWReset|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47723|
+  00004		 |$M47724|
   00004	e1a05000	 mov         r5, r0
 
 ; 3363 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7744,13 +7744,13 @@
 
   00028	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0002c	e12fff1e	 bx          lr
-  00030		 |$M47724|
+  00030		 |$M47725|
 
 			 ENDP  ; |HWReset|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47736| DCD	|$LN8@HWGetModem|
+|$T47737| DCD	|$LN8@HWGetModem|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -7762,7 +7762,7 @@
 
   00000		 |$LN8@HWGetModem|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47733|
+  00004		 |$M47734|
   00004	e1a04001	 mov         r4, r1
 
 ; 3393 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
@@ -7812,13 +7812,13 @@
 
   00040	e8bd4010	 ldmia       sp!, {r4, lr}
   00044	e12fff1e	 bx          lr
-  00048		 |$M47734|
+  00048		 |$M47735|
 
 			 ENDP  ; |HWGetModemStatus|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47753| DCD	|$LN14@HWXmitComC|
+|$T47754| DCD	|$LN14@HWXmitComC|
 	DCD	0x40002501
 ; Function compile flags: /Ogspy
 
@@ -7830,7 +7830,7 @@
 
   00000		 |$LN14@HWXmitComC|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47750|
+  00004		 |$M47751|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -7937,13 +7937,13 @@
 
   0008c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00090	e12fff1e	 bx          lr
-  00094		 |$M47751|
+  00094		 |$M47752|
 
 			 ENDP  ; |HWXmitComChar|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47769| DCD	|$LN10@HWGetStatu|
+|$T47770| DCD	|$LN10@HWGetStatu|
 	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 
@@ -7955,7 +7955,7 @@
 
   00000		 |$LN10@HWGetStatu|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47766|
+  00004		 |$M47767|
   00004	e3510000	 cmp         r1, #0
   00008	e1a0e000	 mov         lr, r0
 
@@ -7971,7 +7971,7 @@
 ; 3498 : 
 ; 3499 :     if (pComStat == NULL) goto cleanUp;
 
-  00010	0a000015	 beq         |$cleanUp$45914|
+  00010	0a000015	 beq         |$cleanUp$45915|
 
 ; 3500 : 
 ; 3501 :     pComStat->fCtsHold = pPdd->flowOffCTS ? 1 : 0;
@@ -8014,7 +8014,7 @@
 ; 3507 :     pPdd->commErrors = 0;
 
   00068	e58e3074	 str         r3, [lr, #0x74]
-  0006c		 |$cleanUp$45914|
+  0006c		 |$cleanUp$45915|
 
 ; 3508 : 
 ; 3509 : cleanUp:
@@ -8024,13 +8024,13 @@
 
   0006c	e49de004	 ldr         lr, [sp], #4
   00070	e12fff1e	 bx          lr
-  00074		 |$M47767|
+  00074		 |$M47768|
 
 			 ENDP  ; |HWGetStatus|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47778| DCD	|$LN6@HWGetCommP|
+|$T47779| DCD	|$LN6@HWGetCommP|
 	DCD	0x40002601
 ; Function compile flags: /Ogspy
 
@@ -8042,7 +8042,7 @@
 
   00000		 |$LN6@HWGetCommP|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M47775|
+  00004		 |$M47776|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -8136,14 +8136,14 @@
   00094		 |$LN7@HWGetCommP|
   00094		 |$LN8@HWGetCommP|
   00094	10067ff0	 DCD         0x10067ff0
-  00098		 |$M47776|
+  00098		 |$M47777|
 
 			 ENDP  ; |HWGetCommProperties|
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47809| DCD	|$LN20@HWPurgeCom|
+|$T47810| DCD	|$LN20@HWPurgeCom|
 	DCD	0x40004f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\serial\uart\pdd.c
@@ -8157,7 +8157,7 @@
   00000		 |$LN20@HWPurgeCom|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47806|
+  00008		 |$M47807|
   00008	e1a05001	 mov         r5, r1
   0000c	e1a04000	 mov         r4, r0
 
@@ -8343,13 +8343,13 @@
   00130	e28dd004	 add         sp, sp, #4
   00134	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   00138	e12fff1e	 bx          lr
-  0013c		 |$M47807|
+  0013c		 |$M47808|
 
 			 ENDP  ; |HWPurgeComm|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47821| DCD	|$LN8@HWSetDCB|
+|$T47822| DCD	|$LN8@HWSetDCB|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -8361,7 +8361,7 @@
 
   00000		 |$LN8@HWSetDCB|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47818|
+  00004		 |$M47819|
   00004	e1a04001	 mov         r4, r1
   00008	e1a06000	 mov         r6, r0
 
@@ -8385,7 +8385,7 @@
   00024	e1d421d6	 ldrsb       r2, [r4, #0x16]
   00028	e1d431d5	 ldrsb       r3, [r4, #0x15]
   0002c	e1530002	 cmp         r3, r2
-  00030	0a000009	 beq         |$cleanUp$46023|
+  00030	0a000009	 beq         |$cleanUp$46024|
   00034		 |$LN3@HWSetDCB|
 
 ; 3672 :     {
@@ -8415,7 +8415,7 @@
   00050	03a0201c	 moveq       r2, #0x1C
   00054	01a01004	 moveq       r1, r4
   00058	0b000000	 bleq        memcpy
-  0005c		 |$cleanUp$46023|
+  0005c		 |$cleanUp$46024|
 
 ; 3684 :     }
 ; 3685 : 
@@ -8428,13 +8428,13 @@
   0005c	e1a00005	 mov         r0, r5
   00060	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M47819|
+  00068		 |$M47820|
 
 			 ENDP  ; |HWSetDCB|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47832| DCD	|$LN5@HWSetCommT|
+|$T47833| DCD	|$LN5@HWSetCommT|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -8446,7 +8446,7 @@
 
   00000		 |$LN5@HWSetCommT|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47829|
+  00004		 |$M47830|
 
 ; 3705 :     UARTPDD *pPdd = (UARTPDD*)pvContext;
 ; 3706 :     DEBUGMSG(ZONE_FUNCTION, (L"+HWSetCommTimeouts()\r\n"));
@@ -8465,7 +8465,7 @@
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
-  0001c		 |$M47830|
+  0001c		 |$M47831|
 
 			 ENDP  ; |HWSetCommTimeouts|
 
@@ -8473,27 +8473,27 @@
 	IMPORT	|__C_specific_handler|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47899| DCD	|$LN74@HWIOCtl|
+|$T47900| DCD	|$LN74@HWIOCtl|
 	DCD	0xc0008304
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47901| DCD	|$LN32@HWIOCtl|
+|$T47902| DCD	|$LN32@HWIOCtl|
 	DCD	0x40000301
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47903| DCD	|$LN53@HWIOCtl|
+|$T47904| DCD	|$LN53@HWIOCtl|
 	DCD	0x40000301
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47905| DCD	|$LN46@HWIOCtl|
+|$T47906| DCD	|$LN46@HWIOCtl|
 	DCD	0x40000301
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47907| DCD	|$LN39@HWIOCtl|
+|$T47908| DCD	|$LN39@HWIOCtl|
 	DCD	0x40000701
 
   00000			 AREA	 |.xdata|, DATA
-|$T47897| DCD	0x4
+|$T47898| DCD	0x4
 	DCD	|$LN36@HWIOCtl|
 	DCD	|$LN37@HWIOCtl|
 	DCD	|$LN32@HWIOCtl|
@@ -8515,7 +8515,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T47897|
+  00004	00000000	 DCD         |$T47898|
 
   00008		 |HWIOCtl| PROC
 
@@ -8967,7 +8967,7 @@
 	IMPORT	|LocalAlloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47947| DCD	|$LN35@HWInit|
+|$T47948| DCD	|$LN35@HWInit|
 	DCD	0x40011202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -8999,7 +8999,7 @@
   00000		 |$LN35@HWInit|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47944|
+  00008		 |$M47945|
   00008	e1a06002	 mov         r6, r2
   0000c	e1a07001	 mov         r7, r1
   00010	e1a05000	 mov         r5, r0
@@ -9240,7 +9240,7 @@
   00144	e5848130	 str         r8, [r4, #0x130]
   00148	e3730001	 cmn         r3, #1
   0014c	e5848100	 str         r8, [r4, #0x100]
-  00150	0a00003b	 beq         |$skipTXDMA$45361|
+  00150	0a00003b	 beq         |$skipTXDMA$45362|
 
 ; 1716 :         {
 ; 1717 :             RETAILMSG(FALSE, (L"TX - DMA Disabled \r\n"));
@@ -9257,7 +9257,7 @@
 
 ; 1723 :     if (pPdd->hTxDmaChannel != NULL)
 
-  00164	0a000036	 beq         |$skipTXDMA$45361|
+  00164	0a000036	 beq         |$skipTXDMA$45362|
 
 ; 1724 :     {
 ; 1725 :         DEBUGMSG(ZONE_INIT, (L"OMAP35XX TX DMA enabled\r\n"));
@@ -9272,7 +9272,7 @@
 
 ; 1728 :         if(!pPdd->TxDmaInfo)
 
-  0017c	0a000030	 beq         |$skipTXDMA$45361|
+  0017c	0a000030	 beq         |$skipTXDMA$45362|
 
 ; 1729 :         {
 ; 1730 :             DEBUGMSG(ZONE_ERROR, (L"ERROR: HWInit: "
@@ -9303,7 +9303,7 @@
 
 ; 1744 :             goto skipTXDMA;
 
-  00194	ea00002a	 b           |$skipTXDMA$45361|
+  00194	ea00002a	 b           |$skipTXDMA$45362|
   00198		 |$LN13@HWInit|
 
 ; 1745 :         }
@@ -9411,7 +9411,7 @@
 
   0023c	e1a00004	 mov         r0, r4
   00240	eb000000	 bl          InitializeTxDMA
-  00244		 |$skipTXDMA$45361|
+  00244		 |$skipTXDMA$45362|
 
 ; 1787 : 
 ; 1788 :         DEBUGMSG(ZONE_INIT, (L"OMAP35XX TX DMA init completed\r\n"));
@@ -9431,7 +9431,7 @@
   00248	e5848124	 str         r8, [r4, #0x124]
   0024c	e584812c	 str         r8, [r4, #0x12C]
   00250	e3730001	 cmn         r3, #1
-  00254	0a000032	 beq         |$skipRXDMA$45389|
+  00254	0a000032	 beq         |$skipRXDMA$45390|
 
 ; 1800 :         {
 ; 1801 :             RETAILMSG(FALSE, (L"RX - DMA Disabled\r\n"));
@@ -9448,7 +9448,7 @@
 
 ; 1807 :     if (pPdd->hRxDmaChannel != NULL)
 
-  00268	0a00002d	 beq         |$skipRXDMA$45389|
+  00268	0a00002d	 beq         |$skipRXDMA$45390|
 
 ; 1808 :     {
 ; 1809 : 
@@ -9462,7 +9462,7 @@
 
 ; 1811 :         if(!pPdd->RxDmaInfo)
 
-  00280	0a000027	 beq         |$skipRXDMA$45389|
+  00280	0a000027	 beq         |$skipRXDMA$45390|
 
 ; 1812 :         {
 ; 1813 :             DEBUGMSG(ZONE_ERROR, (L"ERROR: HWInit: "
@@ -9493,7 +9493,7 @@
 
 ; 1827 :             goto skipRXDMA;
 
-  00298	ea000021	 b           |$skipRXDMA$45389|
+  00298	ea000021	 b           |$skipRXDMA$45390|
   0029c		 |$LN7@HWInit|
 
 ; 1828 :         }
@@ -9589,7 +9589,7 @@
 
   0031c	e1a00004	 mov         r0, r4
   00320	eb000000	 bl          InitializeRxDMA
-  00324		 |$skipRXDMA$45389|
+  00324		 |$skipRXDMA$45390|
 
 ; 1874 :     }
 ; 1875 : skipRXDMA:
@@ -9746,7 +9746,7 @@
 ; 1930 :     pPdd->pMdd = pMdd;
 
   0042c	e5847050	 str         r7, [r4, #0x50]
-  00430		 |$cleanUp$45331|
+  00430		 |$cleanUp$45332|
 
 ; 1931 : 
 ; 1932 :     // Initialization succeeded
@@ -9768,7 +9768,7 @@
   00440	00000000	 DCD         |??_C@_1EG@OEGIILDN@?$AAH?$AAW?$AAI?$AAn?$AAi?$AAt?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?$CB?$AA?$CB?$AA?5?$AAC?$AAa?$AAl?$AAl?$AAi?$AAn?$AAg?$AA?5?$AAH?$AAW?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt@|
   00444		 |$LN41@HWInit|
   00444	00000000	 DCD         |s_deviceRegParams|
-  00448		 |$M47945|
+  00448		 |$M47946|
 
 			 ENDP  ; |HWInit|
 

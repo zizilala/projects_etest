@@ -76,7 +76,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45393| DCD	|$LN5@TWLWriteBy|
+|$T45367| DCD	|$LN5@TWLWriteBy|
 	DCD	0x40000803
 ; Function compile flags: /Ogspy
 
@@ -90,7 +90,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5000	 stmdb       sp!, {r12, lr}
-  0000c		 |$M45390|
+  0000c		 |$M45364|
 
 ; 58   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 
@@ -102,14 +102,14 @@
 
   00018	e89d6000	 ldmia       sp, {sp, lr}
   0001c	e12fff1e	 bx          lr
-  00020		 |$M45391|
+  00020		 |$M45365|
 
 			 ENDP  ; |TWLWriteByteReg|
 
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45405| DCD	|$LN5@TWLReadByt|
+|$T45379| DCD	|$LN5@TWLReadByt|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -121,7 +121,7 @@
 
   00000		 |$LN5@TWLReadByt|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45402|
+  00004		 |$M45376|
 
 ; 68   :     return TWLReadRegs(hTWL,address,data,sizeof(*data));
 
@@ -132,7 +132,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M45403|
+  00014		 |$M45377|
 
 			 ENDP  ; |TWLReadByteReg|
 
@@ -146,7 +146,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\oalrtc\rtc.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45415| DCD	|$LN5@SystemTime|
+|$T45389| DCD	|$LN5@SystemTime|
 	DCD	0x40001902
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -168,7 +168,7 @@
   00000		 |$LN5@SystemTime|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M45412|
+  00008		 |$M45386|
 
 ; 95   :     static WCHAR buffer[64];
 ; 96   : 
@@ -209,7 +209,7 @@
   0005c	00000000	 DCD         |?buffer@?1??SystemTimeToString@@9@9|
   00060		 |$LN8@SystemTime|
   00060	00000000	 DCD         |??_C@_1EG@LALIIKNN@?$AA?$CF?$AA0?$AA4?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?4?$AA?$CF?$AA0@|
-  00064		 |$M45413|
+  00064		 |$M45387|
 
 			 ENDP  ; |SystemTimeToString|
 
@@ -221,7 +221,7 @@
 |?buffer@?1??HWTimeToString@@9@9| % 0x80		; `HWTimeToString'::`2'::buffer
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45428| DCD	|$LN5@HWTimeToSt|
+|$T45402| DCD	|$LN5@HWTimeToSt|
 	DCD	0x40003a02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -242,7 +242,7 @@
   00000		 |$LN5@HWTimeToSt|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd028	 sub         sp, sp, #0x28
-  00008		 |$M45425|
+  00008		 |$M45399|
 
 ; 113  :     static WCHAR buffer[64];
 ; 114  : 
@@ -319,7 +319,7 @@
   000e0	00000000	 DCD         |?buffer@?1??HWTimeToString@@9@9|
   000e4		 |$LN8@HWTimeToSt|
   000e4	00000000	 DCD         |??_C@_1DM@BLINKFCK@?$AA?$CF?$AA0?$AA4?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?$AA@|
-  000e8		 |$M45426|
+  000e8		 |$M45400|
 
 			 ENDP  ; |HWTimeToString|
 
@@ -327,7 +327,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45471| DCD	|$LN21@ReadBaseOf|
+|$T45445| DCD	|$LN21@ReadBaseOf|
 	DCD	0x40007402
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\oalrtc\rtc.c
@@ -341,7 +341,7 @@
   00000		 |$LN21@ReadBaseOf|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M45468|
+  00008		 |$M45442|
   00008	e1a05000	 mov         r5, r0
 
 ; 134  :     UCHAR   val;
@@ -521,7 +521,7 @@
   001cc		 |$LN22@ReadBaseOf|
   001cc		 |$LN23@ReadBaseOf|
   001cc	00000000	 DCD         |s_rtc|
-  001d0		 |$M45469|
+  001d0		 |$M45443|
 
 			 ENDP  ; |ReadBaseOffset|
 
@@ -529,7 +529,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45521| DCD	|$LN21@WriteBaseO|
+|$T45495| DCD	|$LN21@WriteBaseO|
 	DCD	0x40004b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\oalrtc\rtc.c
@@ -543,7 +543,7 @@
   00000		 |$LN21@WriteBaseO|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M45518|
+  00008		 |$M45492|
   00008	e1a05000	 mov         r5, r0
 
 ; 171  :     UCHAR   val;
@@ -674,7 +674,7 @@
   00128		 |$LN22@WriteBaseO|
   00128		 |$LN23@WriteBaseO|
   00128	00000000	 DCD         |s_rtc|
-  0012c		 |$M45519|
+  0012c		 |$M45493|
 
 			 ENDP  ; |WriteBaseOffset|
 
@@ -684,6 +684,7 @@
 	EXPORT	|??_C@_1EG@DMPAACGN@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAT?$AAC?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAs@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1EM@GDGDGGII@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAG?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AA?5@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1FA@KEKFOIGH@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAe?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1GM@BICOJKHL@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAC?$AAl?$AAe?$AAa?$AAn?$AA?5?$AAb?$AAo@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GK@LBOBPPKI@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAT?$AAC?$AA?5?$AAT?$AAW?$AAL?$AA_@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1FO@CGLDPGNO@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DA@GMIOKMIL@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
@@ -701,11 +702,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45679| DCD	|$LN72@OALIoCtlHa|
-	DCD	0xc0019d02
+|$T45655| DCD	|$LN74@OALIoCtlHa|
+	DCD	0xc001a302
 
   00000			 AREA	 |.xdata|, DATA
-|$T45675| DCD	0xffffffd8
+|$T45651| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1EA@NFLJEDAN@?$AA?9?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?5?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "-"
@@ -746,6 +747,18 @@
 	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1GM@BICOJKHL@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAC?$AAl?$AAe?$AAa?$AAn?$AA?5?$AAb?$AAo@| DCB " "
+	DCB	0x0, "O", 0x0, "A", 0x0, "L", 0x0, "I", 0x0, "o", 0x0, "C"
+	DCB	0x0, "t", 0x0, "l", 0x0, "H", 0x0, "a", 0x0, "l", 0x0, "I"
+	DCB	0x0, "n", 0x0, "i", 0x0, "t", 0x0, "R", 0x0, "T", 0x0, "C"
+	DCB	0x0, "(", 0x0, ")", 0x0, ":", 0x0, " ", 0x0, " ", 0x0, "C"
+	DCB	0x0, "l", 0x0, "e", 0x0, "a", 0x0, "n", 0x0, " ", 0x0, "b"
+	DCB	0x0, "o", 0x0, "o", 0x0, "t", 0x0, ",", 0x0, " ", 0x0, "r"
+	DCB	0x0, "e", 0x0, "s", 0x0, "e", 0x0, "t", 0x0, " ", 0x0, "d"
+	DCB	0x0, "a", 0x0, "t", 0x0, "e", 0x0, " ", 0x0, "t", 0x0, "i"
+	DCB	0x0, "m", 0x0, "e", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GK@LBOBPPKI@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAT?$AAC?$AA?5?$AAT?$AAW?$AAL?$AA_@| DCB " "
 	DCB	0x0, "O", 0x0, "A", 0x0, "L", 0x0, "I", 0x0, "o", 0x0, "C"
 	DCB	0x0, "t", 0x0, "l", 0x0, "H", 0x0, "a", 0x0, "l", 0x0, "I"
@@ -780,19 +793,19 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T45675|
+  00004	00000000	 DCD         |$T45651|
 
   00008		 |OALIoCtlHalInitRTC| PROC
 
 ; 216  : {
 
-  00008		 |$LN72@OALIoCtlHa|
+  00008		 |$LN74@OALIoCtlHa|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd054	 sub         sp, sp, #0x54
-  00010		 |$M45676|
+  00010		 |$M45652|
   00010	e1a06001	 mov         r6, r1
   00014	e58d602c	 str         r6, [sp, #0x2C]
-  00018	e59f3658	 ldr         r3, [pc, #0x658]
+  00018	e59f3670	 ldr         r3, [pc, #0x670]
   0001c	e5933000	 ldr         r3, [r3]
   00020	e58d3050	 str         r3, [sp, #0x50]
 
@@ -810,12 +823,12 @@
 ; 228  : 
 ; 229  :     OALMSG(OAL_TIMER && OAL_FUNC, (L"+OALIoCtlHalInitRTC()\r\n"));
 
-  00024	e59f4628	 ldr         r4, [pc, #0x628]
+  00024	e59f463c	 ldr         r4, [pc, #0x63C]
   00028	e3a05000	 mov         r5, #0
   0002c	e5943440	 ldr         r3, [r4, #0x440]
   00030	e3130b02	 tst         r3, #2, 22
   00034	13130004	 tstne       r3, #4
-  00038	159f0634	 ldrne       r0, [pc, #0x634]
+  00038	159f064c	 ldrne       r0, [pc, #0x64C]
   0003c	1b000000	 blne        NKDbgPrintfW
 
 ; 230  : 
@@ -823,7 +836,7 @@
 ; 232  :     // Initialize RTC critical section
 ; 233  :     InitializeCriticalSection(&s_rtc.cs);
 
-  00040	e59fb614	 ldr         r11, [pc, #0x614]
+  00040	e59fb628	 ldr         r11, [pc, #0x628]
   00044	e28b0004	 add         r0, r11, #4
   00048	eb000000	 bl          InitializeCriticalSection
 
@@ -833,7 +846,7 @@
 ; 237  :     // OMAP35XX GP only
 ; 238  :     if( dwOEMHighSecurity == OEM_HIGH_SECURITY_GP )
 
-  0004c	e59f361c	 ldr         r3, [pc, #0x61C]
+  0004c	e59f3634	 ldr         r3, [pc, #0x634]
   00050	e5933000	 ldr         r3, [r3]
   00054	e3530002	 cmp         r3, #2
 
@@ -856,21 +869,21 @@
 
   0006c	1a000005	 bne         |$LN3@OALIoCtlHa|
 
-; 246  :         {
+; 246  : 	{
 ; 247  :         OALMSG(OAL_ERROR, (L" OALIoCtlHalInitRTC(): Failed to open Triton\r\n"));
 
   00070	e5943440	 ldr         r3, [r4, #0x440]
   00074	e3130001	 tst         r3, #1
-  00078	0a000168	 beq         |$cleanUp$45186|
-  0007c	e59f05e8	 ldr         r0, [pc, #0x5E8]
+  00078	0a00016d	 beq         |$cleanUp$45157|
+  0007c	e59f0600	 ldr         r0, [pc, #0x600]
   00080	eb000000	 bl          NKDbgPrintfW
 
 ; 248  :         goto cleanUp;
 
-  00084	ea000164	 b           |$LN69@OALIoCtlHa|
+  00084	ea000169	 b           |$LN71@OALIoCtlHa|
   00088		 |$LN3@OALIoCtlHa|
 
-; 249  :         }
+; 249  : 	}
 ; 250  : 
 ; 251  :     // Read secure registers for secure hash
 ; 252  :     status = 0;
@@ -945,572 +958,584 @@
 
   00114	e5dd3001	 ldrb        r3, [sp, #1]
   00118	e5940440	 ldr         r0, [r4, #0x440]
-  0011c	e1823003	 orr         r3, r2, r3
-  00120	e5cd3001	 strb        r3, [sp, #1]
+  0011c	e1821003	 orr         r1, r2, r3
+  00120	e5cd1001	 strb        r1, [sp, #1]
   00124	e3100b02	 tst         r0, #2, 22
-  00128	0a000006	 beq         |$LN11@OALIoCtlHa|
+  00128	0a000004	 beq         |$LN11@OALIoCtlHa|
   0012c	e3100004	 tst         r0, #4
-  00130	0a000004	 beq         |$LN11@OALIoCtlHa|
-  00134	e59f052c	 ldr         r0, [pc, #0x52C]
-  00138	e1a01003	 mov         r1, r3
-  0013c	eb000000	 bl          NKDbgPrintfW
-  00140	e5dd3001	 ldrb        r3, [sp, #1]
-  00144	e5940440	 ldr         r0, [r4, #0x440]
-  00148		 |$LN11@OALIoCtlHa|
+  00130	0a000002	 beq         |$LN11@OALIoCtlHa|
+  00134	e59f0544	 ldr         r0, [pc, #0x544]
+  00138	eb000000	 bl          NKDbgPrintfW
+  0013c	e5940440	 ldr         r0, [r4, #0x440]
+  00140		 |$LN11@OALIoCtlHa|
 
 ; 268  : 
-; 269  : #if 0
+; 269  : #if 1 // brian
 ; 270  :     // Not needed for CE embedded, only need to reset RTC if TWL/TPS PMIC is reset
 ; 271  :     // Check for a clean boot of device - if so, reset date/time to system default (LTK2026)
-; 272  :     pColdBoot = OALArgsQuery(OAL_ARGS_QUERY_COLDBOOT);
-; 273  :     if ((pColdBoot != NULL) && *pColdBoot)
-; 274  :         {
-; 275  :         OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Clean boot, reset date time\r\n"));
-; 276  :         status = 0;
-; 277  :         }
+; 272  :     //pColdBoot = OALArgsQuery(OAL_ARGS_QUERY_COLDBOOT);
+; 273  :     //if ((pColdBoot != NULL) && *pColdBoot)
+; 274  :     //    {
+; 275  : 	OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Clean boot, reset date time\r\n"));
+
+  00140	e3100b02	 tst         r0, #2, 22
+  00144	0a000004	 beq         |$LN13@OALIoCtlHa|
+  00148	e3100004	 tst         r0, #4
+  0014c	0a000002	 beq         |$LN13@OALIoCtlHa|
+  00150	e59f0524	 ldr         r0, [pc, #0x524]
+  00154	eb000000	 bl          NKDbgPrintfW
+  00158	e5940440	 ldr         r0, [r4, #0x440]
+  0015c		 |$LN13@OALIoCtlHa|
+
+; 276  : 	status = 0;
+
+  0015c	e3a03000	 mov         r3, #0
+  00160	e5cd3001	 strb        r3, [sp, #1]
+
+; 277  :     //    }
 ; 278  : #endif
 ; 279  : 		
 ; 280  :     // Start RTC when it isn't running
 ; 281  :     if (status == 0 && pGivenTime != NULL)
 
-  00148	e3530000	 cmp         r3, #0
-  0014c	1a0000b8	 bne         |$LN2@OALIoCtlHa|
-  00150	e3560000	 cmp         r6, #0
-  00154	0a0000b6	 beq         |$LN2@OALIoCtlHa|
+  00164	e3560000	 cmp         r6, #0
+  00168	0a0000b6	 beq         |$LN2@OALIoCtlHa|
 
-; 282  :         {
+; 282  : 	{
 ; 283  :         OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Resetting RTC\r\n"));
 
-  00158	e3100b02	 tst         r0, #2, 22
-  0015c	13100004	 tstne       r0, #4
-  00160	159f04fc	 ldrne       r0, [pc, #0x4FC]
-  00164	1b000000	 blne        NKDbgPrintfW
+  0016c	e3100b02	 tst         r0, #2, 22
+  00170	13100004	 tstne       r0, #4
+  00174	159f04fc	 ldrne       r0, [pc, #0x4FC]
+  00178	1b000000	 blne        NKDbgPrintfW
 
 ; 284  : 
 ; 285  :         // Write power_up and alarm bits to clear power up flag (and any interrupt flag)
 ; 286  :         TWLWriteByteReg(s_rtc.hTWL, TWL_RTC_STATUS_REG, TWL_RTC_STATUS_POWER_UP|TWL_RTC_STATUS_ALARM);
 
-  00168	e59b0018	 ldr         r0, [r11, #0x18]
-  0016c	e3a03803	 mov         r3, #3, 16
-  00170	e383102a	 orr         r1, r3, #0x2A
-  00174	e3a0e0c0	 mov         lr, #0xC0
-  00178	e3a03001	 mov         r3, #1
-  0017c	e28d2000	 add         r2, sp, #0
-  00180	e5cde000	 strb        lr, [sp]
-  00184	eb000000	 bl          TWLWriteRegs
+  0017c	e59b0018	 ldr         r0, [r11, #0x18]
+  00180	e3a03803	 mov         r3, #3, 16
+  00184	e383102a	 orr         r1, r3, #0x2A
+  00188	e3a0e0c0	 mov         lr, #0xC0
+  0018c	e3a03001	 mov         r3, #1
+  00190	e28d2000	 add         r2, sp, #0
+  00194	e5cde000	 strb        lr, [sp]
+  00198	eb000000	 bl          TWLWriteRegs
 
 ; 287  : 
 ; 288  :         //  Convert system time to BCD
 ; 289  :         bcdTime[5] = BIN2BCD(pGivenTime->wYear - RTC_BASE_YEAR_MIN);
 
-  00188	e1d630b0	 ldrh        r3, [r6]
+  0019c	e1d630b0	 ldrh        r3, [r6]
 
 ; 290  :         bcdTime[4] = BIN2BCD(pGivenTime->wMonth);
 
-  0018c	e5d6e002	 ldrb        lr, [r6, #2]
+  001a0	e5d6e002	 ldrb        lr, [r6, #2]
 
 ; 291  :         bcdTime[3] = BIN2BCD(pGivenTime->wDay);
 
-  00190	e5d64006	 ldrb        r4, [r6, #6]
+  001a4	e5d64006	 ldrb        r4, [r6, #6]
 
 ; 292  :         bcdTime[2] = BIN2BCD(pGivenTime->wHour);
 
-  00194	e5d62008	 ldrb        r2, [r6, #8]
+  001a8	e5d62008	 ldrb        r2, [r6, #8]
 
 ; 293  :         bcdTime[1] = BIN2BCD(pGivenTime->wMinute);
 
-  00198	e5d6800a	 ldrb        r8, [r6, #0xA]
+  001ac	e5d6800a	 ldrb        r8, [r6, #0xA]
 
 ; 294  :         bcdTime[0] = BIN2BCD(pGivenTime->wSecond);
 
-  0019c	e5d6900c	 ldrb        r9, [r6, #0xC]
-  001a0	e59f64b8	 ldr         r6, [pc, #0x4B8]
-  001a4	e2833030	 add         r3, r3, #0x30
-  001a8	e20370ff	 and         r7, r3, #0xFF
-  001ac	e58d7018	 str         r7, [sp, #0x18]
-  001b0	e0c35697	 smull       r5, r3, r7, r6
-  001b4	e1a07002	 mov         r7, r2
-  001b8	e0c2169e	 smull       r1, r2, lr, r6
-  001bc	e58de00c	 str         lr, [sp, #0xC]
-  001c0	e58d5030	 str         r5, [sp, #0x30]
-  001c4	e58d4014	 str         r4, [sp, #0x14]
+  001b0	e5d6900c	 ldrb        r9, [r6, #0xC]
+  001b4	e59f64b8	 ldr         r6, [pc, #0x4B8]
+  001b8	e2833030	 add         r3, r3, #0x30
+  001bc	e20370ff	 and         r7, r3, #0xFF
+  001c0	e58d7018	 str         r7, [sp, #0x18]
+  001c4	e0c35697	 smull       r5, r3, r7, r6
+  001c8	e1a07002	 mov         r7, r2
+  001cc	e0c2169e	 smull       r1, r2, lr, r6
+  001d0	e58de00c	 str         lr, [sp, #0xC]
+  001d4	e58d5030	 str         r5, [sp, #0x30]
+  001d8	e58d4014	 str         r4, [sp, #0x14]
 
 ; 295  : 
 ; 296  :         //  Initialize RTC with given values
 ; 297  :         TWLWriteByteReg(s_rtc.hTWL, TWL_YEARS_REG, bcdTime[5]);
 
-  001c8	e1a03143	 mov         r3, r3, asr #2
-  001cc	e58d7008	 str         r7, [sp, #8]
-  001d0	e58d101c	 str         r1, [sp, #0x1C]
-  001d4	e0c51694	 smull       r1, r5, r4, r6
-  001d8	e58d8010	 str         r8, [sp, #0x10]
-  001dc	e58d9004	 str         r9, [sp, #4]
-  001e0	e59b0018	 ldr         r0, [r11, #0x18]
-  001e4	e58d1028	 str         r1, [sp, #0x28]
-  001e8	e0c1e697	 smull       lr, r1, r7, r6
-  001ec	e58de044	 str         lr, [sp, #0x44]
-  001f0	e0ce4698	 smull       r4, lr, r8, r6
-  001f4	e1a01141	 mov         r1, r1, asr #2
-  001f8	e1a0e14e	 mov         lr, lr, asr #2
-  001fc	e08eafae	 add         r10, lr, lr, lsr #31
-  00200	e58d4020	 str         r4, [sp, #0x20]
-  00204	e0c46699	 smull       r6, r4, r9, r6
-  00208	e0819fa1	 add         r9, r1, r1, lsr #31
-  0020c	e089e109	 add         lr, r9, r9, lsl #2
-  00210	e1a04144	 mov         r4, r4, asr #2
-  00214	e084bfa4	 add         r11, r4, r4, lsr #31
-  00218	e58d6024	 str         r6, [sp, #0x24]
-  0021c	e0836fa3	 add         r6, r3, r3, lsr #31
-  00220	e1a03142	 mov         r3, r2, asr #2
-  00224	e0837fa3	 add         r7, r3, r3, lsr #31
-  00228	e1a02145	 mov         r2, r5, asr #2
-  0022c	e59d3018	 ldr         r3, [sp, #0x18]
-  00230	e0865106	 add         r5, r6, r6, lsl #2
-  00234	e0433085	 sub         r3, r3, r5, lsl #1
-  00238	e1833206	 orr         r3, r3, r6, lsl #4
-  0023c	e59d600c	 ldr         r6, [sp, #0xC]
-  00240	e0828fa2	 add         r8, r2, r2, lsr #31
-  00244	e0872107	 add         r2, r7, r7, lsl #2
-  00248	e0462082	 sub         r2, r6, r2, lsl #1
-  0024c	e59d6014	 ldr         r6, [sp, #0x14]
-  00250	e0881108	 add         r1, r8, r8, lsl #2
-  00254	e08a410a	 add         r4, r10, r10, lsl #2
-  00258	e0461081	 sub         r1, r6, r1, lsl #1
-  0025c	e59d6008	 ldr         r6, [sp, #8]
-  00260	e08b510b	 add         r5, r11, r11, lsl #2
-  00264	e5cd304d	 strb        r3, [sp, #0x4D]
-  00268	e046e08e	 sub         lr, r6, lr, lsl #1
-  0026c	e59d6010	 ldr         r6, [sp, #0x10]
-  00270	e5cd3000	 strb        r3, [sp]
-  00274	e3a03001	 mov         r3, #1
-  00278	e0464084	 sub         r4, r6, r4, lsl #1
-  0027c	e59d6004	 ldr         r6, [sp, #4]
-  00280	e0465085	 sub         r5, r6, r5, lsl #1
-  00284	e1826207	 orr         r6, r2, r7, lsl #4
-  00288	e1817208	 orr         r7, r1, r8, lsl #4
-  0028c	e18e8209	 orr         r8, lr, r9, lsl #4
-  00290	e184e20a	 orr         lr, r4, r10, lsl #4
-  00294	e185420b	 orr         r4, r5, r11, lsl #4
-  00298	e28d2000	 add         r2, sp, #0
-  0029c	e59d5030	 ldr         r5, [sp, #0x30]
-  002a0	e59d501c	 ldr         r5, [sp, #0x1C]
-  002a4	e59d5028	 ldr         r5, [sp, #0x28]
-  002a8	e59d5044	 ldr         r5, [sp, #0x44]
-  002ac	e59d5020	 ldr         r5, [sp, #0x20]
-  002b0	e3a0a803	 mov         r10, #3, 16
-  002b4	e59d9018	 ldr         r9, [sp, #0x18]
-  002b8	e5cd604c	 strb        r6, [sp, #0x4C]
-  002bc	e59d6014	 ldr         r6, [sp, #0x14]
-  002c0	e59d6008	 ldr         r6, [sp, #8]
-  002c4	e59d5004	 ldr         r5, [sp, #4]
-  002c8	e59d900c	 ldr         r9, [sp, #0xC]
-  002cc	e59d6010	 ldr         r6, [sp, #0x10]
-  002d0	e5cde049	 strb        lr, [sp, #0x49]
-  002d4	e59de024	 ldr         lr, [sp, #0x24]
-  002d8	e38a1021	 orr         r1, r10, #0x21
-  002dc	e5cd704b	 strb        r7, [sp, #0x4B]
-  002e0	e5cd804a	 strb        r8, [sp, #0x4A]
-  002e4	e5cd4048	 strb        r4, [sp, #0x48]
-  002e8	eb000000	 bl          TWLWriteRegs
+  001dc	e1a03143	 mov         r3, r3, asr #2
+  001e0	e58d7008	 str         r7, [sp, #8]
+  001e4	e58d101c	 str         r1, [sp, #0x1C]
+  001e8	e0c51694	 smull       r1, r5, r4, r6
+  001ec	e58d8010	 str         r8, [sp, #0x10]
+  001f0	e58d9004	 str         r9, [sp, #4]
+  001f4	e59b0018	 ldr         r0, [r11, #0x18]
+  001f8	e58d1028	 str         r1, [sp, #0x28]
+  001fc	e0c1e697	 smull       lr, r1, r7, r6
+  00200	e58de044	 str         lr, [sp, #0x44]
+  00204	e0ce4698	 smull       r4, lr, r8, r6
+  00208	e1a01141	 mov         r1, r1, asr #2
+  0020c	e1a0e14e	 mov         lr, lr, asr #2
+  00210	e08eafae	 add         r10, lr, lr, lsr #31
+  00214	e58d4020	 str         r4, [sp, #0x20]
+  00218	e0c46699	 smull       r6, r4, r9, r6
+  0021c	e0819fa1	 add         r9, r1, r1, lsr #31
+  00220	e089e109	 add         lr, r9, r9, lsl #2
+  00224	e1a04144	 mov         r4, r4, asr #2
+  00228	e084bfa4	 add         r11, r4, r4, lsr #31
+  0022c	e58d6024	 str         r6, [sp, #0x24]
+  00230	e0836fa3	 add         r6, r3, r3, lsr #31
+  00234	e1a03142	 mov         r3, r2, asr #2
+  00238	e0837fa3	 add         r7, r3, r3, lsr #31
+  0023c	e1a02145	 mov         r2, r5, asr #2
+  00240	e59d3018	 ldr         r3, [sp, #0x18]
+  00244	e0865106	 add         r5, r6, r6, lsl #2
+  00248	e0433085	 sub         r3, r3, r5, lsl #1
+  0024c	e1833206	 orr         r3, r3, r6, lsl #4
+  00250	e59d600c	 ldr         r6, [sp, #0xC]
+  00254	e0828fa2	 add         r8, r2, r2, lsr #31
+  00258	e0872107	 add         r2, r7, r7, lsl #2
+  0025c	e0462082	 sub         r2, r6, r2, lsl #1
+  00260	e59d6014	 ldr         r6, [sp, #0x14]
+  00264	e0881108	 add         r1, r8, r8, lsl #2
+  00268	e08a410a	 add         r4, r10, r10, lsl #2
+  0026c	e0461081	 sub         r1, r6, r1, lsl #1
+  00270	e59d6008	 ldr         r6, [sp, #8]
+  00274	e08b510b	 add         r5, r11, r11, lsl #2
+  00278	e5cd304d	 strb        r3, [sp, #0x4D]
+  0027c	e046e08e	 sub         lr, r6, lr, lsl #1
+  00280	e59d6010	 ldr         r6, [sp, #0x10]
+  00284	e5cd3000	 strb        r3, [sp]
+  00288	e3a03001	 mov         r3, #1
+  0028c	e0464084	 sub         r4, r6, r4, lsl #1
+  00290	e59d6004	 ldr         r6, [sp, #4]
+  00294	e0465085	 sub         r5, r6, r5, lsl #1
+  00298	e1826207	 orr         r6, r2, r7, lsl #4
+  0029c	e1817208	 orr         r7, r1, r8, lsl #4
+  002a0	e18e8209	 orr         r8, lr, r9, lsl #4
+  002a4	e184e20a	 orr         lr, r4, r10, lsl #4
+  002a8	e185420b	 orr         r4, r5, r11, lsl #4
+  002ac	e28d2000	 add         r2, sp, #0
+  002b0	e59d5030	 ldr         r5, [sp, #0x30]
+  002b4	e59d501c	 ldr         r5, [sp, #0x1C]
+  002b8	e59d5028	 ldr         r5, [sp, #0x28]
+  002bc	e59d5044	 ldr         r5, [sp, #0x44]
+  002c0	e59d5020	 ldr         r5, [sp, #0x20]
+  002c4	e3a0a803	 mov         r10, #3, 16
+  002c8	e59d9018	 ldr         r9, [sp, #0x18]
+  002cc	e5cd604c	 strb        r6, [sp, #0x4C]
+  002d0	e59d6014	 ldr         r6, [sp, #0x14]
+  002d4	e59d6008	 ldr         r6, [sp, #8]
+  002d8	e59d5004	 ldr         r5, [sp, #4]
+  002dc	e59d900c	 ldr         r9, [sp, #0xC]
+  002e0	e59d6010	 ldr         r6, [sp, #0x10]
+  002e4	e5cde049	 strb        lr, [sp, #0x49]
+  002e8	e59de024	 ldr         lr, [sp, #0x24]
+  002ec	e38a1021	 orr         r1, r10, #0x21
+  002f0	e5cd704b	 strb        r7, [sp, #0x4B]
+  002f4	e5cd804a	 strb        r8, [sp, #0x4A]
+  002f8	e5cd4048	 strb        r4, [sp, #0x48]
+  002fc	eb000000	 bl          TWLWriteRegs
 
 ; 298  :         TWLWriteByteReg(s_rtc.hTWL, TWL_MONTHS_REG, bcdTime[4]);
 
-  002ec	e59fb368	 ldr         r11, [pc, #0x368]
-  002f0	e5dd104c	 ldrb        r1, [sp, #0x4C]
-  002f4	e3a03001	 mov         r3, #1
-  002f8	e59b0018	 ldr         r0, [r11, #0x18]
-  002fc	e5cd1000	 strb        r1, [sp]
-  00300	e28d2000	 add         r2, sp, #0
-  00304	e38a1020	 orr         r1, r10, #0x20
-  00308	eb000000	 bl          TWLWriteRegs
+  00300	e59fb368	 ldr         r11, [pc, #0x368]
+  00304	e5dd104c	 ldrb        r1, [sp, #0x4C]
+  00308	e3a03001	 mov         r3, #1
+  0030c	e59b0018	 ldr         r0, [r11, #0x18]
+  00310	e5cd1000	 strb        r1, [sp]
+  00314	e28d2000	 add         r2, sp, #0
+  00318	e38a1020	 orr         r1, r10, #0x20
+  0031c	eb000000	 bl          TWLWriteRegs
 
 ; 299  :         TWLWriteByteReg(s_rtc.hTWL, TWL_DAYS_REG, bcdTime[3]);
 
-  0030c	e5dd204b	 ldrb        r2, [sp, #0x4B]
-  00310	e59b0018	 ldr         r0, [r11, #0x18]
-  00314	e3a03001	 mov         r3, #1
-  00318	e5cd2000	 strb        r2, [sp]
-  0031c	e28d2000	 add         r2, sp, #0
-  00320	e38a101f	 orr         r1, r10, #0x1F
-  00324	eb000000	 bl          TWLWriteRegs
+  00320	e5dd204b	 ldrb        r2, [sp, #0x4B]
+  00324	e59b0018	 ldr         r0, [r11, #0x18]
+  00328	e3a03001	 mov         r3, #1
+  0032c	e5cd2000	 strb        r2, [sp]
+  00330	e28d2000	 add         r2, sp, #0
+  00334	e38a101f	 orr         r1, r10, #0x1F
+  00338	eb000000	 bl          TWLWriteRegs
 
 ; 300  :         TWLWriteByteReg(s_rtc.hTWL, TWL_HOURS_REG, bcdTime[2]);
 
-  00328	e5dd204a	 ldrb        r2, [sp, #0x4A]
-  0032c	e59b0018	 ldr         r0, [r11, #0x18]
-  00330	e3a03001	 mov         r3, #1
-  00334	e5cd2000	 strb        r2, [sp]
-  00338	e28d2000	 add         r2, sp, #0
-  0033c	e38a101e	 orr         r1, r10, #0x1E
-  00340	eb000000	 bl          TWLWriteRegs
+  0033c	e5dd204a	 ldrb        r2, [sp, #0x4A]
+  00340	e59b0018	 ldr         r0, [r11, #0x18]
+  00344	e3a03001	 mov         r3, #1
+  00348	e5cd2000	 strb        r2, [sp]
+  0034c	e28d2000	 add         r2, sp, #0
+  00350	e38a101e	 orr         r1, r10, #0x1E
+  00354	eb000000	 bl          TWLWriteRegs
 
 ; 301  :         TWLWriteByteReg(s_rtc.hTWL, TWL_MINUTES_REG, bcdTime[1]);
 
-  00344	e5dd2049	 ldrb        r2, [sp, #0x49]
-  00348	e59b0018	 ldr         r0, [r11, #0x18]
-  0034c	e3a03001	 mov         r3, #1
-  00350	e5cd2000	 strb        r2, [sp]
-  00354	e28d2000	 add         r2, sp, #0
-  00358	e38a101d	 orr         r1, r10, #0x1D
-  0035c	eb000000	 bl          TWLWriteRegs
+  00358	e5dd2049	 ldrb        r2, [sp, #0x49]
+  0035c	e59b0018	 ldr         r0, [r11, #0x18]
+  00360	e3a03001	 mov         r3, #1
+  00364	e5cd2000	 strb        r2, [sp]
+  00368	e28d2000	 add         r2, sp, #0
+  0036c	e38a101d	 orr         r1, r10, #0x1D
+  00370	eb000000	 bl          TWLWriteRegs
 
 ; 302  :         TWLWriteByteReg(s_rtc.hTWL, TWL_SECONDS_REG, bcdTime[0]);
 
-  00360	e5dd2048	 ldrb        r2, [sp, #0x48]
-  00364	e59b0018	 ldr         r0, [r11, #0x18]
-  00368	e3a03001	 mov         r3, #1
-  0036c	e5cd2000	 strb        r2, [sp]
-  00370	e28d2000	 add         r2, sp, #0
-  00374	e38a101c	 orr         r1, r10, #0x1C
-  00378	eb000000	 bl          TWLWriteRegs
+  00374	e5dd2048	 ldrb        r2, [sp, #0x48]
+  00378	e59b0018	 ldr         r0, [r11, #0x18]
+  0037c	e3a03001	 mov         r3, #1
+  00380	e5cd2000	 strb        r2, [sp]
+  00384	e28d2000	 add         r2, sp, #0
+  00388	e38a101c	 orr         r1, r10, #0x1C
+  0038c	eb000000	 bl          TWLWriteRegs
 
 ; 303  : 
 ; 304  :         //  Enable RTC
 ; 305  :         TWLWriteByteReg(s_rtc.hTWL, TWL_RTC_CTRL_REG, TWL_RTC_CTRL_RUN);
 
-  0037c	e59b0018	 ldr         r0, [r11, #0x18]
-  00380	e3a0e001	 mov         lr, #1
-  00384	e3a03001	 mov         r3, #1
-  00388	e28d2000	 add         r2, sp, #0
-  0038c	e38a1029	 orr         r1, r10, #0x29
-  00390	e5cde000	 strb        lr, [sp]
-  00394	eb000000	 bl          TWLWriteRegs
+  00390	e59b0018	 ldr         r0, [r11, #0x18]
+  00394	e3a0e001	 mov         lr, #1
+  00398	e3a03001	 mov         r3, #1
+  0039c	e28d2000	 add         r2, sp, #0
+  003a0	e38a1029	 orr         r1, r10, #0x29
+  003a4	e5cde000	 strb        lr, [sp]
+  003a8	eb000000	 bl          TWLWriteRegs
 
 ; 306  : 
 ; 307  :         //  Write fake hash to secure regs
 ; 308  :         TWLWriteByteReg(s_rtc.hTWL, TWL_SECURED_REG_A, 0xAA);
 
-  00398	e59b0018	 ldr         r0, [r11, #0x18]
-  0039c	e3a0e0aa	 mov         lr, #0xAA
-  003a0	e3a03001	 mov         r3, #1
-  003a4	e28d2000	 add         r2, sp, #0
-  003a8	e3a01803	 mov         r1, #3, 16
-  003ac	e5cde000	 strb        lr, [sp]
-  003b0	eb000000	 bl          TWLWriteRegs
+  003ac	e59b0018	 ldr         r0, [r11, #0x18]
+  003b0	e3a0e0aa	 mov         lr, #0xAA
+  003b4	e3a03001	 mov         r3, #1
+  003b8	e28d2000	 add         r2, sp, #0
+  003bc	e3a01803	 mov         r1, #3, 16
+  003c0	e5cde000	 strb        lr, [sp]
+  003c4	eb000000	 bl          TWLWriteRegs
 
 ; 309  :         TWLWriteByteReg(s_rtc.hTWL, TWL_SECURED_REG_B, 0xBB);
 
-  003b4	e59b0018	 ldr         r0, [r11, #0x18]
-  003b8	e3a04803	 mov         r4, #3, 16
-  003bc	e3a0e0bb	 mov         lr, #0xBB
-  003c0	e3841001	 orr         r1, r4, #1
-  003c4	e3a03001	 mov         r3, #1
-  003c8	e28d2000	 add         r2, sp, #0
-  003cc	e5cde000	 strb        lr, [sp]
-  003d0	eb000000	 bl          TWLWriteRegs
+  003c8	e59b0018	 ldr         r0, [r11, #0x18]
+  003cc	e3a04803	 mov         r4, #3, 16
+  003d0	e3a0e0bb	 mov         lr, #0xBB
+  003d4	e3841001	 orr         r1, r4, #1
+  003d8	e3a03001	 mov         r3, #1
+  003dc	e28d2000	 add         r2, sp, #0
+  003e0	e5cde000	 strb        lr, [sp]
+  003e4	eb000000	 bl          TWLWriteRegs
 
 ; 310  :         TWLWriteByteReg(s_rtc.hTWL, TWL_SECURED_REG_C, 0xCC);
 
-  003d4	e59b0018	 ldr         r0, [r11, #0x18]
-  003d8	e3a0e0cc	 mov         lr, #0xCC
-  003dc	e3a03001	 mov         r3, #1
-  003e0	e28d2000	 add         r2, sp, #0
-  003e4	e3841002	 orr         r1, r4, #2
-  003e8	e5cde000	 strb        lr, [sp]
-  003ec	eb000000	 bl          TWLWriteRegs
+  003e8	e59b0018	 ldr         r0, [r11, #0x18]
+  003ec	e3a0e0cc	 mov         lr, #0xCC
+  003f0	e3a03001	 mov         r3, #1
+  003f4	e28d2000	 add         r2, sp, #0
+  003f8	e3841002	 orr         r1, r4, #2
+  003fc	e5cde000	 strb        lr, [sp]
+  00400	eb000000	 bl          TWLWriteRegs
 
 ; 311  :         TWLWriteByteReg(s_rtc.hTWL, TWL_SECURED_REG_D, 0xDD);
 
-  003f0	e59b0018	 ldr         r0, [r11, #0x18]
-  003f4	e3a0e0dd	 mov         lr, #0xDD
-  003f8	e3a03001	 mov         r3, #1
-  003fc	e28d2000	 add         r2, sp, #0
-  00400	e3841003	 orr         r1, r4, #3
-  00404	e5cde000	 strb        lr, [sp]
-  00408	eb000000	 bl          TWLWriteRegs
+  00404	e59b0018	 ldr         r0, [r11, #0x18]
+  00408	e3a0e0dd	 mov         lr, #0xDD
+  0040c	e3a03001	 mov         r3, #1
+  00410	e28d2000	 add         r2, sp, #0
+  00414	e3841003	 orr         r1, r4, #3
+  00418	e5cde000	 strb        lr, [sp]
+  0041c	eb000000	 bl          TWLWriteRegs
 
 ; 312  : 
 ; 313  :         //  Convert given time initialization date/time to FILETIME
 ; 314  :         NKSystemTimeToFileTime(pGivenTime, (FILETIME*)&s_rtc.baseFiletime);
 
-  0040c	e59d002c	 ldr         r0, [sp, #0x2C]
-  00410	e28b1020	 add         r1, r11, #0x20
-  00414	eb000000	 bl          NKSystemTimeToFileTime
+  00420	e59d002c	 ldr         r0, [sp, #0x2C]
+  00424	e28b1020	 add         r1, r11, #0x20
+  00428	eb000000	 bl          NKSystemTimeToFileTime
 
 ; 315  : 
 ; 316  :         //  Set a default value for base offset
 ; 317  :         s_rtc.baseOffset = 0;
 
-  00418	e3a03000	 mov         r3, #0
-  0041c	e58b3028	 str         r3, [r11, #0x28]
-  00420	e3a03000	 mov         r3, #0
+  0042c	e3a03000	 mov         r3, #0
+  00430	e58b3028	 str         r3, [r11, #0x28]
+  00434	e3a03000	 mov         r3, #0
 
 ; 318  : 
 ; 319  :         //  Save off base offset to the backup regs
 ; 320  :         WriteBaseOffset( &s_rtc.baseOffset ); 
 
-  00424	e28b0028	 add         r0, r11, #0x28
-  00428	e58b302c	 str         r3, [r11, #0x2C]
-  0042c	eb000000	 bl          WriteBaseOffset
+  00438	e28b0028	 add         r0, r11, #0x28
+  0043c	e58b302c	 str         r3, [r11, #0x2C]
+  00440	eb000000	 bl          WriteBaseOffset
 
-; 321  :         }
+; 321  : 	}
 ; 322  :     else
 
-  00430	ea000069	 b           |$LN1@OALIoCtlHa|
-  00434		 |$LN2@OALIoCtlHa|
+  00444	ea000069	 b           |$LN1@OALIoCtlHa|
+  00448		 |$LN2@OALIoCtlHa|
 
-; 323  :         {
+; 323  : 	{
 ; 324  :         SYSTEMTIME  baseSystemTime;
 ; 325  : 
 ; 326  :         OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Getting RTC\r\n"));
 
-  00434	e3100b02	 tst         r0, #2, 22
-  00438	13100004	 tstne       r0, #4
-  0043c	159f0214	 ldrne       r0, [pc, #0x214]
-  00440	1b000000	 blne        NKDbgPrintfW
+  00448	e3100b02	 tst         r0, #2, 22
+  0044c	13100004	 tstne       r0, #4
+  00450	159f0214	 ldrne       r0, [pc, #0x214]
+  00454	1b000000	 blne        NKDbgPrintfW
 
 ; 327  : 
 ; 328  :         //  Set get time flag            
 ; 329  :         TWLReadByteReg(s_rtc.hTWL, TWL_RTC_CTRL_REG, &status);
 
-  00444	e59b0018	 ldr         r0, [r11, #0x18]
-  00448	e3a04803	 mov         r4, #3, 16
-  0044c	e3841029	 orr         r1, r4, #0x29
-  00450	e3a03001	 mov         r3, #1
-  00454	e28d2001	 add         r2, sp, #1
-  00458	eb000000	 bl          TWLReadRegs
+  00458	e59b0018	 ldr         r0, [r11, #0x18]
+  0045c	e3a04803	 mov         r4, #3, 16
+  00460	e3841029	 orr         r1, r4, #0x29
+  00464	e3a03001	 mov         r3, #1
+  00468	e28d2001	 add         r2, sp, #1
+  0046c	eb000000	 bl          TWLReadRegs
 
 ; 330  : 
 ; 331  :         status |= TWL_RTC_CTRL_RUN | TWL_RTC_CTRL_GET_TIME;
 
-  0045c	e5dd3001	 ldrb        r3, [sp, #1]
+  00470	e5dd3001	 ldrb        r3, [sp, #1]
 
 ; 332  :         TWLWriteByteReg(s_rtc.hTWL, TWL_RTC_CTRL_REG, status);
 
-  00460	e59b0018	 ldr         r0, [r11, #0x18]
-  00464	e28d2000	 add         r2, sp, #0
-  00468	e3833041	 orr         r3, r3, #0x41
-  0046c	e5cd3001	 strb        r3, [sp, #1]
-  00470	e5cd3000	 strb        r3, [sp]
-  00474	e3a03001	 mov         r3, #1
-  00478	e3841029	 orr         r1, r4, #0x29
-  0047c	eb000000	 bl          TWLWriteRegs
+  00474	e59b0018	 ldr         r0, [r11, #0x18]
+  00478	e28d2000	 add         r2, sp, #0
+  0047c	e3833041	 orr         r3, r3, #0x41
+  00480	e5cd3001	 strb        r3, [sp, #1]
+  00484	e5cd3000	 strb        r3, [sp]
+  00488	e3a03001	 mov         r3, #1
+  0048c	e3841029	 orr         r1, r4, #0x29
+  00490	eb000000	 bl          TWLWriteRegs
 
 ; 333  : 
 ; 334  :         //  Get date and time from RTC
 ; 335  :         TWLReadByteReg(s_rtc.hTWL, TWL_YEARS_REG, &bcdTime[5]);
 
-  00480	e59b0018	 ldr         r0, [r11, #0x18]
-  00484	e3a04803	 mov         r4, #3, 16
-  00488	e3841021	 orr         r1, r4, #0x21
-  0048c	e3a03001	 mov         r3, #1
-  00490	e28d204d	 add         r2, sp, #0x4D
-  00494	eb000000	 bl          TWLReadRegs
+  00494	e59b0018	 ldr         r0, [r11, #0x18]
+  00498	e3a04803	 mov         r4, #3, 16
+  0049c	e3841021	 orr         r1, r4, #0x21
+  004a0	e3a03001	 mov         r3, #1
+  004a4	e28d204d	 add         r2, sp, #0x4D
+  004a8	eb000000	 bl          TWLReadRegs
 
 ; 336  :         TWLReadByteReg(s_rtc.hTWL, TWL_MONTHS_REG, &bcdTime[4]);
 
-  00498	e59b0018	 ldr         r0, [r11, #0x18]
-  0049c	e3a03001	 mov         r3, #1
-  004a0	e28d204c	 add         r2, sp, #0x4C
-  004a4	e3841020	 orr         r1, r4, #0x20
-  004a8	eb000000	 bl          TWLReadRegs
+  004ac	e59b0018	 ldr         r0, [r11, #0x18]
+  004b0	e3a03001	 mov         r3, #1
+  004b4	e28d204c	 add         r2, sp, #0x4C
+  004b8	e3841020	 orr         r1, r4, #0x20
+  004bc	eb000000	 bl          TWLReadRegs
 
 ; 337  :         TWLReadByteReg(s_rtc.hTWL, TWL_DAYS_REG, &bcdTime[3]);
 
-  004ac	e59b0018	 ldr         r0, [r11, #0x18]
-  004b0	e3a03001	 mov         r3, #1
-  004b4	e28d204b	 add         r2, sp, #0x4B
-  004b8	e384101f	 orr         r1, r4, #0x1F
-  004bc	eb000000	 bl          TWLReadRegs
+  004c0	e59b0018	 ldr         r0, [r11, #0x18]
+  004c4	e3a03001	 mov         r3, #1
+  004c8	e28d204b	 add         r2, sp, #0x4B
+  004cc	e384101f	 orr         r1, r4, #0x1F
+  004d0	eb000000	 bl          TWLReadRegs
 
 ; 338  :         TWLReadByteReg(s_rtc.hTWL, TWL_HOURS_REG, &bcdTime[2]);
 
-  004c0	e59b0018	 ldr         r0, [r11, #0x18]
-  004c4	e3a03001	 mov         r3, #1
-  004c8	e28d204a	 add         r2, sp, #0x4A
-  004cc	e384101e	 orr         r1, r4, #0x1E
-  004d0	eb000000	 bl          TWLReadRegs
+  004d4	e59b0018	 ldr         r0, [r11, #0x18]
+  004d8	e3a03001	 mov         r3, #1
+  004dc	e28d204a	 add         r2, sp, #0x4A
+  004e0	e384101e	 orr         r1, r4, #0x1E
+  004e4	eb000000	 bl          TWLReadRegs
 
 ; 339  :         TWLReadByteReg(s_rtc.hTWL, TWL_MINUTES_REG, &bcdTime[1]);
 
-  004d4	e59b0018	 ldr         r0, [r11, #0x18]
-  004d8	e3a03001	 mov         r3, #1
-  004dc	e28d2049	 add         r2, sp, #0x49
-  004e0	e384101d	 orr         r1, r4, #0x1D
-  004e4	eb000000	 bl          TWLReadRegs
+  004e8	e59b0018	 ldr         r0, [r11, #0x18]
+  004ec	e3a03001	 mov         r3, #1
+  004f0	e28d2049	 add         r2, sp, #0x49
+  004f4	e384101d	 orr         r1, r4, #0x1D
+  004f8	eb000000	 bl          TWLReadRegs
 
 ; 340  :         TWLReadByteReg(s_rtc.hTWL, TWL_SECONDS_REG, &bcdTime[0]);
 
-  004e8	e59b0018	 ldr         r0, [r11, #0x18]
-  004ec	e3a03001	 mov         r3, #1
-  004f0	e28d2048	 add         r2, sp, #0x48
-  004f4	e384101c	 orr         r1, r4, #0x1C
-  004f8	eb000000	 bl          TWLReadRegs
+  004fc	e59b0018	 ldr         r0, [r11, #0x18]
+  00500	e3a03001	 mov         r3, #1
+  00504	e28d2048	 add         r2, sp, #0x48
+  00508	e384101c	 orr         r1, r4, #0x1C
+  0050c	eb000000	 bl          TWLReadRegs
 
 ; 341  : 
 ; 342  :         //  Convert current RTC date/time to FILETIME
 ; 343  :         baseSystemTime.wYear    = BCD2BIN(bcdTime[5]) + RTC_BASE_YEAR_MIN;
 
-  004fc	e5dda04d	 ldrb        r10, [sp, #0x4D]
+  00510	e5dda04d	 ldrb        r10, [sp, #0x4D]
 
 ; 344  :         baseSystemTime.wMonth   = BCD2BIN(bcdTime[4]);
 ; 345  :         baseSystemTime.wDay     = BCD2BIN(bcdTime[3]);
 ; 346  :         baseSystemTime.wHour    = BCD2BIN(bcdTime[2]);
 
-  00500	e5dd704a	 ldrb        r7, [sp, #0x4A]
-  00504	e5dd904c	 ldrb        r9, [sp, #0x4C]
-  00508	e1a0322a	 mov         r3, r10, lsr #4
-  0050c	e28330c8	 add         r3, r3, #0xC8
-  00510	e5dd804b	 ldrb        r8, [sp, #0x4B]
-  00514	e1a00227	 mov         r0, r7, lsr #4
-  00518	e1a06803	 mov         r6, r3, lsl #16
-  0051c	e1a0e800	 mov         lr, r0, lsl #16
-  00520	e1a02229	 mov         r2, r9, lsr #4
-  00524	e207000f	 and         r0, r7, #0xF
-  00528	e1a06826	 mov         r6, r6, lsr #16
-  0052c	e20a300f	 and         r3, r10, #0xF
-  00530	e3a0700a	 mov         r7, #0xA
-  00534	e1a05802	 mov         r5, r2, lsl #16
-  00538	e0233796	 mla         r3, r6, r7, r3
-  0053c	e1a01228	 mov         r1, r8, lsr #4
-  00540	e3a0600a	 mov         r6, #0xA
-  00544	e1a05825	 mov         r5, r5, lsr #16
-  00548	e209200f	 and         r2, r9, #0xF
-  0054c	e1a04801	 mov         r4, r1, lsl #16
-  00550	e0222695	 mla         r2, r5, r6, r2
-  00554	e3a0500a	 mov         r5, #0xA
-  00558	e1a04824	 mov         r4, r4, lsr #16
-  0055c	e208100f	 and         r1, r8, #0xF
-  00560	e0211594	 mla         r1, r4, r5, r1
-  00564	e3a0400a	 mov         r4, #0xA
-  00568	e1a0e82e	 mov         lr, lr, lsr #16
-  0056c	e020049e	 mla         r0, lr, r4, r0
+  00514	e5dd704a	 ldrb        r7, [sp, #0x4A]
+  00518	e5dd904c	 ldrb        r9, [sp, #0x4C]
+  0051c	e1a0322a	 mov         r3, r10, lsr #4
+  00520	e28330c8	 add         r3, r3, #0xC8
+  00524	e5dd804b	 ldrb        r8, [sp, #0x4B]
+  00528	e1a00227	 mov         r0, r7, lsr #4
+  0052c	e1a06803	 mov         r6, r3, lsl #16
+  00530	e1a0e800	 mov         lr, r0, lsl #16
+  00534	e1a02229	 mov         r2, r9, lsr #4
+  00538	e207000f	 and         r0, r7, #0xF
+  0053c	e1a06826	 mov         r6, r6, lsr #16
+  00540	e20a300f	 and         r3, r10, #0xF
+  00544	e3a0700a	 mov         r7, #0xA
+  00548	e1a05802	 mov         r5, r2, lsl #16
+  0054c	e0233796	 mla         r3, r6, r7, r3
+  00550	e1a01228	 mov         r1, r8, lsr #4
+  00554	e3a0600a	 mov         r6, #0xA
+  00558	e1a05825	 mov         r5, r5, lsr #16
+  0055c	e209200f	 and         r2, r9, #0xF
+  00560	e1a04801	 mov         r4, r1, lsl #16
+  00564	e0222695	 mla         r2, r5, r6, r2
+  00568	e3a0500a	 mov         r5, #0xA
+  0056c	e1a04824	 mov         r4, r4, lsr #16
+  00570	e208100f	 and         r1, r8, #0xF
+  00574	e0211594	 mla         r1, r4, r5, r1
+  00578	e3a0400a	 mov         r4, #0xA
+  0057c	e1a0e82e	 mov         lr, lr, lsr #16
+  00580	e020049e	 mla         r0, lr, r4, r0
 
 ; 347  :         baseSystemTime.wMinute  = BCD2BIN(bcdTime[1]);
 
-  00570	e1cd33b4	 strh        r3, [sp, #0x34]
-  00574	e5dd4049	 ldrb        r4, [sp, #0x49]
+  00584	e1cd33b4	 strh        r3, [sp, #0x34]
+  00588	e5dd4049	 ldrb        r4, [sp, #0x49]
 
 ; 348  :         baseSystemTime.wSecond  = BCD2BIN(bcdTime[0]);
 
-  00578	e5dde048	 ldrb        lr, [sp, #0x48]
-  0057c	e1cd23b6	 strh        r2, [sp, #0x36]
-  00580	e1a02224	 mov         r2, r4, lsr #4
-  00584	e1a0322e	 mov         r3, lr, lsr #4
-  00588	e1cd13ba	 strh        r1, [sp, #0x3A]
-  0058c	e1cd03bc	 strh        r0, [sp, #0x3C]
-  00590	e1a01803	 mov         r1, r3, lsl #16
-  00594	e1a00802	 mov         r0, r2, lsl #16
-  00598	e1a01821	 mov         r1, r1, lsr #16
-  0059c	e1a00820	 mov         r0, r0, lsr #16
-  005a0	e3a0600a	 mov         r6, #0xA
-  005a4	e3a0500a	 mov         r5, #0xA
-  005a8	e204200f	 and         r2, r4, #0xF
-  005ac	e20e300f	 and         r3, lr, #0xF
-  005b0	e0233591	 mla         r3, r1, r5, r3
-  005b4	e0222690	 mla         r2, r0, r6, r2
+  0058c	e5dde048	 ldrb        lr, [sp, #0x48]
+  00590	e1cd23b6	 strh        r2, [sp, #0x36]
+  00594	e1a02224	 mov         r2, r4, lsr #4
+  00598	e1a0322e	 mov         r3, lr, lsr #4
+  0059c	e1cd13ba	 strh        r1, [sp, #0x3A]
+  005a0	e1cd03bc	 strh        r0, [sp, #0x3C]
+  005a4	e1a01803	 mov         r1, r3, lsl #16
+  005a8	e1a00802	 mov         r0, r2, lsl #16
+  005ac	e1a01821	 mov         r1, r1, lsr #16
+  005b0	e1a00820	 mov         r0, r0, lsr #16
+  005b4	e3a0600a	 mov         r6, #0xA
+  005b8	e3a0500a	 mov         r5, #0xA
+  005bc	e204200f	 and         r2, r4, #0xF
+  005c0	e20e300f	 and         r3, lr, #0xF
+  005c4	e0233591	 mla         r3, r1, r5, r3
+  005c8	e0222690	 mla         r2, r0, r6, r2
 
 ; 349  :         baseSystemTime.wMilliseconds = 0;
 
-  005b8	e3a0e000	 mov         lr, #0
+  005cc	e3a0e000	 mov         lr, #0
 
 ; 350  : 
 ; 351  :         NKSystemTimeToFileTime(&baseSystemTime, (FILETIME*)&s_rtc.baseFiletime);
 
-  005bc	e28b1020	 add         r1, r11, #0x20
-  005c0	e28d0034	 add         r0, sp, #0x34
-  005c4	e1cd34b0	 strh        r3, [sp, #0x40]
-  005c8	e1cd23be	 strh        r2, [sp, #0x3E]
-  005cc	e1cde4b2	 strh        lr, [sp, #0x42]
-  005d0	eb000000	 bl          NKSystemTimeToFileTime
+  005d0	e28b1020	 add         r1, r11, #0x20
+  005d4	e28d0034	 add         r0, sp, #0x34
+  005d8	e1cd34b0	 strh        r3, [sp, #0x40]
+  005dc	e1cd23be	 strh        r2, [sp, #0x3E]
+  005e0	e1cde4b2	 strh        lr, [sp, #0x42]
+  005e4	eb000000	 bl          NKSystemTimeToFileTime
 
 ; 352  : 
 ; 353  :         //  Read the offset from the backup regs
 ; 354  :         ReadBaseOffset( &s_rtc.baseOffset ); 
 
-  005d4	e28b0028	 add         r0, r11, #0x28
-  005d8	eb000000	 bl          ReadBaseOffset
-  005dc		 |$LN1@OALIoCtlHa|
+  005e8	e28b0028	 add         r0, r11, #0x28
+  005ec	eb000000	 bl          ReadBaseOffset
+  005f0		 |$LN1@OALIoCtlHa|
 
-; 355  :         }        
+; 355  : 	}        
 ; 356  : 
 ; 357  : 
 ; 358  :     OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  RTC = %s\r\n", HWTimeToString(bcdTime)));
 
-  005dc	e59f4070	 ldr         r4, [pc, #0x70]
-  005e0	e5943440	 ldr         r3, [r4, #0x440]
-  005e4	e3130b02	 tst         r3, #2, 22
-  005e8	0a000006	 beq         |$LN17@OALIoCtlHa|
-  005ec	e3130004	 tst         r3, #4
-  005f0	0a000004	 beq         |$LN17@OALIoCtlHa|
-  005f4	e28d0048	 add         r0, sp, #0x48
-  005f8	eb000000	 bl          HWTimeToString
-  005fc	e1a01000	 mov         r1, r0
-  00600	e59f0048	 ldr         r0, [pc, #0x48]
-  00604	eb000000	 bl          NKDbgPrintfW
-  00608		 |$LN17@OALIoCtlHa|
+  005f0	e59f4070	 ldr         r4, [pc, #0x70]
+  005f4	e5943440	 ldr         r3, [r4, #0x440]
+  005f8	e3130b02	 tst         r3, #2, 22
+  005fc	0a000006	 beq         |$LN19@OALIoCtlHa|
+  00600	e3130004	 tst         r3, #4
+  00604	0a000004	 beq         |$LN19@OALIoCtlHa|
+  00608	e28d0048	 add         r0, sp, #0x48
+  0060c	eb000000	 bl          HWTimeToString
+  00610	e1a01000	 mov         r1, r0
+  00614	e59f0048	 ldr         r0, [pc, #0x48]
+  00618	eb000000	 bl          NKDbgPrintfW
+  0061c		 |$LN19@OALIoCtlHa|
 
 ; 359  : 
 ; 360  : 
 ; 361  :     // Now update RTC state values
 ; 362  :     s_rtc.initialized   = TRUE;
 
-  00608	e3a03001	 mov         r3, #1
-  0060c	e58b3000	 str         r3, [r11]
+  0061c	e3a03001	 mov         r3, #1
+  00620	e58b3000	 str         r3, [r11]
 
 ; 363  :     s_rtc.baseTickCount = OEMGetTickCount();
 
-  00610	eb000000	 bl          OEMGetTickCount
-  00614	e58b0030	 str         r0, [r11, #0x30]
+  00624	eb000000	 bl          OEMGetTickCount
+  00628	e58b0030	 str         r0, [r11, #0x30]
 
 ; 364  : 
 ; 365  : 
 ; 366  :     //  Success
 ; 367  :     rc = TRUE;
 
-  00618	e3a05001	 mov         r5, #1
-  0061c		 |$LN69@OALIoCtlHa|
-  0061c	e5943440	 ldr         r3, [r4, #0x440]
-  00620		 |$cleanUp$45186|
+  0062c	e3a05001	 mov         r5, #1
+  00630		 |$LN71@OALIoCtlHa|
+  00630	e5943440	 ldr         r3, [r4, #0x440]
+  00634		 |$cleanUp$45157|
 
 ; 368  : 
 ; 369  : 
 ; 370  : cleanUp:
 ; 371  :     OALMSG(OAL_TIMER && OAL_FUNC, (L"-OALIoCtlHalInitRTC() rc = %d\r\n", rc));
 
-  00620	e3130b02	 tst         r3, #2, 22
-  00624	13130004	 tstne       r3, #4
-  00628	159f001c	 ldrne       r0, [pc, #0x1C]
-  0062c	11a01005	 movne       r1, r5
-  00630	1b000000	 blne        NKDbgPrintfW
+  00634	e3130b02	 tst         r3, #2, 22
+  00638	13130004	 tstne       r3, #4
+  0063c	159f001c	 ldrne       r0, [pc, #0x1C]
+  00640	11a01005	 movne       r1, r5
+  00644	1b000000	 blne        NKDbgPrintfW
 
 ; 372  :     return rc;
 
-  00634	e59d0050	 ldr         r0, [sp, #0x50]
-  00638	eb000000	 bl          __security_check_cookie
+  00648	e59d0050	 ldr         r0, [sp, #0x50]
+  0064c	eb000000	 bl          __security_check_cookie
 
 ; 373  : }
 
-  0063c	e1a00005	 mov         r0, r5
-  00640	e28dd054	 add         sp, sp, #0x54
-  00644	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  00648	e12fff1e	 bx          lr
-  0064c		 |$LN73@OALIoCtlHa|
-  0064c		 |$LN74@OALIoCtlHa|
-  0064c	00000000	 DCD         |??_C@_1EA@NFLJEDAN@?$AA?9?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?5?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  00650		 |$LN75@OALIoCtlHa|
-  00650	00000000	 DCD         |??_C@_1EG@DMPAACGN@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAT?$AAC?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAs@|
-  00654		 |$LN76@OALIoCtlHa|
-  00654	00000000	 DCD         |dpCurSettings|
-  00658		 |$LN77@OALIoCtlHa|
-  00658	00000000	 DCD         |??_C@_1EM@GDGDGGII@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAG?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AA?5@|
-  0065c		 |$LN78@OALIoCtlHa|
-  0065c	00000000	 DCD         |s_rtc|
-  00660		 |$LN79@OALIoCtlHa|
-  00660	66666667	 DCD         0x66666667
-  00664		 |$LN80@OALIoCtlHa|
-  00664	00000000	 DCD         |??_C@_1FA@KEKFOIGH@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAe?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn@|
-  00668		 |$LN81@OALIoCtlHa|
-  00668	00000000	 DCD         |??_C@_1GK@LBOBPPKI@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAT?$AAC?$AA?5?$AAT?$AAW?$AAL?$AA_@|
-  0066c		 |$LN82@OALIoCtlHa|
-  0066c	00000000	 DCD         |??_C@_1FO@CGLDPGNO@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo@|
-  00670		 |$LN83@OALIoCtlHa|
-  00670	00000000	 DCD         |dwOEMHighSecurity|
-  00674		 |$LN84@OALIoCtlHa|
-  00674	00000000	 DCD         |??_C@_1DA@GMIOKMIL@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  00678		 |$LN85@OALIoCtlHa|
-  00678	00000000	 DCD         |__security_cookie|
-  0067c		 |$M45677|
+  00650	e1a00005	 mov         r0, r5
+  00654	e28dd054	 add         sp, sp, #0x54
+  00658	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  0065c	e12fff1e	 bx          lr
+  00660		 |$LN75@OALIoCtlHa|
+  00660		 |$LN76@OALIoCtlHa|
+  00660	00000000	 DCD         |??_C@_1EA@NFLJEDAN@?$AA?9?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?5?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  00664		 |$LN77@OALIoCtlHa|
+  00664	00000000	 DCD         |??_C@_1EG@DMPAACGN@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAT?$AAC?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAs@|
+  00668		 |$LN78@OALIoCtlHa|
+  00668	00000000	 DCD         |dpCurSettings|
+  0066c		 |$LN79@OALIoCtlHa|
+  0066c	00000000	 DCD         |??_C@_1EM@GDGDGGII@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAG?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AA?5@|
+  00670		 |$LN80@OALIoCtlHa|
+  00670	00000000	 DCD         |s_rtc|
+  00674		 |$LN81@OALIoCtlHa|
+  00674	66666667	 DCD         0x66666667
+  00678		 |$LN82@OALIoCtlHa|
+  00678	00000000	 DCD         |??_C@_1FA@KEKFOIGH@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAe?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn@|
+  0067c		 |$LN83@OALIoCtlHa|
+  0067c	00000000	 DCD         |??_C@_1GM@BICOJKHL@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAC?$AAl?$AAe?$AAa?$AAn?$AA?5?$AAb?$AAo@|
+  00680		 |$LN84@OALIoCtlHa|
+  00680	00000000	 DCD         |??_C@_1GK@LBOBPPKI@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AA?5?$AAR?$AAT?$AAC?$AA?5?$AAT?$AAW?$AAL?$AA_@|
+  00684		 |$LN85@OALIoCtlHa|
+  00684	00000000	 DCD         |??_C@_1FO@CGLDPGNO@?$AA?5?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo@|
+  00688		 |$LN86@OALIoCtlHa|
+  00688	00000000	 DCD         |dwOEMHighSecurity|
+  0068c		 |$LN87@OALIoCtlHa|
+  0068c	00000000	 DCD         |??_C@_1DA@GMIOKMIL@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  00690		 |$LN88@OALIoCtlHa|
+  00690	00000000	 DCD         |__security_cookie|
+  00694		 |$M45653|
 
 			 ENDP  ; |OALIoCtlHalInitRTC|
 
@@ -1522,11 +1547,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45747| DCD	|$LN23@OALIoCtlHa@2|
+|$T45724| DCD	|$LN23@OALIoCtlHa@2|
 	DCD	0xc0008102
 
   00000			 AREA	 |.xdata|, DATA
-|$T45743| DCD	0xffffffd8
+|$T45720| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DA@PEAOFAFN@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAR?$AAt?$AAc?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "+"
@@ -1540,7 +1565,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T45743|
+  00004	00000000	 DCD         |$T45720|
 
   00008		 |OALIoCtlHalRtcTime| PROC
 
@@ -1549,7 +1574,7 @@
   00008		 |$LN23@OALIoCtlHa@2|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M45744|
+  00010		 |$M45721|
   00010	e59f31f0	 ldr         r3, [pc, #0x1F0]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
@@ -1780,7 +1805,7 @@
   00204	00000000	 DCD         |dpCurSettings|
   00208		 |$LN28@OALIoCtlHa@2|
   00208	00000000	 DCD         |__security_cookie|
-  0020c		 |$M45745|
+  0020c		 |$M45722|
 
 			 ENDP  ; |OALIoCtlHalRtcTime|
 
@@ -1789,7 +1814,7 @@
 	IMPORT	|NKSetInterruptEvent|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45764| DCD	|$LN7@OALIoCtlHa@3|
+|$T45741| DCD	|$LN7@OALIoCtlHa@3|
 	DCD	0x40000e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1809,7 +1834,7 @@
 
   00000		 |$LN7@OALIoCtlHa@3|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45761|
+  00004		 |$M45738|
 
 ; 637  :     OALMSG(OAL_TIMER && OAL_FUNC, (L"+OALIoCtlHalRtcAlarm()\r\n"));
 
@@ -1847,7 +1872,7 @@
   00030	00000000	 DCD         |??_C@_1DC@KHBDMOPE@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAR?$AAt?$AAc?$AAA?$AAl?$AAa?$AAr?$AAm?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00034		 |$LN10@OALIoCtlHa@3|
   00034	00000000	 DCD         |dpCurSettings|
-  00038		 |$M45762|
+  00038		 |$M45739|
 
 			 ENDP  ; |OALIoCtlHalRtcAlarm|
 
@@ -1855,7 +1880,7 @@
 	IMPORT	|NKFileTimeToSystemTime|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45778| DCD	|$LN7@FiletimeTo|
+|$T45755| DCD	|$LN7@FiletimeTo|
 	DCD	0x40006a04
 ; Function compile flags: /Ogspy
 
@@ -1870,7 +1895,7 @@
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5ff0	 stmdb       sp!, {r4 - r12, lr}
   0000c	e24dd044	 sub         sp, sp, #0x44
-  00010		 |$M45775|
+  00010		 |$M45752|
   00010	e58d2018	 str         r2, [sp, #0x18]
 
 ; 659  :     SYSTEMTIME systemTime;
@@ -2012,7 +2037,7 @@
   001a4		 |$LN8@FiletimeTo|
   001a4		 |$LN9@FiletimeTo|
   001a4	66666667	 DCD         0x66666667
-  001a8		 |$M45776|
+  001a8		 |$M45753|
 
 			 ENDP  ; |FiletimeToHWTime|
 
@@ -2022,7 +2047,7 @@
 	IMPORT	|g_ResumeRTC|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45794| DCD	|$LN12@OEMGetReal|
+|$T45771| DCD	|$LN12@OEMGetReal|
 	DCD	0x40005202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2050,7 +2075,7 @@
   00000		 |$LN12@OEMGetReal|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M45791|
+  00008		 |$M45768|
   00008	e1a05000	 mov         r5, r0
 
 ; 388  :     DWORD       delta;
@@ -2220,7 +2245,7 @@
   00140	00000000	 DCD         |??_C@_1CI@OLGNILCF@?$AA?$CL?$AAO?$AAE?$AAM?$AAG?$AAe?$AAt?$AAR?$AAe?$AAa?$AAl?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00144		 |$LN18@OEMGetReal|
   00144	00000000	 DCD         |dpCurSettings|
-  00148		 |$M45792|
+  00148		 |$M45769|
 
 			 ENDP  ; |OEMGetRealTime|
 
@@ -2229,7 +2254,7 @@
 	EXPORT	|??_C@_1CM@NEGNBBJ@?$AA?$CL?$AAO?$AAE?$AAM?$AAS?$AAe?$AAt?$AAR?$AAe?$AAa?$AAl?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45815| DCD	|$LN12@OEMSetReal|
+|$T45792| DCD	|$LN12@OEMSetReal|
 	DCD	0x40005102
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2255,7 +2280,7 @@
   00000		 |$LN12@OEMSetReal|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M45812|
+  00008		 |$M45789|
   00008	e1a04000	 mov         r4, r0
 
 ; 439  :     BOOL        rc = FALSE;
@@ -2420,7 +2445,7 @@
   0013c	00000000	 DCD         |??_C@_1CM@NEGNBBJ@?$AA?$CL?$AAO?$AAE?$AAM?$AAS?$AAe?$AAt?$AAR?$AAe?$AAa?$AAl?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00140		 |$LN18@OEMSetReal|
   00140	00000000	 DCD         |dpCurSettings|
-  00144		 |$M45813|
+  00144		 |$M45790|
 
 			 ENDP  ; |OEMSetRealTime|
 
@@ -2430,11 +2455,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45879| DCD	|$LN26@OEMSetAlar|
+|$T45856| DCD	|$LN26@OEMSetAlar|
 	DCD	0xc0007d02
 
   00000			 AREA	 |.xdata|, DATA
-|$T45875| DCD	0xffffffe4
+|$T45852| DCD	0xffffffe4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CO@MAJAHDBK@?$AA?$CL?$AAO?$AAE?$AAM?$AAS?$AAe?$AAt?$AAA?$AAl?$AAa?$AAr?$AAm?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "+"
@@ -2448,7 +2473,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T45875|
+  00004	00000000	 DCD         |$T45852|
 
   00008		 |OEMSetAlarmTime| PROC
 
@@ -2457,7 +2482,7 @@
   00008		 |$LN26@OEMSetAlar|
   00008	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   0000c	e24dd018	 sub         sp, sp, #0x18
-  00010		 |$M45876|
+  00010		 |$M45853|
   00010	e1a05000	 mov         r5, r0
   00014	e59f31dc	 ldr         r3, [pc, #0x1DC]
   00018	e5933000	 ldr         r3, [r3]
@@ -2688,7 +2713,7 @@
   001f4	00000000	 DCD         |dpCurSettings|
   001f8		 |$LN32@OEMSetAlar|
   001f8	00000000	 DCD         |__security_cookie|
-  001fc		 |$M45877|
+  001fc		 |$M45854|
 
 			 ENDP  ; |OEMSetAlarmTime|
 

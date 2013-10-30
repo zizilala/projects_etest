@@ -151,11 +151,11 @@ extern "C" DWORD BKL_Init(
     pBKLinfo->fExternalTapOn = TRUE;
 
     // in case there is no setting for this:
-    pBKLinfo->dwBattTimeout = 0;
-    pBKLinfo->dwACTimeout = 0;
+    //pBKLinfo->dwBattTimeout = 0;
+    //pBKLinfo->dwACTimeout = 0;
 
-    pBKLinfo->dwCurState = D0;
-    g_pBacklight->SetPowerState(pBKLinfo->dwCurState);
+    //pBKLinfo->dwCurState = D0;
+    //g_pBacklight->SetPowerState(pBKLinfo->dwCurState);
  
     //create thread to wait for reg / power source changes:
     pBKLinfo->hBklThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)fnBackLightThread, pBKLinfo, 0, NULL);
@@ -220,7 +220,6 @@ extern "C" DWORD BKL_Open(DWORD dwClientContext, DWORD dwAccess, DWORD dwShareMo
 }
 
 //------------------------------------------------------------------------------
-
 extern "C" BOOL BKL_Close(DWORD dwOpenContext)
 {
     DEBUGMSG(ZONE_BACKLIGHT, (TEXT("BKL_Close().\r\n")));
@@ -228,7 +227,6 @@ extern "C" BOOL BKL_Close(DWORD dwOpenContext)
 }
 
 //------------------------------------------------------------------------------
-
 extern "C" BOOL BKL_IOControl(DWORD dwOpenContext, DWORD dwIoControlCode, LPBYTE lpInBuf, 
                    DWORD nInBufSize, LPBYTE lpOutBuf, DWORD nOutBufSize, 
                    LPDWORD lpBytesReturned)

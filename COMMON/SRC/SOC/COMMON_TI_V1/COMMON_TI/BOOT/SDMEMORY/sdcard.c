@@ -43,11 +43,9 @@
 #else
     #define OALMSGX(z, m)   {}
 #endif
-
+    
 static BOOL bFileIoInit = FALSE;
 S_FILEIO_OPERATIONS fileio_ops;
-//*S_FILEIO_OPERATIONS_PTR fileio_ops;      //Ray 13-09-11  
-	    
 FILEHANDLE  File;
 PFILEHANDLE pFile;
 DISK Disk;
@@ -1108,7 +1106,7 @@ found_card:
 
     OALMSGX(OAL_INFO, (TEXT("MMCIssueIdentify: CSD\r\n")));
     OALMSGX(OAL_INFO, (TEXT("reported block size = %d\r\n"), UTIL_csd_get_sectorsize(&MMCcmd)));
-    OALMSGX(1, (TEXT("Card size is = %u 512 byte sectors\r\n"), UTIL_csd_get_devicesize(&MMCcmd)));
+    OALMSGX(OAL_INFO, (TEXT("Card size is = %u 512 byte sectors\r\n"), UTIL_csd_get_devicesize(&MMCcmd)));
     OALMSGX(OAL_INFO, (TEXT("max clock freq = %d\r\n"), UTIL_csd_get_tran_speed(&MMCcmd)));
 
     // set up data in DiskInfo data structure
@@ -1293,6 +1291,7 @@ int SDCardInit(DISK *pDisk)
     }       
 
     MMCSetTranSpeed(pDisk->MaxClkFreq);
+    //brian MMCSetTranSpeed(5000000);
 
     return DL_SUCCESS;  
 }
@@ -1393,11 +1392,11 @@ UINT32 BLSDCardDownload(WCHAR *filename)
 	if (!bFileIoInit)
 	{
 		// set up data structure used by file system driver
-		fileio_ops.init        = &SDCardInit;
-		fileio_ops.identify    = &SDCardIdentify;
+		fileio_ops.init = &SDCardInit;
+		fileio_ops.identify = &SDCardIdentify;
 		fileio_ops.read_sector = &SDCardReadSector;
 		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
-		fileio_ops.drive_info  = (PVOID)&Disk;
+		fileio_ops.drive_info = (PVOID)&Disk;
 
 		// initialize file system driver
 		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
@@ -1431,7 +1430,11 @@ UINT32 BLSDCardDownload(WCHAR *filename)
 //  This function is called to read data from the transport during
 //  the download process.
 //
-BOOL BLSDCardReadData(ULONG size, UCHAR *pData)
+BOOL
+BLSDCardReadData(
+    ULONG size, 
+    UCHAR *pData
+    )
 {
     // called to read data from MMC/SD card as stream data, not as block data
 
@@ -1447,88 +1450,34 @@ BOOL BLSDCardReadData(ULONG size, UCHAR *pData)
 }
 
 //------------------------------------------------------------------------------
-//  Ray13-09-10
-//  Function:  BLSDCardToFlash
-//
-//  This function initialize SDCard the file and prepare burning to flash memory
-//  
-BOOL BLSDCardToFlash(WCHAR *filename, UCHAR *pData, DWORD size)
-{
-	// This function is called after MMC/SD image download is selected in menu or config
-	pFile = &File;
-    //FILEHANDLE logoFile(pFile);
-	/*WORD	   wSignature = 0;
-	DWORD	   dwOffset = 0;
-	BYTE*	   pTmpBuf = NULL;
-	DWORD	   dwCursor = 0;*/
-
-	OALMSGX(OAL_INFO, (L" **BLSDCardToFlash: Filename %s\r\n", filename));
-	//?? OAL_INFo, Ray  13-09-11
-
-	if (!bFileIoInit)
-	{
-		// set up data structure used by file system driver
-		fileio_ops.init         = &SDCardInit;
-		fileio_ops.identify     = &SDCardIdentify;
-        fileio_ops.read_sector  = &SDCardReadSector;
-        fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
-	    fileio_ops.drive_info   = (PVOID)&Disk;
-	
-        // initialize file system driver
-        if(FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
-        {
-		    OALMSG(OAL_ERROR, (L"BLSDCardToFlash:  fileio init failed\r\n"));
-            return FALSE;
-        }
-        
-        bFileIoInit = TRUE;
-	}
-
-    // fill in file name (8.3 format)
-    FileNameToDirEntry(filename, pFile->name, pFile->extension);
-
-    // try to open file specified by pConfig->filename, return FALSE on failure
-    if (FileIoOpen(&fileio_ops, pFile) != FILEIO_STATUS_OK)
-    {
-        OALMSG(OAL_ERROR, (L" **BLSDCardToFlash:  Cannot open file\r\n"));
-        return FALSE;
-    }
-
-
-    //Read data, Ray 13-09-17 //XX
-    if (FileIoRead(&fileio_ops, pFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
-	{
-        OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file header\r\n"));
-        return FALSE;
-	}
-
-    // return TRUE, File will Reading
-    return TRUE;
-}
-
-//------------------------------------------------------------------------------
 //
 //  Function:   BLSDCardReadLogo
 //
 //  This function is called to read the splaschreen bitmap from SDCard
 //
 //
-BOOL BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size)
+BOOL
+BLSDCardReadLogo(
+    WCHAR *filename,
+    UCHAR *pData,
+	DWORD size
+	)
 {
 	FILEHANDLE logoFile;
 	WORD	   wSignature = 0;
 	DWORD	   dwOffset = 0;
 	BYTE*	   pTmpBuf = NULL;
 	DWORD	   dwCursor = 0;
-
+	DWORD i;
+	
 	if (!bFileIoInit)
 	{
 		// set up data structure used by file system driver
-		fileio_ops.init         = &SDCardInit;
-		fileio_ops.identify     = &SDCardIdentify;
-		fileio_ops.read_sector  = &SDCardReadSector;
+		fileio_ops.init = &SDCardInit;
+		fileio_ops.identify = &SDCardIdentify;
+		fileio_ops.read_sector = &SDCardReadSector;
 		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
-		fileio_ops.drive_info   = (PVOID)&Disk;
+		fileio_ops.drive_info = (PVOID)&Disk;
 
 		// initialize file system driver
 		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
@@ -1537,7 +1486,7 @@ BOOL BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size)
 			return FALSE;
 		}
 
-        bFileIoInit = TRUE;
+		bFileIoInit = TRUE;
 	}
 
     // fill in file name (8.3 format)
@@ -1558,7 +1507,6 @@ BOOL BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size)
 	}
 
 	dwCursor += sizeof(wSignature);
-
     if( wSignature != 0x4D42 )  
     {
         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  Invalid file signature\r\n"));
@@ -1566,17 +1514,18 @@ BOOL BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size)
 	}
 
 	// Read dummy data
-	pTmpBuf = (BYTE*)OALLocalAlloc(0, 2*sizeof(DWORD));
-    if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, 2*sizeof(DWORD)) != FILEIO_STATUS_OK)
+	pTmpBuf = (BYTE*)OALLocalAlloc(0, sizeof(DWORD));
+	for( i=0 ; i<2 ; i++ )
 	{
-        OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file header\r\n"));
-		OALLocalFree((HLOCAL)pTmpBuf);
-        return FALSE;
+    	if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
+		{
+        	OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file header\r\n"));
+			OALLocalFree((HLOCAL)pTmpBuf);
+        	return FALSE;
+        }
 	}
-
-	OALLocalFree((HLOCAL)pTmpBuf);
+	//OALLocalFree((HLOCAL)pTmpBuf);
 	dwCursor += 2*sizeof(DWORD);
-
 	// Read pixel data offset
     if (FileIoRead(&fileio_ops, &logoFile, (PVOID)&dwOffset, sizeof(dwOffset)) != FILEIO_STATUS_OK)
 	{
@@ -1584,17 +1533,19 @@ BOOL BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size)
         return FALSE;
 	}
 
-	dwCursor += sizeof(dwOffset);
-
+	//dwCursor += sizeof(dwOffset);
+	dwOffset = dwOffset / sizeof(DWORD);
 	// Read dummy data before pixel data offset
-	pTmpBuf = (BYTE*)OALLocalAlloc(0, dwOffset - dwCursor);
-    if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, dwOffset - dwCursor) != FILEIO_STATUS_OK)
+	//pTmpBuf = (BYTE*)OALLocalAlloc(0, dwOffset - dwCursor);
+	for( i=0 ; i<dwOffset ; i++)
 	{
-        OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file\r\n"));
-		OALLocalFree((HLOCAL)pTmpBuf);
-        return FALSE;
+    	if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
+		{
+        	OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file\r\n"));
+			OALLocalFree((HLOCAL)pTmpBuf);
+        	return FALSE;
+        }
 	}
-
 	OALLocalFree((HLOCAL)pTmpBuf);
 
 	// Read pixel data
@@ -1606,4 +1557,90 @@ BOOL BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size)
 
 	return TRUE;
 }
-    
+//-----------------------------------------------------------------------------
+/*BOOL BLSDCardReadCalibData(WCHAR *filename, BYTE *pData, DWORD size)
+{
+	FILEHANDLE CalibFile;
+
+	if (!bFileIoInit)
+	{
+		// set up data structure used by file system driver
+		fileio_ops.init = &SDCardInit;
+		fileio_ops.identify = &SDCardIdentify;
+		fileio_ops.read_sector = &SDCardReadSector;
+		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
+		fileio_ops.drive_info = (PVOID)&Disk;
+
+		// initialize file system driver
+		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
+		{
+			OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  fileio init failed\r\n"));
+			return FALSE;
+		}
+
+		bFileIoInit = TRUE;
+	}
+
+    // fill in file name (8.3 format)
+    FileNameToDirEntry(filename, CalibFile.name, CalibFile.extension);
+	
+    // try to open file specified by pConfig->filename, return BL_ERROR on failure
+    if (FileIoOpen(&fileio_ops, &CalibFile) != FILEIO_STATUS_OK)
+    {
+        OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot open %s\r\n", filename));
+        return FALSE;
+    }
+
+	// Read pixel data
+    if (FileIoRead(&fileio_ops, &CalibFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
+	{
+        OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot read file\r\n"));
+        return FALSE;
+	}
+
+	return TRUE;
+}*/
+//-----------------------------------------------------------------------------
+BOOL BLSDCardReadEbootData(WCHAR *filename, BYTE *pData, DWORD size)
+{
+	FILEHANDLE EbootFile;
+	UNREFERENCED_PARAMETER(pData);
+	UNREFERENCED_PARAMETER(size);
+	
+	if (!bFileIoInit)
+	{
+		// set up data structure used by file system driver
+		fileio_ops.init         = &SDCardInit;
+		fileio_ops.identify     = &SDCardIdentify;
+		fileio_ops.read_sector  = &SDCardReadSector;
+		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
+		fileio_ops.drive_info   = (PVOID)&Disk;
+
+		// initialize file system driver
+		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
+		{
+			OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  fileio init failed\r\n"));
+			return FALSE;
+		}
+		bFileIoInit = TRUE;
+	}
+
+    // fill in file name (8.3 format)
+    FileNameToDirEntry(filename, EbootFile.name, EbootFile.extension);
+	
+    // try to open file specified by pConfig->filename, return BL_ERROR on failure
+    if (FileIoOpen(&fileio_ops, &EbootFile) != FILEIO_STATUS_OK)
+    {
+        OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot open %s\r\n", filename));
+        return FALSE;
+    }
+
+	// Read pixel data
+    if (FileIoRead(&fileio_ops, &EbootFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
+	{
+        OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot read file\r\n"));
+        return FALSE;
+	}
+
+	return TRUE;
+}

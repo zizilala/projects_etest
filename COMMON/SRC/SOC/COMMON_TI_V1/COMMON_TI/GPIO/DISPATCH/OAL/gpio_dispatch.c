@@ -25,7 +25,7 @@ BOOL GPIOPostInit()
 {
     int i;
     GpioDevice_t* pDevice;
-    pDevice= BSPGetGpioDevicesTable();
+    pDevice= BSPGetGpioDevicesTable(); // Z2170p\SRC\BSP_COMMON\BSPCFG\bspcfg.c
     for (i = 0; i < pDevice->nbGpioGrp; ++i)
     {   
         if (pDevice->rgGpioTbls[i]->pfnPostInit)
@@ -53,9 +53,7 @@ BOOL GPIOInit()
     {
         if (pDevice->rgGpioTbls[i]->pfnInit(L"boot", &hGpio, &size) == FALSE)
         {
-            RETAILMSG(ZONE_ERROR, (L"ERROR: GIO_Init: "
-                L"Failed to initialize Gpio table index(%d)\r\n", i
-                ));
+            RETAILMSG(ZONE_ERROR, (L"ERROR: GIO_Init: Failed to initialize Gpio table index(%d)\r\n", i));
             goto cleanUp;
         }
         pDevice->rgHandles[i] = hGpio;

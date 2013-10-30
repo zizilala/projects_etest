@@ -303,8 +303,9 @@ OMAPDDGPE::OMAPDDGPE()
     m_bDssIspRszEnabled = (g_Globals.m_dwDssIspRszEnabled) ? TRUE : FALSE; 
 
     //  Initial settings for DVI
-    m_bDVIEnable = LcdPdd_DVI_Enabled();
-    m_pDisplayContr->DVISelect(m_bDVIEnable);
+    //m_bDVIEnable = LcdPdd_DVI_Enabled();
+    //m_pDisplayContr->DVISelect(m_bDVIEnable);
+    m_bDVIEnable = FALSE;
     
     //  Setting for Gamma Correction
     m_bEnableGammaCorr = (g_Globals.m_dwEnableGammaCorr) ? TRUE : FALSE;
@@ -340,7 +341,7 @@ OMAPDDGPE::OMAPDDGPE()
     switch( g_Globals.m_dwSurfaceMgr )
     {
         case SURFACEMGR_FLAT:
-    m_pSurfaceMgr = new OMAPFlatSurfaceManager();
+			m_pSurfaceMgr = new OMAPFlatSurfaceManager();
             break;
 
         case SURFACEMGR_VRFB:

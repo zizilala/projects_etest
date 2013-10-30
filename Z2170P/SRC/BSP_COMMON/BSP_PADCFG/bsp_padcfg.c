@@ -71,22 +71,22 @@ const PAD_INFO* BSPGetDevicePadInfo(OMAP_DEVICE device)
 	RETAILMSG(1,(L"BSPGetDevicePadInfo : %d\r\n",device)); 
     switch (device)
     {
-        case OMAP_DEVICE_DSS:return DSSPadConfig_37XX;        
-        case OMAP_DEVICE_GPMC: return GPMCPads;
-        case OMAP_DEVICE_UART1: return UART1Pads;
+        case OMAP_DEVICE_DSS:return DSSPadConfig_37XX;	// 63
+        case OMAP_DEVICE_GPMC: return GPMCPads;			// 83
+        case OMAP_DEVICE_UART1: return UART1Pads;		// 10
         case OMAP_DEVICE_UART2: return UART2Pads;
     	case OMAP_DEVICE_UART3: return UART3Pads;
         case OMAP_DEVICE_MMC1: return MMC1Pads;
-        case OMAP_DEVICE_I2C1: return I2C1Pads;
+        case OMAP_DEVICE_I2C1: return I2C1Pads;			// 12
         case OMAP_DEVICE_I2C2: return I2C2Pads;
-        case OMAP_DEVICE_I2C3: return I2C3Pads;
+        case OMAP_DEVICE_I2C3: return I2C3Pads;			// 14
         case OMAP_DEVICE_MCSPI1: return MCSPI1Pads;
-        case OMAP_DEVICE_MCSPI4: return MCSPI4Pads; //20130522-brian
+        case OMAP_DEVICE_MCSPI4: return MCSPI4Pads;		//20130522-brian
     	case OMAP_DEVICE_MCBSP1: return MCBSP1Pads;
     	case OMAP_DEVICE_MCBSP2: return MCBSP2Pads;
     	case OMAP_DEVICE_USBHOST1: return USBHost1Pads;
     	case OMAP_DEVICE_USBHOST2: return USBHost2Pads;
-    	case OMAP_DEVICE_HSOTGUSB : return USBOTGPads;
+    	case OMAP_DEVICE_HSOTGUSB : return USBOTGPads;	// 3
         case OMAP_DEVICE_CAMERA: return CameraPads;
     }
     return NULL;

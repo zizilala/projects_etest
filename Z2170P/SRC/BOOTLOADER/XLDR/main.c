@@ -17,13 +17,12 @@
 //  This file contains X-Loader implementation for OMAP35XX
 //
 #include "bsp.h"
-//
 #pragma warning(push)
 #pragma warning(disable: 4115 4201)
 #include <blcommon.h>
 #include <fmd.h>
 #pragma warning(pop)
-//
+
 #include "sdk_gpio.h"
 #include "oalex.h"
 #define OAL
@@ -43,8 +42,7 @@ extern int XReceive(unsigned char *p_data_buff, int buff_size, unsigned int *p_r
 #undef UART_BOOT
 #undef UART_DNLD_EBOOT_TO_RAM
 #undef UART_DNLD_RAW_TO_NAND
-#endif  
-/* UART_BOOT */
+#endif  /* UART_BOOT */
 
 #if defined(FMD_ONENAND) && defined(FMD_NAND)
     #error FMD_ONENAND and FMD_NAND cannot both be defined.
@@ -85,10 +83,10 @@ extern DEVICE_IFC_GPIO Omap_Gpio;
 //  Global variables
 ROMHDR * volatile const pTOC = (ROMHDR *)-1;
 
-const volatile DWORD dwOEMHighSecurity = OEM_HIGH_SECURITY_GP;
+const volatile DWORD dwOEMHighSecurity      = OEM_HIGH_SECURITY_GP;
 unsigned int  gCPU_family;
 const volatile DWORD dwEbootECCtype = (DWORD)-1;
-UCHAR g_ecctype = 0;
+UCHAR g_ecctype =0;
 
 //------------------------------------------------------------------------------
 //  External Functions
@@ -289,34 +287,34 @@ void BSPGpioInit()
 //
 VOID XLDRMain()
 {
-#ifdef FMD_NAND
+#ifdef FMD_NAND // UART, SD, NAND
     HANDLE hFMD;
     PCI_REG_INFO regInfo;
     FlashInfo flashInfo;
     UINT32 size;  
 #endif
-//
-#ifdef MEMORY_BOOT
+
+#ifdef MEMORY_BOOT // NAND
     UINT32 count;
     SECTOR_ADDR ix;
 #endif
-//
-#ifdef UART_BOOT
+
+#ifdef UART_BOOT // UART
     UINT32 dnld_size, offset;
 
     INT image_block_cnt, nand_blocks_to_write;
     INT xret;
 
-    INT xblock_cnt  = 0;
-    INT xack_cnt    = 0;
-    INT xnak_cnt    = 0;
-    INT xcan_cnt    = 0;
+    INT xblock_cnt = 0;
+    INT xack_cnt = 0;
+    INT xnak_cnt = 0;
+    INT xcan_cnt = 0;
     INT xothers_cnt = 0;
 
     INT checksum_error_cnt = 0;
     INT dup_pkt_cnt = 0;
 #endif
-//
+
     SECTOR_ADDR sector;
     BLOCK_ID block;
     UINT8 *pImage;
@@ -330,7 +328,7 @@ VOID XLDRMain()
     if (!SetupCopySection(pTOC))
         goto cleanUp;
 
-    OALLocalAllocInit(allocationPool, sizeof(allocationPool));
+    OALLocalAllocInit(allocationPool,sizeof(allocationPool));
 
 /*
     //  Enable cache based on device type
@@ -349,7 +347,7 @@ VOID XLDRMain()
 	
     if( gCPU_family == CPU_FAMILY_DM37XX)
     {
-        ProcessorName = L"3730";
+        ProcessorName = L"37XX";
     }
     
     PlatformSetup();
@@ -358,7 +356,7 @@ VOID XLDRMain()
     XLDRMSGINIT;
 
     // Print information...
-#ifdef FMD_ONENAND
+#ifdef FMD_ONENAND // X
 #ifdef MEMORY_BOOT
     XLDRMSG(
         TEXT("\r\nTexas Instruments Windows CE OneNAND X-Loader for EVM "));
@@ -369,29 +367,30 @@ VOID XLDRMain()
         );
 #endif
 #endif
-
-#ifdef FMD_NAND        //When doesnot insert SD card, bootstrap from NAND, Ray 13-09-14
+#ifdef FMD_NAND 
 #ifdef MEMORY_BOOT
-    XLDRMSG( TEXT("\r\nTexas Instruments Windows CE NAND X-Loader for EVM "));
-    XLDRMSG( (UINT16 *)ProcessorName);
-    XLDRMSG( 
-        TEXT("\r\n")
-        TEXT("Built ") TEXT(__DATE__) TEXT(" at ") TEXT(__TIME__) TEXT("\r\n")
-        );
+    //XLDRMSG( TEXT("\r\nZEBEX Windows CE NAND X-Loader for Z-2170P - Brian")); 
+    XLDRMSG( TEXT("\r\nZEBEX Windows CE NAND X-Loader for Z-2170P - Ray"));     //Ray 131024
+    XLDRMSG( TEXT("\r\n") TEXT("Built ") TEXT(__DATE__) TEXT(" at ") TEXT(__TIME__) TEXT(" ("));
+	XLDRMSG( (UINT16 *)ProcessorName);
+	XLDRMSG( TEXT(")\r\n"));
 #endif
 #endif
-//
-    XLDRMSG(
-        TEXT("Version ") BSP_VERSION_STRING TEXT("\r\n")
-        );
 
+#ifdef MEMORY_BOOT // NAND
+    XLDRMSG( TEXT("Version: ") BSP_XLDR_NAND_VERSION_STRING TEXT("\r\n") );
+#else
+	XLDRMSG( TEXT("Version: ") BSP_XLDR_SD_VERSION_STRING TEXT("\r\n") );
+#endif
     GPIOInit();
     hGpio = GPIOOpen();
-    GPIOSetBit(hGpio,BSP_LCD_POWER_GPIO);
-    GPIOSetMode(hGpio,BSP_LCD_POWER_GPIO,GPIO_DIR_OUTPUT);
-  
+
+//#ifdef BSP_Z2000
+    GPIOClrBit(hGpio,BL_EN_SET_GPIO);
+    GPIOSetMode(hGpio,BL_EN_SET_GPIO,GPIO_DIR_OUTPUT);
+//#endif
     
-#ifdef FMD_ONENAND
+#ifdef FMD_ONENAND // X
     // Open FMD to access ONENAND
     regInfo.MemBase.Reg[0] = BSP_ONENAND_REGS_PA;
     hFMD = FMD_Init(NULL, &regInfo, NULL);
@@ -404,7 +403,7 @@ VOID XLDRMain()
     //  Set ONENAND XLDR bootsector size
     size = IMAGE_XLDR_BOOTSEC_ONENAND_SIZE;
 #endif
-#ifdef FMD_NAND
+#ifdef FMD_NAND // UART, SD, NAND
     // Open FMD to access NAND
     regInfo.MemBase.Reg[0] = BSP_NAND_REGS_PA;
     hFMD = FMD_Init(NULL, &regInfo, NULL);
@@ -415,7 +414,7 @@ VOID XLDRMain()
     }
 
     //  Set NAND XLDR bootsector size
-    size = IMAGE_XLDR_BOOTSEC_NAND_SIZE;        //2^19 = 512K, Ray 13-09-14  
+    size = IMAGE_XLDR_BOOTSEC_NAND_SIZE;
 #endif
 
     // Get flash info
@@ -445,12 +444,12 @@ VOID XLDRMain()
     // loaded by the bootrom, but it simplifies the flash management algorithms.
     count = 0;
     while (count < size)
-        {
+	{
         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) == 0)
             count += flashInfo.dwBytesPerBlock;
         block++;
         sector += flashInfo.wSectorsPerBlock;
-        }
+	}
     // get ECC type for EBOOT from FIXUP value
     g_ecctype = (UCHAR)dwEbootECCtype;
 	
@@ -463,7 +462,7 @@ VOID XLDRMain()
     // Read image to memory
     count = 0;
     while ((count < IMAGE_STARTUP_IMAGE_SIZE) && (block < flashInfo.dwNumBlocks))
-        {
+	{
         // Skip bad blocks
         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
             {
@@ -494,7 +493,7 @@ VOID XLDRMain()
 
         // Move to next block
         block++;
-        }
+	}
 
     XLDRMSG(L"\r\nJumping to bootloader\r\n");
 
@@ -503,30 +502,29 @@ VOID XLDRMain()
 
     // Jump to image
     JumpTo((VOID*)IMAGE_STARTUP_IMAGE_PA);
-#endif  /* MEMORY_BOOT */ //The end X-Loader, Ray 13-09-14
-
+#endif  /* MEMORY_BOOT */
 #ifdef UART_BOOT
 
 #if defined(UART_DNLD_EBOOT_TO_RAM) || defined(UART_DNLD_RAW_TO_NAND)
 
-#ifdef UART_DNLD_EBOOT_TO_RAM
+#ifdef UART_DNLD_EBOOT_TO_RAM // X
     XLDRMSG(L"\r\nDNLD EBOOTND.nb0 Image\r\n");
 #endif
 
-#ifdef UART_DNLD_RAW_TO_NAND
+#ifdef UART_DNLD_RAW_TO_NAND // UART
     XLDRMSG(L"\r\nDNLD TIEVM3530-nand.raw Image\r\n");
 #endif
 
     // Set address where to place download image
-    pImage = (UINT8*)IMAGE_STARTUP_IMAGE_PA;
-    //?Ray
+    pImage = (UINT8*)IMAGE_STARTUP_IMAGE_PA; // 0x87E00000
+
 	xret = XReceive(pImage, IMAGE_XLDR_BOOTSEC_NAND_SIZE+IMAGE_EBOOT_CODE_SIZE+IMAGE_BOOTLOADER_BITMAP_SIZE+8, &dnld_size);
 	if(xret < 0)
 	{
 		goto cleanUp;
 	}
 
-#ifdef UART_DNLD_EBOOT_TO_RAM
+#ifdef UART_DNLD_EBOOT_TO_RAM // X
     XLDRMSG(L"\r\nJumping to bootloader EBOOT\r\n");
 
 	// Wait for serial port
@@ -559,7 +557,7 @@ VOID XLDRMain()
 	}
 
     // Set address to where to copy from
-    pImage = (UINT8*)IMAGE_STARTUP_IMAGE_PA;
+    pImage = (UINT8*)IMAGE_STARTUP_IMAGE_PA; // 0x87E00000
 
 	// Write dnld image, starting from first good block (4 xldr block and 2 eboot block)
 	block = 0;
@@ -568,15 +566,15 @@ VOID XLDRMain()
 	while (image_block_cnt < nand_blocks_to_write)
 	{
 
-            /* writing Eboot: need to change ECC mode*/ 
-            if(image_block_cnt == 4)
-            {
-                 // get EBOOT ECC type from FIXUP value
-                 g_ecctype = (UCHAR)dwEbootECCtype;
+		/* writing Eboot: need to change ECC mode*/ 
+		if(image_block_cnt == 4)
+		{
+			// get EBOOT ECC type from FIXUP value
+			g_ecctype = (UCHAR)dwEbootECCtype;
                  
-                 FMD_Deinit(hFMD); 
-                 hFMD = FMD_Init(NULL, &regInfo, NULL);
-            }
+			FMD_Deinit(hFMD); 
+			hFMD = FMD_Init(NULL, &regInfo, NULL);
+		}
 		// Skip to a good block
         while (block < flashInfo.dwNumBlocks)
         {

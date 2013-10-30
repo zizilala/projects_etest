@@ -28,23 +28,23 @@ BUILD: [01:0000000025:INFO  ] makefile.def: Including C:\WINCE600\public\common\
 BUILD: [01:0000000026:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000027:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
 BUILD: [01:0000000028:PROGC ] Compiling ..\main.c
-BUILD: [01:0000000029:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\main.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\DSS\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\keypad -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DCEDDK_USEDDKMACRO -DFMD_NAND -DUART_BOOT -DUART_DNLD_RAW_TO_NAND -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\main.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\main.c
+BUILD: [01:0000000029:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\main.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\Z2170P\src\inc\OEMDefs -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DBSP_Z2000 -DCEDDK_USEDDKMACRO -DFMD_NAND -DUART_BOOT -DUART_DNLD_RAW_TO_NAND -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\main.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\main.c
 BUILD: [01:0000000030:INFO  ] main.c
 BUILD: [01:0000000031:PROGC ] Assembling ..\startup.s
-BUILD: [01:0000000032:INFO  ] 	armasm -coff  -list obj\ARMV4I\retail\startup.lst -wi 150 -l 0 -cr -pd "BSP_SDRAM_BANK1_ENABLE SETL {TRUE}"  -i C:\WINCE600\platform\COMMON\src\inc,C:\WINCE600\platform\Z2170P\src\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\DSS\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\keypad,C:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc,C:\WINCE600\public\common\sdk\inc,C:\WINCE600\public\common\oak\inc,C:\WINCE600\public\common\ddk\inc,C:\WINCE600\sdk\CE\inc -i arm -arch 4t -pd "Thumbing SETL {FALSE}" -pd "Interworking SETL {TRUE}"  C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\startup.s obj\ARMV4I\retail\startup.obj
+BUILD: [01:0000000032:INFO  ] 	armasm -coff  -list obj\ARMV4I\retail\startup.lst -wi 150 -l 0 -cr -pd "BSP_SDRAM_BANK1_ENABLE SETL {TRUE}"  -i C:\WINCE600\platform\COMMON\src\inc,C:\WINCE600\platform\Z2170P\src\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc,C:\WINCE600\platform\Z2170P\src\inc\OEMDefs,C:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc,C:\WINCE600\public\common\sdk\inc,C:\WINCE600\public\common\oak\inc,C:\WINCE600\public\common\ddk\inc,C:\WINCE600\sdk\CE\inc -i arm -arch 4t -pd "Thumbing SETL {FALSE}" -pd "Interworking SETL {TRUE}"  C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\startup.s obj\ARMV4I\retail\startup.obj
 BUILD: [01:0000000033:INFO  ] Microsoft (R) ARM Macro Assembler Version 14.01.60511
 BUILD: [01:0000000034:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000035:INFO  ] 
 BUILD: [01:0000000036:PROGC ] Assembling ..\jumpto.s
-BUILD: [01:0000000037:INFO  ] 	armasm -coff  -list obj\ARMV4I\retail\jumpto.lst -wi 150 -l 0 -cr -pd "BSP_SDRAM_BANK1_ENABLE SETL {TRUE}"  -i C:\WINCE600\platform\COMMON\src\inc,C:\WINCE600\platform\Z2170P\src\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\DSS\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\keypad,C:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc,C:\WINCE600\public\common\sdk\inc,C:\WINCE600\public\common\oak\inc,C:\WINCE600\public\common\ddk\inc,C:\WINCE600\sdk\CE\inc -i arm -arch 4t -pd "Thumbing SETL {FALSE}" -pd "Interworking SETL {TRUE}"  C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\jumpto.s obj\ARMV4I\retail\jumpto.obj
+BUILD: [01:0000000037:INFO  ] 	armasm -coff  -list obj\ARMV4I\retail\jumpto.lst -wi 150 -l 0 -cr -pd "BSP_SDRAM_BANK1_ENABLE SETL {TRUE}"  -i C:\WINCE600\platform\COMMON\src\inc,C:\WINCE600\platform\Z2170P\src\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc,C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc,C:\WINCE600\platform\Z2170P\src\inc\OEMDefs,C:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc,C:\WINCE600\public\common\sdk\inc,C:\WINCE600\public\common\oak\inc,C:\WINCE600\public\common\ddk\inc,C:\WINCE600\sdk\CE\inc -i arm -arch 4t -pd "Thumbing SETL {FALSE}" -pd "Interworking SETL {TRUE}"  C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\jumpto.s obj\ARMV4I\retail\jumpto.obj
 BUILD: [01:0000000038:INFO  ] Microsoft (R) ARM Macro Assembler Version 14.01.60511
 BUILD: [01:0000000039:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000040:INFO  ] 
 BUILD: [01:0000000041:PROGC ] Compiling .\xldrmodem.c
-BUILD: [01:0000000042:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\xldrmodem.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\DSS\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\keypad -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DCEDDK_USEDDKMACRO -DFMD_NAND -DUART_BOOT -DUART_DNLD_RAW_TO_NAND -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\xldrmodem.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\.\xldrmodem.c
+BUILD: [01:0000000042:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\xldrmodem.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\Z2170P\src\inc\OEMDefs -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DBSP_Z2000 -DCEDDK_USEDDKMACRO -DFMD_NAND -DUART_BOOT -DUART_DNLD_RAW_TO_NAND -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\xldrmodem.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\.\xldrmodem.c
 BUILD: [01:0000000043:INFO  ] xldrmodem.c
 BUILD: [01:0000000044:PROGC ] Compiling ..\platform.c
-BUILD: [01:0000000045:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\platform.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\DSS\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659XX\keypad -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DCEDDK_USEDDKMACRO -DFMD_NAND -DUART_BOOT -DUART_DNLD_RAW_TO_NAND -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\platform.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\platform.c
+BUILD: [01:0000000045:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\platform.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\Z2170P\src\inc\OEMDefs -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DBSP_Z2000 -DCEDDK_USEDDKMACRO -DFMD_NAND -DUART_BOOT -DUART_DNLD_RAW_TO_NAND -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\platform.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\..\platform.c
 BUILD: [01:0000000046:INFO  ] platform.c
 BUILD: [00:0000000047:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\xldr_romimage_raw does not exist (2).
 BUILD: [00:0000000048:INFO  ] Will Build C:\WINCE600\public\common\oak\lib\ARMV4I\retail\gsnull.lib because target: C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.exe is missing.
@@ -84,7 +84,7 @@ BUILD: [01:0000000081:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000082:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
 BUILD: [01:0000000083:INFO  ] 	set LIB=C:\WINCE600\sdk\CE\lib
 BUILD: [01:0000000084:PROGC ] Linking C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.exe
-BUILD: [01:0000000085:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm24F.tmp
+BUILD: [01:0000000085:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.exe -machine:thumb @C:\DOCUME~1\brian.hsu\LOCALS~1\Temp\nm1EC7.tmp
 BUILD: [01:0000000086:INFO  ] Microsoft (R) Incremental Linker Version 8.00.50727.42
 BUILD: [01:0000000087:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000088:INFO  ] 
@@ -491,12 +491,12 @@ BUILD: [01:0000000488:INFO  ] Copying C:\WINCE600\platform\Z2170P\target\ARMV4I\
 BUILD: [01:0000000489:INFO  ] Found pTOC at 00001250
 BUILD: [01:0000000490:INFO  ] No imports for nk.exe
 BUILD: [01:0000000491:INFO  ] Processing XLDRUART
-BUILD: [01:0000000492:INFO  ] 
+BUILD: [01:0000000492:INFO  ] Warning: FixupVar module not defined for dwEbootECCtype, assuming kernel.
 BUILD: [01:0000000493:INFO  ] Writing C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\XLDRUART.bin
-BUILD: [01:0000000494:INFO  ] Table of contents  40209a54  00000020  (        32)
+BUILD: [01:0000000494:INFO  ] Table of contents  40209a8c  00000020  (        32)
 BUILD: [01:0000000495:INFO  ] Writing ROM signature and TOC pointer at 40200040
-BUILD: [01:0000000496:INFO  ] Kernel data copy section  40209a74  00000010  (        16)
-BUILD: [01:0000000497:INFO  ] ROM Header                40209a00  00000054  (        84)
+BUILD: [01:0000000496:INFO  ] Kernel data copy section  40209aac  00000010  (        16)
+BUILD: [01:0000000497:INFO  ] ROM Header                40209a38  00000054  (        84)
 BUILD: [01:0000000498:INFO  ] First DLL Address:       4001c001
 BUILD: [01:0000000499:INFO  ] Last DLL Address:        4001c001
 BUILD: [01:0000000500:INFO  ] Physical Start Address:  40200000
@@ -506,7 +506,7 @@ BUILD: [01:0000000503:INFO  ] Start of free RAM:       4020e000
 BUILD: [01:0000000504:INFO  ] End of RAM:              4020f000
 BUILD: [01:0000000505:INFO  ] Number of Modules:       1
 BUILD: [01:0000000506:INFO  ] Number of Copy Sections: 1
-BUILD: [01:0000000507:INFO  ] Copy Section Offset:     40209a74
+BUILD: [01:0000000507:INFO  ] Copy Section Offset:     40209aac
 BUILD: [01:0000000508:INFO  ] FileSys 4K Chunks/Mbyte: 128 <2Mbyte  128 2-4Mbyte  0 4-6Mbyte  0 >6Mbyte
 BUILD: [01:0000000509:INFO  ] CPU Type:                    01c2h
 BUILD: [01:0000000510:INFO  ] Miscellaneous Flags:         0002h
@@ -515,47 +515,48 @@ BUILD: [01:0000000512:INFO  ] Starting ip:             40201000
 BUILD: [01:0000000513:INFO  ] Raw files size:          00000000
 BUILD: [01:0000000514:INFO  ] Compressed files size:   00000000
 BUILD: [01:0000000515:INFO  ] Compacting bin file...
-BUILD: [01:0000000516:INFO  ] Writing rom file...
-BUILD: [01:0000000517:INFO  ] Start 40200000 Len 00000004
-BUILD: [01:0000000518:INFO  ] Start 40200040 Len 00000008
-BUILD: [01:0000000519:INFO  ] Start 40200048 Len 00000004
-BUILD: [01:0000000520:INFO  ] Start 40201000 Len 00008a00
-BUILD: [01:0000000521:INFO  ] Start 40209a00 Len 00000054
-BUILD: [01:0000000522:INFO  ] Start 40209a54 Len 00000030
-BUILD: [01:0000000523:INFO  ] Start 4020a000 Len 000003d8
-BUILD: [01:0000000524:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\XLDRUART.nb0
-BUILD: [01:0000000525:INFO  ] Done!
-BUILD: [01:0000000526:INFO  ] 	C:\WINCE600\platform\Z2170P\files\fileset.exe C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.nb0 0x4 0x3c 0xff
-BUILD: [01:0000000527:INFO  ] FileSet.EXE - Copyright (C) 2008 BSQUARE Corporation. 
-BUILD: [01:0000000528:INFO  ]    Simple file modification utility.
-BUILD: [01:0000000529:INFO  ]    Version 1.1
-BUILD: [01:0000000530:INFO  ] -------------------------------------------------------
-BUILD: [01:0000000531:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.* C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
-BUILD: [01:0000000532:INFO  ] 共用抵制
-BUILD: [00:0000000533:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
-BUILD: [00:0000000534:INFO  ] Done.
-BUILD: [00:0000000535:PROGC ] Done.
-BUILD: [00:0000000536:PROGC ]                        Files  Warnings  Errors
-BUILD: [00:0000000537:PROGC ] Midl                       0         0       0
-BUILD: [00:0000000538:PROGC ] Message                    0         0       0
-BUILD: [00:0000000539:PROGC ] Precomp Header             0         0       0
-BUILD: [00:0000000540:PROGC ] Resource                   0         0       0
-BUILD: [00:0000000541:PROGC ] MASM                       0         0       0
-BUILD: [00:0000000542:PROGC ] SHASM                      0         0       0
-BUILD: [00:0000000543:PROGC ] ARMASM                     2         0       0
-BUILD: [00:0000000544:PROGC ] MIPSASM                    0         0       0
-BUILD: [00:0000000545:PROGC ] C++                        0         0       0
-BUILD: [00:0000000546:PROGC ] C                          3         0       0
-BUILD: [00:0000000547:PROGC ] Static Libraries           0         0       0
-BUILD: [00:0000000548:PROGC ] Exe's                      1         1       0
-BUILD: [00:0000000549:PROGC ] Dll's                      0         0       0
-BUILD: [00:0000000550:PROGC ] Preprocess deffile         0         0       0
-BUILD: [00:0000000551:PROGC ] Resx                       0         0       0
-BUILD: [00:0000000552:PROGC ] CSharp Compile             0         0       0
-BUILD: [00:0000000553:PROGC ] Other                      0         0       0
-BUILD: [00:0000000554:PROGC ] 
-BUILD: [00:0000000555:PROGC ] Total                      6         1       0
-BUILD: [00:0000000556:PROGC ] 
-BUILD: [00:0000000557:PROGC ] 1 Warnings,  0 Errors
-BUILD: [00:0000000558:PROGC ] GetSystemTimes (seconds): Idle: 20    Kernel: 26    User: 2    
-BUILD: [00:0000000559:PROGC ] Elapsed  time  (seconds): 14   
+BUILD: [01:0000000516:INFO  ] Warning: Module for FixupVar dwEbootECCtype not found.  Variable not fixed up.
+BUILD: [01:0000000517:INFO  ] Writing rom file...
+BUILD: [01:0000000518:INFO  ] Start 40200000 Len 00000004
+BUILD: [01:0000000519:INFO  ] Start 40200040 Len 00000008
+BUILD: [01:0000000520:INFO  ] Start 40200048 Len 00000004
+BUILD: [01:0000000521:INFO  ] Start 40201000 Len 00008a38
+BUILD: [01:0000000522:INFO  ] Start 40209a38 Len 00000054
+BUILD: [01:0000000523:INFO  ] Start 40209a8c Len 00000030
+BUILD: [01:0000000524:INFO  ] Start 4020a000 Len 000003d8
+BUILD: [01:0000000525:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\XLDRUART.nb0
+BUILD: [01:0000000526:INFO  ] Done!
+BUILD: [01:0000000527:INFO  ] 	C:\WINCE600\platform\Z2170P\files\fileset.exe C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.nb0 0x4 0x3c 0xff
+BUILD: [01:0000000528:INFO  ] FileSet.EXE - Copyright (C) 2008 BSQUARE Corporation. 
+BUILD: [01:0000000529:INFO  ]    Simple file modification utility.
+BUILD: [01:0000000530:INFO  ]    Version 1.1
+BUILD: [01:0000000531:INFO  ] -------------------------------------------------------
+BUILD: [01:0000000532:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\xldruart.* C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
+BUILD: [01:0000000533:INFO  ] 共用抵制
+BUILD: [00:0000000534:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
+BUILD: [00:0000000535:INFO  ] Done.
+BUILD: [00:0000000536:PROGC ] Done.
+BUILD: [00:0000000537:PROGC ]                        Files  Warnings  Errors
+BUILD: [00:0000000538:PROGC ] Midl                       0         0       0
+BUILD: [00:0000000539:PROGC ] Message                    0         0       0
+BUILD: [00:0000000540:PROGC ] Precomp Header             0         0       0
+BUILD: [00:0000000541:PROGC ] Resource                   0         0       0
+BUILD: [00:0000000542:PROGC ] MASM                       0         0       0
+BUILD: [00:0000000543:PROGC ] SHASM                      0         0       0
+BUILD: [00:0000000544:PROGC ] ARMASM                     2         0       0
+BUILD: [00:0000000545:PROGC ] MIPSASM                    0         0       0
+BUILD: [00:0000000546:PROGC ] C++                        0         0       0
+BUILD: [00:0000000547:PROGC ] C                          3         0       0
+BUILD: [00:0000000548:PROGC ] Static Libraries           0         0       0
+BUILD: [00:0000000549:PROGC ] Exe's                      1         1       0
+BUILD: [00:0000000550:PROGC ] Dll's                      0         0       0
+BUILD: [00:0000000551:PROGC ] Preprocess deffile         0         0       0
+BUILD: [00:0000000552:PROGC ] Resx                       0         0       0
+BUILD: [00:0000000553:PROGC ] CSharp Compile             0         0       0
+BUILD: [00:0000000554:PROGC ] Other                      0         0       0
+BUILD: [00:0000000555:PROGC ] 
+BUILD: [00:0000000556:PROGC ] Total                      6         1       0
+BUILD: [00:0000000557:PROGC ] 
+BUILD: [00:0000000558:PROGC ] 1 Warnings,  0 Errors
+BUILD: [00:0000000559:PROGC ] GetSystemTimes (seconds): Idle: 16    Kernel: 18    User: 2    
+BUILD: [00:0000000560:PROGC ] Elapsed  time  (seconds): 5    

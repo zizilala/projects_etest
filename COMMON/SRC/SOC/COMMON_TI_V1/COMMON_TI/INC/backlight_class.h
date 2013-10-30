@@ -45,6 +45,10 @@ public:
     virtual BOOL Uninitialize()                             {return TRUE;}
     virtual BOOL SetPowerState(CEDEVICE_POWER_STATE power)  {UNREFERENCED_PARAMETER(power); return TRUE;}
     virtual UCHAR BacklightGetSupportedStates( )            { return 0;}
+    virtual void SetBacklightBrightness(int percent)		{UNREFERENCED_PARAMETER(percent);}
+    virtual void SetKeypadBacklight(BOOL dwOnState)			{UNREFERENCED_PARAMETER(dwOnState);}
+    virtual void BacklightPwrSrcChanged(BOOL fOnAC)			{UNREFERENCED_PARAMETER(fOnAC);}
+    virtual void BacklightRegChanged()						{}
 };
 
 extern CBacklightRoot* GetBacklightObject();

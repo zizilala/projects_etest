@@ -10,6 +10,9 @@ REM --------------------------------------------------------------------------
 REM Build Environment
 REM --------------------------------------------------------------------------
 
+set BSP_SW_VERSION_STR=\"0.0.1\"
+set BSP_MODULE_NAME_STR=\"Z2170P\"
+
 REM Always copy binaries to flat release directory
 set WINCEREL=1
 REM Generate .cod, .lst files
@@ -58,6 +61,7 @@ REM Drivers - brian
 REM --------------------------------------------------------------------------
 
 set BSP_BATTERY_BQ27410=1
+::	set BSP_Z2000=1
 
 REM --------------------------------------------------------------------------
 REM Misc. settings

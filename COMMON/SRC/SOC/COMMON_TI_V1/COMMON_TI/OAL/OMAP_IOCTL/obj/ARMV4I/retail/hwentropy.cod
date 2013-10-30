@@ -109,28 +109,28 @@
 
   00000		 |OALIoCtlHalGetHWEntropy| PROC
 
-; 36   : {
+; 35   : {
 
   00000		 |$LN13@OALIoCtlHa|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004		 |$M44092|
   00004	e1a06003	 mov         r6, r3
 
-; 37   :     BOOL    rc = FALSE;
-; 38   :     UINT32  size = 2*sizeof(DWORD);
-; 39   :     UINT32  *pID = NULL;
-; 40   :     
-; 41   :     UNREFERENCED_PARAMETER(inpSize);
-; 42   :     UNREFERENCED_PARAMETER(pInpBuffer);
-; 43   :     UNREFERENCED_PARAMETER(code);
-; 44   : 
-; 45   :     // Check buffer size
-; 46   :     if (pOutSize != NULL) *pOutSize = size;
+; 36   :     BOOL    rc = FALSE;
+; 37   :     UINT32  size = 2*sizeof(DWORD);
+; 38   :     UINT32  *pID = NULL;
+; 39   :     
+; 40   :     UNREFERENCED_PARAMETER(inpSize);
+; 41   :     UNREFERENCED_PARAMETER(pInpBuffer);
+; 42   :     UNREFERENCED_PARAMETER(code);
+; 43   : 
+; 44   :     // Check buffer size
+; 45   :     if (pOutSize != NULL) *pOutSize = size;
 
   00008	e59d3014	 ldr         r3, [sp, #0x14]
 
-; 47   : 
-; 48   :     if (pOutBuffer == NULL || outSize < size)
+; 46   : 
+; 47   :     if (pOutBuffer == NULL || outSize < size)
 
   0000c	e59f508c	 ldr         r5, [pc, #0x8C]
   00010	e3a04000	 mov         r4, #0
@@ -143,57 +143,55 @@
   0002c	e3520008	 cmp         r2, #8
   00030	3a000009	 bcc         |$LN2@OALIoCtlHa|
 
-; 54   :         goto cleanUp;
-; 55   :     }
-; 56   : 
-; 57   :     // Get a 64 bit (2 DWORDs) HW generated random number that never changes
-; 58   :     pID = OALArgsQuery(OAL_ARGS_QUERY_HWENTROPY);
+; 51   :         goto cleanUp;
+; 52   :     }
+; 53   : 
+; 54   :     // Get a 64 bit (2 DWORDs) HW generated random number that never changes
+; 55   :     pID = OALArgsQuery(OAL_ARGS_QUERY_HWENTROPY);
 
   00034	e3a00041	 mov         r0, #0x41
   00038	eb000000	 bl          OALArgsQuery
   0003c	e3500000	 cmp         r0, #0
 
-; 59   :     if( pID )
+; 56   :     if( pID )
 
   00040	0a00000b	 beq         |$cleanUp$44061|
 
-; 60   :     {
-; 61   :         // Copy pattern to output buffer
-; 62   :         memcpy(pOutBuffer, pID, size);
+; 57   :     {
+; 58   :         // Copy pattern to output buffer
+; 59   :         memcpy(pOutBuffer, pID, size);
 
   00044	e1a01000	 mov         r1, r0
   00048	e1a00006	 mov         r0, r6
   0004c	e3a02008	 mov         r2, #8
   00050	eb000000	 bl          memcpy
 
-; 63   : 
-; 64   :         // We are done
-; 65   :         rc = TRUE;
+; 60   : 
+; 61   :         // We are done
+; 62   :         rc = TRUE;
 
   00054	e3a04001	 mov         r4, #1
   00058	ea000005	 b           |$cleanUp$44061|
   0005c		 |$LN2@OALIoCtlHa|
 
-; 49   :         {
-; 50   :         OALMSG(OAL_WARN, (L"WARN: OALIoCtlHalGetHWEntropy: "
-; 51   :             L"Buffer too small\r\n"
-; 52   :             ));
+; 48   : 	{
+; 49   :         OALMSG(OAL_WARN, (L"WARN: OALIoCtlHalGetHWEntropy: Buffer too small\r\n"));
 
   0005c	e5953440	 ldr         r3, [r5, #0x440]
   00060	e3130002	 tst         r3, #2
   00064	159f0030	 ldrne       r0, [pc, #0x30]
   00068	1b000000	 blne        NKDbgPrintfW
 
-; 53   :         NKSetLastError(ERROR_INSUFFICIENT_BUFFER);
+; 50   :         NKSetLastError(ERROR_INSUFFICIENT_BUFFER);
 
   0006c	e3a0007a	 mov         r0, #0x7A
   00070	eb000000	 bl          NKSetLastError
   00074		 |$cleanUp$44061|
 
-; 66   :     }
-; 67   : 
-; 68   : cleanUp:
-; 69   :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"-OALIoCtlHalGetHWEntropy(rc = %d)\r\n", rc));
+; 63   :     }
+; 64   : 
+; 65   : cleanUp:
+; 66   :     OALMSG(OAL_IOCTL&&OAL_FUNC, (L"-OALIoCtlHalGetHWEntropy(rc = %d)\r\n", rc));
 
   00074	e5953440	 ldr         r3, [r5, #0x440]
   00078	e3130a01	 tst         r3, #1, 20
@@ -202,9 +200,9 @@
   00084	11a01004	 movne       r1, r4
   00088	1b000000	 blne        NKDbgPrintfW
 
-; 70   : 
-; 71   :     return rc;
-; 72   : }
+; 67   : 
+; 68   :     return rc;
+; 69   : }
 
   0008c	e1a00004	 mov         r0, r4
   00090	e8bd4070	 ldmia       sp!, {r4 - r6, lr}

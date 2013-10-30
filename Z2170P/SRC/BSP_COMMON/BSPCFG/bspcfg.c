@@ -89,7 +89,7 @@ NAND_INFO SupportedNands[] = {
     }
 ,
    {
-        0x2C,   //manufacturerId
+        0x2C,   // Micron
         0xBC,   //deviceId
         4096,   //blocks
         64,     //sectorsPerBlock
@@ -98,7 +98,7 @@ NAND_INFO SupportedNands[] = {
     }
 ,
    {
-        0xAD,   //manufacturerId
+        0xAD,   // Hynix 
         0xBC,   //deviceId
         4096,   //blocks
         64,     //sectorsPerBlock
@@ -123,6 +123,7 @@ const NAND_INFO* BSPGetNandInfo(DWORD manufacturer,DWORD device)
     {
         if ((SupportedNands[i].manufacturerId == manufacturer) && (SupportedNands[i].deviceId == device))
         {
+        	RETAILMSG(1,(TEXT("NAND manufacturer ID: 0x%x  device ID: 0x%x\r\n"),manufacturer,device));
             return &SupportedNands[i];
         }
     }
@@ -185,9 +186,6 @@ UINT16 BSPGetTritonSlaveAddress()
     return TPS659XX_I2C_SLAVE_ADDRESS;
 }
 
-
-
-
 //------------------------------------------------------------------------------
 //  SDHC
 //------------------------------------------------------------------------------
@@ -195,8 +193,8 @@ DWORD BSPGetSDHCCardDetect(DWORD slot)
 {
     switch (slot)
     {
-    case 1: return MMC1_CARDDET_GPIO;
-    default: return (DWORD) -1;
+		case 1: return MMC1_CARDDET_GPIO;
+			default: return (DWORD) -1;
     }
 }
 
@@ -279,7 +277,6 @@ OMAP_CLOCK BSPGetSysTimer32KClock()
 OMAP_DEVICE BSPGetGPTPerfDevice()
 {
     return OMAP_DEVICE_GPTIMER2;
-
 }
 
 OMAP_CLOCK BSPGetGPTPerfHighFreqClock(UINT32* pFreq)

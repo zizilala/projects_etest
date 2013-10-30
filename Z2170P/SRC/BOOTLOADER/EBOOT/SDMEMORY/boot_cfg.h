@@ -20,14 +20,14 @@
 //------------------------------------------------------------------------------
 
 OAL_KITL_DEVICE g_bootDevices[] = {
-	{
+/*	{
         L"LAN9115 MAC", Internal, BSP_LAN9115_REGS_PA,
         0, OAL_KITL_TYPE_ETH, &g_kitlEthLan911x
     },
 	{
         L"USBFn RNDIS ", Internal, OMAP_USBHS_REGS_PA,
         0, OAL_KITL_TYPE_ETH, &g_kitlUsbRndis
-    },
+    },*/
 	{
         L"NK from SDCard FILE ", Internal, OMAP_MMCHS1_REGS_PA,
         0, BOOT_SDCARD_TYPE, NULL

@@ -1,16 +1,4 @@
-// All rights reserved ADENEO EMBEDDED 2010
-// Copyright (c) 2007, 2008 BSQUARE Corporation. All rights reserved.
 
-/*
-================================================================================
-*             Texas Instruments OMAP(TM) Platform Software
-* (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
-*
-* Use of this software is controlled by the terms and conditions found
-* in the license agreement under which this software has been supplied.
-*
-================================================================================
-*/
 #include "omap.h"
 #include "omap_dss_regs.h"
 #include "omap_prcm_regs.h"
@@ -20,20 +8,22 @@
 #include "_debug.h"
 #include <oal_clock.h>
 #include <sdk_padcfg.h>
+#include "sdk_spi.h"
+#include "omap_mcspi_regs.h"
 
 // disable PREFAST warning for use of EXCEPTION_EXECUTE_HANDLER
-#pragma warning (disable: 6320)
+#pragma warning (disable: 6320 4127)
 
 //
 //  Defines
 //
 
-#define DSS_REGS_SIZE           1024
-#define GAMMA_BUFFER_SIZE       1024
+#define DSS_REGS_SIZE		1024
+#define GAMMA_BUFFER_SIZE	1024
 
 
-#define FIFO_HIGHTHRESHOLD_NORMAL   (1024-1)
-#define FIFO_HIGHTHRESHOLD_MERGED   (3072-1)
+#define FIFO_HIGHTHRESHOLD_NORMAL	(1024-1)
+#define FIFO_HIGHTHRESHOLD_MERGED	(3072-1)
 
 #define FIFO_LOWTHRESHOLD_NORMAL(x) (FIFO_HIGHTHRESHOLD_NORMAL - x * FIFO_NUM_BURSTS)
 #define FIFO_LOWTHRESHOLD_MERGED(x) (FIFO_HIGHTHRESHOLD_MERGED - 3 * x * FIFO_NUM_BURSTS)
@@ -42,12 +32,11 @@
 
 #define FIFO_BURSTSIZE_4x32         (16)
 #define FIFO_BURSTSIZE_8x32         (32)
-#define FIFO_BURSTSIZE_16x32        (64)
+#define FIFO_BURSTSIZE_16x32		(64)
 
-#define HDMI_CLK                    148500000
-#define DSI_PLL_FREQINT               2000000   // Fint = 2MHz
-#define DSI_PLL_FREQSELVAL            0x07      // Fint select = 1.75MHz to 2.1MHz
-
+#define HDMI_CLK					148500000
+#define DSI_PLL_FREQINT				2000000   // Fint = 2MHz
+#define DSI_PLL_FREQSELVAL			0x07      // Fint select = 1.75MHz to 2.1MHz
 
 #define CEIL_MULT(x, mult)   (x) = ( ( (x)/mult )+1) * mult;
 #define FLOOR_MULT(x, mult)  (x) = ((x)/mult) * mult;
@@ -103,26 +92,22 @@ DWORD   g_dwDestinationRefCnt[NUM_DSS_DESTINATION] =
     0       // TV Out
 };
 
-
-
-
-
 //------------------------------------------------------------------------------
 OMAPDisplayController::OMAPDisplayController()
 {
+	RETAILMSG(1,(L"OMAPDisplayController::OMAPDisplayController ------------------\n\r"));
     m_pDSSRegs = NULL;
     m_pDispRegs = NULL;
     m_pVencRegs = NULL;
+    m_pRFBIRegs = NULL;
+    m_hSPI = NULL;
     
     m_dwPowerLevel = D4;
     
     m_bTVEnable = FALSE;
     m_bHDMIEnable = FALSE;
 
-    if (LcdPdd_DVI_Enabled())
-        m_bDVIEnable = TRUE;
-    else
-        m_bDVIEnable = FALSE;
+	m_bDVIEnable = FALSE;
 
     m_bGammaEnable = TRUE;
    	m_dwEnableWaitForVerticalBlank = FALSE;
@@ -187,9 +172,14 @@ OMAPDisplayController::~OMAPDisplayController()
 
     if (m_pDSIPLLRegs != NULL)
         MmUnmapIoSpace((VOID*)m_pDSIPLLRegs, sizeof(OMAP_DSI_PLL_REGS));
+        
+	if (m_pRFBIRegs != NULL)
+        MmUnmapIoSpace((VOID*)m_pRFBIRegs, sizeof(OMAP_RFBI_REGS));
+        
+	if (m_hSPI != NULL)
+		SPIClose(m_hSPI);        
 
 }
-
 //------------------------------------------------------------------------------
 BOOL
 OMAPDisplayController::InitController(BOOL bEnableGammaCorr, BOOL bEnableWaitForVerticalBlank, BOOL bEnableISPResizer)
@@ -201,38 +191,36 @@ OMAPDisplayController::InitController(BOOL bEnableGammaCorr, BOOL bEnableWaitFor
     //
     //  Map display controller registers
     //
+    RETAILMSG(1,(L"OMAPDisplayController::InitController ------------------\n\r"));
     pa.QuadPart = m_dssinfo.DSS1_REGS_PA;
     size = DSS_REGS_SIZE;
     m_pDSSRegs = (OMAP_DSS_REGS*)MmMapIoSpace(pa, size, FALSE);
     if (m_pDSSRegs == NULL)
-        {
+	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: OMAPDisplayController::InitController: "
-             L"Failed map DSS control registers\r\n"
-            ));
+             L"Failed map DSS control registers\r\n"));
         goto cleanUp;
-        }
+	}
 
     pa.QuadPart = m_dssinfo.DISC1_REGS_PA;
     size = DSS_REGS_SIZE;
     m_pDispRegs = (OMAP_DISPC_REGS*)MmMapIoSpace(pa, size, FALSE);
     if (m_pDispRegs == NULL)
-        {
+	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: OMAPDisplayController::InitController: "
-             L"Failed map DISPC control registers\r\n"
-            ));
+             L"Failed map DISPC control registers\r\n"));
         goto cleanUp;
-        }
+	}
 
     pa.QuadPart = m_dssinfo.VENC1_REGS_PA;
     size = DSS_REGS_SIZE;
     m_pVencRegs = (OMAP_VENC_REGS*)MmMapIoSpace(pa, size, FALSE);
     if (m_pVencRegs == NULL)
-        {
+	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: OMAPDisplayController::InitController: "
-             L"Failed map VENC control registers\r\n"
-            ));
+             L"Failed map VENC control registers\r\n"));
         goto cleanUp;
-        }
+	}
 
     // Disable gamma correction based on registry
     if(!bEnableGammaCorr)
@@ -250,37 +238,45 @@ OMAPDisplayController::InitController(BOOL bEnableGammaCorr, BOOL bEnableWaitFor
     //  Allocate physical memory for gamma table buffer
     m_pGammaBufVirt = (DWORD*)AllocPhysMem(NUM_GAMMA_VALS*sizeof(DWORD), PAGE_READWRITE | PAGE_NOCACHE, 0, 0,&m_dwGammaBufPhys);
     if( m_pGammaBufVirt == NULL)
-        {
+	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: COMAPDisplayController::InitController: "
-            L"Failed allocate Gamma phys buffer\r\n"
-            ));
+            L"Failed allocate Gamma phys buffer\r\n"));
         goto cleanUp;
-        }
+	}
 
     // map DSI regs
     pa.QuadPart = m_dssinfo.DSI_REGS_PA;
     size = sizeof(OMAP_DSI_REGS);
     m_pDSIRegs = (OMAP_DSI_REGS*)MmMapIoSpace(pa, size, FALSE);
     if (m_pDSIRegs == NULL)
-        {
+	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: OMAPDisplayController::InitController: "
-                 L"Failed map DSI control registers\r\n"
-                ));
+                 L"Failed map DSI control registers\r\n"));
         goto cleanUp;
-        }
+	}
 
     // map DSI Pll regs
     pa.QuadPart = m_dssinfo.DSI_PLL_REGS_PA;
     size = sizeof(OMAP_DSI_PLL_REGS);
     m_pDSIPLLRegs = (OMAP_DSI_PLL_REGS*)MmMapIoSpace(pa, size, FALSE);
     if (m_pDSIPLLRegs == NULL)
-        {
+	{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: OMAPDisplayController::InitController: "
-                     L"Failed map DSIPLL control registers\r\n"
-                    ));
+                     L"Failed map DSIPLL control registers\r\n"));
         goto cleanUp;
-        }
+	}
 
+    // map RFBI regs
+    pa.QuadPart = m_dssinfo.RFBI_REGS_PA;
+    size = sizeof(OMAP_RFBI_REGS);
+    m_pRFBIRegs = (OMAP_RFBI_REGS*)MmMapIoSpace(pa, size, FALSE);
+    if (m_pDSIRegs == NULL)
+	{
+        DEBUGMSG(ZONE_ERROR, (L"ERROR: OMAPDisplayController::InitController: "
+                 L"Failed map RFBI control registers\r\n"));
+        goto cleanUp;
+	}
+        
     //  Initialize power lock critical section
     InitializeCriticalSection( &m_csPowerLock );
 
@@ -295,8 +291,7 @@ OMAPDisplayController::InitController(BOOL bEnableGammaCorr, BOOL bEnableWaitFor
 	if (!RequestDevicePads(m_dssinfo.DSSDevice))
 	{
         ERRORMSG(TRUE, (L"ERROR: OMAPDisplayController::InitController: "
-                     L"Failed to request pads\r\n"
-                    ));
+                     L"Failed to request pads\r\n"));
         goto cleanUp;
 	}
 
@@ -313,18 +308,15 @@ OMAPDisplayController::InitController(BOOL bEnableGammaCorr, BOOL bEnableWaitFor
     //
     OUTREG32( &m_pDSSRegs->DSS_CONTROL, 
                 DSS_CONTROL_DISPC_CLK_SWITCH_DSS1_ALWON |
-                DSS_CONTROL_DSI_CLK_SWITCH_DSS1_ALWON
-                );
+                DSS_CONTROL_DSI_CLK_SWITCH_DSS1_ALWON);
 
-                
     //  Configure interconnect parameters
     OUTREG32( &m_pDSSRegs->DSS_SYSCONFIG, DISPC_SYSCONFIG_AUTOIDLE );
     OUTREG32( &m_pDispRegs->DISPC_SYSCONFIG, DISPC_SYSCONFIG_AUTOIDLE|SYSCONFIG_NOIDLE|SYSCONFIG_NOSTANDBY );
 
 
     //  Enable DSS fault notification interrupts
-    g_rgDisplaySaveRestore.DISPC_IRQENABLE = DISPC_IRQENABLE_OCPERROR|
-                                             DISPC_IRQENABLE_SYNCLOST;
+    g_rgDisplaySaveRestore.DISPC_IRQENABLE = DISPC_IRQENABLE_OCPERROR| DISPC_IRQENABLE_SYNCLOST;
     OUTREG32( &m_pDispRegs->DISPC_IRQENABLE , g_rgDisplaySaveRestore.DISPC_IRQENABLE);
 
     //  Unlock access to power level
@@ -340,13 +332,224 @@ cleanUp:
     //  Return result
     return bResult;
 }
-
 //------------------------------------------------------------------------------
-BOOL
-OMAPDisplayController::InitLCD()
+void OMAPDisplayController::WMLCDCOMD(short cmd)
+{
+	SPIWrite(m_hSPI, sizeof(short), &cmd);
+}
+//------------------------------------------------------------------------------
+void OMAPDisplayController::WMLCDDATA(short dat)
+{
+	dat |= 0x0100;
+	SPIWrite(m_hSPI, sizeof(short), &dat);
+}
+//------------------------------------------------------------------------------
+void OMAPDisplayController::SendInitialCode()
+{
+	RETAILMSG(1,(L"OMAPDisplayController::SendInitialCode!\n\r"));
+	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+	WMLCDDATA(0x3F);
+	WMLCDDATA(0x3F);
+	Sleep(5);
+	
+	WMLCDCOMD(0xFE);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x21);
+	WMLCDDATA(0xB4);
+	
+	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x10);
+	
+	WMLCDCOMD(0xE0); // NVM Access Control
+	WMLCDDATA(0x00); // NVAE: NVM access enable register. NVM access is enabled when NVAE=1
+	WMLCDDATA(0x40); // FTT: NVM control bit.
+	Sleep(10);
+	
+	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xFE); // MAGIC - TODO
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x21);
+	WMLCDDATA(0x30);
+	
+	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+	WMLCDDATA(0x3F);
+	WMLCDDATA(0x3F);
+	
+	WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+	WMLCDDATA(0x02);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	        	       	
+	WMLCDCOMD(0xB4); //SET interface
+	WMLCDDATA(0x10);
+	
+	WMLCDCOMD(0xC0); //Panel Driving Setting
+	WMLCDDATA(0x03); //GIP REV  SM GS BGR SS
+	WMLCDDATA(0x4F);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x10);
+	WMLCDDATA(0xA2); //BLV=0 LINE
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xC1); //Display Timing Setting for Normal/Partial Mode
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x02);
+	WMLCDDATA(0x19);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x08);
+	Sleep(25);
+	
+	WMLCDCOMD(0xC3); //PRTIAL MODE
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x28);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x08);
+	Sleep(25);
+	
+	WMLCDCOMD(0xC4);
+	WMLCDDATA(0x11);
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x43);
+	WMLCDDATA(0x04);
+
+	WMLCDCOMD(0xC8); //set gamma
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0D);
+	WMLCDDATA(0x14);
+	WMLCDDATA(0x18);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x05);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x07);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x15);
+	WMLCDDATA(0x12);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xC9); //set gamma
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0D);
+	WMLCDDATA(0x14);
+	WMLCDDATA(0x18);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x05);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x07);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x15);
+	WMLCDDATA(0x12);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xCA); //set gamma
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0C);
+	WMLCDDATA(0x0D);
+	WMLCDDATA(0x14);
+	WMLCDDATA(0x18);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x09);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x05);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x08);
+	WMLCDDATA(0x07);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x15);
+	WMLCDDATA(0x12);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0E);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x0A);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0xD0); //Power Setting 
+	WMLCDDATA(0x63); //BT[2:0]=110  VCI+VCI2¡Á2  :5   -(VCI2¡Á2):
+	WMLCDDATA(0x53);
+	WMLCDDATA(0x82); //VC2[2:0]=010,VCI2=5V
+	WMLCDDATA(0x3F); //VREG=5.0V
+	
+	WMLCDCOMD(0xD1); //set vcom
+	WMLCDDATA(0x6A); //VCOMH
+	WMLCDDATA(0x64); //VDV
+	
+	WMLCDCOMD(0xD2); //Power Setting (Note 1) for Normal/Partial Mode
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x24);
+	
+	WMLCDCOMD(0xD4); //Power Setting (Note 1) for Idle Mode
+	WMLCDDATA(0x03);
+	WMLCDDATA(0x24);
+	
+	WMLCDCOMD(0xE2); //NVM Load Control
+	WMLCDDATA(0x3F);
+	
+	WMLCDCOMD(0x35); //set_tear_on
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0x36);
+	WMLCDDATA(0x00);
+	
+	WMLCDCOMD(0x3A); //set_pixel_format
+	WMLCDDATA(0x66); // 66 18-bits
+	
+	WMLCDCOMD(0x2A); //set_column_address
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0xEF);
+	
+	WMLCDCOMD(0x2B); //set_page_address:
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x00);
+	WMLCDDATA(0x01);
+	WMLCDDATA(0x3F);
+ 	
+ 	WMLCDCOMD(0x11); //exit_sleep_mode
+ 	Sleep(120);
+ 	WMLCDCOMD(0x29); //set_display_on
+ 	Sleep(30);
+ 	WMLCDCOMD(0x2C); //send DDRAM set
+}
+//------------------------------------------------------------------------------
+BOOL OMAPDisplayController::InitLCD()
 {
     BOOL    bResult;
 
+	RETAILMSG(1,(L"OMAPDisplayController::InitLCD ------------------\n\r"));
     //  Lock access to power level
     EnterCriticalSection( &m_csPowerLock );
 
@@ -357,7 +560,7 @@ OMAPDisplayController::InitLCD()
     bResult = LcdPdd_LCD_Initialize(
                     m_pDSSRegs,
                     m_pDispRegs,
-                    NULL,
+                    m_pRFBIRegs,
                     m_pVencRegs);
     
     //  Get LCD parameters
@@ -394,10 +597,260 @@ OMAPDisplayController::InitLCD()
     m_dwVsyncPeriod = 1000/60 + 2;//Add delta 2 ms since frameRate is not exactly 60fps
 
     // Initialize the DSI PLL
-    InitDsiPll();
+	//brian InitDsiPll();
 
     // Configure the DSI PLL with the FCLK value reqd
-    ConfigureDsiPll( OMAP_DSS_FCLKVALUE_NORMAL );
+	//brian ConfigureDsiPll( OMAP_DSS_FCLKVALUE_NORMAL );
+    
+    //=================================================
+    //HANDLE  m_hSPI = NULL;
+    DWORD  config;
+    //short spiBuffer; // char=1,short=2,int=4
+    
+    //RETAILMSG(1,(L"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\r"));
+    m_hSPI = SPIOpen(L"SPI1:");
+    if (m_hSPI != NULL) 
+	{
+        //RETAILMSG(1,(L"OMAPDisplayController::InitLCD - SPIOpen success!!!!\n\r"));
+        // Configure SPI channel - \COMMON_TI_V1\COMMON_TI\INC\omap_mcspi_regs.h
+#ifdef BSP_Z2000
+        // TM035KBH11
+        config = MCSPI_PHA_EVEN_EDGES | MCSPI_POL_ACTIVELOW |  // mode 3
+                MCSPI_CHCONF_CLKD(3) | 
+                MCSPI_CHCONF_WL(16) |
+                MCSPI_CHCONF_TRM_TXRX |
+                MCSPI_CSPOLARITY_ACTIVELOW |
+                MCSPI_CHCONF_DPE0;
+        if (SPIConfigure(m_hSPI, 0, config)) // channel 0, MCSPI_CHxCONF
+        {
+        	RETAILMSG(1,(L"OMAPDisplayController::InitLCD - SPIOpen success!\n\r"));
+        	WMLCDCOMD(0x3A6B);
+        	WMLCDCOMD(0x3E24);
+        	//spiBuffer = 0x3A6B;
+        	//SPIWrite(hSPI,sizeof(short),&spiBuffer);
+        	//spiBuffer = 0x3E24;
+        	//SPIWrite(hSPI,sizeof(short),&spiBuffer);
+    	}
+#else
+    	// ETD024FM
+        config = MCSPI_PHA_EVEN_EDGES | MCSPI_POL_ACTIVELOW |  // mode 3
+                MCSPI_CHCONF_CLKD(3) | 	// clock rate 6 MHz
+                MCSPI_CHCONF_WL(9) |
+                MCSPI_CHCONF_TRM_TXRX |
+                MCSPI_CSPOLARITY_ACTIVELOW |
+                MCSPI_CHCONF_DPE0;
+        if (SPIConfigure(m_hSPI, 0, config)) // channel 0, MCSPI_CHxCONF
+        {
+        	RETAILMSG(1,(L"OMAPDisplayController::InitLCD - SPIOpen success!!!\n\r"));
+        	SendInitialCode();
+        	//spiBuffer = 0x2c;
+        	//SPIWrite(hSPI,sizeof(short),&spiBuffer);
+        	//spiBuffer = 0x11;
+        	//SPIWrite(hSPI,sizeof(short),&spiBuffer);
+        	//spiBuffer = 0x29;
+        	//SPIWrite(hSPI,sizeof(short),&spiBuffer);
+        	/*WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+        	WMLCDDATA(0x3F);
+        	WMLCDDATA(0x3F);
+        	Sleep(5);
+        	
+        	WMLCDCOMD(0xFE);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x21);
+        	WMLCDDATA(0xB4);
+        	
+			WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x10);
+        	
+        	WMLCDCOMD(0xE0); // NVM Access Control
+        	WMLCDDATA(0x00); // NVAE: NVM access enable register. NVM access is enabled when NVAE=1
+        	WMLCDDATA(0x40); // FTT: NVM control bit.
+        	Sleep(10);
+        	
+			WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	
+        	WMLCDCOMD(0xFE); // MAGIC - TODO
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x21);
+        	WMLCDDATA(0x30);
+        	
+        	WMLCDCOMD(0xB0); // Manufacturer Command Access Protect
+        	WMLCDDATA(0x3F);
+        	WMLCDDATA(0x3F);
+        	
+			WMLCDCOMD(0xB3); // Frame Memory Access and Interface Setting
+        	WMLCDDATA(0x02);
+        	WMLCDDATA(0x00);
+			WMLCDDATA(0x00);
+			WMLCDDATA(0x00);
+        	        	       	
+        	WMLCDCOMD(0xB4); //SET interface
+        	WMLCDDATA(0x10);
+        	
+        	WMLCDCOMD(0xC0); //Panel Driving Setting
+        	WMLCDDATA(0x03); //GIP REV  SM GS BGR SS
+        	WMLCDDATA(0x4F);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x10);
+        	WMLCDDATA(0xA2); //BLV=0 LINE
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x01);
+        	WMLCDDATA(0x00);
+        	
+			WMLCDCOMD(0xC1); //Display Timing Setting for Normal/Partial Mode
+        	WMLCDDATA(0x01);
+        	WMLCDDATA(0x02);
+        	WMLCDDATA(0x19);
+        	WMLCDDATA(0x08);
+			WMLCDDATA(0x08);
+			Sleep(25);
+
+			WMLCDCOMD(0xC3); //PRTIAL MODE
+        	WMLCDDATA(0x01);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x28);
+        	WMLCDDATA(0x08);
+			WMLCDDATA(0x08);
+			Sleep(25);
+
+			WMLCDCOMD(0xC4);
+        	WMLCDDATA(0x11);
+        	WMLCDDATA(0x01);
+        	WMLCDDATA(0x43);
+        	WMLCDDATA(0x04);
+
+			WMLCDCOMD(0xC8); //set gamma
+			WMLCDDATA(0x0C);
+			WMLCDDATA(0x0C);
+			WMLCDDATA(0x0D);
+			WMLCDDATA(0x14);
+			WMLCDDATA(0x18);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x09);
+			WMLCDDATA(0x09);
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x05);
+			WMLCDDATA(0x00);
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x08);
+			WMLCDDATA(0x07);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x15);
+			WMLCDDATA(0x12);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x00);
+
+			WMLCDCOMD(0xC9); //set gamma
+			WMLCDDATA(0x0C);
+			WMLCDDATA(0x0C);
+			WMLCDDATA(0x0D);
+			WMLCDDATA(0x14);
+			WMLCDDATA(0x18);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x09);
+			WMLCDDATA(0x09);
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x05);
+			WMLCDDATA(0x00);
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x08);
+			WMLCDDATA(0x07);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x15);
+			WMLCDDATA(0x12);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x00);
+
+			WMLCDCOMD(0xCA); //set gamma
+			WMLCDDATA(0x0C);
+			WMLCDDATA(0x0C);
+			WMLCDDATA(0x0D);
+			WMLCDDATA(0x14);
+			WMLCDDATA(0x18);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x09);
+			WMLCDDATA(0x09);
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x05);
+			WMLCDDATA(0x00);
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x08);
+			WMLCDDATA(0x07);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x15);
+			WMLCDDATA(0x12);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x0E);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x0A);
+			WMLCDDATA(0x00);
+			
+        	WMLCDCOMD(0xD0); //Power Setting 
+			WMLCDDATA(0x63); //BT[2:0]=110  VCI+VCI2¡Á2  :5   -(VCI2¡Á2):
+			WMLCDDATA(0x53);
+			WMLCDDATA(0x82); //VC2[2:0]=010,VCI2=5V
+			WMLCDDATA(0x3F); //VREG=5.0V
+
+        	WMLCDCOMD(0xD1); //set vcom
+			WMLCDDATA(0x6A); //VCOMH
+			WMLCDDATA(0x64); //VDV
+
+        	WMLCDCOMD(0xD2); //Power Setting (Note 1) for Normal/Partial Mode
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x24);
+
+        	WMLCDCOMD(0xD4); //Power Setting (Note 1) for Idle Mode
+			WMLCDDATA(0x03);
+			WMLCDDATA(0x24);
+
+        	WMLCDCOMD(0xE2); //NVM Load Control
+			WMLCDDATA(0x3F);
+
+        	WMLCDCOMD(0x35); //set_tear_on
+			WMLCDDATA(0x00);
+
+        	WMLCDCOMD(0x36);
+			WMLCDDATA(0x00);
+
+        	WMLCDCOMD(0x3A); //set_pixel_format
+        	WMLCDDATA(0x66); // 66 18-bits
+
+			WMLCDCOMD(0x2A); //set_column_address
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0xEF);
+            
+			WMLCDCOMD(0x2B); //set_page_address:
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x00);
+        	WMLCDDATA(0x01);
+        	WMLCDDATA(0x3F);
+            
+        	WMLCDCOMD(0x11); //exit_sleep_mode
+        	Sleep(120);
+        	WMLCDCOMD(0x29); //set_display_on
+        	Sleep(30);
+        	WMLCDCOMD(0x2C); //send DDRAM set*/
+    	}   
+#endif    	
+        //SPIClose(hSPI);
+	}       
+	//RETAILMSG(1,(L"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\r"));
+    //=================================================
     
     //  Unlock access to power level
     LeaveCriticalSection( &m_csPowerLock );
@@ -569,8 +1022,7 @@ OMAPDisplayController::DssInterruptHandler( void* pData )
     return 1;
 }
 //------------------------------------------------------------------------------
-VOID
-OMAPDisplayController::DssProcessInterrupt()
+VOID OMAPDisplayController::DssProcessInterrupt()
 {
     DWORD irqStatus = 0;
     DWORD dwTimeout = DISPLAY_TIMEOUT;
@@ -3539,7 +3991,7 @@ OMAPDisplayController::RestoreRegisters(
         LcdPdd_LCD_Initialize(
             m_pDSSRegs,
             m_pDispRegs,
-            NULL,
+            m_pRFBIRegs,
             m_pVencRegs);
 
         OUTREG32( &m_pDispRegs->DISPC_CONFIG, pDisplaySaveRestore->DISPC_CONFIG );
@@ -3645,7 +4097,7 @@ OMAPDisplayController::RestoreRegisters(
     //  TV regs are not saved off b/c most are set to defaults
     if( eDestination == OMAP_DSS_DESTINATION_TVOUT )
     {
-        DWORD*  pVencPtr = NULL;
+    /*    DWORD*  pVencPtr = NULL;
 
         //  Initialize the TV by calling PDD
         bResult = LcdPdd_TV_Initialize(
@@ -3723,7 +4175,7 @@ OMAPDisplayController::RestoreRegisters(
         OUTREG32( &m_pVencRegs->VENC_SYNC_CTRL, pVencPtr[VENC_SYNC_CTRL] );     // programmed last
 
         //  Flush shadow registers
-        FlushRegs( DISPC_CONTROL_GODIGITAL );
+        FlushRegs( DISPC_CONTROL_GODIGITAL );*/
     }
 
     //  Success
@@ -3738,14 +4190,12 @@ cleanUp:
 }
 
 //------------------------------------------------------------------------------
-BOOL
-OMAPDisplayController::SetPowerLevel(
-    DWORD dwPowerLevel
-    )
+BOOL OMAPDisplayController::SetPowerLevel(DWORD dwPowerLevel)
 {
-    BOOL            bResult = TRUE;
+    BOOL	bResult = TRUE;
     DWORD   dwTimeout;
     
+    RETAILMSG(1,(L"+OMAPDisplayController::SetPowerLevel ---%d---\n\r",dwPowerLevel));
     //  Lock access to power level
     EnterCriticalSection( &m_csPowerLock );
     
@@ -3761,7 +4211,7 @@ OMAPDisplayController::SetPowerLevel(
         case D2:
             //  Check against current level
             if( m_dwPowerLevel == D3 || m_dwPowerLevel == D4)
-            {
+            {	
                 //  Set the new power level
                 m_dwPowerLevel = dwPowerLevel;
             
@@ -3843,7 +4293,7 @@ OMAPDisplayController::SetPowerLevel(
                 }
                 
                 //  Re-enable TV out if it was enabled prior to display power change
-                if( m_bTVEnable )
+                /*if( m_bTVEnable )
                 {
                     //  Enable the video encoder clock
                     RequestClock( m_dssinfo.TVEncoderDevice );
@@ -3852,14 +4302,14 @@ OMAPDisplayController::SetPowerLevel(
                     RestoreRegisters( OMAP_DSS_DESTINATION_TVOUT );
 
                     //  Enable TV out if there is something to show
-                if( g_dwDestinationRefCnt[OMAP_DSS_DESTINATION_TVOUT] > 0 )
-                        {
+					if( g_dwDestinationRefCnt[OMAP_DSS_DESTINATION_TVOUT] > 0 )
+					{
                       // enable interrupt for reporting SYNCLOST errors
                         //SETREG32( &m_pDispRegs->DISPC_IRQENABLE, DISPC_IRQENABLE_SYNCLOSTDIGITAL);
                         // enable the tvout path
                         SETREG32( &m_pDispRegs->DISPC_CONTROL, DISPC_CONTROL_DIGITALENABLE );
-                }
-                    }
+					}
+				}*/
                 
                 //  Wait for VSYNC
                 dwTimeout = DISPLAY_TIMEOUT;
@@ -3868,9 +4318,20 @@ OMAPDisplayController::SetPowerLevel(
                 {
                     Sleep(1);
                 }
-
+#ifndef BSP_Z2000
+				if( m_hSPI != NULL )
+					SendInitialCode();
+				/*if( m_hSPI != NULL )
+                {
+					WMLCDCOMD(0x11); //exit_sleep_mode
+        			Sleep(120);
+        			WMLCDCOMD(0x29); //set_display_on
+        			Sleep(5);
+        		}*/
+#endif
                 //  Clear all DSS interrupts
                 OUTREG32( &m_pDispRegs->DISPC_IRQSTATUS, 0xFFFFFFFF );
+                
             }
 			else    
             {         
@@ -3881,17 +4342,21 @@ OMAPDisplayController::SetPowerLevel(
                     SETREG32( &m_pDispRegs->DISPC_CONTROL, DISPC_CONTROL_DIGITALENABLE );
 			    m_dwPowerLevel = dwPowerLevel;
             }
-
-        break;
+			break;
         
         case D3:
         case D4:
             //  Check against current level
             if( m_dwPowerLevel == D0 || m_dwPowerLevel == D1 || m_dwPowerLevel == D2)
             {
-
+#ifndef BSP_Z2000            	
+				//WMLCDCOMD(0x28); //display off
+        		//Sleep(60);
+        		//WMLCDCOMD(0x10); //enter_sleep_mode
+        		//Sleep(35);
+#endif        		
                 //  Disable TV out
-                if( g_dwDestinationRefCnt[OMAP_DSS_DESTINATION_TVOUT] > 0 )
+                /*if( g_dwDestinationRefCnt[OMAP_DSS_DESTINATION_TVOUT] > 0 )
                 {
                     //  Disable TV out control
                     CLRREG32( &m_pDispRegs->DISPC_CONTROL, DISPC_CONTROL_DIGITALENABLE );        
@@ -3910,7 +4375,7 @@ OMAPDisplayController::SetPowerLevel(
 
                     //  Release the clock
                     ReleaseClock( m_dssinfo.TVEncoderDevice );
-                }
+                }*/
 
                 //  Disable LCD
                 if( g_dwDestinationRefCnt[OMAP_DSS_DESTINATION_LCD] > 0 )
@@ -3947,7 +4412,7 @@ OMAPDisplayController::SetPowerLevel(
 #endif
 
 				//  Disable device clocks 
-                ReleaseClock( m_dssinfo.DSSDevice );         
+                ReleaseClock( m_dssinfo.DSSDevice );                      
 			}	
             
             //  Set the new power level
@@ -3959,19 +4424,18 @@ OMAPDisplayController::SetPowerLevel(
 cleanUp:    
     //  Unlock access to power level
     LeaveCriticalSection( &m_csPowerLock );
-                
+	RETAILMSG(1,(L"-OMAPDisplayController::SetPowerLevel \n\r"));
     //  Return result
     return bResult;
 }
 
 //------------------------------------------------------------------------------
-BOOL
-OMAPDisplayController::EnableTvOut(
-    BOOL bEnable
-    )
+BOOL OMAPDisplayController::EnableTvOut(BOOL bEnable)
 {
     BOOL    bResult = FALSE;
-
+    
+    UNREFERENCED_PARAMETER(bEnable);
+/*
     //  Access the regs
     if( AccessRegs() == FALSE )
         goto cleanUp;
@@ -4006,16 +4470,16 @@ OMAPDisplayController::EnableTvOut(
         
         //  Disable TV out clock
         ReleaseClock( m_dssinfo.TVEncoderDevice );
-
+*/
         m_bTVEnable = FALSE;       
-    }
+    //}
 
     //  Success
     bResult = TRUE;
 
-cleanUp:
+//cleanUp:
     //  Release regs
-    ReleaseRegs();
+    //ReleaseRegs();
 
     //  Return result
     return bResult;

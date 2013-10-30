@@ -23,7 +23,6 @@
 //  This function shows the logo splash screen
 //
 VOID ShowLogo(UINT32 flashAddr, UINT32 offset);
-//BOOL ShowLogo(UINT32 flashAddr, UINT32 offset);
 
 
 //------------------------------------------------------------------------------

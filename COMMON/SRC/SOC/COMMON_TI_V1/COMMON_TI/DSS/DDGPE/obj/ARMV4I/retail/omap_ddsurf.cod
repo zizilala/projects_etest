@@ -58,7 +58,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42508| DCD	|$LN5@Format|
+|$T42516| DCD	|$LN5@Format|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -69,7 +69,7 @@
 ; 189  :     {
 
   00000		 |$LN5@Format|
-  00000		 |$M42505|
+  00000		 |$M42513|
 
 ; 190  :         return m_eFormat;
 
@@ -78,14 +78,14 @@
 ; 191  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42506|
+  00008		 |$M42514|
 
 			 ENDP  ; |?Format@GPESurf@@QAA?AW4EGPEFormat@@XZ|, GPESurf::Format
 
 	EXPORT	|?Buffer@GPESurf@@QAAPAXXZ|		; GPESurf::Buffer
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42518| DCD	|$LN5@Buffer|
+|$T42526| DCD	|$LN5@Buffer|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -96,7 +96,7 @@
 ; 201  :     {
 
   00000		 |$LN5@Buffer|
-  00000		 |$M42515|
+  00000		 |$M42523|
 
 ; 202  :         return (void *)m_pVirtAddr;
 
@@ -105,7 +105,7 @@
 ; 203  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42516|
+  00008		 |$M42524|
 
 			 ENDP  ; |?Buffer@GPESurf@@QAAPAXXZ|, GPESurf::Buffer
 
@@ -113,7 +113,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42528| DCD	|$LN5@GetTVWidth|
+|$T42536| DCD	|$LN5@GetTVWidth|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -124,17 +124,17 @@
 ; 305  :     DWORD                   GetTVWidth() { return m_dwTVWidth; }
 
   00000		 |$LN5@GetTVWidth|
-  00000		 |$M42525|
-  00000	e59004bc	 ldr         r0, [r0, #0x4BC]
+  00000		 |$M42533|
+  00000	e59004c0	 ldr         r0, [r0, #0x4C0]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42526|
+  00008		 |$M42534|
 
 			 ENDP  ; |?GetTVWidth@OMAPDisplayController@@QAAKXZ|, OMAPDisplayController::GetTVWidth
 
 	EXPORT	|?GetTVHeight@OMAPDisplayController@@QAAKXZ| ; OMAPDisplayController::GetTVHeight
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42538| DCD	|$LN5@GetTVHeigh|
+|$T42546| DCD	|$LN5@GetTVHeigh|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -145,17 +145,17 @@
 ; 306  :     DWORD                   GetTVHeight() { return m_dwTVHeight; }
 
   00000		 |$LN5@GetTVHeigh|
-  00000		 |$M42535|
-  00000	e59004c0	 ldr         r0, [r0, #0x4C0]
+  00000		 |$M42543|
+  00000	e59004c4	 ldr         r0, [r0, #0x4C4]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42536|
+  00008		 |$M42544|
 
 			 ENDP  ; |?GetTVHeight@OMAPDisplayController@@QAAKXZ|, OMAPDisplayController::GetTVHeight
 
 	EXPORT	|?PixelFormat@OMAPSurface@@QAA?AW4OMAP_DSS_PIXELFORMAT@@XZ| ; OMAPSurface::PixelFormat
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42548| DCD	|$LN5@PixelForma|
+|$T42556| DCD	|$LN5@PixelForma|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -163,20 +163,20 @@
 
   00000		 |?PixelFormat@OMAPSurface@@QAA?AW4OMAP_DSS_PIXELFORMAT@@XZ| PROC ; OMAPSurface::PixelFormat
 
-; 760  :     OMAP_DSS_PIXELFORMAT    PixelFormat() { return m_ePixelFormat; }
+; 765  :     OMAP_DSS_PIXELFORMAT    PixelFormat() { return m_ePixelFormat; }
 
   00000		 |$LN5@PixelForma|
-  00000		 |$M42545|
+  00000		 |$M42553|
   00000	e5900004	 ldr         r0, [r0, #4]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42546|
+  00008		 |$M42554|
 
 			 ENDP  ; |?PixelFormat@OMAPSurface@@QAA?AW4OMAP_DSS_PIXELFORMAT@@XZ|, OMAPSurface::PixelFormat
 
 	EXPORT	|?Orientation@OMAPSurface@@QAA?AW4OMAP_SURF_ORIENTATION@@XZ| ; OMAPSurface::Orientation
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42558| DCD	|$LN5@Orientatio|
+|$T42566| DCD	|$LN5@Orientatio|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -184,20 +184,20 @@
 
   00000		 |?Orientation@OMAPSurface@@QAA?AW4OMAP_SURF_ORIENTATION@@XZ| PROC ; OMAPSurface::Orientation
 
-; 764  :     OMAP_SURF_ORIENTATION   Orientation() { return m_eOrientation; }
+; 769  :     OMAP_SURF_ORIENTATION   Orientation() { return m_eOrientation; }
 
   00000		 |$LN5@Orientatio|
-  00000		 |$M42555|
+  00000		 |$M42563|
   00000	e590000c	 ldr         r0, [r0, #0xC]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42556|
+  00008		 |$M42564|
 
 			 ENDP  ; |?Orientation@OMAPSurface@@QAA?AW4OMAP_SURF_ORIENTATION@@XZ|, OMAPSurface::Orientation
 
 	EXPORT	|?ResizeParams@OMAPSurface@@QAAPAURSZParams_t@@XZ| ; OMAPSurface::ResizeParams
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42568| DCD	|$LN5@ResizePara|
+|$T42576| DCD	|$LN5@ResizePara|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -205,13 +205,13 @@
 
   00000		 |?ResizeParams@OMAPSurface@@QAAPAURSZParams_t@@XZ| PROC ; OMAPSurface::ResizeParams
 
-; 772  :     RSZParams_t *           ResizeParams() { return &m_sRSZParams; }
+; 777  :     RSZParams_t *           ResizeParams() { return &m_sRSZParams; }
 
   00000		 |$LN5@ResizePara|
-  00000		 |$M42565|
+  00000		 |$M42573|
   00000	e2800038	 add         r0, r0, #0x38
   00004	e12fff1e	 bx          lr
-  00008		 |$M42566|
+  00008		 |$M42574|
 
 			 ENDP  ; |?ResizeParams@OMAPSurface@@QAAPAURSZParams_t@@XZ|, OMAPSurface::ResizeParams
 
@@ -219,7 +219,7 @@
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42577| DCD	|$LN5@SetRSZPara|
+|$T42585| DCD	|$LN5@SetRSZPara|
 	DCD	0x40000903
 ; Function compile flags: /Ogspy
 
@@ -227,20 +227,20 @@
 
   00000		 |?SetRSZParams@OMAPSurface@@QAAXURSZParams_t@@@Z| PROC ; OMAPSurface::SetRSZParams
 
-; 774  :     VOID                    SetRSZParams(RSZParams_t rszParams) { m_sRSZParams = rszParams; }
+; 779  :     VOID                    SetRSZParams(RSZParams_t rszParams) { m_sRSZParams = rszParams; }
 
   00000		 |$LN5@SetRSZPara|
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5000	 stmdb       sp!, {r12, lr}
-  0000c		 |$M42574|
+  0000c		 |$M42582|
   0000c	e2800038	 add         r0, r0, #0x38
   00010	e28d100c	 add         r1, sp, #0xC
   00014	e3a02064	 mov         r2, #0x64
   00018	eb000000	 bl          memcpy
   0001c	e89d6000	 ldmia       sp, {sp, lr}
   00020	e12fff1e	 bx          lr
-  00024		 |$M42575|
+  00024		 |$M42583|
 
 			 ENDP  ; |?SetRSZParams@OMAPSurface@@QAAXURSZParams_t@@@Z|, OMAPSurface::SetRSZParams
 
@@ -248,7 +248,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42587| DCD	|$LN5@OmapSurfac|
+|$T42595| DCD	|$LN5@OmapSurfac|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -259,17 +259,17 @@
 ; 102  :     OMAPSurface*        OmapSurface() { return m_pSurface; }
 
   00000		 |$LN5@OmapSurfac|
-  00000		 |$M42584|
+  00000		 |$M42592|
   00000	e590007c	 ldr         r0, [r0, #0x7C]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42585|
+  00008		 |$M42593|
 
 			 ENDP  ; |?OmapSurface@OMAPDDGPESurface@@QAAPAVOMAPSurface@@XZ|, OMAPDDGPESurface::OmapSurface
 
 	EXPORT	|?Parent@OMAPDDGPESurface@@QAAPAV1@XZ|	; OMAPDDGPESurface::Parent
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42597| DCD	|$LN5@Parent|
+|$T42605| DCD	|$LN5@Parent|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -280,17 +280,17 @@
 ; 104  :     OMAPDDGPESurface*   Parent() { return m_pParentSurface; }
 
   00000		 |$LN5@Parent|
-  00000		 |$M42594|
+  00000		 |$M42602|
   00000	e5900084	 ldr         r0, [r0, #0x84]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42595|
+  00008		 |$M42603|
 
 			 ENDP  ; |?Parent@OMAPDDGPESurface@@QAAPAV1@XZ|, OMAPDDGPESurface::Parent
 
 	EXPORT	|?OmapAssocSurface@OMAPDDGPESurface@@QAAPAVOMAPSurface@@XZ| ; OMAPDDGPESurface::OmapAssocSurface
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42607| DCD	|$LN5@OmapAssocS|
+|$T42615| DCD	|$LN5@OmapAssocS|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -301,17 +301,17 @@
 ; 107  :     OMAPSurface*        OmapAssocSurface() { return m_pAssocSurface; }
 
   00000		 |$LN5@OmapAssocS|
-  00000		 |$M42604|
+  00000		 |$M42612|
   00000	e5900080	 ldr         r0, [r0, #0x80]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42605|
+  00008		 |$M42613|
 
 			 ENDP  ; |?OmapAssocSurface@OMAPDDGPESurface@@QAAPAVOMAPSurface@@XZ|, OMAPDDGPESurface::OmapAssocSurface
 
 	EXPORT	|?SetAssocSurface@OMAPDDGPESurface@@QAAXPAVOMAPSurface@@@Z| ; OMAPDDGPESurface::SetAssocSurface
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42616| DCD	|$LN5@SetAssocSu|
+|$T42624| DCD	|$LN5@SetAssocSu|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -322,10 +322,10 @@
 ; 108  :     VOID                SetAssocSurface( OMAPSurface* pAssocSurface ) { m_pAssocSurface = pAssocSurface; }
 
   00000		 |$LN5@SetAssocSu|
-  00000		 |$M42613|
+  00000		 |$M42621|
   00000	e5801080	 str         r1, [r0, #0x80]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42614|
+  00008		 |$M42622|
 
 			 ENDP  ; |?SetAssocSurface@OMAPDDGPESurface@@QAAXPAVOMAPSurface@@@Z|, OMAPDDGPESurface::SetAssocSurface
 
@@ -337,7 +337,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42644| DCD	|$LN13@CopySurfac|
+|$T42652| DCD	|$LN13@CopySurfac|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -350,7 +350,7 @@
 
   00000		 |$LN13@CopySurfac|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M42641|
+  00004		 |$M42649|
 
 ; 18   :     OMAPSurface * pOMAPSurfSrc = pSurfSrc->OmapSurface();
 
@@ -396,7 +396,7 @@
 
   00050	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00054	e12fff1e	 bx          lr
-  00058		 |$M42642|
+  00058		 |$M42650|
 
 			 ENDP  ; |?CopySurfaceParams@OMAPDDGPE@@QAAHPAVOMAPDDGPESurface@@0@Z|, OMAPDDGPE::CopySurfaceParams
 
@@ -407,7 +407,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42671| DCD	|$LN14@AllocSurfa|
+|$T42679| DCD	|$LN14@AllocSurfa|
 	DCD	0x40002b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -421,7 +421,7 @@
   00000		 |$LN14@AllocSurfa|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M42668|
+  00008		 |$M42676|
   00008	e1a08003	 mov         r8, r3
   0000c	e1a06002	 mov         r6, r2
   00010	e1a05001	 mov         r5, r1
@@ -515,7 +515,7 @@
   000a8		 |$LN15@AllocSurfa|
   000a8		 |$LN16@AllocSurfa|
   000a8	00000000	 DCD         |EGPEFormatToBpp|
-  000ac		 |$M42669|
+  000ac		 |$M42677|
 
 			 ENDP  ; |?AllocSurface@OMAPDDGPE@@UAAJPAPAVDDGPESurf@@HHW4EGPEFormat@@W4EDDGPEPixelFormat@@H@Z|, OMAPDDGPE::AllocSurface
 
@@ -523,7 +523,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42695| DCD	|$LN11@AllocSurfa@2|
+|$T42703| DCD	|$LN11@AllocSurfa@2|
 	DCD	0x40001f02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -537,7 +537,7 @@
   00000		 |$LN11@AllocSurfa@2|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M42692|
+  00008		 |$M42700|
   00008	e1a04003	 mov         r4, r3
   0000c	e1a07002	 mov         r7, r2
   00010	e1a06001	 mov         r6, r1
@@ -610,14 +610,14 @@
   00078		 |$LN12@AllocSurfa@2|
   00078		 |$LN13@AllocSurfa@2|
   00078	8876017c	 DCD         0x8876017c
-  0007c		 |$M42693|
+  0007c		 |$M42701|
 
 			 ENDP  ; |?AllocSurface@OMAPDDGPE@@QAAJPAVOMAPDDGPESurface@@W4OMAP_DSS_PIXELFORMAT@@HH@Z|, OMAPDDGPE::AllocSurface
 
 	EXPORT	|?NumVisibleOverlays@OMAPDDGPE@@QAAKXZ|	; OMAPDDGPE::NumVisibleOverlays
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42708| DCD	|$LN9@NumVisible|
+|$T42716| DCD	|$LN9@NumVisible|
 	DCD	0x40000d00
 ; Function compile flags: /Ogspy
 
@@ -628,7 +628,7 @@
 ; 211  : {
 
   00000		 |$LN9@NumVisible|
-  00000		 |$M42705|
+  00000		 |$M42713|
 
 ; 212  :     //  Return number of visible overlays
 ; 213  :     if( m_pOverlay1Surf && m_pOverlay2Surf )
@@ -671,7 +671,7 @@
 ; 220  : }  
 
   00030	e12fff1e	 bx          lr
-  00034		 |$M42706|
+  00034		 |$M42714|
 
 			 ENDP  ; |?NumVisibleOverlays@OMAPDDGPE@@QAAKXZ|, OMAPDDGPE::NumVisibleOverlays
 
@@ -680,7 +680,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42737| DCD	|$LN19@MoveOverla|
+|$T42745| DCD	|$LN19@MoveOverla|
 	DCD	0x40002c01
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -693,7 +693,7 @@
 
   00000		 |$LN19@MoveOverla|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M42734|
+  00004		 |$M42742|
   00004	e1a07003	 mov         r7, r3
   00008	e1a08002	 mov         r8, r2
   0000c	e1a06001	 mov         r6, r1
@@ -779,7 +779,7 @@
 
   000a8	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   000ac	e12fff1e	 bx          lr
-  000b0		 |$M42735|
+  000b0		 |$M42743|
 
 			 ENDP  ; |?MoveOverlay@OMAPDDGPE@@QAAKPAVOMAPDDGPESurface@@JJ@Z|, OMAPDDGPE::MoveOverlay
 
@@ -787,7 +787,7 @@
 	IMPORT	|?EnableColorKey@OMAPDisplayController@@QAAHW4OMAP_DSS_COLORKEY@@W4OMAP_DSS_DESTINATION@@K@Z| ; OMAPDisplayController::EnableColorKey
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42748| DCD	|$LN5@SetSrcColo|
+|$T42756| DCD	|$LN5@SetSrcColo|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -799,7 +799,7 @@
 
   00000		 |$LN5@SetSrcColo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42745|
+  00004		 |$M42753|
   00004	e1a03001	 mov         r3, r1
 
 ; 567  :     //  Enable the transparent source color key
@@ -820,14 +820,14 @@
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M42746|
+  00024		 |$M42754|
 
 			 ENDP  ; |?SetSrcColorKey@OMAPDDGPE@@QAAKK@Z|, OMAPDDGPE::SetSrcColorKey
 
 	EXPORT	|?SetDestColorKey@OMAPDDGPE@@QAAKK@Z|	; OMAPDDGPE::SetDestColorKey
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42759| DCD	|$LN5@SetDestCol|
+|$T42767| DCD	|$LN5@SetDestCol|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -839,7 +839,7 @@
 
   00000		 |$LN5@SetDestCol|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42756|
+  00004		 |$M42764|
   00004	e1a03001	 mov         r3, r1
 
 ; 580  :     //  Enable the transparent destination color key
@@ -860,14 +860,14 @@
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M42757|
+  00024		 |$M42765|
 
 			 ENDP  ; |?SetDestColorKey@OMAPDDGPE@@QAAKK@Z|, OMAPDDGPE::SetDestColorKey
 
 	EXPORT	|?SetAlphaConst@OMAPDDGPE@@QAAKW4OMAP_DSS_COLORKEY@@K@Z| ; OMAPDDGPE::SetAlphaConst
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42771| DCD	|$LN5@SetAlphaCo|
+|$T42779| DCD	|$LN5@SetAlphaCo|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -879,7 +879,7 @@
 
   00000		 |$LN5@SetAlphaCo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42768|
+  00004		 |$M42776|
   00004	e1a03002	 mov         r3, r2
 
 ; 594  :     //  Enable the alpha const for GFX or VID2
@@ -899,7 +899,7 @@
 
   00018	e49de004	 ldr         lr, [sp], #4
   0001c	e12fff1e	 bx          lr
-  00020		 |$M42769|
+  00020		 |$M42777|
 
 			 ENDP  ; |?SetAlphaConst@OMAPDDGPE@@QAAKW4OMAP_DSS_COLORKEY@@K@Z|, OMAPDDGPE::SetAlphaConst
 
@@ -907,7 +907,7 @@
 	IMPORT	|?DisableColorKey@OMAPDisplayController@@QAAHW4OMAP_DSS_COLORKEY@@W4OMAP_DSS_DESTINATION@@@Z| ; OMAPDisplayController::DisableColorKey
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42781| DCD	|$LN5@DisableCol|
+|$T42789| DCD	|$LN5@DisableCol|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -919,7 +919,7 @@
 
   00000		 |$LN5@DisableCol|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42778|
+  00004		 |$M42786|
 
 ; 605  :     //  Disable the transparent destination color key
 ; 606  :     m_pDisplayContr->DisableColorKey( OMAP_DSS_COLORKEY_TRANS_SOURCE, OMAP_DSS_DESTINATION_LCD );
@@ -939,14 +939,14 @@
 
   00018	e49de004	 ldr         lr, [sp], #4
   0001c	e12fff1e	 bx          lr
-  00020		 |$M42779|
+  00020		 |$M42787|
 
 			 ENDP  ; |?DisableColorKey@OMAPDDGPE@@QAAKXZ|, OMAPDDGPE::DisableColorKey
 
 	EXPORT	|?DisableAlphaConst@OMAPDDGPE@@QAAKXZ|	; OMAPDDGPE::DisableAlphaConst
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42791| DCD	|$LN5@DisableAlp|
+|$T42799| DCD	|$LN5@DisableAlp|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -958,7 +958,7 @@
 
   00000		 |$LN5@DisableAlp|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M42788|
+  00004		 |$M42796|
   00004	e1a04000	 mov         r4, r0
 
 ; 616  :     //  Disable the alpha const value
@@ -986,14 +986,14 @@
 
   0002c	e8bd4010	 ldmia       sp!, {r4, lr}
   00030	e12fff1e	 bx          lr
-  00034		 |$M42789|
+  00034		 |$M42797|
 
 			 ENDP  ; |?DisableAlphaConst@OMAPDDGPE@@QAAKXZ|, OMAPDDGPE::DisableAlphaConst
 
 	EXPORT	|?FlipInProgress@OMAPDDGPE@@UAAHXZ|	; OMAPDDGPE::FlipInProgress
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42803| DCD	|$LN9@FlipInProg|
+|$T42811| DCD	|$LN9@FlipInProg|
 	DCD	0x40001401
 ; Function compile flags: /Ogspy
 
@@ -1005,7 +1005,7 @@
 
   00000		 |$LN9@FlipInProg|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M42800|
+  00004		 |$M42808|
   00004	e1a04000	 mov         r4, r0
 
 ; 628  :     //  If there has been a FlipSurface called, check for VSYNC status bit   
@@ -1056,7 +1056,7 @@
 
   00048	e8bd4010	 ldmia       sp!, {r4, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M42801|
+  00050		 |$M42809|
 
 			 ENDP  ; |?FlipInProgress@OMAPDDGPE@@UAAHXZ|, OMAPDDGPE::FlipInProgress
 
@@ -1064,7 +1064,7 @@
 	IMPORT	|?WaitForVsync@OMAPDisplayController@@QAAXXZ| ; OMAPDisplayController::WaitForVsync
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42811| DCD	|$LN5@WaitForVBl|
+|$T42819| DCD	|$LN5@WaitForVBl|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -1076,7 +1076,7 @@
 
   00000		 |$LN5@WaitForVBl|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42808|
+  00004		 |$M42816|
 
 ; 643  :     m_pDisplayContr->WaitForVsync(); 
 
@@ -1087,7 +1087,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M42809|
+  00014		 |$M42817|
 
 			 ENDP  ; |?WaitForVBlank@OMAPDDGPE@@UAAXXZ|, OMAPDDGPE::WaitForVBlank
 
@@ -1095,7 +1095,7 @@
 	IMPORT	|?InVSync@OMAPDisplayController@@QAAHH@Z| ; OMAPDisplayController::InVSync
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42821| DCD	|$LN5@InVBlank|
+|$T42829| DCD	|$LN5@InVBlank|
 	DCD	0x40000601
 ; Function compile flags: /Ogspy
 
@@ -1107,7 +1107,7 @@
 
   00000		 |$LN5@InVBlank|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42818|
+  00004		 |$M42826|
 
 ; 649  :     return m_pDisplayContr->InVSync(TRUE);
 
@@ -1119,7 +1119,7 @@
 
   00010	e49de004	 ldr         lr, [sp], #4
   00014	e12fff1e	 bx          lr
-  00018		 |$M42819|
+  00018		 |$M42827|
 
 			 ENDP  ; |?InVBlank@OMAPDDGPE@@UAAHXZ|, OMAPDDGPE::InVBlank
 
@@ -1127,7 +1127,7 @@
 	IMPORT	|?GetScanLine@OMAPDisplayController@@QAAKXZ| ; OMAPDisplayController::GetScanLine
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42831| DCD	|$LN5@GetScanLin|
+|$T42839| DCD	|$LN5@GetScanLin|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -1139,7 +1139,7 @@
 
   00000		 |$LN5@GetScanLin|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42828|
+  00004		 |$M42836|
 
 ; 655  :     return m_pDisplayContr->GetScanLine();
 
@@ -1150,7 +1150,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M42829|
+  00014		 |$M42837|
 
 			 ENDP  ; |?GetScanLine@OMAPDDGPE@@QAAKXZ|, OMAPDDGPE::GetScanLine
 
@@ -1159,7 +1159,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42892| DCD	|$LN34@SurfaceFli|
+|$T42900| DCD	|$LN34@SurfaceFli|
 	DCD	0x40004001
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -1172,7 +1172,7 @@
 
   00000		 |$LN34@SurfaceFli|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M42889|
+  00004		 |$M42897|
   00004	e1a07002	 mov         r7, r2
   00008	e1a06001	 mov         r6, r1
   0000c	e1a04000	 mov         r4, r0
@@ -1301,7 +1301,7 @@
   000f4	e1a00005	 mov         r0, r5
   000f8	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   000fc	e12fff1e	 bx          lr
-  00100		 |$M42890|
+  00100		 |$M42898|
 
 			 ENDP  ; |?SurfaceFlipping@OMAPDDGPE@@QAAHPAVOMAPDDGPESurface@@H@Z|, OMAPDDGPE::SurfaceFlipping
 
@@ -1310,7 +1310,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42959| DCD	|$LN37@FlipSurfac|
+|$T42967| DCD	|$LN37@FlipSurfac|
 	DCD	0x40003801
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -1323,7 +1323,7 @@
 
   00000		 |$LN37@FlipSurfac|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M42956|
+  00004		 |$M42964|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -1450,7 +1450,7 @@
 
   000d8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000dc	e12fff1e	 bx          lr
-  000e0		 |$M42957|
+  000e0		 |$M42965|
 
 			 ENDP  ; |?FlipSurface@OMAPDDGPE@@QAAKPAVOMAPDDGPESurface@@@Z|, OMAPDDGPE::FlipSurface
 
@@ -1466,7 +1466,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43027| DCD	|$LN40@GetTvOutSc|
+|$T43035| DCD	|$LN40@GetTvOutSc|
 	DCD	0x40009801
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -1479,7 +1479,7 @@
 
   00000		 |$LN40@GetTvOutSc|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M43024|
+  00004		 |$M43032|
   00004	e1a08003	 mov         r8, r3
   00008	e1a07002	 mov         r7, r2
   0000c	e1b0a001	 movs        r10, r1
@@ -1607,7 +1607,7 @@
   00100	eb000000	 bl          __muls
   00104	e59630b0	 ldr         r3, [r6, #0xB0]
   00108	e1a04000	 mov         r4, r0
-  0010c	e59304bc	 ldr         r0, [r3, #0x4BC]
+  0010c	e59304c0	 ldr         r0, [r3, #0x4C0]
   00110	eb000000	 bl          __utos
   00114	e1a01000	 mov         r1, r0
   00118	e1a00004	 mov         r0, r4
@@ -1620,7 +1620,7 @@
 ; 999  :             *pScaledHeight = (DWORD)(fScalingFactorH * m_pDisplayContr->GetTVHeight());
 
   00130	e59630b0	 ldr         r3, [r6, #0xB0]
-  00134	e59304c0	 ldr         r0, [r3, #0x4C0]
+  00134	e59304c4	 ldr         r0, [r3, #0x4C4]
   00138	eb000000	 bl          __utos
   0013c	e1a0100a	 mov         r1, r10
   00140	eb000000	 bl          __muls
@@ -1636,7 +1636,7 @@
 ; 1004 :             *pScaledWidth  = (DWORD)(fScalingFactorW * m_pDisplayContr->GetTVWidth());
 
   00148	e59630b0	 ldr         r3, [r6, #0xB0]
-  0014c	e59304bc	 ldr         r0, [r3, #0x4BC]
+  0014c	e59304c0	 ldr         r0, [r3, #0x4C0]
   00150	eb000000	 bl          __utos
   00154	e1a01004	 mov         r1, r4
   00158	eb000000	 bl          __muls
@@ -1651,7 +1651,7 @@
   00170	eb000000	 bl          __muls
   00174	e59630b0	 ldr         r3, [r6, #0xB0]
   00178	e1a04000	 mov         r4, r0
-  0017c	e59304c0	 ldr         r0, [r3, #0x4C0]
+  0017c	e59304c4	 ldr         r0, [r3, #0x4C4]
   00180	eb000000	 bl          __utos
   00184	e1a01000	 mov         r1, r0
   00188	e1a00004	 mov         r0, r4
@@ -1679,7 +1679,7 @@
 
   001b0	e59630b0	 ldr         r3, [r6, #0xB0]
   001b4	e5972000	 ldr         r2, [r7]
-  001b8	e59334bc	 ldr         r3, [r3, #0x4BC]
+  001b8	e59334c0	 ldr         r3, [r3, #0x4C0]
   001bc	e0433002	 sub         r3, r3, r2
   001c0	e1a030a3	 mov         r3, r3, lsr #1
   001c4	e5813000	 str         r3, [r1]
@@ -1703,7 +1703,7 @@
   001d8	e59620b0	 ldr         r2, [r6, #0xB0]
   001dc	e5970000	 ldr         r0, [r7]
   001e0	e083300e	 add         r3, r3, lr
-  001e4	e59224bc	 ldr         r2, [r2, #0x4BC]
+  001e4	e59224c0	 ldr         r2, [r2, #0x4C0]
   001e8	e0833000	 add         r3, r3, r0
   001ec	e1530002	 cmp         r3, r2
 
@@ -1736,7 +1736,7 @@
 
   00208	e59630b0	 ldr         r3, [r6, #0xB0]
   0020c	e5982000	 ldr         r2, [r8]
-  00210	e59334c0	 ldr         r3, [r3, #0x4C0]
+  00210	e59334c4	 ldr         r3, [r3, #0x4C4]
   00214	e0433002	 sub         r3, r3, r2
   00218	e1a030a3	 mov         r3, r3, lsr #1
   0021c	e5813000	 str         r3, [r1]
@@ -1760,7 +1760,7 @@
   00230	e59620b0	 ldr         r2, [r6, #0xB0]
   00234	e5980000	 ldr         r0, [r8]
   00238	e083300e	 add         r3, r3, lr
-  0023c	e59224c0	 ldr         r2, [r2, #0x4C0]
+  0023c	e59224c4	 ldr         r2, [r2, #0x4C4]
   00240	e0833000	 add         r3, r3, r0
   00244	e1530002	 cmp         r3, r2
 
@@ -1792,7 +1792,7 @@
 
   00258	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   0025c	e12fff1e	 bx          lr
-  00260		 |$M43025|
+  00260		 |$M43033|
 
 			 ENDP  ; |?GetTvOutScaling@OMAPDDGPE@@QAAHPAVOMAPSurface@@PAK111@Z|, OMAPDDGPE::GetTvOutScaling
 
@@ -1820,7 +1820,7 @@
 	IMPORT	|?HasAlpha@DDGPESurf@@UAAHXZ|		; DDGPESurf::HasAlpha
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43037| DCD	|$LN5@OMAPDDGPES|
+|$T43045| DCD	|$LN5@OMAPDDGPES|
 	DCD	0x40000c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1853,7 +1853,7 @@
 
   00000		 |$LN5@OMAPDDGPES|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M43034|
+  00004		 |$M43042|
   00004	e1a04000	 mov         r4, r0
   00008	eb000000	 bl          |??0DDGPESurf@@QAA@XZ|
   0000c	e59f3018	 ldr         r3, [pc, #0x18]
@@ -1874,14 +1874,14 @@
   0002c		 |$LN6@OMAPDDGPES|
   0002c		 |$LN7@OMAPDDGPES|
   0002c	00000000	 DCD         |??_7OMAPDDGPESurface@@6B@|
-  00030		 |$M43035|
+  00030		 |$M43043|
 
 			 ENDP  ; |??0OMAPDDGPESurface@@QAA@XZ|, OMAPDDGPESurface::OMAPDDGPESurface
 
 ; File c:\wince600\public\common\oak\inc\ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43049| DCD	|$LN5@GetDriverD|
+|$T43057| DCD	|$LN5@GetDriverD|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1892,16 +1892,16 @@
 ; 302  : 	virtual DDGPEDriverData*		GetDriverData(void) { return m_pDriverData; }
 
   00000		 |$LN5@GetDriverD|
-  00000		 |$M43046|
+  00000		 |$M43054|
   00000	e5900068	 ldr         r0, [r0, #0x68]
   00004	e12fff1e	 bx          lr
-  00008		 |$M43047|
+  00008		 |$M43055|
 
 			 ENDP  ; |?GetDriverData@DDGPESurf@@UAAPAUDDGPEDriverData@@XZ|, DDGPESurf::GetDriverData
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43058| DCD	|$LN5@SetDriverD|
+|$T43066| DCD	|$LN5@SetDriverD|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1912,16 +1912,16 @@
 ; 303  : 	virtual void					SetDriverData(DDGPEDriverData* pDriverData) { m_pDriverData = pDriverData; }
 
   00000		 |$LN5@SetDriverD|
-  00000		 |$M43055|
+  00000		 |$M43063|
   00000	e5801068	 str         r1, [r0, #0x68]
   00004	e12fff1e	 bx          lr
-  00008		 |$M43056|
+  00008		 |$M43064|
 
 			 ENDP  ; |?SetDriverData@DDGPESurf@@UAAXPAUDDGPEDriverData@@@Z|, DDGPESurf::SetDriverData
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43068| DCD	|$LN5@SurfaceSiz|
+|$T43076| DCD	|$LN5@SurfaceSiz|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1932,10 +1932,10 @@
 ; 304  : 	virtual int						SurfaceSize (void) { return m_dwSurfaceSize; }
 
   00000		 |$LN5@SurfaceSiz|
-  00000		 |$M43065|
+  00000		 |$M43073|
   00000	e590005c	 ldr         r0, [r0, #0x5C]
   00004	e12fff1e	 bx          lr
-  00008		 |$M43066|
+  00008		 |$M43074|
 
 			 ENDP  ; |?SurfaceSize@DDGPESurf@@UAAHXZ|, DDGPESurf::SurfaceSize
 
@@ -1945,7 +1945,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43088| DCD	|$LN9@OMAPDDGPES@2|
+|$T43096| DCD	|$LN9@OMAPDDGPES@2|
 	DCD	0x40005e02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -1959,7 +1959,7 @@
   00000		 |$LN9@OMAPDDGPES@2|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M43085|
+  00008		 |$M43093|
   00008	e1a04002	 mov         r4, r2
   0000c	e1a09001	 mov         r9, r1
   00010	e1a0a000	 mov         r10, r0
@@ -2087,14 +2087,14 @@
   00174		 |$LN10@OMAPDDGPES@2|
   00174		 |$LN11@OMAPDDGPES@2|
   00174	00000000	 DCD         |??_7OMAPDDGPESurface@@6B@|
-  00178		 |$M43086|
+  00178		 |$M43094|
 
 			 ENDP  ; |??0OMAPDDGPESurface@@QAA@PAVOMAPSurfaceManager@@PAVOMAPSurface@@@Z|, OMAPDDGPESurface::OMAPDDGPESurface
 
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43106| DCD	|$LN9@SetOrienta|
+|$T43114| DCD	|$LN9@SetOrienta|
 	DCD	0x40002401
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -2107,7 +2107,7 @@
 
   00000		 |$LN9@SetOrienta|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M43103|
+  00004		 |$M43111|
   00004	e1a04000	 mov         r4, r0
 
 ; 1099 :     //  Check current orientation of the OMAP surface; do nothing if the same
@@ -2174,7 +2174,7 @@
 
   00088	e8bd4010	 ldmia       sp!, {r4, lr}
   0008c	e12fff1e	 bx          lr
-  00090		 |$M43104|
+  00090		 |$M43112|
 
 			 ENDP  ; |?SetOrientation@OMAPDDGPESurface@@UAAHW4OMAP_SURF_ORIENTATION@@@Z|, OMAPDDGPESurface::SetOrientation
 
@@ -2182,7 +2182,7 @@
 	IMPORT	|??1DDGPESurf@@UAA@XZ|			; DDGPESurf::~DDGPESurf
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43124| DCD	|$LN11@OMAPDDGPES@3|
+|$T43132| DCD	|$LN11@OMAPDDGPES@3|
 	DCD	0x40001901
 ; Function compile flags: /Ogspy
 
@@ -2194,7 +2194,7 @@
 
   00000		 |$LN11@OMAPDDGPES@3|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M43121|
+  00004		 |$M43129|
   00004	e1a04000	 mov         r4, r0
   00008	e59f3050	 ldr         r3, [pc, #0x50]
 
@@ -2238,7 +2238,7 @@
   00060		 |$LN12@OMAPDDGPES@3|
   00060		 |$LN13@OMAPDDGPES@3|
   00060	00000000	 DCD         |??_7OMAPDDGPESurface@@6B@|
-  00064		 |$M43122|
+  00064		 |$M43130|
 
 			 ENDP  ; |??1OMAPDDGPESurface@@UAA@XZ|, OMAPDDGPESurface::~OMAPDDGPESurface
 
@@ -2247,7 +2247,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43175| DCD	|$LN29@AllocSurfa@3|
+|$T43183| DCD	|$LN29@AllocSurfa@3|
 	DCD	0x40005102
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -2261,7 +2261,7 @@
   00000		 |$LN29@AllocSurfa@3|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M43172|
+  00008		 |$M43180|
   00008	e1a08003	 mov         r8, r3
   0000c	e1a09002	 mov         r9, r2
   00010	e1a07001	 mov         r7, r1
@@ -2281,14 +2281,14 @@
   00028	e12fff14	 bx          r4
   0002c	e59da028	 ldr         r10, [sp, #0x28]
   00030	e3500000	 cmp         r0, #0
-  00034	0a000026	 beq         |$trySystemMem$42002|
+  00034	0a000026	 beq         |$trySystemMem$42010|
   00038	e00e0899	 mul         lr, r9, r8
   0003c	e35e0a02	 cmp         lr, #2, 20
-  00040	ba000023	 blt         |$trySystemMem$42002|
+  00040	ba000023	 blt         |$trySystemMem$42010|
   00044	e59640bc	 ldr         r4, [r6, #0xBC]
   00048	e594e01c	 ldr         lr, [r4, #0x1C]
   0004c	e15a000e	 cmp         r10, lr
-  00050	1a00001f	 bne         |$trySystemMem$42002|
+  00050	1a00001f	 bne         |$trySystemMem$42010|
 
 ; 46   :     {
 ; 47   :         BOOL                    bResult;
@@ -2317,7 +2317,7 @@
   00078	e1a0e00f	 mov         lr, pc
   0007c	e12fff14	 bx          r4
   00080	e3500000	 cmp         r0, #0
-  00084	0a000012	 beq         |$trySystemMem$42002|
+  00084	0a000012	 beq         |$trySystemMem$42010|
 
 ; 58   :         {
 ; 59   :             DEBUGMSG(GPE_ZONE_WARNING, (L"OMAP GDI AllocSurface - Out of Video Memory\n"));
@@ -2357,7 +2357,7 @@
   000c8	15933000	 ldrne       r3, [r3]
   000cc	11a0e00f	 movne       lr, pc
   000d0	112fff13	 bxne        r3
-  000d4		 |$trySystemMem$42002|
+  000d4		 |$trySystemMem$42010|
 
 ; 75   :     }
 ; 76   : 
@@ -2442,14 +2442,14 @@
   00138	e28dd008	 add         sp, sp, #8
   0013c	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   00140	e12fff1e	 bx          lr
-  00144		 |$M43173|
+  00144		 |$M43181|
 
 			 ENDP  ; |?AllocSurface@OMAPDDGPE@@UAAJPAPAVGPESurf@@HHW4EGPEFormat@@H@Z|, OMAPDDGPE::AllocSurface
 
 	EXPORT	|?AllocSurface@OMAPDDGPE@@UAAJPAPAVOMAPDDGPESurface@@W4OMAP_DSS_PIXELFORMAT@@HH@Z| ; OMAPDDGPE::AllocSurface
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43197| DCD	|$LN11@AllocSurfa@4|
+|$T43205| DCD	|$LN11@AllocSurfa@4|
 	DCD	0x40002e02
 ; Function compile flags: /Ogspy
 
@@ -2462,7 +2462,7 @@
   00000		 |$LN11@AllocSurfa@4|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M43194|
+  00008		 |$M43202|
   00008	e1a04003	 mov         r4, r3
   0000c	e1a06002	 mov         r6, r2
   00010	e1a07001	 mov         r7, r1
@@ -2559,7 +2559,7 @@
   000b4		 |$LN12@AllocSurfa@4|
   000b4		 |$LN13@AllocSurfa@4|
   000b4	8876017c	 DCD         0x8876017c
-  000b8		 |$M43195|
+  000b8		 |$M43203|
 
 			 ENDP  ; |?AllocSurface@OMAPDDGPE@@UAAJPAPAVOMAPDDGPESurface@@W4OMAP_DSS_PIXELFORMAT@@HH@Z|, OMAPDDGPE::AllocSurface
 
@@ -2575,7 +2575,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43231| DCD	|$LN39@DetermineT|
+|$T43239| DCD	|$LN39@DetermineT|
 	DCD	0x4000c402
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2601,7 +2601,7 @@
   00000		 |$LN39@DetermineT|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M43228|
+  00008		 |$M43236|
   00008	e1a06001	 mov         r6, r1
   0000c	e1a05000	 mov         r5, r0
 
@@ -3071,14 +3071,14 @@
   0030c		 |$LN40@DetermineT|
   0030c		 |$LN41@DetermineT|
   0030c	00000000	 DCD         |??_C@_1GM@EAIMMHOP@?$AAw?$AAi?$AAd?$AAt?$AAh?$AA?$CI?$AA?$CF?$AAd?$AA?$CJ?$AA?5?$AAa?$AAo?$AAr?$AA?5?$AAh?$AAe?$AAi?$AAg?$AAh?$AAt?$AA?$CI?$AA?$CF?$AAd?$AA?$CJ?$AA?5?$AAe?$AAx?$AAc?$AAe?$AAe?$AAd?$AAs@|
-  00310		 |$M43229|
+  00310		 |$M43237|
 
 			 ENDP  ; |?DetermineTvOutSurface@OMAPDDGPE@@QAAXH@Z|, OMAPDDGPE::DetermineTvOutSurface
 
 	IMPORT	|??3@YAXPAX@Z|				; operator delete
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43244| DCD	|$LN6@scalar|
+|$T43252| DCD	|$LN6@scalar|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -3087,7 +3087,7 @@
   00000		 |??_GOMAPDDGPESurface@@UAAPAXI@Z| PROC	; OMAPDDGPESurface::`scalar deleting destructor'
   00000		 |$LN6@scalar|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M43241|
+  00004		 |$M43249|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
   0000c	eb000000	 bl          |??1OMAPDDGPESurface@@UAA@XZ|
@@ -3097,7 +3097,7 @@
   0001c	e1a00005	 mov         r0, r5
   00020	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00024	e12fff1e	 bx          lr
-  00028		 |$M43242|
+  00028		 |$M43250|
 
 			 ENDP  ; |??_GOMAPDDGPESurface@@UAAPAXI@Z|, OMAPDDGPESurface::`scalar deleting destructor'
 
@@ -3111,7 +3111,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43316| DCD	|$LN58@ShowOverla|
+|$T43324| DCD	|$LN58@ShowOverla|
 	DCD	0x40013402
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -3125,7 +3125,7 @@
   00000		 |$LN58@ShowOverla|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M43313|
+  00008		 |$M43321|
   00008	e1a04003	 mov         r4, r3
   0000c	e1a07002	 mov         r7, r2
   00010	e1a08001	 mov         r8, r1
@@ -3349,7 +3349,7 @@
   001c0	e58530e0	 str         r3, [r5, #0xE0]
   001c4	e594300c	 ldr         r3, [r4, #0xC]
   001c8	e58530e4	 str         r3, [r5, #0xE4]
-  001cc	ea0000b8	 b           |$done$42124|
+  001cc	ea0000b8	 b           |$done$42132|
   001d0		 |$LN24@ShowOverla|
 
 ; 297  :             goto done;
@@ -3449,7 +3449,7 @@
 ; 481  : 
 ; 482  : done:
 
-  00284	ea00008a	 b           |$done$42124|
+  00284	ea00008a	 b           |$done$42132|
   00288		 |$LN20@ShowOverla|
 
 ; 328  :             goto done;
@@ -3471,7 +3471,7 @@
 ; 339  :         dwResult = (DWORD) DDERR_OUTOFCAPS;
 
   00294	159f9228	 ldrne       r9, [pc, #0x228]
-  00298	1a000085	 bne         |$done$42124|
+  00298	1a000085	 bne         |$done$42132|
 
 ; 408  :     }
 ; 409  : 
@@ -3833,7 +3833,7 @@
   004a8	e3a01000	 mov         r1, #0
   004ac	e1a00005	 mov         r0, r5
   004b0	eb000000	 bl          |?DetermineTvOutSurface@OMAPDDGPE@@QAAXH@Z|
-  004b4		 |$done$42124|
+  004b4		 |$done$42132|
 
 ; 483  :     //  Return result
 ; 484  :     return dwResult;
@@ -3850,7 +3850,7 @@
   004c8	3ffc71c7	 DCD         0x3ffc71c7
   004cc		 |$LN62@ShowOverla|
   004cc	3fe38e39	 DCD         0x3fe38e39
-  004d0		 |$M43314|
+  004d0		 |$M43322|
 
 			 ENDP  ; |?ShowOverlay@OMAPDDGPE@@QAAKPAVOMAPDDGPESurface@@PAUtagRECT@@1H@Z|, OMAPDDGPE::ShowOverlay
 
@@ -3858,7 +3858,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43363| DCD	|$LN25@HideOverla|
+|$T43371| DCD	|$LN25@HideOverla|
 	DCD	0x40004201
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\omap_ddsurf.cpp
@@ -3871,7 +3871,7 @@
 
   00000		 |$LN25@HideOverla|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M43360|
+  00004		 |$M43368|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -4010,7 +4010,7 @@
 
   00100	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00104	e12fff1e	 bx          lr
-  00108		 |$M43361|
+  00108		 |$M43369|
 
 			 ENDP  ; |?HideOverlay@OMAPDDGPE@@QAAKPAVOMAPDDGPESurface@@@Z|, OMAPDDGPE::HideOverlay
 

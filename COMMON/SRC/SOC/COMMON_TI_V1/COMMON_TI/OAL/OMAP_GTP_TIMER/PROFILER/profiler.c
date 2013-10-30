@@ -36,7 +36,7 @@ OMAP_GPTIMER_REGS   *g_pPerfTimer = NULL;
 //
 static UINT32                s_Frequency;
 
-// UNDONE:
+// UNDONE: (General-Purpose Timer)
 //  Need to initialize all gpt to select clk src to sys_clk
 
 //------------------------------------------------------------------------------
@@ -62,6 +62,7 @@ void OALPerformanceTimerInit()
 
 	// Select high frequency source clock and frequency
     srcClock = BSPGetGPTPerfHighFreqClock(&s_Frequency);
+    //OALMSG(1, (L"---High Performance Frequency is %d hz------\r\n", s_Frequency));
 	//PrcmDeviceSetSourceClocks(gptPerfDevice,1,&srcClock);
     // Enable GPTimer for high perf/monte carlo profiling
     EnableDeviceClocks(gptPerfDevice, TRUE);
@@ -103,8 +104,8 @@ void OALPerformanceTimerInit()
 
 
 
-    OALMSG(1, (L"****Profiler Build****\r\n"));
-    OALMSG(1, (L"---High Performance Frequency is %d hz---\r\n", s_Frequency));
+    //OALMSG(1, (L"****Profiler Build****\r\n"));
+    //OALMSG(1, (L"---High Performance Frequency is %d hz---\r\n", s_Frequency));
     
     // build tclr mask
     tclr |= GPTIMER_TCLR_AR;
@@ -121,6 +122,7 @@ void OALPerformanceTimerInit()
     SETREG32(&g_pPerfTimer->TCLR, GPTIMER_TCLR_ST);
     while ((INREG32(&g_pPerfTimer->TWPS) & GPTIMER_TWPS_TCLR) != 0);
     
+    //OALMSG(1, (L"OALPerformanceTimerInit() end!\r\n"));
 }
 
 

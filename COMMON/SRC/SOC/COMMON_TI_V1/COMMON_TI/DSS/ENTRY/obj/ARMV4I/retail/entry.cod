@@ -61,7 +61,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\entry\entry.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42039| DCD	|$LN9@GetGPE|
+|$T42047| DCD	|$LN9@GetGPE|
 	DCD	0x40001001
 ; Function compile flags: /Ogspy
 
@@ -73,7 +73,7 @@
 
   00000		 |$LN9@GetGPE|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M42036|
+  00004		 |$M42044|
 
 ; 29   :     if (!g_pGPE)
 
@@ -107,7 +107,7 @@
   0003c		 |$LN10@GetGPE|
   0003c		 |$LN11@GetGPE|
   0003c	00000000	 DCD         |?g_pGPE@@3PAVDDGPE@@A|
-  00040		 |$M42037|
+  00040		 |$M42045|
 
 			 ENDP  ; |GetGPE|
 

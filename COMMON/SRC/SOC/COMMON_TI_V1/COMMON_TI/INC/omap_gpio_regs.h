@@ -16,7 +16,7 @@
 #define __OMAP_GPIO_REGS_H
 
 //------------------------------------------------------------------------------
-
+// General-Purpose Interface Register
 typedef struct {
     REG32 REVISION;                // 0x0000
     REG32 zzzReserved01[3];

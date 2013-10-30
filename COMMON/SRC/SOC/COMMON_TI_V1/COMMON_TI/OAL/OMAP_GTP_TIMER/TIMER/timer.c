@@ -424,10 +424,7 @@ OALTimerInit(
 	UNREFERENCED_PARAMETER(countsPerMSec);
 	UNREFERENCED_PARAMETER(countsMargin);
 
-    OALMSG(OAL_TIMER&&OAL_FUNC, (
-        L"+OALTimerInit(%d, %d, %d)\r\n", sysTickMSec, countsPerMSec,
-        countsMargin
-        ));
+    OALMSG(1&&OAL_FUNC, (L"+OALTimerInit(%d, %d, %d)\r\n", sysTickMSec, countsPerMSec, countsMargin ));
 
     //  Initialize timer state information
     g_oalTimerContext.maxPeriodMSec = dwOEMMaxIdlePeriod;   // Maximum period the timer will interrupt on, in mSec
@@ -445,12 +442,15 @@ OALTimerInit(
     // Use variable system tick
     pOEMUpdateRescheduleTime = OALTimerUpdateRescheduleTime;
 
-// Get virtual addresses for hardware
-    g_TimerDevice = BSPGetSysTimerDevice();
+	// Get virtual addresses for hardware
+    g_TimerDevice = BSPGetSysTimerDevice(); // OMAP_DEVICE_GPTIMER1
+    
     g_pTimerRegs = OALPAtoUA(GetAddressByDevice(g_TimerDevice));
-	
+	OALMSG(1 && OAL_FUNC, (L" TimerPA: 0x%x\r\n", GetAddressByDevice(g_TimerDevice)));
+	OALMSG(1 && OAL_FUNC, (L" TimerUA: 0x%x\r\n", g_pTimerRegs));
 	// Select 32K frequency source clock
-    srcClock = BSPGetSysTimer32KClock();
+    srcClock = BSPGetSysTimer32KClock(); // k32K_FCLK
+    
 	//PrcmDeviceSetSourceClocks(g_TimerDevice,1,&srcClock);
 
     // enable gptimer
@@ -493,10 +493,10 @@ OALTimerInit(
     //while ((INREG32(&g_pTimerRegs->TWPS) & GPTIMER_TWPS_TCLR) != 0);
 
     // Set global variable to tell interrupt module about timer used
-    g_oalTimerIrq = GetIrqByDevice(g_TimerDevice,NULL);
+    g_oalTimerIrq = GetIrqByDevice(g_TimerDevice,NULL); // 37
 
     // Request SYSINTR for timer IRQ, it is done to reserve it...
-    sysIntr = OALIntrRequestSysIntr(1, &g_oalTimerIrq, OAL_INTR_FORCE_STATIC);
+    sysIntr = OALIntrRequestSysIntr(1, &g_oalTimerIrq, OAL_INTR_FORCE_STATIC); // 17
 
     // Enable System Tick interrupt
     if (!OEMInterruptEnable(sysIntr, NULL, 0))
@@ -514,7 +514,7 @@ OALTimerInit(
     rc = TRUE;
 
 cleanUp:
-    OALMSG(OAL_TIMER && OAL_FUNC, (L"-OALTimerInit(rc = %d)\r\n", rc));
+    OALMSG(1 && OAL_FUNC, (L"-OALTimerInit(rc = %d)\r\n", rc));
     return rc;
 }
 

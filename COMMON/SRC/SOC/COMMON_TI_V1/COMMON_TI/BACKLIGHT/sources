@@ -1,6 +1,10 @@
 # All rights reserved ADENEO EMBEDDED 2010
 !INCLUDE "..\sources.inc"
 
+INCLUDES= \
+    $(INCLUDES);\
+    $(_TARGETPLATROOT)\src\inc\OEMDefs\;
+    
 TARGETNAME=$(TI_COMMON)_backlight_mdd
 TARGETTYPE=LIBRARY
 

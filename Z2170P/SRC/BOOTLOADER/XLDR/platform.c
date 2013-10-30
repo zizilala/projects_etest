@@ -45,7 +45,7 @@ typedef struct CPU_OPP_SETTINGS
     UINT32 VDD2Init;	
 }CPU_OPP_Settings, *pCPU_OPP_Settings;
 
-CPU_OPP_Settings OMAP35x_OPP_Table[OMAP35x_OPP_NUM]=
+/*CPU_OPP_Settings OMAP35x_OPP_Table[OMAP35x_OPP_NUM]=
 {
      // MPU[125Mhz @ 0.975V], IVA2[ 90Mhz @ 0.975V]
     {125, 90, 0x1e, 0x2c},
@@ -59,7 +59,7 @@ CPU_OPP_Settings OMAP35x_OPP_Table[OMAP35x_OPP_NUM]=
     {600, 430, 0x3c, 0x2c},
      // MPU[720hz @ 1.3500V], IVA2[520Mhz @ 1.35V]    
     {720, 520, 0x3c, 0x2c}
-};
+};*/
 
 CPU_OPP_Settings OMAP37x_OPP_Table[OMAP37x_OPP_NUM]=
 {
@@ -93,10 +93,11 @@ typedef enum
 {
     DDR_TYPE_MICRON,
     DDR_TYPE_HYNIX,
+    DDR_TYPE_HYNIX_512,
     DDR_TYPE_MAX
 }DDR_DEVICE_TYPE;
 
-DDR_DEVICE_PARAM BSP_DDR_device_params[2]=
+DDR_DEVICE_PARAM BSP_DDR_device_params[3]=
 {
     /* MICRON DDR */
    {
@@ -109,8 +110,7 @@ DDR_DEVICE_PARAM BSP_DDR_device_params[2]=
        (UINT32)BSP_MICRON_SDRC_RFR_CTRL_0,
        (UINT32)BSP_MICRON_SDRC_RFR_CTRL_1,
    },
-   
-    /* HYNIX DDR */
+    /* HYNIX DDR 256MB */
    {
        (UINT32)BSP_HYNIX_SDRC_MCFG_0,
        (UINT32)BSP_HYNIX_SDRC_MCFG_1,
@@ -120,6 +120,17 @@ DDR_DEVICE_PARAM BSP_DDR_device_params[2]=
        (UINT32)BSP_HYNIX_SDRC_ACTIM_CTRLB_1, 
        (UINT32)BSP_HYNIX_SDRC_RFR_CTRL_0,       
        (UINT32)BSP_HYNIX_SDRC_RFR_CTRL_1,        
+   },
+	/* HYNIX DDR 512MB */
+   {
+       (UINT32)BSP_HYNIX_512_SDRC_MCFG_0,
+       (UINT32)BSP_HYNIX_512_SDRC_MCFG_1,
+       (UINT32)BSP_HYNIX_512_SDRC_ACTIM_CTRLA_0,
+       (UINT32)BSP_HYNIX_512_SDRC_ACTIM_CTRLB_0,       
+       (UINT32)BSP_HYNIX_512_SDRC_ACTIM_CTRLA_1,
+       (UINT32)BSP_HYNIX_512_SDRC_ACTIM_CTRLB_1, 
+       (UINT32)BSP_HYNIX_512_SDRC_RFR_CTRL_0,       
+       (UINT32)BSP_HYNIX_512_SDRC_RFR_CTRL_1,        
    }
 };
 //------------------------------------------------------------------------------
@@ -351,8 +362,8 @@ void Core_dpll_init(void)
     
     // configure m:n clock ratios as well as frequency selection for core dpll
     OUTREG32(&pPrcmClkCM->CM_CLKSEL1_PLL, BSP_CM_CLKSEL1_PLL);
-}
 
+}
 //------------------------------------------------------------------------------
 //
 //  Function:  Per_dpll_init
@@ -430,7 +441,7 @@ VOID PlatformSetup()
     //
     //if(gCPU_family == CPU_FAMILY_DM37XX)
     //{
-	opp_setting = &OMAP37x_OPP_Table[BSP_OPM_SELECT_37XX-1];
+	opp_setting = &OMAP37x_OPP_Table[BSP_OPM_SELECT_37XX-1]; // BSP_OPM_SELECT_37XX=4
     //}
     //else 
     //{
@@ -499,8 +510,6 @@ static VOID PinMuxSetup()
             UART3_PADS
             MMC1_PADS
             I2C1_PADS
-            I2C2_PADS
-            I2C3_PADS
             WKUP_PAD_ENTRY(SYS_32K, INPUT_ENABLED | PULL_RESISTOR_DISABLED | MUXMODE(0))
             GPIO_PADS_37XX       
             END_OF_PAD_ARRAY
@@ -591,8 +600,8 @@ void ClockSetup(pCPU_OPP_Settings opp_setting)
 //
 static VOID MemorySetup()
 {
-    OMAP_GPMC_REGS* pGpmc = OALPAtoUA(OMAP_GPMC_REGS_PA);
-    OMAP_SDRC_REGS* pSdrc = OALPAtoUA(OMAP_SDRC_REGS_PA);
+    OMAP_GPMC_REGS* pGpmc = OALPAtoUA(OMAP_GPMC_REGS_PA); // for NAND/NOR flash & SRAM
+    OMAP_SDRC_REGS* pSdrc = OALPAtoUA(OMAP_SDRC_REGS_PA); // for SDRAM
     OMAP_PRCM_GLOBAL_PRM_REGS * pPrmGlobal = OALPAtoUA(OMAP_PRCM_GLOBAL_PRM_REGS_PA);
     OMAP_SYSC_PADCONFS_REGS *pConfig = OALPAtoUA(OMAP_SYSC_PADCONFS_REGS_PA);
     DDR_DEVICE_TYPE ddr_type = DDR_TYPE_MICRON;	
@@ -635,15 +644,15 @@ static VOID MemorySetup()
 #endif
     
         // Configure CS5 for LAN,  Base Address 0x15000000
-        OUTREG32(&pGpmc->GPMC_CONFIG1_5, BSP_GPMC_LAN_CONFIG1_200);
-        OUTREG32(&pGpmc->GPMC_CONFIG2_5, BSP_GPMC_LAN_CONFIG2_200);
-        OUTREG32(&pGpmc->GPMC_CONFIG3_5, BSP_GPMC_LAN_CONFIG3_200);
-        OUTREG32(&pGpmc->GPMC_CONFIG4_5, BSP_GPMC_LAN_CONFIG4_200); 
-        OUTREG32(&pGpmc->GPMC_CONFIG5_5, BSP_GPMC_LAN_CONFIG5_200); 
-        OUTREG32(&pGpmc->GPMC_CONFIG6_5, BSP_GPMC_LAN_CONFIG6_200); 
-        OUTREG32(&pGpmc->GPMC_CONFIG7_5, BSP_GPMC_LAN_CONFIG7); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG1_5, BSP_GPMC_LAN_CONFIG1_200);
+        //OUTREG32(&pGpmc->GPMC_CONFIG2_5, BSP_GPMC_LAN_CONFIG2_200);
+        //OUTREG32(&pGpmc->GPMC_CONFIG3_5, BSP_GPMC_LAN_CONFIG3_200);
+        //OUTREG32(&pGpmc->GPMC_CONFIG4_5, BSP_GPMC_LAN_CONFIG4_200); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG5_5, BSP_GPMC_LAN_CONFIG5_200); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG6_5, BSP_GPMC_LAN_CONFIG6_200); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG7_5, BSP_GPMC_LAN_CONFIG7); 
 
-        ddr_type = DDR_TYPE_HYNIX;
+        ddr_type = DDR_TYPE_HYNIX_512;
     }
     else if (gCPU_family == CPU_FAMILY_OMAP35XX)
     {
@@ -659,13 +668,13 @@ static VOID MemorySetup()
 #endif
     
         // Configure CS5 for LAN,  Base Address 0x15000000
-        OUTREG32(&pGpmc->GPMC_CONFIG1_5, BSP_GPMC_LAN_CONFIG1_166);
-        OUTREG32(&pGpmc->GPMC_CONFIG2_5, BSP_GPMC_LAN_CONFIG2_166);
-        OUTREG32(&pGpmc->GPMC_CONFIG3_5, BSP_GPMC_LAN_CONFIG3_166);
-        OUTREG32(&pGpmc->GPMC_CONFIG4_5, BSP_GPMC_LAN_CONFIG4_166); 
-        OUTREG32(&pGpmc->GPMC_CONFIG5_5, BSP_GPMC_LAN_CONFIG5_166); 
-        OUTREG32(&pGpmc->GPMC_CONFIG6_5, BSP_GPMC_LAN_CONFIG6_166); 
-        OUTREG32(&pGpmc->GPMC_CONFIG7_5, BSP_GPMC_LAN_CONFIG7); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG1_5, BSP_GPMC_LAN_CONFIG1_166);
+        //OUTREG32(&pGpmc->GPMC_CONFIG2_5, BSP_GPMC_LAN_CONFIG2_166);
+        //OUTREG32(&pGpmc->GPMC_CONFIG3_5, BSP_GPMC_LAN_CONFIG3_166);
+        //OUTREG32(&pGpmc->GPMC_CONFIG4_5, BSP_GPMC_LAN_CONFIG4_166); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG5_5, BSP_GPMC_LAN_CONFIG5_166); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG6_5, BSP_GPMC_LAN_CONFIG6_166); 
+        //OUTREG32(&pGpmc->GPMC_CONFIG7_5, BSP_GPMC_LAN_CONFIG7); 
 
         ddr_type = DDR_TYPE_MICRON;		
 

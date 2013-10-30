@@ -31,29 +31,30 @@
 ;  downloaded image is placed on virtual addresses (but EBOOT runs without
 ;  MMU).
 ;
-        LEAF_ENTRY StartUp
+	LEAF_ENTRY StartUp
 
-        ;---------------------------------------------------------------
-        ; Jump to BootMain
-        ;---------------------------------------------------------------
+	;---------------------------------------------------------------
+	; Jump to BootMain
+	;---------------------------------------------------------------
 
 BUILDTTB
-        ; find out CHIP id, use chip id to determine what DDR is used
-        ; This approach has following assumptions:
-        ; 1. OMAP35xx uses Micron DDR that has 128M connected to CS0 
-        ;     and another 128M connected to CS1, if BSP_SDRAM_BANK1_ENABLE
-        ;     is enabled.
-        ; 2. 37xx uses Hynix DDR that has 256M continuous memory connected to CS0
-        ;
-        ldr     r0, =OMAP_IDCODE_REGS_PA
-        ldr     r1, [r0]
-        ldr     r2, =0x0FFFF000
-        ldr     r3, =0x0B891000
-        and		r1, r1, r2
-        cmp		r1, r3
-        addne     r11, pc, #g_oalAddressTable-(.+8)    ; Pointer to OEMAddressTable.
-        addeq     r11, pc, #g_oalAddressTableHynix - (. + 8)   ; Pointer to OEMAddressTable for Hynix device
-
+	; find out CHIP id, use chip id to determine what DDR is used
+	; This approach has following assumptions:
+	; 1. OMAP35xx uses Micron DDR that has 128M connected to CS0 
+	;     and another 128M connected to CS1, if BSP_SDRAM_BANK1_ENABLE
+	;     is enabled.
+	; 2. 37xx uses Hynix DDR that has 256M continuous memory connected to CS0
+	;
+;	ldr     r0, =OMAP_IDCODE_REGS_PA
+;	ldr     r1, [r0]
+;	ldr     r2, =0x0FFFF000
+;	ldr     r3, =0x0B891000
+;	and		r1, r1, r2
+;	cmp		r1, r3
+;	addne	r11, pc, #g_oalAddressTable-(.+8)			;X Pointer to OEMAddressTable.
+;	addeq	r11, pc, #g_oalAddressTableHynix - (. + 8)	;V Pointer to OEMAddressTable for Hynix device
+	add		r11, pc, #g_oalAddressTableHynix - (. + 8)
+	
     ; Set the TTB.
     ;
     ldr     r9, =BSP_PTES_PA

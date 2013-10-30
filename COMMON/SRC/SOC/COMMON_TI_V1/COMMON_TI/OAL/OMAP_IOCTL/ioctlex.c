@@ -626,9 +626,8 @@ BOOL OALIoctlGetMacAddress(
 //
 //  Queries the BSP arguments and get the display resolution
 //
-BOOL OALIoctlGetDisplayRes(
-    UINT32 code, VOID *pInpBuffer, UINT32 inpSize, VOID *pOutBuffer,
-    UINT32 outSize, UINT32 *pOutSize)
+BOOL OALIoctlGetDisplayRes( UINT32 code, VOID *pInpBuffer, UINT32 inpSize, 
+							VOID *pOutBuffer, UINT32 outSize, UINT32 *pOutSize)
 {
     BOOL bRet = FALSE;
     DWORD *pDispRes = NULL;

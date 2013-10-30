@@ -243,10 +243,10 @@ OALIoCtlHalInitRTC(
     // First read RTC status from Triton 
     s_rtc.hTWL = TWLOpen();
     if (s_rtc.hTWL == NULL)
-        {
+	{
         OALMSG(OAL_ERROR, (L" OALIoCtlHalInitRTC(): Failed to open Triton\r\n"));
         goto cleanUp;
-        }
+	}
 
     // Read secure registers for secure hash
     status = 0;
@@ -266,20 +266,20 @@ OALIoCtlHalInitRTC(
 
     OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  RTC TWL_SECURED_REG_= 0x%x\r\n", status));
 
-#if 0
+#if 1 // brian
     // Not needed for CE embedded, only need to reset RTC if TWL/TPS PMIC is reset
     // Check for a clean boot of device - if so, reset date/time to system default (LTK2026)
-    pColdBoot = OALArgsQuery(OAL_ARGS_QUERY_COLDBOOT);
-    if ((pColdBoot != NULL) && *pColdBoot)
-        {
-        OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Clean boot, reset date time\r\n"));
-        status = 0;
-        }
+    //pColdBoot = OALArgsQuery(OAL_ARGS_QUERY_COLDBOOT);
+    //if ((pColdBoot != NULL) && *pColdBoot)
+    //    {
+	OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Clean boot, reset date time\r\n"));
+	status = 0;
+    //    }
 #endif
 		
     // Start RTC when it isn't running
     if (status == 0 && pGivenTime != NULL)
-        {
+	{
         OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Resetting RTC\r\n"));
 
         // Write power_up and alarm bits to clear power up flag (and any interrupt flag)
@@ -318,9 +318,9 @@ OALIoCtlHalInitRTC(
 
         //  Save off base offset to the backup regs
         WriteBaseOffset( &s_rtc.baseOffset ); 
-        }
+	}
     else
-        {
+	{
         SYSTEMTIME  baseSystemTime;
 
         OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  Getting RTC\r\n"));
@@ -352,7 +352,7 @@ OALIoCtlHalInitRTC(
 
         //  Read the offset from the backup regs
         ReadBaseOffset( &s_rtc.baseOffset ); 
-        }        
+	}        
 
 
     OALMSG(OAL_TIMER && OAL_FUNC, (L" OALIoCtlHalInitRTC():  RTC = %s\r\n", HWTimeToString(bcdTime)));

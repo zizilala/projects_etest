@@ -96,7 +96,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdma\dmacontroller.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36520| DCD	|$LN5@DmaControl|
+|$T36521| DCD	|$LN5@DmaControl|
 	DCD	0x40000a00
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -118,7 +118,7 @@
 ; 51   :     {
 
   00000		 |$LN5@DmaControl|
-  00000		 |$M36517|
+  00000		 |$M36518|
   00000	e59f301c	 ldr         r3, [pc, #0x1C]
   00004	e3a02000	 mov         r2, #0
   00008	e5802004	 str         r2, [r0, #4]
@@ -134,7 +134,7 @@
   00024		 |$LN6@DmaControl|
   00024		 |$LN7@DmaControl|
   00024	00000000	 DCD         |??_7DmaControllerBase@@6B@|
-  00028		 |$M36518|
+  00028		 |$M36519|
 
 			 ENDP  ; |??0DmaControllerBase@@QAA@H@Z|, DmaControllerBase::DmaControllerBase
 
@@ -150,7 +150,7 @@
 	IMPORT	|?DI_ReleaseInterrupt@SystemDmaController@@UAAHK@Z| ; SystemDmaController::DI_ReleaseInterrupt
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36537| DCD	|$LN12@SystemDmaC|
+|$T36538| DCD	|$LN12@SystemDmaC|
 	DCD	0x40001601
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -176,7 +176,7 @@
 
   00000		 |$LN12@SystemDmaC|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36534|
+  00004		 |$M36535|
   00004	e59f3048	 ldr         r3, [pc, #0x48]
   00008	e3a02020	 mov         r2, #0x20
   0000c	e3a01000	 mov         r1, #0
@@ -215,14 +215,14 @@
   00054		 |$LN13@SystemDmaC|
   00054		 |$LN14@SystemDmaC|
   00054	00000000	 DCD         |??_7SystemDmaController@@6B@|
-  00058		 |$M36535|
+  00058		 |$M36536|
 
 			 ENDP  ; |??0SystemDmaController@@QAA@XZ|, SystemDmaController::SystemDmaController
 
 	EXPORT	|??1SystemDmaController@@QAA@XZ|	; SystemDmaController::~SystemDmaController
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36547| DCD	|$LN5@SystemDmaC@2|
+|$T36548| DCD	|$LN5@SystemDmaC@2|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -234,7 +234,7 @@
 
   00000		 |$LN5@SystemDmaC@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36544|
+  00004		 |$M36545|
   00004	e1a02000	 mov         r2, r0
   00008	e59f300c	 ldr         r3, [pc, #0xC]
 
@@ -250,7 +250,7 @@
   0001c		 |$LN6@SystemDmaC@2|
   0001c		 |$LN7@SystemDmaC@2|
   0001c	00000000	 DCD         |??_7SystemDmaController@@6B@|
-  00020		 |$M36545|
+  00020		 |$M36546|
 
 			 ENDP  ; |??1SystemDmaController@@QAA@XZ|, SystemDmaController::~SystemDmaController
 
@@ -270,7 +270,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdma\dma.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36571| DCD	|$LN20@Initialize|
+|$T36572| DCD	|$LN20@Initialize|
 	DCD	0x40006302
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -354,7 +354,7 @@
   00000		 |$LN20@Initialize|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M36568|
+  00008		 |$M36569|
   00008	e1a05000	 mov         r5, r0
 
 ; 108  :     DEBUGMSG(ZONE_FUNCTION, (
@@ -394,7 +394,7 @@
   00038	e59f3130	 ldr         r3, [pc, #0x130]
   0003c	e5933440	 ldr         r3, [r3, #0x440]
   00040	e3130001	 tst         r3, #1
-  00044	0a000044	 beq         |$cleanUp$36210|
+  00044	0a000044	 beq         |$cleanUp$36211|
   00048	eb000000	 bl          GetLastError
   0004c	e1a01000	 mov         r1, r0
   00050	e59f0130	 ldr         r0, [pc, #0x130]
@@ -411,7 +411,7 @@
 ; 159  : 
 ; 160  : cleanUp:
 
-  00058	ea00003f	 b           |$cleanUp$36210|
+  00058	ea00003f	 b           |$cleanUp$36211|
   0005c		 |$LN6@Initialize|
 
 ; 124  :         goto cleanUp;
@@ -485,7 +485,7 @@
   000ec	e59f307c	 ldr         r3, [pc, #0x7C]
   000f0	e5933440	 ldr         r3, [r3, #0x440]
   000f4	e3130001	 tst         r3, #1
-  000f8	0a000017	 beq         |$cleanUp$36210|
+  000f8	0a000017	 beq         |$cleanUp$36211|
   000fc	eb000000	 bl          GetLastError
   00100	e1a01000	 mov         r1, r0
   00104	e59f0068	 ldr         r0, [pc, #0x68]
@@ -502,7 +502,7 @@
 ; 159  : 
 ; 160  : cleanUp:
 
-  0010c	ea000012	 b           |$cleanUp$36210|
+  0010c	ea000012	 b           |$cleanUp$36211|
   00110		 |$LN4@Initialize|
 
 ; 143  :         goto cleanUp;
@@ -532,7 +532,7 @@
   00134	e59f3034	 ldr         r3, [pc, #0x34]
   00138	e5933440	 ldr         r3, [r3, #0x440]
   0013c	e3130001	 tst         r3, #1
-  00140	0a000005	 beq         |$cleanUp$36210|
+  00140	0a000005	 beq         |$cleanUp$36211|
   00144	eb000000	 bl          GetLastError
   00148	e1a01000	 mov         r1, r0
   0014c	e59f0018	 ldr         r0, [pc, #0x18]
@@ -541,7 +541,7 @@
 ; 159  : 
 ; 160  : cleanUp:
 
-  00154	ea000000	 b           |$cleanUp$36210|
+  00154	ea000000	 b           |$cleanUp$36211|
   00158		 |$LN2@Initialize|
 
 ; 155  :         goto cleanUp;
@@ -550,7 +550,7 @@
 ; 158  :     rc = TRUE;
 
   00158	e3a06001	 mov         r6, #1
-  0015c		 |$cleanUp$36210|
+  0015c		 |$cleanUp$36211|
 
 ; 161  :     DEBUGMSG(ZONE_FUNCTION, (
 ; 162  :         L"-InitializeDevice(rc=%d)\r\n", rc
@@ -579,7 +579,7 @@
   00184	00000000	 DCD         |??_C@_19FOCAGMKL@?$AAI?$AAR?$AAQ?$AA0?$AA?$AA@|
   00188		 |$LN29@Initialize|
   00188	00000000	 DCD         |??_C@_1KI@PEEAJLIM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$CB?$AA?5?$AA?$CI?$AAD?$AAM?$AAA?$AA?$CJ?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAe?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AA?3?$AAU@|
-  0018c		 |$M36569|
+  0018c		 |$M36570|
 
 			 ENDP  ; |?InitializeDevice@@YAHPAUDevice_t@@@Z|, InitializeDevice
 
@@ -587,7 +587,7 @@
 	IMPORT	|??3@YAXPAX@Z|				; operator delete
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36594| DCD	|$LN8@scalar|
+|$T36595| DCD	|$LN8@scalar|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -596,7 +596,7 @@
   00000		 |??_GSystemDmaController@@QAAPAXI@Z| PROC ; SystemDmaController::`scalar deleting destructor'
   00000		 |$LN8@scalar|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M36591|
+  00004		 |$M36592|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
   0000c	e59f301c	 ldr         r3, [pc, #0x1C]
@@ -611,7 +611,7 @@
   00030		 |$LN9@scalar|
   00030		 |$LN10@scalar|
   00030	00000000	 DCD         |??_7SystemDmaController@@6B@|
-  00034		 |$M36592|
+  00034		 |$M36593|
 
 			 ENDP  ; |??_GSystemDmaController@@QAAPAXI@Z|, SystemDmaController::`scalar deleting destructor'
 
@@ -620,7 +620,7 @@
 	IMPORT	|LocalAlloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36608| DCD	|$LN10@DMA_Open|
+|$T36609| DCD	|$LN10@DMA_Open|
 	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 
@@ -632,7 +632,7 @@
 
   00000		 |$LN10@DMA_Open|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M36605|
+  00004		 |$M36606|
   00004	e1b06000	 movs        r6, r0
 
 ; 316  :     DWORD rc = (DWORD)NULL;
@@ -653,11 +653,11 @@
 ; 328  :     // Check if we get correct context
 ; 329  :     if ((pDevice == NULL) || (pDevice->cookie != DMA_DEVICE_COOKIE))
 
-  0000c	0a000013	 beq         |$cleanUp$36286|
+  0000c	0a000013	 beq         |$cleanUp$36287|
   00010	e5962000	 ldr         r2, [r6]
   00014	e59f3054	 ldr         r3, [pc, #0x54]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a00000f	 bne         |$cleanUp$36286|
+  0001c	1a00000f	 bne         |$cleanUp$36287|
 
 ; 330  :         {
 ; 331  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: DMA_Open: "
@@ -676,7 +676,7 @@
 
 ; 339  :     if (pInstance == NULL)
 
-  00030	0a00000a	 beq         |$cleanUp$36286|
+  00030	0a00000a	 beq         |$cleanUp$36287|
 
 ; 340  :         {
 ; 341  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: DMA_Open: "
@@ -718,7 +718,7 @@
 ; 361  :     rc = (DWORD)pInstance;
 
   0005c	e1a05004	 mov         r5, r4
-  00060		 |$cleanUp$36286|
+  00060		 |$cleanUp$36287|
 
 ; 362  : 
 ; 363  : cleanUp:
@@ -734,7 +734,7 @@
   0006c	646d6149	 DCD         0x646d6149
   00070		 |$LN13@DMA_Open|
   00070	646d6144	 DCD         0x646d6144
-  00074		 |$M36606|
+  00074		 |$M36607|
 
 			 ENDP  ; |?DMA_Open@@YAKKKK@Z|, DMA_Open
 
@@ -743,7 +743,7 @@
 	IMPORT	|InterlockedDecrement|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36622| DCD	|$LN8@DMA_Close|
+|$T36623| DCD	|$LN8@DMA_Close|
 	DCD	0x40001101
 ; Function compile flags: /Ogspy
 
@@ -755,7 +755,7 @@
 
   00000		 |$LN8@DMA_Close|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36619|
+  00004		 |$M36620|
   00004	e1b04000	 movs        r4, r0
 
 ; 379  :     BOOL rc = FALSE;
@@ -770,11 +770,11 @@
 ; 385  :     // Check if we get correct context
 ; 386  :     if ((pInstance == NULL) || (pInstance->cookie != DMA_INSTANCE_COOKIE))
 
-  0000c	0a000009	 beq         |$cleanUp$36308|
+  0000c	0a000009	 beq         |$cleanUp$36309|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f3024	 ldr         r3, [pc, #0x24]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000005	 bne         |$cleanUp$36308|
+  0001c	1a000005	 bne         |$cleanUp$36309|
 
 ; 387  :         {
 ; 388  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: DMA_Read: "
@@ -808,7 +808,7 @@
 ; 407  :     rc = TRUE;
 
   00034	e3a00001	 mov         r0, #1
-  00038		 |$cleanUp$36308|
+  00038		 |$cleanUp$36309|
 
 ; 408  : 
 ; 409  : cleanUp:
@@ -821,7 +821,7 @@
   00040		 |$LN9@DMA_Close|
   00040		 |$LN10@DMA_Close|
   00040	646d6149	 DCD         0x646d6149
-  00044		 |$M36620|
+  00044		 |$M36621|
 
 			 ENDP  ; |?DMA_Close@@YAHK@Z|, DMA_Close
 
@@ -833,7 +833,7 @@
 	IMPORT	|EnterCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36651| DCD	|$LN62@DMA_IOCont|
+|$T36652| DCD	|$LN62@DMA_IOCont|
 	DCD	0x4000c302
 ; Function compile flags: /Ogspy
 
@@ -846,7 +846,7 @@
   00000		 |$LN62@DMA_IOCont|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M36648|
+  00008		 |$M36649|
   00008	e1a06003	 mov         r6, r3
   0000c	e1a05002	 mov         r5, r2
 
@@ -869,7 +869,7 @@
   00018	e5907004	 ldr         r7, [r0, #4]
   0001c	e3a08000	 mov         r8, #0
   00020	e154000e	 cmp         r4, lr
-  00024	1a0000ac	 bne         |$cleanUp$36329|
+  00024	1a0000ac	 bne         |$cleanUp$36330|
 
 ; 445  :         {
 ; 446  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: DMA_IOControl: "
@@ -900,7 +900,7 @@
   0006c	0a000011	 beq         |$LN6@DMA_IOCont|
   00070	e59f3274	 ldr         r3, [pc, #0x274]
   00074	e1510003	 cmp         r1, r3
-  00078	1a000097	 bne         |$cleanUp$36329|
+  00078	1a000097	 bne         |$cleanUp$36330|
 
 ; 695  :             LeaveCriticalSection(&pDevice->cs);
 ; 696  :             }
@@ -1306,7 +1306,7 @@
   0023c	e2870018	 add         r0, r7, #0x18
   00240	eb000000	 bl          LeaveCriticalSection
   00244	e3a08001	 mov         r8, #1
-  00248	ea000023	 b           |$cleanUp$36329|
+  00248	ea000023	 b           |$cleanUp$36330|
   0024c		 |$LN41@DMA_IOCont|
 
 ; 472  :                 {
@@ -1414,7 +1414,7 @@
 
 ; 531  :                 break;
 
-  002d0	ea000001	 b           |$cleanUp$36329|
+  002d0	ea000001	 b           |$cleanUp$36330|
   002d4		 |$LN39@DMA_IOCont|
 
 ; 497  :                 {
@@ -1425,7 +1425,7 @@
 
   002d4	e3a00057	 mov         r0, #0x57
   002d8	eb000000	 bl          SetLastError
-  002dc		 |$cleanUp$36329|
+  002dc		 |$cleanUp$36330|
 
 ; 725  :     DEBUGMSG(ZONE_FUNCTION, (L"-DMA_IOControl(rc = %d)\r\n", rc));
 ; 726  :     return rc;
@@ -1452,7 +1452,7 @@
   00304	01da0404	 DCD         0x1da0404
   00308		 |$LN71@DMA_IOCont|
   00308	646d6149	 DCD         0x646d6149
-  0030c		 |$M36649|
+  0030c		 |$M36650|
 
 			 ENDP  ; |?DMA_IOControl@@YAHKKPAEK0KPAK@Z|, DMA_IOControl
 
@@ -1461,7 +1461,7 @@
 	IMPORT	|RegisterDbgZones|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36671| DCD	|$LN8@DllMain|
+|$T36672| DCD	|$LN8@DllMain|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -1473,7 +1473,7 @@
 
   00000		 |$LN8@DllMain|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36668|
+  00004		 |$M36669|
   00004	e1a04000	 mov         r4, r0
 
 ; 744  :     UNREFERENCED_PARAMETER(pReserved);
@@ -1508,7 +1508,7 @@
   0002c		 |$LN9@DllMain|
   0002c		 |$LN10@DllMain|
   0002c	00000000	 DCD         |dpCurSettings|
-  00030		 |$M36669|
+  00030		 |$M36670|
 
 			 ENDP  ; |DllMain|
 
@@ -1518,7 +1518,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdma\dmacontroller.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36698| DCD	|$LN18@DMA_Deinit|
+|$T36699| DCD	|$LN18@DMA_Deinit|
 	DCD	0x40002801
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdma\dma.cpp
@@ -1531,7 +1531,7 @@
 
   00000		 |$LN18@DMA_Deinit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M36695|
+  00004		 |$M36696|
   00004	e1b04000	 movs        r4, r0
 
 ; 256  :     BOOL rc = FALSE;
@@ -1545,11 +1545,11 @@
 ; 261  :     // Check if we get correct context
 ; 262  :     if ((pDevice == NULL) || (pDevice->cookie != DMA_DEVICE_COOKIE))
 
-  0000c	0a00001f	 beq         |$cleanUp$36259|
+  0000c	0a00001f	 beq         |$cleanUp$36260|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f3080	 ldr         r3, [pc, #0x80]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a00001b	 bne         |$cleanUp$36259|
+  0001c	1a00001b	 bne         |$cleanUp$36260|
 
 ; 263  :         {
 ; 264  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: DMA_Deinit: "
@@ -1563,7 +1563,7 @@
 
   00020	e594302c	 ldr         r3, [r4, #0x2C]
   00024	e3530000	 cmp         r3, #0
-  00028	ca000018	 bgt         |$cleanUp$36259|
+  00028	ca000018	 bgt         |$cleanUp$36260|
 
 ; 272  :         {
 ; 273  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: DMA_Deinit: "
@@ -1629,7 +1629,7 @@
 ; 296  :     rc = TRUE;
 
   0008c	e3a00001	 mov         r0, #1
-  00090		 |$cleanUp$36259|
+  00090		 |$cleanUp$36260|
 
 ; 297  : 
 ; 298  : cleanUp:
@@ -1644,7 +1644,7 @@
   00098	00000000	 DCD         |??_7SystemDmaController@@6B@|
   0009c		 |$LN21@DMA_Deinit|
   0009c	646d6144	 DCD         0x646d6144
-  000a0		 |$M36696|
+  000a0		 |$M36697|
 
 			 ENDP  ; |?DMA_Deinit@@YAHK@Z|, DMA_Deinit
 
@@ -1655,7 +1655,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36715| DCD	|$LN13@DMA_Init|
+|$T36716| DCD	|$LN13@DMA_Init|
 	DCD	0x40002901
 ; Function compile flags: /Ogspy
 
@@ -1667,7 +1667,7 @@
 
   00000		 |$LN13@DMA_Init|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M36712|
+  00004		 |$M36713|
   00004	e1a06000	 mov         r6, r0
 
 ; 180  :     DWORD rc = (DWORD)NULL;
@@ -1778,7 +1778,7 @@
 ; 237  :     rc = (DWORD)pDevice;
 
   00080	11a05004	 movne       r5, r4
-  00084		 |$cleanUp$36236|
+  00084		 |$cleanUp$36237|
   00084	1a000001	 bne         |$LN1@DMA_Init|
   00088		 |$LN10@DMA_Init|
 
@@ -1802,7 +1802,7 @@
   0009c	00000000	 DCD         |s_deviceRegParams|
   000a0		 |$LN16@DMA_Init|
   000a0	646d6144	 DCD         0x646d6144
-  000a4		 |$M36713|
+  000a4		 |$M36714|
 
 			 ENDP  ; |?DMA_Init@@YAKPBGPBX@Z|, DMA_Init
 

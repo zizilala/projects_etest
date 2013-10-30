@@ -280,7 +280,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\usb\ehcipdd\system.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45536| DCD	|$LN10@DelayMilli|
+|$T45537| DCD	|$LN10@DelayMilli|
 	DCD	0x40001101
 ; Function compile flags: /Ogspy
 
@@ -292,7 +292,7 @@
 
   00000		 |$LN10@DelayMilli|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M45533|
+  00004		 |$M45534|
   00004	e3510000	 cmp         r1, #0
   00008	e1a04000	 mov         r4, r0
 
@@ -339,14 +339,14 @@
 
   0003c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00040	e12fff1e	 bx          lr
-  00044		 |$M45534|
+  00044		 |$M45535|
 
 			 ENDP  ; |DelayMilliSeconds|
 
 	EXPORT	|EhciWriteReg|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45546| DCD	|$LN5@EhciWriteR|
+|$T45547| DCD	|$LN5@EhciWriteR|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -357,7 +357,7 @@
 ; 181  : {
 
   00000		 |$LN5@EhciWriteR|
-  00000		 |$M45543|
+  00000		 |$M45544|
 
 ; 182  :     volatile DWORD * pEhciReg = (volatile DWORD *)(EhciRegBase + Offset);
 ; 183  : 
@@ -368,14 +368,14 @@
 ; 185  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45544|
+  00008		 |$M45545|
 
 			 ENDP  ; |EhciWriteReg|
 
 	EXPORT	|UlpiWriteReg|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45560| DCD	|$LN9@UlpiWriteR|
+|$T45561| DCD	|$LN9@UlpiWriteR|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -387,7 +387,7 @@
 
   00000		 |$LN9@UlpiWriteR|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45557|
+  00004		 |$M45558|
   00004	e3e0ec7f	 mvn         lr, #0x7F, 24
 
 ; 189  :     volatile DWORD * pEhciUlpiAccess = (volatile DWORD *)(EhciRegBase + 0xa4);
@@ -421,14 +421,14 @@
 
   00028	e49de004	 ldr         lr, [sp], #4
   0002c	e12fff1e	 bx          lr
-  00030		 |$M45558|
+  00030		 |$M45559|
 
 			 ENDP  ; |UlpiWriteReg|
 
 	EXPORT	|UlpiReadReg|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45574| DCD	|$LN9@UlpiReadRe|
+|$T45575| DCD	|$LN9@UlpiReadRe|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -440,7 +440,7 @@
 
   00000		 |$LN9@UlpiReadRe|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45571|
+  00004		 |$M45572|
   00004	e3e0ec7f	 mvn         lr, #0x7F, 24
 
 ; 205  :     volatile DWORD * pEhciUlpiAccess = (volatile DWORD *)(EhciRegBase + 0xa4);
@@ -479,7 +479,7 @@
 
   0002c	e49de004	 ldr         lr, [sp], #4
   00030	e12fff1e	 bx          lr
-  00034		 |$M45572|
+  00034		 |$M45573|
 
 			 ENDP  ; |UlpiReadReg|
 
@@ -487,7 +487,7 @@
 	IMPORT	|GPIOClrBit|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45585| DCD	|$LN8@PHY_Assert|
+|$T45586| DCD	|$LN8@PHY_Assert|
 	DCD	0x40001501
 ; Function compile flags: /Ogspy
 
@@ -499,7 +499,7 @@
 
   00000		 |$LN8@PHY_Assert|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M45582|
+  00004		 |$M45583|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -557,7 +557,7 @@
 
   0004c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00050	e12fff1e	 bx          lr
-  00054		 |$M45583|
+  00054		 |$M45584|
 
 			 ENDP  ; |PHY_AssertReset|
 
@@ -565,7 +565,7 @@
 	IMPORT	|GPIOSetBit|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45595| DCD	|$LN8@PHY_Deasse|
+|$T45596| DCD	|$LN8@PHY_Deasse|
 	DCD	0x40001101
 ; Function compile flags: /Ogspy
 
@@ -577,7 +577,7 @@
 
   00000		 |$LN8@PHY_Deasse|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45592|
+  00004		 |$M45593|
   00004	e1a04000	 mov         r4, r0
 
 ; 245  : 	if (pPddObject->Port1RstGpio != -1)
@@ -627,14 +627,14 @@
 
   0003c	e8bd4010	 ldmia       sp!, {r4, lr}
   00040	e12fff1e	 bx          lr
-  00044		 |$M45593|
+  00044		 |$M45594|
 
 			 ENDP  ; |PHY_DeassertReset|
 
 	EXPORT	|TLLDevice_AssertReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45604| DCD	|$LN5@TLLDevice_|
+|$T45605| DCD	|$LN5@TLLDevice_|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -645,7 +645,7 @@
 ; 264  : {
 
   00000		 |$LN5@TLLDevice_|
-  00000		 |$M45601|
+  00000		 |$M45602|
 
 ; 265  : 	UNREFERENCED_PARAMETER(pPddObject);
 ; 266  : 
@@ -656,14 +656,14 @@
 ; 268  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45602|
+  00008		 |$M45603|
 
 			 ENDP  ; |TLLDevice_AssertReset|
 
 	EXPORT	|TLLDevice_DeassertReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45613| DCD	|$LN5@TLLDevice_@2|
+|$T45614| DCD	|$LN5@TLLDevice_@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -674,7 +674,7 @@
 ; 271  : {
 
   00000		 |$LN5@TLLDevice_@2|
-  00000		 |$M45610|
+  00000		 |$M45611|
 
 ; 272  : 	UNREFERENCED_PARAMETER(pPddObject);
 ; 273  : 
@@ -685,14 +685,14 @@
 ; 275  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45611|
+  00008		 |$M45612|
 
 			 ENDP  ; |TLLDevice_DeassertReset|
 
 	EXPORT	|ExternalDeviceAssertReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45625| DCD	|$LN11@ExternalDe|
+|$T45626| DCD	|$LN11@ExternalDe|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -704,7 +704,7 @@
 
   00000		 |$LN11@ExternalDe|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45622|
+  00004		 |$M45623|
 
 ; 279  :     if ((pPddObject->port1Mode == USB_PORT_TLL_MODE) ||
 ; 280  :         (pPddObject->port2Mode == USB_PORT_TLL_MODE) ||
@@ -739,14 +739,14 @@
 
   0002c	e49de004	 ldr         lr, [sp], #4
   00030	e12fff1e	 bx          lr
-  00034		 |$M45623|
+  00034		 |$M45624|
 
 			 ENDP  ; |ExternalDeviceAssertReset|
 
 	EXPORT	|ExternalDeviceDeassertReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45636| DCD	|$LN11@ExternalDe@2|
+|$T45637| DCD	|$LN11@ExternalDe@2|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -758,7 +758,7 @@
 
   00000		 |$LN11@ExternalDe@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45633|
+  00004		 |$M45634|
 
 ; 296  :     if ((pPddObject->port1Mode == USB_PORT_TLL_MODE) ||
 ; 297  :         (pPddObject->port2Mode == USB_PORT_TLL_MODE) ||
@@ -793,14 +793,14 @@
 
   0002c	e49de004	 ldr         lr, [sp], #4
   00030	e12fff1e	 bx          lr
-  00034		 |$M45634|
+  00034		 |$M45635|
 
 			 ENDP  ; |ExternalDeviceDeassertReset|
 
 	EXPORT	|DelayExtDevDeassertReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45646| DCD	|$LN5@DelayExtDe|
+|$T45647| DCD	|$LN5@DelayExtDe|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -812,7 +812,7 @@
 
   00000		 |$LN5@DelayExtDe|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45643|
+  00004		 |$M45644|
   00004	e1a04000	 mov         r4, r0
   00008	e3a03c13	 mov         r3, #0x13, 24
 
@@ -840,14 +840,14 @@
 
   00028	e8bd4010	 ldmia       sp!, {r4, lr}
   0002c	e12fff1e	 bx          lr
-  00030		 |$M45644|
+  00030		 |$M45645|
 
 			 ENDP  ; |DelayExtDevDeassertReset|
 
 	IMPORT	|GPIOSetMode|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45660| DCD	|$LN20@PortPowerC|
+|$T45661| DCD	|$LN20@PortPowerC|
 	DCD	0x40002501
 ; Function compile flags: /Ogspy
 
@@ -859,7 +859,7 @@
 
   00000		 |$LN20@PortPowerC|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M45657|
+  00004		 |$M45658|
   00004	e1a07002	 mov         r7, r2
   00008	e1a04000	 mov         r4, r0
 
@@ -987,7 +987,7 @@
 
   0008c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00090	e12fff1e	 bx          lr
-  00094		 |$M45658|
+  00094		 |$M45659|
 
 			 ENDP  ; |PortPowerControl|
 
@@ -997,7 +997,7 @@
 	IMPORT	|MmMapIoSpace|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45763| DCD	|$LN106@Configure_|
+|$T45764| DCD	|$LN106@Configure_|
 	DCD	0x4000d602
 ; Function compile flags: /Ogspy
 
@@ -1010,7 +1010,7 @@
   00000		 |$LN106@Configure_|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M45760|
+  00008		 |$M45761|
   00008	e1a09001	 mov         r9, r1
   0000c	e1a04000	 mov         r4, r0
 
@@ -1523,14 +1523,14 @@
   00354		 |$LN107@Configure_|
   00354		 |$LN108@Configure_|
   00354	00000000	 DCD         |DelayExtDevDeassertReset|
-  00358		 |$M45761|
+  00358		 |$M45762|
 
 			 ENDP  ; |Configure_EHCI|
 
 	EXPORT	|HcdPdd_DllMain|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45774| DCD	|$LN5@HcdPdd_Dll|
+|$T45775| DCD	|$LN5@HcdPdd_Dll|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1541,7 +1541,7 @@
 ; 553  : {
 
   00000		 |$LN5@HcdPdd_Dll|
-  00000		 |$M45771|
+  00000		 |$M45772|
 
 ; 554  :     UNREFERENCED_PARAMETER(hinstDLL);
 ; 555  :     UNREFERENCED_PARAMETER(dwReason);
@@ -1554,7 +1554,7 @@
 ; 559  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45772|
+  00008		 |$M45773|
 
 			 ENDP  ; |HcdPdd_DllMain|
 
@@ -1564,7 +1564,7 @@
 	IMPORT	|RegOpenKeyExW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45786| DCD	|$LN8@GetRegistr|
+|$T45787| DCD	|$LN8@GetRegistr|
 	DCD	0x40002602
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1583,7 +1583,7 @@
   00000		 |$LN8@GetRegistr|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M45783|
+  00008		 |$M45784|
   00008	e1a06001	 mov         r6, r1
   0000c	e1a01000	 mov         r1, r0
 
@@ -1670,7 +1670,7 @@
   00094		 |$LN9@GetRegistr|
   00094		 |$LN10@GetRegistr|
   00094	00000000	 DCD         |??_C@_1CC@NPEFILDH@?$AAP?$AAh?$AAy?$AAs?$AAi?$AAc?$AAa?$AAl?$AAP?$AAa?$AAg?$AAe?$AAS?$AAi?$AAz?$AAe?$AA?$AA@|
-  00098		 |$M45784|
+  00098		 |$M45785|
 
 			 ENDP  ; |GetRegistryPhysicalMemSize|
 
@@ -1687,7 +1687,7 @@
 	IMPORT	|wcsncpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45824| DCD	|$LN25@Initialize|
+|$T45825| DCD	|$LN25@Initialize|
 	DCD	0x4000b102
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1706,7 +1706,7 @@
   00000		 |$LN25@Initialize|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd020	 sub         sp, sp, #0x20
-  00008		 |$M45821|
+  00008		 |$M45822|
   00008	e1a08001	 mov         r8, r1
   0000c	e1a05000	 mov         r5, r0
 
@@ -1931,7 +1931,7 @@
 
 ; 695  :     if (!pobMem)
 
-  001a0	0a000025	 beq         |$InitializeEHCI_Error$45179|
+  001a0	0a000025	 beq         |$InitializeEHCI_Error$45180|
 
 ; 696  :     {
 ; 697  :         DEBUGMSG(ZONE_ERROR, (TEXT("EHCI - HcdMdd_CreateMemoryObject Failed 0x%x\r\n"), GetLastError()));
@@ -1951,7 +1951,7 @@
 
 ; 702  :     if (!pobEHCD)
 
-  001c4	0a00001c	 beq         |$InitializeEHCI_Error$45179|
+  001c4	0a00001c	 beq         |$InitializeEHCI_Error$45180|
 
 ; 703  :     {
 ; 704  :         DEBUGMSG(ZONE_ERROR, (TEXT("EHCI - HcdMdd_CreateHcdObject Failed 0x%x\r\n"), GetLastError()));
@@ -2020,7 +2020,7 @@
 
   00234	e3a00001	 mov         r0, #1
   00238	ea00001b	 b           |$LN16@Initialize|
-  0023c		 |$InitializeEHCI_Error$45179|
+  0023c		 |$InitializeEHCI_Error$45180|
 
 ; 727  : 
 ; 728  : InitializeEHCI_Error:
@@ -2114,7 +2114,7 @@
   002bc	00000000	 DCD         |??_C@_1CC@NPEFILDH@?$AAP?$AAh?$AAy?$AAs?$AAi?$AAc?$AAa?$AAl?$AAP?$AAa?$AAg?$AAe?$AAS?$AAi?$AAz?$AAe?$AA?$AA@|
   002c0		 |$LN29@Initialize|
   002c0	01010098	 DCD         0x1010098
-  002c4		 |$M45822|
+  002c4		 |$M45823|
 
 			 ENDP  ; |InitializeEHCI|
 
@@ -2139,7 +2139,7 @@
 	IMPORT	|malloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45842| DCD	|$LN31@HcdPdd_Ini|
+|$T45843| DCD	|$LN31@HcdPdd_Ini|
 	DCD	0x40009f02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2183,7 +2183,7 @@
   00000		 |$LN31@HcdPdd_Ini|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M45839|
+  00008		 |$M45840|
   00008	e1a06000	 mov         r6, r0
 
 ; 763  :     SEHCDPdd *  pPddObject = malloc(sizeof(SEHCDPdd));
@@ -2520,7 +2520,7 @@
 ; 877  :             pPddObject = NULL;
 
   001f0	e3a04000	 mov         r4, #0
-  001f4		 |$cleanUp$45217|
+  001f4		 |$cleanUp$45218|
   001f4		 |$LN27@HcdPdd_Ini|
 
 ; 878  :         }
@@ -2608,14 +2608,14 @@
   00274	00000000	 DCD         |g_dwContext|
   00278		 |$LN38@HcdPdd_Ini|
   00278	00000000	 DCD         |g_deviceRegParams|
-  0027c		 |$M45840|
+  0027c		 |$M45841|
 
 			 ENDP  ; |HcdPdd_Init|
 
 	EXPORT	|HcdPdd_CheckConfigPower|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45862| DCD	|$LN7@HcdPdd_Che|
+|$T45863| DCD	|$LN7@HcdPdd_Che|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -2626,7 +2626,7 @@
 ; 915  : {
 
   00000		 |$LN7@HcdPdd_Che|
-  00000		 |$M45859|
+  00000		 |$M45860|
 
 ; 916  : 	UNREFERENCED_PARAMETER(bPort);
 ; 917  : 
@@ -2640,14 +2640,14 @@
 ; 919  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M45860|
+  00014		 |$M45861|
 
 			 ENDP  ; |HcdPdd_CheckConfigPower|
 
 	EXPORT	|HcdPdd_PowerUp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45869| DCD	|$LN5@HcdPdd_Pow|
+|$T45870| DCD	|$LN5@HcdPdd_Pow|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -2658,20 +2658,20 @@
 ; 922  : {
 
   00000		 |$LN5@HcdPdd_Pow|
-  00000		 |$M45866|
+  00000		 |$M45867|
 
 ; 923  :     UNREFERENCED_PARAMETER(hDeviceContext);
 ; 924  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M45867|
+  00004		 |$M45868|
 
 			 ENDP  ; |HcdPdd_PowerUp|
 
 	EXPORT	|HcdPdd_PowerDown|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45877| DCD	|$LN5@HcdPdd_Pow@2|
+|$T45878| DCD	|$LN5@HcdPdd_Pow@2|
 	DCD	0x40001702
 ; Function compile flags: /Ogspy
 
@@ -2684,7 +2684,7 @@
   00000		 |$LN5@HcdPdd_Pow@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M45874|
+  00008		 |$M45875|
   00008	e1a04000	 mov         r4, r0
 
 ; 928  : 	SEHCDPdd * pPddObject = (SEHCDPdd *)hDeviceContext;
@@ -2722,7 +2722,7 @@
   00058		 |$LN6@HcdPdd_Pow@2|
   00058		 |$LN7@HcdPdd_Pow@2|
   00058	00220c04	 DCD         0x220c04
-  0005c		 |$M45875|
+  0005c		 |$M45876|
 
 			 ENDP  ; |HcdPdd_PowerDown|
 
@@ -2730,7 +2730,7 @@
 	IMPORT	|CloseHandle|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45890| DCD	|$LN10@HcdPdd_Dei@3|
+|$T45891| DCD	|$LN10@HcdPdd_Dei@3|
 	DCD	0x40002702
 ; Function compile flags: /Ogspy
 
@@ -2743,7 +2743,7 @@
   00000		 |$LN10@HcdPdd_Dei@3|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M45887|
+  00008		 |$M45888|
   00008	e1a04000	 mov         r4, r0
 
 ; 937  :     SEHCDPdd * pPddObject = (SEHCDPdd *)hDeviceContext;
@@ -2826,14 +2826,14 @@
   00090	e28dd008	 add         sp, sp, #8
   00094	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00098	e12fff1e	 bx          lr
-  0009c		 |$M45888|
+  0009c		 |$M45889|
 
 			 ENDP  ; |HcdPdd_Deinit|
 
 	EXPORT	|HcdPdd_Open|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45900| DCD	|$LN5@HcdPdd_Ope|
+|$T45901| DCD	|$LN5@HcdPdd_Ope|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -2844,7 +2844,7 @@
 ; 957  : {
 
   00000		 |$LN5@HcdPdd_Ope|
-  00000		 |$M45897|
+  00000		 |$M45898|
 
 ; 958  :     UNREFERENCED_PARAMETER(hDeviceContext);
 ; 959  :     UNREFERENCED_PARAMETER(AccessCode);
@@ -2857,14 +2857,14 @@
 ; 966  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M45898|
+  00004		 |$M45899|
 
 			 ENDP  ; |HcdPdd_Open|
 
 	EXPORT	|HcdPdd_Close|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45909| DCD	|$LN5@HcdPdd_Clo|
+|$T45910| DCD	|$LN5@HcdPdd_Clo|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2875,7 +2875,7 @@
 ; 969  : {
 
   00000		 |$LN5@HcdPdd_Clo|
-  00000		 |$M45906|
+  00000		 |$M45907|
 
 ; 970  :     UNREFERENCED_PARAMETER(hOpenContext);
 ; 971  : 
@@ -2886,14 +2886,14 @@
 ; 973  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45907|
+  00008		 |$M45908|
 
 			 ENDP  ; |HcdPdd_Close|
 
 	EXPORT	|HcdPdd_Read|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45918| DCD	|$LN5@HcdPdd_Rea|
+|$T45919| DCD	|$LN5@HcdPdd_Rea|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2904,7 +2904,7 @@
 ; 976  : {
 
   00000		 |$LN5@HcdPdd_Rea|
-  00000		 |$M45915|
+  00000		 |$M45916|
 
 ; 977  :     UNREFERENCED_PARAMETER(hOpenContext);
 ; 978  :     UNREFERENCED_PARAMETER(pBuffer);
@@ -2917,14 +2917,14 @@
 ; 982  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45916|
+  00008		 |$M45917|
 
 			 ENDP  ; |HcdPdd_Read|
 
 	EXPORT	|HcdPdd_Write|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45927| DCD	|$LN5@HcdPdd_Wri|
+|$T45928| DCD	|$LN5@HcdPdd_Wri|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2935,7 +2935,7 @@
 ; 986  : {
 
   00000		 |$LN5@HcdPdd_Wri|
-  00000		 |$M45924|
+  00000		 |$M45925|
 
 ; 987  :     UNREFERENCED_PARAMETER(hOpenContext);
 ; 988  :     UNREFERENCED_PARAMETER(pSourceBytes);
@@ -2948,14 +2948,14 @@
 ; 992  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45925|
+  00008		 |$M45926|
 
 			 ENDP  ; |HcdPdd_Write|
 
 	EXPORT	|HcdPdd_Seek|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45936| DCD	|$LN5@HcdPdd_See|
+|$T45937| DCD	|$LN5@HcdPdd_See|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2966,7 +2966,7 @@
 ; 995  : {
 
   00000		 |$LN5@HcdPdd_See|
-  00000		 |$M45933|
+  00000		 |$M45934|
 
 ; 996  :     UNREFERENCED_PARAMETER(hOpenContext);
 ; 997  :     UNREFERENCED_PARAMETER(Amount);
@@ -2979,7 +2979,7 @@
 ; 1001 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45934|
+  00008		 |$M45935|
 
 			 ENDP  ; |HcdPdd_Seek|
 
@@ -2991,23 +2991,23 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45998| DCD	|$LN59@HcdPdd_IOC|
+|$T45999| DCD	|$LN59@HcdPdd_IOC|
 	DCD	0xc0008d04
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46000| DCD	|$LN22@HcdPdd_IOC|
+|$T46001| DCD	|$LN22@HcdPdd_IOC|
 	DCD	0x40000502
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46002| DCD	|$LN36@HcdPdd_IOC|
+|$T46003| DCD	|$LN36@HcdPdd_IOC|
 	DCD	0x40000502
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46004| DCD	|$LN29@HcdPdd_IOC|
+|$T46005| DCD	|$LN29@HcdPdd_IOC|
 	DCD	0x40000a02
 
   00000			 AREA	 |.xdata|, DATA
-|$T45996| DCD	0x3
+|$T45997| DCD	0x3
 	DCD	|$LN26@HcdPdd_IOC|
 	DCD	|$LN27@HcdPdd_IOC|
 	DCD	|$LN22@HcdPdd_IOC|
@@ -3035,7 +3035,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__C_specific_handler|
-  00004	00000000	 DCD         |$T45996|
+  00004	00000000	 DCD         |$T45997|
 
   00008		 |HcdPdd_IOControl| PROC
 
@@ -3083,7 +3083,7 @@
   00050	0a000004	 beq         |$LN11@HcdPdd_IOC|
   00054	e59f3224	 ldr         r3, [pc, #0x224]
   00058	e1510003	 cmp         r1, r3
-  0005c	1a000072	 bne         |$cleanUp$45355|
+  0005c	1a000072	 bne         |$cleanUp$45356|
 
 ; 1040 :                         {
 ; 1041 :                         DEBUGMSG(ZONE_ERROR, (L"exception in ioctl\r\n"));
@@ -3100,7 +3100,7 @@
 ; 1049 :             DEBUGMSG(ZONE_INFO,(L"EHCI: Received IOCTL_POWER_QUERY\r\n"));
 ; 1050 :             break;
 
-  00064	ea000070	 b           |$cleanUp$45355|
+  00064	ea000070	 b           |$cleanUp$45356|
   00068		 |$LN11@HcdPdd_IOC|
 
 ; 1051 : 
@@ -3111,10 +3111,10 @@
 
   00068	e59b2000	 ldr         r2, [r11]
   0006c	e3520000	 cmp         r2, #0
-  00070	0a00006d	 beq         |$cleanUp$45355|
+  00070	0a00006d	 beq         |$cleanUp$45356|
   00074	e59b3004	 ldr         r3, [r11, #4]
   00078	e3530004	 cmp         r3, #4
-  0007c	3a00006a	 bcc         |$cleanUp$45355|
+  0007c	3a00006a	 bcc         |$cleanUp$45356|
   00080		 |$LN33@HcdPdd_IOC|
 
 ; 1056 :             {
@@ -3267,7 +3267,7 @@
 
 ; 1096 :                     }
 
-  00188	ea000027	 b           |$cleanUp$45355|
+  00188	ea000027	 b           |$cleanUp$45356|
   0018c		 |$LN30@HcdPdd_IOC|
 
 ; 1098 :                     {
@@ -3276,7 +3276,7 @@
   0018c	e59f00e4	 ldr         r0, [pc, #0xE4]
   00190	eb000000	 bl          NKDbgPrintfW
   00194	e51b402c	 ldr         r4, [r11, #-0x2C]
-  00198	ea000023	 b           |$cleanUp$45355|
+  00198	ea000023	 b           |$cleanUp$45356|
   0019c		 |$LN4@HcdPdd_IOC|
 
 ; 1100 :                     }
@@ -3290,10 +3290,10 @@
 
   0019c	e59b2000	 ldr         r2, [r11]
   001a0	e3520000	 cmp         r2, #0
-  001a4	0a000020	 beq         |$cleanUp$45355|
+  001a4	0a000020	 beq         |$cleanUp$45356|
   001a8	e59b3004	 ldr         r3, [r11, #4]
   001ac	e3530004	 cmp         r3, #4
-  001b0	3a00001d	 bcc         |$cleanUp$45355|
+  001b0	3a00001d	 bcc         |$cleanUp$45356|
   001b4		 |$LN40@HcdPdd_IOC|
 
 ; 1108 :                 {
@@ -3315,13 +3315,13 @@
 ; 1115 :                     DEBUGMSG(ZONE_INFO, (L"EHCI: IOCTL_POWER_GET to D%u \r\n", pPddObject->dwActualPowerState));
 ; 1116 :                     }
 
-  001c4	ea000018	 b           |$cleanUp$45355|
+  001c4	ea000018	 b           |$cleanUp$45356|
   001c8		 |$LN37@HcdPdd_IOC|
 
 ; 1117 :                 __except(EXCEPTION_EXECUTE_HANDLER)
 
   001c8	e51b402c	 ldr         r4, [r11, #-0x2C]
-  001cc	ea000016	 b           |$cleanUp$45355|
+  001cc	ea000016	 b           |$cleanUp$45356|
   001d0		 |$LN15@HcdPdd_IOC|
 
 ; 1021 :         {
@@ -3332,13 +3332,13 @@
 
   001d0	e59b5000	 ldr         r5, [r11]
   001d4	e3550000	 cmp         r5, #0
-  001d8	0a000013	 beq         |$cleanUp$45355|
+  001d8	0a000013	 beq         |$cleanUp$45356|
   001dc	e59b3004	 ldr         r3, [r11, #4]
   001e0	e3530030	 cmp         r3, #0x30
-  001e4	3a000010	 bcc         |$cleanUp$45355|
+  001e4	3a000010	 bcc         |$cleanUp$45356|
   001e8	e59b6008	 ldr         r6, [r11, #8]
   001ec	e3560000	 cmp         r6, #0
-  001f0	0a00000d	 beq         |$cleanUp$45355|
+  001f0	0a00000d	 beq         |$cleanUp$45356|
   001f4		 |$LN26@HcdPdd_IOC|
 
 ; 1026 :                 {
@@ -3374,13 +3374,13 @@
 
 ; 1038 :                         }
 
-  0021c	ea000002	 b           |$cleanUp$45355|
+  0021c	ea000002	 b           |$cleanUp$45356|
   00220		 |$LN23@HcdPdd_IOC|
 
 ; 1039 :                     __except(EXCEPTION_EXECUTE_HANDLER)
 
   00220	e51b402c	 ldr         r4, [r11, #-0x2C]
-  00224	ea000000	 b           |$cleanUp$45355|
+  00224	ea000000	 b           |$cleanUp$45356|
   00228		 |$LN56@HcdPdd_IOC|
 
 ; 1118 :                     {
@@ -3399,7 +3399,7 @@
 ; 1131 :     return rc;
 
   00228	e51b4028	 ldr         r4, [r11, #-0x28]
-  0022c		 |$cleanUp$45355|
+  0022c		 |$cleanUp$45356|
 
 ; 1132 : }
 
@@ -3467,7 +3467,7 @@
 	EXPORT	|HcdPdd_InitiatePowerUp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46027| DCD	|$LN5@HcdPdd_Ini@2|
+|$T46028| DCD	|$LN5@HcdPdd_Ini@2|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -3478,13 +3478,13 @@
 ; 1140 : {
 
   00000		 |$LN5@HcdPdd_Ini@2|
-  00000		 |$M46024|
+  00000		 |$M46025|
 
 ; 1141 : 	UNREFERENCED_PARAMETER(hDeviceContext);
 ; 1142 : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M46025|
+  00004		 |$M46026|
 
 			 ENDP  ; |HcdPdd_InitiatePowerUp|
 

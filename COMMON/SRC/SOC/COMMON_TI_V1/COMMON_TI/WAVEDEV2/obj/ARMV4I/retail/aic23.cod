@@ -31,7 +31,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\wavedev2\aic23.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38153| DCD	|$LN5@CAIC23|
+|$T38154| DCD	|$LN5@CAIC23|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -42,7 +42,7 @@
 ; 34   : {
 
   00000		 |$LN5@CAIC23|
-  00000		 |$M38150|
+  00000		 |$M38151|
   00000	e3a03007	 mov         r3, #7
   00004	e3a02010	 mov         r2, #0x10
   00008	e3a01000	 mov         r1, #0
@@ -54,7 +54,7 @@
 ; 35   : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M38151|
+  00020		 |$M38152|
 
 			 ENDP  ; |??0CAIC23@@QAA@XZ|, CAIC23::CAIC23
 
@@ -62,7 +62,7 @@
 	IMPORT	|I2CClose|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38161| DCD	|$LN6@CAIC23@2|
+|$T38162| DCD	|$LN6@CAIC23@2|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -74,7 +74,7 @@
 
   00000		 |$LN6@CAIC23@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38158|
+  00004		 |$M38159|
   00004	e1a04000	 mov         r4, r0
 
 ; 39   : 	if (m_hI2CDevice != NULL)
@@ -100,7 +100,7 @@
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
-  0002c		 |$M38159|
+  0002c		 |$M38160|
 
 			 ENDP  ; |??1CAIC23@@QAA@XZ|, CAIC23::~CAIC23
 
@@ -108,7 +108,7 @@
 	IMPORT	|I2CWrite|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38174| DCD	|$LN6@I2CWriteRe|
+|$T38175| DCD	|$LN6@I2CWriteRe|
 	DCD	0x40001502
 ; Function compile flags: /Ogspy
 
@@ -121,7 +121,7 @@
   00000		 |$LN6@I2CWriteRe|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M38171|
+  00008		 |$M38172|
   00008	e1a04002	 mov         r4, r2
 
 ; 307  : 	BOOL bRet = TRUE;
@@ -161,14 +161,14 @@
   00048	e28dd004	 add         sp, sp, #4
   0004c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00050	e12fff1e	 bx          lr
-  00054		 |$M38172|
+  00054		 |$M38173|
 
 			 ENDP  ; |?I2CWriteRegister@CAIC23@@AAAHEG@Z|, CAIC23::I2CWriteRegister
 
 	EXPORT	|?OutputEnable@CAIC23@@QAAHH@Z|		; CAIC23::OutputEnable
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38187| DCD	|$LN8@OutputEnab|
+|$T38188| DCD	|$LN8@OutputEnab|
 	DCD	0x40001301
 ; Function compile flags: /Ogspy
 
@@ -180,7 +180,7 @@
 
   00000		 |$LN8@OutputEnab|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M38184|
+  00004		 |$M38185|
   00004	e3510000	 cmp         r1, #0
   00008	e1a05000	 mov         r5, r0
 
@@ -240,14 +240,14 @@
 
   00044	18bd4030	 ldmneia     sp!, {r4, r5, lr}
   00048	e12fff1e	 bx          lr
-  0004c		 |$M38185|
+  0004c		 |$M38186|
 
 			 ENDP  ; |?OutputEnable@CAIC23@@QAAHH@Z|, CAIC23::OutputEnable
 
 	EXPORT	|?InputEnable@CAIC23@@QAAHH@Z|		; CAIC23::InputEnable
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38201| DCD	|$LN10@InputEnabl|
+|$T38202| DCD	|$LN10@InputEnabl|
 	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 
@@ -259,7 +259,7 @@
 
   00000		 |$LN10@InputEnabl|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M38198|
+  00004		 |$M38199|
   00004	e3510000	 cmp         r1, #0
   00008	e1a05000	 mov         r5, r0
 
@@ -348,14 +348,14 @@
 
   0006c	18bd4030	 ldmneia     sp!, {r4, r5, lr}
   00070	e12fff1e	 bx          lr
-  00074		 |$M38199|
+  00074		 |$M38200|
 
 			 ENDP  ; |?InputEnable@CAIC23@@QAAHH@Z|, CAIC23::InputEnable
 
 	EXPORT	|?SetLineInMux@CAIC23@@QAAHH@Z|		; CAIC23::SetLineInMux
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38214| DCD	|$LN8@SetLineInM|
+|$T38215| DCD	|$LN8@SetLineInM|
 	DCD	0x40001401
 ; Function compile flags: /Ogspy
 
@@ -367,7 +367,7 @@
 
   00000		 |$LN8@SetLineInM|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M38211|
+  00004		 |$M38212|
   00004	e1b06001	 movs        r6, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -429,14 +429,14 @@
 
   00048	18bd4070	 ldmneia     sp!, {r4 - r6, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M38212|
+  00050		 |$M38213|
 
 			 ENDP  ; |?SetLineInMux@CAIC23@@QAAHH@Z|, CAIC23::SetLineInMux
 
 	EXPORT	|?SetMicBoost@CAIC23@@QAAHH@Z|		; CAIC23::SetMicBoost
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38227| DCD	|$LN8@SetMicBoos|
+|$T38228| DCD	|$LN8@SetMicBoos|
 	DCD	0x40001301
 ; Function compile flags: /Ogspy
 
@@ -448,7 +448,7 @@
 
   00000		 |$LN8@SetMicBoos|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M38224|
+  00004		 |$M38225|
   00004	e3510000	 cmp         r1, #0
   00008	e1a05000	 mov         r5, r0
 
@@ -506,14 +506,14 @@
 
   00044	18bd4030	 ldmneia     sp!, {r4, r5, lr}
   00048	e12fff1e	 bx          lr
-  0004c		 |$M38225|
+  0004c		 |$M38226|
 
 			 ENDP  ; |?SetMicBoost@CAIC23@@QAAHH@Z|, CAIC23::SetMicBoost
 
 	EXPORT	|?ResetCodec@CAIC23@@AAAHXZ|		; CAIC23::ResetCodec
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38237| DCD	|$LN5@ResetCodec|
+|$T38238| DCD	|$LN5@ResetCodec|
 	DCD	0x40000601
 ; Function compile flags: /Ogspy
 
@@ -525,7 +525,7 @@
 
   00000		 |$LN5@ResetCodec|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M38234|
+  00004		 |$M38235|
 
 ; 195  : 	return I2CWriteRegister(AIC23_RESET_REG_ADDR, 0);
 
@@ -537,14 +537,14 @@
 
   00010	e49de004	 ldr         lr, [sp], #4
   00014	e12fff1e	 bx          lr
-  00018		 |$M38235|
+  00018		 |$M38236|
 
 			 ENDP  ; |?ResetCodec@CAIC23@@AAAHXZ|, CAIC23::ResetCodec
 
 	EXPORT	|?ConfigureCodec@CAIC23@@AAAHXZ|	; CAIC23::ConfigureCodec
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38248| DCD	|$LN13@ConfigureC|
+|$T38249| DCD	|$LN13@ConfigureC|
 	DCD	0x40002301
 ; Function compile flags: /Ogspy
 
@@ -556,7 +556,7 @@
 
   00000		 |$LN13@ConfigureC|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M38245|
+  00004		 |$M38246|
   00004	e1a04000	 mov         r4, r0
 
 ; 200  : 	BOOL bRet = FALSE;
@@ -583,7 +583,7 @@
   00028	e1a00004	 mov         r0, r4
   0002c	eb000000	 bl          |?I2CWriteRegister@CAIC23@@AAAHEG@Z|
   00030	e3500000	 cmp         r0, #0
-  00034	0a000011	 beq         |$exit$38038|
+  00034	0a000011	 beq         |$exit$38039|
 
 ; 208  : 	{
 ; 209  : 		goto exit;
@@ -597,7 +597,7 @@
   00040	e1a00004	 mov         r0, r4
   00044	eb000000	 bl          |?I2CWriteRegister@CAIC23@@AAAHEG@Z|
   00048	e3500000	 cmp         r0, #0
-  0004c	0a00000b	 beq         |$exit$38038|
+  0004c	0a00000b	 beq         |$exit$38039|
 
 ; 214  : 	{
 ; 215  : 		goto exit;
@@ -611,7 +611,7 @@
   00058	e1a00004	 mov         r0, r4
   0005c	eb000000	 bl          |?I2CWriteRegister@CAIC23@@AAAHEG@Z|
   00060	e3500000	 cmp         r0, #0
-  00064	0a000005	 beq         |$exit$38038|
+  00064	0a000005	 beq         |$exit$38039|
 
 ; 220  : 	{
 ; 221  : 		goto exit;
@@ -633,7 +633,7 @@
 ; 230  : 	bRet = TRUE;
 
   0007c	13a05001	 movne       r5, #1
-  00080		 |$exit$38038|
+  00080		 |$exit$38039|
 
 ; 231  : 
 ; 232  : exit:
@@ -644,14 +644,14 @@
   00080	e1a00005	 mov         r0, r5
   00084	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00088	e12fff1e	 bx          lr
-  0008c		 |$M38246|
+  0008c		 |$M38247|
 
 			 ENDP  ; |?ConfigureCodec@CAIC23@@AAAHXZ|, CAIC23::ConfigureCodec
 
 	EXPORT	|?SetOutputVolume@CAIC23@@QAAHKG@Z|	; CAIC23::SetOutputVolume
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38264| DCD	|$LN9@SetOutputV|
+|$T38265| DCD	|$LN9@SetOutputV|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -663,7 +663,7 @@
 
   00000		 |$LN9@SetOutputV|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38261|
+  00004		 |$M38262|
   00004	e3510000	 cmp         r1, #0
 
 ; 239  : 	BOOL bRet = FALSE;
@@ -703,7 +703,7 @@
 ; 250  : 	bRet = TRUE;
 
   0004c	13a04001	 movne       r4, #1
-  00050		 |$exit$38055|
+  00050		 |$exit$38056|
 
 ; 251  : 
 ; 252  : exit:
@@ -714,14 +714,14 @@
   00050	e1a00004	 mov         r0, r4
   00054	e8bd4010	 ldmia       sp!, {r4, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M38262|
+  0005c		 |$M38263|
 
 			 ENDP  ; |?SetOutputVolume@CAIC23@@QAAHKG@Z|, CAIC23::SetOutputVolume
 
 	EXPORT	|?SetInputVolume@CAIC23@@QAAHKG@Z|	; CAIC23::SetInputVolume
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38280| DCD	|$LN9@SetInputVo|
+|$T38281| DCD	|$LN9@SetInputVo|
 	DCD	0x40001401
 ; Function compile flags: /Ogspy
 
@@ -733,7 +733,7 @@
 
   00000		 |$LN9@SetInputVo|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38277|
+  00004		 |$M38278|
   00004	e3510000	 cmp         r1, #0
   00008	e3a03106	 mov         r3, #6, 2
 
@@ -767,7 +767,7 @@
 ; 269  : 	bRet = TRUE;
 
   00040	13a04001	 movne       r4, #1
-  00044		 |$exit$38066|
+  00044		 |$exit$38067|
 
 ; 270  : 
 ; 271  : exit:
@@ -778,14 +778,14 @@
   00044	e1a00004	 mov         r0, r4
   00048	e8bd4010	 ldmia       sp!, {r4, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M38278|
+  00050		 |$M38279|
 
 			 ENDP  ; |?SetInputVolume@CAIC23@@QAAHKG@Z|, CAIC23::SetInputVolume
 
 	EXPORT	|?SetSampleRate@CAIC23@@AAAHK@Z|	; CAIC23::SetSampleRate
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38296| DCD	|$LN14@SetSampleR|
+|$T38297| DCD	|$LN14@SetSampleR|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -797,7 +797,7 @@
 
   00000		 |$LN14@SetSampleR|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M38293|
+  00004		 |$M38294|
 
 ; 278  : 	DWORD index = 0;
 
@@ -872,7 +872,7 @@
   0005c		 |$LN15@SetSampleR|
   0005c		 |$LN16@SetSampleR|
   0005c	00000000	 DCD         |SampleRatesTab|
-  00060		 |$M38294|
+  00060		 |$M38295|
 
 			 ENDP  ; |?SetSampleRate@CAIC23@@AAAHK@Z|, CAIC23::SetSampleRate
 
@@ -889,7 +889,7 @@
 	IMPORT	|SOCGetI2CDeviceByBus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T38324| DCD	|$LN24@InitHardwa|
+|$T38325| DCD	|$LN24@InitHardwa|
 	DCD	0x40003801
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -957,7 +957,7 @@
 
   00000		 |$LN24@InitHardwa|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M38321|
+  00004		 |$M38322|
   00004	e1a06003	 mov         r6, r3
   00008	e1a07001	 mov         r7, r1
   0000c	e1a05000	 mov         r5, r0
@@ -996,7 +996,7 @@
 ; 83   : 
 ; 84   : exit:
 
-  00034	ea000022	 b           |$exit$37984|
+  00034	ea000022	 b           |$exit$37985|
   00038		 |$LN8@InitHardwa|
 
 ; 55   : 		goto exit;
@@ -1048,7 +1048,7 @@
 ; 83   : 
 ; 84   : exit:
 
-  0007c	ea000010	 b           |$exit$37984|
+  0007c	ea000010	 b           |$exit$37985|
   00080		 |$LN6@InitHardwa|
 
 ; 65   : 		goto exit;
@@ -1080,7 +1080,7 @@
 ; 83   : 
 ; 84   : exit:
 
-  00098	ea000009	 b           |$exit$37984|
+  00098	ea000009	 b           |$exit$37985|
   0009c		 |$LN4@InitHardwa|
   0009c	e3a03b2b	 mov         r3, #0x2B, 22
   000a0	e3831044	 orr         r1, r3, #0x44
@@ -1090,7 +1090,7 @@
   000b0	1a000002	 bne         |$LN2@InitHardwa|
   000b4	e59f0014	 ldr         r0, [pc, #0x14]
   000b8	eb000000	 bl          NKDbgPrintfW
-  000bc	ea000000	 b           |$exit$37984|
+  000bc	ea000000	 b           |$exit$37985|
   000c0		 |$LN2@InitHardwa|
 
 ; 79   : 		goto exit;
@@ -1099,7 +1099,7 @@
 ; 82   : 	bRet = TRUE;
 
   000c0	e3a04001	 mov         r4, #1
-  000c4		 |$exit$37984|
+  000c4		 |$exit$37985|
 
 ; 85   : 
 ; 86   : 	return bRet;
@@ -1117,7 +1117,7 @@
   000d8	00000000	 DCD         |??_C@_1HG@GCNKLOKM@?$AA?$FL?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$FN?$AA?5?$AA?$CI?$AAL?$AA?$CC?$AAC?$AAA?$AAI?$AAC?$AA2?$AA3?$AA?3?$AA?3?$AAI?$AAn?$AAi?$AAt?$AAH?$AAa?$AAr?$AAd?$AAw?$AAa?$AAr?$AAe?$AA?3@|
   000dc		 |$LN29@InitHardwa|
   000dc	00000000	 DCD         |??_C@_1HO@KJMOELFH@?$AA?$FL?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?$FN?$AA?5?$AA?$CI?$AAL?$AA?$CC?$AAC?$AAA?$AAI?$AAC?$AA2?$AA3?$AA?3?$AA?3?$AAI?$AAn?$AAi?$AAt?$AAH?$AAa?$AAr?$AAd?$AAw?$AAa?$AAr?$AAe?$AA?3@|
-  000e0		 |$M38322|
+  000e0		 |$M38323|
 
 			 ENDP  ; |?InitHardware@CAIC23@@QAAHKKK@Z|, CAIC23::InitHardware
 

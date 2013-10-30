@@ -73,7 +73,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\omap3530\soccfg\soccfg.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45749| DCD	|$LN14@SOCGetGPIO|
+|$T45750| DCD	|$LN14@SOCGetGPIO|
 	DCD	0x40001800
 ; Function compile flags: /Ogspy
 
@@ -84,7 +84,7 @@
 ; 21   : {
 
   00000		 |$LN14@SOCGetGPIO|
-  00000		 |$M45746|
+  00000		 |$M45747|
 
 ; 22   :     switch (index)
 
@@ -163,14 +163,14 @@
 ; 32   : }
 
   0005c	e12fff1e	 bx          lr
-  00060		 |$M45747|
+  00060		 |$M45748|
 
 			 ENDP  ; |SOCGetGPIODeviceByBank|
 
 	EXPORT	|SOCGetSDHCDeviceBySlot|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45759| DCD	|$LN10@SOCGetSDHC|
+|$T45760| DCD	|$LN10@SOCGetSDHC|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -181,7 +181,7 @@
 ; 35   : {
 
   00000		 |$LN10@SOCGetSDHC|
-  00000		 |$M45756|
+  00000		 |$M45757|
 
 ; 36   :     switch (index)
 
@@ -212,14 +212,14 @@
 ; 42   : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M45757|
+  00020		 |$M45758|
 
 			 ENDP  ; |SOCGetSDHCDeviceBySlot|
 
 	EXPORT	|SOCGetMCSPIDeviceByBus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45769| DCD	|$LN11@SOCGetMCSP|
+|$T45770| DCD	|$LN11@SOCGetMCSP|
 	DCD	0x40001000
 ; Function compile flags: /Ogspy
 
@@ -230,7 +230,7 @@
 ; 45   : {
 
   00000		 |$LN11@SOCGetMCSP|
-  00000		 |$M45766|
+  00000		 |$M45767|
 
 ; 46   : 	switch(index)
 
@@ -282,14 +282,14 @@
 ; 54   : }
 
   0003c	e12fff1e	 bx          lr
-  00040		 |$M45767|
+  00040		 |$M45768|
 
 			 ENDP  ; |SOCGetMCSPIDeviceByBus|
 
 	EXPORT	|SOCGetMCBSPDeviceByBus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45779| DCD	|$LN12@SOCGetMCBS|
+|$T45780| DCD	|$LN12@SOCGetMCBS|
 	DCD	0x40001400
 ; Function compile flags: /Ogspy
 
@@ -300,7 +300,7 @@
 ; 57   : {
 
   00000		 |$LN12@SOCGetMCBS|
-  00000		 |$M45776|
+  00000		 |$M45777|
 
 ; 58   : 	switch(index)
 
@@ -363,14 +363,14 @@
 ; 67   : }
 
   0004c	e12fff1e	 bx          lr
-  00050		 |$M45777|
+  00050		 |$M45778|
 
 			 ENDP  ; |SOCGetMCBSPDeviceByBus|
 
 	EXPORT	|SOCGetMCBSPSidetoneAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45789| DCD	|$LN10@SOCGetMCBS@2|
+|$T45790| DCD	|$LN10@SOCGetMCBS@2|
 	DCD	0x40001000
 ; Function compile flags: /Ogspy
 
@@ -381,7 +381,7 @@
 ; 70   : {
 
   00000		 |$LN10@SOCGetMCBS@2|
-  00000		 |$M45786|
+  00000		 |$M45787|
 
 ; 71   : 	switch(deviceID)
 
@@ -429,14 +429,14 @@
 ; 80   : }
 
   0003c	e12fff1e	 bx          lr
-  00040		 |$M45787|
+  00040		 |$M45788|
 
 			 ENDP  ; |SOCGetMCBSPSidetoneAddress|
 
 	EXPORT	|SOCGetI2CDeviceByBus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45799| DCD	|$LN10@SOCGetI2CD|
+|$T45800| DCD	|$LN10@SOCGetI2CD|
 	DCD	0x40000c00
 ; Function compile flags: /Ogspy
 
@@ -447,7 +447,7 @@
 ; 83   : {
 
   00000		 |$LN10@SOCGetI2CD|
-  00000		 |$M45796|
+  00000		 |$M45797|
 
 ; 84   : 	switch(index)
 
@@ -488,14 +488,14 @@
 ; 91   : }
 
   0002c	e12fff1e	 bx          lr
-  00030		 |$M45797|
+  00030		 |$M45798|
 
 			 ENDP  ; |SOCGetI2CDeviceByBus|
 
 	EXPORT	|SOCGetUartDeviceByIndex|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45809| DCD	|$LN11@SOCGetUart|
+|$T45810| DCD	|$LN11@SOCGetUart|
 	DCD	0x40001000
 ; Function compile flags: /Ogspy
 
@@ -506,7 +506,7 @@
 ; 94   : {
 
   00000		 |$LN11@SOCGetUart|
-  00000		 |$M45806|
+  00000		 |$M45807|
 
 ; 95   : 	switch(index)
 
@@ -559,14 +559,14 @@
 ; 104  : }
 
   0003c	e12fff1e	 bx          lr
-  00040		 |$M45807|
+  00040		 |$M45808|
 
 			 ENDP  ; |SOCGetUartDeviceByIndex|
 
 	EXPORT	|SOCGetGPMCAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45818| DCD	|$LN5@SOCGetGPMC|
+|$T45819| DCD	|$LN5@SOCGetGPMC|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -577,7 +577,7 @@
 ; 108  : {
 
   00000		 |$LN5@SOCGetGPMC|
-  00000		 |$M45815|
+  00000		 |$M45816|
 
 ; 109  :     UNREFERENCED_PARAMETER(index);
 ; 110  :     return OMAP_GPMC_REGS_PA;
@@ -587,14 +587,14 @@
 ; 111  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45816|
+  00008		 |$M45817|
 
 			 ENDP  ; |SOCGetGPMCAddress|
 
 	EXPORT	|SOCGetIntCtrlAddr|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45827| DCD	|$LN5@SOCGetIntC|
+|$T45828| DCD	|$LN5@SOCGetIntC|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -605,7 +605,7 @@
 ; 114  : {
 
   00000		 |$LN5@SOCGetIntC|
-  00000		 |$M45824|
+  00000		 |$M45825|
   00000	e3a03312	 mov         r3, #0x12, 6
 
 ; 115  :     return OMAP_INTC_MPU_REGS_PA;
@@ -615,15 +615,15 @@
 ; 116  : }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M45825|
+  0000c		 |$M45826|
 
 			 ENDP  ; |SOCGetIntCtrlAddr|
 
 	EXPORT	|SOCGetDSSInfo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45835| DCD	|$LN5@SOCGetDSSI|
-	DCD	0x40001501
+|$T45836| DCD	|$LN5@SOCGetDSSI|
+	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -633,59 +633,66 @@
 ; 119  : {
 
   00000		 |$LN5@SOCGetDSSI|
-  00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M45832|
+  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
+  00004		 |$M45833|
 
 ; 120  :     pInfo->DSSDevice = OMAP_DEVICE_DSS;
 ; 121  :     pInfo->TVEncoderDevice = OMAP_DEVICE_TVOUT;
 ; 122  :     pInfo->DSS1_REGS_PA     = OMAP_DSS1_REGS_PA;
 ; 123  :     pInfo->DISC1_REGS_PA    = OMAP_DISC1_REGS_PA; 
 
-  00004	e59f2044	 ldr         r2, [pc, #0x44]
+  00004	e59f2050	 ldr         r2, [pc, #0x50]
 
 ; 124  :     pInfo->VENC1_REGS_PA    = OMAP_VENC1_REGS_PA;
 
-  00008	e59f103c	 ldr         r1, [pc, #0x3C]
+  00008	e59f1048	 ldr         r1, [pc, #0x48]
 
 ; 125  :     pInfo->DSI_REGS_PA      = OMAP_DSI_REGS_PA;
 
-  0000c	e59fe034	 ldr         lr, [pc, #0x34]
+  0000c	e59fe040	 ldr         lr, [pc, #0x40]
 
 ; 126  :     pInfo->DSI_PLL_REGS_PA  = OMAP_DSI_PLL_REGS_PA;
 
-  00010	e59f402c	 ldr         r4, [pc, #0x2C]
-  00014	e3a03312	 mov         r3, #0x12, 6
-  00018	e3833805	 orr         r3, r3, #5, 16
-  0001c	e3a0503f	 mov         r5, #0x3F
-  00020	e3a06042	 mov         r6, #0x42
-  00024	e5803008	 str         r3, [r0, #8]
-  00028	e580200c	 str         r2, [r0, #0xC]
-  0002c	e280c010	 add         r12, r0, #0x10
-  00030	e88c4002	 stmia       r12, {r1, lr}
-  00034	e5804018	 str         r4, [r0, #0x18]
-  00038	e8800060	 stmia       r0, {r5, r6}
+  00010	e59f4038	 ldr         r4, [pc, #0x38]
 
-; 127  : }
+; 127  :     pInfo->RFBI_REGS_PA		= OMAP_RFBI1_REGS_PA;
 
-  0003c	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  00040	e12fff1e	 bx          lr
-  00044		 |$LN6@SOCGetDSSI|
-  00044		 |$LN7@SOCGetDSSI|
-  00044	4804ff00	 DCD         0x4804ff00
-  00048		 |$LN8@SOCGetDSSI|
-  00048	4804fc00	 DCD         0x4804fc00
-  0004c		 |$LN9@SOCGetDSSI|
-  0004c	48050c00	 DCD         0x48050c00
-  00050		 |$LN10@SOCGetDSSI|
-  00050	48050400	 DCD         0x48050400
-  00054		 |$M45833|
+  00014	e59f5030	 ldr         r5, [pc, #0x30]
+  00018	e3a03312	 mov         r3, #0x12, 6
+  0001c	e3833805	 orr         r3, r3, #5, 16
+  00020	e3a0603f	 mov         r6, #0x3F
+  00024	e3a07042	 mov         r7, #0x42
+  00028	e5803008	 str         r3, [r0, #8]
+  0002c	e580200c	 str         r2, [r0, #0xC]
+  00030	e280c010	 add         r12, r0, #0x10
+  00034	e88c4002	 stmia       r12, {r1, lr}
+  00038	e280c018	 add         r12, r0, #0x18
+  0003c	e88c0030	 stmia       r12, {r4, r5}
+  00040	e88000c0	 stmia       r0, {r6, r7}
+
+; 128  : }
+
+  00044	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  00048	e12fff1e	 bx          lr
+  0004c		 |$LN6@SOCGetDSSI|
+  0004c		 |$LN7@SOCGetDSSI|
+  0004c	48050800	 DCD         0x48050800
+  00050		 |$LN8@SOCGetDSSI|
+  00050	4804ff00	 DCD         0x4804ff00
+  00054		 |$LN9@SOCGetDSSI|
+  00054	4804fc00	 DCD         0x4804fc00
+  00058		 |$LN10@SOCGetDSSI|
+  00058	48050c00	 DCD         0x48050c00
+  0005c		 |$LN11@SOCGetDSSI|
+  0005c	48050400	 DCD         0x48050400
+  00060		 |$M45834|
 
 			 ENDP  ; |SOCGetDSSInfo|
 
 	EXPORT	|SOCGetDMADevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45849| DCD	|$LN5@SOCGetDMAD|
+|$T45851| DCD	|$LN5@SOCGetDMAD|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -693,27 +700,27 @@
 
   00000		 |SOCGetDMADevice| PROC
 
-; 130  : {
+; 131  : {
 
   00000		 |$LN5@SOCGetDMAD|
-  00000		 |$M45846|
+  00000		 |$M45848|
 
-; 131  :     UNREFERENCED_PARAMETER(index);
-; 132  :     return OMAP_DEVICE_SDMA;
+; 132  :     UNREFERENCED_PARAMETER(index);
+; 133  :     return OMAP_DEVICE_SDMA;
 
   00000	e3a00052	 mov         r0, #0x52
 
-; 133  : }
+; 134  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45847|
+  00008		 |$M45849|
 
 			 ENDP  ; |SOCGetDMADevice|
 
 	EXPORT	|SOCGetVRFBDevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45858| DCD	|$LN5@SOCGetVRFB|
+|$T45860| DCD	|$LN5@SOCGetVRFB|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -721,27 +728,27 @@
 
   00000		 |SOCGetVRFBDevice| PROC
 
-; 136  : {
+; 137  : {
 
   00000		 |$LN5@SOCGetVRFB|
-  00000		 |$M45855|
+  00000		 |$M45857|
 
-; 137  :     UNREFERENCED_PARAMETER(index);
-; 138  :     return OMAP_DEVICE_VRFB;
+; 138  :     UNREFERENCED_PARAMETER(index);
+; 139  :     return OMAP_DEVICE_VRFB;
 
   00000	e3a0004e	 mov         r0, #0x4E
 
-; 139  : }
+; 140  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45856|
+  00008		 |$M45858|
 
 			 ENDP  ; |SOCGetVRFBDevice|
 
 	EXPORT	|SOCGetUSBHInfo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45866| DCD	|$LN5@SOCGetUSBH|
+|$T45868| DCD	|$LN5@SOCGetUSBH|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -749,28 +756,28 @@
 
   00000		 |SOCGetUSBHInfo| PROC
 
-; 142  : {
+; 143  : {
 
   00000		 |$LN5@SOCGetUSBH|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M45863|
+  00004		 |$M45865|
 
-; 143  : 	pInfo->EHCIDevice				= OMAP_DEVICE_HSUSB2; //OMAP_DEVICE_EHCI; TODO: Verify this value is correct
-; 144  : 	pInfo->TLLDevice				= OMAP_DEVICE_USBTLL;
-; 145  : 	pInfo->Host1Device				= OMAP_DEVICE_USBHOST1;
-; 146  : 	pInfo->Host2Device				= OMAP_DEVICE_USBHOST2;
-; 147  : 	pInfo->Host3Device				= OMAP_DEVICE_USBHOST3;
-; 148  : 	pInfo->UHH_REGS_PA				= OMAP_USBUHH_REGS_PA;
-; 149  : 	pInfo->USBTLL_REGS_PA			= OMAP_USBTLL_REGS_PA;
-; 150  : 	pInfo->EHCI_REGS_PA				= OMAP_USBEHCI_REGS_PA;
+; 144  : 	pInfo->EHCIDevice				= OMAP_DEVICE_HSUSB2; //OMAP_DEVICE_EHCI; TODO: Verify this value is correct
+; 145  : 	pInfo->TLLDevice				= OMAP_DEVICE_USBTLL;
+; 146  : 	pInfo->Host1Device				= OMAP_DEVICE_USBHOST1;
+; 147  : 	pInfo->Host2Device				= OMAP_DEVICE_USBHOST2;
+; 148  : 	pInfo->Host3Device				= OMAP_DEVICE_USBHOST3;
+; 149  : 	pInfo->UHH_REGS_PA				= OMAP_USBUHH_REGS_PA;
+; 150  : 	pInfo->USBTLL_REGS_PA			= OMAP_USBTLL_REGS_PA;
+; 151  : 	pInfo->EHCI_REGS_PA				= OMAP_USBEHCI_REGS_PA;
 
   00004	e59f104c	 ldr         r1, [pc, #0x4C]
 
-; 151  : 	pInfo->PRCM_USBHOST_REGS_PA	    = OMAP_PRCM_USBHOST_PRM_REGS_PA;
+; 152  : 	pInfo->PRCM_USBHOST_REGS_PA	    = OMAP_PRCM_USBHOST_PRM_REGS_PA;
 
   00008	e59fe044	 ldr         lr, [pc, #0x44]
 
-; 152  : 	pInfo->PRCM_CORE_REGS_PA		= OMAP_PRCM_CORE_PRM_REGS_PA;
+; 153  : 	pInfo->PRCM_CORE_REGS_PA		= OMAP_PRCM_CORE_PRM_REGS_PA;
 
   0000c	e59f403c	 ldr         r4, [pc, #0x3C]
   00010	e3a02312	 mov         r2, #0x12, 6
@@ -788,7 +795,7 @@
   00040	e5804024	 str         r4, [r0, #0x24]
   00044	e88003e0	 stmia       r0, {r5 - r9}
 
-; 153  : }
+; 154  : }
 
   00048	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   0004c	e12fff1e	 bx          lr
@@ -799,14 +806,14 @@
   00054	48307400	 DCD         0x48307400
   00058		 |$LN9@SOCGetUSBH|
   00058	48064800	 DCD         0x48064800
-  0005c		 |$M45864|
+  0005c		 |$M45866|
 
 			 ENDP  ; |SOCGetUSBHInfo|
 
 	EXPORT	|SOCGetUSBOTGAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45879| DCD	|$LN5@SOCGetUSBO|
+|$T45881| DCD	|$LN5@SOCGetUSBO|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -814,27 +821,27 @@
 
   00000		 |SOCGetUSBOTGAddress| PROC
 
-; 156  : {
+; 157  : {
 
   00000		 |$LN5@SOCGetUSBO|
-  00000		 |$M45876|
+  00000		 |$M45878|
   00000	e3a03312	 mov         r3, #0x12, 6
 
-; 157  : 	return OMAP_USBHS_REGS_PA;
+; 158  : 	return OMAP_USBHS_REGS_PA;
 
   00004	e3830aab	 orr         r0, r3, #0xAB, 20
 
-; 158  : }
+; 159  : }
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M45877|
+  0000c		 |$M45879|
 
 			 ENDP  ; |SOCGetUSBOTGAddress|
 
 	EXPORT	|SOCGetIDCodeAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45888| DCD	|$LN5@SOCGetIDCo|
+|$T45890| DCD	|$LN5@SOCGetIDCo|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -842,29 +849,29 @@
 
   00000		 |SOCGetIDCodeAddress| PROC
 
-; 161  : {
+; 162  : {
 
   00000		 |$LN5@SOCGetIDCo|
-  00000		 |$M45885|
+  00000		 |$M45887|
 
-; 162  : 	return OMAP_IDCODE_REGS_PA;
+; 163  : 	return OMAP_IDCODE_REGS_PA;
 
   00000	e59f0000	 ldr         r0, [pc]
 
-; 163  : }
+; 164  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$LN6@SOCGetIDCo|
   00008		 |$LN7@SOCGetIDCo|
   00008	4830a204	 DCD         0x4830a204
-  0000c		 |$M45886|
+  0000c		 |$M45888|
 
 			 ENDP  ; |SOCGetIDCodeAddress|
 
 	EXPORT	|SOCGetHDQDevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45899| DCD	|$LN5@SOCGetHDQD|
+|$T45901| DCD	|$LN5@SOCGetHDQD|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -872,20 +879,20 @@
 
   00000		 |SOCGetHDQDevice| PROC
 
-; 166  : {
+; 167  : {
 
   00000		 |$LN5@SOCGetHDQD|
-  00000		 |$M45896|
+  00000		 |$M45898|
 
-; 167  :     UNREFERENCED_PARAMETER(index);
-; 168  : 	return OMAP_DEVICE_HDQ;
+; 168  :     UNREFERENCED_PARAMETER(index);
+; 169  : 	return OMAP_DEVICE_HDQ;
 
   00000	e3a00013	 mov         r0, #0x13
 
-; 169  : }
+; 170  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45897|
+  00008		 |$M45899|
 
 			 ENDP  ; |SOCGetHDQDevice|
 

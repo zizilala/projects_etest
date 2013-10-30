@@ -89,18 +89,12 @@ DWORD   g_dwRangeLimit;     //  Threshold on buffer size between clean/flush lin
 //
 VOID OALCacheGlobalsInit()
 {
-    DWORD   dwCacheType,
-            dwCacheLevelID,
-            dwCacheSize;
+    DWORD dwCacheType, dwCacheLevelID, dwCacheSize;
 
-    OALMSG(OAL_CACHE&&OAL_VERBOSE, (
-        L"+OALCacheGlobalsInit()\r\n"
-    ));
-
+    OALMSG(OAL_CACHE&&OAL_VERBOSE, (L"+OALCacheGlobalsInit()\r\n"));
 
     //  Initialize WinCE cache info struct
     memset( &g_oalCacheInfo, 0 , sizeof(g_oalCacheInfo) );
-
 
     //  Get cache type
     dwCacheType = OALGetCacheType();

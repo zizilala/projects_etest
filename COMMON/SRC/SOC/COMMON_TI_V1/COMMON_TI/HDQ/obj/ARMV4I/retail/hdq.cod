@@ -139,7 +139,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36569| DCD	|$LN5@ResetEvent|
+|$T36570| DCD	|$LN5@ResetEvent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -151,7 +151,7 @@
 
   00000		 |$LN5@ResetEvent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36566|
+  00004		 |$M36567|
 
 ; 224  : 	return EventModify(h,EVENT_RESET);
 
@@ -162,14 +162,14 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M36567|
+  00014		 |$M36568|
 
 			 ENDP  ; |ResetEvent|
 
 	EXPORT	|SetEvent|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36579| DCD	|$LN5@SetEvent|
+|$T36580| DCD	|$LN5@SetEvent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -181,7 +181,7 @@
 
   00000		 |$LN5@SetEvent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36576|
+  00004		 |$M36577|
 
 ; 236  : 	return EventModify(h,EVENT_SET);
 
@@ -192,7 +192,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M36577|
+  00014		 |$M36578|
 
 			 ENDP  ; |SetEvent|
 
@@ -200,7 +200,7 @@
 	IMPORT	|__GetUserKData|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36588| DCD	|$LN5@GetCurrent|
+|$T36589| DCD	|$LN5@GetCurrent|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -212,7 +212,7 @@
 
   00000		 |$LN5@GetCurrent|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36585|
+  00004		 |$M36586|
 
 ; 374  :     return __GetUserKData (SYSHANDLE_OFFSET + (SH_CURPROC * sizeof(HANDLE)));
 
@@ -223,7 +223,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M36586|
+  00014		 |$M36587|
 
 			 ENDP  ; |GetCurrentProcessId|
 
@@ -232,7 +232,7 @@
 ; File c:\wince600\public\common\sdk\inc\objbase.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36602| DCD	|$LN7@IsEqualGUI|
+|$T36603| DCD	|$LN7@IsEqualGUI|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -244,7 +244,7 @@
 
   00000		 |$LN7@IsEqualGUI|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36599|
+  00004		 |$M36600|
 
 ; 494  :     return !memcmp(&rguid1, &rguid2, sizeof(GUID));
 
@@ -265,7 +265,7 @@
 
   0001c	149de004	 ldrne       lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M36600|
+  00024		 |$M36601|
 
 			 ENDP  ; |?IsEqualGUID@@YAHABU_GUID@@0@Z|, IsEqualGUID
 
@@ -277,7 +277,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36621| DCD	|$LN18@HDQPowerTi|
+|$T36622| DCD	|$LN18@HDQPowerTi|
 	DCD	0x40002801
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\hdq\hdq.cpp
@@ -290,7 +290,7 @@
 
   00000		 |$LN18@HDQPowerTi|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M36618|
+  00004		 |$M36619|
   00004	e1a04000	 mov         r4, r0
 
 ; 158  :     DWORD nTimeout = INFINITE;
@@ -414,7 +414,7 @@
 ; 200  :         else
 
   0009c	eafffff1	 b           |$LN1@HDQPowerTi|
-  000a0		 |$M36619|
+  000a0		 |$M36620|
 
 			 ENDP  ; |?HDQPowerTimerThread@@YAKPAX@Z|, HDQPowerTimerThread
 
@@ -422,7 +422,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36636| DCD	|$LN13@SetHDQPowe|
+|$T36637| DCD	|$LN13@SetHDQPowe|
 	DCD	0x40002901
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\hdq\hdq.cpp
@@ -435,7 +435,7 @@
 
   00000		 |$LN13@SetHDQPowe|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M36633|
+  00004		 |$M36634|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -550,7 +550,7 @@
 
   0009c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000a0	e12fff1e	 bx          lr
-  000a4		 |$M36634|
+  000a4		 |$M36635|
 
 			 ENDP  ; |?SetHDQPower@@YAHPAUDevice_t@@W4_CEDEVICE_POWER_STATE@@@Z|, SetHDQPower
 
@@ -558,7 +558,7 @@
 	IMPORT	|InterruptDone|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36645| DCD	|$LN5@TransmitBr|
+|$T36646| DCD	|$LN5@TransmitBr|
 	DCD	0x40001301
 ; Function compile flags: /Ogspy
 
@@ -570,7 +570,7 @@
 
   00000		 |$LN5@TransmitBr|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M36642|
+  00004		 |$M36643|
   00004	e1a05000	 mov         r5, r0
 
 ; 270  :     DWORD status;
@@ -627,14 +627,14 @@
 
   00044	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00048	e12fff1e	 bx          lr
-  0004c		 |$M36643|
+  0004c		 |$M36644|
 
 			 ENDP  ; |?TransmitBreak@@YAXPAUInstance_t@@@Z|, TransmitBreak
 
 	EXPORT	|?TransmitCommand@@YAHPAUInstance_t@@EPAK@Z| ; TransmitCommand
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36662| DCD	|$LN10@TransmitCo|
+|$T36663| DCD	|$LN10@TransmitCo|
 	DCD	0x40001f01
 ; Function compile flags: /Ogspy
 
@@ -646,7 +646,7 @@
 
   00000		 |$LN10@TransmitCo|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M36659|
+  00004		 |$M36660|
   00004	e1a06002	 mov         r6, r2
   00008	e1a05000	 mov         r5, r0
 
@@ -738,7 +738,7 @@
 ; 353  :     
 ; 354  : cleanUp:
 
-  00068	ea000000	 b           |$cleanUp$36169|
+  00068	ea000000	 b           |$cleanUp$36170|
   0006c		 |$LN2@TransmitCo|
 
 ; 350  :         goto cleanUp;
@@ -746,7 +746,7 @@
 ; 352  :     rc = TRUE;
 
   0006c	e3a04001	 mov         r4, #1
-  00070		 |$cleanUp$36169|
+  00070		 |$cleanUp$36170|
 
 ; 355  :     DEBUGMSG(ZONE_FUNCTION, (L"-TransmitCommand(cmd=0x%02X)\r\n", cmd));
 ; 356  :     return rc;
@@ -755,7 +755,7 @@
   00070	e1a00004	 mov         r0, r4
   00074	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   00078	e12fff1e	 bx          lr
-  0007c		 |$M36660|
+  0007c		 |$M36661|
 
 			 ENDP  ; |?TransmitCommand@@YAHPAUInstance_t@@EPAK@Z|, TransmitCommand
 
@@ -770,7 +770,7 @@
 ; File c:\wince600\public\common\sdk\inc\kfuncs.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36677| DCD	|$LN16@HDQ_Deinit|
+|$T36678| DCD	|$LN16@HDQ_Deinit|
 	DCD	0x40004001
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\hdq\hdq.cpp
@@ -783,7 +783,7 @@
 
   00000		 |$LN16@HDQ_Deinit|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36674|
+  00004		 |$M36675|
   00004	e1b04000	 movs        r4, r0
 
 ; 521  :     DEBUGMSG(ZONE_FUNCTION, (L"+HDQ_Deinit(0x%08x)\r\n", context));
@@ -797,11 +797,11 @@
 ; 526  :     // Check if we get correct context
 ; 527  :     if (pDevice == NULL || pDevice->cookie != HDQ_DEVICE_COOKIE) 
 
-  0000c	0a000038	 beq         |$cleanUp$36241|
+  0000c	0a000038	 beq         |$cleanUp$36242|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f30e0	 ldr         r3, [pc, #0xE0]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a000034	 bne         |$cleanUp$36241|
+  0001c	1a000034	 bne         |$cleanUp$36242|
 
 ; 528  :         {
 ; 529  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: HDQ_Deinit: "
@@ -960,7 +960,7 @@
 ; 588  :     rc = TRUE;
 
   000f0	e3a00001	 mov         r0, #1
-  000f4		 |$cleanUp$36241|
+  000f4		 |$cleanUp$36242|
 
 ; 589  : 
 ; 590  : cleanUp:
@@ -973,7 +973,7 @@
   000fc		 |$LN17@HDQ_Deinit|
   000fc		 |$LN18@HDQ_Deinit|
   000fc	68647144	 DCD         0x68647144
-  00100		 |$M36675|
+  00100		 |$M36676|
 
 			 ENDP  ; |?HDQ_Deinit@@YAHK@Z|, HDQ_Deinit
 
@@ -982,7 +982,7 @@
 	IMPORT	|LocalAlloc|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36690| DCD	|$LN10@HDQ_Open|
+|$T36691| DCD	|$LN10@HDQ_Open|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -994,7 +994,7 @@
 
   00000		 |$LN10@HDQ_Open|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M36687|
+  00004		 |$M36688|
   00004	e1b05000	 movs        r5, r0
 
 ; 609  :     Instance_t *pInstance = NULL;
@@ -1013,11 +1013,11 @@
 ; 619  :     // Check if we get correct context
 ; 620  :     if (pDevice == NULL || pDevice->cookie != HDQ_DEVICE_COOKIE) 
 
-  0000c	0a00000e	 beq         |$cleanUp$36269|
+  0000c	0a00000e	 beq         |$cleanUp$36270|
   00010	e5952000	 ldr         r2, [r5]
   00014	e59f3040	 ldr         r3, [pc, #0x40]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a00000a	 bne         |$cleanUp$36269|
+  0001c	1a00000a	 bne         |$cleanUp$36270|
 
 ; 621  :         {
 ; 622  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR! HDQ_Open: "
@@ -1061,7 +1061,7 @@
   00040	15842004	 strne       r2, [r4, #4]
   00044	15845008	 strne       r5, [r4, #8]
   00048	1b000000	 blne        InterlockedIncrement
-  0004c		 |$cleanUp$36269|
+  0004c		 |$cleanUp$36270|
 
 ; 645  : 
 ; 646  : cleanUp:
@@ -1077,14 +1077,14 @@
   00058	68647149	 DCD         0x68647149
   0005c		 |$LN13@HDQ_Open|
   0005c	68647144	 DCD         0x68647144
-  00060		 |$M36688|
+  00060		 |$M36689|
 
 			 ENDP  ; |?HDQ_Open@@YAKKKK@Z|, HDQ_Open
 
 	EXPORT	|?ContextRestore@@YAXPAUDevice_t@@@Z|	; ContextRestore
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36701| DCD	|$LN5@ContextRes|
+|$T36702| DCD	|$LN5@ContextRes|
 	DCD	0x40000e00
 ; Function compile flags: /Ogspy
 
@@ -1095,7 +1095,7 @@
 ; 653  : {
 
   00000		 |$LN5@ContextRes|
-  00000		 |$M36698|
+  00000		 |$M36699|
 
 ; 654  :     // Enable the clock.
 ; 655  :     SETREG32(&pDevice->pHDQRegs->CTRL_STATUS, HDQ_CTRL_CLOCK_ENABLE);
@@ -1132,14 +1132,14 @@
 ; 665  : }
 
   00034	e12fff1e	 bx          lr
-  00038		 |$M36699|
+  00038		 |$M36700|
 
 			 ENDP  ; |?ContextRestore@@YAXPAUDevice_t@@@Z|, ContextRestore
 
 	EXPORT	|?HDQ_Close@@YAHK@Z|			; HDQ_Close
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36713| DCD	|$LN11@HDQ_Close|
+|$T36714| DCD	|$LN11@HDQ_Close|
 	DCD	0x40001801
 ; Function compile flags: /Ogspy
 
@@ -1151,7 +1151,7 @@
 
   00000		 |$LN11@HDQ_Close|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36710|
+  00004		 |$M36711|
   00004	e1b04000	 movs        r4, r0
 
 ; 678  :     BOOL rc = FALSE;
@@ -1166,11 +1166,11 @@
 ; 684  :     // Check if we get correct context
 ; 685  :     if (pInstance == NULL || pInstance->cookie != HDQ_INSTANCE_COOKIE) 
 
-  0000c	0a00000f	 beq         |$cleanUp$36302|
+  0000c	0a00000f	 beq         |$cleanUp$36303|
   00010	e5942000	 ldr         r2, [r4]
   00014	e59f3040	 ldr         r3, [pc, #0x40]
   00018	e1520003	 cmp         r2, r3
-  0001c	1a00000b	 bne         |$cleanUp$36302|
+  0001c	1a00000b	 bne         |$cleanUp$36303|
 
 ; 686  :         {
 ; 687  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR! HDQ_Close: "
@@ -1186,11 +1186,11 @@
 
 ; 694  :     if (pDevice == NULL || pDevice->cookie != HDQ_DEVICE_COOKIE) 
 
-  00028	0a000008	 beq         |$cleanUp$36302|
+  00028	0a000008	 beq         |$cleanUp$36303|
   0002c	e5912000	 ldr         r2, [r1]
   00030	e59f3020	 ldr         r3, [pc, #0x20]
   00034	e1520003	 cmp         r2, r3
-  00038	1a000004	 bne         |$cleanUp$36302|
+  00038	1a000004	 bne         |$cleanUp$36303|
 
 ; 695  :         {
 ; 696  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR! HDQ_Close: "
@@ -1215,7 +1215,7 @@
 ; 707  :     rc = TRUE;
 
   0004c	e3a00001	 mov         r0, #1
-  00050		 |$cleanUp$36302|
+  00050		 |$cleanUp$36303|
 
 ; 708  : 
 ; 709  : cleanUp:
@@ -1230,14 +1230,14 @@
   00058	68647144	 DCD         0x68647144
   0005c		 |$LN14@HDQ_Close|
   0005c	68647149	 DCD         0x68647149
-  00060		 |$M36711|
+  00060		 |$M36712|
 
 			 ENDP  ; |?HDQ_Close@@YAHK@Z|, HDQ_Close
 
 	EXPORT	|?HDQ_PowerDown@@YAXK@Z|		; HDQ_PowerDown
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36724| DCD	|$LN6@HDQ_PowerD|
+|$T36725| DCD	|$LN6@HDQ_PowerD|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -1249,7 +1249,7 @@
 
   00000		 |$LN6@HDQ_PowerD|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36721|
+  00004		 |$M36722|
 
 ; 726  :     Device_t *pDevice = (Device_t*)dwContext;
 ; 727  :     if (pDevice->nPowerState == D0)
@@ -1270,14 +1270,14 @@
 
   00018	e49de004	 ldr         lr, [sp], #4
   0001c	e12fff1e	 bx          lr
-  00020		 |$M36722|
+  00020		 |$M36723|
 
 			 ENDP  ; |?HDQ_PowerDown@@YAXK@Z|, HDQ_PowerDown
 
 	EXPORT	|?HDQ_PowerUp@@YAXK@Z|			; HDQ_PowerUp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36732| DCD	|$LN6@HDQ_PowerU|
+|$T36733| DCD	|$LN6@HDQ_PowerU|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -1289,7 +1289,7 @@
 
   00000		 |$LN6@HDQ_PowerU|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M36729|
+  00004		 |$M36730|
 
 ; 746  :     Device_t *pDevice = (Device_t*)dwContext;
 ; 747  :     if (pDevice->nPowerState == D0)
@@ -1310,14 +1310,14 @@
 
   00018	e49de004	 ldr         lr, [sp], #4
   0001c	e12fff1e	 bx          lr
-  00020		 |$M36730|
+  00020		 |$M36731|
 
 			 ENDP  ; |?HDQ_PowerUp@@YAXK@Z|, HDQ_PowerUp
 
 	EXPORT	|HDQ_Write|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36757| DCD	|$LN28@HDQ_Write|
+|$T36758| DCD	|$LN28@HDQ_Write|
 	DCD	0x40005c02
 ; Function compile flags: /Ogspy
 
@@ -1330,7 +1330,7 @@
   00000		 |$LN28@HDQ_Write|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M36754|
+  00008		 |$M36755|
   00008	e1a07002	 mov         r7, r2
   0000c	e1a0b001	 mov         r11, r1
   00010	e1b05000	 movs        r5, r0
@@ -1387,7 +1387,7 @@
   0004c	e596e000	 ldr         lr, [r6]
   00050	e59f3110	 ldr         r3, [pc, #0x110]
   00054	e15e0003	 cmp         lr, r3
-  00058	1a000038	 bne         |$cleanUp$36392|
+  00058	1a000038	 bne         |$cleanUp$36393|
 
 ; 904  :         {
 ; 905  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR: HDQ_Write: "
@@ -1545,7 +1545,7 @@
   0011c	e59d4000	 ldr         r4, [sp]
   00120	e3a09001	 mov         r9, #1
   00124	e58a300c	 str         r3, [r10, #0xC]
-  00128	ea000004	 b           |$cleanUp$36392|
+  00128	ea000004	 b           |$cleanUp$36393|
   0012c		 |$LN22@HDQ_Write|
 
 ; 969  :             {
@@ -1563,10 +1563,10 @@
 ; 983  :     rc = TRUE;
 
   00134	e59d4000	 ldr         r4, [sp]
-  00138	ea000000	 b           |$cleanUp$36392|
+  00138	ea000000	 b           |$cleanUp$36393|
   0013c		 |$LN24@HDQ_Write|
   0013c	e3a04001	 mov         r4, #1
-  00140		 |$cleanUp$36392|
+  00140		 |$cleanUp$36393|
 
 ; 984  : 
 ; 985  : cleanUp:
@@ -1600,14 +1600,14 @@
   00168	68647144	 DCD         0x68647144
   0016c		 |$LN31@HDQ_Write|
   0016c	68647149	 DCD         0x68647149
-  00170		 |$M36755|
+  00170		 |$M36756|
 
 			 ENDP  ; |HDQ_Write|
 
 	EXPORT	|HDQ_Read|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36786| DCD	|$LN30@HDQ_Read|
+|$T36787| DCD	|$LN30@HDQ_Read|
 	DCD	0x40005f02
 ; Function compile flags: /Ogspy
 
@@ -1620,7 +1620,7 @@
   00000		 |$LN30@HDQ_Read|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M36783|
+  00008		 |$M36784|
   00008	e1a07002	 mov         r7, r2
   0000c	e1a0b001	 mov         r11, r1
   00010	e1b04000	 movs        r4, r0
@@ -1677,7 +1677,7 @@
   0004c	e595e000	 ldr         lr, [r5]
   00050	e59f311c	 ldr         r3, [pc, #0x11C]
   00054	e15e0003	 cmp         lr, r3
-  00058	1a00003b	 bne         |$cleanUp$36442|
+  00058	1a00003b	 bne         |$cleanUp$36443|
 
 ; 1036 :         {
 ; 1037 :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR: HDQ_Read: "
@@ -1853,7 +1853,7 @@
 ; 1124 :     rc = TRUE;
 
   0012c	e59d6000	 ldr         r6, [sp]
-  00130	ea000005	 b           |$cleanUp$36442|
+  00130	ea000005	 b           |$cleanUp$36443|
   00134		 |$LN8@HDQ_Read|
 
 ; 1118 :         }
@@ -1870,10 +1870,10 @@
   00138	e59d6000	 ldr         r6, [sp]
   0013c	e3a09001	 mov         r9, #1
   00140	e588300c	 str         r3, [r8, #0xC]
-  00144	ea000000	 b           |$cleanUp$36442|
+  00144	ea000000	 b           |$cleanUp$36443|
   00148		 |$LN26@HDQ_Read|
   00148	e3a06001	 mov         r6, #1
-  0014c		 |$cleanUp$36442|
+  0014c		 |$cleanUp$36443|
 
 ; 1125 : 
 ; 1126 : cleanUp:
@@ -1907,7 +1907,7 @@
   00174	68647144	 DCD         0x68647144
   00178		 |$LN33@HDQ_Read|
   00178	68647149	 DCD         0x68647149
-  0017c		 |$M36784|
+  0017c		 |$M36785|
 
 			 ENDP  ; |HDQ_Read|
 
@@ -1916,7 +1916,7 @@
 	IMPORT	|RegisterDbgZones|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36800| DCD	|$LN8@DllMain|
+|$T36801| DCD	|$LN8@DllMain|
 	DCD	0x40000c01
 ; Function compile flags: /Ogspy
 
@@ -1928,7 +1928,7 @@
 
   00000		 |$LN8@DllMain|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M36797|
+  00004		 |$M36798|
   00004	e1a04000	 mov         r4, r0
 
 ; 1152 :     
@@ -1965,7 +1965,7 @@
   0002c		 |$LN9@DllMain|
   0002c		 |$LN10@DllMain|
   0002c	00000000	 DCD         |dpCurSettings|
-  00030		 |$M36798|
+  00030		 |$M36799|
 
 			 ENDP  ; |DllMain|
 
@@ -1985,7 +1985,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36818| DCD	|$LN24@HDQ_Init|
+|$T36819| DCD	|$LN24@HDQ_Init|
 	DCD	0x40007e02
 ; Function compile flags: /Ogspy
 
@@ -1998,7 +1998,7 @@
   00000		 |$LN24@HDQ_Init|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M36815|
+  00008		 |$M36816|
   00008	e1a06000	 mov         r6, r0
 
 ; 372  :     DEBUGMSG(ZONE_FUNCTION, (L"+HDQ_Init(%s, 0x%08x)\r\n", 
@@ -2074,7 +2074,7 @@
   00060	e1a00006	 mov         r0, r6
   00064	eb000000	 bl          GetDeviceRegistryParams
   00068	e3500000	 cmp         r0, #0
-  0006c	1a000052	 bne         |$cleanUp$36190|
+  0006c	1a000052	 bne         |$cleanUp$36191|
 
 ; 406  :         {
 ; 407  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR: HDQ_Init: "
@@ -2093,7 +2093,7 @@
 
 ; 415  :     if (pDevice->hParent == NULL) 
 
-  00080	0a00004d	 beq         |$cleanUp$36190|
+  00080	0a00004d	 beq         |$cleanUp$36191|
 
 ; 416  :         {
 ; 417  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR: HDQ_Init: "
@@ -2181,7 +2181,7 @@
 ; 447  :     
 ; 448  :     if (pDevice->pHDQRegs == NULL) 
 
-  00110	0a000029	 beq         |$cleanUp$36190|
+  00110	0a000029	 beq         |$cleanUp$36191|
 
 ; 449  :         {
 ; 450  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR: HDQ_Init: "
@@ -2212,7 +2212,7 @@
   0013c	e58d7000	 str         r7, [sp]
   00140	eb000000	 bl          KernelIoControl
   00144	e3500000	 cmp         r0, #0
-  00148	0a00001b	 beq         |$cleanUp$36190|
+  00148	0a00001b	 beq         |$cleanUp$36191|
 
 ; 462  :         {
 ; 463  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR: HDQ_Init: "
@@ -2234,7 +2234,7 @@
 
 ; 471  :     if (pDevice->hIntrEvent == NULL) 
 
-  00168	0a000013	 beq         |$cleanUp$36190|
+  00168	0a000013	 beq         |$cleanUp$36191|
 
 ; 472  :         {
 ; 473  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR: HDQ_Init: "
@@ -2250,7 +2250,7 @@
   00174	e3a02000	 mov         r2, #0
   00178	eb000000	 bl          InterruptInitialize
   0017c	e3500000	 cmp         r0, #0
-  00180	0a00000d	 beq         |$cleanUp$36190|
+  00180	0a00000d	 beq         |$cleanUp$36191|
 
 ; 480  :         {
 ; 481  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: HDQ_Init: "
@@ -2290,7 +2290,7 @@
   001b0	e591300c	 ldr         r3, [r1, #0xC]
   001b4	e3833040	 orr         r3, r3, #0x40
   001b8	e581300c	 str         r3, [r1, #0xC]
-  001bc		 |$cleanUp$36190|
+  001bc		 |$cleanUp$36191|
 
 ; 501  : 
 ; 502  : cleanUp:
@@ -2326,7 +2326,7 @@
   001f0	00000000	 DCD         |g_deviceRegParams|
   001f4		 |$LN29@HDQ_Init|
   001f4	68647144	 DCD         0x68647144
-  001f8		 |$M36816|
+  001f8		 |$M36817|
 
 			 ENDP  ; |?HDQ_Init@@YAKPBGPBX@Z|, HDQ_Init
 
@@ -2336,7 +2336,7 @@
 	IMPORT	|GetCallerProcess|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T36856| DCD	|$LN35@HDQ_IOCont|
+|$T36857| DCD	|$LN35@HDQ_IOCont|
 	DCD	0x40005902
 ; Function compile flags: /Ogspy
 
@@ -2349,7 +2349,7 @@
   00000		 |$LN35@HDQ_IOCont|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M36853|
+  00008		 |$M36854|
   00008	e1a08003	 mov         r8, r3
   0000c	e1a07002	 mov         r7, r2
   00010	e1b05000	 movs        r5, r0
@@ -2370,11 +2370,11 @@
 ; 782  :     // Check if we get correct context
 ; 783  :     if (pInstance == NULL || pInstance->cookie != HDQ_INSTANCE_COOKIE) 
 
-  00018	0a000047	 beq         |$cleanUp$36340|
+  00018	0a000047	 beq         |$cleanUp$36341|
   0001c	e5954000	 ldr         r4, [r5]
   00020	e59fe138	 ldr         lr, [pc, #0x138]
   00024	e154000e	 cmp         r4, lr
-  00028	1a000043	 bne         |$cleanUp$36340|
+  00028	1a000043	 bne         |$cleanUp$36341|
 
 ; 784  :         {
 ; 785  :         DEBUGMSG(ZONE_ERROR && ZONE_HDQ, (L"ERROR! HDQ_IOControl: "
@@ -2391,11 +2391,11 @@
 
 ; 793  :     if (pDevice == NULL || pDevice->cookie != HDQ_DEVICE_COOKIE) 
 
-  00034	0a000040	 beq         |$cleanUp$36340|
+  00034	0a000040	 beq         |$cleanUp$36341|
   00038	e5904000	 ldr         r4, [r0]
   0003c	e59fe118	 ldr         lr, [pc, #0x118]
   00040	e154000e	 cmp         r4, lr
-  00044	1a00003c	 bne         |$cleanUp$36340|
+  00044	1a00003c	 bne         |$cleanUp$36341|
   00048	e3a03822	 mov         r3, #0x22, 16
 
 ; 794  :         {
@@ -2445,7 +2445,7 @@
   0008c	e591300c	 ldr         r3, [r1, #0xC]
   00090	e3833040	 orr         r3, r3, #0x40
   00094	e581300c	 str         r3, [r1, #0xC]
-  00098	ea000027	 b           |$cleanUp$36340|
+  00098	ea000027	 b           |$cleanUp$36341|
   0009c		 |$LN11@HDQ_IOCont|
 
 ; 802  :         {
@@ -2538,7 +2538,7 @@
 ; 839  :                 rc = TRUE;
 
   0012c	13a06001	 movne       r6, #1
-  00130	1a000001	 bne         |$cleanUp$36340|
+  00130	1a000001	 bne         |$cleanUp$36341|
   00134		 |$LN8@HDQ_IOCont|
 
 ; 817  :                 {
@@ -2547,7 +2547,7 @@
   00134	e3a00057	 mov         r0, #0x57
   00138		 |$LN31@HDQ_IOCont|
   00138	eb000000	 bl          SetLastError
-  0013c		 |$cleanUp$36340|
+  0013c		 |$cleanUp$36341|
 
 ; 857  :     }
 ; 858  : 
@@ -2573,7 +2573,7 @@
   0015c	68647144	 DCD         0x68647144
   00160		 |$LN42@HDQ_IOCont|
   00160	68647149	 DCD         0x68647149
-  00164		 |$M36854|
+  00164		 |$M36855|
 
 			 ENDP  ; |?HDQ_IOControl@@YAHKKPAEK0KPAK@Z|, HDQ_IOControl
 

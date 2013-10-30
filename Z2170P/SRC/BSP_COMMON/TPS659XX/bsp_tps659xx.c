@@ -64,13 +64,12 @@ static void ShowT2Reg(void* hTwl, DWORD RegAddr, TCHAR * szRegname)
 }
 
 //------------------------------------------------------------------------------
-VOID 
-InitTwlPower(
-    )
+VOID InitTwlPower( )
 {
     void* hTwl;
     UINT16 val;
 
+	OALLog(L"InitTwlPower\r\n");
     // initialize T2 power level and grouping
     hTwl = TWLOpen();
 
@@ -348,14 +347,14 @@ InitTwlPower(
     TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
     TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
-//    val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VPLL2_RES_ID, TWL_RES_OFF);
-//    TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
-//    TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+	// val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VPLL2_RES_ID, TWL_RES_OFF);
+	// TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+	// TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
 
     // disable sd
-//    val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC1_RES_ID, TWL_RES_OFF);
-//    TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
-//    TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
+	// val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC1_RES_ID, TWL_RES_OFF);
+	// TWLWriteByteReg(hTwl, TWL_PB_WORD_MSB, (UINT8)(val >> 8));
+	// TWLWriteByteReg(hTwl, TWL_PB_WORD_LSB, (UINT8)val);
     
     // enable sd
     val = TwlTargetMessage(TWL_PROCESSOR_GRP1, TWL_VMMC1_RES_ID, TWL_RES_ACTIVE);
@@ -387,7 +386,7 @@ InitTwlPower(
 
 BOOL BSPSetT2MSECURE(BOOL fSet)
 {
-#ifdef BSP_EVM2
+/*#ifdef BSP_EVM2
     HANDLE hGPIO = GPIOOpen();
                 
     if (hGPIO == NULL) return FALSE;
@@ -398,9 +397,9 @@ BOOL BSPSetT2MSECURE(BOOL fSet)
         GPIOClrBit(hGPIO,TPS659XX_MSECURE_GPIO);
 
     GPIOClose(hGPIO);
-#else
+#else*/
     UNREFERENCED_PARAMETER(fSet);
-#endif
+//#endif
     return TRUE;
 }
 //------------------------------------------------------------------------------

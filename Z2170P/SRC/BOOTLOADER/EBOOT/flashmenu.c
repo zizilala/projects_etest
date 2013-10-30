@@ -40,13 +40,59 @@ static VOID DumpFlash(OAL_BLMENU_ITEM *pMenu);
 static VOID FormatFlash(OAL_BLMENU_ITEM *pMenu);
 static VOID EnableFlashNK(OAL_BLMENU_ITEM *pMenu);
 static VOID SetECCType(OAL_BLMENU_ITEM *pMenu);
-//static VOID DumpFlashBBuffer(OAL_BLMENU_ITEM *pMenu);     //Ray 13-09-17
-//VOID DumpFlashBuffer(OAL_BLMENU_ITEM *pMenu);
-
-
-
+#if BUILDING_EBOOT_SD
+static VOID WriteEbootToNand(OAL_BLMENU_ITEM *pMenu);
+static VOID WriteEbXldLogoToNand(OAL_BLMENU_ITEM *pMenu);
+static VOID WriteLogoToNand(OAL_BLMENU_ITEM *pMenu);
+#endif
 //------------------------------------------------------------------------------
-
+#if BUILDING_EBOOT_SD
+OAL_BLMENU_ITEM g_menuFlash[] = {
+    {
+        L'1', L"Show flash geometry", ShowFlashGeometry,
+        NULL, NULL, NULL
+    }, {
+        L'2', L"Dump flash sector", DumpFlash,
+        NULL, NULL, NULL
+    }, {
+        L'3', L"Erase flash", EraseFlash,
+        NULL, NULL, NULL
+    }, {
+        L'4', L"Erase block range", EraseBlock,
+        NULL, NULL, NULL
+    }, {
+        L'5', L"Reserve block range", ReserveBlock,
+        NULL, NULL, NULL
+    }, {
+        L'6', L"Set bad block", SetBadBlock,
+        NULL, NULL, NULL
+    }, {
+        L'7', L"Format flash", FormatFlash,
+        NULL, NULL, NULL
+    }, {
+        L'8', L"Enable flashing NK.bin", EnableFlashNK,
+        NULL, NULL, NULL
+    }, {
+        L'9', L"Set ECC mode", SetECCType,
+        NULL, NULL, NULL
+    }, {
+        L'a', L"Update ebootnd.nb0", WriteEbootToNand,
+        NULL, NULL, NULL
+    }, {
+        L'b', L"Update z2170pnd.raw", WriteEbXldLogoToNand,
+        NULL, NULL, NULL
+    }, {
+        L'c', L"Update Logo.bmp", WriteLogoToNand,
+        NULL, NULL, NULL        
+    }, {
+        L'0', L"Exit and Continue", NULL,
+        NULL, NULL, NULL
+    }, {
+        0, NULL, NULL,
+        NULL, NULL, NULL
+    }
+};
+#else
 OAL_BLMENU_ITEM g_menuFlash[] = {
     {
         L'1', L"Show flash geometry", ShowFlashGeometry,
@@ -83,11 +129,12 @@ OAL_BLMENU_ITEM g_menuFlash[] = {
         NULL, NULL, NULL
     }
 };
-
+#endif
 
 //------------------------------------------------------------------------------
 
-VOID ShowFlashGeometry(OAL_BLMENU_ITEM *pMenu)
+VOID 
+ShowFlashGeometry(OAL_BLMENU_ITEM *pMenu)
 {
     HANDLE hFMD;
     PCI_REG_INFO regInfo;
@@ -98,7 +145,7 @@ VOID ShowFlashGeometry(OAL_BLMENU_ITEM *pMenu)
     UINT32 listmode=0;
 
     UNREFERENCED_PARAMETER(pMenu);
-    
+
     regInfo.MemBase.Reg[0] = g_ulFlashBase;
     hFMD = FMD_Init(NULL, &regInfo, NULL);
     if (hFMD == NULL) 
@@ -126,11 +173,11 @@ VOID ShowFlashGeometry(OAL_BLMENU_ITEM *pMenu)
         }
 
     OALLog(L"\r\n");
-    OALLog(L" Flash Type:    %s\r\n", pszType);              //Ray 13-09-16           
-    OALLog(L" Blocks:        %d\r\n", flashInfo.dwNumBlocks);//Number of physical blocks in flash       
-    OALLog(L" Bytes/block:   %d\r\n", flashInfo.dwBytesPerBlock);//Number of bytes per block.
-    OALLog(L" Sectors/block: %d\r\n", flashInfo.wSectorsPerBlock);//Number of sectors per block.
-    OALLog(L" Bytes/sector:  %d\r\n", flashInfo.wDataBytesPerSector);//Number of data bytes per sector.
+    OALLog(L" Flash Type:    %s\r\n", pszType);
+    OALLog(L" Blocks:        %d\r\n", flashInfo.dwNumBlocks);
+    OALLog(L" Bytes/block:   %d\r\n", flashInfo.dwBytesPerBlock);
+    OALLog(L" Sectors/block: %d\r\n", flashInfo.wSectorsPerBlock);
+    OALLog(L" Bytes/sector:  %d\r\n", flashInfo.wDataBytesPerSector);
 	
     switch (g_bootCfg.ECCtype) 
         {
@@ -177,17 +224,18 @@ VOID ShowFlashGeometry(OAL_BLMENU_ITEM *pMenu)
 
         // reserved block
         if ((status & BLOCK_STATUS_RESERVED) != 0) 
-        {
-            if (listmode!=2)
             {
+            if (listmode!=2)
+                {
                 OALLog(L"\r\n[reserved]");
                 listmode=2;
-            }
+                }
+
             OALLog(L" %d", block);
 
             block++;
             continue;
-         }
+            }
 
         block++;
     }
@@ -533,9 +581,9 @@ VOID DumpFlash(OAL_BLMENU_ITEM *pMenu)
 {
     HANDLE hFMD = NULL;
     PCI_REG_INFO regInfo;
-    FlashInfo    flashInfo;
-    SectorInfo   sectorInfo;
-    SECTOR_ADDR  sector;
+    FlashInfo flashInfo;
+    SectorInfo sectorInfo;
+    SECTOR_ADDR sector;
     WCHAR szInputLine[16];
     UINT8 buffer[2048], pOob[64];
     UINT32 i, j;
@@ -649,138 +697,6 @@ cleanUp:
 
     return;
 }
-
-//------------------------------------------------------------------------------
-//Ray 13-09-16
-//
-/*VOID DumpFlashBBuffer(OAL_BLMENU_ITEM *pMenu)
-{
-    HANDLE hFMD = NULL;
-    PCI_REG_INFO regInfo;
-    FlashInfo    flashInfo;
-    SectorInfo   sectorInfo;
-    SECTOR_ADDR  sector;
-    WCHAR szInputLine[16];
-    UINT8 buffer[2048], pOob[64];
-    UINT32 i, j;
-
-    UNREFERENCED_PARAMETER(pMenu);
-
-
-    // Open FMD
-    regInfo.MemBase.Reg[0] = g_ulFlashBase;
-    hFMD = FMD_Init(NULL, &regInfo, NULL);
-    if (hFMD == NULL) 
-        {
-        OALLog(L" Oops, can't open FMD driver\r\n");
-        goto cleanUp;
-        }
-
-    if (!FMD_GetInfo(&flashInfo)) 
-        {
-        OALLog(L" Oops, can't get flash geometry info\r\n");
-        goto cleanUp;
-        }
-
-    if (flashInfo.wDataBytesPerSector > sizeof(buffer)) 
-        {
-        OALLog(L" Oops, sector size larger than my buffer\r\n");
-        goto cleanUp;
-        }
-
-        for(;;)
-        {
-
-        OALLog(L"\r\n Sector Number: ");
-
-        if (OALBLMenuReadLine(szInputLine, dimof(szInputLine)) == 0) 
-            {
-            break;
-            }
-
-        // Get sector number
-        sector = OALStringToUINT32(szInputLine);
-
-        // Check sector number
-        if (sector > flashInfo.dwNumBlocks * flashInfo.wSectorsPerBlock) 
-            {
-            OALLog(L" Oops, too big sector number\r\n");
-            continue;
-            }
-
-        if (!FMD_ReadSector(sector, buffer, &sectorInfo, 1)) 
-            {
-            OALLog(L" Oops, sector read failed\r\n");
-            continue;
-            }
-
-        OALLog(
-            L"\r\nSector %d (sector %d in block %d)\r\n", sector,
-            sector%flashInfo.wSectorsPerBlock, sector/flashInfo.wSectorsPerBlock
-        );
-        OALLog(
-            L"Reserved1: %08x OEMReserved: %02x Bad: %02x Reserved2: %04x\r\n",
-            sectorInfo.dwReserved1, sectorInfo.bOEMReserved,
-            sectorInfo.bBadBlock, sectorInfo.wReserved2
-        );
-
-        for (i = 0; i < flashInfo.wDataBytesPerSector; i += 16) 
-            {
-            OALLog(L"%04x ", i);
-            for (j = i; j < i + 16 && j < flashInfo.wDataBytesPerSector; j++) 
-                {
-                OALLog(L" %02x", buffer[j]);
-                }
-            OALLog(L"  ");
-            for (j = i; j < i + 16 && j < flashInfo.wDataBytesPerSector; j++) 
-                {
-                if (buffer[j] >= ' ' && buffer[j] < 127) 
-                    {
-                    OALLog(L"%c", buffer[j]);
-                    } 
-                else 
-                    {
-                    OALLog(L".");
-                    }
-                }
-            OALLog(L"\r\n");
-            }
-	//dump OOB data
-        if (!FMD_ReadSectorOOB(sector, pOob)) 
-            {
-            OALLog(L" Oops, sector read failed\r\n");
-            continue;
-            }
-        for (i = 0; i < 64; i += 16) 
-            {
-            OALLog(L"%04x ", i);
-            for (j = i; j < i + 16 && j < 64; j++) 
-                {
-                OALLog(L" %02x", pOob[j]);
-                }
-                
-            OALLog(L"\r\n");
-            }
-
-        }
-
-cleanUp:
-
-    if (hFMD != NULL) 
-        {
-        FMD_Deinit(hFMD);
-        }
-
-    return;
-}*/
-
-//------------------------------------------------------------------------------
-/*VOID DumpFlashBuffer(OAL_BLMENU_ITEM *pMenu)
-{
-    DumpFlashBBuffer(pMenu);
-    OALLog(L"XXXXXXXXXXXX\n");
-    
-}*/
 
 //------------------------------------------------------------------------------
 
@@ -916,3 +832,104 @@ static VOID SetECCType(OAL_BLMENU_ITEM *pMenu)
     g_ecctype = g_bootCfg.ECCtype;
 	
 }
+#if BUILDING_EBOOT_SD
+//-----------------------------------------------------------------------------
+extern BOOL WriteFlashEBOOT(UINT32 address, UINT32 size);
+extern BOOL WriteFlashXLDR(UINT32 address, UINT32 size);
+extern BOOL WriteFlashLogo(UINT32 address, UINT32 size);
+//-----------------------------------------------------------------------------
+VOID WriteEbootToNand(OAL_BLMENU_ITEM *pMenu)
+{
+	WCHAR key;
+	BYTE *pDataAddr = OALPAtoUA(IMAGE_WINCE_CODE_CA);//IMAGE_EBOOT_CODE_CA	
+	//int i;
+	UNREFERENCED_PARAMETER(pMenu);
+	
+	//OALLog(L" Update eboot to NAND [y/-]: ");
+	OALLog(L" Update eboot to NAND [y/n]: ");   //Ray 131024
+	
+    // Get key
+    key = OALBLMenuReadKey(TRUE);
+    OALLog(L"%c\r\n", key);
+
+    if (key == L'y' || key == L'Y') 
+    {
+    	
+    	if( BLSDCardReadEbootData(L"EBOOTND.nb0", pDataAddr, 0x3F000) )
+    	{
+    		//for( i=0 ;i<100 ; i++ )
+    		//	OALLog(L"EBOOT: %d = 0x%x\r\n", i, *(pDataAddr+i));
+    		if( WriteFlashEBOOT((UINT32)pDataAddr, 0x3F000) )
+    			OALLog(L" Update Success!!! ");
+    	}
+    }
+}
+//-----------------------------------------------------------------------------
+VOID WriteEbXldLogoToNand(OAL_BLMENU_ITEM *pMenu)
+{
+	WCHAR key;
+	BYTE *pDataAddr = OALPAtoUA(IMAGE_WINCE_CODE_CA);	
+	//int i;
+	UNREFERENCED_PARAMETER(pMenu);
+	
+	//OALLog(L" Update eboot+xld+logo to NAND [y/-]: ");
+	OALLog(L" Update eboot+xld+logo to NAND [y/n]: ");  //Ray 131024
+	
+    // Get key
+    key = OALBLMenuReadKey(TRUE);
+    OALLog(L"%c\r\n", key);
+
+    if (key == L'y' || key == L'Y') 
+    {
+    	
+    	if( BLSDCardReadEbootData(L"Z2170Pnd.raw", pDataAddr, 0x100000) )
+    	{
+    		//for( i=0 ;i<100 ; i++ )
+    		//	OALLog(L"EBOOT: %d = 0x%x\r\n", i, *(pDataAddr+i));
+    		if( WriteFlashXLDR((UINT32)pDataAddr, 0x00) )
+    		{
+    			if( WriteFlashEBOOT((UINT32)(pDataAddr+0x80000), 0x3F000) )
+    			{
+    				if( WriteFlashLogo((UINT32)(pDataAddr+0xc0000), 0x40000) )
+    					OALLog(L" Update Success!!! ");
+    			}
+    		}
+    	}
+    }
+}
+//-----------------------------------------------------------------------------
+VOID WriteLogoToNand(OAL_BLMENU_ITEM *pMenu) 
+{
+	WCHAR key;
+	BYTE *pDataAddr = OALPAtoUA(IMAGE_WINCE_CODE_CA);
+	UNREFERENCED_PARAMETER(pMenu);
+	
+	//OALLog(L" Update Logo.bmp to NAND [y/-]: ");
+	OALLog(L" Update Logo.bmp to NAND [y/n]: "); //Ray 131024
+	
+    // Get key
+    key = OALBLMenuReadKey(TRUE);
+    OALLog(L"%c\r\n", key);
+
+    if (key == L'y' || key == L'Y') 
+    {
+#ifdef BSP_Z2000    	
+    	if( BLSDCardReadEbootData(L"logo.bmp", pDataAddr, 0x40000) )
+    	{
+    		//for( i=0 ;i<100 ; i++ )
+    		//	OALLog(L"EBOOT: %d = 0x%x\r\n", i, *(pDataAddr+i));
+    		if( WriteFlashLogo((UINT32)pDataAddr, 0x40000) )
+    			OALLog(L" Update Success!!! ");
+    	}
+#else
+    	if( BLSDCardReadEbootData(L"LOGO_VER.bmp", pDataAddr, 0x40000) )
+    	{
+    		//for( i=0 ;i<100 ; i++ )
+    		//	OALLog(L"EBOOT: %d = 0x%x\r\n", i, *(pDataAddr+i));
+    		if( WriteFlashLogo((UINT32)pDataAddr, 0x40000) )
+    			OALLog(L" Update Success!!! ");
+    	}
+#endif
+    }
+}
+#endif

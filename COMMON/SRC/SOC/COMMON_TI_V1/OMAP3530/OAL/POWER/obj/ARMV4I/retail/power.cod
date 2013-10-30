@@ -79,7 +79,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\omap3530\oal\power\power.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47366| DCD	|$LN16@OEMInterru|
+|$T47339| DCD	|$LN16@OEMInterru|
 	DCD	0x40002c02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -109,7 +109,7 @@
   00000		 |$LN16@OEMInterru|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47363|
+  00008		 |$M47336|
   00008	e1a05000	 mov         r5, r0
 
 ; 74   :     BOOL pending = FALSE;
@@ -191,7 +191,7 @@
   000a8	00000000	 DCD         |??_C@_1DG@KCFEDALK@?$AA?$CL?$AAO?$AAE?$AAM?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AAP?$AAe?$AAn?$AAd?$AAi?$AAn?$AAg?$AA?$CI?$AA?$CF?$AAd?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   000ac		 |$LN20@OEMInterru|
   000ac	00000000	 DCD         |dpCurSettings|
-  000b0		 |$M47364|
+  000b0		 |$M47337|
 
 			 ENDP  ; |OEMInterruptPending|
 
@@ -199,6 +199,7 @@
 	EXPORT	|??_C@_1DG@KDDHMOEO@?$AA?$AN?$AA?6?$AAW?$AAa?$AAk?$AAe?$AA?5?$AAd?$AAu?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAS?$AAY?$AAS?$AAI?$AAN?$AAT?$AAR?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BO@GGDDDJNF@?$AA?5?$AA?5?$AAS?$AAY?$AAS?$AAI?$AAN?$AAT?$AAR?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DA@OKMJBLLN@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?5?$AAw?$AAa?$AAk?$AAe?$AA?5?$AAs?$AAo?$AAu?$AAr?$AAc?$AAe?$AAs?$AA?3?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CA@BDKPHEFC@?$AAO?$AAE?$AAM?$AAP?$AAo?$AAw?$AAe?$AAr?$AAO?$AAf?$AAf?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|DumpPrcmRegsSnapshot|
 	IMPORT	|PrcmDumpSavedRefCounts|
 	IMPORT	|OALWakeupLatency_DumpSnapshot|
@@ -223,8 +224,8 @@
 	IMPORT	|g_oalWakeSource|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47416| DCD	|$LN57@OEMPowerOf|
-	DCD	0x4000ef02
+|$T47389| DCD	|$LN57@OEMPowerOf|
+	DCD	0x4000f202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DG@KDDHMOEO@?$AA?$AN?$AA?6?$AAW?$AAa?$AAk?$AAe?$AA?5?$AAd?$AAu?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAS?$AAY?$AAS?$AAI?$AAN?$AAT?$AAR?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
@@ -246,634 +247,646 @@
 	DCB	0x0, " ", 0x0, "w", 0x0, "a", 0x0, "k", 0x0, "e", 0x0, " "
 	DCB	0x0, "s", 0x0, "o", 0x0, "u", 0x0, "r", 0x0, "c", 0x0, "e"
 	DCB	0x0, "s", 0x0, ":", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CA@BDKPHEFC@?$AAO?$AAE?$AAM?$AAP?$AAo?$AAw?$AAe?$AAr?$AAO?$AAf?$AAf?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "O"
+	DCB	0x0, "E", 0x0, "M", 0x0, "P", 0x0, "o", 0x0, "w", 0x0, "e"
+	DCB	0x0, "r", 0x0, "O", 0x0, "f", 0x0, "f", 0x0, "(", 0x0, ")"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |OEMPowerOff| PROC
 
-; 105  : {
+; 103  : {
 
   00000		 |$LN57@OEMPowerOf|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M47413|
-
-; 106  :     DWORD i;
-; 107  :     UINT32 sysIntr;
-; 108  :     UINT intr[3];
-; 109  :     BOOL bPowerOn;
-; 110  :     BOOL bPrevIntrState;
-; 111  :     UINT irq = 0;
-; 112  :     UINT32 mask = 0;
-; 113  : 	
-; 114  :     // disable interrupts (note: this should not be needed)
-; 115  :     bPrevIntrState = INTERRUPTS_ENABLE(FALSE);
-
-  00008	e3a00000	 mov         r0, #0
-  0000c	eb000000	 bl          INTERRUPTS_ENABLE
-  00010	e1a0a000	 mov         r10, r0
-
-; 116  : 
-; 117  :     // UNDONE: verify if this is still necessary
-; 118  :     // Disable hardware watchdog
-; 119  :     OALWatchdogEnable(FALSE);
-
-  00014	e3a00000	 mov         r0, #0
-  00018	eb000000	 bl          OALWatchdogEnable
-
-; 120  :     
-; 121  :     // Make sure that KITL is powered off
-; 122  :     bPowerOn = FALSE;
-; 123  :     KITLIoctl(IOCTL_KITL_POWER_CALL, &bPowerOn, sizeof(bPowerOn), NULL, 0, NULL);    
-
-  0001c	e59f038c	 ldr         r0, [pc, #0x38C]
-  00020	e3a03000	 mov         r3, #0
-  00024	e58d3008	 str         r3, [sp, #8]
-  00028	e3a06000	 mov         r6, #0
-  0002c	e3a03000	 mov         r3, #0
-  00030	e3a02004	 mov         r2, #4
-  00034	e28d1008	 add         r1, sp, #8
-  00038	e58d6004	 str         r6, [sp, #4]
-  0003c	e58d6000	 str         r6, [sp]
-  00040	eb000000	 bl          KITLIoctl
-
-; 124  : 
-; 125  : 	
-; 126  :     //Save Perf Timer
-; 127  :     OALContextSavePerfTimer();
-
-  00044	eb000000	 bl          OALContextSavePerfTimer
-
-; 128  :     // Disable GPTimer2 (used for high perf/monte carlo profiling)
-; 129  :     EnableDeviceClocks(BSPGetGPTPerfDevice(), FALSE);
-
-  00048	eb000000	 bl          BSPGetGPTPerfDevice
-  0004c	e3a01000	 mov         r1, #0
-  00050	eb000000	 bl          EnableDeviceClocks
-
-; 130  : 
-; 131  :     // Give chance to do board specific stuff
-; 132  :     BSPPowerOff();
-
-  00054	eb000000	 bl          BSPPowerOff
-
-; 133  : 
-; 134  :     //----------------------------------------------
-; 135  :     // capture all enabled interrupts and disable interrupts
-; 136  :     intr[0] = INREG32(&g_pIntr->pICLRegs->INTC_MIR0);
-
-  00058	e59f8358	 ldr         r8, [pc, #0x358]
-
-; 137  :     intr[1] = INREG32(&g_pIntr->pICLRegs->INTC_MIR1);
-; 138  :     intr[2] = INREG32(&g_pIntr->pICLRegs->INTC_MIR2);
-; 139  : 
-; 140  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET0, OMAP_MPUIC_MASKALL);
-
-  0005c	e3e01000	 mvn         r1, #0
-
-; 141  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET1, OMAP_MPUIC_MASKALL);
-; 142  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET2, OMAP_MPUIC_MASKALL);
-; 143  : 
-; 144  :     //----------------------------------------------
-; 145  :     // Context Save/Restore       
-; 146  : 	// Save state then mask all GPIO interrupts
-; 147  : 	for (i=0; i<g_pIntr->nbGpioBank; i++)
-
-  00060	e3a05000	 mov         r5, #0
-  00064	e5983000	 ldr         r3, [r8]
-  00068	e5933000	 ldr         r3, [r3]
-  0006c	e593b084	 ldr         r11, [r3, #0x84]
-  00070	e59320a4	 ldr         r2, [r3, #0xA4]
-  00074	e58d200c	 str         r2, [sp, #0xC]
-  00078	e59320c4	 ldr         r2, [r3, #0xC4]
-  0007c	e583108c	 str         r1, [r3, #0x8C]
-  00080	e5983000	 ldr         r3, [r8]
-  00084	e58d2010	 str         r2, [sp, #0x10]
-  00088	e5933000	 ldr         r3, [r3]
-  0008c	e58310ac	 str         r1, [r3, #0xAC]
-  00090	e5983000	 ldr         r3, [r8]
-  00094	e5933000	 ldr         r3, [r3]
-  00098	e58310cc	 str         r1, [r3, #0xCC]
-  0009c	e5982000	 ldr         r2, [r8]
-  000a0	e5923004	 ldr         r3, [r2, #4]
-  000a4	e3530000	 cmp         r3, #0
-  000a8	9a000013	 bls         |$LN30@OEMPowerOf|
-
-; 106  :     DWORD i;
-; 107  :     UINT32 sysIntr;
-; 108  :     UINT intr[3];
-; 109  :     BOOL bPowerOn;
-; 110  :     BOOL bPrevIntrState;
-; 111  :     UINT irq = 0;
-; 112  :     UINT32 mask = 0;
-; 113  : 	
-; 114  :     // disable interrupts (note: this should not be needed)
-; 115  :     bPrevIntrState = INTERRUPTS_ENABLE(FALSE);
-
-  000ac	e3a04000	 mov         r4, #0
-  000b0		 |$LL32@OEMPowerOf|
-
-; 141  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET1, OMAP_MPUIC_MASKALL);
-; 142  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET2, OMAP_MPUIC_MASKALL);
-; 143  : 
-; 144  :     //----------------------------------------------
-; 145  :     // Context Save/Restore       
-; 146  : 	// Save state then mask all GPIO interrupts
-; 147  : 	for (i=0; i<g_pIntr->nbGpioBank; i++)
-
-  000b0	e5923008	 ldr         r3, [r2, #8]
-
-; 148  :     {
-; 149  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];
-; 150  : 
-; 151  : 		// Save current state
-; 152  : 		pCurrGpioCtxt->restoreCtxt.IRQENABLE1 = INREG32(&pCurrGpioCtxt->pRegs->IRQENABLE1);
-; 153  : 		pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE = INREG32(&pCurrGpioCtxt->pRegs->WAKEUPENABLE);
-; 154  : 
-; 155  : 		// Disable all GPIO interrupts in the bank
-; 156  :         OUTREG32(&pCurrGpioCtxt->pRegs->IRQENABLE1, 0);
-; 157  :         OUTREG32(&pCurrGpioCtxt->pRegs->WAKEUPENABLE, 0);
-; 158  : 
-; 159  : 		OALIntrEnableIrqs(1,&pCurrGpioCtxt->bank_irq);
-
-  000b4	e3a00001	 mov         r0, #1
-  000b8	e084e003	 add         lr, r4, r3
-  000bc	e59e200c	 ldr         r2, [lr, #0xC]
-  000c0	e28e1008	 add         r1, lr, #8
-  000c4	e592301c	 ldr         r3, [r2, #0x1C]
-  000c8	e58e3014	 str         r3, [lr, #0x14]
-  000cc	e5923020	 ldr         r3, [r2, #0x20]
-  000d0	e58e3018	 str         r3, [lr, #0x18]
-  000d4	e582601c	 str         r6, [r2, #0x1C]
-  000d8	e59e300c	 ldr         r3, [lr, #0xC]
-  000dc	e5836020	 str         r6, [r3, #0x20]
-  000e0	eb000000	 bl          OALIntrEnableIrqs
-  000e4	e5982000	 ldr         r2, [r8]
-  000e8	e2855001	 add         r5, r5, #1
-  000ec	e2844020	 add         r4, r4, #0x20
-  000f0	e5923004	 ldr         r3, [r2, #4]
-  000f4	e1550003	 cmp         r5, r3
-  000f8	3affffec	 bcc         |$LL32@OEMPowerOf|
-  000fc		 |$LN30@OEMPowerOf|
-
-; 160  : 
-; 161  : 	}
-; 162  : 
-; 163  :     //----------------------------------------------
-; 164  :     // Clear all enabled IO PAD wakeups for GPIOs
-; 165  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
-
-  000fc	e5923004	 ldr         r3, [r2, #4]
-  00100	e3a07000	 mov         r7, #0
-  00104	e3530000	 cmp         r3, #0
-  00108	9a000018	 bls         |$LN27@OEMPowerOf|
-  0010c	e3a05000	 mov         r5, #0
-  00110		 |$LL29@OEMPowerOf|
-
-; 166  :     {
-; 167  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];
-
-  00110	e5923008	 ldr         r3, [r2, #8]
-
-; 168  : 
-; 169  :         irq = BSPGetGpioIrq(0) + (i * 32);
-
-  00114	e3a00000	 mov         r0, #0
-  00118	e0854003	 add         r4, r5, r3
-  0011c	eb000000	 bl          BSPGetGpioIrq
-
-; 170  :         mask = pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE;
-
-  00120	e5943018	 ldr         r3, [r4, #0x18]
-  00124	e0856000	 add         r6, r5, r0
-  00128	e1b04003	 movs        r4, r3
-
-; 171  :         while (mask != 0)
-
-  0012c	0a000009	 beq         |$LN28@OEMPowerOf|
-  00130		 |$LL26@OEMPowerOf|
-
-; 172  :         {
-; 173  :             // If a GPIO was wakeup enabled, then clear the wakeup
-; 174  :             if (mask & 0x1)
-
-  00130	e3140001	 tst         r4, #1
-  00134	0a000004	 beq         |$LN24@OEMPowerOf|
-
-; 175  :             {
-; 176  :                 OEMEnableIOPadWakeup((irq - BSPGetGpioIrq(0)), FALSE);
-
-  00138	e3a00000	 mov         r0, #0
-  0013c	eb000000	 bl          BSPGetGpioIrq
-  00140	e0460000	 sub         r0, r6, r0
-  00144	e3a01000	 mov         r1, #0
-  00148	eb000000	 bl          OEMEnableIOPadWakeup
-  0014c		 |$LN24@OEMPowerOf|
-
-; 177  :             }
-; 178  :             
-; 179  :             irq++;
-
-  0014c	e2866001	 add         r6, r6, #1
-
-; 180  :             mask >>= 1;    
-
-  00150	e1b040a4	 movs        r4, r4, lsr #1
-  00154	1afffff5	 bne         |$LL26@OEMPowerOf|
-  00158		 |$LN28@OEMPowerOf|
-
-; 160  : 
-; 161  : 	}
-; 162  : 
-; 163  :     //----------------------------------------------
-; 164  :     // Clear all enabled IO PAD wakeups for GPIOs
-; 165  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
-
-  00158	e5982000	 ldr         r2, [r8]
-  0015c	e2877001	 add         r7, r7, #1
-  00160	e2855020	 add         r5, r5, #0x20
-  00164	e5923004	 ldr         r3, [r2, #4]
-  00168	e1570003	 cmp         r7, r3
-  0016c	3affffe7	 bcc         |$LL29@OEMPowerOf|
-  00170		 |$LN27@OEMPowerOf|
-
-; 181  :         }
-; 182  :     }
-; 183  : 
-; 184  :     //----------------------------------------------
-; 185  :     // Enable wake sources interrupts
-; 186  :     for (sysIntr = SYSINTR_DEVICES; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
-
-  00170	e3a04008	 mov         r4, #8
-  00174		 |$LL23@OEMPowerOf|
-
-; 187  :         {
-; 188  :         // Skip if sysIntr isn't allowed as wake source
-; 189  :         if (!OALPowerWakeSource(sysIntr)) 
-
-  00174	e1a00004	 mov         r0, r4
-  00178	eb000000	 bl          OALPowerWakeSource
-  0017c	e3500000	 cmp         r0, #0
-
-; 190  : 		    continue;
-; 191  : 
-; 192  :         // Enable it as interrupt
-; 193  :         OEMInterruptEnable(sysIntr, NULL, 0);
-
-  00180	13a02000	 movne       r2, #0
-  00184	13a01000	 movne       r1, #0
-  00188	11a00004	 movne       r0, r4
-  0018c	1b000000	 blne        OEMInterruptEnable
-  00190	e2844001	 add         r4, r4, #1
-  00194	e3540048	 cmp         r4, #0x48
-  00198	3afffff5	 bcc         |$LL23@OEMPowerOf|
-
-; 194  :         }
-; 195  : 
-; 196  :     // enter full retention
-; 197  :     PrcmSuspend();
-
-  0019c	eb000000	 bl          PrcmSuspend
-
-; 198  :     
-; 199  :     //----------------------------------------------
-; 200  :     // Find wakeup source
-; 201  :     for (sysIntr = SYSINTR_DEVICES; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
-
-  001a0	e59f920c	 ldr         r9, [pc, #0x20C]
-  001a4	e3a04008	 mov         r4, #8
-  001a8		 |$LL19@OEMPowerOf|
-
-; 202  :         {            
-; 203  :         // Skip if sysIntr isn't allowed as wake source
-; 204  :         if (!OALPowerWakeSource(sysIntr)) 
-
-  001a8	e1a00004	 mov         r0, r4
-  001ac	eb000000	 bl          OALPowerWakeSource
-  001b0	e3500000	 cmp         r0, #0
-  001b4	0a000003	 beq         |$LN18@OEMPowerOf|
-
-; 205  : 		    continue;
-; 206  : 
-; 207  :         // When this sysIntr is pending we find wake source
-; 208  :         if (OEMInterruptPending(sysIntr))
-
-  001b8	e1a00004	 mov         r0, r4
-  001bc	eb000000	 bl          OEMInterruptPending
-  001c0	e3500000	 cmp         r0, #0
-  001c4	1a000003	 bne         |$LN44@OEMPowerOf|
-  001c8		 |$LN18@OEMPowerOf|
-
-; 198  :     
-; 199  :     //----------------------------------------------
-; 200  :     // Find wakeup source
-; 201  :     for (sysIntr = SYSINTR_DEVICES; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
-
-  001c8	e2844001	 add         r4, r4, #1
-  001cc	e3540048	 cmp         r4, #0x48
-  001d0	3afffff4	 bcc         |$LL19@OEMPowerOf|
-  001d4	ea000000	 b           |$LN54@OEMPowerOf|
-  001d8		 |$LN44@OEMPowerOf|
-
-; 209  :             {
-; 210  :             g_oalWakeSource = sysIntr;
-
-  001d8	e5894000	 str         r4, [r9]
-  001dc		 |$LN54@OEMPowerOf|
-
-; 211  :             break;
-; 212  :             }
-; 213  :         }
-; 214  :   
-; 215  :     //----------------------------------------------
-; 216  :     // Context Save/Restore
-; 217  :     // Put GPIO interrupt state back to the way it was before suspend
-; 218  :     for (i=0; i<g_pIntr->nbGpioBank; i++)
-
-  001dc	e5982000	 ldr         r2, [r8]
-  001e0	e3a0e000	 mov         lr, #0
-  001e4	e5923004	 ldr         r3, [r2, #4]
-  001e8	e3530000	 cmp         r3, #0
-  001ec	9a00000e	 bls         |$LN12@OEMPowerOf|
-  001f0	e3a00000	 mov         r0, #0
-  001f4		 |$LL14@OEMPowerOf|
-  001f4	e5923008	 ldr         r3, [r2, #8]
-  001f8	e28ee001	 add         lr, lr, #1
-  001fc	e0801003	 add         r1, r0, r3
-
-; 219  :     {
-; 220  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];		
-; 221  : 
-; 222  :         // Write registers with the previously saved values
-; 223  :         OUTREG32(&pCurrGpioCtxt->pRegs->IRQENABLE1, pCurrGpioCtxt->restoreCtxt.IRQENABLE1);
-
-  00200	e591200c	 ldr         r2, [r1, #0xC]
-  00204	e5913014	 ldr         r3, [r1, #0x14]
-  00208	e2800020	 add         r0, r0, #0x20
-  0020c	e582301c	 str         r3, [r2, #0x1C]
-
-; 224  :         OUTREG32(&pCurrGpioCtxt->pRegs->WAKEUPENABLE, pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE);
-
-  00210	e591200c	 ldr         r2, [r1, #0xC]
-  00214	e5913018	 ldr         r3, [r1, #0x18]
-  00218	e5823020	 str         r3, [r2, #0x20]
-  0021c	e5982000	 ldr         r2, [r8]
-  00220	e5923004	 ldr         r3, [r2, #4]
-  00224	e15e0003	 cmp         lr, r3
-  00228	3afffff1	 bcc         |$LL14@OEMPowerOf|
-  0022c		 |$LN12@OEMPowerOf|
-
-; 225  : 
-; 226  :     }
-; 227  : 
-; 228  :     //-------------------------------------------------------
-; 229  :     // Enable all previously enabled IO PAD wakeups for GPIOs
-; 230  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
-
-  0022c	e5923004	 ldr         r3, [r2, #4]
-  00230	e3a07000	 mov         r7, #0
-  00234	e3530000	 cmp         r3, #0
-  00238	9a000018	 bls         |$LN9@OEMPowerOf|
-  0023c	e3a05000	 mov         r5, #0
-  00240		 |$LL11@OEMPowerOf|
-
-; 231  :     {
-; 232  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];
-
-  00240	e5923008	 ldr         r3, [r2, #8]
-
-; 233  : 
-; 234  :         irq = BSPGetGpioIrq(0) + (i * 32);
-
-  00244	e3a00000	 mov         r0, #0
-  00248	e0854003	 add         r4, r5, r3
-  0024c	eb000000	 bl          BSPGetGpioIrq
-
-; 235  :         mask = pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE;
-
-  00250	e5943018	 ldr         r3, [r4, #0x18]
-  00254	e0856000	 add         r6, r5, r0
-  00258	e1b04003	 movs        r4, r3
-
-; 236  :         while (mask != 0)
-
-  0025c	0a000009	 beq         |$LN10@OEMPowerOf|
-  00260		 |$LL8@OEMPowerOf|
-
-; 237  :         {
-; 238  :             // If a GPIO was wakeup enabled, then clear the wakeup
-; 239  :             if (mask & 0x1)
-
-  00260	e3140001	 tst         r4, #1
-  00264	0a000004	 beq         |$LN6@OEMPowerOf|
-
-; 240  :             {
-; 241  :                 OEMEnableIOPadWakeup((irq - BSPGetGpioIrq(0)), TRUE);
-
-  00268	e3a00000	 mov         r0, #0
-  0026c	eb000000	 bl          BSPGetGpioIrq
-  00270	e0460000	 sub         r0, r6, r0
-  00274	e3a01001	 mov         r1, #1
-  00278	eb000000	 bl          OEMEnableIOPadWakeup
-  0027c		 |$LN6@OEMPowerOf|
-
-; 242  :             }
-; 243  :             
-; 244  :             irq++;
-
-  0027c	e2866001	 add         r6, r6, #1
-
-; 245  :             mask >>= 1;    
-
-  00280	e1b040a4	 movs        r4, r4, lsr #1
-  00284	1afffff5	 bne         |$LL8@OEMPowerOf|
-  00288		 |$LN10@OEMPowerOf|
-
-; 225  : 
-; 226  :     }
-; 227  : 
-; 228  :     //-------------------------------------------------------
-; 229  :     // Enable all previously enabled IO PAD wakeups for GPIOs
-; 230  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
-
-  00288	e5982000	 ldr         r2, [r8]
-  0028c	e2877001	 add         r7, r7, #1
-  00290	e2855020	 add         r5, r5, #0x20
-  00294	e5923004	 ldr         r3, [r2, #4]
-  00298	e1570003	 cmp         r7, r3
-  0029c	3affffe7	 bcc         |$LL11@OEMPowerOf|
-  002a0		 |$LN9@OEMPowerOf|
-
-; 246  :         }
-; 247  :     }
-; 248  : 
-; 249  :     //----------------------------------------------
-; 250  :     // Re-enable interrupts    
-; 251  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_CLEAR0, ~intr[0]);
-
-  002a0	e5922000	 ldr         r2, [r2]
-  002a4	e1e0300b	 mvn         r3, r11
-
-; 252  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_CLEAR1, ~intr[1]);
-
-  002a8	e59d100c	 ldr         r1, [sp, #0xC]
-  002ac	e5823088	 str         r3, [r2, #0x88]
-  002b0	e5983000	 ldr         r3, [r8]
-  002b4	e1e01001	 mvn         r1, r1
-
-; 253  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_CLEAR2, ~intr[2]);  
-
-  002b8	e59d2010	 ldr         r2, [sp, #0x10]
-  002bc	e5933000	 ldr         r3, [r3]
-  002c0	e1e02002	 mvn         r2, r2
-  002c4	e58310a8	 str         r1, [r3, #0xA8]
-  002c8	e5983000	 ldr         r3, [r8]
-  002cc	e5933000	 ldr         r3, [r3]
-  002d0	e58320c8	 str         r2, [r3, #0xC8]
-
-; 254  :     
-; 255  :     //----------------------------------------------
-; 256  :     // Do board specific stuff    
-; 257  :     BSPPowerOn();   
-
-  002d4	eb000000	 bl          BSPPowerOn
-
-; 258  :         
-; 259  :     //Sync to Hardware RTC after suspend\resume
-; 260  :     OALIoCtlHalRtcTime( 0,  NULL, 0, NULL, 0, NULL);    
-
-  002d8	e3a04000	 mov         r4, #0
-  002dc	e3a03000	 mov         r3, #0
-  002e0	e3a02000	 mov         r2, #0
-  002e4	e3a01000	 mov         r1, #0
-  002e8	e3a00000	 mov         r0, #0
-  002ec	e58d4004	 str         r4, [sp, #4]
-  002f0	e58d4000	 str         r4, [sp]
-  002f4	eb000000	 bl          OALIoCtlHalRtcTime
-
-; 261  : 
-; 262  :     // Enable GPTimer (used for high perf/monte carlo profiling)
-; 263  :     EnableDeviceClocks(BSPGetGPTPerfDevice(), TRUE);	
-
-  002f8	eb000000	 bl          BSPGetGPTPerfDevice
-  002fc	e3a01001	 mov         r1, #1
-  00300	eb000000	 bl          EnableDeviceClocks
-
-; 264  :     //Restore Perf Timer
-; 265  :     OALContextRestorePerfTimer();
-
-  00304	eb000000	 bl          OALContextRestorePerfTimer
-
-; 266  : 		
-; 267  :     // Reinitialize KITL
-; 268  :     bPowerOn = TRUE;
-; 269  :     KITLIoctl(IOCTL_KITL_POWER_CALL, &bPowerOn, sizeof(bPowerOn), NULL, 0, NULL);    
-
-  00308	e59f00a0	 ldr         r0, [pc, #0xA0]
-  0030c	e3a03001	 mov         r3, #1
-  00310	e58d3008	 str         r3, [sp, #8]
-  00314	e3a03000	 mov         r3, #0
-  00318	e3a02004	 mov         r2, #4
-  0031c	e28d1008	 add         r1, sp, #8
-  00320	e58d4004	 str         r4, [sp, #4]
-  00324	e58d4000	 str         r4, [sp]
-  00328	eb000000	 bl          KITLIoctl
-
-; 270  :     
-; 271  :     // Enable hardware watchdog
-; 272  :     OALWatchdogEnable(TRUE);
-
-  0032c	e3a00001	 mov         r0, #1
-  00330	eb000000	 bl          OALWatchdogEnable
-
-; 273  : 	
-; 274  : #ifndef SHIP_BUILD
-; 275  :     if (g_PrcmDebugSuspendResume)
-
-  00334	e59f3070	 ldr         r3, [pc, #0x70]
-  00338	e5933000	 ldr         r3, [r3]
-  0033c	e3530000	 cmp         r3, #0
-  00340	0a000011	 beq         |$LN5@OEMPowerOf|
-
-; 276  : 	{
-; 277  :         OALMSG(1, (L"Enabled wake sources:\r\n"));
-
-  00344	e59f005c	 ldr         r0, [pc, #0x5C]
-  00348	eb000000	 bl          NKDbgPrintfW
-
-; 278  :         for (sysIntr = SYSINTR_FIRMWARE; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
-
-  0034c	e3a04010	 mov         r4, #0x10
-  00350		 |$LL4@OEMPowerOf|
-
-; 279  :         {
-; 280  :             if (OALPowerWakeSource(sysIntr)) 
-
-  00350	e1a00004	 mov         r0, r4
-  00354	eb000000	 bl          OALPowerWakeSource
-  00358	e3500000	 cmp         r0, #0
-
-; 281  :                 OALMSG(1, (L"  SYSINTR %d\r\n", sysIntr));
-
-  0035c	159f0040	 ldrne       r0, [pc, #0x40]
-  00360	11a01004	 movne       r1, r4
-  00364	1b000000	 blne        NKDbgPrintfW
-  00368	e2844001	 add         r4, r4, #1
-  0036c	e3540048	 cmp         r4, #0x48
-  00370	3afffff6	 bcc         |$LL4@OEMPowerOf|
-
-; 282  :         }
-; 283  : 
-; 284  :     	OALMSG(1, (L"\r\nWake due to SYSINTR %d\r\n", g_oalWakeSource));
-
-  00374	e5991000	 ldr         r1, [r9]
-  00378	e59f0020	 ldr         r0, [pc, #0x20]
-  0037c	eb000000	 bl          NKDbgPrintfW
-
-; 285  :         OALWakeupLatency_DumpSnapshot();
-
-  00380	eb000000	 bl          OALWakeupLatency_DumpSnapshot
-
-; 286  :         PrcmDumpSavedRefCounts();
-
-  00384	eb000000	 bl          PrcmDumpSavedRefCounts
-
-; 287  :         DumpPrcmRegsSnapshot();
-
-  00388	eb000000	 bl          DumpPrcmRegsSnapshot
-  0038c		 |$LN5@OEMPowerOf|
-
-; 288  :     }
-; 289  : #endif
-; 290  : 
-; 291  :     // restore interrupts
-; 292  :     INTERRUPTS_ENABLE(bPrevIntrState);
-
-  0038c	e1a0000a	 mov         r0, r10
-  00390	eb000000	 bl          INTERRUPTS_ENABLE
-
-; 293  : }
-
-  00394	e28dd014	 add         sp, sp, #0x14
-  00398	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  0039c	e12fff1e	 bx          lr
-  003a0		 |$LN58@OEMPowerOf|
-  003a0		 |$LN59@OEMPowerOf|
-  003a0	00000000	 DCD         |??_C@_1DG@KDDHMOEO@?$AA?$AN?$AA?6?$AAW?$AAa?$AAk?$AAe?$AA?5?$AAd?$AAu?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAS?$AAY?$AAS?$AAI?$AAN?$AAT?$AAR?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  003a4		 |$LN60@OEMPowerOf|
-  003a4	00000000	 DCD         |??_C@_1BO@GGDDDJNF@?$AA?5?$AA?5?$AAS?$AAY?$AAS?$AAI?$AAN?$AAT?$AAR?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  003a8		 |$LN61@OEMPowerOf|
-  003a8	00000000	 DCD         |??_C@_1DA@OKMJBLLN@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?5?$AAw?$AAa?$AAk?$AAe?$AA?5?$AAs?$AAo?$AAu?$AAr?$AAc?$AAe?$AAs?$AA?3?$AA?$AN?$AA?6?$AA?$AA@|
-  003ac		 |$LN62@OEMPowerOf|
-  003ac	00000000	 DCD         |g_PrcmDebugSuspendResume|
-  003b0		 |$LN63@OEMPowerOf|
-  003b0	01010144	 DCD         0x1010144
-  003b4		 |$LN64@OEMPowerOf|
-  003b4	00000000	 DCD         |g_oalWakeSource|
-  003b8		 |$LN65@OEMPowerOf|
-  003b8	00000000	 DCD         |g_pIntr|
-  003bc		 |$M47414|
+  00008		 |$M47386|
+
+; 104  :     DWORD i;
+; 105  :     UINT32 sysIntr;
+; 106  :     UINT intr[3];
+; 107  :     BOOL bPowerOn;
+; 108  :     BOOL bPrevIntrState;
+; 109  :     UINT irq = 0;
+; 110  :     UINT32 mask = 0;
+; 111  : 	
+; 112  : 	OALMSG(1, (L"OEMPowerOff()\r\n"));
+
+  00008	e59f03b4	 ldr         r0, [pc, #0x3B4]
+  0000c	eb000000	 bl          NKDbgPrintfW
+
+; 113  :     // disable interrupts (note: this should not be needed)
+; 114  :     bPrevIntrState = INTERRUPTS_ENABLE(FALSE);
+
+  00010	e3a00000	 mov         r0, #0
+  00014	eb000000	 bl          INTERRUPTS_ENABLE
+  00018	e1a0a000	 mov         r10, r0
+
+; 115  : 
+; 116  :     // UNDONE: verify if this is still necessary
+; 117  :     // Disable hardware watchdog
+; 118  :     OALWatchdogEnable(FALSE);
+
+  0001c	e3a00000	 mov         r0, #0
+  00020	eb000000	 bl          OALWatchdogEnable
+
+; 119  :     
+; 120  :     // Make sure that KITL is powered off
+; 121  :     bPowerOn = FALSE;
+; 122  :     KITLIoctl(IOCTL_KITL_POWER_CALL, &bPowerOn, sizeof(bPowerOn), NULL, 0, NULL);    
+
+  00024	e59f038c	 ldr         r0, [pc, #0x38C]
+  00028	e3a03000	 mov         r3, #0
+  0002c	e58d3008	 str         r3, [sp, #8]
+  00030	e3a06000	 mov         r6, #0
+  00034	e3a03000	 mov         r3, #0
+  00038	e3a02004	 mov         r2, #4
+  0003c	e28d1008	 add         r1, sp, #8
+  00040	e58d6004	 str         r6, [sp, #4]
+  00044	e58d6000	 str         r6, [sp]
+  00048	eb000000	 bl          KITLIoctl
+
+; 123  : 
+; 124  :     //Save Perf Timer
+; 125  :     OALContextSavePerfTimer();
+
+  0004c	eb000000	 bl          OALContextSavePerfTimer
+
+; 126  :     
+; 127  :     // Disable GPTimer2 (used for high perf/monte carlo profiling)
+; 128  :     EnableDeviceClocks(BSPGetGPTPerfDevice(), FALSE);
+
+  00050	eb000000	 bl          BSPGetGPTPerfDevice
+  00054	e3a01000	 mov         r1, #0
+  00058	eb000000	 bl          EnableDeviceClocks
+
+; 129  : 
+; 130  :     // Give chance to do board specific stuff
+; 131  :     BSPPowerOff();
+
+  0005c	eb000000	 bl          BSPPowerOff
+
+; 132  : 
+; 133  :     //----------------------------------------------
+; 134  :     // capture all enabled interrupts and disable interrupts
+; 135  :     intr[0] = INREG32(&g_pIntr->pICLRegs->INTC_MIR0);
+
+  00060	e59f8358	 ldr         r8, [pc, #0x358]
+
+; 136  :     intr[1] = INREG32(&g_pIntr->pICLRegs->INTC_MIR1);
+; 137  :     intr[2] = INREG32(&g_pIntr->pICLRegs->INTC_MIR2);
+; 138  : 
+; 139  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET0, OMAP_MPUIC_MASKALL);
+
+  00064	e3e01000	 mvn         r1, #0
+
+; 140  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET1, OMAP_MPUIC_MASKALL);
+; 141  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET2, OMAP_MPUIC_MASKALL);
+; 142  : 
+; 143  :     //----------------------------------------------
+; 144  :     // Context Save/Restore       
+; 145  : 	// Save state then mask all GPIO interrupts
+; 146  : 	for (i=0; i<g_pIntr->nbGpioBank; i++)
+
+  00068	e3a05000	 mov         r5, #0
+  0006c	e5983000	 ldr         r3, [r8]
+  00070	e5933000	 ldr         r3, [r3]
+  00074	e593b084	 ldr         r11, [r3, #0x84]
+  00078	e59320a4	 ldr         r2, [r3, #0xA4]
+  0007c	e58d200c	 str         r2, [sp, #0xC]
+  00080	e59320c4	 ldr         r2, [r3, #0xC4]
+  00084	e583108c	 str         r1, [r3, #0x8C]
+  00088	e5983000	 ldr         r3, [r8]
+  0008c	e58d2010	 str         r2, [sp, #0x10]
+  00090	e5933000	 ldr         r3, [r3]
+  00094	e58310ac	 str         r1, [r3, #0xAC]
+  00098	e5983000	 ldr         r3, [r8]
+  0009c	e5933000	 ldr         r3, [r3]
+  000a0	e58310cc	 str         r1, [r3, #0xCC]
+  000a4	e5982000	 ldr         r2, [r8]
+  000a8	e5923004	 ldr         r3, [r2, #4]
+  000ac	e3530000	 cmp         r3, #0
+  000b0	9a000013	 bls         |$LN30@OEMPowerOf|
+
+; 104  :     DWORD i;
+; 105  :     UINT32 sysIntr;
+; 106  :     UINT intr[3];
+; 107  :     BOOL bPowerOn;
+; 108  :     BOOL bPrevIntrState;
+; 109  :     UINT irq = 0;
+; 110  :     UINT32 mask = 0;
+; 111  : 	
+; 112  : 	OALMSG(1, (L"OEMPowerOff()\r\n"));
+
+  000b4	e3a04000	 mov         r4, #0
+  000b8		 |$LL32@OEMPowerOf|
+
+; 140  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET1, OMAP_MPUIC_MASKALL);
+; 141  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_SET2, OMAP_MPUIC_MASKALL);
+; 142  : 
+; 143  :     //----------------------------------------------
+; 144  :     // Context Save/Restore       
+; 145  : 	// Save state then mask all GPIO interrupts
+; 146  : 	for (i=0; i<g_pIntr->nbGpioBank; i++)
+
+  000b8	e5923008	 ldr         r3, [r2, #8]
+
+; 147  :     {
+; 148  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];
+; 149  : 
+; 150  : 		// Save current state
+; 151  : 		pCurrGpioCtxt->restoreCtxt.IRQENABLE1 = INREG32(&pCurrGpioCtxt->pRegs->IRQENABLE1);
+; 152  : 		pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE = INREG32(&pCurrGpioCtxt->pRegs->WAKEUPENABLE);
+; 153  : 
+; 154  : 		// Disable all GPIO interrupts in the bank
+; 155  :         OUTREG32(&pCurrGpioCtxt->pRegs->IRQENABLE1, 0);
+; 156  :         OUTREG32(&pCurrGpioCtxt->pRegs->WAKEUPENABLE, 0);
+; 157  : 
+; 158  : 		OALIntrEnableIrqs(1,&pCurrGpioCtxt->bank_irq);
+
+  000bc	e3a00001	 mov         r0, #1
+  000c0	e084e003	 add         lr, r4, r3
+  000c4	e59e200c	 ldr         r2, [lr, #0xC]
+  000c8	e28e1008	 add         r1, lr, #8
+  000cc	e592301c	 ldr         r3, [r2, #0x1C]
+  000d0	e58e3014	 str         r3, [lr, #0x14]
+  000d4	e5923020	 ldr         r3, [r2, #0x20]
+  000d8	e58e3018	 str         r3, [lr, #0x18]
+  000dc	e582601c	 str         r6, [r2, #0x1C]
+  000e0	e59e300c	 ldr         r3, [lr, #0xC]
+  000e4	e5836020	 str         r6, [r3, #0x20]
+  000e8	eb000000	 bl          OALIntrEnableIrqs
+  000ec	e5982000	 ldr         r2, [r8]
+  000f0	e2855001	 add         r5, r5, #1
+  000f4	e2844020	 add         r4, r4, #0x20
+  000f8	e5923004	 ldr         r3, [r2, #4]
+  000fc	e1550003	 cmp         r5, r3
+  00100	3affffec	 bcc         |$LL32@OEMPowerOf|
+  00104		 |$LN30@OEMPowerOf|
+
+; 159  : 
+; 160  : 	}
+; 161  : 
+; 162  :     //----------------------------------------------
+; 163  :     // Clear all enabled IO PAD wakeups for GPIOs
+; 164  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
+
+  00104	e5923004	 ldr         r3, [r2, #4]
+  00108	e3a07000	 mov         r7, #0
+  0010c	e3530000	 cmp         r3, #0
+  00110	9a000018	 bls         |$LN27@OEMPowerOf|
+  00114	e3a05000	 mov         r5, #0
+  00118		 |$LL29@OEMPowerOf|
+
+; 165  :     {
+; 166  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];
+
+  00118	e5923008	 ldr         r3, [r2, #8]
+
+; 167  : 
+; 168  :         irq = BSPGetGpioIrq(0) + (i * 32);
+
+  0011c	e3a00000	 mov         r0, #0
+  00120	e0854003	 add         r4, r5, r3
+  00124	eb000000	 bl          BSPGetGpioIrq
+
+; 169  :         mask = pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE;
+
+  00128	e5943018	 ldr         r3, [r4, #0x18]
+  0012c	e0856000	 add         r6, r5, r0
+  00130	e1b04003	 movs        r4, r3
+
+; 170  :         while (mask != 0)
+
+  00134	0a000009	 beq         |$LN28@OEMPowerOf|
+  00138		 |$LL26@OEMPowerOf|
+
+; 171  :         {
+; 172  :             // If a GPIO was wakeup enabled, then clear the wakeup
+; 173  :             if (mask & 0x1)
+
+  00138	e3140001	 tst         r4, #1
+  0013c	0a000004	 beq         |$LN24@OEMPowerOf|
+
+; 174  :             {
+; 175  :                 OEMEnableIOPadWakeup((irq - BSPGetGpioIrq(0)), FALSE);
+
+  00140	e3a00000	 mov         r0, #0
+  00144	eb000000	 bl          BSPGetGpioIrq
+  00148	e0460000	 sub         r0, r6, r0
+  0014c	e3a01000	 mov         r1, #0
+  00150	eb000000	 bl          OEMEnableIOPadWakeup
+  00154		 |$LN24@OEMPowerOf|
+
+; 176  :             }
+; 177  :             
+; 178  :             irq++;
+
+  00154	e2866001	 add         r6, r6, #1
+
+; 179  :             mask >>= 1;    
+
+  00158	e1b040a4	 movs        r4, r4, lsr #1
+  0015c	1afffff5	 bne         |$LL26@OEMPowerOf|
+  00160		 |$LN28@OEMPowerOf|
+
+; 159  : 
+; 160  : 	}
+; 161  : 
+; 162  :     //----------------------------------------------
+; 163  :     // Clear all enabled IO PAD wakeups for GPIOs
+; 164  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
+
+  00160	e5982000	 ldr         r2, [r8]
+  00164	e2877001	 add         r7, r7, #1
+  00168	e2855020	 add         r5, r5, #0x20
+  0016c	e5923004	 ldr         r3, [r2, #4]
+  00170	e1570003	 cmp         r7, r3
+  00174	3affffe7	 bcc         |$LL29@OEMPowerOf|
+  00178		 |$LN27@OEMPowerOf|
+
+; 180  :         }
+; 181  :     }
+; 182  : 
+; 183  :     //----------------------------------------------
+; 184  :     // Enable wake sources interrupts
+; 185  :     for (sysIntr = SYSINTR_DEVICES; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
+
+  00178	e3a04008	 mov         r4, #8
+  0017c		 |$LL23@OEMPowerOf|
+
+; 186  : 	{
+; 187  :         // Skip if sysIntr isn't allowed as wake source
+; 188  :         if (!OALPowerWakeSource(sysIntr)) 
+
+  0017c	e1a00004	 mov         r0, r4
+  00180	eb000000	 bl          OALPowerWakeSource
+  00184	e3500000	 cmp         r0, #0
+
+; 189  : 		    continue;
+; 190  : 
+; 191  :         // Enable it as interrupt
+; 192  :         OEMInterruptEnable(sysIntr, NULL, 0);
+
+  00188	13a02000	 movne       r2, #0
+  0018c	13a01000	 movne       r1, #0
+  00190	11a00004	 movne       r0, r4
+  00194	1b000000	 blne        OEMInterruptEnable
+  00198	e2844001	 add         r4, r4, #1
+  0019c	e3540048	 cmp         r4, #0x48
+  001a0	3afffff5	 bcc         |$LL23@OEMPowerOf|
+
+; 193  : 	}
+; 194  : 
+; 195  :     // enter full retention
+; 196  :     PrcmSuspend();
+
+  001a4	eb000000	 bl          PrcmSuspend
+
+; 197  :     
+; 198  :     //----------------------------------------------
+; 199  :     // Find wakeup source
+; 200  :     for (sysIntr = SYSINTR_DEVICES; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
+
+  001a8	e59f920c	 ldr         r9, [pc, #0x20C]
+  001ac	e3a04008	 mov         r4, #8
+  001b0		 |$LL19@OEMPowerOf|
+
+; 201  :         {            
+; 202  :         // Skip if sysIntr isn't allowed as wake source
+; 203  :         if (!OALPowerWakeSource(sysIntr)) 
+
+  001b0	e1a00004	 mov         r0, r4
+  001b4	eb000000	 bl          OALPowerWakeSource
+  001b8	e3500000	 cmp         r0, #0
+  001bc	0a000003	 beq         |$LN18@OEMPowerOf|
+
+; 204  : 		    continue;
+; 205  : 
+; 206  :         // When this sysIntr is pending we find wake source
+; 207  :         if (OEMInterruptPending(sysIntr))
+
+  001c0	e1a00004	 mov         r0, r4
+  001c4	eb000000	 bl          OEMInterruptPending
+  001c8	e3500000	 cmp         r0, #0
+  001cc	1a000003	 bne         |$LN44@OEMPowerOf|
+  001d0		 |$LN18@OEMPowerOf|
+
+; 197  :     
+; 198  :     //----------------------------------------------
+; 199  :     // Find wakeup source
+; 200  :     for (sysIntr = SYSINTR_DEVICES; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
+
+  001d0	e2844001	 add         r4, r4, #1
+  001d4	e3540048	 cmp         r4, #0x48
+  001d8	3afffff4	 bcc         |$LL19@OEMPowerOf|
+  001dc	ea000000	 b           |$LN54@OEMPowerOf|
+  001e0		 |$LN44@OEMPowerOf|
+
+; 208  :             {
+; 209  :             g_oalWakeSource = sysIntr;
+
+  001e0	e5894000	 str         r4, [r9]
+  001e4		 |$LN54@OEMPowerOf|
+
+; 210  :             break;
+; 211  :             }
+; 212  :         }
+; 213  :   
+; 214  :     //----------------------------------------------
+; 215  :     // Context Save/Restore
+; 216  :     // Put GPIO interrupt state back to the way it was before suspend
+; 217  :     for (i=0; i<g_pIntr->nbGpioBank; i++)
+
+  001e4	e5982000	 ldr         r2, [r8]
+  001e8	e3a0e000	 mov         lr, #0
+  001ec	e5923004	 ldr         r3, [r2, #4]
+  001f0	e3530000	 cmp         r3, #0
+  001f4	9a00000e	 bls         |$LN12@OEMPowerOf|
+  001f8	e3a00000	 mov         r0, #0
+  001fc		 |$LL14@OEMPowerOf|
+  001fc	e5923008	 ldr         r3, [r2, #8]
+  00200	e28ee001	 add         lr, lr, #1
+  00204	e0801003	 add         r1, r0, r3
+
+; 218  :     {
+; 219  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];		
+; 220  : 
+; 221  :         // Write registers with the previously saved values
+; 222  :         OUTREG32(&pCurrGpioCtxt->pRegs->IRQENABLE1, pCurrGpioCtxt->restoreCtxt.IRQENABLE1);
+
+  00208	e591200c	 ldr         r2, [r1, #0xC]
+  0020c	e5913014	 ldr         r3, [r1, #0x14]
+  00210	e2800020	 add         r0, r0, #0x20
+  00214	e582301c	 str         r3, [r2, #0x1C]
+
+; 223  :         OUTREG32(&pCurrGpioCtxt->pRegs->WAKEUPENABLE, pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE);
+
+  00218	e591200c	 ldr         r2, [r1, #0xC]
+  0021c	e5913018	 ldr         r3, [r1, #0x18]
+  00220	e5823020	 str         r3, [r2, #0x20]
+  00224	e5982000	 ldr         r2, [r8]
+  00228	e5923004	 ldr         r3, [r2, #4]
+  0022c	e15e0003	 cmp         lr, r3
+  00230	3afffff1	 bcc         |$LL14@OEMPowerOf|
+  00234		 |$LN12@OEMPowerOf|
+
+; 224  : 
+; 225  :     }
+; 226  : 
+; 227  :     //-------------------------------------------------------
+; 228  :     // Enable all previously enabled IO PAD wakeups for GPIOs
+; 229  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
+
+  00234	e5923004	 ldr         r3, [r2, #4]
+  00238	e3a07000	 mov         r7, #0
+  0023c	e3530000	 cmp         r3, #0
+  00240	9a000018	 bls         |$LN9@OEMPowerOf|
+  00244	e3a05000	 mov         r5, #0
+  00248		 |$LL11@OEMPowerOf|
+
+; 230  :     {
+; 231  : 		INTR_GPIO_CTXT* pCurrGpioCtxt = &g_pIntr->pGpioCtxt[i];
+
+  00248	e5923008	 ldr         r3, [r2, #8]
+
+; 232  : 
+; 233  :         irq = BSPGetGpioIrq(0) + (i * 32);
+
+  0024c	e3a00000	 mov         r0, #0
+  00250	e0854003	 add         r4, r5, r3
+  00254	eb000000	 bl          BSPGetGpioIrq
+
+; 234  :         mask = pCurrGpioCtxt->restoreCtxt.WAKEUPENABLE;
+
+  00258	e5943018	 ldr         r3, [r4, #0x18]
+  0025c	e0856000	 add         r6, r5, r0
+  00260	e1b04003	 movs        r4, r3
+
+; 235  :         while (mask != 0)
+
+  00264	0a000009	 beq         |$LN10@OEMPowerOf|
+  00268		 |$LL8@OEMPowerOf|
+
+; 236  :         {
+; 237  :             // If a GPIO was wakeup enabled, then clear the wakeup
+; 238  :             if (mask & 0x1)
+
+  00268	e3140001	 tst         r4, #1
+  0026c	0a000004	 beq         |$LN6@OEMPowerOf|
+
+; 239  :             {
+; 240  :                 OEMEnableIOPadWakeup((irq - BSPGetGpioIrq(0)), TRUE);
+
+  00270	e3a00000	 mov         r0, #0
+  00274	eb000000	 bl          BSPGetGpioIrq
+  00278	e0460000	 sub         r0, r6, r0
+  0027c	e3a01001	 mov         r1, #1
+  00280	eb000000	 bl          OEMEnableIOPadWakeup
+  00284		 |$LN6@OEMPowerOf|
+
+; 241  :             }
+; 242  :             
+; 243  :             irq++;
+
+  00284	e2866001	 add         r6, r6, #1
+
+; 244  :             mask >>= 1;    
+
+  00288	e1b040a4	 movs        r4, r4, lsr #1
+  0028c	1afffff5	 bne         |$LL8@OEMPowerOf|
+  00290		 |$LN10@OEMPowerOf|
+
+; 224  : 
+; 225  :     }
+; 226  : 
+; 227  :     //-------------------------------------------------------
+; 228  :     // Enable all previously enabled IO PAD wakeups for GPIOs
+; 229  :     for (i = 0; i < g_pIntr->nbGpioBank; ++i) 
+
+  00290	e5982000	 ldr         r2, [r8]
+  00294	e2877001	 add         r7, r7, #1
+  00298	e2855020	 add         r5, r5, #0x20
+  0029c	e5923004	 ldr         r3, [r2, #4]
+  002a0	e1570003	 cmp         r7, r3
+  002a4	3affffe7	 bcc         |$LL11@OEMPowerOf|
+  002a8		 |$LN9@OEMPowerOf|
+
+; 245  :         }
+; 246  :     }
+; 247  : 
+; 248  :     //----------------------------------------------
+; 249  :     // Re-enable interrupts    
+; 250  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_CLEAR0, ~intr[0]);
+
+  002a8	e5922000	 ldr         r2, [r2]
+  002ac	e1e0300b	 mvn         r3, r11
+
+; 251  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_CLEAR1, ~intr[1]);
+
+  002b0	e59d100c	 ldr         r1, [sp, #0xC]
+  002b4	e5823088	 str         r3, [r2, #0x88]
+  002b8	e5983000	 ldr         r3, [r8]
+  002bc	e1e01001	 mvn         r1, r1
+
+; 252  :     OUTREG32(&g_pIntr->pICLRegs->INTC_MIR_CLEAR2, ~intr[2]);  
+
+  002c0	e59d2010	 ldr         r2, [sp, #0x10]
+  002c4	e5933000	 ldr         r3, [r3]
+  002c8	e1e02002	 mvn         r2, r2
+  002cc	e58310a8	 str         r1, [r3, #0xA8]
+  002d0	e5983000	 ldr         r3, [r8]
+  002d4	e5933000	 ldr         r3, [r3]
+  002d8	e58320c8	 str         r2, [r3, #0xC8]
+
+; 253  :     
+; 254  :     //----------------------------------------------
+; 255  :     // Do board specific stuff    
+; 256  :     BSPPowerOn();   
+
+  002dc	eb000000	 bl          BSPPowerOn
+
+; 257  :         
+; 258  :     //Sync to Hardware RTC after suspend\resume
+; 259  :     OALIoCtlHalRtcTime( 0,  NULL, 0, NULL, 0, NULL);    
+
+  002e0	e3a04000	 mov         r4, #0
+  002e4	e3a03000	 mov         r3, #0
+  002e8	e3a02000	 mov         r2, #0
+  002ec	e3a01000	 mov         r1, #0
+  002f0	e3a00000	 mov         r0, #0
+  002f4	e58d4004	 str         r4, [sp, #4]
+  002f8	e58d4000	 str         r4, [sp]
+  002fc	eb000000	 bl          OALIoCtlHalRtcTime
+
+; 260  : 
+; 261  :     // Enable GPTimer (used for high perf/monte carlo profiling)
+; 262  :     EnableDeviceClocks(BSPGetGPTPerfDevice(), TRUE);	
+
+  00300	eb000000	 bl          BSPGetGPTPerfDevice
+  00304	e3a01001	 mov         r1, #1
+  00308	eb000000	 bl          EnableDeviceClocks
+
+; 263  :     //Restore Perf Timer
+; 264  :     OALContextRestorePerfTimer();
+
+  0030c	eb000000	 bl          OALContextRestorePerfTimer
+
+; 265  : 		
+; 266  :     // Reinitialize KITL
+; 267  :     bPowerOn = TRUE;
+; 268  :     KITLIoctl(IOCTL_KITL_POWER_CALL, &bPowerOn, sizeof(bPowerOn), NULL, 0, NULL);    
+
+  00310	e59f00a0	 ldr         r0, [pc, #0xA0]
+  00314	e3a03001	 mov         r3, #1
+  00318	e58d3008	 str         r3, [sp, #8]
+  0031c	e3a03000	 mov         r3, #0
+  00320	e3a02004	 mov         r2, #4
+  00324	e28d1008	 add         r1, sp, #8
+  00328	e58d4004	 str         r4, [sp, #4]
+  0032c	e58d4000	 str         r4, [sp]
+  00330	eb000000	 bl          KITLIoctl
+
+; 269  :     
+; 270  :     // Enable hardware watchdog
+; 271  :     OALWatchdogEnable(TRUE);
+
+  00334	e3a00001	 mov         r0, #1
+  00338	eb000000	 bl          OALWatchdogEnable
+
+; 272  : 	
+; 273  : #ifndef SHIP_BUILD
+; 274  :     if (g_PrcmDebugSuspendResume)
+
+  0033c	e59f3070	 ldr         r3, [pc, #0x70]
+  00340	e5933000	 ldr         r3, [r3]
+  00344	e3530000	 cmp         r3, #0
+  00348	0a000011	 beq         |$LN5@OEMPowerOf|
+
+; 275  : 	{
+; 276  :         OALMSG(1, (L"Enabled wake sources:\r\n"));
+
+  0034c	e59f005c	 ldr         r0, [pc, #0x5C]
+  00350	eb000000	 bl          NKDbgPrintfW
+
+; 277  :         for (sysIntr = SYSINTR_FIRMWARE; sysIntr < SYSINTR_MAXIMUM; sysIntr++)
+
+  00354	e3a04010	 mov         r4, #0x10
+  00358		 |$LL4@OEMPowerOf|
+
+; 278  :         {
+; 279  :             if (OALPowerWakeSource(sysIntr)) 
+
+  00358	e1a00004	 mov         r0, r4
+  0035c	eb000000	 bl          OALPowerWakeSource
+  00360	e3500000	 cmp         r0, #0
+
+; 280  :                 OALMSG(1, (L"  SYSINTR %d\r\n", sysIntr));
+
+  00364	159f0040	 ldrne       r0, [pc, #0x40]
+  00368	11a01004	 movne       r1, r4
+  0036c	1b000000	 blne        NKDbgPrintfW
+  00370	e2844001	 add         r4, r4, #1
+  00374	e3540048	 cmp         r4, #0x48
+  00378	3afffff6	 bcc         |$LL4@OEMPowerOf|
+
+; 281  :         }
+; 282  : 
+; 283  :     	OALMSG(1, (L"\r\nWake due to SYSINTR %d\r\n", g_oalWakeSource));
+
+  0037c	e5991000	 ldr         r1, [r9]
+  00380	e59f0020	 ldr         r0, [pc, #0x20]
+  00384	eb000000	 bl          NKDbgPrintfW
+
+; 284  :         OALWakeupLatency_DumpSnapshot();
+
+  00388	eb000000	 bl          OALWakeupLatency_DumpSnapshot
+
+; 285  :         PrcmDumpSavedRefCounts();
+
+  0038c	eb000000	 bl          PrcmDumpSavedRefCounts
+
+; 286  :         DumpPrcmRegsSnapshot();
+
+  00390	eb000000	 bl          DumpPrcmRegsSnapshot
+  00394		 |$LN5@OEMPowerOf|
+
+; 287  :     }
+; 288  : #endif
+; 289  : 
+; 290  :     // restore interrupts
+; 291  :     INTERRUPTS_ENABLE(bPrevIntrState);
+
+  00394	e1a0000a	 mov         r0, r10
+  00398	eb000000	 bl          INTERRUPTS_ENABLE
+
+; 292  : }
+
+  0039c	e28dd014	 add         sp, sp, #0x14
+  003a0	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  003a4	e12fff1e	 bx          lr
+  003a8		 |$LN58@OEMPowerOf|
+  003a8		 |$LN59@OEMPowerOf|
+  003a8	00000000	 DCD         |??_C@_1DG@KDDHMOEO@?$AA?$AN?$AA?6?$AAW?$AAa?$AAk?$AAe?$AA?5?$AAd?$AAu?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAS?$AAY?$AAS?$AAI?$AAN?$AAT?$AAR?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  003ac		 |$LN60@OEMPowerOf|
+  003ac	00000000	 DCD         |??_C@_1BO@GGDDDJNF@?$AA?5?$AA?5?$AAS?$AAY?$AAS?$AAI?$AAN?$AAT?$AAR?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  003b0		 |$LN61@OEMPowerOf|
+  003b0	00000000	 DCD         |??_C@_1DA@OKMJBLLN@?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?5?$AAw?$AAa?$AAk?$AAe?$AA?5?$AAs?$AAo?$AAu?$AAr?$AAc?$AAe?$AAs?$AA?3?$AA?$AN?$AA?6?$AA?$AA@|
+  003b4		 |$LN62@OEMPowerOf|
+  003b4	00000000	 DCD         |g_PrcmDebugSuspendResume|
+  003b8		 |$LN63@OEMPowerOf|
+  003b8	01010144	 DCD         0x1010144
+  003bc		 |$LN64@OEMPowerOf|
+  003bc	00000000	 DCD         |g_oalWakeSource|
+  003c0		 |$LN65@OEMPowerOf|
+  003c0	00000000	 DCD         |g_pIntr|
+  003c4		 |$LN66@OEMPowerOf|
+  003c4	00000000	 DCD         |??_C@_1CA@BDKPHEFC@?$AAO?$AAE?$AAM?$AAP?$AAo?$AAw?$AAe?$AAr?$AAO?$AAf?$AAf?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  003c8		 |$M47387|
 
 			 ENDP  ; |OEMPowerOff|
 

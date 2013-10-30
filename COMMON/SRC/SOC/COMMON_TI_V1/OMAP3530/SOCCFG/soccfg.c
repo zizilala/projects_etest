@@ -124,6 +124,7 @@ void SOCGetDSSInfo(DSS_INFO* pInfo)
     pInfo->VENC1_REGS_PA    = OMAP_VENC1_REGS_PA;
     pInfo->DSI_REGS_PA      = OMAP_DSI_REGS_PA;
     pInfo->DSI_PLL_REGS_PA  = OMAP_DSI_PLL_REGS_PA;
+    pInfo->RFBI_REGS_PA		= OMAP_RFBI1_REGS_PA;
 }
 
 DWORD SOCGetDMADevice(DWORD index)

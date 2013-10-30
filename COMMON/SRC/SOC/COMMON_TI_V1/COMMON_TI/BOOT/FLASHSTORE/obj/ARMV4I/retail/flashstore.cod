@@ -72,16 +72,16 @@
 	EXPORT	|__$ArrayPad$| [ DATA ]
 	EXPORT	|OALFlashStoreOpen|
 	EXPORT	|??_C@_1EE@DLLAKNKJ@?$AA?9?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1HC@FKJBCKDO@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAy?$AAt?$AAe?$AAs?$AA?1?$AAs?$AAe?$AAc?$AAt@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GC@LGNOEKEA@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AAs?$AA?0?$AA?5?$AA?$CF?$AAd@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1HC@FKJBCKDO@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAy?$AAt?$AAe?$AAs?$AA?1?$AAs?$AAe?$AAc?$AAt@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GK@DBMLJPHK@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AAF?$AAM?$AAD?$AA_?$AAG?$AAe@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GE@JPMDHDDC@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AAF?$AAM?$AAD?$AA_?$AAI?$AAn@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DK@MODMACFL@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|FMD_GetBlockStatus|
 	IMPORT	|FMD_GetInfo|
+	IMPORT	|dpCurSettings|
 	IMPORT	|FMD_Init|
 	IMPORT	|NKDbgPrintfW|
-	IMPORT	|dpCurSettings|
 	IMPORT	|__GSHandlerCheck|
 	IMPORT	|__security_cookie|
 	IMPORT	|__security_check_cookie|
@@ -92,11 +92,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\boot\flashstore\flashstore.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44978| DCD	|$LN31@OALFlashSt|
-	DCD	0xc0006602
+|$T44970| DCD	|$LN23@OALFlashSt|
+	DCD	0xc0005d02
 
   00000			 AREA	 |.xdata|, DATA
-|$T44974| DCD	0xffffffec
+|$T44966| DCD	0xfffffff0
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1EE@DLLAKNKJ@?$AA?9?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@| DCB "-"
@@ -106,6 +106,18 @@
 	DCB	0x0, "r", 0x0, "c", 0x0, " ", 0x0, "=", 0x0, " ", 0x0, "0"
 	DCB	0x0, "x", 0x0, "%", 0x0, "0", 0x0, "8", 0x0, "x", 0x0, ")"
 	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1GC@LGNOEKEA@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AAs?$AA?0?$AA?5?$AA?$CF?$AAd@| DCB "O"
+	DCB	0x0, "A", 0x0, "L", 0x0, "F", 0x0, "l", 0x0, "a", 0x0, "s"
+	DCB	0x0, "h", 0x0, "S", 0x0, "t", 0x0, "o", 0x0, "r", 0x0, "e"
+	DCB	0x0, "O", 0x0, "p", 0x0, "e", 0x0, "n", 0x0, ":", 0x0, " "
+	DCB	0x0, "%", 0x0, "d", 0x0, " ", 0x0, "b", 0x0, "l", 0x0, "o"
+	DCB	0x0, "c", 0x0, "k", 0x0, "s", 0x0, ",", 0x0, " ", 0x0, "%"
+	DCB	0x0, "d", 0x0, " ", 0x0, "s", 0x0, "e", 0x0, "c", 0x0, "t"
+	DCB	0x0, "o", 0x0, "r", 0x0, "s", 0x0, "/", 0x0, "b", 0x0, "l"
+	DCB	0x0, "o", 0x0, "c", 0x0, "k", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
+	DCB	0x0					; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HC@FKJBCKDO@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAy?$AAt?$AAe?$AAs?$AA?1?$AAs?$AAe?$AAc?$AAt@| DCB "O"
@@ -119,18 +131,6 @@
 	DCB	0x0, "r", 0x0, "v", 0x0, "e", 0x0, "d", 0x0, " ", 0x0, "b"
 	DCB	0x0, "l", 0x0, "o", 0x0, "c", 0x0, "k", 0x0, "s", 0x0, 0xd
 	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1GC@LGNOEKEA@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AAs?$AA?0?$AA?5?$AA?$CF?$AAd@| DCB "O"
-	DCB	0x0, "A", 0x0, "L", 0x0, "F", 0x0, "l", 0x0, "a", 0x0, "s"
-	DCB	0x0, "h", 0x0, "S", 0x0, "t", 0x0, "o", 0x0, "r", 0x0, "e"
-	DCB	0x0, "O", 0x0, "p", 0x0, "e", 0x0, "n", 0x0, ":", 0x0, " "
-	DCB	0x0, "%", 0x0, "d", 0x0, " ", 0x0, "b", 0x0, "l", 0x0, "o"
-	DCB	0x0, "c", 0x0, "k", 0x0, "s", 0x0, ",", 0x0, " ", 0x0, "%"
-	DCB	0x0, "d", 0x0, " ", 0x0, "s", 0x0, "e", 0x0, "c", 0x0, "t"
-	DCB	0x0, "o", 0x0, "r", 0x0, "s", 0x0, "/", 0x0, "b", 0x0, "l"
-	DCB	0x0, "o", 0x0, "c", 0x0, "k", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GK@DBMLJPHK@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AAF?$AAM?$AAD?$AA_?$AAG?$AAe@| DCB "E"
@@ -168,273 +168,249 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T44974|
+  00004	00000000	 DCD         |$T44966|
 
   00008		 |OALFlashStoreOpen| PROC
 
-; 76   : {
+; 73   : {
 
-  00008		 |$LN31@OALFlashSt|
-  00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
+  00008		 |$LN23@OALFlashSt|
+  00008	e92d4030	 stmdb       sp!, {r4, r5, lr}
   0000c	e24ddfe5	 sub         sp, sp, #0xE5, 30
-  00010		 |$M44975|
+  00010		 |$M44967|
   00010	e1a04000	 mov         r4, r0
-  00014	e59f3180	 ldr         r3, [pc, #0x180]
+  00014	e59f315c	 ldr         r3, [pc, #0x15C]
   00018	e5933000	 ldr         r3, [r3]
   0001c	e58d3390	 str         r3, [sp, #0x390]
 
-; 77   :     static OAL_FLASH_CONTEXT flashContext;
-; 78   :     HANDLE hFlash = NULL;
-; 79   :     PCI_REG_INFO regInfo;
-; 80   :     FlashInfo flashInfo;
-; 81   :     ULONG block;
-; 82   :     DWORD status;
-; 83   : 
-; 84   :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"+OALFlashStoreOpen(0x%08x)\r\n", address));
+; 74   :     static OAL_FLASH_CONTEXT flashContext;
+; 75   :     HANDLE hFlash = NULL;
+; 76   :     PCI_REG_INFO regInfo;
+; 77   :     FlashInfo flashInfo;
+; 78   :     ULONG block;
+; 79   :     DWORD status;
+; 80   : 
+; 81   :     OALMSG(1, (L"+OALFlashStoreOpen(0x%08x)\r\n", address)); // OAL_FLASH&&OAL_FUNC
 
-  00020	e59f5170	 ldr         r5, [pc, #0x170]
-  00024	e3a06000	 mov         r6, #0
-  00028	e5953440	 ldr         r3, [r5, #0x440]
-  0002c	e3130a02	 tst         r3, #2, 20
-  00030	13130004	 tstne       r3, #4
-  00034	159f0158	 ldrne       r0, [pc, #0x158]
-  00038	11a01004	 movne       r1, r4
-  0003c	1b000000	 blne        NKDbgPrintfW
+  00020	e59f014c	 ldr         r0, [pc, #0x14C]
+  00024	e1a01004	 mov         r1, r4
+  00028	e3a05000	 mov         r5, #0
+  0002c	eb000000	 bl          NKDbgPrintfW
 
-; 85   : 
-; 86   :     // Open FMD to access NAND
-; 87   :     
-; 88   :     regInfo.MemBase.Reg[0] = address;
-; 89   :     flashContext.pFmd = FMD_Init(NULL, &regInfo, NULL);
+; 82   : 
+; 83   :     // Open FMD to access NAND
+; 84   :     
+; 85   :     regInfo.MemBase.Reg[0] = address;
+; 86   :     flashContext.pFmd = FMD_Init(NULL, &regInfo, NULL);
 
-  00040	e3a02000	 mov         r2, #0
-  00044	e28d1010	 add         r1, sp, #0x10
-  00048	e3a00000	 mov         r0, #0
-  0004c	e58d4320	 str         r4, [sp, #0x320]
-  00050	eb000000	 bl          FMD_Init
-  00054	e59f4134	 ldr         r4, [pc, #0x134]
-  00058	e3500000	 cmp         r0, #0
-  0005c	e5840000	 str         r0, [r4]
+  00030	e3a02000	 mov         r2, #0
+  00034	e28d1010	 add         r1, sp, #0x10
+  00038	e3a00000	 mov         r0, #0
+  0003c	e58d4320	 str         r4, [sp, #0x320]
+  00040	eb000000	 bl          FMD_Init
+  00044	e59f4124	 ldr         r4, [pc, #0x124]
+  00048	e3500000	 cmp         r0, #0
+  0004c	e5840000	 str         r0, [r4]
 
-; 90   :     if (flashContext.pFmd == NULL)
+; 87   :     if (flashContext.pFmd == NULL)
 
-  00060	1a000005	 bne         |$LN6@OALFlashSt|
+  00050	1a000006	 bne         |$LN6@OALFlashSt|
 
-; 91   :         {
-; 92   :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: "
-; 93   :             L"FMD_Init call failed!\r\n"
-; 94   :             ));
+; 88   : 	{
+; 89   :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: FMD_Init call failed!\r\n" ));
 
-  00064	e5953440	 ldr         r3, [r5, #0x440]
-  00068	e3130001	 tst         r3, #1
-  0006c	0a000036	 beq         |$cleanUp$44481|
-  00070	e59f0114	 ldr         r0, [pc, #0x114]
-  00074	eb000000	 bl          NKDbgPrintfW
+  00054	e59f310c	 ldr         r3, [pc, #0x10C]
+  00058	e5933440	 ldr         r3, [r3, #0x440]
+  0005c	e3130001	 tst         r3, #1
+  00060	0a000033	 beq         |$cleanUp$44481|
+  00064	e59f0100	 ldr         r0, [pc, #0x100]
+  00068	eb000000	 bl          NKDbgPrintfW
 
-; 95   :         goto cleanUp;
+; 90   :         goto cleanUp;
 
-  00078	ea000033	 b           |$cleanUp$44481|
-  0007c		 |$LN6@OALFlashSt|
+  0006c	ea000030	 b           |$cleanUp$44481|
+  00070		 |$LN6@OALFlashSt|
 
-; 96   :         }
-; 97   : 
-; 98   :     // Get flash info
-; 99   :     if (!FMD_GetInfo(&flashInfo))
+; 91   : 	}
+; 92   : 
+; 93   :     // Get flash info
+; 94   :     if (!FMD_GetInfo(&flashInfo))
 
-  0007c	e28d0000	 add         r0, sp, #0
-  00080	eb000000	 bl          FMD_GetInfo
-  00084	e3500000	 cmp         r0, #0
-  00088	1a000005	 bne         |$LN5@OALFlashSt|
-  0008c	e5953440	 ldr         r3, [r5, #0x440]
+  00070	e28d0000	 add         r0, sp, #0
+  00074	eb000000	 bl          FMD_GetInfo
+  00078	e3500000	 cmp         r0, #0
+  0007c	1a000006	 bne         |$LN5@OALFlashSt|
 
-; 100  :         {
-; 101  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: "
-; 102  :             L"FMD_GetInfo call failed!\r\n"
-; 103  :             ));
+; 95   : 	{
+; 96   :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: FMD_GetInfo call failed!\r\n"));
 
-  00090	e3130001	 tst         r3, #1
-  00094	0a00002c	 beq         |$cleanUp$44481|
-  00098	e59f00e8	 ldr         r0, [pc, #0xE8]
-  0009c	eb000000	 bl          NKDbgPrintfW
-  000a0	ea000029	 b           |$cleanUp$44481|
-  000a4		 |$LN5@OALFlashSt|
+  00080	e59f30e0	 ldr         r3, [pc, #0xE0]
+  00084	e5933440	 ldr         r3, [r3, #0x440]
+  00088	e3130001	 tst         r3, #1
+  0008c	0a000028	 beq         |$cleanUp$44481|
+  00090	e59f00cc	 ldr         r0, [pc, #0xCC]
+  00094	eb000000	 bl          NKDbgPrintfW
+  00098	ea000025	 b           |$cleanUp$44481|
+  0009c		 |$LN5@OALFlashSt|
 
-; 104  :         goto cleanUp;
-; 105  :         }
-; 106  :     flashContext.sectorSize = flashInfo.wDataBytesPerSector;
+; 97   :         goto cleanUp;
+; 98   : 	}
+; 99   :     flashContext.sectorSize = flashInfo.wDataBytesPerSector;
 
-  000a4	e1dd30be	 ldrh        r3, [sp, #0xE]
+  0009c	e1dd30be	 ldrh        r3, [sp, #0xE]
 
-; 107  :     flashContext.sectorsPerBlock = flashInfo.wSectorsPerBlock;
+; 100  :     flashContext.sectorsPerBlock = flashInfo.wSectorsPerBlock;
 
-  000a8	e1dd20bc	 ldrh        r2, [sp, #0xC]
+  000a0	e1dd20bc	 ldrh        r2, [sp, #0xC]
 
-; 108  :     flashContext.blocksOnFlash = flashInfo.dwNumBlocks;
+; 101  :     flashContext.blocksOnFlash = flashInfo.dwNumBlocks;
 
-  000ac	e59d1004	 ldr         r1, [sp, #4]
-  000b0	e5843004	 str         r3, [r4, #4]
-  000b4	e5842008	 str         r2, [r4, #8]
+  000a4	e59d1004	 ldr         r1, [sp, #4]
+  000a8	e5843004	 str         r3, [r4, #4]
+  000ac	e5842008	 str         r2, [r4, #8]
 
-; 109  :     flashContext.blockPos = 0;
+; 102  :     flashContext.blockPos = 0;
 
-  000b8	e3a03000	 mov         r3, #0
-  000bc	e584100c	 str         r1, [r4, #0xC]
-  000c0	e5843014	 str         r3, [r4, #0x14]
+  000b0	e3a03000	 mov         r3, #0
+  000b4	e584100c	 str         r1, [r4, #0xC]
+  000b8	e5843014	 str         r3, [r4, #0x14]
 
-; 110  :     flashContext.badBlocksAtPos = 0;
+; 103  :     flashContext.badBlocksAtPos = 0;
+
+  000bc	e3a03000	 mov         r3, #0
+  000c0	e5843018	 str         r3, [r4, #0x18]
+
+; 104  :     flashContext.reservedBlocks = 0;
 
   000c4	e3a03000	 mov         r3, #0
-  000c8	e5843018	 str         r3, [r4, #0x18]
+  000c8	e5843010	 str         r3, [r4, #0x10]
 
-; 111  :     flashContext.reservedBlocks = 0;
+; 105  : 
+; 106  :     // Get number of reserved blocks
+; 107  :     block = 0;
 
-  000cc	e3a03000	 mov         r3, #0
-  000d0	e5843010	 str         r3, [r4, #0x10]
+  000cc	e3a05000	 mov         r5, #0
 
-; 112  : 
-; 113  :     // Get number of reserved blocks
-; 114  :     block = 0;
+; 108  :     while (block < flashContext.blocksOnFlash)
 
-  000d4	e3a06000	 mov         r6, #0
+  000d0	e3510000	 cmp         r1, #0
+  000d4	0a00000e	 beq         |$LN18@OALFlashSt|
+  000d8		 |$LL4@OALFlashSt|
 
-; 115  :     while (block < flashContext.blocksOnFlash)
+; 109  : 	{
+; 110  :         status = FMD_GetBlockStatus(block);
 
-  000d8	e3510000	 cmp         r1, #0
-  000dc	0a00000e	 beq         |$LN26@OALFlashSt|
-  000e0		 |$LL4@OALFlashSt|
+  000d8	e1a00005	 mov         r0, r5
+  000dc	eb000000	 bl          FMD_GetBlockStatus
 
-; 116  :         {
-; 117  :         status = FMD_GetBlockStatus(block);
+; 111  :         if ((status & BLOCK_STATUS_BAD) != 0)
 
-  000e0	e1a00006	 mov         r0, r6
-  000e4	eb000000	 bl          FMD_GetBlockStatus
+  000e0	e3100002	 tst         r0, #2
 
-; 118  :         if ((status & BLOCK_STATUS_BAD) != 0)
+; 112  : 		{
+; 113  :             block++;
+; 114  :             continue;
 
-  000e8	e3100002	 tst         r0, #2
+  000e4	1a000004	 bne         |$LN19@OALFlashSt|
 
-; 119  :             {
-; 120  :             block++;
-; 121  :             continue;
+; 115  : 		}
+; 116  :         if ((status & BLOCK_STATUS_RESERVED) == 0) break;
 
-  000ec	1a000004	 bne         |$LN27@OALFlashSt|
+  000e8	e3100008	 tst         r0, #8
+  000ec	0a000007	 beq         |$LN17@OALFlashSt|
 
-; 122  :             }
-; 123  :         if ((status & BLOCK_STATUS_RESERVED) == 0) break;
+; 117  :         flashContext.reservedBlocks++;
 
-  000f0	e3100008	 tst         r0, #8
-  000f4	0a000007	 beq         |$LN25@OALFlashSt|
+  000f0	e5943010	 ldr         r3, [r4, #0x10]
 
-; 124  :         flashContext.reservedBlocks++;
+; 118  :         block++;
 
-  000f8	e5943010	 ldr         r3, [r4, #0x10]
+  000f4	e2833001	 add         r3, r3, #1
+  000f8	e5843010	 str         r3, [r4, #0x10]
+  000fc		 |$LN19@OALFlashSt|
+  000fc	e594100c	 ldr         r1, [r4, #0xC]
+  00100	e2855001	 add         r5, r5, #1
+  00104	e1550001	 cmp         r5, r1
+  00108	3afffff2	 bcc         |$LL4@OALFlashSt|
 
-; 125  :         block++;
+; 108  :     while (block < flashContext.blocksOnFlash)
 
-  000fc	e2833001	 add         r3, r3, #1
-  00100	e5843010	 str         r3, [r4, #0x10]
-  00104		 |$LN27@OALFlashSt|
-  00104	e594100c	 ldr         r1, [r4, #0xC]
-  00108	e2866001	 add         r6, r6, #1
-  0010c	e1560001	 cmp         r6, r1
-  00110	3afffff2	 bcc         |$LL4@OALFlashSt|
+  0010c	ea000000	 b           |$LN18@OALFlashSt|
+  00110		 |$LN17@OALFlashSt|
+  00110	e594100c	 ldr         r1, [r4, #0xC]
+  00114		 |$LN18@OALFlashSt|
+  00114	e5942008	 ldr         r2, [r4, #8]
 
-; 115  :     while (block < flashContext.blocksOnFlash)
+; 119  : 	}
+; 120  : 
+; 121  :     OALMSG(1, (L"OALFlashStoreOpen: %d blocks, %d sectors/block\r\n",
+; 122  :         flashContext.blocksOnFlash, flashContext.sectorsPerBlock)); // OAL_INFO
 
-  00114	ea000000	 b           |$LN26@OALFlashSt|
-  00118		 |$LN25@OALFlashSt|
-  00118	e594100c	 ldr         r1, [r4, #0xC]
-  0011c		 |$LN26@OALFlashSt|
+  00118	e59f0040	 ldr         r0, [pc, #0x40]
+  0011c	eb000000	 bl          NKDbgPrintfW
 
-; 91   :         {
-; 92   :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: "
-; 93   :             L"FMD_Init call failed!\r\n"
-; 94   :             ));
+; 123  :     OALMSG(1, (L"OALFlashStoreOpen: %d bytes/sector, %d reserved blocks\r\n",
+; 124  :         flashContext.sectorSize, flashContext.reservedBlocks));
 
-  0011c	e5953440	 ldr         r3, [r5, #0x440]
+  00120	e5942010	 ldr         r2, [r4, #0x10]
+  00124	e5941004	 ldr         r1, [r4, #4]
+  00128	e59f002c	 ldr         r0, [pc, #0x2C]
+  0012c	eb000000	 bl          NKDbgPrintfW
 
-; 126  :         }
-; 127  : 
-; 128  :     OALMSG(OAL_INFO, (L"OALFlashStoreOpen: "
-; 129  :         L"%d blocks, %d sectors/block\r\n",
-; 130  :         flashContext.blocksOnFlash, flashContext.sectorsPerBlock
-; 131  :         ));
+; 125  : 
+; 126  :     // Done
+; 127  :     hFlash = &flashContext;
 
-  00120	e3130008	 tst         r3, #8
-  00124	15942008	 ldrne       r2, [r4, #8]
-  00128	159f0054	 ldrne       r0, [pc, #0x54]
-  0012c	1b000000	 blne        NKDbgPrintfW
-  00130	e5953440	 ldr         r3, [r5, #0x440]
+  00130	e1a05004	 mov         r5, r4
+  00134		 |$cleanUp$44481|
 
-; 132  :     OALMSG(OAL_INFO, (L"OALFlashStoreOpen: "
-; 133  :         L"%d bytes/sector, %d reserved blocks\r\n",
-; 134  :         flashContext.sectorSize, flashContext.reservedBlocks
-; 135  :         ));
+; 128  : 
+; 129  : cleanUp:
+; 130  :     OALMSG(1, (L"-OALFlashStoreOpen(rc = 0x%08x)\r\n", hFlash)); // OAL_FLASH&&OAL_FUNC
 
-  00134	e3130008	 tst         r3, #8
-  00138	15942010	 ldrne       r2, [r4, #0x10]
-  0013c	15941004	 ldrne       r1, [r4, #4]
-  00140	159f0038	 ldrne       r0, [pc, #0x38]
-  00144	1b000000	 blne        NKDbgPrintfW
+  00134	e59f001c	 ldr         r0, [pc, #0x1C]
+  00138	e1a01005	 mov         r1, r5
+  0013c	eb000000	 bl          NKDbgPrintfW
 
-; 136  : 
-; 137  :     // Done
-; 138  :     hFlash = &flashContext;
+; 131  :     
+; 132  :     return hFlash;
 
-  00148	e1a06004	 mov         r6, r4
-  0014c		 |$cleanUp$44481|
-  0014c	e5953440	 ldr         r3, [r5, #0x440]
+  00140	e59d0390	 ldr         r0, [sp, #0x390]
+  00144	eb000000	 bl          __security_check_cookie
 
-; 139  : 
-; 140  : cleanUp:
-; 141  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 142  :         L"-OALFlashStoreOpen(rc = 0x%08x)\r\n", hFlash
-; 143  :         ));
+; 133  : }
 
-  00150	e3130a02	 tst         r3, #2, 20
-  00154	13130004	 tstne       r3, #4
-  00158	159f001c	 ldrne       r0, [pc, #0x1C]
-  0015c	11a01006	 movne       r1, r6
-  00160	1b000000	 blne        NKDbgPrintfW
-
-; 144  :     return hFlash;
-
-  00164	e59d0390	 ldr         r0, [sp, #0x390]
-  00168	eb000000	 bl          __security_check_cookie
-
-; 145  : }
-
-  0016c	e1a00006	 mov         r0, r6
-  00170	e28ddfe5	 add         sp, sp, #0xE5, 30
-  00174	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
-  00178	e12fff1e	 bx          lr
-  0017c		 |$LN32@OALFlashSt|
-  0017c		 |$LN33@OALFlashSt|
-  0017c	00000000	 DCD         |??_C@_1EE@DLLAKNKJ@?$AA?9?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@|
-  00180		 |$LN34@OALFlashSt|
-  00180	00000000	 DCD         |??_C@_1HC@FKJBCKDO@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAy?$AAt?$AAe?$AAs?$AA?1?$AAs?$AAe?$AAc?$AAt@|
-  00184		 |$LN35@OALFlashSt|
-  00184	00000000	 DCD         |??_C@_1GC@LGNOEKEA@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AAs?$AA?0?$AA?5?$AA?$CF?$AAd@|
-  00188		 |$LN36@OALFlashSt|
-  00188	00000000	 DCD         |??_C@_1GK@DBMLJPHK@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AAF?$AAM?$AAD?$AA_?$AAG?$AAe@|
-  0018c		 |$LN37@OALFlashSt|
-  0018c	00000000	 DCD         |??_C@_1GE@JPMDHDDC@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AAF?$AAM?$AAD?$AA_?$AAI?$AAn@|
-  00190		 |$LN38@OALFlashSt|
-  00190	00000000	 DCD         |?flashContext@?1??OALFlashStoreOpen@@9@9|
-  00194		 |$LN39@OALFlashSt|
-  00194	00000000	 DCD         |??_C@_1DK@MODMACFL@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  00198		 |$LN40@OALFlashSt|
-  00198	00000000	 DCD         |dpCurSettings|
-  0019c		 |$LN41@OALFlashSt|
-  0019c	00000000	 DCD         |__security_cookie|
-  001a0		 |$M44976|
+  00148	e1a00005	 mov         r0, r5
+  0014c	e28ddfe5	 add         sp, sp, #0xE5, 30
+  00150	e8bd4030	 ldmia       sp!, {r4, r5, lr}
+  00154	e12fff1e	 bx          lr
+  00158		 |$LN24@OALFlashSt|
+  00158		 |$LN25@OALFlashSt|
+  00158	00000000	 DCD         |??_C@_1EE@DLLAKNKJ@?$AA?9?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?$CI?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN@|
+  0015c		 |$LN26@OALFlashSt|
+  0015c	00000000	 DCD         |??_C@_1HC@FKJBCKDO@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAy?$AAt?$AAe?$AAs?$AA?1?$AAs?$AAe?$AAc?$AAt@|
+  00160		 |$LN27@OALFlashSt|
+  00160	00000000	 DCD         |??_C@_1GC@LGNOEKEA@?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AAs?$AA?0?$AA?5?$AA?$CF?$AAd@|
+  00164		 |$LN28@OALFlashSt|
+  00164	00000000	 DCD         |??_C@_1GK@DBMLJPHK@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AAF?$AAM?$AAD?$AA_?$AAG?$AAe@|
+  00168		 |$LN29@OALFlashSt|
+  00168	00000000	 DCD         |dpCurSettings|
+  0016c		 |$LN30@OALFlashSt|
+  0016c	00000000	 DCD         |??_C@_1GE@JPMDHDDC@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?3?$AA?5?$AAF?$AAM?$AAD?$AA_?$AAI?$AAn@|
+  00170		 |$LN31@OALFlashSt|
+  00170	00000000	 DCD         |?flashContext@?1??OALFlashStoreOpen@@9@9|
+  00174		 |$LN32@OALFlashSt|
+  00174	00000000	 DCD         |??_C@_1DK@MODMACFL@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAO?$AAp?$AAe?$AAn?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  00178		 |$LN33@OALFlashSt|
+  00178	00000000	 DCD         |__security_cookie|
+  0017c		 |$M44968|
 
 			 ENDP  ; |OALFlashStoreOpen|
 
 	EXPORT	|OALFlashStoreBlockSize|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T44999| DCD	|$LN5@OALFlashSt@2|
+|$T44991| DCD	|$LN5@OALFlashSt@2|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -442,29 +418,29 @@
 
   00000		 |OALFlashStoreBlockSize| PROC
 
-; 847  : {
+; 835  : {
 
   00000		 |$LN5@OALFlashSt@2|
-  00000		 |$M44996|
+  00000		 |$M44988|
 
-; 848  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 849  :     return pFlash->sectorsPerBlock * pFlash->sectorSize;
+; 836  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 837  :     return pFlash->sectorsPerBlock * pFlash->sectorSize;
 
   00000	e5902008	 ldr         r2, [r0, #8]
   00004	e5903004	 ldr         r3, [r0, #4]
 
-; 850  : }
+; 838  : }
 
   00008	e0000392	 mul         r0, r2, r3
   0000c	e12fff1e	 bx          lr
-  00010		 |$M44997|
+  00010		 |$M44989|
 
 			 ENDP  ; |OALFlashStoreBlockSize|
 
 	EXPORT	|OALFlashStoreSectorSize|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45009| DCD	|$LN5@OALFlashSt@3|
+|$T45001| DCD	|$LN5@OALFlashSt@3|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -472,20 +448,20 @@
 
   00000		 |OALFlashStoreSectorSize| PROC
 
-; 855  : {
+; 843  : {
 
   00000		 |$LN5@OALFlashSt@3|
-  00000		 |$M45006|
+  00000		 |$M44998|
 
-; 856  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 857  :     return pFlash->sectorSize;
+; 844  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 845  :     return pFlash->sectorSize;
 
   00000	e5900004	 ldr         r0, [r0, #4]
 
-; 858  : }
+; 846  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M45007|
+  00008		 |$M44999|
 
 			 ENDP  ; |OALFlashStoreSectorSize|
 
@@ -493,7 +469,7 @@
 	IMPORT	|FMD_Deinit|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45017| DCD	|$LN6@OALFlashSt@4|
+|$T45009| DCD	|$LN6@OALFlashSt@4|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -501,46 +477,46 @@
 
   00000		 |OALFlashStoreClose| PROC
 
-; 866  : {
+; 854  : {
 
   00000		 |$LN6@OALFlashSt@4|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45014|
+  00004		 |$M45006|
   00004	e1a04000	 mov         r4, r0
 
-; 867  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 868  : 
-; 869  :     if (pFlash->pFmd != NULL)
+; 855  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 856  : 
+; 857  :     if (pFlash->pFmd != NULL)
 
   00008	e5943000	 ldr         r3, [r4]
   0000c	e3530000	 cmp         r3, #0
   00010	0a000003	 beq         |$LN1@OALFlashSt@4|
 
-; 870  :         {
-; 871  :         FMD_Deinit(pFlash->pFmd);
+; 858  :         {
+; 859  :         FMD_Deinit(pFlash->pFmd);
 
   00014	e1a00003	 mov         r0, r3
   00018	eb000000	 bl          FMD_Deinit
 
-; 872  :         pFlash->pFmd = NULL;
+; 860  :         pFlash->pFmd = NULL;
 
   0001c	e3a03000	 mov         r3, #0
   00020	e5843000	 str         r3, [r4]
   00024		 |$LN1@OALFlashSt@4|
 
-; 873  :         }
-; 874  : }
+; 861  :         }
+; 862  : }
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
-  0002c		 |$M45015|
+  0002c		 |$M45007|
 
 			 ENDP  ; |OALFlashStoreClose|
 
 	EXPORT	|??_C@_1DE@JONHLDDF@?$AAW?$AAA?$AAR?$AAN?$AA?3?$AA?5?$AAS?$AAk?$AAi?$AAp?$AA?5?$AAb?$AAa?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45037| DCD	|$LN16@SeekToBloc|
+|$T45029| DCD	|$LN16@SeekToBloc|
 	DCD	0x40002801
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -556,75 +532,75 @@
 
   00000		 |SeekToBlock| PROC
 
-; 884  : {
+; 872  : {
 
   00000		 |$LN16@SeekToBloc|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M45034|
+  00004		 |$M45026|
   00004	e1a07001	 mov         r7, r1
   00008	e1a04000	 mov         r4, r0
 
-; 885  :     BOOL rc = FALSE;
-; 886  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 887  :     ULONG blockPos, badBlocks;
-; 888  : 
-; 889  :     if (block < pFlash->blockPos)
+; 873  :     BOOL rc = FALSE;
+; 874  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 875  :     ULONG blockPos, badBlocks;
+; 876  : 
+; 877  :     if (block < pFlash->blockPos)
 
   0000c	e5943014	 ldr         r3, [r4, #0x14]
   00010	e3a08000	 mov         r8, #0
   00014	e1570003	 cmp         r7, r3
 
-; 890  :         {
-; 891  :         pFlash->blockPos = 0;
+; 878  :         {
+; 879  :         pFlash->blockPos = 0;
 
   00018	33a03000	 movcc       r3, #0
   0001c	35843014	 strcc       r3, [r4, #0x14]
 
-; 892  :         pFlash->badBlocksAtPos = 0;
-; 893  :         }
-; 894  : 
-; 895  :     blockPos = pFlash->blockPos;
+; 880  :         pFlash->badBlocksAtPos = 0;
+; 881  :         }
+; 882  : 
+; 883  :     blockPos = pFlash->blockPos;
 
   00020	e5945014	 ldr         r5, [r4, #0x14]
   00024	35843018	 strcc       r3, [r4, #0x18]
 
-; 896  :     badBlocks = pFlash->badBlocksAtPos;
+; 884  :     badBlocks = pFlash->badBlocksAtPos;
 
   00028	e5946018	 ldr         r6, [r4, #0x18]
 
-; 897  :     while (blockPos < block)
+; 885  :     while (blockPos < block)
 
   0002c	e1550007	 cmp         r5, r7
   00030	2a000012	 bcs         |$LN3@SeekToBloc|
   00034	e59fa060	 ldr         r10, [pc, #0x60]
   00038		 |$LL4@SeekToBloc|
 
-; 898  :         {
-; 899  :         // Check if we don't run out of flash
-; 900  :         if ((blockPos + badBlocks) >= pFlash->blocksOnFlash)
+; 886  :         {
+; 887  :         // Check if we don't run out of flash
+; 888  :         if ((blockPos + badBlocks) >= pFlash->blocksOnFlash)
 
   00038	e594300c	 ldr         r3, [r4, #0xC]
   0003c	e0869005	 add         r9, r6, r5
   00040	e1590003	 cmp         r9, r3
   00044	2a00000e	 bcs         |$LN12@SeekToBloc|
 
-; 901  :             {
-; 902  :             pFlash->blockPos = blockPos;
-; 903  :             pFlash->badBlocksAtPos = badBlocks;
-; 904  :             goto cleanUp;
-; 905  :             }
-; 906  :         // If block is marked as bad, add bad blocks and try next one
-; 907  :         if ((FMD_GetBlockStatus(blockPos + badBlocks) & BLOCK_STATUS_BAD) != 0)
+; 889  :             {
+; 890  :             pFlash->blockPos = blockPos;
+; 891  :             pFlash->badBlocksAtPos = badBlocks;
+; 892  :             goto cleanUp;
+; 893  :             }
+; 894  :         // If block is marked as bad, add bad blocks and try next one
+; 895  :         if ((FMD_GetBlockStatus(blockPos + badBlocks) & BLOCK_STATUS_BAD) != 0)
 
   00048	e1a00009	 mov         r0, r9
   0004c	eb000000	 bl          FMD_GetBlockStatus
   00050	e3100002	 tst         r0, #2
   00054	0a000006	 beq         |$LN1@SeekToBloc|
 
-; 908  :             {
-; 909  :             OALMSG(OAL_WARN, (L"WARN: "
-; 910  :                 L"Skip bad block %d\r\n", blockPos + badBlocks
-; 911  :                 ));
+; 896  :             {
+; 897  :             OALMSG(OAL_WARN, (L"WARN: "
+; 898  :                 L"Skip bad block %d\r\n", blockPos + badBlocks
+; 899  :                 ));
 
   00058	e59a3440	 ldr         r3, [r10, #0x440]
   0005c	e3130002	 tst         r3, #2
@@ -632,45 +608,45 @@
   00064	11a01009	 movne       r1, r9
   00068	1b000000	 blne        NKDbgPrintfW
 
-; 912  :             badBlocks++;
+; 900  :             badBlocks++;
 
   0006c	e2866001	 add         r6, r6, #1
 
-; 913  :             continue;
+; 901  :             continue;
 
   00070	ea000000	 b           |$LN13@SeekToBloc|
   00074		 |$LN1@SeekToBloc|
 
-; 914  :             }
-; 915  :         blockPos++;
+; 902  :             }
+; 903  :         blockPos++;
 
   00074	e2855001	 add         r5, r5, #1
   00078		 |$LN13@SeekToBloc|
 
-; 897  :     while (blockPos < block)
+; 885  :     while (blockPos < block)
 
   00078	e1550007	 cmp         r5, r7
   0007c	3affffed	 bcc         |$LL4@SeekToBloc|
   00080		 |$LN3@SeekToBloc|
 
-; 921  :     rc = TRUE;
+; 909  :     rc = TRUE;
 
   00080	e3a08001	 mov         r8, #1
   00084		 |$LN12@SeekToBloc|
 
-; 916  :         }
-; 917  : 
-; 918  :     // Done
-; 919  :     pFlash->blockPos = blockPos;
-; 920  :     pFlash->badBlocksAtPos = badBlocks;
+; 904  :         }
+; 905  : 
+; 906  :     // Done
+; 907  :     pFlash->blockPos = blockPos;
+; 908  :     pFlash->badBlocksAtPos = badBlocks;
 
   00084	e5846018	 str         r6, [r4, #0x18]
   00088	e5845014	 str         r5, [r4, #0x14]
 
-; 922  : 
-; 923  : cleanUp:
-; 924  :     return rc;
-; 925  : }
+; 910  : 
+; 911  : cleanUp:
+; 912  :     return rc;
+; 913  : }
 
   0008c	e1a00008	 mov         r0, r8
   00090		 |$cleanUp$44788|
@@ -681,13 +657,13 @@
   00098	00000000	 DCD         |??_C@_1DE@JONHLDDF@?$AAW?$AAA?$AAR?$AAN?$AA?3?$AA?5?$AAS?$AAk?$AAi?$AAp?$AA?5?$AAb?$AAa?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
   0009c		 |$LN19@SeekToBloc|
   0009c	00000000	 DCD         |dpCurSettings|
-  000a0		 |$M45035|
+  000a0		 |$M45027|
 
 			 ENDP  ; |SeekToBlock|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45057| DCD	|$LN15@IsSectorEm|
+|$T45049| DCD	|$LN15@IsSectorEm|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -695,24 +671,24 @@
 
   00000		 |IsSectorEmpty| PROC
 
-; 936  : {
+; 924  : {
 
   00000		 |$LN15@IsSectorEm|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45054|
+  00004		 |$M45046|
   00004	e1a04000	 mov         r4, r0
 
-; 937  :     BOOL rc = FALSE;
-; 938  :     ULONG idx;
-; 939  : 
-; 940  :     if (pSectorInfo->dwReserved1 != 0xFFFFFFFF) goto cleanUp;
+; 925  :     BOOL rc = FALSE;
+; 926  :     ULONG idx;
+; 927  : 
+; 928  :     if (pSectorInfo->dwReserved1 != 0xFFFFFFFF) goto cleanUp;
 
   00008	e5923000	 ldr         r3, [r2]
   0000c	e3a00000	 mov         r0, #0
   00010	e3730001	 cmn         r3, #1
   00014	1a000011	 bne         |$cleanUp$44801|
 
-; 941  :     if (pSectorInfo->wReserved2 != 0xFFFF) goto cleanUp;
+; 929  :     if (pSectorInfo->wReserved2 != 0xFFFF) goto cleanUp;
 
   00018	e1d2e0b6	 ldrh        lr, [r2, #6]
   0001c	e3a03cff	 mov         r3, #0xFF, 24
@@ -720,22 +696,22 @@
   00024	e15e0003	 cmp         lr, r3
   00028	1a00000c	 bne         |$cleanUp$44801|
 
-; 942  :     if (pSectorInfo->bOEMReserved != 0xFF) goto cleanUp;
+; 930  :     if (pSectorInfo->bOEMReserved != 0xFF) goto cleanUp;
 
   0002c	e5d23004	 ldrb        r3, [r2, #4]
   00030	e35300ff	 cmp         r3, #0xFF
   00034	1a000009	 bne         |$cleanUp$44801|
 
-; 943  : 
-; 944  :     for (idx = 0; idx < sectorSize; idx++)
+; 931  : 
+; 932  :     for (idx = 0; idx < sectorSize; idx++)
 
   00038	e3a02000	 mov         r2, #0
   0003c	e3510000	 cmp         r1, #0
   00040	0a000005	 beq         |$LN2@IsSectorEm|
   00044		 |$LL4@IsSectorEm|
 
-; 945  :         {
-; 946  :         if (pData[idx] != 0xFF) goto cleanUp;
+; 933  :         {
+; 934  :         if (pData[idx] != 0xFF) goto cleanUp;
 
   00044	e7d23004	 ldrb        r3, [r2, +r4]
   00048	e35300ff	 cmp         r3, #0xFF
@@ -745,21 +721,21 @@
   00058	3afffff9	 bcc         |$LL4@IsSectorEm|
   0005c		 |$LN2@IsSectorEm|
 
-; 947  :         }
-; 948  : 
-; 949  :     rc = TRUE;
+; 935  :         }
+; 936  : 
+; 937  :     rc = TRUE;
 
   0005c	e3a00001	 mov         r0, #1
   00060		 |$cleanUp$44801|
 
-; 950  : 
-; 951  : cleanUp:
-; 952  :     return rc;
-; 953  : }
+; 938  : 
+; 939  : cleanUp:
+; 940  :     return rc;
+; 941  : }
 
   00060	e8bd4010	 ldmia       sp!, {r4, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M45055|
+  00068		 |$M45047|
 
 			 ENDP  ; |IsSectorEmpty|
 
@@ -773,7 +749,7 @@
 	IMPORT	|memcmp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45090| DCD	|$LN35@BuildLayou|
+|$T45082| DCD	|$LN35@BuildLayou|
 	DCD	0x4000a302
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -830,55 +806,55 @@
 
   00000		 |BuildLayoutInfo| PROC
 
-; 962  : {
+; 950  : {
 
   00000		 |$LN35@BuildLayou|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M45087|
+  00008		 |$M45079|
   00008	e1a06000	 mov         r6, r0
 
-; 963  :     BOOL rc = FALSE;
-; 964  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 965  :     SectorInfo sectorInfo;
-; 966  :     FlashLayoutSector *pSector;
-; 967  :     ULONG block, sector, sectorInBlock;
-; 968  :     ULONG mbrSector;
-; 969  :     ULONG ix;
-; 970  : 
-; 971  : 
-; 972  :     // First check if we support this flash
-; 973  :     if (pFlash->sectorSize > sizeof(pFlash->sectorBuffer))
+; 951  :     BOOL rc = FALSE;
+; 952  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 953  :     SectorInfo sectorInfo;
+; 954  :     FlashLayoutSector *pSector;
+; 955  :     ULONG block, sector, sectorInBlock;
+; 956  :     ULONG mbrSector;
+; 957  :     ULONG ix;
+; 958  : 
+; 959  : 
+; 960  :     // First check if we support this flash
+; 961  :     if (pFlash->sectorSize > sizeof(pFlash->sectorBuffer))
 
   0000c	e5963004	 ldr         r3, [r6, #4]
   00010	e3a07000	 mov         r7, #0
   00014	e3530b02	 cmp         r3, #2, 22
   00018	8a00008f	 bhi         |$cleanUp$44821|
 
-; 974  :         {
-; 975  :         goto cleanUp;
-; 976  :         }
-; 977  : 
-; 978  :     // Seek to first unreserved block
-; 979  :     SeekToBlock(hFlash, pFlash->reservedBlocks);
+; 962  :         {
+; 963  :         goto cleanUp;
+; 964  :         }
+; 965  : 
+; 966  :     // Seek to first unreserved block
+; 967  :     SeekToBlock(hFlash, pFlash->reservedBlocks);
 
   0001c	e5961010	 ldr         r1, [r6, #0x10]
   00020	eb000000	 bl          SeekToBlock
 
-; 980  : 
-; 981  :     // Parse flash memory
-; 982  :     block = pFlash->blockPos + pFlash->badBlocksAtPos;
+; 968  : 
+; 969  :     // Parse flash memory
+; 970  :     block = pFlash->blockPos + pFlash->badBlocksAtPos;
 
   00024	e5961018	 ldr         r1, [r6, #0x18]
   00028	e5963014	 ldr         r3, [r6, #0x14]
 
-; 983  :     sector = block * pFlash->sectorsPerBlock;
+; 971  :     sector = block * pFlash->sectorsPerBlock;
 
   0002c	e5962008	 ldr         r2, [r6, #8]
 
-; 984  :     mbrSector = (ULONG) -1;
-; 985  :     sectorInBlock = 0;
-; 986  :     while (block < pFlash->blocksOnFlash)
+; 972  :     mbrSector = (ULONG) -1;
+; 973  :     sectorInBlock = 0;
+; 974  :     while (block < pFlash->blocksOnFlash)
 
   00030	e596e00c	 ldr         lr, [r6, #0xC]
   00034	e0814003	 add         r4, r1, r3
@@ -893,26 +869,26 @@
   00058	e286bb01	 add         r11, r6, #1, 22
   0005c		 |$LL16@BuildLayou|
 
-; 987  :         {
-; 988  :         // If we are at beginning of block, check if it isn't bad
-; 989  :         if (sectorInBlock == 0)
+; 975  :         {
+; 976  :         // If we are at beginning of block, check if it isn't bad
+; 977  :         if (sectorInBlock == 0)
 
   0005c	e3590000	 cmp         r9, #0
   00060	1a00000e	 bne         |$LN13@BuildLayou|
 
-; 990  :             {
-; 991  :             // Skip block if it is marked as bad
-; 992  :             if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
+; 978  :             {
+; 979  :             // Skip block if it is marked as bad
+; 980  :             if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
 
   00064	e1a00004	 mov         r0, r4
   00068	eb000000	 bl          FMD_GetBlockStatus
   0006c	e3100002	 tst         r0, #2
   00070	0a00000a	 beq         |$LN13@BuildLayou|
 
-; 993  :                 {
-; 994  :                 OALMSG(OAL_WARN, (L"WARN: "
-; 995  :                     L"Skip bad block %d\r\n", block
-; 996  :                     ));
+; 981  :                 {
+; 982  :                 OALMSG(OAL_WARN, (L"WARN: "
+; 983  :                     L"Skip bad block %d\r\n", block
+; 984  :                     ));
 
   00074	e5973440	 ldr         r3, [r7, #0x440]
   00078	e3130002	 tst         r3, #2
@@ -920,28 +896,28 @@
   00080	11a01004	 movne       r1, r4
   00084	1b000000	 blne        NKDbgPrintfW
 
-; 997  :                 block++;
-; 998  :                 pFlash->badBlocksAtPos++;
+; 985  :                 block++;
+; 986  :                 pFlash->badBlocksAtPos++;
 
   00088	e5963018	 ldr         r3, [r6, #0x18]
 
-; 999  :                 sector += pFlash->sectorsPerBlock;
+; 987  :                 sector += pFlash->sectorsPerBlock;
 
   0008c	e5962008	 ldr         r2, [r6, #8]
   00090	e2833001	 add         r3, r3, #1
   00094	e5863018	 str         r3, [r6, #0x18]
   00098	e0888002	 add         r8, r8, r2
 
-; 1000 :                 continue;
+; 988  :                 continue;
 
   0009c	ea000020	 b           |$LN32@BuildLayou|
   000a0		 |$LN13@BuildLayou|
 
-; 1001 :                 }
-; 1002 :             }
-; 1003 : 
-; 1004 :         // Read sector
-; 1005 :         if (!FMD_ReadSector(sector, pFlash->sectorBuffer, &sectorInfo, 1))
+; 989  :                 }
+; 990  :             }
+; 991  : 
+; 992  :         // Read sector
+; 993  :         if (!FMD_ReadSector(sector, pFlash->sectorBuffer, &sectorInfo, 1))
 
   000a0	e3a03001	 mov         r3, #1
   000a4	e28d2010	 add         r2, sp, #0x10
@@ -949,11 +925,11 @@
   000ac	e1a00008	 mov         r0, r8
   000b0	eb000000	 bl          FMD_ReadSector
 
-; 1006 :             {
-; 1007 :             }
-; 1008 : 
-; 1009 :         // Did we found both (MBR + FLS)?
-; 1010 :         if ((mbrSector != -1) && IS_VALID_FLS(pFlash->sectorBuffer)) break;
+; 994  :             {
+; 995  :             }
+; 996  : 
+; 997  :         // Did we found both (MBR + FLS)?
+; 998  :         if ((mbrSector != -1) && IS_VALID_FLS(pFlash->sectorBuffer)) break;
 
   000b4	e3750001	 cmn         r5, #1
   000b8	0a000005	 beq         |$LN11@BuildLayou|
@@ -965,9 +941,9 @@
   000d0	0a000017	 beq         |$LN29@BuildLayou|
   000d4		 |$LN11@BuildLayou|
 
-; 1011 : 
-; 1012 :         // Check for MBR in sector...
-; 1013 :         mbrSector = IS_VALID_BOOTSEC(pFlash->sectorBuffer) ? sector : -1;
+; 999  : 
+; 1000 :         // Check for MBR in sector...
+; 1001 :         mbrSector = IS_VALID_BOOTSEC(pFlash->sectorBuffer) ? sector : -1;
 
   000d4	e1db3eb2	 ldrh        r3, [r11, #0xE2]
   000d8	e153000a	 cmp         r3, r10
@@ -984,11 +960,11 @@
   000fc	e3e05000	 mvn         r5, #0
   00100		 |$LN24@BuildLayou|
 
-; 1014 : 
-; 1015 :         // Move to next sector
-; 1016 :         sector++;
-; 1017 :         sectorInBlock++;
-; 1018 :         if (sectorInBlock  >= pFlash->sectorsPerBlock)
+; 1002 : 
+; 1003 :         // Move to next sector
+; 1004 :         sector++;
+; 1005 :         sectorInBlock++;
+; 1006 :         if (sectorInBlock  >= pFlash->sectorsPerBlock)
 
   00100	e5963008	 ldr         r3, [r6, #8]
   00104	e2899001	 add         r9, r9, #1
@@ -996,26 +972,26 @@
   0010c	e1590003	 cmp         r9, r3
   00110	3a000004	 bcc         |$LN10@BuildLayou|
 
-; 1019 :             {
-; 1020 :             block++;
-; 1021 :             pFlash->blockPos++;
+; 1007 :             {
+; 1008 :             block++;
+; 1009 :             pFlash->blockPos++;
 
   00114	e5963014	 ldr         r3, [r6, #0x14]
 
-; 1022 :             sectorInBlock = 0;
+; 1010 :             sectorInBlock = 0;
 
   00118	e3a09000	 mov         r9, #0
   0011c	e2833001	 add         r3, r3, #1
   00120	e5863014	 str         r3, [r6, #0x14]
   00124		 |$LN32@BuildLayou|
 
-; 1019 :             {
-; 1020 :             block++;
-; 1021 :             pFlash->blockPos++;
+; 1007 :             {
+; 1008 :             block++;
+; 1009 :             pFlash->blockPos++;
 
   00124	e2844001	 add         r4, r4, #1
 
-; 1022 :             sectorInBlock = 0;
+; 1010 :             sectorInBlock = 0;
 
   00128		 |$LN10@BuildLayou|
   00128	e596300c	 ldr         r3, [r6, #0xC]
@@ -1023,50 +999,50 @@
   00130	3affffc9	 bcc         |$LL16@BuildLayou|
   00134		 |$LN29@BuildLayou|
 
-; 1023 :             }
-; 1024 :         }
-; 1025 : 
-; 1026 :     // If we parse all flash without success, fail
-; 1027 :     if (mbrSector == -1) goto cleanUp;
+; 1011 :             }
+; 1012 :         }
+; 1013 : 
+; 1014 :     // If we parse all flash without success, fail
+; 1015 :     if (mbrSector == -1) goto cleanUp;
 
   00134	e3750001	 cmn         r5, #1
   00138	e3a07000	 mov         r7, #0
   0013c	0a000046	 beq         |$cleanUp$44821|
 
-; 1028 : 
-; 1029 :     // At this moment there is flash layout in buffer
-; 1030 :     pSector = (FlashLayoutSector *)pFlash->sectorBuffer;
+; 1016 : 
+; 1017 :     // At this moment there is flash layout in buffer
+; 1018 :     pSector = (FlashLayoutSector *)pFlash->sectorBuffer;
 
   00140	e2864fb9	 add         r4, r6, #0xB9, 30
 
-; 1031 : 
-; 1032 :     // Get and check number of reserved regions
-; 1033 :     pFlash->reservedRegions = pSector->cbReservedEntries/sizeof(ReservedEntry);
+; 1019 : 
+; 1020 :     // Get and check number of reserved regions
+; 1021 :     pFlash->reservedRegions = pSector->cbReservedEntries/sizeof(ReservedEntry);
 
   00144	e5943008	 ldr         r3, [r4, #8]
   00148	e1a03223	 mov         r3, r3, lsr #4
   0014c	e586301c	 str         r3, [r6, #0x1C]
 
-; 1034 :     if (pFlash->reservedRegions > dimof(pFlash->reservedRegion)) goto cleanUp;
+; 1022 :     if (pFlash->reservedRegions > dimof(pFlash->reservedRegion)) goto cleanUp;
 
   00150	e3530010	 cmp         r3, #0x10
   00154	8a000040	 bhi         |$cleanUp$44821|
 
-; 1035 : 
-; 1036 :     // Copy reserved regions info
-; 1037 :     memcpy(
-; 1038 :         pFlash->reservedRegion, (ReservedEntry*)&pSector[1],
-; 1039 :         pFlash->reservedRegions * sizeof(ReservedEntry)
-; 1040 :         );
+; 1023 : 
+; 1024 :     // Copy reserved regions info
+; 1025 :     memcpy(
+; 1026 :         pFlash->reservedRegion, (ReservedEntry*)&pSector[1],
+; 1027 :         pFlash->reservedRegions * sizeof(ReservedEntry)
+; 1028 :         );
 
   00158	e1a02203	 mov         r2, r3, lsl #4
   0015c	e2841010	 add         r1, r4, #0x10
   00160	e2860020	 add         r0, r6, #0x20
   00164	eb000000	 bl          memcpy
 
-; 1041 : 
-; 1042 :     // Get and check number of regions
-; 1043 :     pFlash->regions = pSector->cbRegionEntries/sizeof(FlashRegion);
+; 1029 : 
+; 1030 :     // Get and check number of regions
+; 1031 :     pFlash->regions = pSector->cbRegionEntries/sizeof(FlashRegion);
 
   00168	e594000c	 ldr         r0, [r4, #0xC]
   0016c	e59f3108	 ldr         r3, [pc, #0x108]
@@ -1076,17 +1052,17 @@
   0017c	e1a03223	 mov         r3, r3, lsr #4
   00180	e5863120	 str         r3, [r6, #0x120]
 
-; 1044 :     if (pFlash->regions > dimof(pFlash->region)) goto cleanUp;
+; 1032 :     if (pFlash->regions > dimof(pFlash->region)) goto cleanUp;
 
   00184	e3530010	 cmp         r3, #0x10
   00188	8a000033	 bhi         |$cleanUp$44821|
 
-; 1045 : 
-; 1046 :     // Copy regions info
-; 1047 :     memcpy(
-; 1048 :         pFlash->region, (UCHAR *)&pSector[1] + pSector->cbReservedEntries,
-; 1049 :         pFlash->regions * sizeof(FlashRegion)
-; 1050 :         );
+; 1033 : 
+; 1034 :     // Copy regions info
+; 1035 :     memcpy(
+; 1036 :         pFlash->region, (UCHAR *)&pSector[1] + pSector->cbReservedEntries,
+; 1037 :         pFlash->regions * sizeof(FlashRegion)
+; 1038 :         );
 
   0018c	e5941008	 ldr         r1, [r4, #8]
   00190	e0633183	 rsb         r3, r3, r3, lsl #3
@@ -1096,17 +1072,17 @@
   001a0	e2860f49	 add         r0, r6, #0x49, 30
   001a4	eb000000	 bl          memcpy
 
-; 1051 : 
-; 1052 :     // print flash regions to debug output
-; 1053 :     OALMSG(OAL_LOG_INFO, (
-; 1054 :         L"Flash contains %u reserved regions:\r\n", pFlash->reservedRegions
-; 1055 :         ));
+; 1039 : 
+; 1040 :     // print flash regions to debug output
+; 1041 :     OALMSG(OAL_LOG_INFO, (
+; 1042 :         L"Flash contains %u reserved regions:\r\n", pFlash->reservedRegions
+; 1043 :         ));
 
   001a8	e596101c	 ldr         r1, [r6, #0x1C]
   001ac	e59f00c4	 ldr         r0, [pc, #0xC4]
   001b0	eb000000	 bl          NKDbgPrintfW
 
-; 1056 :     for (ix = 0; ix < pFlash->reservedRegions; ix++)
+; 1044 :     for (ix = 0; ix < pFlash->reservedRegions; ix++)
 
   001b4	e596301c	 ldr         r3, [r6, #0x1C]
   001b8	e3a05000	 mov         r5, #0
@@ -1115,13 +1091,13 @@
   001c4	e1a04006	 mov         r4, r6
   001c8		 |$LL6@BuildLayou|
 
-; 1057 :         {
-; 1058 :         OALMSG(OAL_LOG_INFO, (
-; 1059 :             L"    Name=%s, Start block=%u, Blocks=%u\r\n",
-; 1060 :             pFlash->reservedRegion[ix].szName,
-; 1061 :             pFlash->reservedRegion[ix].dwStartBlock,
-; 1062 :             pFlash->reservedRegion[ix].dwNumBlocks
-; 1063 :             ));
+; 1045 :         {
+; 1046 :         OALMSG(OAL_LOG_INFO, (
+; 1047 :             L"    Name=%s, Start block=%u, Blocks=%u\r\n",
+; 1048 :             pFlash->reservedRegion[ix].szName,
+; 1049 :             pFlash->reservedRegion[ix].dwStartBlock,
+; 1050 :             pFlash->reservedRegion[ix].dwNumBlocks
+; 1051 :             ));
 
   001c8	e594302c	 ldr         r3, [r4, #0x2C]
   001cc	e5942028	 ldr         r2, [r4, #0x28]
@@ -1135,17 +1111,17 @@
   001ec	3afffff5	 bcc         |$LL6@BuildLayou|
   001f0		 |$LN4@BuildLayou|
 
-; 1064 :         }
-; 1065 : 
-; 1066 :     OALMSG(OAL_LOG_INFO, (
-; 1067 :         L"Flash contains %u regions:\r\n", pFlash->regions
-; 1068 :         ));
+; 1052 :         }
+; 1053 : 
+; 1054 :     OALMSG(OAL_LOG_INFO, (
+; 1055 :         L"Flash contains %u regions:\r\n", pFlash->regions
+; 1056 :         ));
 
   001f0	e5961120	 ldr         r1, [r6, #0x120]
   001f4	e59f0074	 ldr         r0, [pc, #0x74]
   001f8	eb000000	 bl          NKDbgPrintfW
 
-; 1069 :     for (ix = 0; ix < pFlash->regions; ix++)
+; 1057 :     for (ix = 0; ix < pFlash->regions; ix++)
 
   001fc	e5963120	 ldr         r3, [r6, #0x120]
   00200	e3a08000	 mov         r8, #0
@@ -1154,18 +1130,18 @@
   0020c	e1a07006	 mov         r7, r6
   00210		 |$LL3@BuildLayou|
 
-; 1070 :         {
-; 1071 :         OALMSG(OAL_LOG_INFO, (
-; 1072 :             L"    Type=%d, Start=0x%x, NumP=0x%x, NumL=0x%x, Sec/Blk=0x%x, "
-; 1073 :             L"B/Blk=0x%x, Compact=%d\r\n",
-; 1074 :             pFlash->region[ix].regionType,
-; 1075 :             pFlash->region[ix].dwStartPhysBlock,
-; 1076 :             pFlash->region[ix].dwNumPhysBlocks,
-; 1077 :             pFlash->region[ix].dwNumLogicalBlocks,
-; 1078 :             pFlash->region[ix].dwSectorsPerBlock,
-; 1079 :             pFlash->region[ix].dwBytesPerBlock,
-; 1080 :             pFlash->region[ix].dwCompactBlocks
-; 1081 :             ));
+; 1058 :         {
+; 1059 :         OALMSG(OAL_LOG_INFO, (
+; 1060 :             L"    Type=%d, Start=0x%x, NumP=0x%x, NumL=0x%x, Sec/Blk=0x%x, "
+; 1061 :             L"B/Blk=0x%x, Compact=%d\r\n",
+; 1062 :             pFlash->region[ix].regionType,
+; 1063 :             pFlash->region[ix].dwStartPhysBlock,
+; 1064 :             pFlash->region[ix].dwNumPhysBlocks,
+; 1065 :             pFlash->region[ix].dwNumLogicalBlocks,
+; 1066 :             pFlash->region[ix].dwSectorsPerBlock,
+; 1067 :             pFlash->region[ix].dwBytesPerBlock,
+; 1068 :             pFlash->region[ix].dwCompactBlocks
+; 1069 :             ));
 
   00210	e597013c	 ldr         r0, [r7, #0x13C]
   00214	e597e138	 ldr         lr, [r7, #0x138]
@@ -1187,17 +1163,17 @@
   00254	3affffed	 bcc         |$LL3@BuildLayou|
   00258		 |$LN1@BuildLayou|
 
-; 1082 :         }
-; 1083 : 
-; 1084 :     rc = TRUE;
+; 1070 :         }
+; 1071 : 
+; 1072 :     rc = TRUE;
 
   00258	e3a07001	 mov         r7, #1
   0025c		 |$cleanUp$44821|
 
-; 1085 : 
-; 1086 : cleanUp:
-; 1087 :     return rc;
-; 1088 : }
+; 1073 : 
+; 1074 : cleanUp:
+; 1075 :     return rc;
+; 1076 : }
 
   0025c	e1a00007	 mov         r0, r7
   00260	e28dd018	 add         sp, sp, #0x18
@@ -1220,7 +1196,7 @@
   00284	00000000	 DCD         |??_C@_1DE@JONHLDDF@?$AAW?$AAA?$AAR?$AAN?$AA?3?$AA?5?$AAS?$AAk?$AAi?$AAp?$AA?5?$AAb?$AAa?$AAd?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
   00288		 |$LN44@BuildLayou|
   00288	00000000	 DCD         |dpCurSettings|
-  0028c		 |$M45088|
+  0028c		 |$M45080|
 
 			 ENDP  ; |BuildLayoutInfo|
 
@@ -1241,7 +1217,7 @@
 	IMPORT	|__rt_udiv|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45190| DCD	|$LN87@OALFlashSt@5|
+|$T45182| DCD	|$LN87@OALFlashSt@5|
 	DCD	0x4000f902
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1400,12 +1376,12 @@
 
   00000		 |OALFlashStoreWrite| PROC
 
-; 158  : {
+; 146  : {
 
   00000		 |$LN87@OALFlashSt@5|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd020	 sub         sp, sp, #0x20
-  00008		 |$M45187|
+  00008		 |$M45179|
   00008	e1a06003	 mov         r6, r3
   0000c	e1a03002	 mov         r3, r2
   00010	e58d3010	 str         r3, [sp, #0x10]
@@ -1413,19 +1389,19 @@
   00018	e1a08001	 mov         r8, r1
   0001c	e1a05000	 mov         r5, r0
 
-; 159  :     BOOL rc = FALSE;
-; 160  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 161  :     ULONG offset, sector, block;
-; 162  :     ULONG sectorInBlock, sectorDataSize;
-; 163  :     ULONG startSector, startBlock;
-; 164  :     SectorInfo sectorInfo, *pSectorInfo;
-; 165  :     ULONG retry;
-; 166  : 
-; 167  : 
-; 168  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 169  :         L"+OALFlashStoreWrite(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
-; 170  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
-; 171  :         ));
+; 147  :     BOOL rc = FALSE;
+; 148  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 149  :     ULONG offset, sector, block;
+; 150  :     ULONG sectorInBlock, sectorDataSize;
+; 151  :     ULONG startSector, startBlock;
+; 152  :     SectorInfo sectorInfo, *pSectorInfo;
+; 153  :     ULONG retry;
+; 154  : 
+; 155  : 
+; 156  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 157  :         L"+OALFlashStoreWrite(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
+; 158  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
+; 159  :         ));
 
   00020	e59f43b8	 ldr         r4, [pc, #0x3B8]
   00024	e59d9048	 ldr         r9, [sp, #0x48]
@@ -1442,18 +1418,18 @@
   00050	158d6000	 strne       r6, [sp]
   00054	1b000000	 blne        NKDbgPrintfW
 
-; 172  : 
-; 173  :     sectorDataSize = pFlash->sectorSize;
+; 160  : 
+; 161  :     sectorDataSize = pFlash->sectorSize;
 
   00058	e5956004	 ldr         r6, [r5, #4]
 
-; 174  :     if (includeSectorInfo) sectorDataSize += sizeof(SectorInfo);
+; 162  :     if (includeSectorInfo) sectorDataSize += sizeof(SectorInfo);
 
   0005c	e3570000	 cmp         r7, #0
 
-; 175  : 
-; 176  :     // First get socket start block number
-; 177  :     startSector = start/pFlash->sectorSize;
+; 163  : 
+; 164  :     // First get socket start block number
+; 165  :     startSector = start/pFlash->sectorSize;
 
   00060	e1a01008	 mov         r1, r8
   00064	e1a0b006	 mov         r11, r6
@@ -1461,7 +1437,7 @@
   0006c	1286b008	 addne       r11, r6, #8
   00070	eb000000	 bl          __rt_udiv
 
-; 178  :     startBlock = startSector/pFlash->sectorsPerBlock;
+; 166  :     startBlock = startSector/pFlash->sectorsPerBlock;
 
   00074	e5959008	 ldr         r9, [r5, #8]
   00078	e1a07000	 mov         r7, r0
@@ -1469,39 +1445,39 @@
   00080	e1a00009	 mov         r0, r9
   00084	eb000000	 bl          __rt_udiv
 
-; 179  : 
-; 180  :     // We support only write on sector boundary...
-; 181  :     offset = start - startSector * pFlash->sectorSize;
+; 167  : 
+; 168  :     // We support only write on sector boundary...
+; 169  :     offset = start - startSector * pFlash->sectorSize;
 
   00088	e0030796	 mul         r3, r6, r7
   0008c	e1a06000	 mov         r6, r0
   00090	e0581003	 subs        r1, r8, r3
 
-; 182  :     if (offset > 0)
+; 170  :     if (offset > 0)
 
   00094	0a000005	 beq         |$LN23@OALFlashSt@5|
   00098	e5943440	 ldr         r3, [r4, #0x440]
 
-; 183  :         {
-; 184  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
-; 185  :             L"Flash write must start on sector boundary (offset %d)\r\n",
-; 186  :             offset
-; 187  :             ));
+; 171  :         {
+; 172  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
+; 173  :             L"Flash write must start on sector boundary (offset %d)\r\n",
+; 174  :             offset
+; 175  :             ));
 
   0009c	e3130001	 tst         r3, #1
   000a0	0a00005f	 beq         |$cleanUp$44528|
   000a4	e59f032c	 ldr         r0, [pc, #0x32C]
   000a8	eb000000	 bl          NKDbgPrintfW
 
-; 188  :         goto cleanUp;
+; 176  :         goto cleanUp;
 
   000ac	ea00005c	 b           |$cleanUp$44528|
   000b0		 |$LN23@OALFlashSt@5|
 
-; 189  :         }
-; 190  : 
-; 191  :     // And only full sectors
-; 192  :     offset = dataSize - (dataSize/sectorDataSize) * sectorDataSize;
+; 177  :         }
+; 178  : 
+; 179  :     // And only full sectors
+; 180  :     offset = dataSize - (dataSize/sectorDataSize) * sectorDataSize;
 
   000b0	e59d100c	 ldr         r1, [sp, #0xC]
   000b4	e1a0000b	 mov         r0, r11
@@ -1510,16 +1486,16 @@
   000c0	e0030b90	 mul         r3, r0, r11
   000c4	e0521003	 subs        r1, r2, r3
 
-; 193  :     if (offset > 0)
+; 181  :     if (offset > 0)
 
   000c8	0a000005	 beq         |$LN22@OALFlashSt@5|
   000cc	e5943440	 ldr         r3, [r4, #0x440]
 
-; 194  :         {
-; 195  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
-; 196  :             L"Flash read size must be multiple of sector size (offset %d)\r\n",
-; 197  :             offset
-; 198  :             ));
+; 182  :         {
+; 183  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
+; 184  :             L"Flash read size must be multiple of sector size (offset %d)\r\n",
+; 185  :             offset
+; 186  :             ));
 
   000d0	e3130001	 tst         r3, #1
   000d4	0a000052	 beq         |$cleanUp$44528|
@@ -1528,21 +1504,21 @@
   000e0	ea00004f	 b           |$cleanUp$44528|
   000e4		 |$LN22@OALFlashSt@5|
 
-; 199  :         goto cleanUp;
-; 200  :         }
-; 201  : 
-; 202  :     // Offset reserved blocks if required
-; 203  :     if (offsetReservedBlocks)
+; 187  :         goto cleanUp;
+; 188  :         }
+; 189  : 
+; 190  :     // Offset reserved blocks if required
+; 191  :     if (offsetReservedBlocks)
 
   000e4	e59d3048	 ldr         r3, [sp, #0x48]
 
-; 204  :         {
-; 205  :         startBlock +=  pFlash->reservedBlocks;
-; 206  :         startSector += pFlash->reservedBlocks * pFlash->sectorsPerBlock;
-; 207  :         }
-; 208  : 
-; 209  :     // Seek to start block
-; 210  :     if (!SeekToBlock(pFlash, startBlock))
+; 192  :         {
+; 193  :         startBlock +=  pFlash->reservedBlocks;
+; 194  :         startSector += pFlash->reservedBlocks * pFlash->sectorsPerBlock;
+; 195  :         }
+; 196  : 
+; 197  :     // Seek to start block
+; 198  :     if (!SeekToBlock(pFlash, startBlock))
 
   000e8	e1a00005	 mov         r0, r5
   000ec	e3530000	 cmp         r3, #0
@@ -1555,11 +1531,11 @@
   00108	1a000008	 bne         |$LN20@OALFlashSt@5|
   0010c	e5943440	 ldr         r3, [r4, #0x440]
 
-; 211  :         {
-; 212  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
-; 213  :             L"Failed seek to block %d (address 0x%08x, %d bad blocks)\r\n",
-; 214  :             startBlock, start, pFlash->badBlocksAtPos
-; 215  :             ));
+; 199  :         {
+; 200  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
+; 201  :             L"Failed seek to block %d (address 0x%08x, %d bad blocks)\r\n",
+; 202  :             startBlock, start, pFlash->badBlocksAtPos
+; 203  :             ));
 
   00110	e3130001	 tst         r3, #1
   00114	0a000042	 beq         |$cleanUp$44528|
@@ -1569,31 +1545,31 @@
   00124	e1a01006	 mov         r1, r6
   00128	eb000000	 bl          NKDbgPrintfW
 
-; 216  :         goto cleanUp;
+; 204  :         goto cleanUp;
 
   0012c	ea00003c	 b           |$cleanUp$44528|
   00130		 |$LN20@OALFlashSt@5|
 
-; 217  :         }
-; 218  : 
-; 219  :     // Start write to flash
-; 220  :     offset = 0;
-; 221  :     sector = startSector + pFlash->badBlocksAtPos * pFlash->sectorsPerBlock;
+; 205  :         }
+; 206  : 
+; 207  :     // Start write to flash
+; 208  :     offset = 0;
+; 209  :     sector = startSector + pFlash->badBlocksAtPos * pFlash->sectorsPerBlock;
 
   00130	e5951018	 ldr         r1, [r5, #0x18]
   00134	e5952008	 ldr         r2, [r5, #8]
   00138	e3a09000	 mov         r9, #0
 
-; 222  :     block = startBlock + pFlash->badBlocksAtPos;
+; 210  :     block = startBlock + pFlash->badBlocksAtPos;
 
   0013c	e0816006	 add         r6, r1, r6
 
-; 223  :     sectorInBlock = sector - block * pFlash->sectorsPerBlock;
+; 211  :     sectorInBlock = sector - block * pFlash->sectorsPerBlock;
 
   00140	e0030692	 mul         r3, r2, r6
   00144	e0287291	 mla         r8, r1, r2, r7
 
-; 224  :     while (offset < dataSize)
+; 212  :     while (offset < dataSize)
 
   00148	e59d200c	 ldr         r2, [sp, #0xC]
   0014c	e3520000	 cmp         r2, #0
@@ -1606,34 +1582,34 @@
   00164	e3a000fc	 mov         r0, #0xFC
   00168	e3e02000	 mvn         r2, #0
 
-; 225  :         {
-; 226  :         // If it is first sector in block, check and erase block
-; 227  :         if (sectorInBlock == 0)
+; 213  :         {
+; 214  :         // If it is first sector in block, check and erase block
+; 215  :         if (sectorInBlock == 0)
 
   0016c	e35a0000	 cmp         r10, #0
   00170	1a000038	 bne         |$LN72@OALFlashSt@5|
 
-; 228  :             {
-; 229  :             // First check if block exists
-; 230  :             if (block >= pFlash->blocksOnFlash)
+; 216  :             {
+; 217  :             // First check if block exists
+; 218  :             if (block >= pFlash->blocksOnFlash)
 
   00174	e595300c	 ldr         r3, [r5, #0xC]
   00178	e1560003	 cmp         r6, r3
   0017c	2a000084	 bcs         |$LN66@OALFlashSt@5|
 
-; 236  :                 }
-; 237  :             // Skip block if it is marked as bad
-; 238  :             if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
+; 224  :                 }
+; 225  :             // Skip block if it is marked as bad
+; 226  :             if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
 
   00180	e1a00006	 mov         r0, r6
   00184	eb000000	 bl          FMD_GetBlockStatus
   00188	e3100002	 tst         r0, #2
   0018c	0a00000b	 beq         |$LN15@OALFlashSt@5|
 
-; 239  :                 {
-; 240  :                 OALMSG(OAL_WARN, (L"WARN: "
-; 241  :                     L"Skip bad block %d\r\n", block
-; 242  :                     ));
+; 227  :                 {
+; 228  :                 OALMSG(OAL_WARN, (L"WARN: "
+; 229  :                     L"Skip bad block %d\r\n", block
+; 230  :                     ));
 
   00190	e5943440	 ldr         r3, [r4, #0x440]
   00194	e3130002	 tst         r3, #2
@@ -1642,12 +1618,12 @@
   001a0	1b000000	 blne        NKDbgPrintfW
   001a4		 |$LN37@OALFlashSt@5|
 
-; 243  :                 block++;
-; 244  :                 pFlash->badBlocksAtPos++;
+; 231  :                 block++;
+; 232  :                 pFlash->badBlocksAtPos++;
 
   001a4	e5953018	 ldr         r3, [r5, #0x18]
 
-; 245  :                 sector += pFlash->sectorsPerBlock;
+; 233  :                 sector += pFlash->sectorsPerBlock;
 
   001a8	e5952008	 ldr         r2, [r5, #8]
   001ac	e2866001	 add         r6, r6, #1
@@ -1655,44 +1631,44 @@
   001b4	e5853018	 str         r3, [r5, #0x18]
   001b8	e0888002	 add         r8, r8, r2
 
-; 246  :                 continue;
+; 234  :                 continue;
 
   001bc	ea00005b	 b           |$LN70@OALFlashSt@5|
   001c0		 |$LN15@OALFlashSt@5|
 
-; 247  :                 }
-; 248  :             // Erase block
-; 249  :             retry = 4;
+; 235  :                 }
+; 236  :             // Erase block
+; 237  :             retry = 4;
 
   001c0	e3a07004	 mov         r7, #4
   001c4		 |$LL14@OALFlashSt@5|
 
-; 250  :             do
-; 251  :                 {
-; 252  :                 if (FMD_EraseBlock(block)) break;
+; 238  :             do
+; 239  :                 {
+; 240  :                 if (FMD_EraseBlock(block)) break;
 
   001c4	e1a00006	 mov         r0, r6
   001c8	eb000000	 bl          FMD_EraseBlock
   001cc	e3500000	 cmp         r0, #0
   001d0	1a000001	 bne         |$LN12@OALFlashSt@5|
 
-; 253  :                 }
-; 254  :             while (--retry > 0);
+; 241  :                 }
+; 242  :             while (--retry > 0);
 
   001d4	e2577001	 subs        r7, r7, #1
   001d8	1afffff9	 bne         |$LL14@OALFlashSt@5|
   001dc		 |$LN12@OALFlashSt@5|
 
-; 255  :             // If erase failed
-; 256  :             if (retry == 0)
+; 243  :             // If erase failed
+; 244  :             if (retry == 0)
 
   001dc	e3570000	 cmp         r7, #0
   001e0	1a000019	 bne         |$LN80@OALFlashSt@5|
 
-; 257  :                 {
-; 258  :                 OALMSG(OAL_WARN, (L"WARN: OALFlashStoreWrite: "
-; 259  :                     L"Failed erase block %d, mark it as bad\r\n", block
-; 260  :                     ));
+; 245  :                 {
+; 246  :                 OALMSG(OAL_WARN, (L"WARN: OALFlashStoreWrite: "
+; 247  :                     L"Failed erase block %d, mark it as bad\r\n", block
+; 248  :                     ));
 
   001e4	e5943440	 ldr         r3, [r4, #0x440]
   001e8	e3130002	 tst         r3, #2
@@ -1700,7 +1676,7 @@
   001f0	11a01006	 movne       r1, r6
   001f4	1b000000	 blne        NKDbgPrintfW
 
-; 261  :                 if (!FMD_SetBlockStatus(block, BLOCK_STATUS_BAD))
+; 249  :                 if (!FMD_SetBlockStatus(block, BLOCK_STATUS_BAD))
 
   001f8	e3a01002	 mov         r1, #2
   001fc	e1a00006	 mov         r0, r6
@@ -1709,10 +1685,10 @@
   00208	1affffe5	 bne         |$LN37@OALFlashSt@5|
   0020c	e5943440	 ldr         r3, [r4, #0x440]
 
-; 262  :                     {
-; 263  :                     OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
-; 264  :                         L"Failed set block %d status as bad\r\n", block
-; 265  :                         ));
+; 250  :                     {
+; 251  :                     OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
+; 252  :                         L"Failed set block %d status as bad\r\n", block
+; 253  :                         ));
 
   00210	e3130001	 tst         r3, #1
   00214	159f01a8	 ldrne       r0, [pc, #0x1A8]
@@ -1720,33 +1696,33 @@
   0021c	1b000000	 blne        NKDbgPrintfW
   00220		 |$LN79@OALFlashSt@5|
 
-; 328  :         }
-; 329  : 
-; 330  :     // Done
-; 331  :     rc = TRUE;
+; 316  :         }
+; 317  : 
+; 318  :     // Done
+; 319  :     rc = TRUE;
 
   00220	e3a0a000	 mov         r10, #0
   00224		 |$cleanUp$44528|
 
-; 159  :     BOOL rc = FALSE;
-; 160  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 161  :     ULONG offset, sector, block;
-; 162  :     ULONG sectorInBlock, sectorDataSize;
-; 163  :     ULONG startSector, startBlock;
-; 164  :     SectorInfo sectorInfo, *pSectorInfo;
-; 165  :     ULONG retry;
-; 166  : 
-; 167  : 
-; 168  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 169  :         L"+OALFlashStoreWrite(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
-; 170  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
-; 171  :         ));
+; 147  :     BOOL rc = FALSE;
+; 148  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 149  :     ULONG offset, sector, block;
+; 150  :     ULONG sectorInBlock, sectorDataSize;
+; 151  :     ULONG startSector, startBlock;
+; 152  :     SectorInfo sectorInfo, *pSectorInfo;
+; 153  :     ULONG retry;
+; 154  : 
+; 155  : 
+; 156  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 157  :         L"+OALFlashStoreWrite(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
+; 158  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
+; 159  :         ));
 
   00224	e5943440	 ldr         r3, [r4, #0x440]
 
-; 332  : 
-; 333  : cleanUp:
-; 334  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreWrite(rc = %d)\r\n", rc));
+; 320  : 
+; 321  : cleanUp:
+; 322  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreWrite(rc = %d)\r\n", rc));
 
   00228	e3130a02	 tst         r3, #2, 20
   0022c	13130004	 tstne       r3, #4
@@ -1754,8 +1730,8 @@
   00234	11a0100a	 movne       r1, r10
   00238	1b000000	 blne        NKDbgPrintfW
 
-; 335  :     return rc;
-; 336  : }
+; 323  :     return rc;
+; 324  : }
 
   0023c	e1a0000a	 mov         r0, r10
   00240	e28dd020	 add         sp, sp, #0x20
@@ -1763,48 +1739,48 @@
   00248	e12fff1e	 bx          lr
   0024c		 |$LN80@OALFlashSt@5|
 
-; 224  :     while (offset < dataSize)
+; 212  :     while (offset < dataSize)
 
   0024c	e59d1014	 ldr         r1, [sp, #0x14]
   00250	e3e02000	 mvn         r2, #0
   00254	e3a000fc	 mov         r0, #0xFC
   00258		 |$LN72@OALFlashSt@5|
 
-; 266  :                     goto cleanUp;
-; 267  :                     }
-; 268  :                 block++;
-; 269  :                 pFlash->badBlocksAtPos++;
-; 270  :                 sector += pFlash->sectorsPerBlock;
-; 271  :                 continue;
-; 272  :                 }
-; 273  :             }
-; 274  : 
-; 275  :         // Prepare sector info
-; 276  :         if (includeSectorInfo)
+; 254  :                     goto cleanUp;
+; 255  :                     }
+; 256  :                 block++;
+; 257  :                 pFlash->badBlocksAtPos++;
+; 258  :                 sector += pFlash->sectorsPerBlock;
+; 259  :                 continue;
+; 260  :                 }
+; 261  :             }
+; 262  : 
+; 263  :         // Prepare sector info
+; 264  :         if (includeSectorInfo)
 
   00258	e59d3044	 ldr         r3, [sp, #0x44]
   0025c	e3530000	 cmp         r3, #0
   00260	0a00000c	 beq         |$LN8@OALFlashSt@5|
 
-; 277  :             {
-; 278  :             pSectorInfo = (SectorInfo*)(pData + offset + pFlash->sectorSize);
+; 265  :             {
+; 266  :             pSectorInfo = (SectorInfo*)(pData + offset + pFlash->sectorSize);
 
   00264	e5953004	 ldr         r3, [r5, #4]
   00268	e59de010	 ldr         lr, [sp, #0x10]
   0026c	e0833009	 add         r3, r3, r9
   00270	e083200e	 add         r2, r3, lr
 
-; 279  :             if (pSectorInfo->bBadBlock != 0xFF)
+; 267  :             if (pSectorInfo->bBadBlock != 0xFF)
 
   00274	e5d23005	 ldrb        r3, [r2, #5]
   00278	e35300ff	 cmp         r3, #0xFF
   0027c	0a00000c	 beq         |$LN6@OALFlashSt@5|
   00280	e5943440	 ldr         r3, [r4, #0x440]
 
-; 280  :                 {
-; 281  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
-; 282  :                     L"Corrupted data, sector info can't have set bad block\r\n"
-; 283  :                     ));
+; 268  :                 {
+; 269  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
+; 270  :                     L"Corrupted data, sector info can't have set bad block\r\n"
+; 271  :                     ));
 
   00284	e3130001	 tst         r3, #1
   00288	0affffe4	 beq         |$LN79@OALFlashSt@5|
@@ -1813,13 +1789,13 @@
   00294	eaffffe1	 b           |$LN79@OALFlashSt@5|
   00298		 |$LN8@OALFlashSt@5|
 
-; 284  :                 goto cleanUp;
-; 285  :                 }
-; 286  :             }
-; 287  :         else
-; 288  :             {
-; 289  :             memset(&sectorInfo, 0xFF, sizeof(sectorInfo));
-; 290  :             if (!offsetReservedBlocks) sectorInfo.bOEMReserved = (BYTE)
+; 272  :                 goto cleanUp;
+; 273  :                 }
+; 274  :             }
+; 275  :         else
+; 276  :             {
+; 277  :             memset(&sectorInfo, 0xFF, sizeof(sectorInfo));
+; 278  :             if (!offsetReservedBlocks) sectorInfo.bOEMReserved = (BYTE)
 
   00298	e59d3048	 ldr         r3, [sp, #0x48]
   0029c	e59de010	 ldr         lr, [sp, #0x10]
@@ -1827,19 +1803,19 @@
   002a4	e3530000	 cmp         r3, #0
   002a8	e58d201c	 str         r2, [sp, #0x1C]
 
-; 291  :                 ~(OEM_BLOCK_RESERVED|OEM_BLOCK_READONLY);
+; 279  :                 ~(OEM_BLOCK_RESERVED|OEM_BLOCK_READONLY);
 
   002ac	05cd001c	 streqb      r0, [sp, #0x1C]
 
-; 292  :             pSectorInfo = &sectorInfo;
+; 280  :             pSectorInfo = &sectorInfo;
 
   002b0	e28d2018	 add         r2, sp, #0x18
   002b4		 |$LN6@OALFlashSt@5|
 
-; 293  :             }
-; 294  : 
-; 295  :         // Write sector only if it isn't empty
-; 296  :         if (!IsSectorEmpty(pData + offset, pFlash->sectorSize, pSectorInfo))
+; 281  :             }
+; 282  : 
+; 283  :         // Write sector only if it isn't empty
+; 284  :         if (!IsSectorEmpty(pData + offset, pFlash->sectorSize, pSectorInfo))
 
   002b4	e5923000	 ldr         r3, [r2]
   002b8	e3730001	 cmn         r3, #1
@@ -1863,40 +1839,40 @@
   002fc	e2811001	 add         r1, r1, #1
   00300	e1510003	 cmp         r1, r3
   00304	3afffff8	 bcc         |$LL52@OALFlashSt@5|
-  00308		 |$cleanUp$45131|
+  00308		 |$cleanUp$45123|
   00308		 |$LN73@OALFlashSt@5|
 
-; 312  :                     }
-; 313  :                 // If we get there we can't recover
-; 314  :                 goto cleanUp;
-; 315  :                 }
-; 316  :             }
-; 317  : 
-; 318  :         // Move to next sector
-; 319  :         sector++;
-; 320  :         sectorInBlock++;
-; 321  :         if (sectorInBlock  >= pFlash->sectorsPerBlock)
+; 300  :                     }
+; 301  :                 // If we get there we can't recover
+; 302  :                 goto cleanUp;
+; 303  :                 }
+; 304  :             }
+; 305  : 
+; 306  :         // Move to next sector
+; 307  :         sector++;
+; 308  :         sectorInBlock++;
+; 309  :         if (sectorInBlock  >= pFlash->sectorsPerBlock)
 
   00308	e5953008	 ldr         r3, [r5, #8]
   0030c	e28aa001	 add         r10, r10, #1
   00310	e2888001	 add         r8, r8, #1
   00314	e15a0003	 cmp         r10, r3
 
-; 322  :             {
-; 323  :             block++;
-; 324  :             pFlash->blockPos++;
+; 310  :             {
+; 311  :             block++;
+; 312  :             pFlash->blockPos++;
 
   00318	25953014	 ldrcs       r3, [r5, #0x14]
   0031c	22866001	 addcs       r6, r6, #1
 
-; 325  :             sectorInBlock = 0;
+; 313  :             sectorInBlock = 0;
 
   00320	23a0a000	 movcs       r10, #0
   00324	22833001	 addcs       r3, r3, #1
   00328	25853014	 strcs       r3, [r5, #0x14]
 
-; 326  :             }
-; 327  :         offset += sectorDataSize;
+; 314  :             }
+; 315  :         offset += sectorDataSize;
 
   0032c	e089900b	 add         r9, r9, r11
   00330		 |$LN70@OALFlashSt@5|
@@ -1904,15 +1880,15 @@
   00334	e1590003	 cmp         r9, r3
   00338	2a00001b	 bcs         |$LN75@OALFlashSt@5|
 
-; 224  :     while (offset < dataSize)
+; 212  :     while (offset < dataSize)
 
   0033c	e59d1014	 ldr         r1, [sp, #0x14]
   00340	eaffff87	 b           |$LN81@OALFlashSt@5|
   00344		 |$LN71@OALFlashSt@5|
 
-; 297  :             {
-; 298  :             // Write sector
-; 299  :             if (!FMD_WriteSector(sector, pData + offset, pSectorInfo, 1))
+; 285  :             {
+; 286  :             // Write sector
+; 287  :             if (!FMD_WriteSector(sector, pData + offset, pSectorInfo, 1))
 
   00344	e3a03001	 mov         r3, #1
   00348	e089100e	 add         r1, r9, lr
@@ -1922,11 +1898,11 @@
   00358	1affffea	 bne         |$LN73@OALFlashSt@5|
   0035c	e5943440	 ldr         r3, [r4, #0x440]
 
-; 300  :                 {
-; 301  :                 OALMSG(OAL_WARN, (L"WARN: OALFlashStoreWrite: "
-; 302  :                     L"Failed write sector %d (%d sector in block %d)\r\n",
-; 303  :                     sector, sectorInBlock, block
-; 304  :                     ));
+; 288  :                 {
+; 289  :                 OALMSG(OAL_WARN, (L"WARN: OALFlashStoreWrite: "
+; 290  :                     L"Failed write sector %d (%d sector in block %d)\r\n",
+; 291  :                     sector, sectorInBlock, block
+; 292  :                     ));
 
   00360	e3130002	 tst         r3, #2
   00364	159f004c	 ldrne       r0, [pc, #0x4C]
@@ -1935,64 +1911,64 @@
   00370	11a01008	 movne       r1, r8
   00374	1b000000	 blne        NKDbgPrintfW
 
-; 305  :                 // Try erase block and write again
-; 306  :                 if (offset >= (sectorInBlock * sectorDataSize))
+; 293  :                 // Try erase block and write again
+; 294  :                 if (offset >= (sectorInBlock * sectorDataSize))
 
   00378	e0030b9a	 mul         r3, r10, r11
   0037c	e1590003	 cmp         r9, r3
   00380	3affffa6	 bcc         |$LN79@OALFlashSt@5|
 
-; 307  :                     {
-; 308  :                     offset -= (sectorInBlock * sectorDataSize);
-; 309  :                     sector -= sectorInBlock;
+; 295  :                     {
+; 296  :                     offset -= (sectorInBlock * sectorDataSize);
+; 297  :                     sector -= sectorInBlock;
 
   00384	e048800a	 sub         r8, r8, r10
 
-; 310  :                     sectorInBlock = 0;
+; 298  :                     sectorInBlock = 0;
 
   00388	e3a0a000	 mov         r10, #0
   0038c	e0499003	 sub         r9, r9, r3
 
-; 311  :                     continue;
+; 299  :                     continue;
 
   00390	eaffffe6	 b           |$LN70@OALFlashSt@5|
   00394		 |$LN66@OALFlashSt@5|
 
-; 159  :     BOOL rc = FALSE;
-; 160  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 161  :     ULONG offset, sector, block;
-; 162  :     ULONG sectorInBlock, sectorDataSize;
-; 163  :     ULONG startSector, startBlock;
-; 164  :     SectorInfo sectorInfo, *pSectorInfo;
-; 165  :     ULONG retry;
-; 166  : 
-; 167  : 
-; 168  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 169  :         L"+OALFlashStoreWrite(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
-; 170  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
-; 171  :         ));
+; 147  :     BOOL rc = FALSE;
+; 148  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 149  :     ULONG offset, sector, block;
+; 150  :     ULONG sectorInBlock, sectorDataSize;
+; 151  :     ULONG startSector, startBlock;
+; 152  :     SectorInfo sectorInfo, *pSectorInfo;
+; 153  :     ULONG retry;
+; 154  : 
+; 155  : 
+; 156  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 157  :         L"+OALFlashStoreWrite(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
+; 158  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
+; 159  :         ));
 
   00394	e5943440	 ldr         r3, [r4, #0x440]
 
-; 231  :                 {
-; 232  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
-; 233  :                     L"Run out of blocks on flash memory\r\n"
-; 234  :                     ));
+; 219  :                 {
+; 220  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreWrite: "
+; 221  :                     L"Run out of blocks on flash memory\r\n"
+; 222  :                     ));
 
   00398	e3130001	 tst         r3, #1
   0039c	0affff9f	 beq         |$LN79@OALFlashSt@5|
   003a0	e59f000c	 ldr         r0, [pc, #0xC]
   003a4	eb000000	 bl          NKDbgPrintfW
 
-; 235  :                 goto cleanUp;
+; 223  :                 goto cleanUp;
 
   003a8	eaffff9c	 b           |$LN79@OALFlashSt@5|
   003ac		 |$LN75@OALFlashSt@5|
 
-; 328  :         }
-; 329  : 
-; 330  :     // Done
-; 331  :     rc = TRUE;
+; 316  :         }
+; 317  : 
+; 318  :     // Done
+; 319  :     rc = TRUE;
 
   003ac	e3a0a001	 mov         r10, #1
   003b0	eaffff9b	 b           |$cleanUp$44528|
@@ -2021,7 +1997,7 @@
   003dc	00000000	 DCD         |??_C@_1HM@NGCJEILF@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAW?$AAr?$AAi?$AAt?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0@|
   003e0		 |$LN100@OALFlashSt@5|
   003e0	00000000	 DCD         |dpCurSettings|
-  003e4		 |$M45188|
+  003e4		 |$M45180|
 
 			 ENDP  ; |OALFlashStoreWrite|
 
@@ -2034,7 +2010,7 @@
 	EXPORT	|??_C@_1HK@HAFKLFGC@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAR?$AAe?$AAa?$AAd?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45262| DCD	|$LN55@OALFlashSt@6|
+|$T45254| DCD	|$LN55@OALFlashSt@6|
 	DCD	0x4000b302
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2128,12 +2104,12 @@
 
   00000		 |OALFlashStoreRead| PROC
 
-; 349  : {
+; 337  : {
 
   00000		 |$LN55@OALFlashSt@6|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd020	 sub         sp, sp, #0x20
-  00008		 |$M45259|
+  00008		 |$M45251|
   00008	e1a06003	 mov         r6, r3
   0000c	e1a03002	 mov         r3, r2
   00010	e58d300c	 str         r3, [sp, #0xC]
@@ -2141,19 +2117,19 @@
   00018	e1a08001	 mov         r8, r1
   0001c	e1a04000	 mov         r4, r0
 
-; 350  :     BOOL rc = FALSE;
-; 351  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 352  :     ULONG offset, sector, block;
-; 353  :     ULONG sectorInBlock, sectorDataSize;
-; 354  :     ULONG startSector, startBlock;
-; 355  :     SectorInfo sectorInfo, *pSectorInfo;
-; 356  :     ULONG retry;
-; 357  : 
-; 358  : 
-; 359  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 360  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
-; 361  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
-; 362  :         ));
+; 338  :     BOOL rc = FALSE;
+; 339  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 340  :     ULONG offset, sector, block;
+; 341  :     ULONG sectorInBlock, sectorDataSize;
+; 342  :     ULONG startSector, startBlock;
+; 343  :     SectorInfo sectorInfo, *pSectorInfo;
+; 344  :     ULONG retry;
+; 345  : 
+; 346  : 
+; 347  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 348  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
+; 349  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
+; 350  :         ));
 
   00020	e59f5288	 ldr         r5, [pc, #0x288]
   00024	e59d9048	 ldr         r9, [sp, #0x48]
@@ -2169,18 +2145,18 @@
   0004c	158d6000	 strne       r6, [sp]
   00050	1b000000	 blne        NKDbgPrintfW
 
-; 363  : 
-; 364  :     sectorDataSize = pFlash->sectorSize;
+; 351  : 
+; 352  :     sectorDataSize = pFlash->sectorSize;
 
   00054	e5946004	 ldr         r6, [r4, #4]
 
-; 365  :     if (includeSectorInfo) sectorDataSize += sizeof(SectorInfo);
+; 353  :     if (includeSectorInfo) sectorDataSize += sizeof(SectorInfo);
 
   00058	e3570000	 cmp         r7, #0
 
-; 366  : 
-; 367  :     // First get socket start block number
-; 368  :     startSector = start/pFlash->sectorSize;
+; 354  : 
+; 355  :     // First get socket start block number
+; 356  :     startSector = start/pFlash->sectorSize;
 
   0005c	e1a01008	 mov         r1, r8
   00060	e1a0b006	 mov         r11, r6
@@ -2188,7 +2164,7 @@
   00068	1286b008	 addne       r11, r6, #8
   0006c	eb000000	 bl          __rt_udiv
 
-; 369  :     startBlock = startSector/pFlash->sectorsPerBlock;
+; 357  :     startBlock = startSector/pFlash->sectorsPerBlock;
 
   00070	e594a008	 ldr         r10, [r4, #8]
   00074	e1a07000	 mov         r7, r0
@@ -2196,24 +2172,24 @@
   0007c	e1a0000a	 mov         r0, r10
   00080	eb000000	 bl          __rt_udiv
 
-; 370  : 
-; 371  :     // We support only read on sector boundary...
-; 372  :     offset = start - startSector * pFlash->sectorSize;
+; 358  : 
+; 359  :     // We support only read on sector boundary...
+; 360  :     offset = start - startSector * pFlash->sectorSize;
 
   00084	e0030796	 mul         r3, r6, r7
   00088	e1a06000	 mov         r6, r0
   0008c	e0581003	 subs        r1, r8, r3
 
-; 373  :     if (offset > 0)
+; 361  :     if (offset > 0)
 
   00090	0a00000f	 beq         |$LN17@OALFlashSt@6|
   00094	e5953440	 ldr         r3, [r5, #0x440]
 
-; 374  :         {
-; 375  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
-; 376  :             L"Flash read must start on sector boundary (offset %d)\r\n",
-; 377  :             offset
-; 378  :             ));
+; 362  :         {
+; 363  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
+; 364  :             L"Flash read must start on sector boundary (offset %d)\r\n",
+; 365  :             offset
+; 366  :             ));
 
   00098	e3130001	 tst         r3, #1
   0009c	0a000001	 beq         |$LN49@OALFlashSt@6|
@@ -2222,33 +2198,33 @@
   000a4	eb000000	 bl          NKDbgPrintfW
   000a8		 |$LN49@OALFlashSt@6|
 
-; 480  :         }
-; 481  : 
-; 482  :     // Done
-; 483  :     rc = TRUE;
+; 468  :         }
+; 469  : 
+; 470  :     // Done
+; 471  :     rc = TRUE;
 
   000a8	e3a04000	 mov         r4, #0
   000ac		 |$cleanUp$44604|
 
-; 350  :     BOOL rc = FALSE;
-; 351  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 352  :     ULONG offset, sector, block;
-; 353  :     ULONG sectorInBlock, sectorDataSize;
-; 354  :     ULONG startSector, startBlock;
-; 355  :     SectorInfo sectorInfo, *pSectorInfo;
-; 356  :     ULONG retry;
-; 357  : 
-; 358  : 
-; 359  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 360  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
-; 361  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
-; 362  :         ));
+; 338  :     BOOL rc = FALSE;
+; 339  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 340  :     ULONG offset, sector, block;
+; 341  :     ULONG sectorInBlock, sectorDataSize;
+; 342  :     ULONG startSector, startBlock;
+; 343  :     SectorInfo sectorInfo, *pSectorInfo;
+; 344  :     ULONG retry;
+; 345  : 
+; 346  : 
+; 347  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 348  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
+; 349  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
+; 350  :         ));
 
   000ac	e5953440	 ldr         r3, [r5, #0x440]
 
-; 484  : 
-; 485  : cleanUp:
-; 486  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreRead(rc = %d)\r\n", rc));
+; 472  : 
+; 473  : cleanUp:
+; 474  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreRead(rc = %d)\r\n", rc));
 
   000b0	e3130a02	 tst         r3, #2, 20
   000b4	13130004	 tstne       r3, #4
@@ -2256,8 +2232,8 @@
   000bc	11a01004	 movne       r1, r4
   000c0	1b000000	 blne        NKDbgPrintfW
 
-; 487  :     return rc;
-; 488  : }
+; 475  :     return rc;
+; 476  : }
 
   000c4	e1a00004	 mov         r0, r4
   000c8	e28dd020	 add         sp, sp, #0x20
@@ -2265,11 +2241,11 @@
   000d0	e12fff1e	 bx          lr
   000d4		 |$LN17@OALFlashSt@6|
 
-; 379  :         goto cleanUp;
-; 380  :         }
-; 381  : 
-; 382  :     // And only full sectors
-; 383  :     offset = dataSize - (dataSize/sectorDataSize) * sectorDataSize;
+; 367  :         goto cleanUp;
+; 368  :         }
+; 369  : 
+; 370  :     // And only full sectors
+; 371  :     offset = dataSize - (dataSize/sectorDataSize) * sectorDataSize;
 
   000d4	e59d1010	 ldr         r1, [sp, #0x10]
   000d8	e1a0000b	 mov         r0, r11
@@ -2278,43 +2254,43 @@
   000e4	e0030b90	 mul         r3, r0, r11
   000e8	e0521003	 subs        r1, r2, r3
 
-; 384  :     if (offset > 0)
+; 372  :     if (offset > 0)
 
   000ec	0a000004	 beq         |$LN16@OALFlashSt@6|
   000f0	e5953440	 ldr         r3, [r5, #0x440]
 
-; 385  :         {
-; 386  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
-; 387  :             L"Flash read size must be multiple of sector size (offset %d)\r\n",
-; 388  :             offset
-; 389  :             ));
+; 373  :         {
+; 374  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
+; 375  :             L"Flash read size must be multiple of sector size (offset %d)\r\n",
+; 376  :             offset
+; 377  :             ));
 
   000f4	e3130001	 tst         r3, #1
   000f8	0affffea	 beq         |$LN49@OALFlashSt@6|
   000fc	e59f01b8	 ldr         r0, [pc, #0x1B8]
 
-; 390  :         goto cleanUp;
+; 378  :         goto cleanUp;
 
   00100	eaffffe7	 b           |$LN51@OALFlashSt@6|
   00104		 |$LN16@OALFlashSt@6|
 
-; 391  :         }
-; 392  : 
-; 393  :     // Offset reserved blocks if required
-; 394  :     if (offsetReservedBlocks)
+; 379  :         }
+; 380  : 
+; 381  :     // Offset reserved blocks if required
+; 382  :     if (offsetReservedBlocks)
 
   00104	e3590000	 cmp         r9, #0
 
-; 395  :         {
-; 396  :         startBlock +=  pFlash->reservedBlocks;
+; 383  :         {
+; 384  :         startBlock +=  pFlash->reservedBlocks;
 
   00108	15943010	 ldrne       r3, [r4, #0x10]
 
-; 397  :         startSector += pFlash->reservedBlocks * pFlash->sectorsPerBlock;
-; 398  :         }
-; 399  : 
-; 400  :     // Seek to start block
-; 401  :     if (!SeekToBlock(pFlash, startBlock))
+; 385  :         startSector += pFlash->reservedBlocks * pFlash->sectorsPerBlock;
+; 386  :         }
+; 387  : 
+; 388  :     // Seek to start block
+; 389  :     if (!SeekToBlock(pFlash, startBlock))
 
   0010c	e1a00004	 mov         r0, r4
   00110	10866003	 addne       r6, r6, r3
@@ -2325,11 +2301,11 @@
   00124	1a000008	 bne         |$LN14@OALFlashSt@6|
   00128	e5953440	 ldr         r3, [r5, #0x440]
 
-; 402  :         {
-; 403  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
-; 404  :             L"Failed seek to block %d (address 0x%08x, %d bad blocks)\r\n",
-; 405  :             startBlock, start, pFlash->badBlocksAtPos
-; 406  :             ));
+; 390  :         {
+; 391  :         OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
+; 392  :             L"Failed seek to block %d (address 0x%08x, %d bad blocks)\r\n",
+; 393  :             startBlock, start, pFlash->badBlocksAtPos
+; 394  :             ));
 
   0012c	e3130001	 tst         r3, #1
   00130	0affffdc	 beq         |$LN49@OALFlashSt@6|
@@ -2339,33 +2315,33 @@
   00140	e1a01006	 mov         r1, r6
   00144	eb000000	 bl          NKDbgPrintfW
 
-; 407  :         goto cleanUp;
+; 395  :         goto cleanUp;
 
   00148	eaffffd6	 b           |$LN49@OALFlashSt@6|
   0014c		 |$LN14@OALFlashSt@6|
 
-; 408  :         }
-; 409  : 
-; 410  : 
-; 411  :     // Start read
-; 412  :     offset = 0;
-; 413  :     sector = startSector + pFlash->badBlocksAtPos * pFlash->sectorsPerBlock;
+; 396  :         }
+; 397  : 
+; 398  : 
+; 399  :     // Start read
+; 400  :     offset = 0;
+; 401  :     sector = startSector + pFlash->badBlocksAtPos * pFlash->sectorsPerBlock;
 
   0014c	e5941018	 ldr         r1, [r4, #0x18]
   00150	e5942008	 ldr         r2, [r4, #8]
   00154	e3a03000	 mov         r3, #0
 
-; 414  :     block = startBlock + pFlash->badBlocksAtPos;
+; 402  :     block = startBlock + pFlash->badBlocksAtPos;
 
   00158	e0816006	 add         r6, r1, r6
   0015c	e58d3014	 str         r3, [sp, #0x14]
 
-; 415  :     sectorInBlock = sector - block * pFlash->sectorsPerBlock;
+; 403  :     sectorInBlock = sector - block * pFlash->sectorsPerBlock;
 
   00160	e0030692	 mul         r3, r2, r6
   00164	e0287291	 mla         r8, r1, r2, r7
 
-; 416  :     while (offset < dataSize)
+; 404  :     while (offset < dataSize)
 
   00168	e59d2010	 ldr         r2, [sp, #0x10]
   0016c	e3520000	 cmp         r2, #0
@@ -2373,34 +2349,34 @@
   00174	0a00003a	 beq         |$LN12@OALFlashSt@6|
   00178		 |$LL13@OALFlashSt@6|
 
-; 417  :         {
-; 418  :         // If it is first sector in block, check and erase block
-; 419  :         if (sectorInBlock == 0)
+; 405  :         {
+; 406  :         // If it is first sector in block, check and erase block
+; 407  :         if (sectorInBlock == 0)
 
   00178	e3570000	 cmp         r7, #0
   0017c	1a000013	 bne         |$LN9@OALFlashSt@6|
 
-; 420  :             {
-; 421  :             // First check if block exists
-; 422  :             if (block >= pFlash->blocksOnFlash)
+; 408  :             {
+; 409  :             // First check if block exists
+; 410  :             if (block >= pFlash->blocksOnFlash)
 
   00180	e594300c	 ldr         r3, [r4, #0xC]
   00184	e1560003	 cmp         r6, r3
   00188	2a000037	 bcs         |$LN41@OALFlashSt@6|
 
-; 428  :                 }
-; 429  :             // Skip block if it is marked as bad
-; 430  :             if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
+; 416  :                 }
+; 417  :             // Skip block if it is marked as bad
+; 418  :             if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
 
   0018c	e1a00006	 mov         r0, r6
   00190	eb000000	 bl          FMD_GetBlockStatus
   00194	e3100002	 tst         r0, #2
   00198	0a00000c	 beq         |$LN9@OALFlashSt@6|
 
-; 431  :                 {
-; 432  :                 OALMSG(OAL_WARN, (L"WARN: "
-; 433  :                     L"Skip bad block %d\r\n", block
-; 434  :                     ));
+; 419  :                 {
+; 420  :                 OALMSG(OAL_WARN, (L"WARN: "
+; 421  :                     L"Skip bad block %d\r\n", block
+; 422  :                     ));
 
   0019c	e5953440	 ldr         r3, [r5, #0x440]
   001a0	e3130002	 tst         r3, #2
@@ -2408,16 +2384,16 @@
   001a8	11a01006	 movne       r1, r6
   001ac	1b000000	 blne        NKDbgPrintfW
 
-; 435  :                 block++;
-; 436  :                 pFlash->badBlocksAtPos++;
+; 423  :                 block++;
+; 424  :                 pFlash->badBlocksAtPos++;
 
   001b0	e5943018	 ldr         r3, [r4, #0x18]
 
-; 437  :                 sector += pFlash->sectorsPerBlock;
+; 425  :                 sector += pFlash->sectorsPerBlock;
 
   001b4	e5942008	 ldr         r2, [r4, #8]
 
-; 438  :                 continue;
+; 426  :                 continue;
 
   001b8	e59d0014	 ldr         r0, [sp, #0x14]
   001bc	e2833001	 add         r3, r3, #1
@@ -2427,25 +2403,25 @@
   001cc	ea000021	 b           |$LN43@OALFlashSt@6|
   001d0		 |$LN9@OALFlashSt@6|
 
-; 439  :                 }
-; 440  :             }
-; 441  : 
-; 442  :         // Prepare sector info location
-; 443  :         if (includeSectorInfo)
+; 427  :                 }
+; 428  :             }
+; 429  : 
+; 430  :         // Prepare sector info location
+; 431  :         if (includeSectorInfo)
 
   001d0	e59d3044	 ldr         r3, [sp, #0x44]
   001d4	e59d500c	 ldr         r5, [sp, #0xC]
 
-; 444  :             {
-; 445  :             pSectorInfo = (SectorInfo*)(pData + offset + pFlash->sectorSize);
-; 446  :             }
-; 447  :         else
-; 448  :             {
-; 449  :             pSectorInfo = &sectorInfo;
-; 450  :             }
-; 451  : 
-; 452  :         // Read sector
-; 453  :         retry = 4;
+; 432  :             {
+; 433  :             pSectorInfo = (SectorInfo*)(pData + offset + pFlash->sectorSize);
+; 434  :             }
+; 435  :         else
+; 436  :             {
+; 437  :             pSectorInfo = &sectorInfo;
+; 438  :             }
+; 439  : 
+; 440  :         // Read sector
+; 441  :         retry = 4;
 
   001d8	e3a09004	 mov         r9, #4
   001dc	e3530000	 cmp         r3, #0
@@ -2454,9 +2430,9 @@
   001e8	028da018	 addeq       r10, sp, #0x18
   001ec		 |$LL6@OALFlashSt@6|
 
-; 454  :         do
-; 455  :             {
-; 456  :             if (FMD_ReadSector(sector, pData + offset, pSectorInfo, 1)) break;
+; 442  :         do
+; 443  :             {
+; 444  :             if (FMD_ReadSector(sector, pData + offset, pSectorInfo, 1)) break;
 
   001ec	e3a03001	 mov         r3, #1
   001f0	e1a0200a	 mov         r2, r10
@@ -2466,38 +2442,38 @@
   00200	e3500000	 cmp         r0, #0
   00204	1a000001	 bne         |$LN4@OALFlashSt@6|
 
-; 457  :             }
-; 458  :         while (--retry > 0);
+; 445  :             }
+; 446  :         while (--retry > 0);
 
   00208	e2599001	 subs        r9, r9, #1
   0020c	1afffff6	 bne         |$LL6@OALFlashSt@6|
   00210		 |$LN4@OALFlashSt@6|
 
-; 459  : 
-; 460  :         // If read failed, exit...
-; 461  :         if (retry == 0)
+; 447  : 
+; 448  :         // If read failed, exit...
+; 449  :         if (retry == 0)
 
   00210	e59f5098	 ldr         r5, [pc, #0x98]
   00214	e3590000	 cmp         r9, #0
   00218	0a000019	 beq         |$LN42@OALFlashSt@6|
 
-; 467  :             goto cleanUp;
-; 468  :             }
-; 469  : 
-; 470  :         // Move to next sector
-; 471  :         sector++;
-; 472  :         sectorInBlock++;
-; 473  :         if (sectorInBlock  >= pFlash->sectorsPerBlock)
+; 455  :             goto cleanUp;
+; 456  :             }
+; 457  : 
+; 458  :         // Move to next sector
+; 459  :         sector++;
+; 460  :         sectorInBlock++;
+; 461  :         if (sectorInBlock  >= pFlash->sectorsPerBlock)
 
   0021c	e5943008	 ldr         r3, [r4, #8]
   00220	e2877001	 add         r7, r7, #1
 
-; 474  :             {
-; 475  :             block++;
-; 476  :             pFlash->blockPos++;
-; 477  :             sectorInBlock = 0;
-; 478  :             }
-; 479  :         offset += sectorDataSize;
+; 462  :             {
+; 463  :             block++;
+; 464  :             pFlash->blockPos++;
+; 465  :             sectorInBlock = 0;
+; 466  :             }
+; 467  :         offset += sectorDataSize;
 
   00224	e59d0014	 ldr         r0, [sp, #0x14]
   00228	e1570003	 cmp         r7, r3
@@ -2518,67 +2494,67 @@
   00260	3affffc4	 bcc         |$LL13@OALFlashSt@6|
   00264		 |$LN12@OALFlashSt@6|
 
-; 480  :         }
-; 481  : 
-; 482  :     // Done
-; 483  :     rc = TRUE;
+; 468  :         }
+; 469  : 
+; 470  :     // Done
+; 471  :     rc = TRUE;
 
   00264	e3a04001	 mov         r4, #1
   00268	eaffff8f	 b           |$cleanUp$44604|
   0026c		 |$LN41@OALFlashSt@6|
 
-; 350  :     BOOL rc = FALSE;
-; 351  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 352  :     ULONG offset, sector, block;
-; 353  :     ULONG sectorInBlock, sectorDataSize;
-; 354  :     ULONG startSector, startBlock;
-; 355  :     SectorInfo sectorInfo, *pSectorInfo;
-; 356  :     ULONG retry;
-; 357  : 
-; 358  : 
-; 359  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 360  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
-; 361  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
-; 362  :         ));
+; 338  :     BOOL rc = FALSE;
+; 339  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 340  :     ULONG offset, sector, block;
+; 341  :     ULONG sectorInBlock, sectorDataSize;
+; 342  :     ULONG startSector, startBlock;
+; 343  :     SectorInfo sectorInfo, *pSectorInfo;
+; 344  :     ULONG retry;
+; 345  : 
+; 346  : 
+; 347  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 348  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
+; 349  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
+; 350  :         ));
 
   0026c	e5953440	 ldr         r3, [r5, #0x440]
 
-; 423  :                 {
-; 424  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
-; 425  :                     L"Run out of blocks on flash memory\r\n"
-; 426  :                     ));
+; 411  :                 {
+; 412  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
+; 413  :                     L"Run out of blocks on flash memory\r\n"
+; 414  :                     ));
 
   00270	e3130001	 tst         r3, #1
   00274	0affff8b	 beq         |$LN49@OALFlashSt@6|
   00278	e59f002c	 ldr         r0, [pc, #0x2C]
   0027c	eb000000	 bl          NKDbgPrintfW
 
-; 427  :                 goto cleanUp;
+; 415  :                 goto cleanUp;
 
   00280	eaffff88	 b           |$LN49@OALFlashSt@6|
   00284		 |$LN42@OALFlashSt@6|
 
-; 350  :     BOOL rc = FALSE;
-; 351  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 352  :     ULONG offset, sector, block;
-; 353  :     ULONG sectorInBlock, sectorDataSize;
-; 354  :     ULONG startSector, startBlock;
-; 355  :     SectorInfo sectorInfo, *pSectorInfo;
-; 356  :     ULONG retry;
-; 357  : 
-; 358  : 
-; 359  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 360  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
-; 361  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
-; 362  :         ));
+; 338  :     BOOL rc = FALSE;
+; 339  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 340  :     ULONG offset, sector, block;
+; 341  :     ULONG sectorInBlock, sectorDataSize;
+; 342  :     ULONG startSector, startBlock;
+; 343  :     SectorInfo sectorInfo, *pSectorInfo;
+; 344  :     ULONG retry;
+; 345  : 
+; 346  : 
+; 347  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 348  :         L"+OALFlashStoreRead(0x%08x, 0x%08x, 0x%08x, 0x%08x, %d, %d)\r\n",
+; 349  :         hFlash, start, pData, dataSize, includeSectorInfo, offsetReservedBlocks
+; 350  :         ));
 
   00284	e5950440	 ldr         r0, [r5, #0x440]
 
-; 462  :             {
-; 463  :             OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
-; 464  :                 L"Failed read sector %d (%d sector in block %d)\r\n",
-; 465  :                 sector, sectorInBlock, block
-; 466  :                 ));
+; 450  :             {
+; 451  :             OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreRead: "
+; 452  :                 L"Failed read sector %d (%d sector in block %d)\r\n",
+; 453  :                 sector, sectorInBlock, block
+; 454  :                 ));
 
   00288	e3100001	 tst         r0, #1
   0028c	0affff85	 beq         |$LN49@OALFlashSt@6|
@@ -2607,7 +2583,7 @@
   002c4	00000000	 DCD         |??_C@_1KC@GLMKKJJO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAR?$AAe?$AAa?$AAd?$AA?3?$AA?5?$AAF?$AAl?$AAa?$AAs?$AAh?$AA?5@|
   002c8		 |$LN65@OALFlashSt@6|
   002c8	00000000	 DCD         |??_C@_1HK@HAFKLFGC@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAR?$AAe?$AAa?$AAd?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8@|
-  002cc		 |$M45260|
+  002cc		 |$M45252|
 
 			 ENDP  ; |OALFlashStoreRead|
 
@@ -2619,7 +2595,7 @@
 	EXPORT	|??_C@_1GE@CGLPBIPN@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAE?$AAr?$AAa?$AAs?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45311| DCD	|$LN39@OALFlashSt@7|
+|$T45303| DCD	|$LN39@OALFlashSt@7|
 	DCD	0x40007402
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2687,27 +2663,27 @@
 
   00000		 |OALFlashStoreErase| PROC
 
-; 499  : {
+; 487  : {
 
   00000		 |$LN39@OALFlashSt@7|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M45308|
+  00008		 |$M45300|
   00008	e1a0a003	 mov         r10, r3
   0000c	e1a07002	 mov         r7, r2
   00010	e1a08001	 mov         r8, r1
   00014	e1a05000	 mov         r5, r0
 
-; 500  :     BOOL rc = FALSE;
-; 501  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 502  :     ULONG sector, block, count, offset;
-; 503  :     ULONG retry;
-; 504  : 
-; 505  : 
-; 506  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 507  :         L"+OALFlashStoreErase(0x%08x, 0x%08x, 0x%08x, %d)\r\n",
-; 508  :         hFlash, start, size, offsetReservedBlocks
-; 509  :         ));
+; 488  :     BOOL rc = FALSE;
+; 489  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 490  :     ULONG sector, block, count, offset;
+; 491  :     ULONG retry;
+; 492  : 
+; 493  : 
+; 494  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 495  :         L"+OALFlashStoreErase(0x%08x, 0x%08x, 0x%08x, %d)\r\n",
+; 496  :         hFlash, start, size, offsetReservedBlocks
+; 497  :         ));
 
   00018	e59f61ac	 ldr         r6, [pc, #0x1AC]
   0001c	e3a09000	 mov         r9, #0
@@ -2721,13 +2697,13 @@
   0003c	158da000	 strne       r10, [sp]
   00040	1b000000	 blne        NKDbgPrintfW
 
-; 510  : 
-; 511  :     // First get socket start block number
-; 512  :     sector = (start + pFlash->sectorSize - 1)/pFlash->sectorSize;
+; 498  : 
+; 499  :     // First get socket start block number
+; 500  :     sector = (start + pFlash->sectorSize - 1)/pFlash->sectorSize;
 
   00044	e595b004	 ldr         r11, [r5, #4]
 
-; 513  :     block = (sector + pFlash->sectorsPerBlock - 1)/pFlash->sectorsPerBlock;
+; 501  :     block = (sector + pFlash->sectorsPerBlock - 1)/pFlash->sectorsPerBlock;
 
   00048	e5954008	 ldr         r4, [r5, #8]
   0004c	e08b3008	 add         r3, r11, r8
@@ -2739,39 +2715,39 @@
   00064	e1a00004	 mov         r0, r4
   00068	eb000000	 bl          __rt_udiv
 
-; 514  : 
-; 515  :     // Offset reserved blocks
-; 516  :     if (offsetReservedBlocks) block += pFlash->reservedBlocks;
+; 502  : 
+; 503  :     // Offset reserved blocks
+; 504  :     if (offsetReservedBlocks) block += pFlash->reservedBlocks;
 
   0006c	e35a0000	 cmp         r10, #0
   00070	15953010	 ldrne       r3, [r5, #0x10]
   00074	e1a04000	 mov         r4, r0
   00078	10844003	 addne       r4, r4, r3
 
-; 517  : 
-; 518  :     // Find number of blocks to erase
-; 519  :     if (size == -1)
+; 505  : 
+; 506  :     // Find number of blocks to erase
+; 507  :     if (size == -1)
 
   0007c	e3770001	 cmn         r7, #1
 
-; 520  :         {
-; 521  :         count = pFlash->blocksOnFlash - block;
+; 508  :         {
+; 509  :         count = pFlash->blocksOnFlash - block;
 
   00080	0595300c	 ldreq       r3, [r5, #0xC]
   00084	00438004	 subeq       r8, r3, r4
   00088	0a000006	 beq         |$LN11@OALFlashSt@7|
 
-; 522  :         }
-; 523  :     else
-; 524  :         {
-; 525  :         offset = block * pFlash->sectorsPerBlock * pFlash->sectorSize - start;
+; 510  :         }
+; 511  :     else
+; 512  :         {
+; 513  :         offset = block * pFlash->sectorsPerBlock * pFlash->sectorSize - start;
 
   0008c	e5953008	 ldr         r3, [r5, #8]
   00090	e0000b93	 mul         r0, r3, r11
   00094	e0030490	 mul         r3, r0, r4
 
-; 526  :         size -= offset;
-; 527  :         count = size/(pFlash->sectorsPerBlock * pFlash->sectorSize);
+; 514  :         size -= offset;
+; 515  :         count = size/(pFlash->sectorsPerBlock * pFlash->sectorSize);
 
   00098	e0483003	 sub         r3, r8, r3
   0009c	e0831007	 add         r1, r3, r7
@@ -2779,9 +2755,9 @@
   000a4	e1a08000	 mov         r8, r0
   000a8		 |$LN11@OALFlashSt@7|
 
-; 528  :         }
-; 529  : 
-; 530  :     if (!SeekToBlock(pFlash, block)) goto cleanUp;
+; 516  :         }
+; 517  : 
+; 518  :     if (!SeekToBlock(pFlash, block)) goto cleanUp;
 
   000a8	e1a01004	 mov         r1, r4
   000ac	e1a00005	 mov         r0, r5
@@ -2789,13 +2765,13 @@
   000b4	e3500000	 cmp         r0, #0
   000b8	0a000034	 beq         |$cleanUp$44655|
 
-; 531  : 
-; 532  :     // Compensate for bad blocks
-; 533  :     block += pFlash->badBlocksAtPos;
+; 519  : 
+; 520  :     // Compensate for bad blocks
+; 521  :     block += pFlash->badBlocksAtPos;
 
   000bc	e5953018	 ldr         r3, [r5, #0x18]
 
-; 534  :     while ((count > 0) && (block < pFlash->blocksOnFlash))
+; 522  :     while ((count > 0) && (block < pFlash->blocksOnFlash))
 
   000c0	e0844003	 add         r4, r4, r3
   000c4	ea00002e	 b           |$LN35@OALFlashSt@7|
@@ -2804,20 +2780,20 @@
   000cc	e1540003	 cmp         r4, r3
   000d0	2a00002d	 bcs         |$LN34@OALFlashSt@7|
 
-; 535  :         {
-; 536  : 
-; 537  :         // Skip block if it is marked as bad
-; 538  :         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
+; 523  :         {
+; 524  : 
+; 525  :         // Skip block if it is marked as bad
+; 526  :         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) != 0)
 
   000d4	e1a00004	 mov         r0, r4
   000d8	eb000000	 bl          FMD_GetBlockStatus
   000dc	e3100002	 tst         r0, #2
   000e0	0a000008	 beq         |$LN7@OALFlashSt@7|
 
-; 539  :             {
-; 540  :             OALMSG(OAL_WARN, (L"WARN: OALFlashStoreErase: "
-; 541  :                 L"Skip bad block %d\r\n", block
-; 542  :                 ));
+; 527  :             {
+; 528  :             OALMSG(OAL_WARN, (L"WARN: OALFlashStoreErase: "
+; 529  :                 L"Skip bad block %d\r\n", block
+; 530  :                 ));
 
   000e4	e5963440	 ldr         r3, [r6, #0x440]
   000e8	e3130002	 tst         r3, #2
@@ -2826,53 +2802,53 @@
   000f4	1b000000	 blne        NKDbgPrintfW
   000f8		 |$LN18@OALFlashSt@7|
 
-; 543  :             block++;
-; 544  :             pFlash->badBlocksAtPos++;
+; 531  :             block++;
+; 532  :             pFlash->badBlocksAtPos++;
 
   000f8	e5953018	 ldr         r3, [r5, #0x18]
   000fc	e2833001	 add         r3, r3, #1
   00100	e5853018	 str         r3, [r5, #0x18]
 
-; 545  :             continue;
+; 533  :             continue;
 
   00104	ea00001d	 b           |$LN36@OALFlashSt@7|
   00108		 |$LN7@OALFlashSt@7|
 
-; 546  :             }
-; 547  : 
-; 548  :         // Erase block
-; 549  :         retry = 4;
+; 534  :             }
+; 535  : 
+; 536  :         // Erase block
+; 537  :         retry = 4;
 
   00108	e3a07004	 mov         r7, #4
   0010c		 |$LL6@OALFlashSt@7|
 
-; 550  :         do
-; 551  :             {
-; 552  :             if (FMD_EraseBlock(block)) break;
+; 538  :         do
+; 539  :             {
+; 540  :             if (FMD_EraseBlock(block)) break;
 
   0010c	e1a00004	 mov         r0, r4
   00110	eb000000	 bl          FMD_EraseBlock
   00114	e3500000	 cmp         r0, #0
   00118	1a000001	 bne         |$LN4@OALFlashSt@7|
 
-; 553  :             }
-; 554  :         while (--retry > 0);
+; 541  :             }
+; 542  :         while (--retry > 0);
 
   0011c	e2577001	 subs        r7, r7, #1
   00120	1afffff9	 bne         |$LL6@OALFlashSt@7|
   00124		 |$LN4@OALFlashSt@7|
 
-; 555  : 
-; 556  :         // If erase failed
-; 557  :         if (retry == 0)
+; 543  : 
+; 544  :         // If erase failed
+; 545  :         if (retry == 0)
 
   00124	e3570000	 cmp         r7, #0
   00128	1a000010	 bne         |$LN2@OALFlashSt@7|
 
-; 558  :             {
-; 559  :             OALMSG(OAL_WARN, (L"WARN: OALFlashStoreErase: "
-; 560  :                 L"Failed erase block %d, mark it as bad\r\n", block
-; 561  :                 ));
+; 546  :             {
+; 547  :             OALMSG(OAL_WARN, (L"WARN: OALFlashStoreErase: "
+; 548  :                 L"Failed erase block %d, mark it as bad\r\n", block
+; 549  :                 ));
 
   0012c	e5963440	 ldr         r3, [r6, #0x440]
   00130	e3130002	 tst         r3, #2
@@ -2880,7 +2856,7 @@
   00138	11a01004	 movne       r1, r4
   0013c	1b000000	 blne        NKDbgPrintfW
 
-; 562  :             if (!FMD_SetBlockStatus(block, BLOCK_STATUS_BAD))
+; 550  :             if (!FMD_SetBlockStatus(block, BLOCK_STATUS_BAD))
 
   00140	e3a01002	 mov         r1, #2
   00144	e1a00004	 mov         r0, r4
@@ -2888,10 +2864,10 @@
   0014c	e3500000	 cmp         r0, #0
   00150	1affffe8	 bne         |$LN18@OALFlashSt@7|
 
-; 563  :                 {
-; 564  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreErase: "
-; 565  :                     L"Failed set block %d status as bad\r\n", block
-; 566  :                     ));
+; 551  :                 {
+; 552  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreErase: "
+; 553  :                     L"Failed set block %d status as bad\r\n", block
+; 554  :                     ));
 
   00154	e5963440	 ldr         r3, [r6, #0x440]
   00158	e3130001	 tst         r3, #1
@@ -2900,21 +2876,21 @@
   00164	e1a01004	 mov         r1, r4
   00168	eb000000	 bl          NKDbgPrintfW
 
-; 567  :                 goto cleanUp;
+; 555  :                 goto cleanUp;
 
   0016c	ea000007	 b           |$cleanUp$44655|
   00170		 |$LN2@OALFlashSt@7|
 
-; 568  :                 }
-; 569  :             block++;
-; 570  :             pFlash->badBlocksAtPos++;
-; 571  :             continue;
-; 572  :             }
-; 573  : 
-; 574  :         // Move to next block
-; 575  :         count--;
-; 576  :         block++;
-; 577  :         pFlash->blockPos++;
+; 556  :                 }
+; 557  :             block++;
+; 558  :             pFlash->badBlocksAtPos++;
+; 559  :             continue;
+; 560  :             }
+; 561  : 
+; 562  :         // Move to next block
+; 563  :         count--;
+; 564  :         block++;
+; 565  :         pFlash->blockPos++;
 
   00170	e5953014	 ldr         r3, [r5, #0x14]
   00174	e2488001	 sub         r8, r8, #1
@@ -2924,30 +2900,30 @@
   00180	e2844001	 add         r4, r4, #1
   00184		 |$LN35@OALFlashSt@7|
 
-; 534  :     while ((count > 0) && (block < pFlash->blocksOnFlash))
+; 522  :     while ((count > 0) && (block < pFlash->blocksOnFlash))
 
   00184	e3580000	 cmp         r8, #0
   00188	1affffce	 bne         |$LL9@OALFlashSt@7|
   0018c		 |$LN34@OALFlashSt@7|
 
-; 578  :         }
-; 579  : 
-; 580  :     // Done
-; 581  :     rc = TRUE;
+; 566  :         }
+; 567  : 
+; 568  :     // Done
+; 569  :     rc = TRUE;
 
   0018c	e3a09001	 mov         r9, #1
   00190		 |$cleanUp$44655|
 
-; 563  :                 {
-; 564  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreErase: "
-; 565  :                     L"Failed set block %d status as bad\r\n", block
-; 566  :                     ));
+; 551  :                 {
+; 552  :                 OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreErase: "
+; 553  :                     L"Failed set block %d status as bad\r\n", block
+; 554  :                     ));
 
   00190	e5963440	 ldr         r3, [r6, #0x440]
 
-; 582  : 
-; 583  : cleanUp:
-; 584  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreErase(rc = %d)\r\n", rc));
+; 570  : 
+; 571  : cleanUp:
+; 572  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreErase(rc = %d)\r\n", rc));
 
   00194	e3130a02	 tst         r3, #2, 20
   00198	13130004	 tstne       r3, #4
@@ -2955,8 +2931,8 @@
   001a0	11a01009	 movne       r1, r9
   001a4	1b000000	 blne        NKDbgPrintfW
 
-; 585  :     return rc;
-; 586  : }
+; 573  :     return rc;
+; 574  : }
 
   001a8	e1a00009	 mov         r0, r9
   001ac	e28dd004	 add         sp, sp, #4
@@ -2975,7 +2951,7 @@
   001c8	00000000	 DCD         |??_C@_1GE@CGLPBIPN@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAE?$AAr?$AAa?$AAs?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0@|
   001cc		 |$LN46@OALFlashSt@7|
   001cc	00000000	 DCD         |dpCurSettings|
-  001d0		 |$M45309|
+  001d0		 |$M45301|
 
 			 ENDP  ; |OALFlashStoreErase|
 
@@ -2984,7 +2960,7 @@
 	EXPORT	|??_C@_1HC@PIJOJJGP@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAB?$AAu?$AAf?$AAf?$AAe?$AAr?$AAe?$AAd?$AAR?$AAe?$AAa?$AAd?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45345| DCD	|$LN18@OALFlashSt@8|
+|$T45337| DCD	|$LN18@OALFlashSt@8|
 	DCD	0x40004602
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3015,26 +2991,26 @@
 
   00000		 |OALFlashStoreBufferedRead| PROC
 
-; 598  : {
+; 586  : {
 
   00000		 |$LN18@OALFlashSt@8|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M45342|
+  00008		 |$M45334|
   00008	e1a07003	 mov         r7, r3
   0000c	e58d2008	 str         r2, [sp, #8]
   00010	e1a09001	 mov         r9, r1
   00014	e1a08000	 mov         r8, r0
 
-; 599  :     BOOL rc = FALSE;
-; 600  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 601  :     ULONG offset, copySize;
-; 602  : 
-; 603  : 
-; 604  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
-; 605  :         L"+OALFlashStoreBufferedRead(0x%08x, 0x%08x, 0x%08x, %d)\r\n",
-; 606  :         hFlash, start, size, offsetReservedBlocks
-; 607  :         ));
+; 587  :     BOOL rc = FALSE;
+; 588  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 589  :     ULONG offset, copySize;
+; 590  : 
+; 591  : 
+; 592  :     OALMSG(OAL_FLASH&&OAL_FUNC, (
+; 593  :         L"+OALFlashStoreBufferedRead(0x%08x, 0x%08x, 0x%08x, %d)\r\n",
+; 594  :         hFlash, start, size, offsetReservedBlocks
+; 595  :         ));
 
   00018	e59f60f4	 ldr         r6, [pc, #0xF4]
   0001c	e59db030	 ldr         r11, [sp, #0x30]
@@ -3051,9 +3027,9 @@
   00048	e5965440	 ldr         r5, [r6, #0x440]
   0004c		 |$LN6@OALFlashSt@8|
 
-; 608  : 
-; 609  :     //  Calculate offset into starting block
-; 610  :     offset = start - (start / pFlash->sectorSize) * pFlash->sectorSize;
+; 596  : 
+; 597  :     //  Calculate offset into starting block
+; 598  :     offset = start - (start / pFlash->sectorSize) * pFlash->sectorSize;
 
   0004c	e5984004	 ldr         r4, [r8, #4]
   00050	e1a01009	 mov         r1, r9
@@ -3061,9 +3037,9 @@
   00058	eb000000	 bl          __rt_udiv
   0005c	e0030490	 mul         r3, r0, r4
 
-; 611  : 
-; 612  :     //  Read data from flash without sector boundary and size restrictions
-; 613  :     while( size > 0 )
+; 599  : 
+; 600  :     //  Read data from flash without sector boundary and size restrictions
+; 601  :     while( size > 0 )
 
   00060	e3570000	 cmp         r7, #0
   00064	e049a003	 sub         r10, r9, r3
@@ -3072,12 +3048,12 @@
   00070	e3a0e000	 mov         lr, #0
   00074		 |$LL3@OALFlashSt@8|
 
-; 614  :     {
-; 615  :         //  Read whole sector into temp buffer
-; 616  :         rc = OALFlashStoreRead(
-; 617  :             hFlash, start - offset, pFlash->sectorBuffer, pFlash->sectorSize,
-; 618  :             FALSE, offsetReservedBlocks
-; 619  :             );
+; 602  :     {
+; 603  :         //  Read whole sector into temp buffer
+; 604  :         rc = OALFlashStoreRead(
+; 605  :             hFlash, start - offset, pFlash->sectorBuffer, pFlash->sectorSize,
+; 606  :             FALSE, offsetReservedBlocks
+; 607  :             );
 
   00074	e5983004	 ldr         r3, [r8, #4]
   00078	e1a02005	 mov         r2, r5
@@ -3088,24 +3064,24 @@
   0008c	eb000000	 bl          OALFlashStoreRead
   00090	e1b04000	 movs        r4, r0
 
-; 620  :         if (!rc)
+; 608  :         if (!rc)
 
   00094	0a00001a	 beq         |$LN15@OALFlashSt@8|
 
-; 621  :             {
-; 622  :             goto cleanUp;
-; 623  :             }
-; 624  :         
-; 625  :         // Determine amount to copy
-; 626  :         copySize = (size > pFlash->sectorSize - offset) ? pFlash->sectorSize - offset : size;
+; 609  :             {
+; 610  :             goto cleanUp;
+; 611  :             }
+; 612  :         
+; 613  :         // Determine amount to copy
+; 614  :         copySize = (size > pFlash->sectorSize - offset) ? pFlash->sectorSize - offset : size;
 
   00098	e5983004	 ldr         r3, [r8, #4]
 
-; 627  : 
-; 628  :         // Copy data to given address
-; 629  :         memcpy(
-; 630  :             pData, pFlash->sectorBuffer + offset, copySize
-; 631  :             );
+; 615  : 
+; 616  :         // Copy data to given address
+; 617  :         memcpy(
+; 618  :             pData, pFlash->sectorBuffer + offset, copySize
+; 619  :             );
 
   0009c	e085100a	 add         r1, r5, r10
   000a0	e043400a	 sub         r4, r3, r10
@@ -3116,16 +3092,16 @@
   000b4	e1a0000a	 mov         r0, r10
   000b8	eb000000	 bl          memcpy
 
-; 632  : 
-; 633  :         // Shift pointers
-; 634  :         pData += copySize;
+; 620  : 
+; 621  :         // Shift pointers
+; 622  :         pData += copySize;
 
   000bc	e08aa004	 add         r10, r10, r4
   000c0	e58da008	 str         r10, [sp, #8]
 
-; 635  :         start += copySize;
-; 636  :         size  -= copySize;
-; 637  :         offset = 0;
+; 623  :         start += copySize;
+; 624  :         size  -= copySize;
+; 625  :         offset = 0;
 
   000c4	e3a0a000	 mov         r10, #0
   000c8	e0899004	 add         r9, r9, r4
@@ -3133,24 +3109,24 @@
   000d0	e3a0e000	 mov         lr, #0
   000d4	1affffe6	 bne         |$LL3@OALFlashSt@8|
 
-; 611  : 
-; 612  :     //  Read data from flash without sector boundary and size restrictions
-; 613  :     while( size > 0 )
+; 599  : 
+; 600  :     //  Read data from flash without sector boundary and size restrictions
+; 601  :     while( size > 0 )
 
   000d8	e5965440	 ldr         r5, [r6, #0x440]
   000dc		 |$LN2@OALFlashSt@8|
 
-; 638  :     }
-; 639  : 
-; 640  :     // Done
-; 641  :     rc = TRUE;
+; 626  :     }
+; 627  : 
+; 628  :     // Done
+; 629  :     rc = TRUE;
 
   000dc	e3a04001	 mov         r4, #1
   000e0		 |$cleanUp$44695|
 
-; 642  :     
-; 643  : cleanUp:
-; 644  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreBufferedRead(rc = %d)\r\n", rc));
+; 630  :     
+; 631  : cleanUp:
+; 632  :     OALMSG(OAL_FLASH&&OAL_FUNC, (L"-OALFlashStoreBufferedRead(rc = %d)\r\n", rc));
 
   000e0	e3150a02	 tst         r5, #2, 20
   000e4	13150004	 tstne       r5, #4
@@ -3158,8 +3134,8 @@
   000ec	11a01004	 movne       r1, r4
   000f0	1b000000	 blne        NKDbgPrintfW
 
-; 645  :     return rc;
-; 646  : }
+; 633  :     return rc;
+; 634  : }
 
   000f4	e1a00004	 mov         r0, r4
   000f8	e28dd00c	 add         sp, sp, #0xC
@@ -3167,10 +3143,10 @@
   00100	e12fff1e	 bx          lr
   00104		 |$LN15@OALFlashSt@8|
 
-; 638  :     }
-; 639  : 
-; 640  :     // Done
-; 641  :     rc = TRUE;
+; 626  :     }
+; 627  : 
+; 628  :     // Done
+; 629  :     rc = TRUE;
 
   00104	e5965440	 ldr         r5, [r6, #0x440]
   00108	eafffff4	 b           |$cleanUp$44695|
@@ -3181,7 +3157,7 @@
   00110	00000000	 DCD         |??_C@_1HC@PIJOJJGP@?$AA?$CL?$AAO?$AAA?$AAL?$AAF?$AAl?$AAa?$AAs?$AAh?$AAS?$AAt?$AAo?$AAr?$AAe?$AAB?$AAu?$AAf?$AAf?$AAe?$AAr?$AAe?$AAd?$AAR?$AAe?$AAa?$AAd?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8@|
   00114		 |$LN22@OALFlashSt@8|
   00114	00000000	 DCD         |dpCurSettings|
-  00118		 |$M45343|
+  00118		 |$M45335|
 
 			 ENDP  ; |OALFlashStoreBufferedRead|
 
@@ -3189,7 +3165,7 @@
 	IMPORT	|strcmp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45374| DCD	|$LN23@OALFlashSt@9|
+|$T45366| DCD	|$LN23@OALFlashSt@9|
 	DCD	0x40007002
 ; Function compile flags: /Ogspy
 
@@ -3197,24 +3173,24 @@
 
   00000		 |OALFlashStoreReadFromReservedRegion| PROC
 
-; 658  : {
+; 646  : {
 
   00000		 |$LN23@OALFlashSt@9|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M45371|
+  00008		 |$M45363|
   00008	e1a09003	 mov         r9, r3
   0000c	e1a0a002	 mov         r10, r2
   00010	e1a0b001	 mov         r11, r1
   00014	e1a05000	 mov         r5, r0
 
-; 659  :     BOOL rc = FALSE;
-; 660  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 661  :     ULONG regionSize, offset, ix;
-; 662  : 
-; 663  : 
-; 664  :     // Try build layout info if there are no reserved regions yet...
-; 665  :     if ((pFlash->reservedRegions == 0) && !BuildLayoutInfo(hFlash))
+; 647  :     BOOL rc = FALSE;
+; 648  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 649  :     ULONG regionSize, offset, ix;
+; 650  : 
+; 651  : 
+; 652  :     // Try build layout info if there are no reserved regions yet...
+; 653  :     if ((pFlash->reservedRegions == 0) && !BuildLayoutInfo(hFlash))
 
   00018	e595e01c	 ldr         lr, [r5, #0x1C]
   0001c	e3a07000	 mov         r7, #0
@@ -3225,12 +3201,12 @@
   00030	0a00005e	 beq         |$cleanUp$44715|
   00034		 |$LN14@OALFlashSt@9|
 
-; 666  :         {
-; 667  :         goto cleanUp;
-; 668  :         }
-; 669  : 
-; 670  :     // Find reserved region with given name
-; 671  :     for (ix = 0; ix < pFlash->reservedRegions; ix++)
+; 654  :         {
+; 655  :         goto cleanUp;
+; 656  :         }
+; 657  : 
+; 658  :     // Find reserved region with given name
+; 659  :     for (ix = 0; ix < pFlash->reservedRegions; ix++)
 
   00034	e595e01c	 ldr         lr, [r5, #0x1C]
   00038	e3a04000	 mov         r4, #0
@@ -3239,8 +3215,8 @@
   00044	e2856020	 add         r6, r5, #0x20
   00048		 |$LL13@OALFlashSt@9|
 
-; 672  :         {
-; 673  :         if (strcmp(name, pFlash->reservedRegion[ix].szName) == 0) break;
+; 660  :         {
+; 661  :         if (strcmp(name, pFlash->reservedRegion[ix].szName) == 0) break;
 
   00048	e1a01006	 mov         r1, r6
   0004c	e1a0000b	 mov         r0, r11
@@ -3253,18 +3229,18 @@
   00068	3afffff6	 bcc         |$LL13@OALFlashSt@9|
   0006c		 |$LN20@OALFlashSt@9|
 
-; 674  :         }
-; 675  : 
-; 676  :     // If there isn't one we are done
-; 677  :     if (ix >= pFlash->reservedRegions) goto cleanUp;
+; 662  :         }
+; 663  : 
+; 664  :     // If there isn't one we are done
+; 665  :     if (ix >= pFlash->reservedRegions) goto cleanUp;
 
   0006c	e1540008	 cmp         r4, r8
   00070	2a00004e	 bcs         |$cleanUp$44715|
 
-; 678  : 
-; 679  :     // Get reserved partition size
-; 680  :     regionSize =  pFlash->reservedRegion[ix].dwNumBlocks;
-; 681  :     regionSize *= pFlash->sectorsPerBlock * pFlash->sectorSize;
+; 666  : 
+; 667  :     // Get reserved partition size
+; 668  :     regionSize =  pFlash->reservedRegion[ix].dwNumBlocks;
+; 669  :     regionSize *= pFlash->sectorsPerBlock * pFlash->sectorSize;
 
   00074	e5953008	 ldr         r3, [r5, #8]
   00078	e595b004	 ldr         r11, [r5, #4]
@@ -3273,9 +3249,9 @@
   00084	e002039b	 mul         r2, r11, r3
   00088	e0010192	 mul         r1, r2, r1
 
-; 682  : 
-; 683  :     // Check if there is enough space for request
-; 684  :     if ((start >= regionSize) || ((regionSize - start) < size))
+; 670  : 
+; 671  :     // Check if there is enough space for request
+; 672  :     if ((start >= regionSize) || ((regionSize - start) < size))
 
   0008c	e15a0001	 cmp         r10, r1
   00090	2a000046	 bcs         |$cleanUp$44715|
@@ -3284,24 +3260,24 @@
   0009c	e1520006	 cmp         r2, r6
   000a0	3a000042	 bcc         |$cleanUp$44715|
 
-; 685  :         {
-; 686  :         goto cleanUp;
-; 687  :         }
-; 688  : 
-; 689  :     // Calculate read start
-; 690  :     offset  = pFlash->reservedRegion[ix].dwStartBlock;
-; 691  :     offset *= pFlash->sectorsPerBlock * pFlash->sectorSize;
+; 673  :         {
+; 674  :         goto cleanUp;
+; 675  :         }
+; 676  : 
+; 677  :     // Calculate read start
+; 678  :     offset  = pFlash->reservedRegion[ix].dwStartBlock;
+; 679  :     offset *= pFlash->sectorsPerBlock * pFlash->sectorSize;
 
   000a4	e1a0400b	 mov         r4, r11
 
-; 692  :     start += offset;
+; 680  :     start += offset;
 
   000a8	e5901028	 ldr         r1, [r0, #0x28]
   000ac	e0020394	 mul         r2, r4, r3
 
-; 693  : 
-; 694  :     // Read partial sector
-; 695  :     offset = start - (start / pFlash->sectorSize) * pFlash->sectorSize;
+; 681  : 
+; 682  :     // Read partial sector
+; 683  :     offset = start - (start / pFlash->sectorSize) * pFlash->sectorSize;
 
   000b0	e1a00004	 mov         r0, r4
   000b4	e028a192	 mla         r8, r2, r1, r10
@@ -3312,15 +3288,15 @@
   000c8	e0584002	 subs        r4, r8, r2
   000cc	e3a07000	 mov         r7, #0
 
-; 696  :     if (offset > 0)
+; 684  :     if (offset > 0)
 
   000d0	0a000015	 beq         |$LN6@OALFlashSt@9|
 
-; 697  :         {
-; 698  :         rc = OALFlashStoreRead(
-; 699  :             hFlash, start - offset, pFlash->sectorBuffer, pFlash->sectorSize,
-; 700  :             FALSE, TRUE
-; 701  :             );
+; 685  :         {
+; 686  :         rc = OALFlashStoreRead(
+; 687  :             hFlash, start - offset, pFlash->sectorBuffer, pFlash->sectorSize,
+; 688  :             FALSE, TRUE
+; 689  :             );
 
   000d4	e1a0300b	 mov         r3, r11
   000d8	e2852fb9	 add         r2, r5, #0xB9, 30
@@ -3331,17 +3307,17 @@
   000ec	eb000000	 bl          OALFlashStoreRead
   000f0	e1b07000	 movs        r7, r0
 
-; 702  :         if (!rc)
+; 690  :         if (!rc)
 
   000f4	0a00002d	 beq         |$cleanUp$44715|
 
-; 703  :             {
-; 704  :             goto cleanUp;
-; 705  :             }
-; 706  :         // Copy data
-; 707  :         memcpy(
-; 708  :             pData, pFlash->sectorBuffer + offset, pFlash->sectorSize - offset
-; 709  :             );
+; 691  :             {
+; 692  :             goto cleanUp;
+; 693  :             }
+; 694  :         // Copy data
+; 695  :         memcpy(
+; 696  :             pData, pFlash->sectorBuffer + offset, pFlash->sectorSize - offset
+; 697  :             );
 
   000f8	e5952004	 ldr         r2, [r5, #4]
   000fc	e0843005	 add         r3, r4, r5
@@ -3350,15 +3326,15 @@
   00108	e1a00009	 mov         r0, r9
   0010c	eb000000	 bl          memcpy
 
-; 710  :         // Shift pointers
-; 711  :         pData += pFlash->sectorSize - offset;
+; 698  :         // Shift pointers
+; 699  :         pData += pFlash->sectorSize - offset;
 
   00110	e5953004	 ldr         r3, [r5, #4]
   00114	e3a07000	 mov         r7, #0
   00118	e0432004	 sub         r2, r3, r4
 
-; 712  :         start += pFlash->sectorSize - offset;
-; 713  :         size -= pFlash->sectorSize - offset;
+; 700  :         start += pFlash->sectorSize - offset;
+; 701  :         size -= pFlash->sectorSize - offset;
 
   0011c	e0443003	 sub         r3, r4, r3
   00120	e0866003	 add         r6, r6, r3
@@ -3366,10 +3342,10 @@
   00128	e0888002	 add         r8, r8, r2
   0012c		 |$LN6@OALFlashSt@9|
 
-; 714  :         }
-; 715  : 
-; 716  :     // Calculate last partial sector
-; 717  :     offset = size - (size / pFlash->sectorSize) * pFlash->sectorSize;
+; 702  :         }
+; 703  : 
+; 704  :     // Calculate last partial sector
+; 705  :     offset = size - (size / pFlash->sectorSize) * pFlash->sectorSize;
 
   0012c	e5954004	 ldr         r4, [r5, #4]
   00130	e1a01006	 mov         r1, r6
@@ -3377,10 +3353,10 @@
   00138	eb000000	 bl          __rt_udiv
   0013c	e0030490	 mul         r3, r0, r4
 
-; 718  :     if (offset > 0) size -= offset;
-; 719  :     
-; 720  :     // Read data
-; 721  :     rc = OALFlashStoreRead(hFlash, start, pData, size, FALSE, TRUE);
+; 706  :     if (offset > 0) size -= offset;
+; 707  :     
+; 708  :     // Read data
+; 709  :     rc = OALFlashStoreRead(hFlash, start, pData, size, FALSE, TRUE);
 
   00140	e1a02009	 mov         r2, r9
   00144	e0564003	 subs        r4, r6, r3
@@ -3393,28 +3369,28 @@
   00160	eb000000	 bl          OALFlashStoreRead
   00164	e1b07000	 movs        r7, r0
 
-; 722  :     if (!rc)
+; 710  :     if (!rc)
 
   00168	0a000010	 beq         |$cleanUp$44715|
 
-; 723  :         {
-; 724  :         goto cleanUp;
-; 725  :         }
-; 726  : 
-; 727  :     // Read partial sector
-; 728  :     if (offset > 0)
+; 711  :         {
+; 712  :         goto cleanUp;
+; 713  :         }
+; 714  : 
+; 715  :     // Read partial sector
+; 716  :     if (offset > 0)
 
   0016c	e3540000	 cmp         r4, #0
   00170	0a00000d	 beq         |$LN2@OALFlashSt@9|
 
-; 729  :         {
-; 730  :         // Shift pointers
-; 731  :         pData += size;
-; 732  :         start += size;
-; 733  :         // Read last sector
-; 734  :         rc = OALFlashStoreRead(
-; 735  :             hFlash, start, pFlash->sectorBuffer, pFlash->sectorSize, FALSE, TRUE
-; 736  :             );
+; 717  :         {
+; 718  :         // Shift pointers
+; 719  :         pData += size;
+; 720  :         start += size;
+; 721  :         // Read last sector
+; 722  :         rc = OALFlashStoreRead(
+; 723  :             hFlash, start, pFlash->sectorBuffer, pFlash->sectorSize, FALSE, TRUE
+; 724  :             );
 
   00174	e5953004	 ldr         r3, [r5, #4]
   00178	e3a0e000	 mov         lr, #0
@@ -3426,15 +3402,15 @@
   00190	eb000000	 bl          OALFlashStoreRead
   00194	e1b07000	 movs        r7, r0
 
-; 737  :         if (!rc)
+; 725  :         if (!rc)
 
   00198	0a000004	 beq         |$cleanUp$44715|
 
-; 738  :             {
-; 739  :             goto cleanUp;
-; 740  :             }
-; 741  :         // Copy data
-; 742  :         memcpy(pData, pFlash->sectorBuffer, offset);
+; 726  :             {
+; 727  :             goto cleanUp;
+; 728  :             }
+; 729  :         // Copy data
+; 730  :         memcpy(pData, pFlash->sectorBuffer, offset);
 
   0019c	e1a02004	 mov         r2, r4
   001a0	e2851fb9	 add         r1, r5, #0xB9, 30
@@ -3442,24 +3418,24 @@
   001a8	eb000000	 bl          memcpy
   001ac		 |$LN2@OALFlashSt@9|
 
-; 743  :         }
-; 744  : 
-; 745  :     // Done
-; 746  :     rc = TRUE;
+; 731  :         }
+; 732  : 
+; 733  :     // Done
+; 734  :     rc = TRUE;
 
   001ac	e3a07001	 mov         r7, #1
   001b0		 |$cleanUp$44715|
 
-; 747  :     
-; 748  : cleanUp:
-; 749  :     return rc;
-; 750  : }
+; 735  :     
+; 736  : cleanUp:
+; 737  :     return rc;
+; 738  : }
 
   001b0	e1a00007	 mov         r0, r7
   001b4	e28dd008	 add         sp, sp, #8
   001b8	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   001bc	e12fff1e	 bx          lr
-  001c0		 |$M45372|
+  001c0		 |$M45364|
 
 			 ENDP  ; |OALFlashStoreReadFromReservedRegion|
 
@@ -3467,7 +3443,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45398| DCD	|$LN22@OALFlashSt@10|
+|$T45390| DCD	|$LN22@OALFlashSt@10|
 	DCD	0x40005c02
 ; Function compile flags: /Ogspy
 
@@ -3475,24 +3451,24 @@
 
   00000		 |OALFlashStoreWriteToReservedRegion| PROC
 
-; 762  : {
+; 750  : {
 
   00000		 |$LN22@OALFlashSt@10|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M45395|
+  00008		 |$M45387|
   00008	e1a0b003	 mov         r11, r3
   0000c	e1a09002	 mov         r9, r2
   00010	e1a0a001	 mov         r10, r1
   00014	e1a05000	 mov         r5, r0
 
-; 763  :     BOOL rc = FALSE;
-; 764  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
-; 765  :     ULONG regionSize, offset, ix;
-; 766  : 
-; 767  : 
-; 768  :     // Start must be sector aligned
-; 769  :     if ((start % pFlash->sectorSize) != 0)
+; 751  :     BOOL rc = FALSE;
+; 752  :     OAL_FLASH_CONTEXT *pFlash = hFlash;
+; 753  :     ULONG regionSize, offset, ix;
+; 754  : 
+; 755  : 
+; 756  :     // Start must be sector aligned
+; 757  :     if ((start % pFlash->sectorSize) != 0)
 
   00018	e5950004	 ldr         r0, [r5, #4]
   0001c	e1a01009	 mov         r1, r9
@@ -3501,12 +3477,12 @@
   00028	e3510000	 cmp         r1, #0
   0002c	1a00004b	 bne         |$cleanUp$44746|
 
-; 770  :         {
-; 771  :         goto cleanUp;
-; 772  :         }
-; 773  : 
-; 774  :     // Try build layout info if there are no reserved regions yet...
-; 775  :     if ((pFlash->reservedRegions == 0) && !BuildLayoutInfo(hFlash))
+; 758  :         {
+; 759  :         goto cleanUp;
+; 760  :         }
+; 761  : 
+; 762  :     // Try build layout info if there are no reserved regions yet...
+; 763  :     if ((pFlash->reservedRegions == 0) && !BuildLayoutInfo(hFlash))
 
   00030	e595e01c	 ldr         lr, [r5, #0x1C]
   00034	e35e0000	 cmp         lr, #0
@@ -3517,12 +3493,12 @@
   00048	0a000044	 beq         |$cleanUp$44746|
   0004c		 |$LN12@OALFlashSt@10|
 
-; 776  :         {
-; 777  :         goto cleanUp;
-; 778  :         }
-; 779  : 
-; 780  :     // Find reserved region with given name
-; 781  :     for (ix = 0; ix < pFlash->reservedRegions; ix++)
+; 764  :         {
+; 765  :         goto cleanUp;
+; 766  :         }
+; 767  : 
+; 768  :     // Find reserved region with given name
+; 769  :     for (ix = 0; ix < pFlash->reservedRegions; ix++)
 
   0004c	e595301c	 ldr         r3, [r5, #0x1C]
   00050	e3a04000	 mov         r4, #0
@@ -3531,8 +3507,8 @@
   0005c	e2856020	 add         r6, r5, #0x20
   00060		 |$LL11@OALFlashSt@10|
 
-; 782  :         {
-; 783  :         if (strcmp(name, pFlash->reservedRegion[ix].szName) == 0) break;
+; 770  :         {
+; 771  :         if (strcmp(name, pFlash->reservedRegion[ix].szName) == 0) break;
 
   00060	e1a01006	 mov         r1, r6
   00064	e1a0000a	 mov         r0, r10
@@ -3545,18 +3521,18 @@
   00080	3afffff6	 bcc         |$LL11@OALFlashSt@10|
   00084		 |$LN19@OALFlashSt@10|
 
-; 784  :         }
-; 785  : 
-; 786  :     // If there isn't one we are done
-; 787  :     if (ix >= pFlash->reservedRegions) goto cleanUp;
+; 772  :         }
+; 773  : 
+; 774  :     // If there isn't one we are done
+; 775  :     if (ix >= pFlash->reservedRegions) goto cleanUp;
 
   00084	e1540008	 cmp         r4, r8
   00088	2a000034	 bcs         |$cleanUp$44746|
 
-; 788  : 
-; 789  :     // Get reserved partition size
-; 790  :     regionSize =  pFlash->reservedRegion[ix].dwNumBlocks;
-; 791  :     regionSize *= pFlash->sectorsPerBlock * pFlash->sectorSize;
+; 776  : 
+; 777  :     // Get reserved partition size
+; 778  :     regionSize =  pFlash->reservedRegion[ix].dwNumBlocks;
+; 779  :     regionSize *= pFlash->sectorsPerBlock * pFlash->sectorSize;
 
   0008c	e5950008	 ldr         r0, [r5, #8]
   00090	e5951004	 ldr         r1, [r5, #4]
@@ -3565,9 +3541,9 @@
   0009c	e0030091	 mul         r3, r1, r0
   000a0	e0020293	 mul         r2, r3, r2
 
-; 792  : 
-; 793  :     // Check if there is enough space for request
-; 794  :     if ((start >= regionSize) || ((regionSize - start) < size))
+; 780  : 
+; 781  :     // Check if there is enough space for request
+; 782  :     if ((start >= regionSize) || ((regionSize - start) < size))
 
   000a4	e1590002	 cmp         r9, r2
   000a8	2a00002c	 bcs         |$cleanUp$44746|
@@ -3576,23 +3552,23 @@
   000b4	e1530006	 cmp         r3, r6
   000b8	3a000028	 bcc         |$cleanUp$44746|
 
-; 795  :         {
-; 796  :         goto cleanUp;
-; 797  :         }
-; 798  : 
-; 799  :     // Calculate read start
-; 800  :     offset  = pFlash->reservedRegion[ix].dwStartBlock;
-; 801  :     offset *= pFlash->sectorsPerBlock * pFlash->sectorSize;
+; 783  :         {
+; 784  :         goto cleanUp;
+; 785  :         }
+; 786  : 
+; 787  :     // Calculate read start
+; 788  :     offset  = pFlash->reservedRegion[ix].dwStartBlock;
+; 789  :     offset *= pFlash->sectorsPerBlock * pFlash->sectorSize;
 
   000bc	e1a04001	 mov         r4, r1
 
-; 802  :     start += offset;
+; 790  :     start += offset;
 
   000c0	e59e2028	 ldr         r2, [lr, #0x28]
 
-; 803  : 
-; 804  :     // Calculate last partial sector
-; 805  :     offset = size - (size / pFlash->sectorSize) * pFlash->sectorSize;
+; 791  : 
+; 792  :     // Calculate last partial sector
+; 793  :     offset = size - (size / pFlash->sectorSize) * pFlash->sectorSize;
 
   000c4	e0030094	 mul         r3, r4, r0
   000c8	e1a01006	 mov         r1, r6
@@ -3601,10 +3577,10 @@
   000d4	eb000000	 bl          __rt_udiv
   000d8	e0030490	 mul         r3, r0, r4
 
-; 806  :     if (offset > 0) size -= offset;
-; 807  : 
-; 808  :     // Read data
-; 809  :     rc = OALFlashStoreWrite(hFlash, start, pData, size, FALSE, TRUE);
+; 794  :     if (offset > 0) size -= offset;
+; 795  : 
+; 796  :     // Read data
+; 797  :     rc = OALFlashStoreWrite(hFlash, start, pData, size, FALSE, TRUE);
 
   000dc	e3a09001	 mov         r9, #1
   000e0	e0564003	 subs        r4, r6, r3
@@ -3619,43 +3595,43 @@
   00104	eb000000	 bl          OALFlashStoreWrite
   00108	e1b07000	 movs        r7, r0
 
-; 810  :     if (!rc)
+; 798  :     if (!rc)
 
   0010c	0a000013	 beq         |$cleanUp$44746|
 
-; 811  :         {
-; 812  :         goto cleanUp;
-; 813  :         }
-; 814  : 
-; 815  :     // Write partial sector
-; 816  :     if (offset > 0)
+; 799  :         {
+; 800  :         goto cleanUp;
+; 801  :         }
+; 802  : 
+; 803  :     // Write partial sector
+; 804  :     if (offset > 0)
 
   00110	e3540000	 cmp         r4, #0
   00114	0a000010	 beq         |$LN1@OALFlashSt@10|
 
-; 817  :         {
-; 818  :         // Shift pointers
-; 819  :         pData += size;
-; 820  :         start += size;
-; 821  :         // Fill buffer
-; 822  :         memset(pFlash->sectorBuffer, 0xFF, pFlash->sectorSize);
+; 805  :         {
+; 806  :         // Shift pointers
+; 807  :         pData += size;
+; 808  :         start += size;
+; 809  :         // Fill buffer
+; 810  :         memset(pFlash->sectorBuffer, 0xFF, pFlash->sectorSize);
 
   00118	e5952004	 ldr         r2, [r5, #4]
   0011c	e2850fb9	 add         r0, r5, #0xB9, 30
   00120	e3a010ff	 mov         r1, #0xFF
   00124	eb000000	 bl          memset
 
-; 823  :         memcpy(pFlash->sectorBuffer, pData, offset);
+; 811  :         memcpy(pFlash->sectorBuffer, pData, offset);
 
   00128	e1a02004	 mov         r2, r4
   0012c	e08b1006	 add         r1, r11, r6
   00130	e2850fb9	 add         r0, r5, #0xB9, 30
   00134	eb000000	 bl          memcpy
 
-; 824  :         // Write last sector
-; 825  :         rc = OALFlashStoreWrite(
-; 826  :             hFlash, start, pFlash->sectorBuffer, pFlash->sectorSize, FALSE, TRUE
-; 827  :             );
+; 812  :         // Write last sector
+; 813  :         rc = OALFlashStoreWrite(
+; 814  :             hFlash, start, pFlash->sectorBuffer, pFlash->sectorSize, FALSE, TRUE
+; 815  :             );
 
   00138	e5953004	 ldr         r3, [r5, #4]
   0013c	e2852fb9	 add         r2, r5, #0xB9, 30
@@ -3666,32 +3642,32 @@
   00150	eb000000	 bl          OALFlashStoreWrite
   00154	e1b07000	 movs        r7, r0
 
-; 828  :         if (!rc)
+; 816  :         if (!rc)
 
   00158	0a000000	 beq         |$cleanUp$44746|
   0015c		 |$LN1@OALFlashSt@10|
 
-; 829  :             {
-; 830  :             goto cleanUp;
-; 831  :             }
-; 832  :         }
-; 833  : 
-; 834  :     // Done
-; 835  :     rc = TRUE;
+; 817  :             {
+; 818  :             goto cleanUp;
+; 819  :             }
+; 820  :         }
+; 821  : 
+; 822  :     // Done
+; 823  :     rc = TRUE;
 
   0015c	e3a07001	 mov         r7, #1
   00160		 |$cleanUp$44746|
 
-; 836  : 
-; 837  : cleanUp:
-; 838  :     return rc;
-; 839  : }
+; 824  : 
+; 825  : cleanUp:
+; 826  :     return rc;
+; 827  : }
 
   00160	e1a00007	 mov         r0, r7
   00164	e28dd008	 add         sp, sp, #8
   00168	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   0016c	e12fff1e	 bx          lr
-  00170		 |$M45396|
+  00170		 |$M45388|
 
 			 ENDP  ; |OALFlashStoreWriteToReservedRegion|
 

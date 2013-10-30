@@ -94,7 +94,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\boot\usbfn\pdd.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46559| DCD	|$LN5@DumpUSBReg|
+|$T46560| DCD	|$LN5@DumpUSBReg|
 	DCD	0x40004501
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -218,7 +218,7 @@
 
   00000		 |$LN5@DumpUSBReg|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M46556|
+  00004		 |$M46557|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -358,7 +358,7 @@
   0010c	00000000	 DCD         |??_C@_1DA@CHHHKPND@?$AAO?$AAT?$AAG?$AA_?$AAF?$AAO?$AAR?$AAC?$AAE?$AAS?$AAT?$AAD?$AAB?$AAY?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
   00110		 |$LN22@DumpUSBReg|
   00110	00000000	 DCD         |??_C@_1DA@DEOJCLGI@?$AAO?$AAT?$AAG?$AA_?$AAR?$AAe?$AAv?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
-  00114		 |$M46557|
+  00114		 |$M46558|
 
 			 ENDP  ; |DumpUSBRegisters|
 
@@ -366,7 +366,7 @@
 	EXPORT	|??_C@_1CK@CPIFLPMI@?$AAu?$AAn?$AAa?$AAl?$AAi?$AAg?$AAn?$AAe?$AAd?$AA?5?$AAr?$AAe?$AAa?$AAd?$AAf?$AAi?$AAf?$AAo?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46603| DCD	|$LN23@ReadFIFO|
+|$T46604| DCD	|$LN23@ReadFIFO|
 	DCD	0x40002a01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -385,7 +385,7 @@
 
   00000		 |$LN23@ReadFIFO|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46600|
+  00004		 |$M46601|
   00004	e1a04002	 mov         r4, r2
 
 ; 170  :     DWORD total  = size / 4;
@@ -517,7 +517,7 @@
   000a4		 |$LN24@ReadFIFO|
   000a4		 |$LN25@ReadFIFO|
   000a4	00000000	 DCD         |??_C@_1CK@CPIFLPMI@?$AAu?$AAn?$AAa?$AAl?$AAi?$AAg?$AAn?$AAe?$AAd?$AA?5?$AAr?$AAe?$AAa?$AAd?$AAf?$AAi?$AAf?$AAo?$AA?$AN?$AA?6?$AA?$AA@|
-  000a8		 |$M46601|
+  000a8		 |$M46602|
 
 			 ENDP  ; |ReadFIFO|
 
@@ -527,7 +527,7 @@
 	IMPORT	|dpCurSettings|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46631| DCD	|$LN27@WriteFIFO|
+|$T46632| DCD	|$LN27@WriteFIFO|
 	DCD	0x40003701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -553,7 +553,7 @@
 
   00000		 |$LN27@WriteFIFO|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M46628|
+  00004		 |$M46629|
   00004	e1a04003	 mov         r4, r3
   00008	e1a05002	 mov         r5, r2
   0000c	e1a07001	 mov         r7, r1
@@ -579,7 +579,7 @@
 ; 234  :     if (size == 0)
 
   00030	e3540000	 cmp         r4, #0
-  00034	0a00001d	 beq         |$ErrorReturn$45334|
+  00034	0a00001d	 beq         |$ErrorReturn$45335|
 
 ; 235  :         goto ErrorReturn;
 ; 236  : 
@@ -662,7 +662,7 @@
 ; 267  :     for (i=0; i<totalTx; i++)
 
   00090	e3540000	 cmp         r4, #0
-  00094	0a000005	 beq         |$ErrorReturn$45334|
+  00094	0a000005	 beq         |$ErrorReturn$45335|
   00098	e2873008	 add         r3, r7, #8
   0009c	e0882103	 add         r2, r8, r3, lsl #2
   000a0		 |$LL3@WriteFIFO|
@@ -674,7 +674,7 @@
   000a4	e2544001	 subs        r4, r4, #1
   000a8	e5c23000	 strb        r3, [r2]
   000ac	1afffffb	 bne         |$LL3@WriteFIFO|
-  000b0		 |$ErrorReturn$45334|
+  000b0		 |$ErrorReturn$45335|
 
 ; 226  :     PCSP_MUSB_GEN_REGS pGenRegs = pPdd->pUsbGenRegs;
 ; 227  :     DWORD totalTx;
@@ -712,7 +712,7 @@
   000d4	00000000	 DCD         |??_C@_1DC@GIDDBHNC@?$AA?$CL?$AAW?$AAr?$AAi?$AAt?$AAe?$AAF?$AAI?$AAF?$AAO?$AA?3?$AA?5?$AAs?$AAi?$AAz?$AAe?$AA?$CI?$AA0?$AAx?$AA?$CF?$AAx?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   000d8		 |$LN31@WriteFIFO|
   000d8	00000000	 DCD         |dpCurSettings|
-  000dc		 |$M46629|
+  000dc		 |$M46630|
 
 			 ENDP  ; |WriteFIFO|
 
@@ -729,7 +729,7 @@
 	EXPORT	|??_C@_1II@PBHEPHNB@?$AA?$CL?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA?$CB?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AAT?$AAx?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?3?$AA?5?$AAE?$AAP@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46693| DCD	|$LN56@ContinueTx|
+|$T46694| DCD	|$LN56@ContinueTx|
 	DCD	0x4000cc02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -844,7 +844,7 @@
   00000		 |$LN56@ContinueTx|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M46690|
+  00008		 |$M46691|
   00008	e1a07001	 mov         r7, r1
   0000c	e1a08000	 mov         r8, r0
 
@@ -902,7 +902,7 @@
 ; 308  :         OALMSG(OAL_ERROR, (L"Error! pTransfer is NULL\r\n"));
 
   00084	e3130001	 tst         r3, #1
-  00088	0a000094	 beq         |$CleanUp$45385|
+  00088	0a000094	 beq         |$CleanUp$45386|
   0008c	e59f0290	 ldr         r0, [pc, #0x290]
   00090	eb000000	 bl          NKDbgPrintfW
 
@@ -959,10 +959,10 @@
 ; 322  :                 OALMSG(OAL_ETHER&&OAL_FUNC, (TEXT("TXPKTRdy bit is set ..\r\n")));
 
   000f0	e3130a02	 tst         r3, #2, 20
-  000f4	0a000079	 beq         |$CleanUp$45385|
+  000f4	0a000079	 beq         |$CleanUp$45386|
   000f8	e3130004	 tst         r3, #4
   000fc		 |$LN53@ContinueTx|
-  000fc	0a000077	 beq         |$CleanUp$45385|
+  000fc	0a000077	 beq         |$CleanUp$45386|
   00100	e59f0218	 ldr         r0, [pc, #0x218]
   00104	eb000000	 bl          NKDbgPrintfW
   00108	ea000073	 b           |$LN50@ContinueTx|
@@ -1059,7 +1059,7 @@
 
   00194	e5953440	 ldr         r3, [r5, #0x440]
   00198	e3130001	 tst         r3, #1
-  0019c	0a00004f	 beq         |$CleanUp$45385|
+  0019c	0a00004f	 beq         |$CleanUp$45386|
   001a0	e59f0170	 ldr         r0, [pc, #0x170]
   001a4	e1a01002	 mov         r1, r2
   001a8	eb000000	 bl          NKDbgPrintfW
@@ -1241,7 +1241,7 @@
   002d8	e3a0b000	 mov         r11, #0
   002dc		 |$LN50@ContinueTx|
   002dc	e5953440	 ldr         r3, [r5, #0x440]
-  002e0		 |$CleanUp$45385|
+  002e0		 |$CleanUp$45386|
 
 ; 403  :     
 ; 404  : CleanUp:
@@ -1285,7 +1285,7 @@
   00328	00000000	 DCD         |??_C@_1II@PBHEPHNB@?$AA?$CL?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA?$CB?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AAT?$AAx?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?3?$AA?5?$AAE?$AAP@|
   0032c		 |$LN69@ContinueTx|
   0032c	00000000	 DCD         |dpCurSettings|
-  00330		 |$M46691|
+  00330		 |$M46692|
 
 			 ENDP  ; |ContinueTxTransfer|
 
@@ -1297,7 +1297,7 @@
 	EXPORT	|??_C@_1IA@FHPKIPM@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA?$CB?$AAS?$AAt?$AAa?$AAr?$AAt?$AAR?$AAx?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?3?$AA?5?$AAE?$AAP?$AA?5?$AA?$CF?$AAd?$AA?5@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46749| DCD	|$LN38@StartRxTra|
+|$T46750| DCD	|$LN38@StartRxTra|
 	DCD	0x4000bb02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1366,7 +1366,7 @@
   00000		 |$LN38@StartRxTra|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M46746|
+  00008		 |$M46747|
   00008	e1a07001	 mov         r7, r1
   0000c	e1a06000	 mov         r6, r0
 
@@ -1777,13 +1777,13 @@
   002e4	00000000	 DCD         |??_C@_1FI@DIOGIKJI@?$AAS?$AAt?$AAa?$AAr?$AAt?$AAR?$AAx?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?3?$AA?5?$AA?5?$AAe?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAp?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe@|
   002e8		 |$LN46@StartRxTra|
   002e8	00000000	 DCD         |??_C@_1IA@FHPKIPM@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA?$CB?$AAS?$AAt?$AAa?$AAr?$AAt?$AAR?$AAx?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?3?$AA?5?$AAE?$AAP?$AA?5?$AA?$CF?$AAd?$AA?5@|
-  002ec		 |$M46747|
+  002ec		 |$M46748|
 
 			 ENDP  ; |StartRxTransfer|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46769| DCD	|$LN6@CalcFIFOAd|
+|$T46770| DCD	|$LN6@CalcFIFOAd|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -1794,7 +1794,7 @@
 ; 556  : {
 
   00000		 |$LN6@CalcFIFOAd|
-  00000		 |$M46766|
+  00000		 |$M46767|
   00000	e3510000	 cmp         r1, #0
 
 ; 557  :     UINT fifoAddr;
@@ -1814,7 +1814,7 @@
 ; 565  : }
 
   0000c	e12fff1e	 bx          lr
-  00010		 |$M46767|
+  00010		 |$M46768|
 
 			 ENDP  ; |CalcFIFOAddr|
 
@@ -1824,7 +1824,7 @@
 	IMPORT	|EnableUSBClocks|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46782| DCD	|$LN10@StartUSBCl|
+|$T46783| DCD	|$LN10@StartUSBCl|
 	DCD	0x40001801
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1852,7 +1852,7 @@
 
   00000		 |$LN10@StartUSBCl|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M46779|
+  00004		 |$M46780|
 
 ; 577  :     PCSP_MUSB_GEN_REGS pGen = pPdd->pUsbGenRegs;
 ; 578  : 
@@ -1911,7 +1911,7 @@
   00058	00000000	 DCD         |??_C@_1CA@CNHBOOBH@?$AAS?$AAt?$AAa?$AAr?$AAt?$AAU?$AAS?$AAB?$AAC?$AAl?$AAo?$AAc?$AAk?$AA?$AN?$AA?6?$AA?$AA@|
   0005c		 |$LN14@StartUSBCl|
   0005c	00000000	 DCD         |dpCurSettings|
-  00060		 |$M46780|
+  00060		 |$M46781|
 
 			 ENDP  ; |StartUSBClock|
 
@@ -1921,7 +1921,7 @@
 	IMPORT	|SOCGetIDCodeAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46799| DCD	|$LN7@GetUniqueD|
+|$T46800| DCD	|$LN7@GetUniqueD|
 	DCD	0x40001101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1941,7 +1941,7 @@
 
   00000		 |$LN7@GetUniqueD|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46796|
+  00004		 |$M46797|
 
 ; 603  :     DWORD code;
 ; 604  :     DWORD *pDieId = (DWORD *)OALPAtoUA(SOCGetIDCodeAddress());
@@ -1980,7 +1980,7 @@
   0003c	00000000	 DCD         |??_C@_1DG@LHNIEBLN@?$AA?$CL?$AAU?$AAS?$AAB?$AAF?$AAN?$AA?3?$AA?3?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAD?$AA?5?$AA?$DN?$AA?5?$AA0?$AAx?$AA?$CF?$AAx?$AA?$AN?$AA?6?$AA?$AA@|
   00040		 |$LN11@GetUniqueD|
   00040	00000000	 DCD         |dpCurSettings|
-  00044		 |$M46797|
+  00044		 |$M46798|
 
 			 ENDP  ; |GetUniqueDeviceID|
 
@@ -1988,7 +1988,7 @@
 	EXPORT	|??_C@_1CI@LOFKLMPA@?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAD?$AAi?$AAs?$AAc?$AAo?$AAn?$AAn?$AAe?$AAc?$AAt?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46815| DCD	|$LN7@Device_Dis|
+|$T46816| DCD	|$LN7@Device_Dis|
 	DCD	0x40001601
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2007,7 +2007,7 @@
 
   00000		 |$LN7@Device_Dis|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46812|
+  00004		 |$M46813|
   00004	e1a04000	 mov         r4, r0
 
 ; 632  :     OALMSG(OAL_ETHER&&OAL_FUNC, (L"Device_Disconnect\r\n"));
@@ -2051,7 +2051,7 @@
   00050	00000000	 DCD         |??_C@_1CI@LOFKLMPA@?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAD?$AAi?$AAs?$AAc?$AAo?$AAn?$AAn?$AAe?$AAc?$AAt?$AA?$AN?$AA?6?$AA?$AA@|
   00054		 |$LN10@Device_Dis|
   00054	00000000	 DCD         |dpCurSettings|
-  00058		 |$M46813|
+  00058		 |$M46814|
 
 			 ENDP  ; |Device_Disconnect|
 
@@ -2062,7 +2062,7 @@
 	EXPORT	|??_C@_1CG@EODBHLMJ@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAR?$AAe?$AAs?$AAe?$AAt?$AAI?$AAR?$AAQ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46837| DCD	|$LN17@Device_Res|
+|$T46838| DCD	|$LN17@Device_Res|
 	DCD	0x40004c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2100,7 +2100,7 @@
 
   00000		 |$LN17@Device_Res|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46834|
+  00004		 |$M46835|
   00004	e1a05000	 mov         r5, r0
 
 ; 661  :     PCSP_MUSB_GEN_REGS pGenRegs = pPdd->pUsbGenRegs;
@@ -2252,7 +2252,7 @@
   00128	00000000	 DCD         |??_C@_1CG@EODBHLMJ@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAR?$AAe?$AAs?$AAe?$AAt?$AAI?$AAR?$AAQ?$AA?$AN?$AA?6?$AA?$AA@|
   0012c		 |$LN23@Device_Res|
   0012c	00000000	 DCD         |dpCurSettings|
-  00130		 |$M46835|
+  00130		 |$M46836|
 
 			 ENDP  ; |Device_ResetIRQ|
 
@@ -2275,7 +2275,7 @@
 	EXPORT	|??_C@_1CK@IHDMMHEF@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAE?$AAP?$AA0?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46908| DCD	|$LN68@Device_Pro|
+|$T46909| DCD	|$LN68@Device_Pro|
 	DCD	0x40011e02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2437,7 +2437,7 @@
   00000		 |$LN68@Device_Pro|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M46905|
+  00008		 |$M46906|
   00008	e1a04000	 mov         r4, r0
 
 ; 715  :     PCSP_MUSB_GEN_REGS pGenRegs = pPdd->pUsbGenRegs;
@@ -3136,7 +3136,7 @@
   00470	00000000	 DCD         |??_C@_1CK@IHDMMHEF@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAE?$AAP?$AA0?$AA?$AN?$AA?6?$AA?$AA@|
   00474		 |$LN86@Device_Pro|
   00474	00000000	 DCD         |dpCurSettings|
-  00478		 |$M46906|
+  00478		 |$M46907|
 
 			 ENDP  ; |Device_ProcessEP0|
 
@@ -3148,7 +3148,7 @@
 	EXPORT	|??_C@_1EK@IMFCNEOO@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAE?$AAP?$AAx?$AA_?$AAR?$AAX?$AA?3?$AA?5?$AAe?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AA?$DN@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46955| DCD	|$LN26@Device_Pro@2|
+|$T46956| DCD	|$LN26@Device_Pro@2|
 	DCD	0x40008101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3206,7 +3206,7 @@
 
   00000		 |$LN26@Device_Pro@2|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M46952|
+  00004		 |$M46953|
   00004	e1a07001	 mov         r7, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -3337,7 +3337,7 @@
 ; 972  :     if (!(csrVal & RXCSR_P_RXPKTRDY))
 
   000e8	e3120001	 tst         r2, #1
-  000ec	0a000036	 beq         |$cleanUp$45701|
+  000ec	0a000036	 beq         |$cleanUp$45702|
 
 ; 973  :         goto cleanUp;      
 ; 974  :     
@@ -3358,7 +3358,7 @@
 
   00108	e5953440	 ldr         r3, [r5, #0x440]
   0010c	e3130001	 tst         r3, #1
-  00110	0a00002d	 beq         |$cleanUp$45701|
+  00110	0a00002d	 beq         |$cleanUp$45702|
   00114	e59f00d4	 ldr         r0, [pc, #0xD4]
   00118	eb000000	 bl          NKDbgPrintfW
 
@@ -3464,7 +3464,7 @@
   001c4	e12fff13	 bx          r3
   001c8		 |$LN23@Device_Pro@2|
   001c8	e5953440	 ldr         r3, [r5, #0x440]
-  001cc		 |$cleanUp$45701|
+  001cc		 |$cleanUp$45702|
 
 ; 1013 :     }
 ; 1014 :     
@@ -3501,7 +3501,7 @@
   001fc	00000000	 DCD         |??_C@_1EK@IMFCNEOO@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAE?$AAP?$AAx?$AA_?$AAR?$AAX?$AA?3?$AA?5?$AAe?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AA?$DN@|
   00200		 |$LN34@Device_Pro@2|
   00200	00000000	 DCD         |dpCurSettings|
-  00204		 |$M46953|
+  00204		 |$M46954|
 
 			 ENDP  ; |Device_ProcessEPx_RX|
 
@@ -3515,7 +3515,7 @@
 	IMPORT	|__rt_udiv|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46998| DCD	|$LN30@Device_Pro@3|
+|$T46999| DCD	|$LN30@Device_Pro@3|
 	DCD	0x40008002
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3581,7 +3581,7 @@
   00000		 |$LN30@Device_Pro@3|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M46995|
+  00008		 |$M46996|
   00008	e1a09001	 mov         r9, r1
   0000c	e1a0b000	 mov         r11, r0
 
@@ -3680,9 +3680,9 @@
 ; 1070 :         OALMSG(OAL_ETHER&&OAL_FUNC, (TEXT("TXCSR_P_TXPKTRDY\r\n")));
 
   000b8	e3120a02	 tst         r2, #2, 20
-  000bc	0a00003f	 beq         |$cleanUp$45752|
+  000bc	0a00003f	 beq         |$cleanUp$45753|
   000c0	e3120004	 tst         r2, #4
-  000c4	0a00003d	 beq         |$cleanUp$45752|
+  000c4	0a00003d	 beq         |$cleanUp$45753|
   000c8	e59f011c	 ldr         r0, [pc, #0x11C]
   000cc	eb000000	 bl          NKDbgPrintfW
 
@@ -3702,7 +3702,7 @@
 ; 1076 :         OALMSG(OAL_ERROR, (L"Device_ProcessEPx_TX:  pTransfer is NULL\r\n"));
 
   000dc	e3120001	 tst         r2, #1
-  000e0	0a000036	 beq         |$cleanUp$45752|
+  000e0	0a000036	 beq         |$cleanUp$45753|
   000e4	e59f00fc	 ldr         r0, [pc, #0xFC]
   000e8	eb000000	 bl          NKDbgPrintfW
   000ec	ea000032	 b           |$LN26@Device_Pro@3|
@@ -3838,7 +3838,7 @@
   001b8	e12fff13	 bx          r3
   001bc		 |$LN26@Device_Pro@3|
   001bc	e5942440	 ldr         r2, [r4, #0x440]
-  001c0		 |$cleanUp$45752|
+  001c0		 |$cleanUp$45753|
 
 ; 1121 :             //OALMSG(OAL_ETHER&&OAL_FUNC, (L"Device_ProcessEPx_TX: call pfnNotify COMPLETE -\r\n"));  
 ; 1122 :             //OALMSG(OAL_ETHER&&OAL_FUNC, (TEXT("Device_ProcessEPx_TX: ACK_COMPLETE\r\n")));
@@ -3881,7 +3881,7 @@
   001f8	00000000	 DCD         |??_C@_1EK@EFJCCDBC@?$AA?$CL?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA_?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAE?$AAP?$AAx?$AA_?$AAT?$AAX?$AA?3?$AA?5?$AAe?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AA?$DN@|
   001fc		 |$LN39@Device_Pro@3|
   001fc	00000000	 DCD         |dpCurSettings|
-  00200		 |$M46996|
+  00200		 |$M46997|
 
 			 ENDP  ; |Device_ProcessEPx_TX|
 
@@ -3889,7 +3889,7 @@
 	EXPORT	|??_C@_1LE@ICJADCP@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA?$CB?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AAT?$AAh?$AAr?$AAe?$AAa?$AAd?$AA?3?$AA?5?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47033| DCD	|$LN28@InterruptT|
+|$T47034| DCD	|$LN28@InterruptT|
 	DCD	0x40004801
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3919,7 +3919,7 @@
 
   00000		 |$LN28@InterruptT|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M47030|
+  00004		 |$M47031|
   00004	e1a08000	 mov         r8, r0
 
 ; 1142 :     USBFN_PDD *pPdd = pPddContext;
@@ -4150,7 +4150,7 @@
   00118	00000000	 DCD         |??_C@_1LE@ICJADCP@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA?$CB?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr?$AAu?$AAp?$AAt?$AAT?$AAh?$AAr?$AAe?$AAa?$AAd?$AA?3?$AA?5?$AAI?$AAn?$AAt?$AAe?$AAr?$AAr@|
   0011c		 |$LN31@InterruptT|
   0011c	00000000	 DCD         |dpCurSettings|
-  00120		 |$M47031|
+  00120		 |$M47032|
 
 			 ENDP  ; |InterruptThread|
 
@@ -4160,7 +4160,7 @@
 	EXPORT	|??_C@_1DA@IAIKGPDF@?$AA?$CL?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAs?$AAs?$AAu?$AAe?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47060| DCD	|$LN20@UfnPdd_Iss|
+|$T47061| DCD	|$LN20@UfnPdd_Iss|
 	DCD	0x40004001
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4198,7 +4198,7 @@
 
   00000		 |$LN20@UfnPdd_Iss|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M47057|
+  00004		 |$M47058|
   00004	e1a04002	 mov         r4, r2
   00008	e1a07001	 mov         r7, r1
   0000c	e1a08000	 mov         r8, r0
@@ -4233,7 +4233,7 @@
 ; 1259 :         OALMSG(OAL_ETHER, (L"UfnPdd_IssueTransfer:  error pTransfer is NULL\r\n"));
 
   00044	e3130a02	 tst         r3, #2, 20
-  00048	0a000021	 beq         |$ErrorReturn$45829|
+  00048	0a000021	 beq         |$ErrorReturn$45830|
   0004c	e59f00a0	 ldr         r0, [pc, #0xA0]
   00050	eb000000	 bl          NKDbgPrintfW
 
@@ -4325,7 +4325,7 @@
   000cc	e1a05000	 mov         r5, r0
   000d0		 |$LN16@UfnPdd_Iss|
   000d0	e5963440	 ldr         r3, [r6, #0x440]
-  000d4		 |$ErrorReturn$45829|
+  000d4		 |$ErrorReturn$45830|
 
 ; 1291 :     }
 ; 1292 :     
@@ -4354,7 +4354,7 @@
   000f8	00000000	 DCD         |??_C@_1DA@IAIKGPDF@?$AA?$CL?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAs?$AAs?$AAu?$AAe?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?$AN?$AA?6?$AA?$AA@|
   000fc		 |$LN25@UfnPdd_Iss|
   000fc	00000000	 DCD         |dpCurSettings|
-  00100		 |$M47058|
+  00100		 |$M47059|
 
 			 ENDP  ; |UfnPdd_IssueTransfer|
 
@@ -4363,7 +4363,7 @@
 	EXPORT	|??_C@_1DK@IJNOMNLM@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAA?$AAb?$AAo?$AAr?$AAt?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAe?$AAp?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47082| DCD	|$LN14@UfnPdd_Abo|
+|$T47083| DCD	|$LN14@UfnPdd_Abo|
 	DCD	0x40003601
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4392,7 +4392,7 @@
 
   00000		 |$LN14@UfnPdd_Abo|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M47079|
+  00004		 |$M47080|
   00004	e1a07002	 mov         r7, r2
   00008	e1a04001	 mov         r4, r1
   0000c	e1a06000	 mov         r6, r0
@@ -4512,7 +4512,7 @@
   000d0	00000000	 DCD         |??_C@_1DK@IJNOMNLM@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAA?$AAb?$AAo?$AAr?$AAt?$AAT?$AAr?$AAa?$AAn?$AAs?$AAf?$AAe?$AAr?$AA?5?$AAe?$AAp?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
   000d4		 |$LN18@UfnPdd_Abo|
   000d4	00000000	 DCD         |dpCurSettings|
-  000d8		 |$M47080|
+  000d8		 |$M47081|
 
 			 ENDP  ; |UfnPdd_AbortTransfer|
 
@@ -4520,7 +4520,7 @@
 	EXPORT	|??_C@_1CO@FFFEIOGH@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAt?$AAa?$AAl?$AAl?$AAE?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47101| DCD	|$LN11@UfnPdd_Sta|
+|$T47102| DCD	|$LN11@UfnPdd_Sta|
 	DCD	0x40001e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4539,7 +4539,7 @@
 
   00000		 |$LN11@UfnPdd_Sta|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47098|
+  00004		 |$M47099|
   00004	e1a05001	 mov         r5, r1
 
 ; 1383 :     USBFN_PDD *pPdd = pPddContext;
@@ -4614,7 +4614,7 @@
   00070	00000000	 DCD         |??_C@_1CO@FFFEIOGH@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAt?$AAa?$AAl?$AAl?$AAE?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AA?$AN?$AA?6?$AA?$AA@|
   00074		 |$LN14@UfnPdd_Sta|
   00074	00000000	 DCD         |dpCurSettings|
-  00078		 |$M47099|
+  00078		 |$M47100|
 
 			 ENDP  ; |UfnPdd_StallEndpoint|
 
@@ -4622,7 +4622,7 @@
 	EXPORT	|??_C@_1EM@DEDHGOEH@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAC?$AAl?$AAe?$AAa?$AAr?$AAE?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AAS?$AAt?$AAa?$AAl?$AAl?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAE?$AAP@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47119| DCD	|$LN11@UfnPdd_Cle|
+|$T47120| DCD	|$LN11@UfnPdd_Cle|
 	DCD	0x40002301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4644,7 +4644,7 @@
 
   00000		 |$LN11@UfnPdd_Cle|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47116|
+  00004		 |$M47117|
   00004	e1a04001	 mov         r4, r1
 
 ; 1432 :     USBFN_PDD *pPdd = pPddContext;
@@ -4726,7 +4726,7 @@
   00084	00000000	 DCD         |??_C@_1EM@DEDHGOEH@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAC?$AAl?$AAe?$AAa?$AAr?$AAE?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AAS?$AAt?$AAa?$AAl?$AAl?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAE?$AAP@|
   00088		 |$LN14@UfnPdd_Cle|
   00088	00000000	 DCD         |dpCurSettings|
-  0008c		 |$M47117|
+  0008c		 |$M47118|
 
 			 ENDP  ; |UfnPdd_ClearEndpointStall|
 
@@ -4734,7 +4734,7 @@
 	EXPORT	|??_C@_1DE@ECDCBICE@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAs?$AAE?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AAH?$AAa?$AAl?$AAt?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47140| DCD	|$LN13@UfnPdd_IsE|
+|$T47141| DCD	|$LN13@UfnPdd_IsE|
 	DCD	0x40001d01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4754,7 +4754,7 @@
 
   00000		 |$LN13@UfnPdd_IsE|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47137|
+  00004		 |$M47138|
   00004	e1a05002	 mov         r5, r2
   00008	e1a04001	 mov         r4, r1
 
@@ -4831,7 +4831,7 @@
   0006c	00000000	 DCD         |??_C@_1DE@ECDCBICE@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAs?$AAE?$AAn?$AAd?$AAp?$AAo?$AAi?$AAn?$AAt?$AAH?$AAa?$AAl?$AAt?$AAe?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
   00070		 |$LN16@UfnPdd_IsE|
   00070	00000000	 DCD         |dpCurSettings|
-  00074		 |$M47138|
+  00074		 |$M47139|
 
 			 ENDP  ; |UfnPdd_IsEndpointHalted|
 
@@ -4843,7 +4843,7 @@
 	EXPORT	|??_C@_1EK@GPBDHODF@?$AA?$CL?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAe?$AAn?$AAd?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAS?$AAt?$AAa?$AAt?$AAu?$AAs?$AAH?$AAa?$AAn?$AAd?$AAs?$AAh?$AAa@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47166| DCD	|$LN19@UfnPdd_Sen|
+|$T47167| DCD	|$LN19@UfnPdd_Sen|
 	DCD	0x40004101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4910,7 +4910,7 @@
 
   00000		 |$LN19@UfnPdd_Sen|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M47163|
+  00004		 |$M47164|
   00004	e1a07001	 mov         r7, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -5047,7 +5047,7 @@
   000fc	00000000	 DCD         |??_C@_1EK@GPBDHODF@?$AA?$CL?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAe?$AAn?$AAd?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAS?$AAt?$AAa?$AAt?$AAu?$AAs?$AAH?$AAa?$AAn?$AAd?$AAs?$AAh?$AAa@|
   00100		 |$LN26@UfnPdd_Sen|
   00100	00000000	 DCD         |dpCurSettings|
-  00104		 |$M47164|
+  00104		 |$M47165|
 
 			 ENDP  ; |UfnPdd_SendControlStatusHandshake|
 
@@ -5055,7 +5055,7 @@
 	EXPORT	|??_C@_1EA@KNMJPPBI@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAt?$AAe?$AAR?$AAe?$AAm?$AAo?$AAt?$AAe?$AAW?$AAa?$AAk?$AAe?$AAu?$AAp?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47184| DCD	|$LN7@UfnPdd_Ini|
+|$T47185| DCD	|$LN7@UfnPdd_Ini|
 	DCD	0x40000c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5076,7 +5076,7 @@
 
   00000		 |$LN7@UfnPdd_Ini|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47181|
+  00004		 |$M47182|
 
 ; 1572 : 	UNREFERENCED_PARAMETER(pPddContext);
 ; 1573 : 
@@ -5103,7 +5103,7 @@
   00028	00000000	 DCD         |??_C@_1EA@KNMJPPBI@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAt?$AAe?$AAR?$AAe?$AAm?$AAo?$AAt?$AAe?$AAW?$AAa?$AAk?$AAe?$AAu?$AAp?$AA?$AN?$AA?6?$AA?$AA@|
   0002c		 |$LN10@UfnPdd_Ini|
   0002c	00000000	 DCD         |dpCurSettings|
-  00030		 |$M47182|
+  00030		 |$M47183|
 
 			 ENDP  ; |UfnPdd_InitiateRemoteWakeup|
 
@@ -5111,7 +5111,7 @@
 	EXPORT	|??_C@_1FG@KMPMJHMD@?$AAS?$AAt?$AAa?$AAr?$AAt?$AAU?$AAS?$AAB?$AAC?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47196| DCD	|$LN8@UfnPdd_Pow|
+|$T47197| DCD	|$LN8@UfnPdd_Pow|
 	DCD	0x40000e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5134,7 +5134,7 @@
 
   00000		 |$LN8@UfnPdd_Pow|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47193|
+  00004		 |$M47194|
 
 ; 1585 : 	UNREFERENCED_PARAMETER(pPddContext);
 ; 1586 : 
@@ -5165,14 +5165,14 @@
   00030	00000000	 DCD         |??_C@_1FG@KMPMJHMD@?$AAS?$AAt?$AAa?$AAr?$AAt?$AAU?$AAS?$AAB?$AAC?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAd?$AAi?$AAs?$AAa?$AAb?$AAl@|
   00034		 |$LN11@UfnPdd_Pow|
   00034	00000000	 DCD         |dpCurSettings|
-  00038		 |$M47194|
+  00038		 |$M47195|
 
 			 ENDP  ; |UfnPdd_PowerDown|
 
 	EXPORT	|UfnPdd_PowerUp|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47208| DCD	|$LN8@UfnPdd_Pow@2|
+|$T47209| DCD	|$LN8@UfnPdd_Pow@2|
 	DCD	0x40000e01
 ; Function compile flags: /Ogspy
 
@@ -5184,7 +5184,7 @@
 
   00000		 |$LN8@UfnPdd_Pow@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47205|
+  00004		 |$M47206|
 
 ; 1599 : 	UNREFERENCED_PARAMETER(pPddContext);
 ; 1600 : 
@@ -5215,14 +5215,14 @@
   00030	00000000	 DCD         |??_C@_1FE@IACJAPMH@?$AAS?$AAt?$AAa?$AAr?$AAt?$AAU?$AAS?$AAB?$AAC?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?3?$AA?5?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe@|
   00034		 |$LN11@UfnPdd_Pow@2|
   00034	00000000	 DCD         |dpCurSettings|
-  00038		 |$M47206|
+  00038		 |$M47207|
 
 			 ENDP  ; |UfnPdd_PowerUp|
 
 	EXPORT	|UfnPdd_IOControl|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47224| DCD	|$LN13@UfnPdd_IOC|
+|$T47225| DCD	|$LN13@UfnPdd_IOC|
 	DCD	0x40001300
 ; Function compile flags: /Ogspy
 
@@ -5233,7 +5233,7 @@
 ; 1614 : ) {
 
   00000		 |$LN13@UfnPdd_IOC|
-  00000		 |$M47221|
+  00000		 |$M47222|
   00000	e3a03822	 mov         r3, #0x22, 16
 
 ; 1615 :     DWORD rc = ERROR_INVALID_PARAMETER;
@@ -5293,14 +5293,14 @@
 ; 1641 : }
 
   00048	e12fff1e	 bx          lr
-  0004c		 |$M47222|
+  0004c		 |$M47223|
 
 			 ENDP  ; |UfnPdd_IOControl|
 
 	EXPORT	|UfnPdd_Deinit|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47234| DCD	|$LN8@UfnPdd_Dei|
+|$T47235| DCD	|$LN8@UfnPdd_Dei|
 	DCD	0x40000c00
 ; Function compile flags: /Ogspy
 
@@ -5311,7 +5311,7 @@
 ; 1648 : {
 
   00000		 |$LN8@UfnPdd_Dei|
-  00000		 |$M47231|
+  00000		 |$M47232|
 
 ; 1649 :     USBFN_PDD *pPdd = pPddContext;
 ; 1650 : 
@@ -5354,14 +5354,14 @@
 ; 1666 : }
 
   0002c	e12fff1e	 bx          lr
-  00030		 |$M47232|
+  00030		 |$M47233|
 
 			 ENDP  ; |UfnPdd_Deinit|
 
 	EXPORT	|UfnPdd_DeregisterDevice|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47243| DCD	|$LN5@UfnPdd_Der|
+|$T47244| DCD	|$LN5@UfnPdd_Der|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -5372,7 +5372,7 @@
 ; 1675 : {
 
   00000		 |$LN5@UfnPdd_Der|
-  00000		 |$M47240|
+  00000		 |$M47241|
 
 ; 1676 :     // Should shut down the endpoint...
 ; 1677 :     // This function is not currently called
@@ -5386,7 +5386,7 @@
 ; 1682 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47241|
+  00008		 |$M47242|
 
 			 ENDP  ; |UfnPdd_DeregisterDevice|
 
@@ -5395,7 +5395,7 @@
 	IMPORT	|DisconnectHardware|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47255| DCD	|$LN8@UfnPdd_Sto|
+|$T47256| DCD	|$LN8@UfnPdd_Sto|
 	DCD	0x40001901
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5413,7 +5413,7 @@
 
   00000		 |$LN8@UfnPdd_Sto|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47252|
+  00004		 |$M47253|
   00004	e1a04000	 mov         r4, r0
 
 ; 1694 :     USBFN_PDD *pPdd = pPddContext;
@@ -5468,14 +5468,14 @@
   0005c	00000000	 DCD         |??_C@_1BM@ELBPNMDN@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAt?$AAo?$AAp?$AA?$AN?$AA?6?$AA?$AA@|
   00060		 |$LN11@UfnPdd_Sto|
   00060	00000000	 DCD         |dpCurSettings|
-  00064		 |$M47253|
+  00064		 |$M47254|
 
 			 ENDP  ; |UfnPdd_Stop|
 
 	EXPORT	|UfnPdd_DeinitEndpoint|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47267| DCD	|$LN5@UfnPdd_Dei@2|
+|$T47268| DCD	|$LN5@UfnPdd_Dei@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -5486,7 +5486,7 @@
 ; 1715 : {
 
   00000		 |$LN5@UfnPdd_Dei@2|
-  00000		 |$M47264|
+  00000		 |$M47265|
 
 ; 1716 : 	UNREFERENCED_PARAMETER(pPddContext);
 ; 1717 : 	UNREFERENCED_PARAMETER(endPoint);
@@ -5499,14 +5499,14 @@
 ; 1721 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47265|
+  00008		 |$M47266|
 
 			 ENDP  ; |UfnPdd_DeinitEndpoint|
 
 	EXPORT	|UfnPdd_InitEndpoint|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47276| DCD	|$LN5@UfnPdd_Ini@2|
+|$T47277| DCD	|$LN5@UfnPdd_Ini@2|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -5517,7 +5517,7 @@
 ; 1763 : {
 
   00000		 |$LN5@UfnPdd_Ini@2|
-  00000		 |$M47273|
+  00000		 |$M47274|
 
 ; 1764 : 	UNREFERENCED_PARAMETER(pPddContext);
 ; 1765 : 	UNREFERENCED_PARAMETER(endpoint);
@@ -5535,7 +5535,7 @@
 ; 1774 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47274|
+  00008		 |$M47275|
 
 			 ENDP  ; |UfnPdd_InitEndpoint|
 
@@ -5543,7 +5543,7 @@
 	EXPORT	|??_C@_1DE@EDFIEPML@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAe?$AAt?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47289| DCD	|$LN7@UfnPdd_Set|
+|$T47290| DCD	|$LN7@UfnPdd_Set|
 	DCD	0x40001101
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5563,7 +5563,7 @@
 
   00000		 |$LN7@UfnPdd_Set|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47286|
+  00004		 |$M47287|
   00004	e1a04001	 mov         r4, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -5601,7 +5601,7 @@
   0003c	00000000	 DCD         |??_C@_1DE@EDFIEPML@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAe?$AAt?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00040		 |$LN10@UfnPdd_Set|
   00040	00000000	 DCD         |dpCurSettings|
-  00044		 |$M47287|
+  00044		 |$M47288|
 
 			 ENDP  ; |UfnPdd_SetAddress|
 
@@ -5611,7 +5611,7 @@
 	IMPORT	|OALStall|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47304| DCD	|$LN8@UfnPdd_Sta@2|
+|$T47305| DCD	|$LN8@UfnPdd_Sta@2|
 	DCD	0x40003001
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5630,7 +5630,7 @@
 
   00000		 |$LN8@UfnPdd_Sta@2|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47301|
+  00004		 |$M47302|
   00004	e1a04000	 mov         r4, r0
 
 ; 1818 :     USBFN_PDD *pPdd = pPddContext;
@@ -5738,7 +5738,7 @@
   000b8	00000000	 DCD         |??_C@_1DA@KAOBCNKD@?$AA?$CL?$AAU?$AAS?$AAB?$AAF?$AAN?$AA?3?$AA?3?$AA?5?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAS?$AAt?$AAa?$AAr?$AAt?$AA?$AN?$AA?6?$AA?$AA@|
   000bc		 |$LN11@UfnPdd_Sta@2|
   000bc	00000000	 DCD         |dpCurSettings|
-  000c0		 |$M47302|
+  000c0		 |$M47303|
 
 			 ENDP  ; |UfnPdd_Start|
 
@@ -5747,7 +5747,7 @@
 	EXPORT	|??_C@_1DE@BDGEJFPP@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA_?$AAR?$AAe?$AAg?$AAi?$AAs?$AAt?$AAe?$AAr?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47371| DCD	|$LN58@UfnPdd_Reg|
+|$T47372| DCD	|$LN58@UfnPdd_Reg|
 	DCD	0x4000d302
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -5781,7 +5781,7 @@
   00000		 |$LN58@UfnPdd_Reg|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M47368|
+  00008		 |$M47369|
   00008	e1a06000	 mov         r6, r0
   0000c	e58d600c	 str         r6, [sp, #0xC]
 
@@ -6246,14 +6246,14 @@
   00344	00000000	 DCD         |dpCurSettings|
   00348		 |$LN62@UfnPdd_Reg|
   00348	00000000	 DCD         |??_C@_1DE@BDGEJFPP@?$AAU?$AAs?$AAb?$AAF?$AAn?$AAP?$AAd?$AAd?$AA_?$AAR?$AAe?$AAg?$AAi?$AAs?$AAt?$AAe?$AAr?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
-  0034c		 |$M47369|
+  0034c		 |$M47370|
 
 			 ENDP  ; |UfnPdd_RegisterDevice|
 
 	EXPORT	|UfnPdd_IsEndpointSupportable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47386| DCD	|$LN6@UfnPdd_IsE@2|
+|$T47387| DCD	|$LN6@UfnPdd_IsE@2|
 	DCD	0x40000700
 ; Function compile flags: /Ogspy
 
@@ -6264,7 +6264,7 @@
 ; 2065 : ) {
 
   00000		 |$LN6@UfnPdd_IsE@2|
-  00000		 |$M47383|
+  00000		 |$M47384|
   00000	e3510000	 cmp         r1, #0
 
 ; 2066 : 	UNREFERENCED_PARAMETER(pPddContext);
@@ -6295,7 +6295,7 @@
 ; 2082 : }
 
   00018	e12fff1e	 bx          lr
-  0001c		 |$M47384|
+  0001c		 |$M47385|
 
 			 ENDP  ; |UfnPdd_IsEndpointSupportable|
 
@@ -6303,7 +6303,7 @@
 	EXPORT	|??_C@_1EI@OOOAJGFK@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAs?$AAC?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAa?$AAt?$AAi?$AAo?$AAn?$AAS?$AAu?$AAp?$AAp?$AAo?$AAr?$AAt?$AAa?$AAb?$AAl@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47410| DCD	|$LN22@UfnPdd_IsC|
+|$T47411| DCD	|$LN22@UfnPdd_IsC|
 	DCD	0x40003b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -6324,7 +6324,7 @@
 
   00000		 |$LN22@UfnPdd_IsC|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47407|
+  00004		 |$M47408|
   00004	e1a05002	 mov         r5, r2
 
 ; 2115 :     DWORD rc = ERROR_INVALID_PARAMETER;
@@ -6407,7 +6407,7 @@
   00074	83a02b01	 movhi       r2, #1, 22
   00078	e2033003	 and         r3, r3, #3
   0007c	e3530001	 cmp         r3, #1
-  00080	0a000014	 beq         |$cleanUp$46294|
+  00080	0a000014	 beq         |$cleanUp$46295|
 
 ; 2150 :             {
 ; 2151 :                 // Actual driver doesn't support ISO endpoints
@@ -6453,7 +6453,7 @@
 ; 2163 :         rc = ERROR_SUCCESS;
 
   000d4	33a04000	 movcc       r4, #0
-  000d8		 |$cleanUp$46294|
+  000d8		 |$cleanUp$46295|
 
 ; 2164 :     
 ; 2165 : cleanUp:
@@ -6468,7 +6468,7 @@
   000e4	00000000	 DCD         |??_C@_1EI@OOOAJGFK@?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAs?$AAC?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAa?$AAt?$AAi?$AAo?$AAn?$AAS?$AAu?$AAp?$AAp?$AAo?$AAr?$AAt?$AAa?$AAb?$AAl@|
   000e8		 |$LN25@UfnPdd_IsC|
   000e8	00000000	 DCD         |dpCurSettings|
-  000ec		 |$M47408|
+  000ec		 |$M47409|
 
 			 ENDP  ; |UfnPdd_IsConfigurationSupportable|
 
@@ -6480,7 +6480,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47453| DCD	|$LN28@UfnPdd_Ini@3|
+|$T47454| DCD	|$LN28@UfnPdd_Ini@3|
 	DCD	0x40009a02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -6520,7 +6520,7 @@
   00000		 |$LN28@UfnPdd_Ini@3|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M47450|
+  00008		 |$M47451|
   00008	e58d3000	 str         r3, [sp]
   0000c	e1a03001	 mov         r3, r1
   00010	e58d3008	 str         r3, [sp, #8]
@@ -6580,13 +6580,13 @@
   00060	e5943440	 ldr         r3, [r4, #0x440]
   00064		 |$LN25@UfnPdd_Ini@3|
   00064	e3130001	 tst         r3, #1
-  00068	0a00005a	 beq         |$clean$46311|
+  00068	0a00005a	 beq         |$clean$46312|
   0006c	e59f01ec	 ldr         r0, [pc, #0x1EC]
   00070	eb000000	 bl          NKDbgPrintfW
 
 ; 2204 :         goto clean;
 
-  00074	ea000057	 b           |$clean$46311|
+  00074	ea000057	 b           |$clean$46312|
   00078		 |$LN3@UfnPdd_Ini@3|
 
 ; 2205 :     }
@@ -6748,7 +6748,7 @@
   001cc	e59d300c	 ldr         r3, [sp, #0xC]
   001d0	e5933004	 ldr         r3, [r3, #4]
   001d4	e5823004	 str         r3, [r2, #4]
-  001d8		 |$clean$46311|
+  001d8		 |$clean$46312|
   001d8	e5943440	 ldr         r3, [r4, #0x440]
 
 ; 2260 : clean:
@@ -6821,14 +6821,14 @@
   00260	00000000	 DCD         |??_C@_1HE@JFIJHLAK@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAU?$AAf?$AAn?$AAP?$AAd?$AAd?$AA_?$AAI?$AAn?$AAi?$AAt?$AA?3?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAr?$AAo?$AAl?$AAl?$AAe?$AAr?$AA?5?$AAr@|
   00264		 |$LN56@UfnPdd_Ini@3|
   00264	00000000	 DCD         |??_C@_1CI@KOBDIJLJ@?$AA?$CL?$AAU?$AAS?$AAB?$AAF?$AAN?$AA?3?$AA?3?$AA?5?$AAP?$AAD?$AAD?$AA?5?$AAI?$AAn?$AAi?$AAt?$AA?$AN?$AA?6?$AA?$AA@|
-  00268		 |$M47451|
+  00268		 |$M47452|
 
 			 ENDP  ; |UfnPdd_Init|
 
 	EXPORT	|UfnPdd_DllEntry|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47490| DCD	|$LN5@UfnPdd_Dll|
+|$T47491| DCD	|$LN5@UfnPdd_Dll|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -6839,7 +6839,7 @@
 ; 2269 : ) {
 
   00000		 |$LN5@UfnPdd_Dll|
-  00000		 |$M47487|
+  00000		 |$M47488|
 
 ; 2270 : 	UNREFERENCED_PARAMETER(hDllHandle);
 ; 2271 : 	UNREFERENCED_PARAMETER(reason);
@@ -6852,7 +6852,7 @@
 ; 2275 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47488|
+  00008		 |$M47489|
 
 			 ENDP  ; |UfnPdd_DllEntry|
 

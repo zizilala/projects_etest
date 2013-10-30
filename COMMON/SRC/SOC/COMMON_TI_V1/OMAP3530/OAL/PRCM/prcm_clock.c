@@ -38,16 +38,26 @@ extern OMAP_SYSC_GENERAL_REGS     *g_pSysCtrlGenReg;
 //-----------------------------------------------------------------------------
 // dpll configuration table
 //
+// CM_CLKEN_PLL_MPU: EN_MPU_DPLL_LPMODE
+// Reserved
+// Reserved
+// CM_CLKEN_PLL_MPU: EN_MPU_DPLL_DRIFTGUARD
+// CM_CLKEN_PLL_MPU: EN_MPU_DPLL
+// CM_CLKSEL1_PLL_MPU: MPU_CLK_SRC
+// CM_CLKSEL1_PLL_MPU: MPU_DPLL_MULT
+// CM_CLKSEL1_PLL_MPU: MPU_DPLL_DIV
+// M_IDLEST_MPU: ST_MPU
+//
 static
 DpllState_t _dpll_1 = {
-    0,  
-    DPLL_RAMPTIME_DISABLE >> DPLL_RAMPTIME_SHIFT,  
-    DPLL_FREQSEL(1) >> DPLL_FREQSEL_SHIFT,  
-    0,  
-    DPLL_MODE_LOWPOWER_BYPASS >> DPLL_MODE_SHIFT,  
-    DPLL_CLK_SRC(1) >> DPLL_CLK_SRC_SHIFT,    
-    DPLL_MULT(0) >> DPLL_MULT_SHIFT,   
-    DPLL_DIV(0) >> DPLL_DIV_SHIFT, 
+    0,  // Disables LP mode
+    DPLL_RAMPTIME_DISABLE >> DPLL_RAMPTIME_SHIFT,
+    DPLL_FREQSEL(1) >> DPLL_FREQSEL_SHIFT,
+    0,  // Disables automatic recalibration mode
+    DPLL_MODE_LOWPOWER_BYPASS >> DPLL_MODE_SHIFT,
+    DPLL_CLK_SRC(1) >> DPLL_CLK_SRC_SHIFT,
+    DPLL_MULT(0) >> DPLL_MULT_SHIFT,
+    DPLL_DIV(0) >> DPLL_DIV_SHIFT,
     DPLL_AUTOIDLE_DISABLED >> DPLL_AUTOIDLE_SHIFT,
     1
 };
@@ -112,6 +122,9 @@ DpllState_t _dpll_5 = {
 //-----------------------------------------------------------------------------
 // clock divisor table
 //
+// UINT	count;
+// UINT	id;
+// UINT	divisor;
 SrcClockDivisorTable_t _ssr_fclk = {1, {{kCOREX2_FCLK, 1}}};
 SrcClockDivisorTable_t _cam_fclk = {1, {{kDPLL4_CLKOUT_M5X2, 16}}};
 SrcClockDivisorTable_t _dss1_fclk= {1, {{kDPLL4_CLKOUT_M4X2, 16}}};
@@ -124,16 +137,16 @@ SrcClockDivisorTable_t _tv_fclk =  {2, {{kDPLL4_M3X2_CLK, 16}, {kSYS_ALTCLK, 0}}
 // initialize voltage domain ref count
 //
 VddRefCountTable s_VddTable = {    
-    0,                      // kVDD1
-    0,                      // kVDD2
-    0,                      // kVDD3
-    0,                      // kVDD4
-    0,                      // kVDD5
-    0,                      // kVDD_EXT
-    0,                      // kVDDS
-    0,                      // kVDDPLL
-    0,                      // kVDDADAC
-    0,                      // kMMC_VDDS
+    0,		// kVDD1
+    0,		// kVDD2
+    0,		// kVDD3
+    0,		// kVDD4
+    0,		// kVDD5
+    0,		// kVDD_EXT
+    0,		// kVDDS
+    0,		// kVDDPLL
+    0,		// kVDDADAC
+    0,		// kMMC_VDDS
 };
 
 
@@ -197,7 +210,8 @@ DpllClkOutMap s_DpllClkOutTable = {
 SrcClockMap s_SrcClockTable = {
     {
 /*
-    Parent Clock      RefCount  isDPLL  SrcClockDivisorTbl  clock
+    Parent Clock	RefCount	isDPLL			SrcClockDivisorTbl	clock
+    parentClk		refCount	bIsDpllSrcClk	pDivisors
 --------------------------------------------------------------------------
 */
     kDPLL1_CLKOUT_M2X2,     0,  TRUE,   NULL,               kDPLL1_M2X2_CLK
@@ -384,21 +398,19 @@ SrcClockMap s_SrcClockTable = {
 
 //-----------------------------------------------------------------------------
 static
-BOOL
-_ClockInitialize(
+BOOL _ClockInitialize(
     DpllState_t    *pDpll,    
     UINT            cm_clken_pll,
     UINT            cm_clksel_pll,
     UINT            cm_autoidle_pll,
-    UINT            outputDivisor
-    )
+    UINT            outputDivisor)
 {
     BOOL rc = TRUE;
-    OALMSG(OAL_FUNC, (L"+_ClockInitialize("
-        L"pDpll=0x%08X, cm_clken_pll=0x%08X, cm_clksel_pll=0x%08X"
-        L"cm_autoidle_pll=0x%08X)\r\n", pDpll,
-        cm_clken_pll, cm_clksel_pll, cm_autoidle_pll)
-        );
+
+    OALMSG(1, (L"+_ClockInitialize(" // OAL_FUNC
+        L"pDpll=0x%08X, cm_clken_pll=0x%08X, cm_clksel_pll=0x%08X, "
+        L"cm_autoidle_pll=0x%08X)\r\n", 
+        pDpll, cm_clken_pll, cm_clksel_pll, cm_autoidle_pll));
 
     // all values are normalized and then cached in SDRAM
 
@@ -406,19 +418,24 @@ _ClockInitialize(
     pDpll->dpllAutoidleState = (cm_autoidle_pll & DPLL_AUTOIDLE_MASK) >> DPLL_AUTOIDLE_SHIFT;
 
     // save dpll modes
-    pDpll->lowPowerEnabled = (cm_clken_pll & EN_DPLL_LPMODE) >> EN_DPLL_LPMODE_SHIFT;
-    pDpll->dpllMode = (cm_clken_pll & DPLL_MODE_MASK) >> DPLL_MODE_SHIFT;
-    pDpll->driftGuard = (cm_clken_pll & EN_DPLL_DRIFTGUARD) >> EN_DPLL_DRIFTGUARD_SHIFT;
-    pDpll->rampTime = (cm_clken_pll & DPLL_RAMPTIME_MASK) >> DPLL_RAMPTIME_SHIFT;
+    pDpll->lowPowerEnabled	= (cm_clken_pll & EN_DPLL_LPMODE) >> EN_DPLL_LPMODE_SHIFT;
+    pDpll->dpllMode			= (cm_clken_pll & DPLL_MODE_MASK) >> DPLL_MODE_SHIFT;
+    pDpll->driftGuard		= (cm_clken_pll & EN_DPLL_DRIFTGUARD) >> EN_DPLL_DRIFTGUARD_SHIFT;
+//brian    pDpll->rampTime = (cm_clken_pll & DPLL_RAMPTIME_MASK) >> DPLL_RAMPTIME_SHIFT;
 
     // frequency info
-    pDpll->freqSelection = (cm_clken_pll & DPLL_FREQSEL_MASK) >> DPLL_FREQSEL_SHIFT;
-    pDpll->sourceDivisor = (cm_clksel_pll & DPLL_CLK_SRC_MASK) >> DPLL_CLK_SRC_SHIFT;
-    pDpll->divisor = (cm_clksel_pll & DPLL_DIV_MASK) >> DPLL_DIV_SHIFT;
-    pDpll->multiplier = (cm_clksel_pll & DPLL_MULT_MASK) >> DPLL_MULT_SHIFT;
-    pDpll->outputDivisor = outputDivisor;
+//brian    pDpll->freqSelection = (cm_clken_pll & DPLL_FREQSEL_MASK) >> DPLL_FREQSEL_SHIFT;
+    pDpll->sourceDivisor= (cm_clksel_pll & DPLL_CLK_SRC_MASK) >> DPLL_CLK_SRC_SHIFT;
+    pDpll->divisor 		= (cm_clksel_pll & DPLL_DIV_MASK) >> DPLL_DIV_SHIFT;
+    pDpll->multiplier	= (cm_clksel_pll & DPLL_MULT_MASK) >> DPLL_MULT_SHIFT;
+    pDpll->outputDivisor= outputDivisor;
 
-    OALMSG(OAL_FUNC, (L"-_ClockInitialize()=%d\r\n", rc));
+//	OALMSG(1, (L"+_ClockInitialize("
+//        L"dpllAutoidleState=0x%08X, lowPowerEnabled=0x%08X, dpllMode=0x%08X, "
+//        L"driftGuard=0x%08X, sourceDivisor=0x%08X, divisor=0x%08X,)\r\n", 
+//        pDpll->dpllAutoidleState, pDpll->lowPowerEnabled, pDpll->dpllMode, pDpll->driftGuard, pDpll->sourceDivisor, pDpll->divisor));
+
+    OALMSG(1, (L"-_ClockInitialize()=%d\r\n", rc));
     return rc;    
 }
 
@@ -434,7 +451,7 @@ _ClockHwUpdateParentClock(
     BOOL rc = FALSE;
     UINT parentClock;
     SrcClockDivisorTable_t *pDivisors;
-    OALMSG(OAL_FUNC, (L"+_ClockHwUpdateParentClock(clockId=%d)\r\n", clockId));
+    OALMSG(1, (L"+_ClockHwUpdateParentClock(clockId=%d)\r\n", clockId));
 
     // quick check for valid source clock id's
     if (clockId > kSOURCE_CLOCK_COUNT) goto cleanUp;
@@ -676,7 +693,7 @@ _ClockHwUpdateParentClock(
                 }
             break;
 
-        case kCAM_MCLK:
+        /*case kCAM_MCLK:
             // format divider
             val = INREG32(&g_pPrcmCm->pOMAP_CAM_CM->CM_CLKSEL_CAM);
             val = (val & ~CLKSEL_CAM_MASK);
@@ -684,7 +701,7 @@ _ClockHwUpdateParentClock(
 
             // write to hw
             OUTREG32(&g_pPrcmCm->pOMAP_CAM_CM->CM_CLKSEL_CAM, val);
-            break;
+            break;*/
 
         case kDSS1_ALWON_FCLK:
             // format divider
@@ -873,7 +890,7 @@ _ClockHwUpdateParentClock(
     rc = TRUE;
             
 cleanUp:    
-    OALMSG(OAL_FUNC, (L"-_ClockHwUpdateParentClock()=%d\r\n", rc));
+    OALMSG(1, (L"-_ClockHwUpdateParentClock()=%d\r\n", rc));
     return rc;
 }
 
@@ -940,7 +957,7 @@ _ClockHwUpdateDpllState(
             break;
 
         case kDPLL2:
-            cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2);
+            /*cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2);
             cm_autoidle_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_AUTOIDLE_PLL_IVA2);
             if (ffMask & DPLL_UPDATE_LPMODE)
                 {
@@ -973,7 +990,7 @@ _ClockHwUpdateDpllState(
                 }
             
             OUTREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2, cm_clken_pll);
-            OUTREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_AUTOIDLE_PLL_IVA2, cm_autoidle_pll);
+            OUTREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_AUTOIDLE_PLL_IVA2, cm_autoidle_pll);*/
             break;
 
         case kDPLL3:
@@ -1109,18 +1126,13 @@ _ClockHwUpdateDpllState(
 }
 
 //-----------------------------------------------------------------------------
-static
-BOOL
-_ClockUpdateDpllOutput(
-    int dpllClkId,
-    BOOL bEnable
-    )
+static BOOL _ClockUpdateDpllOutput(int dpllClkId, BOOL bEnable)
 {
     int addRef;
+    
     if (!g_bSingleThreaded)
         OALMSG(OAL_FUNC, (L"+_ClockUpdateDpllOutput"
-            L"(srcClkId=%d, bEnable=%d)\r\n", dpllClkId, bEnable)
-            );
+            L"(srcClkId=%d, bEnable=%d)\r\n", dpllClkId, bEnable));
 
     // quick check for valid dpll source clock id's
     if ((UINT)dpllClkId > kDPLL_CLKOUT_COUNT) goto cleanUp;
@@ -1131,21 +1143,21 @@ _ClockUpdateDpllOutput(
     // update dpll refCount
     if ((s_DpllClkOutTable[dpllClkId].refCount == 0 && bEnable == TRUE) ||
         (s_DpllClkOutTable[dpllClkId].refCount == 1 && bEnable == FALSE))
-        {
+	{
         int dpllId = s_DpllClkOutTable[dpllClkId].dpllDomain;
 
         // update vdd refCount
         if ((s_DpllTable[dpllId].refCount == 0 && bEnable == TRUE) ||
             (s_DpllTable[dpllId].refCount == 1 && bEnable == FALSE))
-            {
+		{
             // increment vdd refCount
             int vddId = s_DpllTable[dpllId].vddDomain;            
             s_VddTable[vddId] += addRef;   
-            }
+		}
 
         // incrment dpll refCount
         s_DpllTable[dpllId].refCount += addRef;
-        }
+	}
 
     // increment dpllClkSrc refCount
     s_DpllClkOutTable[dpllClkId].refCount += addRef;    
@@ -1191,8 +1203,8 @@ _ClockHwUpdateDpllFrequency(
             OUTREG32(&g_pPrcmRestore->CM_CLKSEL2_PLL_MPU, outputDivisor);
             break;
 
-        case kDPLL2:
-            cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2);
+        case kDPLL2: // brian 
+            /*cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2);
             cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL1_PLL_IVA2);
 
             // update frequency selection and frequency
@@ -1205,7 +1217,7 @@ _ClockHwUpdateDpllFrequency(
 
             OUTREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2, cm_clken_pll);
             OUTREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL1_PLL_IVA2, cm_clksel_pll);
-            OUTREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL2_PLL_IVA2, outputDivisor);
+            OUTREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL2_PLL_IVA2, outputDivisor);*/
             break;
 
         case kDPLL3:
@@ -1328,7 +1340,7 @@ ClockInitialize()
     UINT parentClock = 0;
     SrcClockDivisorTable_t *pDivisors;
 
-    OALMSG(OAL_FUNC, (L"+ClockInitialize()\r\n"));
+    OALMSG(1, (L"+ClockInitialize()\r\n"));
 
     // initialize dpll settings with what's current set in hw
 
@@ -1337,48 +1349,43 @@ ClockInitialize()
     cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_MPU_CM->CM_CLKSEL1_PLL_MPU);
     cm_autoidle_pll = INREG32(&g_pPrcmCm->pOMAP_MPU_CM->CM_AUTOIDLE_PLL_MPU);
     outputDivisor = INREG32(&g_pPrcmCm->pOMAP_MPU_CM->CM_CLKSEL2_PLL_MPU) >> DPLL_MPU_CLKOUT_DIV_SHIFT;
-    _ClockInitialize(&_dpll_1, cm_clken_pll, cm_clksel_pll, 
-        cm_autoidle_pll, outputDivisor);
+    _ClockInitialize(&_dpll_1, cm_clken_pll, cm_clksel_pll, cm_autoidle_pll, outputDivisor);
 
-    // dpll 2    
-    cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2);
-    cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL1_PLL_IVA2);
-    cm_autoidle_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_AUTOIDLE_PLL_IVA2);
-    outputDivisor = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL2_PLL_IVA2) >> DPLL_IVA2_CLKOUT_DIV_SHIFT;
-    _ClockInitialize(&_dpll_2, cm_clken_pll, cm_clksel_pll, 
-        cm_autoidle_pll, outputDivisor);
+    // dpll 2 - brian
+    //cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKEN_PLL_IVA2);
+    //cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL1_PLL_IVA2);
+    //cm_autoidle_pll = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_AUTOIDLE_PLL_IVA2);
+    //outputDivisor = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL2_PLL_IVA2) >> DPLL_IVA2_CLKOUT_DIV_SHIFT;
+    //_ClockInitialize(&_dpll_2, cm_clken_pll, cm_clksel_pll, cm_autoidle_pll, outputDivisor);
 
     // dpll 3
     cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_CLKEN_PLL);
     cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_CLKSEL1_PLL) >> DPLL_CORE_CLKSEL_SHIFT;
     cm_autoidle_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_AUTOIDLE_PLL);
     outputDivisor = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_CLKSEL1_PLL) >> DPLL_CORE_CLKOUT_DIV_SHIFT;
-    _ClockInitialize(&_dpll_3, cm_clken_pll, cm_clksel_pll, 
-        cm_autoidle_pll, outputDivisor);
+    _ClockInitialize(&_dpll_3, cm_clken_pll, cm_clksel_pll, cm_autoidle_pll, outputDivisor);
 
     // dpll 4
     outputDivisor = (UINT)-1;
     cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_CLKEN_PLL) >> DPLL_PER_MODE_SHIFT;
     cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_CLKSEL2_PLL);
     cm_autoidle_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_AUTOIDLE_PLL) >> DPLL_PER_MODE_SHIFT;
-    _ClockInitialize(&_dpll_4, cm_clken_pll, cm_clksel_pll, 
-        cm_autoidle_pll, outputDivisor);
+    _ClockInitialize(&_dpll_4, cm_clken_pll, cm_clksel_pll, cm_autoidle_pll, outputDivisor);
 
     // dpll 5
     outputDivisor = (UINT)-1;
     cm_clken_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_CLKEN2_PLL);
     cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_CLKSEL4_PLL);
     cm_autoidle_pll = INREG32(&g_pPrcmCm->pOMAP_CLOCK_CONTROL_CM->CM_AUTOIDLE2_PLL);
-    _ClockInitialize(&_dpll_5, cm_clken_pll, cm_clksel_pll, 
-        cm_autoidle_pll, outputDivisor);
+    _ClockInitialize(&_dpll_5, cm_clken_pll, cm_clksel_pll, cm_autoidle_pll, outputDivisor);
 
     // Save dss clksel configuration
     pDivisors = s_SrcClockTable[kDSS1_ALWON_FCLK].pDivisors;
     pDivisors->SourceClock[0].divisor = CLKSEL_DSS1(INREG32(&g_pPrcmCm->pOMAP_DSS_CM->CM_CLKSEL_DSS));
 
     // Save Tv out clksel configuration
-    pDivisors = s_SrcClockTable[k54M_FCLK].pDivisors;
-    pDivisors->SourceClock[0].divisor = CLKSEL_TV(INREG32(&g_pPrcmCm->pOMAP_DSS_CM->CM_CLKSEL_DSS));
+    //brian pDivisors = s_SrcClockTable[k54M_FCLK].pDivisors;
+    //brian pDivisors->SourceClock[0].divisor = CLKSEL_TV(INREG32(&g_pPrcmCm->pOMAP_DSS_CM->CM_CLKSEL_DSS));
 
     // set GPTimer2(used as high perfomance timer)  to use SYSCLK
     SETREG32(&g_pPrcmCm->pOMAP_PER_CM->CM_CLKSEL_PER, CLKSEL_GPT2);
@@ -1395,13 +1402,13 @@ ClockInitialize()
     s_SrcClockTable[kGPT9_ALWON_FCLK].parentClk = (cm_clksel_per & CLKSEL_GPT9) ? kSYS_CLK : k32K_FCLK;    
 
     // Save camera clksel configuration
-    pDivisors = s_SrcClockTable[kCAM_MCLK].pDivisors;
-    pDivisors->SourceClock[0].divisor = CLKSEL_CAM(INREG32(&g_pPrcmCm->pOMAP_CAM_CM->CM_CLKSEL_CAM));
+    //brian pDivisors = s_SrcClockTable[kCAM_MCLK].pDivisors;
+    //brian pDivisors->SourceClock[0].divisor = CLKSEL_CAM(INREG32(&g_pPrcmCm->pOMAP_CAM_CM->CM_CLKSEL_CAM));
 
     // Save Sgx clksel configuration
     cm_clksel_pll = INREG32(&g_pPrcmCm->pOMAP_SGX_CM->CM_CLKSEL_SGX);
     switch (cm_clksel_pll & CLKSEL_SGX_MASK)
-        {
+	{
         case 0:
             parentClock = kCORE_CLK;
             outputDivisor = 3;
@@ -1441,20 +1448,20 @@ ClockInitialize()
             parentClock = kCOREX2_FCLK;
             outputDivisor = 5;
             break;
-        }
+	}
 
     pDivisors = s_SrcClockTable[kSGX_FCLK].pDivisors;
     for (i = 0; i < pDivisors->count; ++i)
-        {
+	{
         if (parentClock == pDivisors->SourceClock[i].id)
-            {
+		{
             s_SrcClockTable[kSGX_FCLK].parentClk = parentClock;
             pDivisors->SourceClock[i].divisor = cm_clksel_pll & CLKSEL_SGX_MASK;
             break;
-            }
-        }
+		}
+	}
 
-    OALMSG(OAL_FUNC, (L"-_ClockInitialize()=%d\r\n", rc));
+    OALMSG(1, (L"-ClockInitialize()=%d\r\n", rc));
     return rc;    
 }
 
@@ -1476,17 +1483,17 @@ ClockUpdateParentClock(
     // check if clock is being enabled/disabled
     if ((s_SrcClockTable[srcClkId].refCount == 0 && bEnable == TRUE) ||
         (s_SrcClockTable[srcClkId].refCount == 1 && bEnable == FALSE))
-        {         
+	{         
         if (s_SrcClockTable[srcClkId].bIsDpllSrcClk == TRUE)
-            {
+		{
             // update dpll output clocks
             _ClockUpdateDpllOutput(s_SrcClockTable[srcClkId].parentClk, bEnable);
-            }
+		}
         else
-            {
+		{
             ClockUpdateParentClock(s_SrcClockTable[srcClkId].parentClk, bEnable);
-            }
-        }
+		}
+	}
     // increment src clk refCount
     s_SrcClockTable[srcClkId].refCount += (bEnable != FALSE) ? 1 : -1;
     
@@ -1520,7 +1527,7 @@ PrcmClockSetDivisor(
     BOOL rc = FALSE;
     SrcClockDivisorTable_t *pDivisors;
     
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetDivisor"
+    OALMSG(1, (L"+PrcmClockSetDivisor"
         L"(clockId=%d, parentClockId=%d, divisor=%d)\r\n", 
         clockId, parentClockId, divisor)
         );
@@ -1541,14 +1548,14 @@ PrcmClockSetDivisor(
             rc = _ClockHwUpdateParentClock(clockId);
             break;
 
-        case kCAM_MCLK:            
+        /*case kCAM_MCLK:            
             // validate parameters
             if (parentClockId != pDivisors->SourceClock[0].id || divisor > 16) goto cleanUp;
             
             // store divisor settings
             pDivisors->SourceClock[0].divisor = divisor;
             rc = _ClockHwUpdateParentClock(clockId);
-            break;
+            break;*/
 
         case kDSS1_ALWON_FCLK:
             // validate parameters
@@ -1644,7 +1651,7 @@ PrcmClockSetDivisor(
 cleanUp: 
     // release sync handle    
     Unlock(Mutex_Clock);
-    OALMSG(OAL_FUNC, (L"-PrcmClockSetDivisor()=%d\r\n", rc));
+    OALMSG(1, (L"-PrcmClockSetDivisor()=%d\r\n", rc));
     return rc;
 }
 
@@ -1657,7 +1664,7 @@ PrcmClockSetParent(
 {    
     BOOL rc = FALSE;
     UINT oldParentClockId;
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetParent"
+    OALMSG(1, (L"+PrcmClockSetParent"
         L"(clockId=%d, newParentClockId=%d)\r\n", clockId, newParentClockId)
         );
 
@@ -1831,7 +1838,7 @@ PrcmClockSetParent(
 cleanUp:    
     // release sync handle    
     Unlock(Mutex_Clock);
-    OALMSG(OAL_FUNC, (L"-PrcmClockSetParent()=%d\r\n", TRUE));
+    OALMSG(1, (L"-PrcmClockSetParent()=%d\r\n", TRUE));
     return TRUE;
 }
 
@@ -1844,7 +1851,7 @@ PrcmClockGetParentClockRefcount(
     )
 {
     BOOL rc = FALSE;
-    OALMSG(OAL_FUNC, (L"+PrcmClockGetParentClockRefcount"
+    OALMSG(1, (L"+PrcmClockGetParentClockRefcount"
         L"(clockId=%d, nLevel=%d)\r\n", clockId, nLevel)
         );
 
@@ -1884,7 +1891,7 @@ PrcmClockGetParentClockRefcount(
         }
     
 
-    OALMSG(OAL_FUNC, (L"+PrcmClockGetParentClockRefcount()=%d\r\n", rc));
+    OALMSG(1, (L"+PrcmClockGetParentClockRefcount()=%d\r\n", rc));
     return rc;
 }
 
@@ -1898,7 +1905,7 @@ PrcmClockGetParentClockInfo(
 {
     BOOL rc = FALSE;
     UINT parentClock;
-    OALMSG(OAL_FUNC, (L"+PrcmClockGetParentClockInfo"
+    OALMSG(1, (L"+PrcmClockGetParentClockInfo"
         L"(clockId=%d, nLevel=%d, pInfo=0x%08X)\r\n", clockId, nLevel, pInfo)
         );
 
@@ -1953,7 +1960,7 @@ PrcmClockGetParentClockInfo(
     rc = PrcmClockGetParentClockRefcount(parentClock, nLevel, &pInfo->refCount);
 
 cleanUp:    
-    OALMSG(OAL_FUNC, (L"+PrcmClockGetParentClockInfo()=%d\r\n", rc));
+    OALMSG(1, (L"+PrcmClockGetParentClockInfo()=%d\r\n", rc));
     return rc;
 }
 
@@ -1965,7 +1972,7 @@ PrcmClockSetDpllState(
 {
     BOOL rc = FALSE;
     DpllState_t *pDpll;
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetDpllState(pInfo=0x%08X)\r\n", pInfo));
+    //OALMSG(1, (L"+PrcmClockSetDpllState(pInfo=0x%08X)\r\n", pInfo));
 
     Lock(Mutex_DeviceClock);
     if (pInfo->dpllId > kDPLL5) goto cleanUp;
@@ -2004,7 +2011,7 @@ PrcmClockSetDpllState(
 
 cleanUp:    
     Unlock(Mutex_DeviceClock);
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetDpllState()=%d\r\n", rc));
+    //OALMSG(1, (L"+PrcmClockSetDpllState()=%d\r\n", rc));
     return rc;
 }
 
@@ -2020,7 +2027,7 @@ PrcmClockSetDpllFrequency(
 {
     BOOL rc = FALSE;
     DpllState_t *pDpll;
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetDpllFrequency"
+    OALMSG(1, (L"+PrcmClockSetDpllFrequency"
         L"(dpllId=%d, m=%d, n=%d, freqSel=%d)\r\n", 
         dpllId, m, n, freqSel
         ));
@@ -2048,7 +2055,7 @@ PrcmClockSetDpllFrequency(
     
 cleanUp:    
     Unlock(Mutex_DeviceClock);
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetDpllFrequency()=%d\r\n", rc));
+    OALMSG(1, (L"+PrcmClockSetDpllFrequency()=%d\r\n", rc));
     return rc;
 }    
 
@@ -2061,7 +2068,7 @@ PrcmClockSetDpllAutoIdleState(
 {
     BOOL rc = FALSE;
     DpllState_t *pDpll;
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetDpllAutoIdleState"
+    OALMSG(1, (L"+PrcmClockSetDpllAutoIdleState"
         L"(dpllId=%d, dpllAutoidleState=0x%08X)\r\n", 
         dpllId, dpllAutoidleState)
         );
@@ -2076,7 +2083,7 @@ PrcmClockSetDpllAutoIdleState(
     
 cleanUp:    
     
-    OALMSG(OAL_FUNC, (L"+PrcmClockSetDpllAutoIdleState()=%d\r\n", rc));
+    OALMSG(1, (L"+PrcmClockSetDpllAutoIdleState()=%d\r\n", rc));
     return rc;
 }
 
@@ -2142,7 +2149,7 @@ PrcmClockGetDpllState(
 {
     UINT val = 0; 
     OMAP_CM_REGS *pPrcmCm;
-    OALMSG(OAL_FUNC, (L"+PrcmClockGetDpllState(dpllId=%d)\r\n", dpllId));
+    OALMSG(1, (L"+PrcmClockGetDpllState(dpllId=%d)\r\n", dpllId));
 
     switch (dpllId)
         {
@@ -2150,9 +2157,9 @@ PrcmClockGetDpllState(
             pPrcmCm = GetCmRegisterSet(POWERDOMAIN_MPU);
             break;
 
-        case kDPLL2:
+        /*brian case kDPLL2:
             pPrcmCm = GetCmRegisterSet(POWERDOMAIN_IVA2);
-            break;
+            break;*/
 
         default:
             goto cleanUp;
@@ -2161,7 +2168,7 @@ PrcmClockGetDpllState(
     val = INREG32(&pPrcmCm->CM_IDLEST_PLL_xxx);
 
 cleanUp:
-    OALMSG(OAL_FUNC, (L"-PrcmClockGetDpllState()=0x%08X\r\n", val));
+    OALMSG(1, (L"-PrcmClockGetDpllState()=0x%08X\r\n", val));
     return val;
 }
 
@@ -2235,14 +2242,14 @@ PrcmClockGetClockRate(
 	       freq = freq / ((float)(val2 >> DPLL_MPU_CLKOUT_DIV_SHIFT));
 		break;
 		
-	 case IVA_CLK:
+	 /*brian case IVA_CLK:
 	    // get iva frequency
 	    val = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL1_PLL_IVA2);
 	    val2 = INREG32(&g_pPrcmCm->pOMAP_IVA2_CM->CM_CLKSEL1_PLL_IVA2);
 	    freq = ((float)((val & DPLL_MULT_MASK)>>DPLL_MULT_SHIFT) * sys_clk) /
 	                    ((float)((val & DPLL_DIV_MASK) >> DPLL_DIV_SHIFT) + 1.0f);
 	    freq = freq / ((float)(val2 >> DPLL_IVA2_CLKOUT_DIV_SHIFT));
-           break;
+           break;*/
 		
 	 case CORE_CLK:
 	    // get core frequency
@@ -2551,7 +2558,7 @@ static PTCHAR DomainNameTable[POWERDOMAIN_COUNT] = {
     L"POWERDOMAIN_MPU",
     L"POWERDOMAIN_DSS",
     L"POWERDOMAIN_NEON",
-    L"POWERDOMAIN_IVA2",
+//    L"POWERDOMAIN_IVA2",
     L"POWERDOMAIN_CAMERA",
     L"POWERDOMAIN_SGX",
     L"POWERDOMAIN_EFUSE",

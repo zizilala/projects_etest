@@ -26,15 +26,15 @@ extern "C" {
 #define PUBLIC_ROM_CRC_ES2_1    0x6880d8d6
 
 #define CPU_FAMILY_SHIFT     8
-#define CHIP_ID_SHIFT            16
+#define CHIP_ID_SHIFT		16
 
 #define CPU_REVISION_MASK   0xFF
-#define CPU_FAMILY_MASK       0xFF
-#define CHIP_ID_MASK             0xFFFF
-#define CHIP_FEATURE_MASK  0x7C00
+#define CPU_FAMILY_MASK		0xFF
+#define CHIP_ID_MASK		0xFFFF
+#define CHIP_FEATURE_MASK	0x7C00
 
-#define CPU_ID(x)                     ((x>>CHIP_ID_SHIFT) & CHIP_ID_MASK)
-#define CPU_FAMILY(x)             ((x>>CPU_FAMILY_SHIFT) & CPU_FAMILY_MASK)
+#define CPU_ID(x)                ((x>>CHIP_ID_SHIFT) & CHIP_ID_MASK)
+#define CPU_FAMILY(x)            ((x>>CPU_FAMILY_SHIFT) & CPU_FAMILY_MASK)
 #define CPU_REVISION(x)          ((x) & CPU_REVISION_MASK)
 
 /*
@@ -42,8 +42,8 @@ extern "C" {
  */
  typedef enum {
     CPU_FAMILY_OMAP35XX=0,             /* OMAP35xx devices     */
-    CPU_FAMILY_DM37XX,                 /* OMAP37xx devices     */
-    CPU_FAMILY_AM35XX,                   /* AM3517 devices         */
+    CPU_FAMILY_DM37XX,                     /* OMAP37xx devices     */
+    CPU_FAMILY_AM35XX,                     /* AM3517 devices         */
     CPU_FAMILY_MAX_ID    
 }CPU_FAMILY_tag;
 
@@ -55,8 +55,8 @@ extern "C" {
 #define CPU_FAMILY_35XX_REVISION_ES_1_0     0
 #define CPU_FAMILY_35XX_REVISION_ES_2_0     1
 #define CPU_FAMILY_35XX_REVISION_ES_2_1     2
-#define CPU_FAMILY_35XX_REVISION_ES_2_0_CRC     3
-#define CPU_FAMILY_35XX_REVISION_ES_2_1_CRC     4
+#define CPU_FAMILY_35XX_REVISION_ES_2_0_CRC	3
+#define CPU_FAMILY_35XX_REVISION_ES_2_1_CRC	4
 #define CPU_FAMILY_35XX_REVISION_ES_3_0     5
 #define CPU_FAMILY_35XX_REVISION_ES_3_1     6
 #define CPU_FAMILY_37XX_REVISION_ES_1_0     0x10
@@ -91,27 +91,27 @@ extern "C" {
 /*
  * Hawkeye values
  */
-#define HAWKEYE_OMAP35XX        0xB7AE    /* 3530, 3525, 3515 */
-#define HAWKEYE_AM35XX            0x0000    /* 3517 */
-#define HAWKEYE_DM37XX            0xB891    /* 3730, 3705*/
+#define HAWKEYE_OMAP35XX	0xB7AE    /* 3530, 3525, 3515 */
+#define HAWKEYE_AM35XX		0x0000    /* 3517 */
+#define HAWKEYE_DM37XX		0xB891    /* 3730, 3705*/
 
-#define HAWKEYE_SHIFT           12
+#define HAWKEYE_SHIFT		12
 
 
 /*
  * Chip_id
  */
-#define CPU_OMAP3530            0x3530  
-#define CPU_OMAP3525            0x3525  
-#define CPU_OMAP3515            0x3515  
-#define CPU_OMAP3503            0x3503
+#define CPU_OMAP3530	0x3530  
+#define CPU_OMAP3525	0x3525  
+#define CPU_OMAP3515	0x3515  
+#define CPU_OMAP3503	0x3503
 
-#define CPU_DM3730            0x3730  
-#define CPU_DM3725            0x3725  
-#define CPU_DM3715            0x3715  
-#define CPU_DM3703            0x3703
+#define CPU_DM3730		0x3730  
+#define CPU_DM3725		0x3725  
+#define CPU_DM3715		0x3715  
+#define CPU_DM3703		0x3703
 
-#define CPU_AM3517        0x3517
+#define CPU_AM3517		0x3517
 
 typedef struct {
     UINT16    chip_id;

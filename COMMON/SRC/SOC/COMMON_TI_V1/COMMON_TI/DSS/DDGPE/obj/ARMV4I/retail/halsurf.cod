@@ -62,7 +62,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42506| DCD	|$LN5@BytesPerPi|
+|$T42514| DCD	|$LN5@BytesPerPi|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -73,7 +73,7 @@
 ; 183  :     {
 
   00000		 |$LN5@BytesPerPi|
-  00000		 |$M42503|
+  00000		 |$M42511|
 
 ; 184  :         return m_BytesPixel;
 
@@ -82,14 +82,14 @@
 ; 185  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42504|
+  00008		 |$M42512|
 
 			 ENDP  ; |?BytesPerPixel@GPESurf@@QAAHXZ|, GPESurf::BytesPerPixel
 
 	EXPORT	|?PrimarySurface@GPE@@QAAPAVGPESurf@@XZ| ; GPE::PrimarySurface
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42516| DCD	|$LN5@PrimarySur|
+|$T42524| DCD	|$LN5@PrimarySur|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -100,7 +100,7 @@
 ; 471  :     {
 
   00000		 |$LN5@PrimarySur|
-  00000		 |$M42513|
+  00000		 |$M42521|
 
 ; 472  :         return m_pPrimarySurface;
 
@@ -109,7 +109,7 @@
 ; 473  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42514|
+  00008		 |$M42522|
 
 			 ENDP  ; |?PrimarySurface@GPE@@QAAPAVGPESurf@@XZ|, GPE::PrimarySurface
 
@@ -117,7 +117,7 @@
 ; File c:\wince600\public\common\oak\inc\ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42526| DCD	|$LN5@IsOverlay|
+|$T42534| DCD	|$LN5@IsOverlay|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -128,7 +128,7 @@
 ; 313  : 	{
 
   00000		 |$LN5@IsOverlay|
-  00000		 |$M42523|
+  00000		 |$M42531|
 
 ; 314  : 		return m_bOverlay; 
 
@@ -137,14 +137,14 @@
 ; 315  : 	}
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42524|
+  00008		 |$M42532|
 
 			 ENDP  ; |?IsOverlay@DDGPESurf@@QAAHXZ|, DDGPESurf::IsOverlay
 
 	EXPORT	|?SetOverlay@DDGPESurf@@QAAXXZ|		; DDGPESurf::SetOverlay
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42534| DCD	|$LN5@SetOverlay|
+|$T42542| DCD	|$LN5@SetOverlay|
 	DCD	0x40000300
 ; Function compile flags: /Ogspy
 
@@ -155,7 +155,7 @@
 ; 318  : 	{
 
   00000		 |$LN5@SetOverlay|
-  00000		 |$M42531|
+  00000		 |$M42539|
 
 ; 319  : 		m_bOverlay = TRUE; 
 
@@ -165,7 +165,7 @@
 ; 320  : 	}
 
   00008	e12fff1e	 bx          lr
-  0000c		 |$M42532|
+  0000c		 |$M42540|
 
 			 ENDP  ; |?SetOverlay@DDGPESurf@@QAAXXZ|, DDGPESurf::SetOverlay
 
@@ -173,7 +173,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42548| DCD	|$LN7@DDGPEPrima|
+|$T42556| DCD	|$LN7@DDGPEPrima|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 ; File c:\wince600\public\common\oak\inc\ddgpe.h
@@ -185,7 +185,7 @@
 ; 506  :     DDGPESurf * DDGPEPrimarySurface() {
 
   00000		 |$LN7@DDGPEPrima|
-  00000		 |$M42545|
+  00000		 |$M42553|
 
 ; 507  : #ifdef _CPPRTTI
 ; 508  : 
@@ -202,7 +202,7 @@
 ; 516  :     }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M42546|
+  00008		 |$M42554|
 
 			 ENDP  ; |?DDGPEPrimarySurface@DDGPE@@QAAPAVDDGPESurf@@XZ|, DDGPE::DDGPEPrimarySurface
 
@@ -210,7 +210,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\dssai.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42558| DCD	|$LN5@PixelForma|
+|$T42566| DCD	|$LN5@PixelForma|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -218,13 +218,13 @@
 
   00000		 |?PixelFormat@OMAPSurface@@QAA?AW4OMAP_DSS_PIXELFORMAT@@XZ| PROC ; OMAPSurface::PixelFormat
 
-; 760  :     OMAP_DSS_PIXELFORMAT    PixelFormat() { return m_ePixelFormat; }
+; 765  :     OMAP_DSS_PIXELFORMAT    PixelFormat() { return m_ePixelFormat; }
 
   00000		 |$LN5@PixelForma|
-  00000		 |$M42555|
+  00000		 |$M42563|
   00000	e5900004	 ldr         r0, [r0, #4]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42556|
+  00008		 |$M42564|
 
 			 ENDP  ; |?PixelFormat@OMAPSurface@@QAA?AW4OMAP_DSS_PIXELFORMAT@@XZ|, OMAPSurface::PixelFormat
 
@@ -232,7 +232,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42568| DCD	|$LN5@OmapSurfac|
+|$T42576| DCD	|$LN5@OmapSurfac|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -243,17 +243,17 @@
 ; 102  :     OMAPSurface*        OmapSurface() { return m_pSurface; }
 
   00000		 |$LN5@OmapSurfac|
-  00000		 |$M42565|
+  00000		 |$M42573|
   00000	e590007c	 ldr         r0, [r0, #0x7C]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42566|
+  00008		 |$M42574|
 
 			 ENDP  ; |?OmapSurface@OMAPDDGPESurface@@QAAPAVOMAPSurface@@XZ|, OMAPDDGPESurface::OmapSurface
 
 	EXPORT	|?Parent@OMAPDDGPESurface@@QAAPAV1@XZ|	; OMAPDDGPESurface::Parent
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42578| DCD	|$LN5@Parent|
+|$T42586| DCD	|$LN5@Parent|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -264,17 +264,17 @@
 ; 104  :     OMAPDDGPESurface*   Parent() { return m_pParentSurface; }
 
   00000		 |$LN5@Parent|
-  00000		 |$M42575|
+  00000		 |$M42583|
   00000	e5900084	 ldr         r0, [r0, #0x84]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42576|
+  00008		 |$M42584|
 
 			 ENDP  ; |?Parent@OMAPDDGPESurface@@QAAPAV1@XZ|, OMAPDDGPESurface::Parent
 
 	EXPORT	|?SetParent@OMAPDDGPESurface@@QAAXPAV1@@Z| ; OMAPDDGPESurface::SetParent
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42587| DCD	|$LN5@SetParent|
+|$T42595| DCD	|$LN5@SetParent|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -285,10 +285,10 @@
 ; 105  :     VOID                SetParent( OMAPDDGPESurface* pParent ) { m_pParentSurface = pParent; }
 
   00000		 |$LN5@SetParent|
-  00000		 |$M42584|
+  00000		 |$M42592|
   00000	e5801084	 str         r1, [r0, #0x84]
   00004	e12fff1e	 bx          lr
-  00008		 |$M42585|
+  00008		 |$M42593|
 
 			 ENDP  ; |?SetParent@OMAPDDGPESurface@@QAAXPAV1@@Z|, OMAPDDGPESurface::SetParent
 
@@ -296,7 +296,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\halsurf.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42597| DCD	|$LN5@HalGetBltS|
+|$T42605| DCD	|$LN5@HalGetBltS|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -307,7 +307,7 @@
 ; 73   : {
 
   00000		 |$LN5@HalGetBltS|
-  00000		 |$M42594|
+  00000		 |$M42602|
 
 ; 74   :     pd->ddRVal = DD_OK;
 
@@ -321,7 +321,7 @@
 ; 76   : }
 
   0000c	e12fff1e	 bx          lr
-  00010		 |$M42595|
+  00010		 |$M42603|
 
 			 ENDP  ; |?HalGetBltStatus@@YAKPAU_DDHAL_GETBLTSTATUSDATA@@@Z|, HalGetBltStatus
 
@@ -330,7 +330,7 @@
 	IMPORT	|DDGPECanCreateSurface|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42624| DCD	|$LN60@HalCanCrea|
+|$T42632| DCD	|$LN60@HalCanCrea|
 	DCD	0x4000e301
 ; Function compile flags: /Ogspy
 
@@ -342,7 +342,7 @@
 
   00000		 |$LN60@HalCanCrea|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M42621|
+  00004		 |$M42629|
   00004	e1a06000	 mov         r6, r0
 
 ; 84   :     DWORD   result;
@@ -824,7 +824,7 @@
   00384	32595559	 DCD         0x32595559
   00388		 |$LN66@HalCanCrea|
   00388	88760218	 DCD         0x88760218
-  0038c		 |$M42622|
+  0038c		 |$M42630|
 
 			 ENDP  ; |?HalCanCreateSurface@@YAKPAU_DDHAL_CANCREATESURFACEDATA@@@Z|, HalCanCreateSurface
 
@@ -838,7 +838,7 @@
 ; File c:\wince600\public\common\oak\inc\gpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42736| DCD	|$LN106@HalCreateS|
+|$T42744| DCD	|$LN106@HalCreateS|
 	DCD	0x40015c02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -871,7 +871,7 @@
   00000		 |$LN106@HalCreateS|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd014	 sub         sp, sp, #0x14
-  00008		 |$M42733|
+  00008		 |$M42741|
   00008	e1a06000	 mov         r6, r0
 
 ; 242  :     DWORD                       result = DDHAL_DRIVER_HANDLED;
@@ -1125,7 +1125,7 @@
 ; 321  :     }
 ; 322  :     else
 
-  001dc	ea0000c1	 b           |$cleanUp$42134|
+  001dc	ea0000c1	 b           |$cleanUp$42142|
   001e0		 |$LN41@HalCreateS|
 
 ; 323  :     {
@@ -1577,7 +1577,7 @@
   004dc	e59f3068	 ldr         r3, [pc, #0x68]
   004e0	e3a08001	 mov         r8, #1
   004e4	e5863010	 str         r3, [r6, #0x10]
-  004e8		 |$cleanUp$42134|
+  004e8		 |$cleanUp$42142|
 
 ; 475  :     //  Clean up any allocations that were successful on a failure condition
 ; 476  :     if( pd->ddRVal != DD_OK )
@@ -1664,7 +1664,7 @@
   00568	55595659	 DCD         0x55595659
   0056c		 |$LN116@HalCreateS|
   0056c	32595559	 DCD         0x32595559
-  00570		 |$M42734|
+  00570		 |$M42742|
 
 			 ENDP  ; |?HalCreateSurface@@YAKPAU_DDHAL_CREATESURFACEDATA@@@Z|, HalCreateSurface
 
@@ -1678,7 +1678,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\inc\omap_ddgpe.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42772| DCD	|$LN14@HalDestroy|
+|$T42780| DCD	|$LN14@HalDestroy|
 	DCD	0x40002301
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\dss\ddgpe\halsurf.cpp
@@ -1691,7 +1691,7 @@
 
   00000		 |$LN14@HalDestroy|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M42769|
+  00004		 |$M42777|
   00004	e1a06000	 mov         r6, r0
 
 ; 506  :     DWORD               result;
@@ -1785,7 +1785,7 @@
   00088		 |$LN15@HalDestroy|
   00088		 |$LN16@HalDestroy|
   00088	00000000	 DCD         |?g_dwSurfaceCount@@3KA|
-  0008c		 |$M42770|
+  0008c		 |$M42778|
 
 			 ENDP  ; |?HalDestroySurface@@YAKPAU_DDHAL_DESTROYSURFACEDATA@@@Z|, HalDestroySurface
 
@@ -1794,7 +1794,7 @@
 	IMPORT	|?SurfaceFlipping@OMAPDDGPE@@QAAHPAVOMAPDDGPESurface@@H@Z| ; OMAPDDGPE::SurfaceFlipping
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42788| DCD	|$LN9@HalFlip|
+|$T42796| DCD	|$LN9@HalFlip|
 	DCD	0x40003601
 ; Function compile flags: /Ogspy
 
@@ -1806,7 +1806,7 @@
 
   00000		 |$LN9@HalFlip|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M42785|
+  00004		 |$M42793|
   00004	e1a05000	 mov         r5, r0
 
 ; 545  :     OMAPDDGPE*          pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -1919,14 +1919,14 @@
   000d4		 |$LN10@HalFlip|
   000d4		 |$LN11@HalFlip|
   000d4	8876021c	 DCD         0x8876021c
-  000d8		 |$M42786|
+  000d8		 |$M42794|
 
 			 ENDP  ; |?HalFlip@@YAKPAU_DDHAL_FLIPDATA@@@Z|, HalFlip
 
 	EXPORT	|?HalGetFlipStatus@@YAKPAU_DDHAL_GETFLIPSTATUSDATA@@@Z| ; HalGetFlipStatus
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42804| DCD	|$LN13@HalGetFlip|
+|$T42812| DCD	|$LN13@HalGetFlip|
 	DCD	0x40002501
 ; Function compile flags: /Ogspy
 
@@ -1938,7 +1938,7 @@
 
   00000		 |$LN13@HalGetFlip|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M42801|
+  00004		 |$M42809|
   00004	e1a04000	 mov         r4, r0
 
 ; 580  :     OMAPDDGPE*  pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -2027,7 +2027,7 @@
   00090		 |$LN14@HalGetFlip|
   00090		 |$LN15@HalGetFlip|
   00090	8876021c	 DCD         0x8876021c
-  00094		 |$M42802|
+  00094		 |$M42810|
 
 			 ENDP  ; |?HalGetFlipStatus@@YAKPAU_DDHAL_GETFLIPSTATUSDATA@@@Z|, HalGetFlipStatus
 
@@ -2035,7 +2035,7 @@
 	IMPORT	|?GetScanLine@OMAPDDGPE@@QAAKXZ|	; OMAPDDGPE::GetScanLine
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42817| DCD	|$LN5@HalGetScan|
+|$T42825| DCD	|$LN5@HalGetScan|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -2047,7 +2047,7 @@
 
   00000		 |$LN5@HalGetScan|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M42814|
+  00004		 |$M42822|
   00004	e1a04000	 mov         r4, r0
 
 ; 613  :     OMAPDDGPE*  pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -2073,7 +2073,7 @@
 
   00020	e8bd4010	 ldmia       sp!, {r4, lr}
   00024	e12fff1e	 bx          lr
-  00028		 |$M42815|
+  00028		 |$M42823|
 
 			 ENDP  ; |?HalGetScanLine@@YAKPAU_DDHAL_GETSCANLINEDATA@@@Z|, HalGetScanLine
 
@@ -2081,7 +2081,7 @@
 	IMPORT	|?GetPtr@GPESurf@@QAAPAEHH@Z|		; GPESurf::GetPtr
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42832| DCD	|$LN10@HalLock|
+|$T42840| DCD	|$LN10@HalLock|
 	DCD	0x40002601
 ; Function compile flags: /Ogspy
 
@@ -2093,7 +2093,7 @@
 
   00000		 |$LN10@HalLock|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M42829|
+  00004		 |$M42837|
   00004	e1a04000	 mov         r4, r0
 
 ; 625  :     OMAPDDGPE*  pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -2201,7 +2201,7 @@
   00094		 |$LN11@HalLock|
   00094		 |$LN12@HalLock|
   00094	8876021c	 DCD         0x8876021c
-  00098		 |$M42830|
+  00098		 |$M42838|
 
 			 ENDP  ; |?HalLock@@YAKPAU_DDHAL_LOCKDATA@@@Z|, HalLock
 
@@ -2209,7 +2209,7 @@
 	IMPORT	|DDGPEUnlock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42844| DCD	|$LN5@HalUnlock|
+|$T42852| DCD	|$LN5@HalUnlock|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -2221,7 +2221,7 @@
 
   00000		 |$LN5@HalUnlock|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42841|
+  00004		 |$M42849|
 
 ; 665  :     DWORD       result;    
 ; 666  : 
@@ -2236,7 +2236,7 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M42842|
+  00010		 |$M42850|
 
 			 ENDP  ; |?HalUnlock@@YAKPAU_DDHAL_UNLOCKDATA@@@Z|, HalUnlock
 
@@ -2246,7 +2246,7 @@
 	IMPORT	|?SetSrcColorKey@OMAPDDGPE@@QAAKK@Z|	; OMAPDDGPE::SetSrcColorKey
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42857| DCD	|$LN14@HalSetColo|
+|$T42865| DCD	|$LN14@HalSetColo|
 	DCD	0x40002501
 ; Function compile flags: /Ogspy
 
@@ -2258,7 +2258,7 @@
 
   00000		 |$LN14@HalSetColo|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M42854|
+  00004		 |$M42862|
   00004	e1a04000	 mov         r4, r0
 
 ; 679  :     OMAPDDGPE*          pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -2384,7 +2384,7 @@
   00090		 |$LN15@HalSetColo|
   00090		 |$LN16@HalSetColo|
   00090	88760190	 DCD         0x88760190
-  00094		 |$M42855|
+  00094		 |$M42863|
 
 			 ENDP  ; |?HalSetColorKey@@YAKPAU_DDHAL_SETCOLORKEYDATA@@@Z|, HalSetColorKey
 
@@ -2393,7 +2393,7 @@
 	IMPORT	|?SetAlphaConst@OMAPDDGPE@@QAAKW4OMAP_DSS_COLORKEY@@K@Z| ; OMAPDDGPE::SetAlphaConst
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42875| DCD	|$LN31@HalUpdateO|
+|$T42883| DCD	|$LN31@HalUpdateO|
 	DCD	0x40007e02
 ; Function compile flags: /Ogspy
 
@@ -2406,7 +2406,7 @@
   00000		 |$LN31@HalUpdateO|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M42872|
+  00008		 |$M42880|
   00008	e1a04000	 mov         r4, r0
 
 ; 734  :     OMAPDDGPE*          pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -2458,7 +2458,7 @@
 
 ; 749  :         if (DD_OK != pd->ddRVal)
 
-  00054	1a000064	 bne         |$Cleanup$42358|
+  00054	1a000064	 bne         |$Cleanup$42366|
   00058		 |$LN23@HalUpdateO|
 
 ; 750  :         {
@@ -2487,7 +2487,7 @@
 
 ; 759  :         if (DD_OK != pd->ddRVal)
 
-  0007c	1a00005a	 bne         |$Cleanup$42358|
+  0007c	1a00005a	 bne         |$Cleanup$42366|
   00080		 |$LN20@HalUpdateO|
 
 ; 760  :         {
@@ -2579,7 +2579,7 @@
   00110	e594304c	 ldr         r3, [r4, #0x4C]
   00114	e3a00001	 mov         r0, #1
   00118	e3530000	 cmp         r3, #0
-  0011c	1a000032	 bne         |$Cleanup$42358|
+  0011c	1a000032	 bne         |$Cleanup$42366|
   00120		 |$LN14@HalUpdateO|
 
 ; 789  :         {
@@ -2618,7 +2618,7 @@
 
 ; 799  :         if (DD_OK != pd->ddRVal)
 
-  00160	1a000021	 bne         |$Cleanup$42358|
+  00160	1a000021	 bne         |$Cleanup$42366|
   00164		 |$LN11@HalUpdateO|
 
 ; 800  :         {
@@ -2658,7 +2658,7 @@
   00194	e594304c	 ldr         r3, [r4, #0x4C]
   00198	e3a00001	 mov         r0, #1
   0019c	e3530000	 cmp         r3, #0
-  001a0	1a000011	 bne         |$Cleanup$42358|
+  001a0	1a000011	 bne         |$Cleanup$42366|
   001a4		 |$LN7@HalUpdateO|
 
 ; 814  :         {
@@ -2695,7 +2695,7 @@
   001c8	e594304c	 ldr         r3, [r4, #0x4C]
   001cc	e3a00001	 mov         r0, #1
   001d0	e3530000	 cmp         r3, #0
-  001d4	1a000004	 bne         |$Cleanup$42358|
+  001d4	1a000004	 bne         |$Cleanup$42366|
   001d8		 |$LN3@HalUpdateO|
 
 ; 828  :         {
@@ -2717,7 +2717,7 @@
 ; 836  :         result = DDHAL_DRIVER_HANDLED;
 
   001e8	03a00001	 moveq       r0, #1
-  001ec		 |$Cleanup$42358|
+  001ec		 |$Cleanup$42366|
 
 ; 837  :     }
 ; 838  : 
@@ -2731,7 +2731,7 @@
   001ec	e28dd004	 add         sp, sp, #4
   001f0	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   001f4	e12fff1e	 bx          lr
-  001f8		 |$M42873|
+  001f8		 |$M42881|
 
 			 ENDP  ; |?HalUpdateOverlay@@YAKPAU_DDHAL_UPDATEOVERLAYDATA@@@Z|, HalUpdateOverlay
 
@@ -2739,7 +2739,7 @@
 	IMPORT	|?MoveOverlay@OMAPDDGPE@@QAAKPAVOMAPDDGPESurface@@JJ@Z| ; OMAPDDGPE::MoveOverlay
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42887| DCD	|$LN5@HalSetOver|
+|$T42895| DCD	|$LN5@HalSetOver|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -2751,7 +2751,7 @@
 
   00000		 |$LN5@HalSetOver|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M42884|
+  00004		 |$M42892|
   00004	e1a05000	 mov         r5, r0
 
 ; 852  :     OMAPDDGPE*          pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -2784,14 +2784,14 @@
 
   00034	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00038	e12fff1e	 bx          lr
-  0003c		 |$M42885|
+  0003c		 |$M42893|
 
 			 ENDP  ; |?HalSetOverlayPosition@@YAKPAU_DDHAL_SETOVERLAYPOSITIONDATA@@@Z|, HalSetOverlayPosition
 
 	EXPORT	|?HalWaitForVerticalBlank@@YAKPAU_DDHAL_WAITFORVERTICALBLANKDATA@@@Z| ; HalWaitForVerticalBlank
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42898| DCD	|$LN8@HalWaitFor|
+|$T42906| DCD	|$LN8@HalWaitFor|
 	DCD	0x40001b01
 ; Function compile flags: /Ogspy
 
@@ -2803,7 +2803,7 @@
 
   00000		 |$LN8@HalWaitFor|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M42895|
+  00004		 |$M42903|
   00004	e1a04000	 mov         r4, r0
 
 ; 867  :     OMAPDDGPE*          pDDGPE = (OMAPDDGPE*) GetGPE();
@@ -2870,7 +2870,7 @@
 
   00064	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00068	e12fff1e	 bx          lr
-  0006c		 |$M42896|
+  0006c		 |$M42904|
 
 			 ENDP  ; |?HalWaitForVerticalBlank@@YAKPAU_DDHAL_WAITFORVERTICALBLANKDATA@@@Z|, HalWaitForVerticalBlank
 

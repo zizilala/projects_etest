@@ -103,10 +103,7 @@ extern UINT32 OALGetIdCode();
 //
 //  Called to determine the processor's supported feature set.
 //
-BOOL
-OALIsProcessorFeaturePresent(
-    DWORD feature
-    )
+BOOL OALIsProcessorFeaturePresent(DWORD feature)
 {
     BOOL rc = FALSE;
     IdCode_t idCode;
@@ -117,7 +114,7 @@ OALIsProcessorFeaturePresent(
     idCode.code = OALGetIdCode();
     idCode.architecture = ARCH_7;
 
-    OALMSG(OAL_INFO&&OAL_VERBOSE, (
+    OALMSG(OAL_INFO&&OAL_VERBOSE, ( 
         L"OALIsProcessorFeaturePresent: (0x%08x) %c 0x%02x 0x%03x 0x%03x 0x%02x\r\n",
         idCode.code, idCode.implementor, idCode.variant, idCode.architecture, 
         idCode.partNumber, idCode.revision
@@ -125,16 +122,18 @@ OALIsProcessorFeaturePresent(
     
     // Is it possible that this feature can be supported?
     for (idx = 0; idx < dimof(s_featureToArchitectureMask); ++idx)
-        {
-        if (s_featureToArchitectureMask[idx].feature == feature) break;
-        }
+	{
+        if (s_featureToArchitectureMask[idx].feature == feature) 
+        	break;
+	}
 
     if (idx < dimof(s_featureToArchitectureMask))
-        {
+	{
         // Yes, so now see if this CPU supports this feature.
         UINT32 mask = (1 << idCode.architecture);
         rc = (s_featureToArchitectureMask[idx].mask & mask) != 0;
-        }
+	}
+	
     return rc;
 }
 

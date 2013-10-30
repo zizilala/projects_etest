@@ -46,9 +46,9 @@ typedef struct
     TCHAR                   szDisplayInterface[MAX_NAMELEN];   
     BOOL                    fBatteryTapOn;                      // reg setting - do we turn on when screen/button tapped?
     BOOL                    fExternalTapOn;                     // reg setting - do we turn on when screen/button tapped? 
-    DWORD                   dwBattTimeout;                      // reg setting - we only want this to deal with special cases 
+    DWORD                   nLcdTimeout;                      // reg setting - we only want this to deal with special cases 
                                                                 // ('backlight off' currently, which PM doesn't know about)
-    DWORD                   dwACTimeout; 
+    DWORD                   dwBackLiteMode;
     BOOL                    fOnAC;                              // are we currently on ac power?
     CEDEVICE_POWER_STATE    dwCurState;                         // actual status (0=Off, 1=On)
     UCHAR                   ucSupportedStatesMask;              // which of D0-D4 driver supports
@@ -59,7 +59,8 @@ typedef struct
  //MYS   DWORD                   dwPddContext;                       // Context for device specific PDD 
 
     PFN_GetSystemPowerStatusEx2 pfnGetSystemPowerStatusEx2;
-    HINSTANCE                   hCoreDll;
+    HINSTANCE				hCoreDll;
+    DWORD					dwKBLMode;
 } BKL_MDD_INFO;
 
 

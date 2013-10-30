@@ -16,13 +16,11 @@
 //  This file implements OALFlashStoreXXX interface
 //
 #include "omap.h"
-//
 #pragma warning(push)
 #pragma warning(disable:4115)
 #include <fmd.h>
 #include <oal.h>
 #pragma warning(pop)
-//
 #include "oalex.h"
 
 //------------------------------------------------------------------------------
@@ -71,7 +69,6 @@ BuildLayoutInfo(
     );
 
 //------------------------------------------------------------------------------
-
 HANDLE OALFlashStoreOpen(DWORD address)
 {
     static OAL_FLASH_CONTEXT flashContext;
@@ -81,28 +78,24 @@ HANDLE OALFlashStoreOpen(DWORD address)
     ULONG block;
     DWORD status;
 
-    OALMSG(OAL_FLASH&&OAL_FUNC, (L"+OALFlashStoreOpen(0x%08x)\r\n", address));
+    OALMSG(1, (L"+OALFlashStoreOpen(0x%08x)\r\n", address)); // OAL_FLASH&&OAL_FUNC
 
     // Open FMD to access NAND
     
     regInfo.MemBase.Reg[0] = address;
     flashContext.pFmd = FMD_Init(NULL, &regInfo, NULL);
     if (flashContext.pFmd == NULL)
-        {
-        OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: "
-            L"FMD_Init call failed!\r\n"
-            ));
+	{
+        OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: FMD_Init call failed!\r\n" ));
         goto cleanUp;
-        }
+	}
 
     // Get flash info
     if (!FMD_GetInfo(&flashInfo))
-        {
-        OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: "
-            L"FMD_GetInfo call failed!\r\n"
-            ));
+	{
+        OALMSG(OAL_ERROR, (L"ERROR: OALFlashStoreOpen: FMD_GetInfo call failed!\r\n"));
         goto cleanUp;
-        }
+	}
     flashContext.sectorSize = flashInfo.wDataBytesPerSector;
     flashContext.sectorsPerBlock = flashInfo.wSectorsPerBlock;
     flashContext.blocksOnFlash = flashInfo.dwNumBlocks;
@@ -113,34 +106,29 @@ HANDLE OALFlashStoreOpen(DWORD address)
     // Get number of reserved blocks
     block = 0;
     while (block < flashContext.blocksOnFlash)
-        {
+	{
         status = FMD_GetBlockStatus(block);
         if ((status & BLOCK_STATUS_BAD) != 0)
-            {
+		{
             block++;
             continue;
-            }
+		}
         if ((status & BLOCK_STATUS_RESERVED) == 0) break;
         flashContext.reservedBlocks++;
         block++;
-        }
+	}
 
-    OALMSG(OAL_INFO, (L"OALFlashStoreOpen: "
-        L"%d blocks, %d sectors/block\r\n",
-        flashContext.blocksOnFlash, flashContext.sectorsPerBlock
-        ));
-    OALMSG(OAL_INFO, (L"OALFlashStoreOpen: "
-        L"%d bytes/sector, %d reserved blocks\r\n",
-        flashContext.sectorSize, flashContext.reservedBlocks
-        ));
+    OALMSG(1, (L"OALFlashStoreOpen: %d blocks, %d sectors/block\r\n",
+        flashContext.blocksOnFlash, flashContext.sectorsPerBlock)); // OAL_INFO
+    OALMSG(1, (L"OALFlashStoreOpen: %d bytes/sector, %d reserved blocks\r\n",
+        flashContext.sectorSize, flashContext.reservedBlocks));
 
     // Done
     hFlash = &flashContext;
 
 cleanUp:
-    OALMSG(OAL_FLASH&&OAL_FUNC, (
-        L"-OALFlashStoreOpen(rc = 0x%08x)\r\n", hFlash
-        ));
+    OALMSG(1, (L"-OALFlashStoreOpen(rc = 0x%08x)\r\n", hFlash)); // OAL_FLASH&&OAL_FUNC
+    
     return hFlash;
 }
 
@@ -850,8 +838,8 @@ OALFlashStoreBlockSize(
 }
 
 //------------------------------------------------------------------------------
-
-ULONG OALFlashStoreSectorSize(HANDLE hFlash)
+ULONG
+OALFlashStoreSectorSize(HANDLE hFlash)
 {
     OAL_FLASH_CONTEXT *pFlash = hFlash;
     return pFlash->sectorSize;

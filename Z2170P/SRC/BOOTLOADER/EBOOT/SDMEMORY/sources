@@ -32,26 +32,27 @@ WINCETARGETFILES=BootImage
 NOMIPS16CODE=1
 WINCEOEM=1
 
-CDEFINES=$(CDEFINES) -DCOREDLL -DBUILDING_EBOOT_SD -DBSP_NO_NAND_IN_SDBOOT
+CDEFINES=$(CDEFINES) -DCOREDLL -DBUILDING_EBOOT_SD
 LDEFINES=/DEBUG /DEBUGTYPE:CV /FIXED:NO
 
 INCLUDES=$(INCLUDES);$(_PUBLICROOT)\common\oak\drivers\block\msflashfmd\inc
 INCLUDES=$(INCLUDES);..
 
-SOURCES=\
+SOURCES= \
     ..\main.c \
+    ..\HotKey.c \
     ..\eth.c \
     ..\menu.c \
     ..\stub.c \
     ..\flashmenu.c \
     ..\mmu.c \
     flash.c \
-    cfg.c	
+    cfg.c \
 
-
-ARM_SOURCES=\
+    
+ARM_SOURCES= \
     ..\startup.s \
-    ..\jumpto.s
+    ..\jumpto.s \
 
 
 TARGETLIBS= \
@@ -93,8 +94,13 @@ TARGETLIBS= \
     $(_EBOOTLIBS)\$(_CPUDEPPATH)\eboot.lib                                      \
     $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_ethdrv_usbfn.lib                  \
     $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_display.lib                            \
-    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_display_init.lib						\
-	$(_PLATCOMMONLIBARMRET)\ceddk_spi_lib.lib									\
-	
-							
-	
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_display_init.lib
+
+FILE_VIEW_INCLUDES_FOLDER= \
+    boot_cfg.h \
+    makefile.inc \
+
+FILE_VIEW_RESOURCE_FOLDER= \
+
+FILE_VIEW_ROOT_FOLDER= \
+
