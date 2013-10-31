@@ -20,6 +20,7 @@ UINT8 gEvent;
       gEventF2,
       gEventF4;*/
 //UINT8 readMatrix[8][8]; 
+UINT8 gMatrix[8];
 
 //-----------------------------------------------------------------------------
 //
@@ -50,84 +51,31 @@ void HotKeyInit(HANDLE hTwl)
 //-----------------------------------------------------------------------------
 //
 //3(0000_1000),2(0000_0010)
-BOOL matrixKeypadState(int row, int column)
+BOOL matrixStatus(int row, int col)
 {
-     /*BOOL rowEvent = FALSE,
-          colEvent = FALSE;*/
-     UINT8 rowEvent,
-           colEvent;
-     UINT8 i,j,result;
-     UINT8 check = 0; 
-     
+	BOOL eventEnd = false;
+	int i,j=0;
+	int rowResult,colResult;
 
-     /*switch(row)
-    {
-        case 0:
-            check = 0;
-            break;       
-        case 1:
-            check = 1;
-            break;  
-        case 2:
-            check = 2;
-            break;       
-        case 3:
-            check = 3;
-            break;  
-        case 4:
-            check = 4;
-            break;       
-        case 5:
-            check = 5;
-            break;  
-        case 6:
-            check = 6;
-            break;      
-        case 7:
-            check = 7;
-            break;  
-        default:
-            break;
-    }*/
+	for(i=0; i<8; i++){
+        if((M[i] & 0xFF))
+        {	
+			for(j=0; j<8; j++)
+			{
+			    if((M[j] & 0xFF)){
+					colResult = j;
+				}
+			}
+			rowResult = i;
+		}
+	}
+	
 
-    /*if(check == 3 && column ==2 || (check == 3 && column ==2)&&(check == 4 && column ==3)){
-        event1 = TRUE;
-    }else if(check == 4 && column ==3){
-        event2 = TRUE;
-    }else if(check == 3 && column ==1){
-        event3 = TRUE;
-    }*/
+	if(rowResult == row && colResult == col){
+		eventEnd = TRUE;
+	}
 
-    for(i=0; i<8; i++){
-        column &= (0x01 << row);        
-        if(column)
-        {
-            rowEvent = row;
-        }
-    }
-
-    for(j=0; j<8; j++){
-        row &= (0x01 << column);
-        if(row)
-        {
-            colEvent = column;
-        }
-    }
-
-    if(rowEvent == row && colEvent == column){
-        return TRUE;
-    }else{
-        return FALSE;
-    }
-    
-    
-    /*if(check & (column & 0xFF)){
-        colEvent = TRUE;
-    }else{
-        colEvent = FALSE; 
-    }*/
-    
-    //return event; 
+	return eventEnd;
 }
 
 //-----------------------------------------------------------------------------
@@ -139,7 +87,7 @@ void HotKeyFunction(HANDLE hTwl)
 	UINT8 matrix[8];
 	ULONG ik, ix, row, column;
     USHORT state;
-    /*int i;
+    ;
 
     for(i=0; i<Hotkey_EXIT; i++){
 		OALLog(L" [F%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
@@ -156,6 +104,7 @@ void HotKeyFunction(HANDLE hTwl)
 			OALLog(L" [%d]",matrix[ix]);
 		OALLog(L"\r\n");
 	}
+	gMatrix = matrix;
 	
 	for(row = 0, ik = 0; row < 8; row++)
 	{
