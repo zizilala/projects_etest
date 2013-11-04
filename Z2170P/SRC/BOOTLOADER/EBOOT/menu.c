@@ -232,17 +232,16 @@ VOID BLMenu(BOOL bForced)
     // First let user break to menu
     while (!bForced && (delay > 0 && key != L' ')) 
 	{
-		//OALLog(L"Hit space to enter configuration menu %d...\r\n", delay);
+		OALLog(L"Hit space to enter configuration menu %d...\r\n", delay);
 		time = OALGetTickCount();
 		while ((OALGetTickCount() - time) < 1000) 
 		{
 			if ((key = OALBLMenuReadKey(FALSE)) == L' ') 
 				break;
 		}
-		//delay--;
+		delay--;
 	}
     
-    //if ((bForced == TRUE) || (key == L' '))
     if ((bForced == TRUE) || (key == L' ')) 
     {
         OALBLMenuShow(&g_menuRoot);

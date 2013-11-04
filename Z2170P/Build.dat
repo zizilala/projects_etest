@@ -253,6 +253,35 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc\|b000|0|0|0|0|0|0|
  F|twl.h|4|0|1CC1614581797FF
   I|ceddkex.h|1
 
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\|3005|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+ F|bsp_logo.c|0|0|1CED946169500E0
+  I|bsp.h|1
+  I|bsp_logo.h|1
+  I|omap_dss_regs.h|1
+  I|lcd.h|1
+  I|oalex.h|1
+  I|eboot.h|1
+  I|sdk_gpio.h|1
+  I|twl.h|1
+  I|triton.h|1
+  I|tps659xx_internals.h|1
+ F|Build.err|80000|0|1CED946185A006A
+ F|Build.log|80000|0|1CED946185A006A
+ F|Build.wrn|80000|0|1CED946185A006A
+ F|graphic_engine.cpp|0|0|1CE9F14B900E9A2
+  I|windows.h|0
+  I|bsp.h|1
+  I|bsp_logo.h|1
+  I|omap_dss_regs.h|1
+  I|lcd.h|1
+  I|oalex.h|1
+  I|eboot.h|1
+  I|sdk_gpio.h|1
+  I|twl.h|1
+  I|triton.h|1
+  I|tps659xx_internals.h|1
+ F|obj\|0|10|0
+
 D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|BQ27410.c|0|0|1CEC40EE3C1377F
   I|bsp.h|1
@@ -276,7 +305,7 @@ D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0
  F|flashmenu.c|0|0|1CED140C93A5C04
   I|eboot.h|0
   I|fmdext.h|0
- F|hotkey.c|0|0|1CED5F6DA3ADD7D
+ F|hotkey.c|0|0|1CED9339732F7DB
   I|bsp.h|1
   I|tps659xx.h|1
   I|tps659xx_internals.h|1
@@ -294,7 +323,7 @@ D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0
   I|kxarm.h|1
   I|armmacros.s|1
  F|keypad.h|4|0|1CE9FB290FCEAC9
- F|main.c|0|0|1CED52DE8323CD0
+ F|main.c|0|0|1CED9280E78901C
   I|bsp.h|1
   I|eboot.h|0
   I|sdk_i2c.h|1
@@ -310,7 +339,7 @@ D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0
   I|omap_cpuver.h|1
  F|map.c|0|0|1CC161459E15B7F
   I|eboot.h|0
- F|menu.c|0|0|1CED5496C51AB71
+ F|menu.c|0|0|1CED91EDEBA04CF
   I|eboot.h|0
   I|omap_cpuver.h|1
  F|mmu.c|0|0|1CC161459E15B7F
@@ -331,27 +360,6 @@ D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0
   I|addrtab_cfg.inc|1
  F|stub.c|0|0|1CC16145B12887F
   I|bsp.h|1
-
-D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\|23005|0|0|0|0|0|0|0|0|0|0|0|0|0|0
- F|boot_cfg.h|4|0|1CEB844F3ECEA7F
- F|Build.err|80000|0|1CED5F71A102DDF
- F|Build.log|80000|0|1CED5F71A102DDF
- F|Build.wrn|80000|0|1CED5F71A102DDF
- F|cfg.c|0|0|1CEBFFF83DA237F
-  I|eboot.h|0
-  I|bsp_logo.h|0
-  I|lcd.h|1
- F|ebootsd.bib|80000|0|1CC161459E15B7F
- F|flash.c|0|0|1CEB44528C4007F
-  I|bsp.h|1
-  I|bootpart.h|0
-  I|boot_args.h|1
-  I|eboot.h|1
-  I|nand.h|1
-  I|blcommon.h|0
-  I|oalex.h|1
- F|obj\|0|10|0
- F|sources - dd|80000|0|1CECA48B968AC94
 
 D|C:\WINCE600\platform\Z2170P\src\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|addrtab_cfg.inc|4|0|1CEA2D1CD8170FF
@@ -543,10 +551,6 @@ D|C:\WINCE600\public\common\ddk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|linklist.h|0
  F|wzcmsq.h|4|0|1C6D1EF08B36000
  F|xfilter.h|4|0|1C6D1EF08B36000
-
-D|C:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
- F|ecc.h|4|0|1C6D1EF08B36000
-  I|windows.h|0
 
 D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|aablt.h|4|0|1C6D1EF08B36000

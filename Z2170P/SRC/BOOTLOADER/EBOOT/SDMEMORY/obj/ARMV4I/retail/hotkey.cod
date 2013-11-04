@@ -8,27 +8,20 @@
 	DCB	"-defaultlib:OLDNAMES "
 
 	EXPORT	|??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BA@INKLBGKE@?$AAF?$AA1?$AA?5?$AA?$CL?$AA?5?$AAF?$AA2?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BC@BIAHJJFB@?$AAR?$AAe?$AAs?$AAe?$AAr?$AAv?$AAe?$AAd?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BI@BBLNBJAP@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|gRow| [ DATA ]
-	EXPORT	|gColumn| [ DATA ]
 	EXPORT	|hotkeyColdReset| [ DATA ]
 
   00000			 AREA	 |.data|, DATA
-	 COMMON	|gEvent|, 0x1
+	 COMMON	|gMatrix|, 0x8
 
-
-  00000			 AREA	 |.bss|, NOINIT
-|gRow|	%	0x4
-|gColumn| %	0x4
-
-  00000			 AREA	 |.data|, DATA
 |hotkeyColdReset| DCD 0x0
 	DCD	|??_C@_1BI@BBLNBJAP@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AA?$AA@|
 	DCD	0x1
 	DCD	|??_C@_1BC@BIAHJJFB@?$AAR?$AAe?$AAs?$AAe?$AAr?$AAv?$AAe?$AAd?$AA?$AA@|
 	DCD	0x2
-	DCD	|??_C@_1BC@BIAHJJFB@?$AAR?$AAe?$AAs?$AAe?$AAr?$AAv?$AAe?$AAd?$AA?$AA@|
+	DCD	|??_C@_1BA@INKLBGKE@?$AAF?$AA1?$AA?5?$AA?$CL?$AA?5?$AAF?$AA2?$AA?$AA@|
 	DCD	0x3
 	DCD	|??_C@_1BC@BIAHJJFB@?$AAR?$AAe?$AAs?$AAe?$AAr?$AAv?$AAe?$AAd?$AA?$AA@|
 	DCD	0x4
@@ -39,6 +32,11 @@
 	DCB	0x0, "x", 0x0, "i", 0x0, "t", 0x0, " ", 0x0, "a", 0x0, "n"
 	DCB	0x0, "d", 0x0, " ", 0x0, "C", 0x0, "o", 0x0, "n", 0x0, "t"
 	DCB	0x0, "i", 0x0, "n", 0x0, "u", 0x0, "e", 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BA@INKLBGKE@?$AAF?$AA1?$AA?5?$AA?$CL?$AA?5?$AAF?$AA2?$AA?$AA@| DCB "F"
+	DCB	0x0, "1", 0x0, " ", 0x0, "+", 0x0, " ", 0x0, "F", 0x0, "2"
+	DCB	0x0, 0x0, 0x0				; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1BC@BIAHJJFB@?$AAR?$AAe?$AAs?$AAe?$AAr?$AAv?$AAe?$AAd?$AA?$AA@| DCB "R"
@@ -116,7 +114,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\hotkey.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47301| DCD	|$LN5@HotKeyInit|
+|$T47303| DCD	|$LN5@HotKeyInit|
 	DCD	0x40001402
 ; Function compile flags: /Ogspy
 
@@ -124,22 +122,22 @@
 
   00000		 |HotKeyInit| PROC
 
-; 42   : {
+; 40   : {
 
   00000		 |$LN5@HotKeyInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47298|
+  00008		 |$M47300|
   00008	e1a04000	 mov         r4, r0
   0000c	e3a05802	 mov         r5, #2, 16
 
-; 43   : 	UINT8 regval;
-; 44   : 	
-; 45   : 	regval = TWL_KBD_CTRL_KBD_ON | TWL_KBD_CTRL_NRESET | TWL_KBD_CTRL_NSOFT_MODE;
+; 41   : 	UINT8 regval;
+; 42   : 	
+; 43   : 	regval = TWL_KBD_CTRL_KBD_ON | TWL_KBD_CTRL_NRESET | TWL_KBD_CTRL_NSOFT_MODE;
 
   00010	e3a0e043	 mov         lr, #0x43
 
-; 46   :     TWLWriteRegs(hTwl, TWL_KEYP_CTRL_REG, &regval, sizeof(regval));
+; 44   :     TWLWriteRegs(hTwl, TWL_KEYP_CTRL_REG, &regval, sizeof(regval));
 
   00014	e38510d2	 orr         r1, r5, #0xD2
   00018	e3a03001	 mov         r3, #1
@@ -147,12 +145,12 @@
   00020	e5cde000	 strb        lr, [sp]
   00024	eb000000	 bl          TWLWriteRegs
 
-; 47   : 	regval = 0x07 << 5;                        // Prescaler timer value
+; 45   : 	regval = 0x07 << 5;                        // Prescaler timer value
 
   00028	e3a030e0	 mov         r3, #0xE0
   0002c	e5cd3000	 strb        r3, [sp]
 
-; 48   :     TWLWriteRegs(hTwl, TWL_LK_PTV_REG, &regval, sizeof(regval));
+; 46   :     TWLWriteRegs(hTwl, TWL_LK_PTV_REG, &regval, sizeof(regval));
 
   00030	e3a03001	 mov         r3, #1
   00034	e28d2000	 add         r2, sp, #0
@@ -160,161 +158,78 @@
   0003c	e1a00004	 mov         r0, r4
   00040	eb000000	 bl          TWLWriteRegs
 
-; 49   : }
+; 47   : }
 
   00044	e28dd004	 add         sp, sp, #4
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M47299|
+  00050		 |$M47301|
 
 			 ENDP  ; |HotKeyInit|
 
-	EXPORT	|matrixKeypadState|
+	EXPORT	|matrixStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47328| DCD	|$LN35@matrixKeyp|
-	DCD	0x40000e00
+|$T47314| DCD	|$LN7@matrixStat|
+	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |matrixKeypadState| PROC
+  00000		 |matrixStatus| PROC
 
-; 54   : {
+; 52   : {
 
-  00000		 |$LN35@matrixKeyp|
-  00000		 |$M47325|
+  00000		 |$LN7@matrixStat|
+  00000		 |$M47311|
 
-; 55   :      BOOL rowEvent = FALSE;
-; 56   :      BOOL colEvent = FALSE;  
-; 57   :      int  check = 0;  
-; 58   : 
-; 59   :      switch(row)
+; 53   :     int temp;
+; 54   :     BOOL event = FALSE;
+; 55   :     
+; 56   :     temp = gMatrix[row] & shiftLeft(col);
+; 57   :  
+; 58   :     if(temp)
 
-  00000	e3500007	 cmp         r0, #7
-  00004	8a000009	 bhi         |$LN19@matrixKeyp|
-  00008	e28f3004	 add         r3, pc, #4
-  0000c	e7d33000	 ldrb        r3, [r3, +r0]
-  00010	e08ff003	 add         pc, pc, r3
-  00014		 |$LN24@matrixKeyp|
-  00014		 |$LN23@matrixKeyp|
-  00014		 |$LN25@matrixKeyp|
-  00014	18ed		 DCB         0x18
-  00015		 |$LN26@matrixKeyp|
-  00015	18ed		 DCB         0x18
-  00016		 |$LN27@matrixKeyp|
-  00016	18ed		 DCB         0x18
-  00017		 |$LN28@matrixKeyp|
-  00017	04ed		 DCB         0x4
-  00018		 |$LN29@matrixKeyp|
-  00018	0ced		 DCB         0xc
-  00019		 |$LN30@matrixKeyp|
-  00019	18ed		 DCB         0x18
-  0001a		 |$LN31@matrixKeyp|
-  0001a	18ed		 DCB         0x18
-  0001b		 |$LN32@matrixKeyp|
-  0001b	18ed		 DCB         0x18
-  0001c		 |$LN20@matrixKeyp|
+  00000	e59f3014	 ldr         r3, [pc, #0x14]
+  00004	e3a02001	 mov         r2, #1
+  00008	e7d03003	 ldrb        r3, [r0, +r3]
+  0000c	e1130112	 tst         r3, r2, lsl r1
 
-; 60   :     {
-; 61   :         case 0:
-; 62   :             check = 0;
-; 63   :             break;       
-; 64   :         case 1:
-; 65   :             check = 1;
-; 66   :             break;  
-; 67   :         case 2:
-; 68   :             check = 2;
-; 69   :             break;       
-; 70   :         case 3:
-; 71   :             check = 3;
-; 72   :             break;  
-; 73   :         case 4:
-; 74   :             check = 4;
-; 75   :             break;       
-; 76   :         case 5:
-; 77   :             check = 5;
-; 78   :             break;  
-; 79   :         case 6:
-; 80   :             check = 6;
-; 81   :             break;      
-; 82   :         case 7:
-; 83   :             check = 7;
-; 84   :             break;  
-; 85   :         default:
-; 86   :             break;
-; 87   :     }
-; 88   : 
-; 89   :     if(check == 3 && column ==2){
+; 59   :         return event = TRUE;
 
-  0001c	e3510002	 cmp         r1, #2
+  00010	13a00001	 movne       r0, #1
 
-; 90   :         rowEvent = TRUE;
+; 60   :     else
+; 61   :         return event;
 
-  00020	ea000000	 b           |$LN22@matrixKeyp|
-  00024		 |$LN21@matrixKeyp|
+  00014	03a00000	 moveq       r0, #0
 
-; 91   :     }else if(check == 4 && column ==3){
+; 62   : }
 
-  00024	e3510003	 cmp         r1, #3
-  00028		 |$LN22@matrixKeyp|
+  00018	e12fff1e	 bx          lr
+  0001c		 |$LN8@matrixStat|
+  0001c		 |$LN9@matrixStat|
+  0001c	00000000	 DCD         |gMatrix|
+  00020		 |$M47312|
 
-; 92   :         colEvent = TRUE;
-; 93   :     }
-; 94   :     
-; 95   :     /*if(column == (column & 0xFF)){
-; 96   :         colEvent = TRUE;
-; 97   :     }else{
-; 98   :         colEvent = FALSE; 
-; 99   :     }*/
-; 100  : 
-; 101  :     return  (rowEvent == colEvent)? TRUE: FALSE; 
+			 ENDP  ; |matrixStatus|
 
-  00028	03a00000	 moveq       r0, #0
-
-; 102  : }
-
-  0002c	012fff1e	 bxeq        lr
-  00030		 |$LN19@matrixKeyp|
-
-; 92   :         colEvent = TRUE;
-; 93   :     }
-; 94   :     
-; 95   :     /*if(column == (column & 0xFF)){
-; 96   :         colEvent = TRUE;
-; 97   :     }else{
-; 98   :         colEvent = FALSE; 
-; 99   :     }*/
-; 100  : 
-; 101  :     return  (rowEvent == colEvent)? TRUE: FALSE; 
-
-  00030	e3a00001	 mov         r0, #1
-
-; 102  : }
-
-  00034	e12fff1e	 bx          lr
-  00038		 |$M47326|
-
-			 ENDP  ; |matrixKeypadState|
-
-	EXPORT	|__$ArrayPad$| [ DATA ]
 	EXPORT	|HotKeyFunction|
 	EXPORT	|??_C@_1DE@MDALDBDK@?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?0?$AA?$CF?$AAd?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_15JNBOKNOG@?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1M@MGHLGJNG@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DE@NBLBDNBC@?$AA?5?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AAm?$AAa?$AAt?$AAr?$AAi?$AAx?$AA?5?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|NKDbgPrintfW|
+	EXPORT	|??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1EA@EAGALJIK@?$AA?$AN?$AA?$DO?$AA?$DO?$AA?$DO?$AA?5?$AAN?$AAo?$AAw?$AA?5?$AAe?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAc?$AAo?$AAl?$AAd?$AA?9?$AAr?$AAe?$AAs?$AAe?$AAt?$AA?4?$AA?4?$AA?4?$AA?5?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BI@HEDFMBBE@?$AA?5?$AA?$FL?$AAF?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	IMPORT	|OALBLMenuReadKey|
+	IMPORT	|FillASCIIMode|
 	IMPORT	|TWLReadRegs|
-	IMPORT	|__GSHandlerCheck|
-	IMPORT	|__security_cookie|
-	IMPORT	|__security_check_cookie|
+	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47429| DCD	|$LN85@HotKeyFunc|
-	DCD	0xc0003b02
-
-  00000			 AREA	 |.xdata|, DATA
-|$T47425| DCD	0xffffffe0
+|$T47382| DCD	|$LN67@HotKeyFunc|
+	DCD	0x40005401
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DE@MDALDBDK@?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?0?$AA?$CF?$AAd?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@| DCB "H"
@@ -338,199 +253,272 @@
 	DCB	0x0, "o", 0x0, "n", 0x0, ":", 0x0, " ", 0x0, "m", 0x0, "a"
 	DCB	0x0, "t", 0x0, "r", 0x0, "i", 0x0, "x", 0x0, " ", 0x0, " "
 	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, "[", 0x0, "0", 0x0, "]", 0x0, " ", 0x0, "E", 0x0, "x"
+	DCB	0x0, "i", 0x0, "t", 0x0, " ", 0x0, "a", 0x0, "n", 0x0, "d"
+	DCB	0x0, " ", 0x0, "C", 0x0, "o", 0x0, "n", 0x0, "t", 0x0, "i"
+	DCB	0x0, "n", 0x0, "u", 0x0, "e", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
+	DCB	0x0					; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1EA@EAGALJIK@?$AA?$AN?$AA?$DO?$AA?$DO?$AA?$DO?$AA?5?$AAN?$AAo?$AAw?$AA?5?$AAe?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAc?$AAo?$AAl?$AAd?$AA?9?$AAr?$AAe?$AAs?$AAe?$AAt?$AA?4?$AA?4?$AA?4?$AA?5?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
+	DCB	0x0, ">", 0x0, ">", 0x0, ">", 0x0, " ", 0x0, "N", 0x0, "o"
+	DCB	0x0, "w", 0x0, " ", 0x0, "e", 0x0, "n", 0x0, "t", 0x0, "r"
+	DCB	0x0, "y", 0x0, " ", 0x0, "c", 0x0, "o", 0x0, "l", 0x0, "d"
+	DCB	0x0, "-", 0x0, "r", 0x0, "e", 0x0, "s", 0x0, "e", 0x0, "t"
+	DCB	0x0, ".", 0x0, ".", 0x0, ".", 0x0, " ", 0x0, 0xd, 0x0, 0xa
+	DCB	0x0, 0x0, 0x0				; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BI@HEDFMBBE@?$AA?5?$AA?$FL?$AAF?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
+	DCB	0x0, "[", 0x0, "F", 0x0, "%", 0x0, "d", 0x0, "]", 0x0, " "
+	DCB	0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47425|
+  00000		 |HotKeyFunction| PROC
 
-  00008		 |HotKeyFunction| PROC
+; 69   : {
 
-; 109  : {
+  00000		 |$LN67@HotKeyFunc|
+  00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
+  00004		 |$M47379|
+  00004	e1a07000	 mov         r7, r0
 
-  00008		 |$LN85@HotKeyFunc|
-  00008	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  0000c	e24dd00c	 sub         sp, sp, #0xC
-  00010		 |$M47426|
-  00010	e1a07000	 mov         r7, r0
-  00014	e59f30d4	 ldr         r3, [pc, #0xD4]
-  00018	e5933000	 ldr         r3, [r3]
-  0001c	e58d3008	 str         r3, [sp, #8]
+; 70   : 	//UINT8 matrix[8];
+; 71   : 	ULONG ik, ix, row, column, i;
+; 72   :     USHORT state;
+; 73   :     BOOL keyPressed = FALSE;
+; 74   :     WCHAR key;
+; 75   :     /*int modeF1 = 1,
+; 76   :         modeF2 = 2,
+; 77   :         modeF4 = 4;
+; 78   :         //modeF3 = 3,*/
+; 79   :        
+; 80   :     //Ray 131104
+; 81   :     for(i=0; i<Hotkey_EXIT; i++)
 
-; 110  : 	UINT8 matrix[8];
-; 111  : 	ULONG ik, ix, row, column;
-; 112  :     USHORT state;
-; 113  :     /*int i;
-; 114  : 
-; 115  :     for(i=0; i<Hotkey_EXIT; i++){
-; 116  : 		OALLog(L" [F%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
-; 117  : 	}*/
-; 118  : 
-; 119  :     //printing matrix array, Ray
-; 120  : 	for( ik=0 ; ik<3 ; ik++ )
+  00008	e59f513c	 ldr         r5, [pc, #0x13C]
+  0000c	e3a04000	 mov         r4, #0
+  00010		 |$LL25@HotKeyFunc|
 
-  00020	e3a05003	 mov         r5, #3
-  00024	e3a080db	 mov         r8, #0xDB
-  00028	e28d6000	 add         r6, sp, #0
-  0002c		 |$LL16@HotKeyFunc|
+; 82   :     {
+; 83   : 		OALLog(L" [F%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
 
-; 121  : 	{
-; 122  : 		TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, matrix, sizeof(matrix));
+  00010	e5952004	 ldr         r2, [r5, #4]
+  00014	e59f012c	 ldr         r0, [pc, #0x12C]
+  00018	e2844001	 add         r4, r4, #1
+  0001c	e1a01004	 mov         r1, r4
+  00020	eb000000	 bl          NKDbgPrintfW
+  00024	e2855008	 add         r5, r5, #8
+  00028	e3540004	 cmp         r4, #4
+  0002c	3afffff7	 bcc         |$LL25@HotKeyFunc|
 
-  0002c	e3a03008	 mov         r3, #8
-  00030	e28d2000	 add         r2, sp, #0
-  00034	e24818fe	 sub         r1, r8, #0xFE, 16
-  00038	e1a00007	 mov         r0, r7
-  0003c	eb000000	 bl          TWLReadRegs
+; 84   : 	}
+; 85   : 	OALLog(L" [0] Exit and Continue\r\n");
 
-; 123  : 	    //OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
-; 124  : 	    
-; 125  : 		OALLog(L" HotKeyFunction: matrix  ");
+  00030	e59f010c	 ldr         r0, [pc, #0x10C]
+  00034	eb000000	 bl          NKDbgPrintfW
 
-  00040	e59f00a4	 ldr         r0, [pc, #0xA4]
-  00044	eb000000	 bl          NKDbgPrintfW
+; 86   : 	OALLog(L"\r>>> Now entry cold-reset... \r\n"); 
 
-; 126  : 		for( ix=0 ; ix <8 ; ix++ )
+  00038	e59f0100	 ldr         r0, [pc, #0x100]
+  0003c	eb000000	 bl          NKDbgPrintfW
+  00040	e59f60f4	 ldr         r6, [pc, #0xF4]
+  00044	e3a05003	 mov         r5, #3
+  00048	e3a080db	 mov         r8, #0xDB
+  0004c		 |$LL22@HotKeyFunc|
 
-  00048	e3a04000	 mov         r4, #0
-  0004c		 |$LL13@HotKeyFunc|
+; 87   : 	
+; 88   :     //printing matrix array, Ray
+; 89   : 	for( ik=0 ; ik<3 ; ik++ )
+; 90   : 	{
+; 91   : 		TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));
 
-; 127  : 			OALLog(L" [%d]",matrix[ix]);
+  0004c	e3a03008	 mov         r3, #8
+  00050	e1a02006	 mov         r2, r6
+  00054	e24818fe	 sub         r1, r8, #0xFE, 16
+  00058	e1a00007	 mov         r0, r7
+  0005c	eb000000	 bl          TWLReadRegs
 
-  0004c	e7d41006	 ldrb        r1, [r4, +r6]
-  00050	e59f0090	 ldr         r0, [pc, #0x90]
-  00054	eb000000	 bl          NKDbgPrintfW
-  00058	e2844001	 add         r4, r4, #1
-  0005c	e3540008	 cmp         r4, #8
-  00060	3afffff9	 bcc         |$LL13@HotKeyFunc|
+; 92   : 	    //OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+; 93   : 	    
+; 94   : 		OALLog(L" HotKeyFunction: matrix  ");
 
-; 128  : 		OALLog(L"\r\n");
+  00060	e59f00d0	 ldr         r0, [pc, #0xD0]
+  00064	eb000000	 bl          NKDbgPrintfW
 
-  00064	e59f0078	 ldr         r0, [pc, #0x78]
-  00068	eb000000	 bl          NKDbgPrintfW
-  0006c	e2555001	 subs        r5, r5, #1
-  00070	1affffed	 bne         |$LL16@HotKeyFunc|
+; 95   : 		for( ix=0 ; ix <8 ; ix++ )
 
-; 129  : 	}
-; 130  : 	
-; 131  : 	for(row = 0, ik = 0; row < 8; row++)
+  00068	e3a04000	 mov         r4, #0
+  0006c		 |$LL19@HotKeyFunc|
 
-  00074	e59f7064	 ldr         r7, [pc, #0x64]
-  00078	e3a04000	 mov         r4, #0
-  0007c	e28d8000	 add         r8, sp, #0
-  00080	e3a09001	 mov         r9, #1
-  00084		 |$LL10@HotKeyFunc|
+; 96   : 			OALLog(L" [%d]",gMatrix[ix]);
 
-; 132  : 	{
-; 133  :         // Get matrix state        
-; 134  :         ix = row;
-; 135  :         state = matrix[ix] & 0xFF;     
+  0006c	e7d41006	 ldrb        r1, [r4, +r6]
+  00070	e59f00bc	 ldr         r0, [pc, #0xBC]
+  00074	eb000000	 bl          NKDbgPrintfW
+  00078	e2844001	 add         r4, r4, #1
+  0007c	e3540008	 cmp         r4, #8
+  00080	3afffff9	 bcc         |$LL19@HotKeyFunc|
 
-  00084	e7d46008	 ldrb        r6, [r4, +r8]
+; 97   : 		OALLog(L"\r\n");
 
-; 136  : 
-; 137  :         // If no-key is pressed continue with new rows
-; 138  :         if (state == 0) 
+  00084	e59f00a4	 ldr         r0, [pc, #0xA4]
+  00088	eb000000	 bl          NKDbgPrintfW
+  0008c	e2555001	 subs        r5, r5, #1
+  00090	1affffed	 bne         |$LL22@HotKeyFunc|
 
-  00088	e3560000	 cmp         r6, #0
-  0008c	0a00000a	 beq         |$LN9@HotKeyFunc|
+; 98   : 	}
+; 99   : 	
+; 100  : 	
+; 101  : 	for(row = 0, ik = 0; row < 8; row++)
 
-; 139  : 		{
-; 140  :             ik += 8;
-; 141  :             continue;               //if state event desnot 
-; 142  : 		}
-; 143  :         
-; 144  :         for (column = 0; column < 8; column++, ik++)
+  00094	e3a04000	 mov         r4, #0
+  00098	e3a08001	 mov         r8, #1
+  0009c		 |$LL16@HotKeyFunc|
 
-  00090	e3a05000	 mov         r5, #0
-  00094		 |$LL6@HotKeyFunc|
+; 102  : 	{
+; 103  :         // Get matrix state        
+; 104  :         ix = row;
+; 105  :         state = gMatrix[ix] & 0xFF;     
 
-; 145  : 		{
-; 146  :             if ((state & (1 << column)) != 0)
+  0009c	e7d47006	 ldrb        r7, [r4, +r6]
 
-  00094	e1160519	 tst         r6, r9, lsl r5
-  00098	0a000004	 beq         |$LN5@HotKeyFunc|
+; 106  : 
+; 107  :         // If no-key is pressed continue with new rows
+; 108  :         if (state == 0) 
 
-; 147  : 			{
-; 148  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
+  000a0	e3570000	 cmp         r7, #0
+  000a4	0a000008	 beq         |$LN15@HotKeyFunc|
 
-  0009c	e59f0038	 ldr         r0, [pc, #0x38]
-  000a0	e1a02005	 mov         r2, r5
-  000a4	e1a01004	 mov         r1, r4
-  000a8	eb000000	 bl          NKDbgPrintfW
+; 109  : 		{
+; 110  :             ik += 8;
+; 111  :             continue;               //if state event desnot 
+; 112  : 		}
+; 113  :         
+; 114  :         for (column = 0; column < 8; column++, ik++)
 
-; 149  :                 gRow    = row;
+  000a8	e3a05000	 mov         r5, #0
+  000ac		 |$LL12@HotKeyFunc|
 
-  000ac	e8870030	 stmia       r7, {r4, r5}
+; 115  : 		{
+; 116  :             if ((state & (1 << column)) != 0)
 
-; 150  :                 gColumn = column;
+  000ac	e1170518	 tst         r7, r8, lsl r5
 
-  000b0		 |$LN5@HotKeyFunc|
-  000b0	e2855001	 add         r5, r5, #1
-  000b4	e3550008	 cmp         r5, #8
-  000b8	3afffff5	 bcc         |$LL6@HotKeyFunc|
-  000bc		 |$LN9@HotKeyFunc|
+; 117  : 			{
+; 118  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
 
-; 129  : 	}
-; 130  : 	
-; 131  : 	for(row = 0, ik = 0; row < 8; row++)
+  000b0	159f0074	 ldrne       r0, [pc, #0x74]
+  000b4	11a02005	 movne       r2, r5
+  000b8	11a01004	 movne       r1, r4
+  000bc	1b000000	 blne        NKDbgPrintfW
+  000c0	e2855001	 add         r5, r5, #1
+  000c4	e3550008	 cmp         r5, #8
+  000c8	3afffff7	 bcc         |$LL12@HotKeyFunc|
+  000cc		 |$LN15@HotKeyFunc|
 
-  000bc	e2844001	 add         r4, r4, #1
-  000c0	e3540008	 cmp         r4, #8
-  000c4	3affffee	 bcc         |$LL10@HotKeyFunc|
-  000c8	e59d0008	 ldr         r0, [sp, #8]
-  000cc	eb000000	 bl          __security_check_cookie
+; 98   : 	}
+; 99   : 	
+; 100  : 	
+; 101  : 	for(row = 0, ik = 0; row < 8; row++)
 
-; 151  : 			}
-; 152  : 		}
-; 153  : 	}
-; 154  :     //OALLog(L"******HotKey: [%d,%d]\r\n",gRow ,gColumn);
-; 155  :        //3(0000_1000),2(0000_0010)      
-; 156  :    if( matrixKeypadState(3, 2) || (matrixKeypadState(3, 2)&&matrixKeypadState(4, 3))){  
-; 157  :         FillASCIIMode(1);
-; 158  :     }
-; 159  : 
-; 160  : 	 /*if((gRow == 3) && (gColumn == 2)){         //Ray 131029
-; 161  :         gEvent = 1;
-; 162  : 	}else if((gRow == 4) && (gColumn == 3)){
-; 163  :         gEvent = 2;
-; 164  : 	}else if((gRow == 3) && (gColumn == 1)){
-; 165  :         gEvent = 4;
-; 166  : 	}*/
-; 167  :     
-; 168  :     /*if((row == 0)&&(column == 0)){ 
-; 169  :         OALLog(L" \rWait key-in a value...\r\n");
-; 170  :     }else{
-; 171  :          
-; 172  :     }*/
-; 173  :    	
-; 174  : }
+  000cc	e2844001	 add         r4, r4, #1
+  000d0	e3540008	 cmp         r4, #8
+  000d4	3afffff0	 bcc         |$LL16@HotKeyFunc|
+  000d8	e5d62004	 ldrb        r2, [r6, #4]
 
-  000d0	e28dd00c	 add         sp, sp, #0xC
-  000d4	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
-  000d8	e12fff1e	 bx          lr
-  000dc		 |$LN86@HotKeyFunc|
-  000dc		 |$LN87@HotKeyFunc|
-  000dc	00000000	 DCD         |??_C@_1DE@MDALDBDK@?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?0?$AA?$CF?$AAd?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@|
-  000e0		 |$LN88@HotKeyFunc|
-  000e0	00000000	 DCD         |gRow|
-  000e4		 |$LN89@HotKeyFunc|
-  000e4	00000000	 DCD         |??_C@_15JNBOKNOG@?$AA?$AN?$AA?6?$AA?$AA@|
-  000e8		 |$LN90@HotKeyFunc|
-  000e8	00000000	 DCD         |??_C@_1M@MGHLGJNG@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?$AA@|
-  000ec		 |$LN91@HotKeyFunc|
-  000ec	00000000	 DCD         |??_C@_1DE@NBLBDNBC@?$AA?5?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AAm?$AAa?$AAt?$AAr?$AAi?$AAx?$AA?5?$AA?5?$AA?$AA@|
-  000f0		 |$LN92@HotKeyFunc|
-  000f0	00000000	 DCD         |__security_cookie|
-  000f4		 |$M47427|
+; 119  : 			}
+; 120  : 		}
+; 121  : 	}
+; 122  :     //OALLog(L"******HotKey: [%d,%d]\r\n",gRow ,gColumn);
+; 123  : 
+; 124  :     //Ray 131104
+; 125  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){ //F1 + F2
+
+  000dc	e3120004	 tst         r2, #4
+  000e0	13120008	 tstne       r2, #8
+
+; 126  :              FillASCIIMode(3);       
+
+  000e4	13a00003	 movne       r0, #3
+  000e8	1a000006	 bne         |$LN64@HotKeyFunc|
+
+; 127  :             keyPressed = TRUE;
+; 128  :     }else if( matrixStatus(3, 2)){    
+
+  000ec	e5d63003	 ldrb        r3, [r6, #3]
+  000f0	e3130004	 tst         r3, #4
+
+; 129  :             FillASCIIMode(1);       //F1
+
+  000f4	13a00001	 movne       r0, #1
+  000f8	1a000002	 bne         |$LN64@HotKeyFunc|
+
+; 130  :             keyPressed = TRUE;
+; 131  :     }else if( matrixStatus(4, 3)){
+
+  000fc	e3120008	 tst         r2, #8
+  00100	0a000001	 beq         |$LL3@HotKeyFunc|
+
+; 132  :             FillASCIIMode(2);       //F2
+
+  00104	e3a00002	 mov         r0, #2
+  00108		 |$LN64@HotKeyFunc|
+  00108	eb000000	 bl          FillASCIIMode
+  0010c		 |$LL3@HotKeyFunc|
+
+; 133  :             keyPressed = TRUE;
+; 134  :     }
+; 135  :         
+; 136  : 	do{
+; 137  :        key = OALBLMenuReadKey(TRUE);
+
+  0010c	e3a00001	 mov         r0, #1
+  00110	eb000000	 bl          OALBLMenuReadKey
+  00114	e1a03800	 mov         r3, r0, lsl #16
+  00118	e1a03823	 mov         r3, r3, lsr #16
+
+; 138  : 	}while(key == L'0');
+
+  0011c	e3530030	 cmp         r3, #0x30
+  00120	0afffff9	 beq         |$LL3@HotKeyFunc|
+
+; 139  : }
+
+  00124	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
+  00128	e12fff1e	 bx          lr
+  0012c		 |$LN68@HotKeyFunc|
+  0012c		 |$LN69@HotKeyFunc|
+  0012c	00000000	 DCD         |??_C@_1DE@MDALDBDK@?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?0?$AA?$CF?$AAd?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@|
+  00130		 |$LN70@HotKeyFunc|
+  00130	00000000	 DCD         |??_C@_15JNBOKNOG@?$AA?$AN?$AA?6?$AA?$AA@|
+  00134		 |$LN71@HotKeyFunc|
+  00134	00000000	 DCD         |??_C@_1M@MGHLGJNG@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?$AA@|
+  00138		 |$LN72@HotKeyFunc|
+  00138	00000000	 DCD         |??_C@_1DE@NBLBDNBC@?$AA?5?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AAm?$AAa?$AAt?$AAr?$AAi?$AAx?$AA?5?$AA?5?$AA?$AA@|
+  0013c		 |$LN73@HotKeyFunc|
+  0013c	00000000	 DCD         |gMatrix|
+  00140		 |$LN74@HotKeyFunc|
+  00140	00000000	 DCD         |??_C@_1EA@EAGALJIK@?$AA?$AN?$AA?$DO?$AA?$DO?$AA?$DO?$AA?5?$AAN?$AAo?$AAw?$AA?5?$AAe?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAc?$AAo?$AAl?$AAd?$AA?9?$AAr?$AAe?$AAs?$AAe?$AAt?$AA?4?$AA?4?$AA?4?$AA?5?$AA?$AN?$AA?6?$AA?$AA@|
+  00144		 |$LN75@HotKeyFunc|
+  00144	00000000	 DCD         |??_C@_1DC@KGICMHCL@?$AA?5?$AA?$FL?$AA0?$AA?$FN?$AA?5?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AN?$AA?6?$AA?$AA@|
+  00148		 |$LN76@HotKeyFunc|
+  00148	00000000	 DCD         |??_C@_1BI@HEDFMBBE@?$AA?5?$AA?$FL?$AAF?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  0014c		 |$LN77@HotKeyFunc|
+  0014c	00000000	 DCD         |hotkeyColdReset|
+  00150		 |$M47380|
 
 			 ENDP  ; |HotKeyFunction|
 
 	EXPORT	|HotKeyColdReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47445| DCD	|$LN5@HotKeyCold|
+|$T47400| DCD	|$LN5@HotKeyCold|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -538,22 +526,22 @@
 
   00000		 |HotKeyColdReset| PROC
 
-; 238  : {
+; 143  : {
 
   00000		 |$LN5@HotKeyCold|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47442|
+  00004		 |$M47397|
 
-; 239  :    HotKeyFunction(hTwl);
+; 144  :    HotKeyFunction(hTwl);
 
   00004	eb000000	 bl          HotKeyFunction
 
-; 240  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
-; 241  : }
+; 145  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
+; 146  : }
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47443|
+  00010		 |$M47398|
 
 			 ENDP  ; |HotKeyColdReset|
 

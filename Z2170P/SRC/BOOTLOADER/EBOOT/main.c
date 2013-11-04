@@ -92,13 +92,13 @@ extern void ClearDisplayBuffer();
 //------------------------------------------------------------------------------
 //Add Functionality 
 
-void HotKeyColdReset(HANDLE);                        //Ray 131025
+//void HotKeyColdReset(HANDLE);                        //Ray 131025
 extern void HotKeyColdReset(HANDLE ghTwl);           //Ray 131030
 
 //------------------------------------------------------------------------------
 //Add Variable
 
-static HANDLE ghTwl;           //Ray 131029
+static HANDLE ghTwl;                                //Ray 131029
 //------------------------------------------------------------------------------
 //  Local Functions
 
@@ -209,8 +209,8 @@ BOOL OEMPlatformInit()
     GPIOClrBit(hGPIO,16); // WLAN_EN
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 	
-    //GPIOSetBit(hGPIO,15);  // test 
-	HotKeyInit(hTwl);       //HotKey Initial ,Ray
+    //GPIOSetBit(hGPIO,15);     // test 
+	HotKeyInit(hTwl);           //HotKey Initial ,Ray
     ghTwl = hTwl;
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
 
