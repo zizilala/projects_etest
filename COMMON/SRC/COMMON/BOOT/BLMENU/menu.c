@@ -116,7 +116,6 @@ VOID OALBLMenuShow(OAL_BLMENU_ITEM *pMenu)
         // Else call menu action
         pItem->pfnAction(pItem);
     } 
-
 }
 
 //------------------------------------------------------------------------------

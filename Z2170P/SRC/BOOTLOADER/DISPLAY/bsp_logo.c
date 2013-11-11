@@ -45,10 +45,8 @@ UINT32 disable_lcd_power(void);
 UINT32 disable_lcd_backlight(void);
 void LcdStall(DWORD dwMicroseconds);
 void LcdSleep(DWORD dwMilliseconds);
-//VOID FillASCII(char showCharMode[][15]);
-
-
-
+BOOL FillASCII(BYTE showCharMode[][15]);    //Ray 131105
+BOOL BLShowLogo(void);
 
 //------------------------------------------------------------------------------
 //
@@ -84,6 +82,7 @@ DWORD   g_dwLogoPosY;
 
 DWORD   g_dwLogoWidth;
 DWORD   g_dwLogoHeight;
+DWORD   g_d3Sec = 3000000;
 
 //-----------------------------------------------------------------------------
 //Ray 131025
@@ -96,6 +95,8 @@ static DWORD g_nBpp;
 static DWORD g_wFontColor = 0x00000000; //??_RR_GG_BB
 static DWORD g_wBkColor   = 0xffffffff; //??
 static volatile DWORD *g_dwFrameBuffer = NULL;
+
+//-----------------------------------------------------------------------------
 
 
 //************************ ASCII Table *****************************************
@@ -613,23 +614,9 @@ const BYTE asciiFont[][16] = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  /*  []  ASCII =  0xFF */
 };
-
-
 //************************ ASCII Table ****************************************
 
 //-----------------------------------------------------------------------------
-BYTE asciiConveter(char showCharMode[][15])
-{
-    int  **ascii = showCharMode[][15]
-    
-    switch( )
-    {
-      case 'U':
-          return 85;
-      break;
-    }
-}
-//
 BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight, PUCHAR nBpp, DWORD dwFrameBuffer)
 {
 		
@@ -643,15 +630,15 @@ BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight, PUCHAR nBpp, DWORD dwFrameB
 	return TRUE;
 }
 //
-VOID FillASCII(char showCharMode[][15])
+BOOL FillASCII(BYTE showCharMode[][15])
 {
     volatile DWORD *mem = g_dwFrameBuffer;
     //static DWORD nWidth	= 360;  
     static DWORD nWidth	= 180;
     int printMode = 0;
-	int printN = 10;
+	int printN = 15;
 	//BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
-	UINT16 tempbit, i, j, k;
+	UINT16 tempbit, i, j;// k;
     int p = 8;
     unsigned long offset;
     int offh = 0, offw = 0;
@@ -661,13 +648,10 @@ VOID FillASCII(char showCharMode[][15])
 	static int cur_row  = 7;        //shift a row place equal a pixel, Ray 131003  
 	BYTE n = 0;
 	int shiftPalce = 8;	
-
+    BOOL drawEnd = FALSE;
 
 	offw =  FONT_WIDTH * cur_row ;  			// offw = 8
-	//printN = sizeof(showChar);
-    while(k <10)
-    {
-	printMode = asciiConveter(showCharMode[][k]);
+	
 	while(n < printN)
 	{
 		c = showCharMode[printMode][n];
@@ -689,7 +673,7 @@ VOID FillASCII(char showCharMode[][15])
                 	mem[ p + offset ] = g_wBkColor;
                 	p--;
             	}
- 
+            	
             	if(p == 0){
                 	p = 8;
             	}
@@ -697,38 +681,107 @@ VOID FillASCII(char showCharMode[][15])
     	}
 		offw += shiftPalce;
 		n++;
+		drawEnd = TRUE;
 	}
-	    k++;
-	}
+	
+	return drawEnd;
 }
-//
-VOID FillASCIIMode(int mode)
-{
-    char showCharMode[4][15] = {"Updates...",	      //Updates... 
-                                "Reserved..",         //Reserved..
-                                "F1+F2..." ,          //F1+F2...  
-                                "Reserved.."};        //Reserved..
-                                
-   /*BYTE showCharMode[4][10] = {{54,81,69,66,85,70,84,15,15,15},	  //Updates... 
-                                {51,70,84,70,83,87,70,69,15,15},      //Reserved..
-                                {39,18,12,39,19,15,15,15,},           //F1+F2...  
-                                {51,70,84,70,83,87,70,69,15,15}};*/                                
-   switch(mode)
-   {
-        case 1:
-            FillASCII((showCharMode+0));  
-            break;
-        case 2:
-            FillASCII((showCharMode+1));
-            break;
-        case 3:
-            FillASCII((showCharMode+2));
-            break;
-        case 4:
-            FillASCII((showCharMode+3));
-            break;
-  }
-  
+//Ray 131105
+BOOL FillASCIIMode(DWORD mode)
+{                           
+   char showChar[][15] = { "Updates",	     //F1       ,Ray 131106
+                               "F2",             //F2
+                               "Reserved",        //F3
+                               "F4",             //F4    
+                               "F1+F2",          //F1+F2
+                               "F1+F3",
+                               "F1+F4",
+                               "F2+F3",
+                               "F2+F4",
+                               "F3+F4"};
+                                    
+                               
+   BYTE showCharToDec[1][15];                       //Ray 131105
+   int i=0, SIZE = 15;
+   char c;
+   //BYTE asciiToHexa; 
+   
+  // for(i=0; i<15; i++){
+   do{
+         c = showChar[mode][i];
+         //OALLog(L"****%d\n",c);   
+    //}
+         /*asciiToHexa = 
+         (c == '0') ? 0x30 :    //if 0~9 
+         (c == '1') ? 0x31 :
+         (c == '2') ? 0x32 :
+         (c == '3') ? 0x33 :
+         (c == '4') ? 0x34 :
+         (c == '5') ? 0x35 :
+         (c == '6') ? 0x36 :
+         (c == '7') ? 0x37 :
+         (c == '8') ? 0x38 :
+         (c == '9') ? 0x39 :
+         (c == 'A') ? 0x41 :    //if A~Z
+         (c == 'B') ? 0x42 :
+         (c == 'C') ? 0x43 :
+         (c == 'D') ? 0x44 :
+         (c == 'E') ? 0x45 :
+         (c == 'F') ? 0x46 :
+         (c == 'G') ? 0x47 :
+         (c == 'H') ? 0x48 :
+         (c == 'I') ? 0x49 :
+         (c == 'J') ? 0x4A :
+         (c == 'K') ? 0x4B :
+         (c == 'L') ? 0x4C :
+         (c == 'M') ? 0x4D :
+         (c == 'O') ? 0x4E :
+         (c == 'P') ? 0x50 :
+         (c == 'Q') ? 0x51 :
+         (c == 'R') ? 0x52 :
+         (c == 'S') ? 0x53 :
+         (c == 'T') ? 0x54 :
+         (c == 'U') ? 0x55 :
+         (c == 'V') ? 0x56 :
+         (c == 'W') ? 0x57 :
+         (c == 'X') ? 0x58 :
+         (c == 'Y') ? 0x59 :
+         (c == 'Z') ? 0x5A :
+         (c == 'a') ? 0x61 :    //if a~z
+         (c == 'b') ? 0x62 :
+         (c == 'c') ? 0x63 :
+         (c == 'd') ? 0x64 :
+         (c == 'e') ? 0x65 :
+         (c == 'f') ? 0x66 :
+         (c == 'g') ? 0x67 :
+         (c == 'h') ? 0x68 :
+         (c == 'i') ? 0x69 :
+         (c == 'j') ? 0x6A :
+         (c == 'k') ? 0x6B :
+         (c == 'l') ? 0x6C :
+         (c == 'm') ? 0x6D :
+         (c == 'o') ? 0x6E :
+         (c == 'p') ? 0x70 :
+         (c == 'q') ? 0x71 :
+         (c == 'r') ? 0x72 :
+         (c == 's') ? 0x73 :
+         (c == 't') ? 0x74 :
+         (c == 'u') ? 0x75 :
+         (c == 'v') ? 0x76 :
+         (c == 'w') ? 0x77 :
+         (c == 'x') ? 0x78 :
+         (c == 'y') ? 0x79 :
+         (c == 'z') ? 0x7A :
+         (c == '.') ? 0x2E : 0x00;*/
+        showCharToDec[0][i] = (BYTE)c;
+        i++;
+    }while(c == '\0' || i < SIZE);
+
+    if(FillASCII((showCharToDec+0))){        //entry drawing, Ray 131105
+        return TRUE;
+    }else{
+        return FALSE;
+    }
 }
 //-----------------------------------------------------------------------------
 HANDLE hGpio = NULL;
@@ -1189,6 +1242,424 @@ BOOL ShowSDLogo()
     lcd_config(framebufferPA);
 
 	return TRUE;
+}
+
+//------------------------------------------------------------------------------
+//
+//  Function:  ShowTestWhite
+//
+VOID ShowTestWhite(UINT32 flashAddr, UINT32 offset)
+{
+    HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
+    PUCHAR  pChar;
+    ULONG   x, y;
+    WORD	wSignature = 0;
+    DWORD   dwOffset = 0;
+    DWORD   dwLcdWidth, dwLcdHeight;
+    DWORD   dwLength;
+    //DWORD   d5Sec = 5000000;
+    //DWORD   sleep5sec = 5000;
+    
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+	
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+
+    //  Get the video memory
+    LcdPdd_GetMemory( NULL, &framebufferPA );
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
+    
+    if (flashAddr != -1)
+    {
+        // Open flash storage
+        hFlash = OALFlashStoreOpen(flashAddr);
+        if( hFlash != NULL )
+        {
+            //  The LOGO reserved NAND flash region contains the BMP file
+            OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
+
+            //  Check for 'BM' signature
+            if( wSignature == 0x4D42 )  
+            {
+                //  Read the offset to the pixel data
+                OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
+
+                //  Read the pixel data with the given offset
+                OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, dwLength, FALSE );
+            }
+           
+            //  Close store
+            OALFlashStoreClose(hFlash);
+        
+            //  Compute position and size of logo image 
+            g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
+            g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
+            g_dwLogoWidth  = LOGO_WIDTH;
+            g_dwLogoHeight = LOGO_HEIGHT;
+            
+            //As BMP are stored upside down, we need to flip the frame buffer's content
+            FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
+        }
+    }
+
+    //  Adjust color bars to LCD size
+    g_dwLogoPosX   = 0;
+    g_dwLogoPosY   = 0;
+    g_dwLogoWidth  = dwLcdWidth;
+    g_dwLogoHeight = dwLcdHeight;
+
+    OALLog(L"\r Can you see White fill.\r\n");
+    for (y= 0; y < dwLcdHeight; y++)
+    {
+        for( x = 0; x < dwLcdWidth; x++ )
+        {
+            *pChar++ = 0xFF;    //  Blue
+            *pChar++ = 0xFF;    //  Green
+            *pChar++ = 0xFF;    //  Red
+        }
+    }
+    LcdStall(g_d3Sec);
+    OALLog(L"\r Display tested end...\r\n");
+    
+    ShowSDLogo();
+}
+
+//------------------------------------------------------------------------------
+//
+//  Function:  ShowTestBlack
+//
+VOID ShowTestBlack(UINT32 flashAddr, UINT32 offset)
+{
+    HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
+    PUCHAR  pChar;
+    ULONG   x, y;
+    WORD	wSignature = 0;
+    DWORD   dwOffset = 0;
+    DWORD   dwLcdWidth, dwLcdHeight;
+    DWORD   dwLength;
+    //DWORD   d5Sec = 5000000;
+    //DWORD   sleep5sec = 5000;
+    
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+	
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+
+    //  Get the video memory
+    LcdPdd_GetMemory( NULL, &framebufferPA );
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
+    
+    if (flashAddr != -1)
+    {
+        // Open flash storage
+        hFlash = OALFlashStoreOpen(flashAddr);
+        if( hFlash != NULL )
+        {
+            //  The LOGO reserved NAND flash region contains the BMP file
+            OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
+
+            //  Check for 'BM' signature
+            if( wSignature == 0x4D42 )  
+            {
+                //  Read the offset to the pixel data
+                OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
+
+                //  Read the pixel data with the given offset
+                OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, dwLength, FALSE );
+            }
+           
+            //  Close store
+            OALFlashStoreClose(hFlash);
+        
+            //  Compute position and size of logo image 
+            g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
+            g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
+            g_dwLogoWidth  = LOGO_WIDTH;
+            g_dwLogoHeight = LOGO_HEIGHT;
+            
+            //As BMP are stored upside down, we need to flip the frame buffer's content
+            FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
+        }
+    }
+
+    //  Adjust color bars to LCD size
+    g_dwLogoPosX   = 0;
+    g_dwLogoPosY   = 0;
+    g_dwLogoWidth  = dwLcdWidth;
+    g_dwLogoHeight = dwLcdHeight;
+
+    OALLog(L"\r Can you see Black fill.\r\n");
+    for (y= 0; y < dwLcdHeight; y++)
+    {
+        for( x = 0; x < dwLcdWidth; x++ )
+        {
+            *pChar++ = 0x00;    //  Blue
+            *pChar++ = 0x00;    //  Green
+            *pChar++ = 0x00;    //  Red
+        }
+    }
+    LcdStall(g_d3Sec);
+    
+    ShowTestWhite((UINT32)-1, 0);
+}
+
+//------------------------------------------------------------------------------
+//
+//  Function:  ShowTestBlue
+//
+VOID ShowTestBlue(UINT32 flashAddr, UINT32 offset)
+{
+    HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
+    PUCHAR  pChar;
+    ULONG   x, y;
+    WORD	wSignature = 0;
+    DWORD   dwOffset = 0;
+    DWORD   dwLcdWidth, dwLcdHeight;
+    DWORD   dwLength;
+   //DWORD   d5Sec = 5000000;
+    //DWORD   sleep5sec = 5000;
+    
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+	
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+
+    //  Get the video memory
+    LcdPdd_GetMemory( NULL, &framebufferPA );
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
+    
+    if (flashAddr != -1)
+    {
+        // Open flash storage
+        hFlash = OALFlashStoreOpen(flashAddr);
+        if( hFlash != NULL )
+        {
+            //  The LOGO reserved NAND flash region contains the BMP file
+            OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
+
+            //  Check for 'BM' signature
+            if( wSignature == 0x4D42 )  
+            {
+                //  Read the offset to the pixel data
+                OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
+
+                //  Read the pixel data with the given offset
+                OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, dwLength, FALSE );
+            }
+           
+            //  Close store
+            OALFlashStoreClose(hFlash);
+        
+            //  Compute position and size of logo image 
+            g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
+            g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
+            g_dwLogoWidth  = LOGO_WIDTH;
+            g_dwLogoHeight = LOGO_HEIGHT;
+            
+            //As BMP are stored upside down, we need to flip the frame buffer's content
+            FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
+        }
+    }
+
+    //  Adjust color bars to LCD size
+    g_dwLogoPosX   = 0;
+    g_dwLogoPosY   = 0;
+    g_dwLogoWidth  = dwLcdWidth;
+    g_dwLogoHeight = dwLcdHeight;
+
+    OALLog(L"\r Can you see Blue fill.\r\n");
+    for (y= 0; y < dwLcdHeight; y++)
+    {
+        for( x = 0; x < dwLcdWidth; x++ )
+        {
+            *pChar++ = 0xFF;    //  Blue
+            *pChar++ = 0x00;    //  Green
+            *pChar++ = 0x00;    //  Red
+        }
+    }
+    LcdStall(g_d3Sec);
+    
+    ShowTestBlack((UINT32)-1, 0);
+}
+
+//------------------------------------------------------------------------------
+//
+//  Function:  ShowTestGreen
+//
+VOID ShowTestGreen(UINT32 flashAddr, UINT32 offset)
+{
+    HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
+    PUCHAR  pChar;
+    ULONG   x, y;
+    WORD	wSignature = 0;
+    DWORD   dwOffset = 0;
+    DWORD   dwLcdWidth, dwLcdHeight;
+    DWORD   dwLength;
+    //DWORD   d5Sec = 5000000;
+    //DWORD   sleep5sec = 5000;
+    
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+	
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+
+    //  Get the video memory
+    LcdPdd_GetMemory( NULL, &framebufferPA );
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
+    
+    if (flashAddr != -1)
+    {
+        // Open flash storage
+        hFlash = OALFlashStoreOpen(flashAddr);
+        if( hFlash != NULL )
+        {
+            //  The LOGO reserved NAND flash region contains the BMP file
+            OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
+
+            //  Check for 'BM' signature
+            if( wSignature == 0x4D42 )  
+            {
+                //  Read the offset to the pixel data
+                OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
+
+                //  Read the pixel data with the given offset
+                OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, dwLength, FALSE );
+            }
+           
+            //  Close store
+            OALFlashStoreClose(hFlash);
+        
+            //  Compute position and size of logo image 
+            g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
+            g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
+            g_dwLogoWidth  = LOGO_WIDTH;
+            g_dwLogoHeight = LOGO_HEIGHT;
+            
+            //As BMP are stored upside down, we need to flip the frame buffer's content
+            FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
+        }
+    }
+
+    //  Adjust color bars to LCD size
+    g_dwLogoPosX   = 0;
+    g_dwLogoPosY   = 0;
+    g_dwLogoWidth  = dwLcdWidth;
+    g_dwLogoHeight = dwLcdHeight;
+
+    OALLog(L"\r Can you see Green fill.\r\n");
+    for (y= 0; y < dwLcdHeight; y++)
+    {
+        for( x = 0; x < dwLcdWidth; x++ )
+        {
+            *pChar++ = 0x00;    //  Blue
+            *pChar++ = 0xFF;    //  Green
+            *pChar++ = 0x00;    //  Red
+        }
+    }
+    LcdStall(g_d3Sec);
+    
+    ShowTestBlue((UINT32)-1, 0);
+}
+      
+//------------------------------------------------------------------------------
+//
+//  Function:  ShowTest
+//
+VOID ShowTest(UINT32 flashAddr, UINT32 offset)
+{
+    HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
+    PUCHAR  pChar;
+    ULONG   x, y;
+    WORD	wSignature = 0;
+    DWORD   dwOffset = 0;
+    DWORD   dwLcdWidth, dwLcdHeight;
+    DWORD   dwLength;
+    //DWORD   d5Sec = 5000000;
+    //DWORD   sleep5sec = 5000;
+    
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+	
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+
+    //  Get the video memory
+    LcdPdd_GetMemory( NULL, &framebufferPA );   //Get memory display buffer size, Ray 131107
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
+    
+    if (flashAddr != -1)
+    {
+        // Open flash storage
+        hFlash = OALFlashStoreOpen(flashAddr);
+        if( hFlash != NULL )
+        {
+            //  The LOGO reserved NAND flash region contains the BMP file
+            OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
+
+            //  Check for 'BM' signature
+            if( wSignature == 0x4D42 )  
+            {
+                //  Read the offset to the pixel data
+                OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
+
+                //  Read the pixel data with the given offset
+                OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, dwLength, FALSE );
+            }
+           
+            //  Close store
+            OALFlashStoreClose(hFlash);
+        
+            //  Compute position and size of logo image 
+            g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
+            g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
+            g_dwLogoWidth  = LOGO_WIDTH;
+            g_dwLogoHeight = LOGO_HEIGHT;
+            
+            //As BMP are stored upside down, we need to flip the frame buffer's content
+            FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
+        }
+    }
+
+    //  Adjust color bars to LCD size
+    g_dwLogoPosX   = 0;
+    g_dwLogoPosY   = 0;
+    g_dwLogoWidth  = dwLcdWidth;
+    g_dwLogoHeight = dwLcdHeight;
+
+    OALLog(L"\r Can you see Red fill.\r\n");
+    for (y= 0; y < dwLcdHeight; y++)
+    {
+        for( x = 0; x < dwLcdWidth; x++ )
+        {
+            if(y < dwLcdHeight/2)
+            {
+                *pChar++ = 0x00;    //  Blue    ;SO.. Start Addressing = 0, Ray 131107
+                *pChar++ = 0x00;    //  Green   ;SO.. Start Addressing = 1
+                *pChar++ = 0xFF;    //  Red     ;SO.. Start Addressing = 2
+            }else{
+                *pChar++ = 0x00;    //  Blue
+                *pChar++ = 0xFF;    //  Green
+                *pChar++ = 0x00;    //  Red
+            }
+        }
+    }
+    LcdStall(g_d3Sec);
+    
+    ShowTestGreen((UINT32)-1, 0);
 }
 
 //------------------------------------------------------------------------------

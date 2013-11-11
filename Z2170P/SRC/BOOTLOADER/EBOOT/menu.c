@@ -38,6 +38,7 @@ static VOID SaveSettings(OAL_BLMENU_ITEM *pMenu);
 static VOID SetRetailMsgMode(OAL_BLMENU_ITEM *pMenu);
 //static VOID SetDisplayResolution(OAL_BLMENU_ITEM *pMenu);
 static VOID SetOPPmode(OAL_BLMENU_ITEM *pMenu);
+//static VOID FunctionTest(OAL_BLMENU_ITEM *pMenu);     //Ray   131106
 
 
 #if BUILDING_EBOOT_SD
@@ -53,6 +54,8 @@ extern BOOL LAN911XSetMacAddress(void* pAddr, UINT16 mac[3]);
 extern BOOL LAN911XGetMacAddress(void* pAddr, UINT16 mac[3]);
 
 extern OAL_BLMENU_ITEM g_menuFlash[];
+extern OAL_BLMENU_ITEM g_menuTest[];        //Ray   131106
+
 
 //------------------------------------------------------------------------------
 /*
@@ -141,6 +144,9 @@ static OAL_BLMENU_ITEM g_menuMain[] = {
         L'8', L"Select OPP Mode", SetOPPmode,
         NULL, NULL, NULL
     }, {
+        L'9', L"Function Test", OALBLMenuShow,           //Ray 131106
+        L"Function Test Management", &g_menuTest, NULL
+    }, {
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, NULL
     }, {
@@ -171,6 +177,9 @@ static OAL_BLMENU_ITEM g_menuMain[] = {
     }, {
         L'7', L"Select OPP Mode", SetOPPmode,
         NULL, NULL, NULL
+    },  {
+        L'8', L"Function Test", OALBLMenuShow,           //Ray 131106
+        L"Function Test Management", &g_menuTest, NULL
     }, {
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, NULL
@@ -267,7 +276,7 @@ VOID ShowSettings(OAL_BLMENU_ITEM *pMenu)
     {
         pOppMenu = oppModeMenu37x;
     }
-
+    
     OALLog(L"\r\n Main:\r\n");
     OALLog(
         L"  Boot device:   %s\r\n",
@@ -548,6 +557,12 @@ VOID SetOPPmode(OAL_BLMENU_ITEM *pMenu)
 
 }
 
+//------------------------------------------------------------------------------
+//Ray 131106
+/*VOID FunctionTest(OAL_BLMENU_ITEM *pMenu)
+{
+    
+}*/
 
 //------------------------------------------------------------------------------
 

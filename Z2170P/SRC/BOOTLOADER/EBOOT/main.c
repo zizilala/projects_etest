@@ -90,13 +90,13 @@ extern void HotKeyInit(HANDLE hTwl);
 extern BOOL omap_mcspi_init();
 extern void ClearDisplayBuffer();
 //------------------------------------------------------------------------------
-//Add Functionality 
+//Prototypes Functionality 
 
-//void HotKeyColdReset(HANDLE);                        //Ray 131025
+//void HotKeyColdReset(HANDLE);                      //Ray 131025
 extern void HotKeyColdReset(HANDLE ghTwl);           //Ray 131030
 
 //------------------------------------------------------------------------------
-//Add Variable
+//Global Variable
 
 static HANDLE ghTwl;                                //Ray 131029
 //------------------------------------------------------------------------------
@@ -210,8 +210,9 @@ BOOL OEMPlatformInit()
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 	
     //GPIOSetBit(hGPIO,15);     // test 
+    
 	HotKeyInit(hTwl);           //HotKey Initial ,Ray
-    ghTwl = hTwl;
+    ghTwl = hTwl;              
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
 
     //Bootstrap message(3), Ray

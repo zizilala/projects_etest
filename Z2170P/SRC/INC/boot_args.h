@@ -58,6 +58,7 @@ typedef struct {
     UINT32 flashNKFlags;
     UCHAR ECCtype;
     UINT32 opp_mode;
+    OMAP_HOTKEY_COLD_RESET hotkeyMode;                                //Ray 131106
 } BOOT_CFG;
 
 //------------------------------------------------------------------------------

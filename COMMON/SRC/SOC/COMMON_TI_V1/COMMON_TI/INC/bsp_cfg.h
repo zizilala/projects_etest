@@ -83,17 +83,33 @@ typedef enum OMAP_LCD_DVI_RES {
     OMAP_RES_INVALID=5
 }OMAP_LCD_DVI_RES;
 //------------------------------------------------------------------------
+//Hotkey Combination, Ray 131106
+//------------------------------------------------------------------------
 
-typedef enum OMAP_HOTKEY_COLD_RESET{
+typedef enum OMAP_HOTKEY_COLD_RESET{     
     Hotkey_F1 = 0,
     Hotkey_F2,
     Hotkey_F3,
     Hotkey_F4,
-    Hotkey_EXIT = 4
+    Hotkey_F1_F2=4,
+    Hotkey_F1_F3,
+    Hotkey_F1_F4,
+    Hotkey_F2_F3,
+    Hotkey_F2_F4,
+    Hotkey_F3_F4,    
+    Hotkey_EXIT = 10
 }OMAP_HOTKEY_COLD_RESET;
+//------------------------------------------------------------------------
+//Backlight Brightness, Ray 131107
+//------------------------------------------------------------------------
 
-
-
+typedef enum OMAP_LCM_BACKLIGHT{
+	BK_PLUS=0,
+	BK_MINUS,
+	BK_ON,
+	BK_OFF,
+	BK_EXIT=4
+}OMAP_LCM_BACKLIGHT;
 //------------------------------------------------------------------------
 //  Triton Access
 //------------------------------------------------------------------------

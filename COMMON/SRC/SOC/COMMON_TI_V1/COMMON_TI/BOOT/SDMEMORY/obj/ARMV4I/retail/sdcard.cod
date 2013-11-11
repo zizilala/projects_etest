@@ -5832,15 +5832,15 @@
 
 ; 1611 : 	{
 ; 1612 : 		// set up data structure used by file system driver
-; 1613 : 		fileio_ops.init = &SDCardInit;
+; 1613 : 		fileio_ops.init         = &SDCardInit;
 
   0003c	e59f310c	 ldr         r3, [pc, #0x10C]
 
-; 1614 : 		fileio_ops.identify = &SDCardIdentify;
+; 1614 : 		fileio_ops.identify     = &SDCardIdentify;
 
   00040	e59fe104	 ldr         lr, [pc, #0x104]
 
-; 1615 : 		fileio_ops.read_sector = &SDCardReadSector;
+; 1615 : 		fileio_ops.read_sector  = &SDCardReadSector;
 
   00044	e59f40fc	 ldr         r4, [pc, #0xFC]
 
@@ -5849,7 +5849,7 @@
   00048	e59f50f4	 ldr         r5, [pc, #0xF4]
   0004c	e8864008	 stmia       r6, {r3, lr}
 
-; 1617 : 		fileio_ops.drive_info = (PVOID)&Disk;
+; 1617 : 		fileio_ops.drive_info   = (PVOID)&Disk;
 ; 1618 : 
 ; 1619 : 		// initialize file system driver
 ; 1620 : 		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)

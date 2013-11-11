@@ -90,11 +90,11 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\sdmemory\cfg.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46985| DCD	|$LN23@BLReadBoot|
+|$T47010| DCD	|$LN23@BLReadBoot|
 	DCD	0xc0006303
 
   00000			 AREA	 |.xdata|, DATA
-|$T46981| DCD	0xffffffe4
+|$T47006| DCD	0xffffffe4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HE@BDJAOKHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAR?$AAe?$AAa?$AAd?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa?$AAs@| DCB "E"
@@ -146,40 +146,40 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T46981|
+  00004	00000000	 DCD         |$T47006|
 
   00008		 |BLReadBootCfg| PROC
 
-; 29   : {
+; 30   : {
 
   00008		 |$LN23@BLReadBoot|
   00008	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   0000c	e59fc17c	 ldr         r12, [pc, #0x17C]
   00010	e08dd00c	 add         sp, sp, r12
-  00014		 |$M46982|
+  00014		 |$M47007|
   00014	e1a07000	 mov         r7, r0
   00018	e59f316c	 ldr         r3, [pc, #0x16C]
   0001c	e5933000	 ldr         r3, [r3]
   00020	e58d3b98	 str         r3, [sp, #0xB98]
 
-; 30   :     BOOL rc = FALSE;
-; 31   : #ifndef BSP_NO_NAND_IN_SDBOOT
-; 32   :     HANDLE hFMD;
-; 33   :     PCI_REG_INFO regInfo;
-; 34   :     FlashInfo flashInfo;
-; 35   :     SectorInfo sectorInfo;
-; 36   :     SECTOR_ADDR sector;
-; 37   :     BLOCK_ID block;
-; 38   :     UINT32 count, offset;
-; 39   :     UINT8 buffer[2048];
-; 40   :     
-; 41   : 
-; 42   :     // EBOOT configuration is placed in last sector of EBOOT image
-; 43   :     regInfo.MemBase.Reg[0] = g_ulFlashBase;
+; 31   :     BOOL rc = FALSE;
+; 32   : #ifndef BSP_NO_NAND_IN_SDBOOT
+; 33   :     HANDLE hFMD;
+; 34   :     PCI_REG_INFO regInfo;
+; 35   :     FlashInfo flashInfo;
+; 36   :     SectorInfo sectorInfo;
+; 37   :     SECTOR_ADDR sector;
+; 38   :     BLOCK_ID block;
+; 39   :     UINT32 count, offset;
+; 40   :     UINT8 buffer[2048];
+; 41   :     
+; 42   : 
+; 43   :     // EBOOT configuration is placed in last sector of EBOOT image
+; 44   :     regInfo.MemBase.Reg[0] = g_ulFlashBase;
 
   00024	e59f315c	 ldr         r3, [pc, #0x15C]
 
-; 44   :     hFMD = FMD_Init(NULL, &regInfo, NULL);
+; 45   :     hFMD = FMD_Init(NULL, &regInfo, NULL);
 
   00028	e3a02000	 mov         r2, #0
   0002c	e28d1018	 add         r1, sp, #0x18
@@ -190,12 +190,12 @@
   00040	eb000000	 bl          FMD_Init
   00044	e1b08000	 movs        r8, r0
 
-; 45   :     if (hFMD == NULL)
+; 46   :     if (hFMD == NULL)
 
   00048	1a000006	 bne         |$LN8@BLReadBoot|
 
-; 46   :         {
-; 47   :         OALMSG(OAL_ERROR, (L"ERROR: FMD_Init call failed!\r\n"));
+; 47   :         {
+; 48   :         OALMSG(OAL_ERROR, (L"ERROR: FMD_Init call failed!\r\n"));
 
   0004c	e59f3124	 ldr         r3, [pc, #0x124]
   00050	e5933440	 ldr         r3, [r3, #0x440]
@@ -204,103 +204,103 @@
   0005c	e59f0120	 ldr         r0, [pc, #0x120]
   00060	eb000000	 bl          NKDbgPrintfW
 
-; 48   :         goto cleanUp;
+; 49   :         goto cleanUp;
 
   00064	ea00003a	 b           |$LN1@BLReadBoot|
   00068		 |$LN8@BLReadBoot|
 
-; 49   :         }
-; 50   : 
-; 51   :     // Get flash info
-; 52   :     if (!FMD_GetInfo(&flashInfo))
+; 50   :         }
+; 51   : 
+; 52   :     // Get flash info
+; 53   :     if (!FMD_GetInfo(&flashInfo))
 
   00068	e28d0000	 add         r0, sp, #0
   0006c	eb000000	 bl          FMD_GetInfo
   00070	e3500000	 cmp         r0, #0
   00074	1a000006	 bne         |$LN7@BLReadBoot|
 
-; 53   :         {
-; 54   :         OALMSG(OAL_ERROR, (L"ERROR: FMD_GetInfo call failed!\r\n"));
+; 54   :         {
+; 55   :         OALMSG(OAL_ERROR, (L"ERROR: FMD_GetInfo call failed!\r\n"));
 
   00078	e59f30f8	 ldr         r3, [pc, #0xF8]
   0007c	e5933440	 ldr         r3, [r3, #0x440]
   00080	e3130001	 tst         r3, #1
-  00084	0a000030	 beq         |$cleanUp$46806|
+  00084	0a000030	 beq         |$cleanUp$46825|
   00088	e59f00f0	 ldr         r0, [pc, #0xF0]
   0008c	eb000000	 bl          NKDbgPrintfW
 
-; 55   :         goto cleanUp;
+; 56   :         goto cleanUp;
 
-  00090	ea00002d	 b           |$cleanUp$46806|
+  00090	ea00002d	 b           |$cleanUp$46825|
   00094		 |$LN7@BLReadBoot|
 
-; 56   :         }
-; 57   : 
-; 58   :     // We can support only flash with sector size < 2048 bytes
-; 59   :     if (flashInfo.wDataBytesPerSector > sizeof(buffer))
+; 57   :         }
+; 58   : 
+; 59   :     // We can support only flash with sector size < 2048 bytes
+; 60   :     if (flashInfo.wDataBytesPerSector > sizeof(buffer))
 
   00094	e1dd10be	 ldrh        r1, [sp, #0xE]
   00098	e3510b02	 cmp         r1, #2, 22
   0009c	9a000007	 bls         |$LN6@BLReadBoot|
 
-; 60   :         {
-; 61   :         OALMSG(OAL_ERROR, (L"ERROR: "
-; 62   :             L"Flash sector size %d bytes bigger than supported %d bytes\r\n",
-; 63   :             flashInfo.wDataBytesPerSector, sizeof(buffer)    
-; 64   :             ));
+; 61   :         {
+; 62   :         OALMSG(OAL_ERROR, (L"ERROR: "
+; 63   :             L"Flash sector size %d bytes bigger than supported %d bytes\r\n",
+; 64   :             flashInfo.wDataBytesPerSector, sizeof(buffer)    
+; 65   :             ));
 
   000a0	e59f30d0	 ldr         r3, [pc, #0xD0]
   000a4	e5933440	 ldr         r3, [r3, #0x440]
   000a8	e3130001	 tst         r3, #1
-  000ac	0a000026	 beq         |$cleanUp$46806|
+  000ac	0a000026	 beq         |$cleanUp$46825|
   000b0	e59f00c4	 ldr         r0, [pc, #0xC4]
   000b4	e3a02b02	 mov         r2, #2, 22
   000b8	eb000000	 bl          NKDbgPrintfW
 
-; 65   :         goto cleanUp;
+; 66   :         goto cleanUp;
 
-  000bc	ea000022	 b           |$cleanUp$46806|
+  000bc	ea000022	 b           |$cleanUp$46825|
   000c0		 |$LN6@BLReadBoot|
 
-; 66   :         }
-; 67   : 
-; 68   :     // Configuration is located in last sector of EBOOT image
-; 69   :     offset = IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_BOOTSEC_NAND_SIZE;
-; 70   :     
-; 71   :     // Start from beginning
-; 72   :     block  = 0;
+; 67   :         }
+; 68   : 
+; 69   :     // Configuration is located in last sector of EBOOT image
+; 70   :     offset = IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_BOOTSEC_NAND_SIZE;
+; 71   :     
+; 72   :     // Start from beginning
+; 73   :     block  = 0;
 
   000c0	e3a04000	 mov         r4, #0
 
-; 73   :     sector = 0;
-; 74   : 
-; 75   :     // Skip X-Loader & EBOOT code & bad blocks
-; 76   :     // Note that we also check the last eboot block in order to ensure it is good
-; 77   :     count = 0;
+; 74   :     sector = 0;
+; 75   : 
+; 76   :     // Skip X-Loader & EBOOT code & bad blocks
+; 77   :     // Note that we also check the last eboot block in order to ensure it is good
+; 78   :     count = 0;
 
   000c4	e3a05000	 mov         r5, #0
   000c8		 |$LL5@BLReadBoot|
 
-; 78   :     while ((count < offset) && (block < flashInfo.dwNumBlocks))
+; 79   :     while ((count < offset) && (block < flashInfo.dwNumBlocks))
 
   000c8	e59d3004	 ldr         r3, [sp, #4]
   000cc	e1540003	 cmp         r4, r3
   000d0	2a000007	 bcs         |$LN4@BLReadBoot|
 
-; 79   :         {
-; 80   :         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) == 0)
+; 80   :         {
+; 81   :         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) == 0)
 
   000d4	e1a00004	 mov         r0, r4
   000d8	eb000000	 bl          FMD_GetBlockStatus
   000dc	e3100002	 tst         r0, #2
 
-; 81   :             {
-; 82   :             count += flashInfo.dwBytesPerBlock;
+; 82   :             {
+; 83   :             count += flashInfo.dwBytesPerBlock;
 
   000e0	059d3008	 ldreq       r3, [sp, #8]
 
-; 83   :             }
-; 84   :         block++;
+; 84   :             }
+; 85   :         block++;
 
   000e4	e2844001	 add         r4, r4, #1
   000e8	00855003	 addeq       r5, r5, r3
@@ -308,18 +308,18 @@
   000f0	3afffff4	 bcc         |$LL5@BLReadBoot|
   000f4		 |$LN4@BLReadBoot|
 
-; 85   :         }
-; 86   : 
-; 87   :     // We've incremented past the last eboot block in order to check it too
-; 88   :     // Back up now, the previous block is the last one containing eboot and is good
-; 89   :     block--;
-; 90   : 
-; 91   :     //  Compute sector within the block where config lies
-; 92   :     sector = block * flashInfo.wSectorsPerBlock;
-; 93   :     sector += flashInfo.wSectorsPerBlock - 1;
-; 94   : 
-; 95   :     // Read sector to buffer
-; 96   :     if (!FMD_ReadSector(sector, buffer, &sectorInfo, 1)) {
+; 86   :         }
+; 87   : 
+; 88   :     // We've incremented past the last eboot block in order to check it too
+; 89   :     // Back up now, the previous block is the last one containing eboot and is good
+; 90   :     block--;
+; 91   : 
+; 92   :     //  Compute sector within the block where config lies
+; 93   :     sector = block * flashInfo.wSectorsPerBlock;
+; 94   :     sector += flashInfo.wSectorsPerBlock - 1;
+; 95   : 
+; 96   :     // Read sector to buffer
+; 97   :     if (!FMD_ReadSector(sector, buffer, &sectorInfo, 1)) {
 
   000f4	e1dd10bc	 ldrh        r1, [sp, #0xC]
   000f8	e3a03001	 mov         r3, #1
@@ -331,57 +331,57 @@
   00110	e3500000	 cmp         r0, #0
   00114	1a000007	 bne         |$LN2@BLReadBoot|
 
-; 97   :         OALMSG(OAL_ERROR, (L"ERROR: EBOOT!BLReadBootCfg: "
-; 98   :             L"Flash sector %d read failed\r\n", sector
-; 99   :         ));
+; 98   :         OALMSG(OAL_ERROR, (L"ERROR: EBOOT!BLReadBootCfg: "
+; 99   :             L"Flash sector %d read failed\r\n", sector
+; 100  :         ));
 
   00118	e59f3058	 ldr         r3, [pc, #0x58]
   0011c	e5933440	 ldr         r3, [r3, #0x440]
   00120	e3130001	 tst         r3, #1
-  00124	0a000008	 beq         |$cleanUp$46806|
+  00124	0a000008	 beq         |$cleanUp$46825|
   00128	e59f0044	 ldr         r0, [pc, #0x44]
   0012c	e2441001	 sub         r1, r4, #1
   00130	eb000000	 bl          NKDbgPrintfW
 
-; 100  :             goto cleanUp;
+; 101  :             goto cleanUp;
 
-  00134	ea000004	 b           |$cleanUp$46806|
+  00134	ea000004	 b           |$cleanUp$46825|
   00138		 |$LN2@BLReadBoot|
 
-; 101  :     }
-; 102  : 
-; 103  :     // Copy data to BOOT_CFG structure
-; 104  :     memcpy(pBootCfg, buffer, sizeof(BOOT_CFG));        
+; 102  :     }
+; 103  : 
+; 104  :     // Copy data to BOOT_CFG structure
+; 105  :     memcpy(pBootCfg, buffer, sizeof(BOOT_CFG));        
 
   00138	e28d1fe6	 add         r1, sp, #0xE6, 30
-  0013c	e3a0208c	 mov         r2, #0x8C
+  0013c	e3a02090	 mov         r2, #0x90
   00140	e1a00007	 mov         r0, r7
   00144	eb000000	 bl          memcpy
 
-; 105  : 
-; 106  :     // Done    
-; 107  :     rc = TRUE;
+; 106  : 
+; 107  :     // Done    
+; 108  :     rc = TRUE;
 
   00148	e3a06001	 mov         r6, #1
-  0014c		 |$cleanUp$46806|
+  0014c		 |$cleanUp$46825|
 
-; 108  : 
-; 109  : cleanUp:
-; 110  :     if (hFMD != NULL) FMD_Deinit(hFMD);
+; 109  : 
+; 110  : cleanUp:
+; 111  :     if (hFMD != NULL) FMD_Deinit(hFMD);
 
   0014c	e1a00008	 mov         r0, r8
   00150	eb000000	 bl          FMD_Deinit
   00154		 |$LN1@BLReadBoot|
 
-; 111  : #else
-; 112  :     UNREFERENCED_PARAMETER(pBootCfg);
-; 113  : #endif
-; 114  :     return rc;
+; 112  : #else
+; 113  :     UNREFERENCED_PARAMETER(pBootCfg);
+; 114  : #endif
+; 115  :     return rc;
 
   00154	e59d0b98	 ldr         r0, [sp, #0xB98]
   00158	eb000000	 bl          __security_check_cookie
 
-; 115  : }
+; 116  : }
 
   0015c	e1a00006	 mov         r0, r6
   00160	e3a0cc0b	 mov         r12, #0xB, 24
@@ -406,7 +406,7 @@
   0018c	00000000	 DCD         |__security_cookie|
   00190		 |$LN32@BLReadBoot|
   00190	fffff464	 DCD         0xfffff464
-  00194		 |$M46983|
+  00194		 |$M47008|
 
 			 ENDP  ; |BLReadBootCfg|
 
@@ -421,11 +421,11 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47043| DCD	|$LN40@BLWriteBoo|
+|$T47068| DCD	|$LN40@BLWriteBoo|
 	DCD	0xc000a502
 
   00000			 AREA	 |.xdata|, DATA
-|$T47039| DCD	0xffffffd8
+|$T47064| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HI@NMGONLPH@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAW?$AAr?$AAi?$AAt?$AAe?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa@| DCB "E"
@@ -486,39 +486,39 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47039|
+  00004	00000000	 DCD         |$T47064|
 
   00008		 |BLWriteBootCfg| PROC
 
-; 119  : {
+; 120  : {
 
   00008		 |$LN40@BLWriteBoo|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24ddfe7	 sub         sp, sp, #0xE7, 30
-  00010		 |$M47040|
+  00010		 |$M47065|
   00010	e1a0a000	 mov         r10, r0
   00014	e59f327c	 ldr         r3, [pc, #0x27C]
   00018	e5933000	 ldr         r3, [r3]
   0001c	e58d3398	 str         r3, [sp, #0x398]
 
-; 120  :     BOOL rc = FALSE;
-; 121  : #ifndef BSP_NO_NAND_IN_SDBOOT
-; 122  :     HANDLE hFMD;
-; 123  :     PCI_REG_INFO regInfo;
-; 124  :     FlashInfo flashInfo;
-; 125  :     SectorInfo sectorInfo;
-; 126  :     SECTOR_ADDR sector;
-; 127  :     BLOCK_ID block;
-; 128  :     UINT32 count, offset, length;
-; 129  :     UINT8 buffer[2048];
-; 130  :     UINT8 *pEBOOT;
-; 131  :     
-; 132  :     // EBOOT configuration is placed in last sector of image
-; 133  :     regInfo.MemBase.Reg[0] = g_ulFlashBase;
+; 121  :     BOOL rc = FALSE;
+; 122  : #ifndef BSP_NO_NAND_IN_SDBOOT
+; 123  :     HANDLE hFMD;
+; 124  :     PCI_REG_INFO regInfo;
+; 125  :     FlashInfo flashInfo;
+; 126  :     SectorInfo sectorInfo;
+; 127  :     SECTOR_ADDR sector;
+; 128  :     BLOCK_ID block;
+; 129  :     UINT32 count, offset, length;
+; 130  :     UINT8 buffer[2048];
+; 131  :     UINT8 *pEBOOT;
+; 132  :     
+; 133  :     // EBOOT configuration is placed in last sector of image
+; 134  :     regInfo.MemBase.Reg[0] = g_ulFlashBase;
 
   00020	e59f326c	 ldr         r3, [pc, #0x26C]
 
-; 134  :     hFMD = FMD_Init(NULL, &regInfo, NULL);
+; 135  :     hFMD = FMD_Init(NULL, &regInfo, NULL);
 
   00024	e3a02000	 mov         r2, #0
   00028	e28d1018	 add         r1, sp, #0x18
@@ -529,12 +529,12 @@
   0003c	eb000000	 bl          FMD_Init
   00040	e1b0b000	 movs        r11, r0
 
-; 135  :     if (hFMD == NULL)
+; 136  :     if (hFMD == NULL)
 
   00044	1a000006	 bne         |$LN14@BLWriteBoo|
 
-; 136  : 	{
-; 137  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_Init call failed!\r\n"));
+; 137  : 	{
+; 138  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_Init call failed!\r\n"));
 
   00048	e59f322c	 ldr         r3, [pc, #0x22C]
   0004c	e5933440	 ldr         r3, [r3, #0x440]
@@ -543,96 +543,96 @@
   00058	e59f0230	 ldr         r0, [pc, #0x230]
   0005c	eb000000	 bl          NKDbgPrintfW
 
-; 138  :         goto cleanUp;
+; 139  :         goto cleanUp;
 
   00060	ea000076	 b           |$LN1@BLWriteBoo|
   00064		 |$LN14@BLWriteBoo|
 
-; 139  : 	}
-; 140  : 
-; 141  :     // Get flash info
-; 142  :     if (!FMD_GetInfo(&flashInfo))
+; 140  : 	}
+; 141  : 
+; 142  :     // Get flash info
+; 143  :     if (!FMD_GetInfo(&flashInfo))
 
   00064	e28d0008	 add         r0, sp, #8
   00068	eb000000	 bl          FMD_GetInfo
   0006c	e3500000	 cmp         r0, #0
   00070	1a000006	 bne         |$LN13@BLWriteBoo|
 
-; 143  : 	{
-; 144  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_GetInfo call failed!\r\n"));
+; 144  : 	{
+; 145  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_GetInfo call failed!\r\n"));
 
   00074	e59f3200	 ldr         r3, [pc, #0x200]
   00078	e5933440	 ldr         r3, [r3, #0x440]
   0007c	e3130001	 tst         r3, #1
-  00080	0a00006c	 beq         |$cleanUp$46843|
+  00080	0a00006c	 beq         |$cleanUp$46862|
   00084	e59f0200	 ldr         r0, [pc, #0x200]
   00088	eb000000	 bl          NKDbgPrintfW
 
-; 145  :         goto cleanUp;
+; 146  :         goto cleanUp;
 
-  0008c	ea000069	 b           |$cleanUp$46843|
+  0008c	ea000069	 b           |$cleanUp$46862|
   00090		 |$LN13@BLWriteBoo|
 
-; 146  : 	}
-; 147  : 
-; 148  :     // We can support only flash with sector size which fit to our buffer
-; 149  :     if (flashInfo.wDataBytesPerSector > sizeof(buffer))
+; 147  : 	}
+; 148  : 
+; 149  :     // We can support only flash with sector size which fit to our buffer
+; 150  :     if (flashInfo.wDataBytesPerSector > sizeof(buffer))
 
   00090	e1dd11b6	 ldrh        r1, [sp, #0x16]
   00094	e3510b02	 cmp         r1, #2, 22
   00098	9a000007	 bls         |$LN12@BLWriteBoo|
 
-; 150  : 	{
-; 151  :         OALMSG(OAL_ERROR, (L"ERROR: "
-; 152  :             L"Flash sector size %d bytes bigger that supported %d bytes\r\n",
-; 153  :             flashInfo.wDataBytesPerSector, sizeof(buffer) ));
+; 151  : 	{
+; 152  :         OALMSG(OAL_ERROR, (L"ERROR: "
+; 153  :             L"Flash sector size %d bytes bigger that supported %d bytes\r\n",
+; 154  :             flashInfo.wDataBytesPerSector, sizeof(buffer) ));
 
   0009c	e59f31d8	 ldr         r3, [pc, #0x1D8]
   000a0	e5933440	 ldr         r3, [r3, #0x440]
   000a4	e3130001	 tst         r3, #1
-  000a8	0a000062	 beq         |$cleanUp$46843|
+  000a8	0a000062	 beq         |$cleanUp$46862|
   000ac	e59f01d4	 ldr         r0, [pc, #0x1D4]
   000b0	e3a02b02	 mov         r2, #2, 22
   000b4	eb000000	 bl          NKDbgPrintfW
 
-; 154  :         goto cleanUp;
+; 155  :         goto cleanUp;
 
-  000b8	ea00005e	 b           |$cleanUp$46843|
+  000b8	ea00005e	 b           |$cleanUp$46862|
   000bc		 |$LN12@BLWriteBoo|
 
-; 155  : 	}
-; 156  : 
-; 157  :     // Configuration is located in last sector of last EBOOT block
-; 158  :     offset = IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_BOOTSEC_NAND_SIZE; // 0x80000 + 0x40000
-; 159  : 
-; 160  :     // Skip X-Loader & EBOOT code & bad blocks
-; 161  :     // Note that we also check the last eboot block in order to ensure it is good
-; 162  :     block  = 0;
-; 163  :     count = 0;
+; 156  : 	}
+; 157  : 
+; 158  :     // Configuration is located in last sector of last EBOOT block
+; 159  :     offset = IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_BOOTSEC_NAND_SIZE; // 0x80000 + 0x40000
+; 160  : 
+; 161  :     // Skip X-Loader & EBOOT code & bad blocks
+; 162  :     // Note that we also check the last eboot block in order to ensure it is good
+; 163  :     block  = 0;
+; 164  :     count = 0;
 
   000bc	e59d1010	 ldr         r1, [sp, #0x10]
   000c0	e3a04000	 mov         r4, #0
   000c4	e3a05000	 mov         r5, #0
   000c8		 |$LL11@BLWriteBoo|
 
-; 164  :     while ((count < offset) && (block < flashInfo.dwNumBlocks))
+; 165  :     while ((count < offset) && (block < flashInfo.dwNumBlocks))
 
   000c8	e59d300c	 ldr         r3, [sp, #0xC]
   000cc	e1540003	 cmp         r4, r3
   000d0	2a000007	 bcs         |$LN10@BLWriteBoo|
 
-; 165  : 	{
-; 166  :         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) == 0)
+; 166  : 	{
+; 167  :         if ((FMD_GetBlockStatus(block) & BLOCK_STATUS_BAD) == 0)
 
   000d4	e1a00004	 mov         r0, r4
   000d8	eb000000	 bl          FMD_GetBlockStatus
   000dc	e59d1010	 ldr         r1, [sp, #0x10]
   000e0	e3100002	 tst         r0, #2
 
-; 167  : 		{
-; 168  :             count += flashInfo.dwBytesPerBlock;
-; 169  : 		}
-; 170  :         block++;
+; 168  : 		{
+; 169  :             count += flashInfo.dwBytesPerBlock;
+; 170  : 		}
+; 171  :         block++;
 
   000e4	e2844001	 add         r4, r4, #1
   000e8	00855001	 addeq       r5, r5, r1
@@ -640,21 +640,21 @@
   000f0	3afffff4	 bcc         |$LL11@BLWriteBoo|
   000f4		 |$LN10@BLWriteBoo|
 
-; 171  : 	}
-; 172  : 
-; 173  :     // We've incremented past the last eboot block in order to check it too
-; 174  :     // Back up now, the previous block is the last one containing eboot and is good
-; 175  :     block--; // 5
-; 176  : 
-; 177  :     // Need to copy off the block contents to RAM (minus the config sector)
-; 178  :     pEBOOT = (UINT8*)IMAGE_WINCE_CODE_CA; // 0x80002000
-; 179  :     length = flashInfo.dwBytesPerBlock - flashInfo.wDataBytesPerSector; // 0x20000 - 0x800
+; 172  : 	}
+; 173  : 
+; 174  :     // We've incremented past the last eboot block in order to check it too
+; 175  :     // Back up now, the previous block is the last one containing eboot and is good
+; 176  :     block--; // 5
+; 177  : 
+; 178  :     // Need to copy off the block contents to RAM (minus the config sector)
+; 179  :     pEBOOT = (UINT8*)IMAGE_WINCE_CODE_CA; // 0x80002000
+; 180  :     length = flashInfo.dwBytesPerBlock - flashInfo.wDataBytesPerSector; // 0x20000 - 0x800
 
   000f4	e1dd31b6	 ldrh        r3, [sp, #0x16]
   000f8	e3a00102	 mov         r0, #2, 2
 
-; 180  : 
-; 181  :     memset((VOID*)pEBOOT, 0xFF, flashInfo.dwBytesPerBlock);
+; 181  : 
+; 182  :     memset((VOID*)pEBOOT, 0xFF, flashInfo.dwBytesPerBlock);
 
   000fc	e1a02001	 mov         r2, r1
   00100	e0417003	 sub         r7, r1, r3
@@ -663,12 +663,12 @@
   0010c	e2446001	 sub         r6, r4, #1
   00110	eb000000	 bl          memset
 
-; 182  :     sector = block * flashInfo.wSectorsPerBlock; // 5 * 0x40 = 0x140
+; 183  :     sector = block * flashInfo.wSectorsPerBlock; // 5 * 0x40 = 0x140
 
   00114	e1dd31b4	 ldrh        r3, [sp, #0x14]
 
-; 183  :     offset = 0;
-; 184  :     while (offset < length) 
+; 184  :     offset = 0;
+; 185  :     while (offset < length) 
 
   00118	e3e021fe	 mvn         r2, #0xFE, 2
   0011c	e3a04000	 mov         r4, #0
@@ -678,9 +678,9 @@
   0012c	0a00000b	 beq         |$LN7@BLWriteBoo|
   00130		 |$LL8@BLWriteBoo|
 
-; 185  :     {
-; 186  :         // When block read fail, there isn't what we can do more
-; 187  :         if (!FMD_ReadSector(sector, pEBOOT + offset, &sectorInfo, 1)) 
+; 186  :     {
+; 187  :         // When block read fail, there isn't what we can do more
+; 188  :         if (!FMD_ReadSector(sector, pEBOOT + offset, &sectorInfo, 1)) 
 
   00130	e3a03001	 mov         r3, #1
   00134	e28d2000	 add         r2, sp, #0
@@ -690,11 +690,11 @@
   00144	e3500000	 cmp         r0, #0
   00148	0a000014	 beq         |$LN32@BLWriteBoo|
 
-; 191  : 		}
-; 192  : 
-; 193  :         // Move to next sector
-; 194  :         sector++;
-; 195  :         offset += flashInfo.wDataBytesPerSector;
+; 192  : 		}
+; 193  : 
+; 194  :         // Move to next sector
+; 195  :         sector++;
+; 196  :         offset += flashInfo.wDataBytesPerSector;
 
   0014c	e1dd31b6	 ldrh        r3, [sp, #0x16]
   00150	e2855001	 add         r5, r5, #1
@@ -703,71 +703,71 @@
   0015c	3afffff3	 bcc         |$LL8@BLWriteBoo|
   00160		 |$LN7@BLWriteBoo|
 
-; 196  :     }
-; 197  :     //  Copy the config info into last sector of saved block in RAM
-; 198  :     memcpy(pEBOOT + offset, pBootCfg, sizeof(BOOT_CFG)); 
+; 197  :     }
+; 198  :     //  Copy the config info into last sector of saved block in RAM
+; 199  :     memcpy(pEBOOT + offset, pBootCfg, sizeof(BOOT_CFG)); 
 
   00160	e0440009	 sub         r0, r4, r9
-  00164	e3a0208c	 mov         r2, #0x8C
+  00164	e3a02090	 mov         r2, #0x90
   00168	e1a0100a	 mov         r1, r10
   0016c	eb000000	 bl          memcpy
 
-; 199  : 
-; 200  :     // Erase block
-; 201  :     if (!FMD_EraseBlock(block))
+; 200  : 
+; 201  :     // Erase block
+; 202  :     if (!FMD_EraseBlock(block))
 
   00170	e1a00006	 mov         r0, r6
   00174	eb000000	 bl          FMD_EraseBlock
   00178	e3500000	 cmp         r0, #0
   0017c	1a00000f	 bne         |$LN5@BLWriteBoo|
 
-; 202  : 	{
-; 203  :         OALMSG(OAL_ERROR, (L"ERROR: EBOOT!BLWriteBootCfg: Flash block %d erase failed\r\n", block));
+; 203  : 	{
+; 204  :         OALMSG(OAL_ERROR, (L"ERROR: EBOOT!BLWriteBootCfg: Flash block %d erase failed\r\n", block));
 
   00180	e59f30f4	 ldr         r3, [pc, #0xF4]
   00184	e5933440	 ldr         r3, [r3, #0x440]
   00188	e3130001	 tst         r3, #1
-  0018c	0a000029	 beq         |$cleanUp$46843|
+  0018c	0a000029	 beq         |$cleanUp$46862|
   00190	e59f00ec	 ldr         r0, [pc, #0xEC]
   00194	e1a01006	 mov         r1, r6
   00198	eb000000	 bl          NKDbgPrintfW
-  0019c	ea000025	 b           |$cleanUp$46843|
+  0019c	ea000025	 b           |$cleanUp$46862|
   001a0		 |$LN32@BLWriteBoo|
 
-; 188  :         {
-; 189  : 			OALMSG(OAL_ERROR, (L"\r\nERROR: EBOOT!BLWriteBootCfg: Failed read sector %d from flash\r\n", sector));
+; 189  :         {
+; 190  : 			OALMSG(OAL_ERROR, (L"\r\nERROR: EBOOT!BLWriteBootCfg: Failed read sector %d from flash\r\n", sector));
 
   001a0	e59f30d4	 ldr         r3, [pc, #0xD4]
   001a4	e5933440	 ldr         r3, [r3, #0x440]
   001a8	e3130001	 tst         r3, #1
-  001ac	0a000021	 beq         |$cleanUp$46843|
+  001ac	0a000021	 beq         |$cleanUp$46862|
   001b0	e59f00c8	 ldr         r0, [pc, #0xC8]
   001b4	e1a01005	 mov         r1, r5
   001b8	eb000000	 bl          NKDbgPrintfW
 
-; 190  :             goto cleanUp;
+; 191  :             goto cleanUp;
 
-  001bc	ea00001d	 b           |$cleanUp$46843|
+  001bc	ea00001d	 b           |$cleanUp$46862|
   001c0		 |$LN5@BLWriteBoo|
 
-; 204  :         goto cleanUp;
-; 205  : 	}
-; 206  : 
-; 207  :     // Write contents of the save block + config sector back to flash
-; 208  :     pEBOOT = (UINT8*)IMAGE_WINCE_CODE_CA;
-; 209  :     length = flashInfo.dwBytesPerBlock;
-; 210  : 
-; 211  :     sector = block * flashInfo.wSectorsPerBlock;
+; 205  :         goto cleanUp;
+; 206  : 	}
+; 207  : 
+; 208  :     // Write contents of the save block + config sector back to flash
+; 209  :     pEBOOT = (UINT8*)IMAGE_WINCE_CODE_CA;
+; 210  :     length = flashInfo.dwBytesPerBlock;
+; 211  : 
+; 212  :     sector = block * flashInfo.wSectorsPerBlock;
 
   001c0	e1dd31b4	 ldrh        r3, [sp, #0x14]
   001c4	e59d7010	 ldr         r7, [sp, #0x10]
 
-; 212  :     offset = 0;
+; 213  :     offset = 0;
 
   001c8	e3a05000	 mov         r5, #0
   001cc	e0040693	 mul         r4, r3, r6
 
-; 213  :     while (offset < length)
+; 214  :     while (offset < length)
 
   001d0	e3570000	 cmp         r7, #0
   001d4	0a000016	 beq         |$LN3@BLWriteBoo|
@@ -776,21 +776,21 @@
   001e0	e3a0e000	 mov         lr, #0
   001e4		 |$LL4@BLWriteBoo|
 
-; 214  :     {
-; 215  :         // Prepare sector info
-; 216  :         memset(&sectorInfo, 0xFF, sizeof(sectorInfo));
+; 215  :     {
+; 216  :         // Prepare sector info
+; 217  :         memset(&sectorInfo, 0xFF, sizeof(sectorInfo));
 
   001e4	e58d6004	 str         r6, [sp, #4]
 
-; 217  :         sectorInfo.bOEMReserved &= ~(OEM_BLOCK_READONLY|OEM_BLOCK_RESERVED);
+; 218  :         sectorInfo.bOEMReserved &= ~(OEM_BLOCK_READONLY|OEM_BLOCK_RESERVED);
 
   001e8	e5dd3004	 ldrb        r3, [sp, #4]
   001ec	e58d6000	 str         r6, [sp]
 
-; 218  :         sectorInfo.dwReserved1 = 0;
-; 219  :         sectorInfo.wReserved2 = 0;
-; 220  :         // Write sector        
-; 221  :         if (!FMD_WriteSector(sector, pEBOOT + offset, &sectorInfo, 1))
+; 219  :         sectorInfo.dwReserved1 = 0;
+; 220  :         sectorInfo.wReserved2 = 0;
+; 221  :         // Write sector        
+; 222  :         if (!FMD_WriteSector(sector, pEBOOT + offset, &sectorInfo, 1))
 
   001f0	e28d2000	 add         r2, sp, #0
   001f4	e20330fc	 and         r3, r3, #0xFC
@@ -804,12 +804,12 @@
   00214	e3500000	 cmp         r0, #0
   00218	0a00000e	 beq         |$LN33@BLWriteBoo|
 
-; 225  :             goto cleanUp;
-; 226  : 		}
-; 227  : 
-; 228  :         // Move to next sector
-; 229  :         sector++;
-; 230  :         offset += flashInfo.wDataBytesPerSector;
+; 226  :             goto cleanUp;
+; 227  : 		}
+; 228  : 
+; 229  :         // Move to next sector
+; 230  :         sector++;
+; 231  :         offset += flashInfo.wDataBytesPerSector;
 
   0021c	e1dd31b6	 ldrh        r3, [sp, #0x16]
   00220	e2844001	 add         r4, r4, #1
@@ -819,32 +819,32 @@
   00230	3affffeb	 bcc         |$LL4@BLWriteBoo|
   00234		 |$LN3@BLWriteBoo|
 
-; 231  :     }
-; 232  : 
-; 233  :     // Done    
-; 234  :     rc = TRUE;
+; 232  :     }
+; 233  : 
+; 234  :     // Done    
+; 235  :     rc = TRUE;
 
   00234	e3a08001	 mov         r8, #1
-  00238		 |$cleanUp$46843|
+  00238		 |$cleanUp$46862|
 
-; 235  : 
-; 236  : cleanUp:
-; 237  :     if (hFMD != NULL) 
-; 238  :     	FMD_Deinit(hFMD);
+; 236  : 
+; 237  : cleanUp:
+; 238  :     if (hFMD != NULL) 
+; 239  :     	FMD_Deinit(hFMD);
 
   00238	e1a0000b	 mov         r0, r11
   0023c	eb000000	 bl          FMD_Deinit
   00240		 |$LN1@BLWriteBoo|
 
-; 239  : #else
-; 240  :     UNREFERENCED_PARAMETER(pBootCfg);
-; 241  : #endif
-; 242  :     return rc;
+; 240  : #else
+; 241  :     UNREFERENCED_PARAMETER(pBootCfg);
+; 242  : #endif
+; 243  :     return rc;
 
   00240	e59d0398	 ldr         r0, [sp, #0x398]
   00244	eb000000	 bl          __security_check_cookie
 
-; 243  : }
+; 244  : }
 
   00248	e1a00008	 mov         r0, r8
   0024c	e28ddfe7	 add         sp, sp, #0xE7, 30
@@ -852,18 +852,18 @@
   00254	e12fff1e	 bx          lr
   00258		 |$LN33@BLWriteBoo|
 
-; 222  : 		{
-; 223  :             OALMSG(OAL_ERROR, (L"ERROR: EBOOT!BLWriteBootCfg: "
-; 224  :                 L"Flash sector %d write failed\r\n", sector));
+; 223  : 		{
+; 224  :             OALMSG(OAL_ERROR, (L"ERROR: EBOOT!BLWriteBootCfg: "
+; 225  :                 L"Flash sector %d write failed\r\n", sector));
 
   00258	e59f301c	 ldr         r3, [pc, #0x1C]
   0025c	e5933440	 ldr         r3, [r3, #0x440]
   00260	e3130001	 tst         r3, #1
-  00264	0afffff3	 beq         |$cleanUp$46843|
+  00264	0afffff3	 beq         |$cleanUp$46862|
   00268	e59f0008	 ldr         r0, [pc, #8]
   0026c	e1a01004	 mov         r1, r4
   00270	eb000000	 bl          NKDbgPrintfW
-  00274	eaffffef	 b           |$cleanUp$46843|
+  00274	eaffffef	 b           |$cleanUp$46862|
   00278		 |$LN41@BLWriteBoo|
   00278		 |$LN42@BLWriteBoo|
   00278	00000000	 DCD         |??_C@_1HI@NMGONLPH@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAW?$AAr?$AAi?$AAt?$AAe?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa@|
@@ -883,7 +883,7 @@
   00294	00000000	 DCD         |g_ulFlashBase|
   00298		 |$LN50@BLWriteBoo|
   00298	00000000	 DCD         |__security_cookie|
-  0029c		 |$M47041|
+  0029c		 |$M47066|
 
 			 ENDP  ; |BLWriteBootCfg|
 
@@ -903,11 +903,11 @@
 	IMPORT	|__rt_udiv|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47081| DCD	|$LN23@BLReserveB|
+|$T47106| DCD	|$LN23@BLReserveB|
 	DCD	0xc0006f02
 
   00000			 AREA	 |.xdata|, DATA
-|$T47077| DCD	0xffffffec
+|$T47102| DCD	0xffffffec
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1FG@GECOJCBP@?$AA?5?$AAO?$AAo?$AAp?$AAs?$AA?0?$AA?5?$AAc?$AAa?$AAn?$AA?8?$AAt?$AA?5?$AAm?$AAa?$AAr?$AAk?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?$CF?$AAd?$AA?5?$AA?9?$AA?5?$AAa?$AAs?$AA?5@| DCB " "
@@ -1000,31 +1000,31 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47077|
+  00004	00000000	 DCD         |$T47102|
 
   00008		 |BLReserveBootBlocks| PROC
 
-; 247  : {
+; 248  : {
 
   00008		 |$LN23@BLReserveB|
   00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   0000c	e24ddfe5	 sub         sp, sp, #0xE5, 30
-  00010		 |$M47078|
+  00010		 |$M47103|
   00010	e59f31a8	 ldr         r3, [pc, #0x1A8]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3390	 str         r3, [sp, #0x390]
 
-; 248  : #ifndef BSP_NO_NAND_IN_SDBOOT
-; 249  :     BOOL rc = FALSE;
-; 250  :     HANDLE hFMD;
-; 251  :     PCI_REG_INFO regInfo;
-; 252  :     FlashInfo flashInfo;
-; 253  :     UINT32 size;
-; 254  :     BLOCK_ID firstblock, lastblock;
-; 255  :     UINT32 status;
-; 256  :     
-; 257  :     UNREFERENCED_PARAMETER(pBootCfg);
-; 258  : 	OALMSG(OAL_ERROR, (L"BLReserveBootBlocks: start!\r\n"));
+; 249  : #ifndef BSP_NO_NAND_IN_SDBOOT
+; 250  :     BOOL rc = FALSE;
+; 251  :     HANDLE hFMD;
+; 252  :     PCI_REG_INFO regInfo;
+; 253  :     FlashInfo flashInfo;
+; 254  :     UINT32 size;
+; 255  :     BLOCK_ID firstblock, lastblock;
+; 256  :     UINT32 status;
+; 257  :     
+; 258  :     UNREFERENCED_PARAMETER(pBootCfg);
+; 259  : 	OALMSG(OAL_ERROR, (L"BLReserveBootBlocks: start!\r\n"));
 
   0001c	e59f4198	 ldr         r4, [pc, #0x198]
   00020	e3a05000	 mov         r5, #0
@@ -1033,12 +1033,12 @@
   0002c	159f0184	 ldrne       r0, [pc, #0x184]
   00030	1b000000	 blne        NKDbgPrintfW
 
-; 259  :     // Automatically mark the bootloader blocks as read-only/reserved
-; 260  :     regInfo.MemBase.Reg[0] = g_ulFlashBase; // The device is connected to CS0 mapped to 0x0800-0000
+; 260  :     // Automatically mark the bootloader blocks as read-only/reserved
+; 261  :     regInfo.MemBase.Reg[0] = g_ulFlashBase; // The device is connected to CS0 mapped to 0x0800-0000
 
   00034	e59f3178	 ldr         r3, [pc, #0x178]
 
-; 261  :     hFMD = FMD_Init(NULL, &regInfo, NULL);
+; 262  :     hFMD = FMD_Init(NULL, &regInfo, NULL);
 
   00038	e3a02000	 mov         r2, #0
   0003c	e28d1010	 add         r1, sp, #0x10
@@ -1048,12 +1048,12 @@
   0004c	eb000000	 bl          FMD_Init
   00050	e1b06000	 movs        r6, r0
 
-; 262  :     if (hFMD == NULL)
+; 263  :     if (hFMD == NULL)
 
   00054	1a000005	 bne         |$LN8@BLReserveB|
 
-; 263  : 	{
-; 264  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_Init call failed!\r\n"));
+; 264  : 	{
+; 265  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_Init call failed!\r\n"));
 
   00058	e5943440	 ldr         r3, [r4, #0x440]
   0005c	e3130001	 tst         r3, #1
@@ -1061,41 +1061,41 @@
   00064	e59f0144	 ldr         r0, [pc, #0x144]
   00068	eb000000	 bl          NKDbgPrintfW
 
-; 265  :         goto cleanUp;
+; 266  :         goto cleanUp;
 
   0006c	ea00003f	 b           |$LN1@BLReserveB|
   00070		 |$LN8@BLReserveB|
 
-; 266  : 	}
-; 267  : 
-; 268  :     // Get flash info
-; 269  :     if (!FMD_GetInfo(&flashInfo))
+; 267  : 	}
+; 268  : 
+; 269  :     // Get flash info
+; 270  :     if (!FMD_GetInfo(&flashInfo))
 
   00070	e28d0000	 add         r0, sp, #0
   00074	eb000000	 bl          FMD_GetInfo
   00078	e3500000	 cmp         r0, #0
   0007c	1a000005	 bne         |$LN7@BLReserveB|
 
-; 270  : 	{
-; 271  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_GetInfo call failed!\r\n"));
+; 271  : 	{
+; 272  :         OALMSG(OAL_ERROR, (L"ERROR: FMD_GetInfo call failed!\r\n"));
 
   00080	e5943440	 ldr         r3, [r4, #0x440]
   00084	e3130001	 tst         r3, #1
-  00088	0a000036	 beq         |$cleanUp$46892|
+  00088	0a000036	 beq         |$cleanUp$46911|
   0008c	e59f0118	 ldr         r0, [pc, #0x118]
   00090	eb000000	 bl          NKDbgPrintfW
 
-; 272  :         goto cleanUp;
+; 273  :         goto cleanUp;
 
-  00094	ea000033	 b           |$cleanUp$46892|
+  00094	ea000033	 b           |$cleanUp$46911|
   00098		 |$LN7@BLReserveB|
 
-; 273  : 	}
-; 274  : 
-; 275  :     //  Loop thru the bootloader blocks to ensure they are marked reserved
-; 276  :     firstblock = 0;
-; 277  :     size = IMAGE_BOOTLOADER_NAND_SIZE;
-; 278  :     lastblock = ((size -1) / flashInfo.dwBytesPerBlock) + 1;
+; 274  : 	}
+; 275  : 
+; 276  :     //  Loop thru the bootloader blocks to ensure they are marked reserved
+; 277  :     firstblock = 0;
+; 278  :     size = IMAGE_BOOTLOADER_NAND_SIZE;
+; 279  :     lastblock = ((size -1) / flashInfo.dwBytesPerBlock) + 1;
 
   00098	e59d0008	 ldr         r0, [sp, #8]
   0009c	e3e034ff	 mvn         r3, #0xFF, 8
@@ -1103,7 +1103,7 @@
   000a4	e3a04000	 mov         r4, #0
   000a8	eb000000	 bl          __rt_udiv
 
-; 279  :     OALLog(L"flashType = 0x%x\r\n", flashInfo.flashType);
+; 280  :     OALLog(L"flashType = 0x%x\r\n", flashInfo.flashType);
 
   000ac	e59d1000	 ldr         r1, [sp]
   000b0	e1a03000	 mov         r3, r0
@@ -1111,152 +1111,152 @@
   000b8	e2835001	 add         r5, r3, #1
   000bc	eb000000	 bl          NKDbgPrintfW
 
-; 280  : 	OALLog(L"IMAGE_BOOTLOADER_NAND_SIZE = 0x%x\r\n", IMAGE_BOOTLOADER_NAND_SIZE);
+; 281  : 	OALLog(L"IMAGE_BOOTLOADER_NAND_SIZE = 0x%x\r\n", IMAGE_BOOTLOADER_NAND_SIZE);
 
   000c0	e59f00dc	 ldr         r0, [pc, #0xDC]
   000c4	e3a01707	 mov         r1, #7, 14
   000c8	eb000000	 bl          NKDbgPrintfW
 
-; 281  : 	OALLog(L"wDataBytesPerSector = 0x%x\r\n", flashInfo.wDataBytesPerSector);
+; 282  : 	OALLog(L"wDataBytesPerSector = 0x%x\r\n", flashInfo.wDataBytesPerSector);
 
   000cc	e1dd10be	 ldrh        r1, [sp, #0xE]
   000d0	e59f00c8	 ldr         r0, [pc, #0xC8]
   000d4	eb000000	 bl          NKDbgPrintfW
 
-; 282  : 	OALLog(L"dwNumBlocks = 0x%x\r\n", flashInfo.dwNumBlocks);
+; 283  : 	OALLog(L"dwNumBlocks = 0x%x\r\n", flashInfo.dwNumBlocks);
 
   000d8	e59d1004	 ldr         r1, [sp, #4]
   000dc	e59f00b8	 ldr         r0, [pc, #0xB8]
   000e0	eb000000	 bl          NKDbgPrintfW
 
-; 283  : 	OALLog(L"wSectorsPerBlock = 0x%x\r\n", flashInfo.wSectorsPerBlock);
+; 284  : 	OALLog(L"wSectorsPerBlock = 0x%x\r\n", flashInfo.wSectorsPerBlock);
 
   000e4	e1dd10bc	 ldrh        r1, [sp, #0xC]
   000e8	e59f00a8	 ldr         r0, [pc, #0xA8]
   000ec	eb000000	 bl          NKDbgPrintfW
 
-; 284  : 	OALLog(L"dwBytesPerBlock = 0x%x\r\n", flashInfo.dwBytesPerBlock);
+; 285  : 	OALLog(L"dwBytesPerBlock = 0x%x\r\n", flashInfo.dwBytesPerBlock);
 
   000f0	e59d1008	 ldr         r1, [sp, #8]
   000f4	e59f0098	 ldr         r0, [pc, #0x98]
   000f8	eb000000	 bl          NKDbgPrintfW
 
-; 285  :     OALLog(L"Checking bootloader blocks are marked as reserved (Num = %d)\r\n", lastblock-firstblock);
+; 286  :     OALLog(L"Checking bootloader blocks are marked as reserved (Num = %d)\r\n", lastblock-firstblock);
 
   000fc	e59f008c	 ldr         r0, [pc, #0x8C]
   00100	e1a01005	 mov         r1, r5
   00104	eb000000	 bl          NKDbgPrintfW
 
-; 286  : 
-; 287  :     while (firstblock < lastblock)
+; 287  : 
+; 288  :     while (firstblock < lastblock)
 
   00108	e3550000	 cmp         r5, #0
   0010c	0a000014	 beq         |$LN5@BLReserveB|
   00110		 |$LL6@BLReserveB|
 
-; 288  : 	{
-; 289  :         // If block is bad, we have to offset it
-; 290  : 		// #define BLOCK_STATUS_UNKNOWN		0x01
-; 291  : 		// #define BLOCK_STATUS_BAD			0x02
-; 292  : 		// #define BLOCK_STATUS_READONLY	0x04
-; 293  : 		// #define BLOCK_STATUS_RESERVED	0x08
-; 294  :         status = FMD_GetBlockStatus(firstblock);
+; 289  : 	{
+; 290  :         // If block is bad, we have to offset it
+; 291  : 		// #define BLOCK_STATUS_UNKNOWN		0x01
+; 292  : 		// #define BLOCK_STATUS_BAD			0x02
+; 293  : 		// #define BLOCK_STATUS_READONLY	0x04
+; 294  : 		// #define BLOCK_STATUS_RESERVED	0x08
+; 295  :         status = FMD_GetBlockStatus(firstblock);
 
   00110	e1a00004	 mov         r0, r4
   00114	eb000000	 bl          FMD_GetBlockStatus
 
-; 295  : 		//OALLog(L" Block %d status = 0x%x\r\n", firstblock, status);
-; 296  :         // Skip bad blocks
-; 297  :         if ((status & BLOCK_STATUS_BAD) != 0) 
+; 296  : 		//OALLog(L" Block %d status = 0x%x\r\n", firstblock, status);
+; 297  :         // Skip bad blocks
+; 298  :         if ((status & BLOCK_STATUS_BAD) != 0) 
 
   00118	e3100002	 tst         r0, #2
   0011c	0a000004	 beq         |$LN4@BLReserveB|
 
-; 298  : 		{
-; 299  :             OALLog(L" Skip bad block %d\r\n", firstblock);
+; 299  : 		{
+; 300  :             OALLog(L" Skip bad block %d\r\n", firstblock);
 
   00120	e59f0064	 ldr         r0, [pc, #0x64]
   00124	e1a01004	 mov         r1, r4
   00128	eb000000	 bl          NKDbgPrintfW
 
-; 300  :             // blocks marked bad would not have been written either, so don't include this 
-; 301  :             // in the count of blocks that are reserved.
-; 302  :             firstblock++;
-; 303  :             lastblock++;
+; 301  :             // blocks marked bad would not have been written either, so don't include this 
+; 302  :             // in the count of blocks that are reserved.
+; 303  :             firstblock++;
+; 304  :             lastblock++;
 
   0012c	e2855001	 add         r5, r5, #1
 
-; 304  :             continue;
+; 305  :             continue;
 
   00130	ea000008	 b           |$LN2@BLReserveB|
   00134		 |$LN4@BLReserveB|
 
-; 305  : 		}
-; 306  :         // Skip already reserved blocks
-; 307  :         if ((status & BLOCK_STATUS_RESERVED) != 0) 
+; 306  : 		}
+; 307  :         // Skip already reserved blocks
+; 308  :         if ((status & BLOCK_STATUS_RESERVED) != 0) 
 
   00134	e3100008	 tst         r0, #8
 
-; 308  : 		{
-; 309  :             firstblock++;
-; 310  :             continue;
+; 309  : 		{
+; 310  :             firstblock++;
+; 311  :             continue;
 
   00138	1a000006	 bne         |$LN2@BLReserveB|
 
-; 311  : 		}
-; 312  :         // Mark block as read-only & reserved
-; 313  :         if (!FMD_SetBlockStatus(firstblock, BLOCK_STATUS_READONLY|BLOCK_STATUS_RESERVED)) 
+; 312  : 		}
+; 313  :         // Mark block as read-only & reserved
+; 314  :         if (!FMD_SetBlockStatus(firstblock, BLOCK_STATUS_READONLY|BLOCK_STATUS_RESERVED)) 
 
   0013c	e3a0100c	 mov         r1, #0xC
   00140	e1a00004	 mov         r0, r4
   00144	eb000000	 bl          FMD_SetBlockStatus
   00148	e3500000	 cmp         r0, #0
 
-; 314  : 		{
-; 315  :             OALLog(L" Oops, can't mark block %d - as reserved\r\n", firstblock);
+; 315  : 		{
+; 316  :             OALLog(L" Oops, can't mark block %d - as reserved\r\n", firstblock);
 
   0014c	059f0034	 ldreq       r0, [pc, #0x34]
   00150	01a01004	 moveq       r1, r4
   00154	0b000000	 bleq        NKDbgPrintfW
   00158		 |$LN2@BLReserveB|
 
-; 316  : 		}
-; 317  :         firstblock++;
+; 317  : 		}
+; 318  :         firstblock++;
 
   00158	e2844001	 add         r4, r4, #1
   0015c	e1540005	 cmp         r4, r5
   00160	3affffea	 bcc         |$LL6@BLReserveB|
   00164		 |$LN5@BLReserveB|
 
-; 318  : 	}
-; 319  :     // Done    
-; 320  :     rc = TRUE;
+; 319  : 	}
+; 320  :     // Done    
+; 321  :     rc = TRUE;
 
   00164	e3a05001	 mov         r5, #1
-  00168		 |$cleanUp$46892|
+  00168		 |$cleanUp$46911|
 
-; 321  : 	//OALMSG(OAL_ERROR, (L"BLReserveBootBlocks: end!\r\n"));
-; 322  :     //OALLog(L"\r\n");
-; 323  : 
-; 324  : cleanUp:
-; 325  :     if (hFMD != NULL) FMD_Deinit(hFMD);
+; 322  : 	//OALMSG(OAL_ERROR, (L"BLReserveBootBlocks: end!\r\n"));
+; 323  :     //OALLog(L"\r\n");
+; 324  : 
+; 325  : cleanUp:
+; 326  :     if (hFMD != NULL) FMD_Deinit(hFMD);
 
   00168	e1a00006	 mov         r0, r6
   0016c	eb000000	 bl          FMD_Deinit
   00170		 |$LN1@BLReserveB|
 
-; 326  :     return rc;
+; 327  :     return rc;
 
   00170	e59d0390	 ldr         r0, [sp, #0x390]
   00174	eb000000	 bl          __security_check_cookie
 
-; 327  : #else
-; 328  :     UNREFERENCED_PARAMETER(pBootCfg);
-; 329  :     // Nothing to do...
-; 330  :     return TRUE;
-; 331  : 
-; 332  : #endif
-; 333  : }
+; 328  : #else
+; 329  :     UNREFERENCED_PARAMETER(pBootCfg);
+; 330  :     // Nothing to do...
+; 331  :     return TRUE;
+; 332  : 
+; 333  : #endif
+; 334  : }
 
   00178	e1a00005	 mov         r0, r5
   0017c	e28ddfe5	 add         sp, sp, #0xE5, 30
@@ -1293,7 +1293,7 @@
   001bc	00000000	 DCD         |dpCurSettings|
   001c0		 |$LN39@BLReserveB|
   001c0	00000000	 DCD         |__security_cookie|
-  001c4		 |$M47079|
+  001c4		 |$M47104|
 
 			 ENDP  ; |BLReserveBootBlocks|
 
@@ -1302,7 +1302,7 @@
 	IMPORT	|ShowSDLogo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47107| DCD	|$LN6@BLShowLogo|
+|$T47132| DCD	|$LN6@BLShowLogo|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -1310,37 +1310,73 @@
 
   00000		 |BLShowLogo| PROC
 
-; 337  : {
+; 338  : {
 
   00000		 |$LN6@BLShowLogo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47104|
+  00004		 |$M47129|
 
-; 338  : 	//  Show the bootloader splashscreen if present on the SDCard
-; 339  : 	if (!ShowSDLogo())
+; 339  : 	//  Show the bootloader splashscreen if present on the SDCard
+; 340  : 	if (!ShowSDLogo())
 
   00004	eb000000	 bl          ShowSDLogo
   00008	e3500000	 cmp         r0, #0
 
-; 340  : 	{
-; 341  : 		ShowLogo((UINT32)-1, 0);
+; 341  : 	{
+; 342  : 		ShowLogo((UINT32)-1, 0);
 
   0000c	03a01000	 moveq       r1, #0
   00010	03e00000	 mvneq       r0, #0
   00014	0b000000	 bleq        ShowLogo
 
-; 342  : 	}
-; 343  : 
-; 344  :     return TRUE;
+; 343  : 	}
+; 344  : 
+; 345  :     return TRUE;
 
   00018	e3a00001	 mov         r0, #1
 
-; 345  : }
+; 346  : }
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M47105|
+  00024		 |$M47130|
 
 			 ENDP  ; |BLShowLogo|
+
+	EXPORT	|DisplayShow|
+	IMPORT	|ShowTest|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T47141| DCD	|$LN5@DisplaySho|
+	DCD	0x40000701
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |DisplayShow| PROC
+
+; 350  : {
+
+  00000		 |$LN5@DisplaySho|
+  00000	e52de004	 str         lr, [sp, #-4]!
+  00004		 |$M47138|
+
+; 351  :     ShowTest((UINT32)-1, 0);
+
+  00004	e3a01000	 mov         r1, #0
+  00008	e3e00000	 mvn         r0, #0
+  0000c	eb000000	 bl          ShowTest
+
+; 352  :     return TRUE;
+
+  00010	e3a00001	 mov         r0, #1
+
+; 353  : }
+
+  00014	e49de004	 ldr         lr, [sp], #4
+  00018	e12fff1e	 bx          lr
+  0001c		 |$M47139|
+
+			 ENDP  ; |DisplayShow|
 
 	END

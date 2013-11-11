@@ -1,14 +1,2 @@
 BUILD: [Thrd:Sequence:Type  ] Message
-BUILD: [01:0000000058:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1206) : warning C4431: missing type specifier - int assumed. Note: C no longer supports default-int
-BUILD: [01:0000000060:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1206) : warning C4013: 'I2COpen' undefined; assuming extern returning int
-BUILD: [01:0000000062:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1206) : warning C4218: nonstandard extension used : must specify at least a storage class or a type
-BUILD: [01:0000000063:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1215) : warning C4013: 'I2CRead' undefined; assuming extern returning int
-BUILD: [01:0000000064:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1231) : warning C4013: 'I2CSetSlaveAddress' undefined; assuming extern returning int
-BUILD: [01:0000000067:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1234) : warning C4013: 'I2CSetSubAddressMode' undefined; assuming extern returning int
-BUILD: [01:0000000070:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1235) : warning C4013: 'I2CSetBaudIndex' undefined; assuming extern returning int
-BUILD: [01:0000000073:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1237) : warning C4013: 'BQ27410_WriteReg' undefined; assuming extern returning int
-BUILD: [01:0000000075:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1241) : warning C4133: 'function' : incompatible types - from 'int *' to 'UINT16 *'
-BUILD: [01:0000000077:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1242) : warning C4133: 'function' : incompatible types - from 'int *' to 'UINT16 *'
-BUILD: [01:0000000079:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1243) : warning C4133: 'function' : incompatible types - from 'int *' to 'UINT16 *'
-BUILD: [01:0000000081:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1244) : warning C4133: 'function' : incompatible types - from 'int *' to 'UINT16 *'
-BUILD: [01:0000000082:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\..\menu.c(1282) : warning C4098: 'FuelGaugeWithBattery' : 'void' function returning a value
+BUILD: [01:0000000132:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\..\functionTest.c : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss

@@ -152,7 +152,7 @@
 ; File c:\wince600\platform\z2170p\src\inc\bsp_padcfg.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47569| DCD	|$LN9@ConfigureP|
+|$T47582| DCD	|$LN9@ConfigureP|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -164,7 +164,7 @@
 
   00000		 |$LN9@ConfigureP|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47566|
+  00004		 |$M47579|
   00004	e1a04000	 mov         r4, r0
 
 ; 576  :     int i=0;
@@ -203,7 +203,7 @@
 
   00050	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00054	e12fff1e	 bx          lr
-  00058		 |$M47567|
+  00058		 |$M47580|
 
 			 ENDP  ; |ConfigurePadArray|
 
@@ -223,7 +223,7 @@
 ; File c:\wince600\platform\z2170p\src\oal\oallib\init.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47593| DCD	|$LN23@OALCalibra|
+|$T47606| DCD	|$LN23@OALCalibra|
 	DCD	0x40005201
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -251,7 +251,7 @@
 
   00000		 |$LN23@OALCalibra|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M47590|
+  00004		 |$M47603|
 
 ; 496  :     DWORD dw32k_prev,dw32k, dw32k_diff;
 ; 497  :     DWORD dwSysk_prev,dwSysk, dwSys_diff;
@@ -450,14 +450,14 @@
   00140	00000000	 DCD         |??_C@_1CO@GBOCCPHF@?$AAO?$AAA?$AAL?$AAC?$AAa?$AAl?$AAi?$AAb?$AAr?$AAa?$AAt?$AAe?$AAS?$AAy?$AAs?$AAC?$AAl?$AAk?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00144		 |$LN29@OALCalibra|
   00144	00000000	 DCD         |dpCurSettings|
-  00148		 |$M47591|
+  00148		 |$M47604|
 
 			 ENDP  ; |OALCalibrateSysClk|
 
 	EXPORT	|OALMux_UpdateOnDeviceStateChange|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47608| DCD	|$LN5@OALMux_Upd|
+|$T47621| DCD	|$LN5@OALMux_Upd|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -468,7 +468,7 @@
 ; 570  : {
 
   00000		 |$LN5@OALMux_Upd|
-  00000		 |$M47605|
+  00000		 |$M47618|
 
 ; 571  :     UNREFERENCED_PARAMETER(devId);
 ; 572  :     UNREFERENCED_PARAMETER(oldState);
@@ -481,14 +481,14 @@
 ; 576  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M47606|
+  00008		 |$M47619|
 
 			 ENDP  ; |OALMux_UpdateOnDeviceStateChange|
 
 	EXPORT	|OALMux_InitMuxTable|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47615| DCD	|$LN5@OALMux_Ini|
+|$T47628| DCD	|$LN5@OALMux_Ini|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -499,19 +499,19 @@
 ; 580  : {
 
   00000		 |$LN5@OALMux_Ini|
-  00000		 |$M47612|
+  00000		 |$M47625|
 
 ; 581  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M47613|
+  00004		 |$M47626|
 
 			 ENDP  ; |OALMux_InitMuxTable|
 
 	EXPORT	|EnableDebugSerialClock|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47627| DCD	|$LN15@EnableDebu|
+|$T47640| DCD	|$LN15@EnableDebu|
 	DCD	0x40002400
 ; Function compile flags: /Ogspy
 
@@ -522,7 +522,7 @@
 ; 584  : {  
 
   00000		 |$LN15@EnableDebu|
-  00000		 |$M47624|
+  00000		 |$M47637|
   00000	e3a03312	 mov         r3, #0x12, 6
 
 ; 585  : #define OMAP_PRCM_PER_CM_REGS_PA            0x48005000
@@ -621,7 +621,7 @@
   00088	48005020	 DCD         0x48005020
   0008c		 |$LN20@EnableDebu|
   0008c	48005010	 DCD         0x48005010
-  00090		 |$M47625|
+  00090		 |$M47638|
 
 			 ENDP  ; |EnableDebugSerialClock|
 
@@ -632,7 +632,7 @@
 	IMPORT	|Tps659xx_Gpio|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47641| DCD	|$LN7@BSPGpioIni|
+|$T47654| DCD	|$LN7@BSPGpioIni|
 	DCD	0x40001401
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -650,7 +650,7 @@
 
   00000		 |$LN7@BSPGpioIni|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47638|
+  00004		 |$M47651|
 
 ; 622  : 	OALMSG(OAL_FUNC, (L"BSPGpioInit()\r\n"));
 
@@ -687,14 +687,14 @@
   00048	00000000	 DCD         |??_C@_1CA@MCLKGBIP@?$AAB?$AAS?$AAP?$AAG?$AAp?$AAi?$AAo?$AAI?$AAn?$AAi?$AAt?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   0004c		 |$LN12@BSPGpioIni|
   0004c	00000000	 DCD         |dpCurSettings|
-  00050		 |$M47639|
+  00050		 |$M47652|
 
 			 ENDP  ; |BSPGpioInit|
 
 	EXPORT	|MmUnmapIoSpace|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47653| DCD	|$LN5@MmUnmapIoS|
+|$T47666| DCD	|$LN5@MmUnmapIoS|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -705,21 +705,21 @@
 ; 631  : {
 
   00000		 |$LN5@MmUnmapIoS|
-  00000		 |$M47650|
+  00000		 |$M47663|
 
 ; 632  :     UNREFERENCED_PARAMETER(BaseAddress);
 ; 633  :     UNREFERENCED_PARAMETER(NumberOfBytes);
 ; 634  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M47651|
+  00004		 |$M47664|
 
 			 ENDP  ; |MmUnmapIoSpace|
 
 	EXPORT	|MmMapIoSpace|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47664| DCD	|$LN5@MmMapIoSpa|
+|$T47677| DCD	|$LN5@MmMapIoSpa|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -731,7 +731,7 @@
 
   00000		 |$LN5@MmMapIoSpa|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47661|
+  00004		 |$M47674|
 
 ; 642  :     UNREFERENCED_PARAMETER(NumberOfBytes);
 ; 643  :     return OALPAtoVA(PhysicalAddress.LowPart,CacheEnable);
@@ -743,7 +743,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M47662|
+  00014		 |$M47675|
 
 			 ENDP  ; |MmMapIoSpace|
 
@@ -751,7 +751,7 @@
 	IMPORT	|g_ffContextSaveMask|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47672| DCD	|$LN5@HalContext|
+|$T47685| DCD	|$LN5@HalContext|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 
@@ -762,7 +762,7 @@
 ; 649  : {
 
   00000		 |$LN5@HalContext|
-  00000		 |$M47669|
+  00000		 |$M47682|
 
 ; 650  :     g_ffContextSaveMask |= ffRegister;
 
@@ -777,7 +777,7 @@
   00014		 |$LN6@HalContext|
   00014		 |$LN7@HalContext|
   00014	00000000	 DCD         |g_ffContextSaveMask|
-  00018		 |$M47670|
+  00018		 |$M47683|
 
 			 ENDP  ; |HalContextUpdateDirtyRegister|
 
@@ -788,7 +788,7 @@
 	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47682| DCD	|$LN5@OALGPIOSet|
+|$T47695| DCD	|$LN5@OALGPIOSet|
 	DCD	0x40003401
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -808,7 +808,7 @@
 
   00000		 |$LN5@OALGPIOSet|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47679|
+  00004		 |$M47692|
 
 ; 655  :     HANDLE hGPIO = GPIOOpen();
 
@@ -941,14 +941,14 @@
   000cc		 |$LN6@OALGPIOSet|
   000cc		 |$LN7@OALGPIOSet|
   000cc	00000000	 DCD         |??_C@_1DI@EKHPOAB@?$AAO?$AAA?$AAL?$AAG?$AAP?$AAI?$AAO?$AAS?$AAe?$AAt?$AAD?$AAe?$AAf?$AAa?$AAu?$AAl?$AAt?$AAV?$AAa?$AAl?$AAu?$AAe?$AAs?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  000d0		 |$M47680|
+  000d0		 |$M47693|
 
 			 ENDP  ; |OALGPIOSetDefaultValues|
 
 	EXPORT	|??_C@_1DC@LBJFKMIA@?$AAO?$AAE?$AAM?$AAE?$AAn?$AAu?$AAm?$AAE?$AAx?$AAt?$AAe?$AAn?$AAs?$AAi?$AAo?$AAn?$AAD?$AAR?$AAA?$AAM?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47698| DCD	|$LN11@OEMEnumExt|
+|$T47711| DCD	|$LN11@OEMEnumExt|
 	DCD	0x40004301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -968,7 +968,7 @@
 
   00000		 |$LN11@OEMEnumExt|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47695|
+  00004		 |$M47708|
   00004	e1a05001	 mov         r5, r1
   00008	e1a06000	 mov         r6, r0
 
@@ -1121,7 +1121,7 @@
   00104	00000000	 DCD         |??_C@_1DC@LBJFKMIA@?$AAO?$AAE?$AAM?$AAE?$AAn?$AAu?$AAm?$AAE?$AAx?$AAt?$AAe?$AAn?$AAs?$AAi?$AAo?$AAn?$AAD?$AAR?$AAA?$AAM?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00108		 |$LN15@OEMEnumExt|
   00108	00000000	 DCD         |dpCurSettings|
-  0010c		 |$M47696|
+  0010c		 |$M47709|
 
 			 ENDP  ; |OEMEnumExtensionDRAM|
 
@@ -1188,7 +1188,7 @@
 |?allocationPool@?1??OEMInit@@9@9| % 0x800		; `OEMInit'::`2'::allocationPool
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47751| DCD	|$LN61@OEMInit|
+|$T47764| DCD	|$LN61@OEMInit|
 	DCD	0x40011002
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1386,7 +1386,7 @@
   00000		 |$LN61@OEMInit|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47748|
+  00008		 |$M47761|
   00008	e3a03a0d	 mov         r3, #0xD, 20
 
 ; 197  :     BOOL	*pColdBoot;
@@ -1709,13 +1709,13 @@
   001b8	e3500000	 cmp         r0, #0
   001bc	1a000004	 bne         |$LN13@OEMInit|
   001c0	e3130001	 tst         r3, #1
-  001c4	0a00006b	 beq         |$cleanUp$47322|
+  001c4	0a00006b	 beq         |$cleanUp$47335|
   001c8	e59f01f4	 ldr         r0, [pc, #0x1F4]
   001cc	eb000000	 bl          NKDbgPrintfW
 
 ; 329  :         goto cleanUp;
 
-  001d0	ea000068	 b           |$cleanUp$47322|
+  001d0	ea000068	 b           |$cleanUp$47335|
   001d4		 |$LN13@OEMInit|
 
 ; 330  :         }
@@ -1745,10 +1745,10 @@
 ; 340  :             ));
 
   001fc	e3130001	 tst         r3, #1
-  00200	0a00005c	 beq         |$cleanUp$47322|
+  00200	0a00005c	 beq         |$cleanUp$47335|
   00204	e59f01b0	 ldr         r0, [pc, #0x1B0]
   00208	eb000000	 bl          NKDbgPrintfW
-  0020c	ea000059	 b           |$cleanUp$47322|
+  0020c	ea000059	 b           |$cleanUp$47335|
   00210		 |$LN12@OEMInit|
 
 ; 341  :         goto cleanUp;
@@ -2031,13 +2031,13 @@
   00364	0a000002	 beq         |$LN1@OEMInit|
   00368	e5903000	 ldr         r3, [r0]
   0036c	e3530000	 cmp         r3, #0
-  00370	0a000000	 beq         |$cleanUp$47322|
+  00370	0a000000	 beq         |$cleanUp$47335|
   00374		 |$LN1@OEMInit|
 
 ; 485  :         NKForceCleanBoot();
 
   00374	eb000000	 bl          NKForceCleanBoot
-  00378		 |$cleanUp$47322|
+  00378		 |$cleanUp$47335|
 
 ; 325  :         {
 ; 326  :         OALMSG(OAL_ERROR, (
@@ -2146,7 +2146,7 @@
   00438	00000000	 DCD         |??_C@_1BG@JHBBNGEC@?$AA?$CL?$AAO?$AAE?$AAM?$AAI?$AAn?$AAi?$AAt?$AA?$AN?$AA?6?$AA?$AA@|
   0043c		 |$LN105@OEMInit|
   0043c	00000000	 DCD         |dpCurSettings|
-  00440		 |$M47749|
+  00440		 |$M47762|
 
 			 ENDP  ; |OEMInit|
 

@@ -10,29 +10,35 @@
 #define shiftLeft(col) (1<<col)     //Ray 131104 
 //-----------------------------------------------------------------------------
 //
-void FillASCII();
-void FillASCIIMode(int);
-//VOID BLMenu(BOOL);
+BOOL FillASCIIMode(int);            //Ray 131104 
+
 
 //-----------------------------------------------------------------------------
-//Global variable, Ray 131104 
+//Global variable 
 //
-UINT8 gMatrix[SIZE];
+UINT8 gMatrix[SIZE];                //Ray 131104 
+
 
 //-----------------------------------------------------------------------------
-//Ray 131025
 //
-typedef struct _HOTKEY_COLD_RESET{
+//
+typedef struct _HOTKEY_COLD_RESET{          //Ray 131025
 		DWORD	 	keyActive;
 		LPCWSTR		keyName;
 }HOTKEY_COLD_RESET;
 
-HOTKEY_COLD_RESET hotkeyColdReset[] ={
-	{Hotkey_F1,     L"File Update"},
-	{Hotkey_F2,	    L"Reserved"},
-    {Hotkey_F3,	    L"F1 + F2"},
-	{Hotkey_F4,     L"Reserved"},
-	{Hotkey_EXIT,   L"Exit and Continue"},
+HOTKEY_COLD_RESET hotkeyColdReset[] ={      //Ray 131106
+	{Hotkey_F1,        L"F1 Updates"},
+	{Hotkey_F2,	       L"F2"},
+    {Hotkey_F3,	       L"Reserved"},
+	{Hotkey_F4,        L"F4"},
+	{Hotkey_F1_F2,     L"F1 + F2"},
+	{Hotkey_F1_F3,     L"F1 + F3"},
+	{Hotkey_F1_F4,     L"F1 + F4"},
+	{Hotkey_F2_F3,     L"F2 + F3"},
+	{Hotkey_F2_F4,     L"F2 + F4"}, 
+	{Hotkey_F3_F4,     L"F3 + F4"},
+	{Hotkey_EXIT,      L"Exit and Continue"},
 };
 
 //-----------------------------------------------------------------------------
@@ -46,7 +52,7 @@ void HotKeyInit(HANDLE hTwl)
     TWLWriteRegs(hTwl, TWL_LK_PTV_REG, &regval, sizeof(regval));
 }
 //-----------------------------------------------------------------------------
-//3(0000_1000),2(0000_0010), Ray 131104
+//Ray 131104
 //
 BOOL matrixStatus(int row, int col)
 {
@@ -60,10 +66,7 @@ BOOL matrixStatus(int row, int col)
     else
         return event;
 }
-
-//-----------------------------------------------------------------------------
-//     
-//
+    
 //-----------------------------------------------------------------------------
 void HotKeyFunction(HANDLE hTwl)
 {
@@ -71,31 +74,28 @@ void HotKeyFunction(HANDLE hTwl)
 	ULONG ik, ix, row, column, i;
     USHORT state;
     BOOL keyPressed = FALSE;
-    WCHAR key;
-    /*int modeF1 = 1,
-        modeF2 = 2,
-        modeF4 = 4;
-        //modeF3 = 3,*/
+    WCHAR key; 
+    
        
     //Ray 131104
     for(i=0; i<Hotkey_EXIT; i++)
     {
-		OALLog(L" [F%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
+		OALLog(L" [%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
 	}
 	OALLog(L" [0] Exit and Continue\r\n");
 	OALLog(L"\r>>> Now entry cold-reset... \r\n"); 
 	
     //printing matrix array, Ray
-	for( ik=0 ; ik<3 ; ik++ )
-	{
+	/*for( ik=0 ; ik<3 ; ik++ )
+	{*/
 		TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));
-	    //OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+	/*    //OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
 	    
 		OALLog(L" HotKeyFunction: matrix  ");
 		for( ix=0 ; ix <8 ; ix++ )
 			OALLog(L" [%d]",gMatrix[ix]);
 		OALLog(L"\r\n");
-	}
+	}*/
 	
 	
 	for(row = 0, ik = 0; row < 8; row++)
@@ -119,23 +119,26 @@ void HotKeyFunction(HANDLE hTwl)
 			}
 		}
 	}
-    //OALLog(L"******HotKey: [%d,%d]\r\n",gRow ,gColumn);
 
-    //Ray 131104
-    if(matrixStatus(4, 2) && matrixStatus(4, 3)){ //F1 + F2
-             FillASCIIMode(3);       
-            keyPressed = TRUE;
-    }else if( matrixStatus(3, 2)){    
-            FillASCIIMode(1);       //F1
-            keyPressed = TRUE;
-    }else if( matrixStatus(4, 3)){
-            FillASCIIMode(2);       //F2
-            keyPressed = TRUE;
-    }
-        
-	do{
-       key = OALBLMenuReadKey(TRUE);
-	}while(key == L'0');
+
+        //Ray 131106
+        if(matrixStatus(4, 2) && matrixStatus(4, 3)){           //F1 + F2
+            keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
+        }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){     //F1 + F4
+            keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
+        }else if( matrixStatus(3, 2)){      //F1   
+            keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
+        }else if( matrixStatus(4, 3)){      //F2
+            keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
+        }else if( matrixStatus(3, 1)){      //F4
+            keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
+        }
+
+    do{
+        key = OALBLMenuReadKey(TRUE);
+	}while(key != L'0' || keyPressed == TRUE);
+
+	if (key == L'0') return;
 }
 
 //-----------------------------------------------------------------------------
