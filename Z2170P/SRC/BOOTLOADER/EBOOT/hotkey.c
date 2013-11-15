@@ -74,7 +74,7 @@ void HotKeyFunction(HANDLE hTwl)
 	ULONG ik, ix, row, column, i;
     USHORT state;
     BOOL keyPressed = FALSE;
-    WCHAR key; 
+    //WCHAR key; 
     
        
     //Ray 131104
@@ -83,6 +83,7 @@ void HotKeyFunction(HANDLE hTwl)
 		OALLog(L" [%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
 	}
 	OALLog(L" [0] Exit and Continue\r\n");
+	
 	OALLog(L"\r>>> Now entry cold-reset... \r\n"); 
 	
     //printing matrix array, Ray
@@ -120,25 +121,25 @@ void HotKeyFunction(HANDLE hTwl)
 		}
 	}
 
-
-        //Ray 131106
-        if(matrixStatus(4, 2) && matrixStatus(4, 3)){           //F1 + F2
-            keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
-        }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){     //F1 + F4
-            keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
-        }else if( matrixStatus(3, 2)){      //F1   
-            keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
-        }else if( matrixStatus(4, 3)){      //F2
-            keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
-        }else if( matrixStatus(3, 1)){      //F4
-            keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
-        }
-
-    do{
+   
+    //Ray 131106
+    if(matrixStatus(4, 2) && matrixStatus(4, 3)){           //F1 + F2
+        keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
+    }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){     //F1 + F4
+        keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
+    }else if( matrixStatus(3, 2)){      //F1   
+        keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
+    }else if( matrixStatus(4, 3)){      //F2
+        keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
+    }else if( matrixStatus(3, 1)){      //F4
+        keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
+    }
+        
+    /*do{   
         key = OALBLMenuReadKey(TRUE);
-	}while(key != L'0' || keyPressed == TRUE);
+	}while(key != L'0');*/
 
-	if (key == L'0') return;
+	if (/*key == L'0' || */keyPressed == TRUE) return;
 }
 
 //-----------------------------------------------------------------------------

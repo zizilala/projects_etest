@@ -336,256 +336,273 @@ ARM macroassembler      Page:1
    53 00000000          ;       cmp             r1, r3 
    54 00000000          ;       addne   r11, pc, #g_oalAddressTable-(.+8)                       ;X Pointer to OEMAddressTable. 
    55 00000000          ;       addeq   r11, pc, #g_oalAddressTableHynix - (. + 8)      ;V Pointer to OEMAddressTable for Hynix device 
-   56 00000000 e28fbf59         add             r11, pc, #g_oalAddressTableHynix - (. + 8) 
-   57 00000004                   
-   58 00000004              ; Set the TTB. 
-   59 00000004              ; 
-   60 00000004 e59f91f0     ldr     r9, =BSP_PTES_PA 
-   61 00000008 e59f01f0     ldr     r0, =0xFFFFC000                   ; 
-   62 0000000c e0099000     and     r9, r9, r0                        ; Mask off TTB to be on 16K boundary. 
-   63 00000010 ee029f10     mcr     p15, 0, r9, c2, c0, 0             ; Set the TTB. 
-   64 00000014            
-   65 00000014              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-   66 00000014              ; ~~~~~~~~~~ MAP CACHED and BUFFERED SECTION DESCRIPTORS ~~~~~~~~~~~~~~~~~~ 
-   67 00000014              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-   68 00000014 e3a0000a     mov     r0, #0x0A                         ; Section (1MB) descriptor; (C=1 B=0: cached write-through). 
-   69 00000018 e3800b01     orr     r0, r0, #0x400                    ; Set AP. 
-   70 0000001c e1a0100b 20  mov     r1, r11                           ; Pointer to OEMAddressTable. 
-   71 00000020            
-   72 00000020              ; Start Crunching through the OEMAddressTable[]: 
-   73 00000020              ; 
-   74 00000020              ; r2 temporarily holds OEMAddressTable[VA] 
-   75 00000020              ; r3 temporarily holds OEMAddressTable[PHY] 
-   76 00000020              ; r4 temporarily holds OEMAddressTable[#MB] 
-   77 00000020              ; 
-   78 00000020 e4912004 25  ldr     r2, [r1], #4                       ; Virtual (cached) address to map physical address to. 
-   79 00000024 e4913004     ldr     r3, [r1], #4                       ; Physical address to map from. 
-   80 00000028 e4914004     ldr     r4, [r1], #4                       ; Number of MB to map. 
-   81 0000002c            
-   82 0000002c e3540000     cmp     r4, #0                             ; End of table? 
-   83 00000030 0a00000d     beq     %F29 
-   84 00000034            
-   85 00000034              ; r2 holds the descriptor address (virtual address) 
-   86 00000034              ; r0 holds the actual section descriptor 
-   87 00000034              ; 
-   88 00000034            
-   89 00000034              ; Create descriptor address. 
-   90 00000034              ; 
-   91 00000034 e59f61c8     ldr     r6, =0xFFF00000 
-   92 00000038 e0022006     and     r2, r2, r6             ; Only VA[31:20] are valid. 
-   93 0000003c e1892922     orr     r2, r9, r2, LSR #18    ; Build the descriptor address:  r2 = (TTB[31:14} | VA[31:20] >> 18) 
-   94 00000040            
-   95 00000040              ; Create the descriptor. 
-   96 00000040              ; 
-   97 00000040 e59f61bc     ldr     r6, =0xFFF00000 
-   98 00000044 e0033006     and     r3, r3, r6             ; Only PA[31:20] are valid for the descriptor and the rest will be static. 
-   99 00000048 e1830000     orr     r0, r3, r0             ; Build the descriptor: r0 = (PA[31:20] | the rest of the descriptor) 
-  100 0000004c            
-  101 0000004c              ; Store the descriptor at the proper (physical) address 
-  102 0000004c              ; 
-  103 0000004c e4820004 28  str     r0, [r2], #4 
-  104 00000050 e2800601     add     r0, r0, #0x00100000    ; Section descriptor for the next 1MB mapping (just add 1MB). 
-  105 00000054 e2444001     sub     r4, r4, #1             ; Decrement number of MB left. 
-  106 00000058 e3540000     cmp     r4, #0                 ; Done? 
-  107 0000005c 1afffffa     bne     %B28                   ; No - map next MB. 
-  108 00000060            
-  109 00000060 e3c0020f     bic     r0, r0, #0xF0000000    ; Clear section base address field. 
-  110 00000064 e3c006ff     bic     r0, r0, #0x0FF00000    ; Clear section base address field. 
-  111 00000068 eaffffec     b       %B25                   ; Get and process the next OEMAddressTable element. 
-  112 0000006c            
-  113 0000006c              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-  114 0000006c              ; ~~~~~~~~~~ MAP UNCACHED and UNBUFFERED SECTION DESCRIPTORS ~~~~~~~~~~~~~~ 
-  115 0000006c              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-  116 0000006c            
-  117 0000006c e3100008 29  tst     r0, #8                 ; Test for 'C' bit set (means we just used  
-  118 00000070                                             ; above loop structure to map cached and buffered space). 
-  119 00000070 e3c0000c     bic     r0, r0, #0x0C          ; Clear cached and buffered bits in the descriptor (clear C&B bits). 
-  120 00000074 e2899b02     add     r9, r9, #0x0800        ; Pointer to the first PTE for "unmapped uncached space" (0x2000 0000 + V_U_Adx). 
-  121 00000078 1affffe7     bne     %B20                   ; Repeat the descriptor setup for uncached space (map C=B=0 space). 
-  122 0000007c            
-  123 0000007c          ACTIVATEMMU 
-  124 0000007c              ; The 1st Level Section Descriptors are setup. Initialize the MMU and turn it on. 
-  125 0000007c              ; 
-  126 0000007c e3a01001     mov     r1, #1 
-  127 00000080 ee031f10     mcr     p15, 0, r1, c3, c0, 0   ; Set up access to domain 0. 
-  128 00000084 e3a00000     mov     r0, #0 
-  129 00000088 ee080f17     mcr     p15, 0, r0, c8, c7, 0   ; Flush the instruction and data TLBs. 
-  130 0000008c ee071f9a     mcr     p15, 0, r1, c7, c10, 4  ; Drain the write and fill buffers. 
-  131 00000090            
-  132 00000090 ee111f10         mrc     p15, 0, r1, c1, c0, 0    
-  133 00000094 e3811001     orr     r1, r1, #0x1            ; Enable MMU. 
-  134 00000098 e3811a01     orr     r1, r1, #0x1000         ; Enable IC. 
-  135 0000009c e3811004     orr     r1, r1, #0x4            ; Enable DC. 
-  136 000000a0 e59f2164     ldr     r2, =VirtualStart       ; Get virtual address of 'VirtualStart' label. 
-  137 000000a4 e3520000     cmp     r2, #0                  ; Make sure no stall on "mov pc,r2" below. 
-  138 000000a8            
-  139 000000a8              ; Enable the MMU. 
-  140 000000a8              ; 
-  141 000000a8 ee011f10     mcr     p15, 0, r1, c1, c0, 0   ; MMU ON:  All memory accesses are now virtual. 
-  142 000000ac            
-  143 000000ac              ; Jump to the virtual address of the 'VirtualStart' label. 
-  144 000000ac              ; 
-  145 000000ac e1a0f002     mov     pc, r2                  ; 
-  146 000000b0 e1a00000     nop 
-  147 000000b4 e1a00000     nop 
-  148 000000b8 e1a00000     nop 
-  149 000000bc            
-  150 000000bc              ; ************************************************************************* 
-  151 000000bc              ; ************************************************************************* 
-  152 000000bc              ; The MMU and caches are now enabled and we're running in a virtual 
-  153 000000bc              ; address space. 
-  154 000000bc              ; 
-  155 000000bc               
-  156 000000bc              ALIGN 
-  157 000000bc               
-  158 000000bc          VirtualStart 
-  159 000000bc            
-  160 000000bc              ;  Set up a supervisor mode stack. 
-  161 000000bc              ; 
-  162 000000bc              ; NOTE: These values must match the OEMAddressTable and .bib file entries for 
-  163 000000bc              ; the bootloader. 
-  164 000000bc              ; 
-  165 000000bc e59fd144     ldr     sp, =(IMAGE_EBOOT_STACK_CA + IMAGE_EBOOT_STACK_SIZE) 
-  166 000000c0            
-  167 000000c0                   
-  168 000000c0                   
-  169 000000c0              ; Jump to the C entrypoint. 
-  170 000000c0              ; 
-  171 000000c0 eb000000     bl      main                                        ; Jump to main.c::main(), never to return... 
-  172 000000c4            
-  173 000000c4               
-  174 000000c4                  ENTRY_END  
-  194 000000c4          |StartUp_end| 
-  175 000000c4            
-  176 000000c4                  ; Include memory configuration file with g_oalAddressTable 
-  177 000000c4                  INCLUDE addrtab_cfg.inc 
-    1 000000c4          ; All rights reserved ADENEO EMBEDDED 2010 
-    2 000000c4          ;============================================================================== 
-    3 000000c4          ;             Texas Instruments OMAP(TM) Platform Software 
-    4 000000c4          ; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved. 
-    5 000000c4          ; 
-    6 000000c4          ; Use of this software is controlled by the terms and conditions found 
-    7 000000c4          ; in the license agreement under which this software has been supplied. 
-    8 000000c4          ; 
-    9 000000c4          ;============================================================================== 
-   10 000000c4          ; 
-   11 000000c4          ;------------------------------------------------------------------------------ 
-   12 000000c4          ; 
-   13 000000c4          ;  File:  memory_cfg.inc 
-   14 000000c4          ; 
-   15 000000c4          ;  This file is used to define g_oalAddressTable. This table is passed to 
-   16 000000c4          ;  KernelStart to estabilish physical to virtual memory mapping. This table 
-   17 000000c4          ;  is used also in memory OAL module to map between physical and virtual 
-   18 000000c4          ;  memory addresses via OALPAtoVA/OALVAtoPA functions. 
-   19 000000c4          ; 
-   20 000000c4          ;  The config.bib file defines image memory layout ant it contains virtual 
-   21 000000c4          ;  cached memory addresses which must be synchronized with g_oalAddressTable. 
-   22 000000c4          ;  With each table change make sure that those constant are still valid. 
-   23 000000c4          ; 
-   24 000000c4          ;------------------------------------------------------------------------------ 
-   25 000000c4          ;  Export Definition 
-   26 000000c4            
-   27 000000c4                  EXPORT  g_oalAddressTable[DATA] 
-   28 000000c4                  EXPORT  g_oalAddressTableHynix[DATA] 
-   29 000000c4                   
-   30 000000c4          ;------------------------------------------------------------------------------ 
-   31 000000c4          ;  Table format: cached address, physical address, size 
-   32 000000c4          ; XXX 
-   33 000000c4          g_oalAddressTable 
-   34 000000c4            
-   35 000000c4 00000000     DCD     0x00000000, 0x80000000, 128     ; SDRAM   
+   56 00000000 e28fbf5a         add             r11, pc, #g_oalAddressTableHynix - (. + 8) 
+   57 00000004            
+   58 00000004          ;test start 
+   59 00000004          ;       ldr             r1, =0x48310094 
+   60 00000004          ;       ldr             r0, =0x00008000 
+   61 00000004          ;       str             r0, [r1] 
+   62 00000004          ;       ldr             r1, =0x48307250 
+   63 00000004          ;       ldr             r0, =0x00000002 
+   64 00000004          ;       str             r0, [r1] 
+   65 00000004          ;test end 
+   66 00000004              ; Set the TTB. 
+   67 00000004              ; 
+   68 00000004 e59f91f4     ldr     r9, =BSP_PTES_PA 
+   69 00000008 e59f01f4     ldr     r0, =0xFFFFC000                   ; 
+   70 0000000c e0099000     and     r9, r9, r0                        ; Mask off TTB to be on 16K boundary. 
+   71 00000010 ee029f10     mcr     p15, 0, r9, c2, c0, 0             ; Set the TTB. 
+   72 00000014            
+   73 00000014              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+   74 00000014              ; ~~~~~~~~~~ MAP CACHED and BUFFERED SECTION DESCRIPTORS ~~~~~~~~~~~~~~~~~~ 
+   75 00000014              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+   76 00000014 e3a0000e     mov     r0, #0x0E                         ; Section (1MB) descriptor; (C=1 B=0: cached write-through). 
+   77 00000018 e3800b01     orr     r0, r0, #0x400                    ; Set AP. 
+   78 0000001c e1a0100b 20  mov     r1, r11                           ; Pointer to OEMAddressTable. 
+   79 00000020            
+   80 00000020              ; Start Crunching through the OEMAddressTable[]: 
+   81 00000020              ; 
+   82 00000020              ; r2 temporarily holds OEMAddressTable[VA] 
+   83 00000020              ; r3 temporarily holds OEMAddressTable[PHY] 
+   84 00000020              ; r4 temporarily holds OEMAddressTable[#MB] 
+   85 00000020              ; 
+   86 00000020 e4912004 25  ldr     r2, [r1], #4                       ; Virtual (cached) address to map physical address to. 
+   87 00000024 e4913004     ldr     r3, [r1], #4                       ; Physical address to map from. 
+   88 00000028 e4914004     ldr     r4, [r1], #4                       ; Number of MB to map. 
+   89 0000002c            
+   90 0000002c e3540000     cmp     r4, #0                             ; End of table? 
+   91 00000030 0a00000d     beq     %F29 
+   92 00000034            
+   93 00000034              ; r2 holds the descriptor address (virtual address) 
+   94 00000034              ; r0 holds the actual section descriptor 
+   95 00000034              ; 
+   96 00000034            
+   97 00000034              ; Create descriptor address. 
+   98 00000034              ; 
+   99 00000034 e59f61cc     ldr     r6, =0xFFF00000 
+  100 00000038 e0022006     and     r2, r2, r6             ; Only VA[31:20] are valid. 
+  101 0000003c e1892922     orr     r2, r9, r2, LSR #18    ; Build the descriptor address:  r2 = (TTB[31:14} | VA[31:20] >> 18) 
+  102 00000040            
+  103 00000040              ; Create the descriptor. 
+  104 00000040              ; 
+  105 00000040 e59f61c0     ldr     r6, =0xFFF00000 
+  106 00000044 e0033006     and     r3, r3, r6             ; Only PA[31:20] are valid for the descriptor and the rest will be static. 
+  107 00000048 e1830000     orr     r0, r3, r0             ; Build the descriptor: r0 = (PA[31:20] | the rest of the descriptor) 
+  108 0000004c            
+  109 0000004c              ; Store the descriptor at the proper (physical) address 
+  110 0000004c              ; 
+  111 0000004c e4820004 28  str     r0, [r2], #4 
+  112 00000050 e2800601     add     r0, r0, #0x00100000    ; Section descriptor for the next 1MB mapping (just add 1MB). 
+  113 00000054 e2444001     sub     r4, r4, #1             ; Decrement number of MB left. 
+  114 00000058 e3540000     cmp     r4, #0                 ; Done? 
+  115 0000005c 1afffffa     bne     %B28                   ; No - map next MB. 
+  116 00000060            
+  117 00000060 e3c0020f     bic     r0, r0, #0xF0000000    ; Clear section base address field. 
+  118 00000064 e3c006ff     bic     r0, r0, #0x0FF00000    ; Clear section base address field. 
+  119 00000068 eaffffec     b       %B25                   ; Get and process the next OEMAddressTable element. 
+  120 0000006c            
+  121 0000006c              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+  122 0000006c              ; ~~~~~~~~~~ MAP UNCACHED and UNBUFFERED SECTION DESCRIPTORS ~~~~~~~~~~~~~~ 
+  123 0000006c              ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+  124 0000006c            
+  125 0000006c e3100008 29  tst     r0, #8                 ; Test for 'C' bit set (means we just used  
+  126 00000070                                             ; above loop structure to map cached and buffered space). 
+  127 00000070 e3c0000c     bic     r0, r0, #0x0C          ; Clear cached and buffered bits in the descriptor (clear C&B bits). 
+  128 00000074 e2899b02     add     r9, r9, #0x0800        ; Pointer to the first PTE for "unmapped uncached space" (0x2000 0000 + V_U_Adx). 
+  129 00000078 1affffe7     bne     %B20                   ; Repeat the descriptor setup for uncached space (map C=B=0 space). 
+  130 0000007c          ;       ldr             r1, =0x48307250 
+  131 0000007c          ;       ldr             r0, =0x00000002 
+  132 0000007c          ;       str             r0, [r1] 
+  133 0000007c          ACTIVATEMMU 
+  134 0000007c              ; The 1st Level Section Descriptors are setup. Initialize the MMU and turn it on. 
+  135 0000007c              ; 
+  136 0000007c e3a01001     mov     r1, #1 
+  137 00000080 ee031f10     mcr     p15, 0, r1, c3, c0, 0   ; Set up access to domain 0. 
+  138 00000084 e3a00000     mov     r0, #0 
+  139 00000088 ee080f17     mcr     p15, 0, r0, c8, c7, 0   ; Flush the instruction and data TLBs. 
+  140 0000008c ee071f9a     mcr     p15, 0, r1, c7, c10, 4  ; Drain the write and fill buffers. 
+  141 00000090            
+  142 00000090 ee111f10         mrc     p15, 0, r1, c1, c0, 0    
+  143 00000094 e3811001     orr     r1, r1, #0x1            ; Enable MMU. 
+  144 00000098 e3811a01     orr     r1, r1, #0x1000         ; Enable IC. 
+  145 0000009c e3811004     orr     r1, r1, #0x4            ; Enable DC. 
+  146 000000a0 e59f2168     ldr     r2, =VirtualStart       ; Get virtual address of 'VirtualStart' label. 
+  147 000000a4 e3520000     cmp     r2, #0                  ; Make sure no stall on "mov pc,r2" below.   
+  148 000000a8              ; Enable the MMU. 
+  149 000000a8              ; 
+  150 000000a8 ee011f10     mcr     p15, 0, r1, c1, c0, 0   ; MMU ON:  All memory accesses are now virtual. 
+  151 000000ac               
+  152 000000ac                  ;ldr            r1, =0x96307250 
+  153 000000ac                  ;ldr            r0, =0x00000002 
+  154 000000ac                  ;str            r0, [r1] 
+  155 000000ac            
+  156 000000ac              ; Jump to the virtual address of the 'VirtualStart' label. 
+  157 000000ac              ; 
+  158 000000ac e1a0f002     mov     pc, r2 
+  159 000000b0 e1a00000     nop 
+  160 000000b4 e1a00000     nop 
+  161 000000b8 e1a00000     nop 
+  162 000000bc            
+  163 000000bc              ; ************************************************************************* 
+  164 000000bc              ; ************************************************************************* 
+  165 000000bc              ; The MMU and caches are now enabled and we're running in a virtual 
+  166 000000bc              ; address space. 
+  167 000000bc              ; 
+  168 000000bc               
+  169 000000bc              ALIGN 
+  170 000000bc               
+  171 000000bc          VirtualStart 
+  172 000000bc            
+  173 000000bc              ;  Set up a supervisor mode stack. 
+  174 000000bc              ; 
+  175 000000bc              ; NOTE: These values must match the OEMAddressTable and .bib file entries for 
+  176 000000bc              ; the bootloader. 
+  177 000000bc              ; 0x87EE-4000 + 0x0001-C000 = 0x87F0-0000 
+  178 000000bc e59fd148     ldr     sp, =(IMAGE_EBOOT_STACK_CA + IMAGE_EBOOT_STACK_SIZE) 
+  179 000000c0            
+  180 000000c0                  ;ldr            r1, =0x96307250 
+  181 000000c0                  ;ldr            r0, =0x00000002 
+  182 000000c0                  ;str            r0, [r1] 
+  183 000000c0                   
+  184 000000c0              ; Jump to the C entrypoint. 
+  185 000000c0              ; 
+  186 000000c0 eb000000     bl      main                                        ; Jump to main.c::main(), never to return... 
+  187 000000c4            
+  188 000000c4          STALL1 
+  189 000000c4 eafffffe         b               STALL1 
+  190 000000c8                   
+  191 000000c8                  ENTRY_END  
+  194 000000c8          |StartUp_end| 
+  192 000000c8            
+  193 000000c8                  ; Include memory configuration file with g_oalAddressTable 
+  194 000000c8                  INCLUDE addrtab_cfg.inc 
+    1 000000c8          ; All rights reserved ADENEO EMBEDDED 2010 
+    2 000000c8          ;============================================================================== 
+    3 000000c8          ;             Texas Instruments OMAP(TM) Platform Software 
+    4 000000c8          ; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved. 
+    5 000000c8          ; 
+    6 000000c8          ; Use of this software is controlled by the terms and conditions found 
+    7 000000c8          ; in the license agreement under which this software has been supplied. 
+    8 000000c8          ; 
+    9 000000c8          ;============================================================================== 
+   10 000000c8          ; 
+   11 000000c8          ;------------------------------------------------------------------------------ 
+   12 000000c8          ; 
+   13 000000c8          ;  File:  memory_cfg.inc 
+   14 000000c8          ; 
+   15 000000c8          ;  This file is used to define g_oalAddressTable. This table is passed to 
+   16 000000c8          ;  KernelStart to estabilish physical to virtual memory mapping. This table 
+   17 000000c8          ;  is used also in memory OAL module to map between physical and virtual 
+   18 000000c8          ;  memory addresses via OALPAtoVA/OALVAtoPA functions. 
+   19 000000c8          ; 
+   20 000000c8          ;  The config.bib file defines image memory layout ant it contains virtual 
+   21 000000c8          ;  cached memory addresses which must be synchronized with g_oalAddressTable. 
+   22 000000c8          ;  With each table change make sure that those constant are still valid. 
+   23 000000c8          ; 
+   24 000000c8          ;------------------------------------------------------------------------------ 
+   25 000000c8          ;  Export Definition 
+   26 000000c8            
+   27 000000c8                  EXPORT  g_oalAddressTable[DATA] 
+   28 000000c8                  EXPORT  g_oalAddressTableHynix[DATA] 
+   29 000000c8                   
+   30 000000c8          ;------------------------------------------------------------------------------ 
+   31 000000c8          ;  Table format: cached address, physical address, size 
+   32 000000c8          ; XXX 
+   33 000000c8          g_oalAddressTable 
+   34 000000c8            
+   35 000000c8 00000000     DCD     0x00000000, 0x80000000, 128     ; SDRAM   
                80000000   
                00000080   
-   36 000000d0              IF BSP_SDRAM_BANK1_ENABLE 
-   37 000000d0 88000000         DCD     0x88000000, 0xA0000000, 128     ; SDRAM 
+   36 000000d4              IF BSP_SDRAM_BANK1_ENABLE 
+   37 000000d4 88000000         DCD     0x88000000, 0xA0000000, 128     ; SDRAM 
                a0000000   
                00000080   
-   38 000000dc              ENDIF 
-   39 000000dc 95000000     DCD     0x95000000, 0x15000000,  16     ; CS5, LAN9115 
+   38 000000e0              ENDIF 
+   39 000000e0 95000000     DCD     0x95000000, 0x15000000,  16     ; CS5, LAN9115 
                15000000   
                00000010   
-   40 000000e8 96000000     DCD     0x96000000, 0x48000000,  16     ; L4 Core/Wakeup registers 
+   40 000000ec 96000000     DCD     0x96000000, 0x48000000,  16     ; L4 Core/Wakeup registers 
                48000000   
                00000010   
-   41 000000f4 97000000     DCD     0x97000000, 0x49000000,   1     ; L4 Peripheral 
+   41 000000f8 97000000     DCD     0x97000000, 0x49000000,   1     ; L4 Peripheral 
                49000000   
                00000001   
-   42 00000100 97100000     DCD     0x97100000, 0x68000000,  16     ; L3 registers 
+   42 00000104 97100000     DCD     0x97100000, 0x68000000,  16     ; L3 registers 
                68000000   
                00000010   
-   43 0000010c 98100000     DCD     0x98100000, 0x6C000000,  16     ; SMS registers 
+   43 00000110 98100000     DCD     0x98100000, 0x6C000000,  16     ; SMS registers 
                6c000000   
                00000010   
-   44 00000118 99100000     DCD     0x99100000, 0x6D000000,  16     ; SDRC registers 
+   44 0000011c 99100000     DCD     0x99100000, 0x6D000000,  16     ; SDRC registers 
                6d000000   
                00000010   
-   45 00000124 9a100000     DCD     0x9a100000, 0x6E000000,  16     ; GPMC registers 
+   45 00000128 9a100000     DCD     0x9a100000, 0x6E000000,  16     ; GPMC registers 
                6e000000   
                00000010   
-   46 00000130 9b100000     DCD     0x9b100000, 0x40200000,   1     ; 64KB SRAM 
+   46 00000134 9b100000     DCD     0x9b100000, 0x40200000,   1     ; 64KB SRAM 
                40200000   
                00000001   
-   47 0000013c 9b200000     DCD     0x9b200000, 0x5C000000,  16     ; IPSS interconnect 
+   47 00000140 9b200000     DCD     0x9b200000, 0x5C000000,  16     ; IPSS interconnect 
                5c000000   
                00000010   
-   48 00000148 9c200000     DCD     0x9C200000, 0x00000000,   1     ; ROM 
+   48 0000014c 9c200000     DCD     0x9C200000, 0x00000000,   1     ; ROM 
                00000000   
                00000001   
-   49 00000154 9c300000     DCD     0x9C300000, 0x08000000,   1     ; NAND Registers (FIFO) 
+   49 00000158 9c300000     DCD     0x9C300000, 0x08000000,   1     ; NAND Registers (FIFO) 
                08000000   
                00000001   
-   50 00000160 00000000     DCD     0x00000000, 0x00000000,   0     ; end of table 
+   50 00000164 00000000     DCD     0x00000000, 0x00000000,   0     ; end of table 
                00000000   
                00000000   
-   51 0000016c            
-   52 0000016c          ; VVV 
-   53 0000016c          g_oalAddressTableHynix 
-   54 0000016c            
-   55 0000016c 80000000     DCD     0x80000000, 0x80000000, 256     ; SDRAM 
+   51 00000170            
+   52 00000170          ; VVV 
+   53 00000170          g_oalAddressTableHynix 
+   54 00000170            
+   55 00000170 80000000     DCD     0x80000000, 0x80000000, 256     ; SDRAM 
                80000000   
                00000100   
-   56 00000178 96000000     DCD     0x96000000, 0x48000000,  16     ; L4 Core/Wakeup registers 
+   56 0000017c 96000000     DCD     0x96000000, 0x48000000,  16     ; L4 Core/Wakeup registers 
                48000000   
                00000010   
-   57 00000184 97000000     DCD     0x97000000, 0x49000000,   1     ; L4 Peripheral 
+   57 00000188 97000000     DCD     0x97000000, 0x49000000,   1     ; L4 Peripheral 
                49000000   
                00000001   
-   58 00000190 97100000     DCD     0x97100000, 0x68000000,  16     ; L3 registers 
+   58 00000194 97100000     DCD     0x97100000, 0x68000000,  16     ; L3 registers 
                68000000   
                00000010   
-   59 0000019c 98100000     DCD     0x98100000, 0x6C000000,  16     ; SMS registers 
+   59 000001a0 98100000     DCD     0x98100000, 0x6C000000,  16     ; SMS registers 
                6c000000   
                00000010   
-   60 000001a8 99100000     DCD     0x99100000, 0x6D000000,  16     ; SDRC registers 
+   60 000001ac 99100000     DCD     0x99100000, 0x6D000000,  16     ; SDRC registers 
                6d000000   
                00000010   
-   61 000001b4 9a100000     DCD     0x9a100000, 0x6E000000,  16     ; GPMC registers 
+   61 000001b8 9a100000     DCD     0x9a100000, 0x6E000000,  16     ; GPMC registers 
                6e000000   
                00000010   
-   62 000001c0 9b100000     DCD     0x9b100000, 0x40200000,   1     ; 64KB SRAM 
+   62 000001c4 9b100000     DCD     0x9b100000, 0x40200000,   1     ; 64KB SRAM 
                40200000   
                00000001   
-   63 000001cc 9b200000     DCD     0x9b200000, 0x5C000000,  16     ; IPSS interconnect 
+   63 000001d0 9b200000     DCD     0x9b200000, 0x5C000000,  16     ; IPSS interconnect 
                5c000000   
                00000010   
-   64 000001d8 9c200000     DCD     0x9C200000, 0x00000000,   1     ; ROM 
+   64 000001dc 9c200000     DCD     0x9C200000, 0x00000000,   1     ; ROM 
                00000000   
                00000001   
-   65 000001e4 9c300000     DCD     0x9C300000, 0x08000000,   1     ; NAND Registers (FIFO) 
+   65 000001e8 9c300000     DCD     0x9C300000, 0x08000000,   1     ; NAND Registers (FIFO) 
                08000000   
                00000001   
-   66 000001f0 00000000     DCD     0x00000000, 0x00000000,   0     ; end of table 
+   66 000001f4 00000000     DCD     0x00000000, 0x00000000,   0     ; end of table 
                00000000   
                00000000   
-   67 000001fc            
-   68 000001fc          ;------------------------------------------------------------------------------ 
-   69 000001fc            
-   70 000001fc              END        
-  178 000001fc            
-  179 000001fc                  END 
-  180 000001fc 87ee0000 *literal pool: constant 
-  180 00000200 ffffc000 *literal pool: constant 
-  180 00000204 fff00000 *literal pool: constant 
-  180 00000208 87f00000 *literal pool: constant 
-  180 0000020c 000000bc *literal pool: symbol:  VirtualStart + 0x0 
+   67 00000200            
+   68 00000200          ;------------------------------------------------------------------------------ 
+   69 00000200            
+   70 00000200              END        
+  195 00000200            
+  196 00000200                  END 
+  197 00000200 87ee0000 *literal pool: constant 
+  197 00000204 ffffc000 *literal pool: constant 
+  197 00000208 fff00000 *literal pool: constant 
+  197 0000020c 87f00000 *literal pool: constant 
+  197 00000210 000000bc *literal pool: symbol:  VirtualStart + 0x0 
 Assembly terminated, errors: 0, warnings: 0 

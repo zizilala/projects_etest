@@ -105,7 +105,7 @@
 ; File c:\wince600\platform\z2170p\src\bsp_common\args\args.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46829| DCD	|$LN34@OALArgsQue|
+|$T46835| DCD	|$LN34@OALArgsQue|
 	DCD	0x40009201
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -124,7 +124,7 @@
 
   00000		 |$LN34@OALArgsQue|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M46826|
+  00004		 |$M46832|
   00004	e1a05000	 mov         r5, r0
 
 ; 64   :     VOID *pData = NULL;
@@ -153,13 +153,13 @@
   0001c	e5982000	 ldr         r2, [r8]
   00020	e59f3218	 ldr         r3, [pc, #0x218]
   00024	e1520003	 cmp         r2, r3
-  00028	1a00007f	 bne         |$cleanUp$46757|
+  00028	1a00007f	 bne         |$cleanUp$46763|
   0002c	e1d830b4	 ldrh        r3, [r8, #4]
   00030	e3530001	 cmp         r3, #1
-  00034	1a00007c	 bne         |$cleanUp$46757|
+  00034	1a00007c	 bne         |$cleanUp$46763|
   00038	e1d830b6	 ldrh        r3, [r8, #6]
   0003c	e3530001	 cmp         r3, #1
-  00040	1a000079	 bne         |$cleanUp$46757|
+  00040	1a000079	 bne         |$cleanUp$46763|
 
 ; 77   :         goto cleanUp;
 ; 78   : 
@@ -296,7 +296,7 @@
   00144	e3550002	 cmp         r5, #2
   00148	0a000011	 beq         |$LN14@OALArgsQue|
   0014c	e3550003	 cmp         r5, #3
-  00150	0a000035	 beq         |$cleanUp$46757|
+  00150	0a000035	 beq         |$cleanUp$46763|
   00154	e3550005	 cmp         r5, #5
   00158	0a00000b	 beq         |$LN15@OALArgsQue|
   0015c	e3550040	 cmp         r5, #0x40
@@ -314,7 +314,7 @@
 
 ; 152  :             break;
 
-  00178	ea00002b	 b           |$cleanUp$46757|
+  00178	ea00002b	 b           |$cleanUp$46763|
   0017c		 |$LN9@OALArgsQue|
 
 ; 140  :             break;
@@ -330,7 +330,7 @@
 
 ; 148  :             break;
 
-  00180	ea000029	 b           |$cleanUp$46757|
+  00180	ea000029	 b           |$cleanUp$46763|
   00184		 |$LN13@OALArgsQue|
 
 ; 129  : 
@@ -341,7 +341,7 @@
 
 ; 132  :             break;
 
-  00188	ea000027	 b           |$cleanUp$46757|
+  00188	ea000027	 b           |$cleanUp$46763|
   0018c		 |$LN15@OALArgsQue|
 
 ; 121  :     {
@@ -352,7 +352,7 @@
 
 ; 124  :             break;
 
-  00190	ea000025	 b           |$cleanUp$46757|
+  00190	ea000025	 b           |$cleanUp$46763|
   00194		 |$LN14@OALArgsQue|
   00194	e3a0320a	 mov         r3, #0xA, 4
 
@@ -364,7 +364,7 @@
 
 ; 128  :             break;
 
-  0019c	ea000022	 b           |$cleanUp$46757|
+  0019c	ea000022	 b           |$cleanUp$46763|
   001a0		 |$LN12@OALArgsQue|
 
 ; 133  : 
@@ -375,7 +375,7 @@
 
 ; 136  :             break;
 
-  001a4	ea000020	 b           |$cleanUp$46757|
+  001a4	ea000020	 b           |$cleanUp$46763|
   001a8		 |$LN7@OALArgsQue|
   001a8	e3a0320a	 mov         r3, #0xA, 4
 
@@ -387,7 +387,7 @@
 
 ; 156  :             break;
 
-  001b0	ea00001d	 b           |$cleanUp$46757|
+  001b0	ea00001d	 b           |$cleanUp$46763|
   001b4		 |$LN29@OALArgsQue|
 
 ; 117  :     }
@@ -417,11 +417,11 @@
 
 ; 180  :             break;
 
-  001e8	ea00000f	 b           |$cleanUp$46757|
+  001e8	ea00000f	 b           |$cleanUp$46763|
   001ec		 |$LN2@OALArgsQue|
   001ec	e3a0320a	 mov         r3, #0xA, 4
   001f0	e383405a	 orr         r4, r3, #0x5A
-  001f4	ea00000c	 b           |$cleanUp$46757|
+  001f4	ea00000c	 b           |$cleanUp$46763|
   001f8		 |$LN3@OALArgsQue|
 
 ; 173  : 
@@ -431,7 +431,7 @@
 
   001f8	e3a0320a	 mov         r3, #0xA, 4
   001fc	e3834084	 orr         r4, r3, #0x84
-  00200	ea000009	 b           |$cleanUp$46757|
+  00200	ea000009	 b           |$cleanUp$46763|
   00204		 |$LN4@OALArgsQue|
 
 ; 169  :             
@@ -441,7 +441,7 @@
 
   00204	e3a0320a	 mov         r3, #0xA, 4
   00208	e3834080	 orr         r4, r3, #0x80
-  0020c	ea000006	 b           |$cleanUp$46757|
+  0020c	ea000006	 b           |$cleanUp$46763|
   00210		 |$LN5@OALArgsQue|
 
 ; 165  : 
@@ -451,7 +451,7 @@
 
   00210	e3a0320a	 mov         r3, #0xA, 4
   00214	e383407c	 orr         r4, r3, #0x7C
-  00218	ea000003	 b           |$cleanUp$46757|
+  00218	ea000003	 b           |$cleanUp$46763|
   0021c		 |$LN6@OALArgsQue|
 
 ; 157  : 
@@ -465,7 +465,7 @@
 
   0021c	e3a0320a	 mov         r3, #0xA, 4
   00220	e3834078	 orr         r4, r3, #0x78
-  00224	ea000000	 b           |$cleanUp$46757|
+  00224	ea000000	 b           |$cleanUp$46763|
   00228		 |$LN11@OALArgsQue|
 
 ; 137  : 			
@@ -473,7 +473,7 @@
 ; 139  :             pData = &pArgs->DevicePrefix;
 
   00228	e3894048	 orr         r4, r9, #0x48
-  0022c		 |$cleanUp$46757|
+  0022c		 |$cleanUp$46763|
 
 ; 181  :     }
 ; 182  : 
@@ -495,7 +495,7 @@
   00240	53475241	 DCD         0x53475241
   00244		 |$LN39@OALArgsQue|
   00244	00000000	 DCD         |??_C@_1CI@CLMEBIJE@?$AA?$CL?$AAO?$AAA?$AAL?$AAA?$AAr?$AAg?$AAs?$AAQ?$AAu?$AAe?$AAr?$AAy?$AA?$CI?$AA?$CF?$AAd?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  00248		 |$M46827|
+  00248		 |$M46833|
 
 			 ENDP  ; |OALArgsQuery|
 

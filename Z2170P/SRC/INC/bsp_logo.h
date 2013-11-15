@@ -26,7 +26,8 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset);
 
 //------------------------------------------------------------------------------
 //
-VOID ShowTest(UINT32 flashAddr, UINT32 offset);     //Ray 131106
+//VOID ShowTest(UINT32 flashAddr, UINT32 offset);     //Ray 131106
+VOID ShowTest(UINT32 flashAddr, UINT32 offset,int board);     //Ray 131115
 
 
 

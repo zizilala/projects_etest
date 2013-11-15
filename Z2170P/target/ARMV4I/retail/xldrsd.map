@@ -1,6 +1,6 @@
  xldrsd
 
- Timestamp is 526dbc4f (Mon Oct 28 09:22:23 2013)
+ Timestamp is 52833474 (Wed Nov 13 16:12:36 2013)
 
  Preferred load address is 00010000
 
@@ -12,7 +12,7 @@
  0001:0000ad24 00000008H .xdata                  CODE
  0001:0000ad2c 00000000H .edata                  CODE
  0002:00000000 00000804H .data                   DATA
- 0002:00000820 00000950H .bss                    DATA
+ 0002:00000820 00000970H .bss                    DATA
  0003:00000000 00000478H .pdata                  DATA
 
   Address         Publics by Value              Rva+Base       Lib:Object
@@ -32,7 +32,7 @@
  0001:0000031c       ??_C@_1BI@NFFGLHIF@?$AAe?$AAb?$AAo?$AAo?$AAt?$AAs?$AAd?$AA?4?$AAn?$AAb?$AA0?$AA?$AA@ 0001131c     sdmain.obj
  0001:00000334       ??_C@_1DA@FBNLCKKB@?$AAo?$AAp?$AAe?$AAn?$AA?5?$AAe?$AAb?$AAo?$AAo?$AAt?$AAs?$AAd?$AA?4?$AAn?$AAb?$AA0?$AA?5?$AAf?$AAi?$AAl?$AAe?$AA?$AN?$AA?6?$AA?$AA@ 00011334     sdmain.obj
  0001:00000368       ??_C@_1GK@JJAIONEO@?$AA?$AN?$AA?6?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAS?$AAD?$AA?5?$AAX?$AA?9?$AAL?$AAo?$AAa?$AAd?$AAe?$AAr?$AA?5?$AAf@ 00011368     sdmain.obj
- 0001:000003d8       ??_C@_1EE@EGBDBEFE@?$AA?$AN?$AA?6?$AAB?$AAu?$AAi?$AAl?$AAt?$AA?5?$AAO?$AAc?$AAt?$AA?5?$AA2?$AA8?$AA?5?$AA2?$AA0?$AA1?$AA3?$AA?5?$AAa?$AAt?$AA?5?$AA0?$AA9?$AA?3?$AA2?$AA2?$AA?3?$AA2?$AA1?$AA?5@ 000113d8     sdmain.obj
+ 0001:000003d8       ??_C@_1EE@PJHPGKAE@?$AA?$AN?$AA?6?$AAB?$AAu?$AAi?$AAl?$AAt?$AA?5?$AAN?$AAo?$AAv?$AA?5?$AA1?$AA3?$AA?5?$AA2?$AA0?$AA1?$AA3?$AA?5?$AAa?$AAt?$AA?5?$AA1?$AA6?$AA?3?$AA1?$AA2?$AA?3?$AA1?$AA0?$AA?5@ 000113d8     sdmain.obj
  0001:0000041c       ??_C@_17KPMHKKFB@?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@ 0001141c     sdmain.obj
  0001:00000424       ??_C@_19PONNFJAB@?$AA3?$AA7?$AAX?$AAX?$AA?$AA@ 00011424     sdmain.obj
  0001:00000430       ??_C@_19CAFJHOAJ@?$AA3?$AA5?$AA3?$AA0?$AA?$AA@ 00011430     sdmain.obj
@@ -238,31 +238,31 @@
  0002:00000a54       ?g_fGpioPostInit@@3HA      0001ca54     TPS659xx_oal_gpio:tps659xx_gpio.obj
  0002:00000d14       gCPU_family                0001cd14     <common>
  0002:00000d20       g_bootCfg                  0001cd20     <common>
- 0002:00000dac       map                        0001cdac     <common>
- 0002:00000db0       nbBlock                    0001cdb0     <common>
- 0002:00000db4       poolSize                   0001cdb4     <common>
- 0002:00000db8       pool                       0001cdb8     <common>
- 0002:00000dbc       ExtendedPartionBaseSector  0001cdbc     <common>
- 0002:00000dc0       MMCcmd                     0001cdc0     <common>
- 0002:00000e40       File                       0001ce40     <common>
- 0002:00001064       pFile                      0001d064     <common>
- 0002:00001080       Request                    0001d080     <common>
- 0002:000010e0       fileio_ops                 0001d0e0     <common>
- 0002:00001100       Disk                       0001d100     <common>
- 0002:00001138       m_fFirstTime               0001d138     <common>
- 0002:0000113c       m_dwCPURev                 0001d13c     <common>
- 0002:00001140       m_fMMCMode                 0001d140     <common>
- 0002:00001144       m_dwSlot                   0001d144     <common>
- 0002:00001148       m_fCardPresent             0001d148     <common>
- 0002:0000114c       m_dwMaxTimeout             0001d14c     <common>
- 0002:00001150       m_fInitialized             0001d150     <common>
- 0002:00001154       m_fAppCmdMode              0001d154     <common>
- 0002:00001158       m_fCardInitialized         0001d158     <common>
- 0002:0000115c       g_hGPIO                    0001d15c     <common>
- 0002:00001160       m_dwSDIOCard               0001d160     <common>
- 0002:00001164       m_pbRegisters              0001d164     <common>
- 0002:00001168       m_TransferClass            0001d168     <common>
- 0002:0000116c       m_dwMaxClockRate           0001d16c     <common>
+ 0002:00000db0       map                        0001cdb0     <common>
+ 0002:00000db4       nbBlock                    0001cdb4     <common>
+ 0002:00000db8       poolSize                   0001cdb8     <common>
+ 0002:00000dbc       pool                       0001cdbc     <common>
+ 0002:00000dc0       ExtendedPartionBaseSector  0001cdc0     <common>
+ 0002:00000de0       MMCcmd                     0001cde0     <common>
+ 0002:00000e60       File                       0001ce60     <common>
+ 0002:00001084       pFile                      0001d084     <common>
+ 0002:000010a0       Request                    0001d0a0     <common>
+ 0002:00001100       fileio_ops                 0001d100     <common>
+ 0002:00001120       Disk                       0001d120     <common>
+ 0002:00001158       m_fFirstTime               0001d158     <common>
+ 0002:0000115c       m_dwCPURev                 0001d15c     <common>
+ 0002:00001160       m_fMMCMode                 0001d160     <common>
+ 0002:00001164       m_dwSlot                   0001d164     <common>
+ 0002:00001168       m_fCardPresent             0001d168     <common>
+ 0002:0000116c       m_dwMaxTimeout             0001d16c     <common>
+ 0002:00001170       m_fInitialized             0001d170     <common>
+ 0002:00001174       m_fAppCmdMode              0001d174     <common>
+ 0002:00001178       m_fCardInitialized         0001d178     <common>
+ 0002:0000117c       g_hGPIO                    0001d17c     <common>
+ 0002:00001180       m_dwSDIOCard               0001d180     <common>
+ 0002:00001184       m_pbRegisters              0001d184     <common>
+ 0002:00001188       m_TransferClass            0001d188     <common>
+ 0002:0000118c       m_dwMaxClockRate           0001d18c     <common>
 
  entry point at        0001:00000000
 

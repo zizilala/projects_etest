@@ -443,7 +443,9 @@ WCHAR OALBLMenuReadKey(BOOL wait)
     CHAR key;
 
     while ((key = OEMReadDebugByte()) == OEM_DEBUG_READ_NODATA && wait);
-    if (key == OEM_DEBUG_READ_NODATA) key = 0;
+
+    if (key == OEM_DEBUG_READ_NODATA) 
+            key = 0;
     return (WCHAR)key;
 }
 

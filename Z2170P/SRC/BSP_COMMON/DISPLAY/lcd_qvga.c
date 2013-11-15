@@ -49,7 +49,7 @@ typedef struct OMAP_LCD_DVI_RES_PARAMS {
 
 OMAP_LCD_DVI_RES_PARAMS lcd_res_params[OMAP_RES_INVALID+1] = 
 {
-#ifdef BSP_Z2000
+#if DEFINE_LOGO == 2000
     {  
         DISPC_PIXELFORMAT_RGB16,		//pixelFmt;
         320,							//width;	320

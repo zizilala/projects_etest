@@ -54,7 +54,15 @@ BUILDTTB
 ;	addne	r11, pc, #g_oalAddressTable-(.+8)			;X Pointer to OEMAddressTable.
 ;	addeq	r11, pc, #g_oalAddressTableHynix - (. + 8)	;V Pointer to OEMAddressTable for Hynix device
 	add		r11, pc, #g_oalAddressTableHynix - (. + 8)
-	
+
+;test start
+;	ldr		r1, =0x48310094
+;	ldr		r0, =0x00008000
+;	str		r0, [r1]
+;	ldr		r1, =0x48307250
+;	ldr		r0, =0x00000002
+;	str		r0, [r1]
+;test end
     ; Set the TTB.
     ;
     ldr     r9, =BSP_PTES_PA
@@ -65,7 +73,7 @@ BUILDTTB
     ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ; ~~~~~~~~~~ MAP CACHED and BUFFERED SECTION DESCRIPTORS ~~~~~~~~~~~~~~~~~~
     ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    mov     r0, #0x0A                         ; Section (1MB) descriptor; (C=1 B=0: cached write-through).
+    mov     r0, #0x0E                         ; Section (1MB) descriptor; (C=1 B=0: cached write-through).
     orr     r0, r0, #0x400                    ; Set AP.
 20  mov     r1, r11                           ; Pointer to OEMAddressTable.
 
@@ -119,7 +127,9 @@ BUILDTTB
     bic     r0, r0, #0x0C          ; Clear cached and buffered bits in the descriptor (clear C&B bits).
     add     r9, r9, #0x0800        ; Pointer to the first PTE for "unmapped uncached space" (0x2000 0000 + V_U_Adx).
     bne     %B20                   ; Repeat the descriptor setup for uncached space (map C=B=0 space).
-
+;	ldr		r1, =0x48307250
+;	ldr		r0, =0x00000002
+;	str		r0, [r1]
 ACTIVATEMMU
     ; The 1st Level Section Descriptors are setup. Initialize the MMU and turn it on.
     ;
@@ -134,15 +144,18 @@ ACTIVATEMMU
     orr     r1, r1, #0x1000         ; Enable IC.
     orr     r1, r1, #0x4            ; Enable DC.
     ldr     r2, =VirtualStart       ; Get virtual address of 'VirtualStart' label.
-    cmp     r2, #0                  ; Make sure no stall on "mov pc,r2" below.
-
+    cmp     r2, #0                  ; Make sure no stall on "mov pc,r2" below.	
     ; Enable the MMU.
     ;
     mcr     p15, 0, r1, c1, c0, 0   ; MMU ON:  All memory accesses are now virtual.
+    
+	;ldr		r1, =0x96307250
+	;ldr		r0, =0x00000002
+	;str		r0, [r1]
 
     ; Jump to the virtual address of the 'VirtualStart' label.
     ;
-    mov     pc, r2                  ;
+    mov     pc, r2
     nop
     nop
     nop
@@ -161,16 +174,20 @@ VirtualStart
     ;
     ; NOTE: These values must match the OEMAddressTable and .bib file entries for
     ; the bootloader.
-    ;
+    ; 0x87EE-4000 + 0x0001-C000 = 0x87F0-0000
     ldr     sp, =(IMAGE_EBOOT_STACK_CA + IMAGE_EBOOT_STACK_SIZE)
 
-	
+	;ldr		r1, =0x96307250
+	;ldr		r0, =0x00000002
+	;str		r0, [r1]
 	
     ; Jump to the C entrypoint.
     ;
     bl      main					; Jump to main.c::main(), never to return...
 
-    
+STALL1
+	b		STALL1
+	
         ENTRY_END 
 
         ; Include memory configuration file with g_oalAddressTable

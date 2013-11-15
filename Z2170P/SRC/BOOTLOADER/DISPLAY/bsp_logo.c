@@ -52,11 +52,22 @@ BOOL BLShowLogo(void);
 //
 // defines
 //
-#ifdef BSP_Z2000
+/*#ifdef BSP_Z2000
 	#define LOGO_WIDTH			320	//480    // Logo bitmap image is RGB24 VGA Portrait bitmap
 	#define LOGO_HEIGHT			240	//640
 #else
 	#define LOGO_WIDTH			240 // Logo bitmap image is RGB24 VGA Portrait bitmap
+	#define LOGO_HEIGHT			320	
+#endif*/
+//static int g_board;    //Ray 131115
+
+//#define DEFINE_LOGO g_board 
+
+#if DEFINE_LOGO == 2000
+	#define LOGO_WIDTH			320	    // Logo bitmap image is RGB24 VGA Portrait bitmap
+    #define LOGO_HEIGHT			240	
+#else
+    #define LOGO_WIDTH			240     // 
 	#define LOGO_HEIGHT			320	
 #endif
 
@@ -1088,7 +1099,7 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
     //  Get the LCD width and height
     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
 	
-    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+   dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
 
     //  Get the video memory
     LcdPdd_GetMemory( NULL, &framebufferPA );
@@ -1212,16 +1223,27 @@ BOOL ShowSDLogo()
 	OALMSG(OAL_INFO, (L"ShowSDLogo: LOGO_HEIGHT = %d\r\n",LOGO_HEIGHT));
 	OALMSG(OAL_INFO, (L"ShowSDLogo: size = %d\r\n",dwLength));
 	
-#ifdef BSP_Z2000    //Ray 131024	
+/*#ifdef BSP_Z2000    //Ray 131024	
 	if (!BLSDCardReadLogo(L"Logo.bmp", (UCHAR*)framebuffer, dwLength))
 	{
 		return FALSE;
 	}
 #else
-    if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLength))
+    if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLength))  //Ray 131115
 	{
 		return FALSE;
 	}
+#endif*/
+#if DEFINE_LOGO == 2000    //Ray 131115
+        if (!BLSDCardReadLogo(L"Logo.bmp", (UCHAR*)framebuffer, dwLength))
+        {
+            return FALSE;
+        }
+#else
+        if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLength))  //Ray 131115
+        {
+            return FALSE;
+        }
 #endif
 
     //  Compute position and size of logo image 
@@ -1311,7 +1333,7 @@ VOID ShowTestWhite(UINT32 flashAddr, UINT32 offset)
     g_dwLogoWidth  = dwLcdWidth;
     g_dwLogoHeight = dwLcdHeight;
 
-    OALLog(L"\r Can you see White fill.\r\n");
+    OALLog(L"\r !Can you see White fill.\r\n");
     for (y= 0; y < dwLcdHeight; y++)
     {
         for( x = 0; x < dwLcdWidth; x++ )
@@ -1394,7 +1416,7 @@ VOID ShowTestBlack(UINT32 flashAddr, UINT32 offset)
     g_dwLogoWidth  = dwLcdWidth;
     g_dwLogoHeight = dwLcdHeight;
 
-    OALLog(L"\r Can you see Black fill.\r\n");
+    OALLog(L"\r !Can you see Black fill.\r\n");
     for (y= 0; y < dwLcdHeight; y++)
     {
         for( x = 0; x < dwLcdWidth; x++ )
@@ -1476,7 +1498,7 @@ VOID ShowTestBlue(UINT32 flashAddr, UINT32 offset)
     g_dwLogoWidth  = dwLcdWidth;
     g_dwLogoHeight = dwLcdHeight;
 
-    OALLog(L"\r Can you see Blue fill.\r\n");
+    OALLog(L"\r !Can you see Blue fill.\r\n");
     for (y= 0; y < dwLcdHeight; y++)
     {
         for( x = 0; x < dwLcdWidth; x++ )
@@ -1558,7 +1580,7 @@ VOID ShowTestGreen(UINT32 flashAddr, UINT32 offset)
     g_dwLogoWidth  = dwLcdWidth;
     g_dwLogoHeight = dwLcdHeight;
 
-    OALLog(L"\r Can you see Green fill.\r\n");
+    OALLog(L"\r !Can you see Green fill.\r\n");
     for (y= 0; y < dwLcdHeight; y++)
     {
         for( x = 0; x < dwLcdWidth; x++ )
@@ -1577,7 +1599,7 @@ VOID ShowTestGreen(UINT32 flashAddr, UINT32 offset)
 //
 //  Function:  ShowTest
 //
-VOID ShowTest(UINT32 flashAddr, UINT32 offset)
+VOID ShowTest(UINT32 flashAddr, UINT32 offset, int board)
 {
     HANDLE  hFlash = NULL;
     DWORD	framebuffer;
@@ -1590,6 +1612,7 @@ VOID ShowTest(UINT32 flashAddr, UINT32 offset)
     DWORD   dwLength;
     //DWORD   d5Sec = 5000000;
     //DWORD   sleep5sec = 5000;
+    int n_board = board;
     
     //  Get the LCD width and height
     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
@@ -1640,7 +1663,7 @@ VOID ShowTest(UINT32 flashAddr, UINT32 offset)
     g_dwLogoWidth  = dwLcdWidth;
     g_dwLogoHeight = dwLcdHeight;
 
-    OALLog(L"\r Can you see Red fill.\r\n");
+    OALLog(L"\r !Can you see Red fill.\r\n");
     for (y= 0; y < dwLcdHeight; y++)
     {
         for( x = 0; x < dwLcdWidth; x++ )

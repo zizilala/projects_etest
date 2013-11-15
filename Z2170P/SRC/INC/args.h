@@ -24,7 +24,7 @@
 #define CALIBRATE_SIZE		120
 
 typedef struct {
-    OAL_ARGS_HEADER header;
+    OAL_ARGS_HEADER     header;
     BOOL 				updateMode;			// Should IPL run in update mode?
     BOOL 				coldBoot;			// Cold boot (erase registry)?
     UINT32				deviceID;			// Unique ID for development platform
@@ -36,7 +36,7 @@ typedef struct {
     OMAP_LCD_DVI_RES	dispRes;			// display resolution
     UINT32				ECCtype;    
     UINT32				opp_mode;
-    BYTE	CalibBuffer[CALIBRATE_SIZE];	// touch calibration data
+    BYTE	            CalibBuffer[CALIBRATE_SIZE];	// touch calibration data
 } BSP_ARGS;
 
 //------------------------------------------------------------------------------

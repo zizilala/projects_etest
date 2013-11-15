@@ -210,7 +210,10 @@ BOOL OEMPlatformInit()
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 	
     //GPIOSetBit(hGPIO,15);     // test 
-    
+
+    GPIOClrBit(hGPIO, 155);     // Keypad_LED, Ray 131112 
+    GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
+     
 	HotKeyInit(hTwl);           //HotKey Initial ,Ray
     ghTwl = hTwl;              
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
@@ -419,10 +422,10 @@ ULONG OEMPreDownload()
 
     // Ensure bootloader blocks are marked as reserved
 #ifdef BUILDING_EBOOT_SD // brian    
-    BLReserveBootBlocks(); // brian
+    //BLReserveBootBlocks(); // brian
 #endif
 	
-	BLShowLogo(); // brian 
+	//BLShowLogo(); // Ray 13115
 	
     // Read saved configration      //Bootstrap message(LCD init after), Ray
     if (BLReadBootCfg(&g_bootCfg) &&
@@ -516,7 +519,7 @@ ULONG OEMPreDownload()
 	
 	// Initialize flash partitions if needed
 #ifdef BUILDING_EBOOT_SD // brian
-	BLConfigureFlashPartitions(FALSE); //brian
+   //BLConfigureFlashPartitions(FALSE); //brian
 #endif
     // Initialize ARGS structure
     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||

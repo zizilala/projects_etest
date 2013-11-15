@@ -45,7 +45,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42117| DCD	|$LN9@DmaConfigu|
+|$T42122| DCD	|$LN9@DmaConfigu|
 	DCD	0x40003901
 ; Function compile flags: /Ogspy
 
@@ -57,7 +57,7 @@
 
   00000		 |$LN9@DmaConfigu|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M42114|
+  00004		 |$M42119|
   00004	e1a04003	 mov         r4, r3
   00008	e1a09002	 mov         r9, r2
   0000c	e1a06001	 mov         r6, r1
@@ -208,14 +208,14 @@
   000d8	e1a00008	 mov         r0, r8
   000dc	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000e0	e12fff1e	 bx          lr
-  000e4		 |$M42115|
+  000e4		 |$M42120|
 
 			 ENDP  ; |DmaConfigure|
 
 	EXPORT	|DmaSetDstBuffer|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42127| DCD	|$LN6@DmaSetDstB|
+|$T42132| DCD	|$LN6@DmaSetDstB|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -226,7 +226,7 @@
 ; 330  : {
 
   00000		 |$LN6@DmaSetDstB|
-  00000		 |$M42124|
+  00000		 |$M42129|
 
 ; 331  :     // save values
 ; 332  :     //
@@ -256,14 +256,14 @@
 ; 343  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M42125|
+  00020		 |$M42130|
 
 			 ENDP  ; |DmaSetDstBuffer|
 
 	EXPORT	|DmaSetSrcBuffer|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42137| DCD	|$LN6@DmaSetSrcB|
+|$T42142| DCD	|$LN6@DmaSetSrcB|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -274,7 +274,7 @@
 ; 358  : {
 
   00000		 |$LN6@DmaSetSrcB|
-  00000		 |$M42134|
+  00000		 |$M42139|
 
 ; 359  :     // save values
 ; 360  :     //
@@ -304,14 +304,14 @@
 ; 371  : }
 
   0001c	e12fff1e	 bx          lr
-  00020		 |$M42135|
+  00020		 |$M42140|
 
 			 ENDP  ; |DmaSetSrcBuffer|
 
 	EXPORT	|DmaSetElementAndFrameCount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42147| DCD	|$LN5@DmaSetElem|
+|$T42152| DCD	|$LN5@DmaSetElem|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -322,7 +322,7 @@
 ; 386  : {
 
   00000		 |$LN5@DmaSetElem|
-  00000		 |$M42144|
+  00000		 |$M42149|
 
 ; 387  :     // setup frame and element count for destination side
 ; 388  :     //
@@ -339,14 +339,14 @@
 ; 391  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M42145|
+  00014		 |$M42150|
 
 			 ENDP  ; |DmaSetElementAndFrameCount|
 
 	EXPORT	|DmaStop|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42158| DCD	|$LN12@DmaStop|
+|$T42163| DCD	|$LN12@DmaStop|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -358,7 +358,7 @@
 
   00000		 |$LN12@DmaStop|
   00000	e24dd004	 sub         sp, sp, #4
-  00004		 |$M42155|
+  00004		 |$M42160|
 
 ; 450  :     volatile ULONG ulCCR;
 ; 451  :     BOOL breakLoop = FALSE;
@@ -412,14 +412,14 @@
 
   00040	e28dd004	 add         sp, sp, #4
   00044	e12fff1e	 bx          lr
-  00048		 |$M42156|
+  00048		 |$M42161|
 
 			 ENDP  ; |DmaStop|
 
 	EXPORT	|DmaStart|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42166| DCD	|$LN5@DmaStart|
+|$T42171| DCD	|$LN5@DmaStart|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -430,7 +430,7 @@
 ; 487  : {
 
   00000		 |$LN5@DmaStart|
-  00000		 |$M42163|
+  00000		 |$M42168|
 
 ; 488  :     // enable the dma channel
 ; 489  :     //
@@ -444,7 +444,7 @@
 ; 491  : }
 
   00010	e12fff1e	 bx          lr
-  00014		 |$M42164|
+  00014		 |$M42169|
 
 			 ENDP  ; |DmaStart|
 
@@ -455,7 +455,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdhc\base\dma.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42174| DCD	|$LN15@SDIO_InitD|
+|$T42179| DCD	|$LN15@SDIO_InitD|
 	DCD	0x40002a01
 ; Function compile flags: /Ogspy
 
@@ -467,7 +467,7 @@
 
   00000		 |$LN15@SDIO_InitD|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M42171|
+  00004		 |$M42176|
   00004	e1a04000	 mov         r4, r0
 
 ; 217  :     // allocate dma channel
@@ -495,7 +495,7 @@
 
 ; 224  :       if(!m_RxDmaInfo)
 
-  00030	0a00001a	 beq         |$cleanUp$41298|
+  00030	0a00001a	 beq         |$cleanUp$41303|
 
 ; 225  :       {
 ; 226  :         DEBUGMSG(SDCARD_ZONE_ERROR, (L"ERROR: SDIO_InitDMA: "
@@ -511,7 +511,7 @@
   00038	e3a01000	 mov         r1, #0
   0003c	eb000000	 bl          DmaEnableInterrupts
   00040	e3500000	 cmp         r0, #0
-  00044	0a000015	 beq         |$cleanUp$41298|
+  00044	0a000015	 beq         |$cleanUp$41303|
   00048		 |$LN7@SDIO_InitD|
 
 ; 234  :       {
@@ -532,7 +532,7 @@
 
 ; 244  :     if (m_hTxDmaChannel != NULL)
 
-  00058	0a000010	 beq         |$cleanUp$41298|
+  00058	0a000010	 beq         |$cleanUp$41303|
 
 ; 245  :     {
 ; 246  :       m_TxDmaInfo = (DmaDataInfo_t *)LocalAlloc(LMEM_ZEROINIT,sizeof(DmaDataInfo_t));
@@ -545,7 +545,7 @@
 
 ; 247  :       if(!m_TxDmaInfo)
 
-  00070	0a00000a	 beq         |$cleanUp$41298|
+  00070	0a00000a	 beq         |$cleanUp$41303|
 
 ; 248  :       {
 ; 249  :         DEBUGMSG(SDCARD_ZONE_ERROR, (L"ERROR: SDIO_InitDMA: "
@@ -577,7 +577,7 @@
   00094	e583200c	 str         r2, [r3, #0xC]
   00098	e594009c	 ldr         r0, [r4, #0x9C]
   0009c	eb000000	 bl          DmaEnableInterrupts
-  000a0		 |$cleanUp$41298|
+  000a0		 |$cleanUp$41303|
 
 ; 262  :       {
 ; 263  :         DEBUGMSG(SDCARD_ZONE_ERROR, (L"ERROR: SDIO_InitDMA: "
@@ -592,7 +592,7 @@
 
   000a0	e8bd4010	 ldmia       sp!, {r4, lr}
   000a4	e12fff1e	 bx          lr
-  000a8		 |$M42172|
+  000a8		 |$M42177|
 
 			 ENDP  ; |?SDIO_InitDMA@CSDIOControllerBase@@QAAXXZ|, CSDIOControllerBase::SDIO_InitDMA
 
@@ -601,7 +601,7 @@
 	IMPORT	|LocalFree|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42182| DCD	|$LN9@SDIO_Deini|
+|$T42187| DCD	|$LN9@SDIO_Deini|
 	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 
@@ -613,7 +613,7 @@
 
   00000		 |$LN9@SDIO_Deini|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M42179|
+  00004		 |$M42184|
   00004	e1a04000	 mov         r4, r0
 
 ; 275  :     if (m_TxDmaInfo)
@@ -686,7 +686,7 @@
 
   0006c	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00070	e12fff1e	 bx          lr
-  00074		 |$M42180|
+  00074		 |$M42185|
 
 			 ENDP  ; |?SDIO_DeinitDMA@CSDIOControllerBase@@QAAXXZ|, CSDIOControllerBase::SDIO_DeinitDMA
 
@@ -696,7 +696,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42216| DCD	|$LN18@SDIO_InitI|
+|$T42221| DCD	|$LN18@SDIO_InitI|
 	DCD	0x40003601
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdhc\base\dma.cpp
@@ -709,7 +709,7 @@
 
   00000		 |$LN18@SDIO_InitI|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M42213|
+  00004		 |$M42218|
   00004	e1a07002	 mov         r7, r2
   00008	e1a08001	 mov         r8, r1
   0000c	e1a05000	 mov         r5, r0
@@ -817,7 +817,7 @@
   000d4		 |$LN19@SDIO_InitI|
   000d4		 |$LN20@SDIO_InitI|
   000d4	00000000	 DCD         |?RxDmaSettings@@3UDmaConfigInfo_t@@A|
-  000d8		 |$M42214|
+  000d8		 |$M42219|
 
 			 ENDP  ; |?SDIO_InitInputDMA@CSDIOControllerBase@@QAAXKK@Z|, CSDIOControllerBase::SDIO_InitInputDMA
 
@@ -825,7 +825,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42231| DCD	|$LN7@SDIO_Start|
+|$T42236| DCD	|$LN7@SDIO_Start|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdhc\base\dma.cpp
@@ -837,7 +837,7 @@
 ; 346  : {
 
   00000		 |$LN7@SDIO_Start|
-  00000		 |$M42228|
+  00000		 |$M42233|
 
 ; 347  :     DmaStart(m_RxDmaInfo);
 
@@ -850,14 +850,14 @@
 ; 348  : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M42229|
+  00018		 |$M42234|
 
 			 ENDP  ; |?SDIO_StartInputDMA@CSDIOControllerBase@@QAAXXZ|, CSDIOControllerBase::SDIO_StartInputDMA
 
 	EXPORT	|?SDIO_StopInputDMA@CSDIOControllerBase@@QAAXXZ| ; CSDIOControllerBase::SDIO_StopInputDMA
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42239| DCD	|$LN6@SDIO_StopI|
+|$T42244| DCD	|$LN6@SDIO_StopI|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -869,7 +869,7 @@
 
   00000		 |$LN6@SDIO_StopI|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42236|
+  00004		 |$M42241|
 
 ; 360  :     if (m_RxDmaInfo)
 
@@ -887,7 +887,7 @@
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
-  0001c		 |$M42237|
+  0001c		 |$M42242|
 
 			 ENDP  ; |?SDIO_StopInputDMA@CSDIOControllerBase@@QAAXXZ|, CSDIOControllerBase::SDIO_StopInputDMA
 
@@ -895,7 +895,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42273| DCD	|$LN18@SDIO_InitO|
+|$T42278| DCD	|$LN18@SDIO_InitO|
 	DCD	0x40003601
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdhc\base\dma.cpp
@@ -908,7 +908,7 @@
 
   00000		 |$LN18@SDIO_InitO|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M42270|
+  00004		 |$M42275|
   00004	e1a07002	 mov         r7, r2
   00008	e1a08001	 mov         r8, r1
   0000c	e1a05000	 mov         r5, r0
@@ -1010,7 +1010,7 @@
   000d4		 |$LN19@SDIO_InitO|
   000d4		 |$LN20@SDIO_InitO|
   000d4	00000000	 DCD         |?TxDmaSettings@@3UDmaConfigInfo_t@@A|
-  000d8		 |$M42271|
+  000d8		 |$M42276|
 
 			 ENDP  ; |?SDIO_InitOutputDMA@CSDIOControllerBase@@QAAXKK@Z|, CSDIOControllerBase::SDIO_InitOutputDMA
 
@@ -1018,7 +1018,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\inc\omap_sdma_utility.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42288| DCD	|$LN7@SDIO_Start@2|
+|$T42293| DCD	|$LN7@SDIO_Start@2|
 	DCD	0x40000600
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\sdhc\base\dma.cpp
@@ -1030,7 +1030,7 @@
 ; 410  : {
 
   00000		 |$LN7@SDIO_Start@2|
-  00000		 |$M42285|
+  00000		 |$M42290|
 
 ; 411  :     DmaStart(m_TxDmaInfo);
 
@@ -1043,14 +1043,14 @@
 ; 412  : }
 
   00014	e12fff1e	 bx          lr
-  00018		 |$M42286|
+  00018		 |$M42291|
 
 			 ENDP  ; |?SDIO_StartOutputDMA@CSDIOControllerBase@@QAAXXZ|, CSDIOControllerBase::SDIO_StartOutputDMA
 
 	EXPORT	|?SDIO_StopOutputDMA@CSDIOControllerBase@@QAAXXZ| ; CSDIOControllerBase::SDIO_StopOutputDMA
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42296| DCD	|$LN6@SDIO_StopO|
+|$T42301| DCD	|$LN6@SDIO_StopO|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -1062,7 +1062,7 @@
 
   00000		 |$LN6@SDIO_StopO|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M42293|
+  00004		 |$M42298|
 
 ; 424  :     if (m_TxDmaInfo)
 
@@ -1080,14 +1080,14 @@
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
-  0001c		 |$M42294|
+  0001c		 |$M42299|
 
 			 ENDP  ; |?SDIO_StopOutputDMA@CSDIOControllerBase@@QAAXXZ|, CSDIOControllerBase::SDIO_StopOutputDMA
 
 	EXPORT	|?DumpDMARegs@CSDIOControllerBase@@QAAXH@Z| ; CSDIOControllerBase::DumpDMARegs
 
   00000			 AREA	 |.pdata|, PDATA
-|$T42303| DCD	|$LN5@DumpDMAReg|
+|$T42308| DCD	|$LN5@DumpDMAReg|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -1098,13 +1098,13 @@
 ; 431  : {
 
   00000		 |$LN5@DumpDMAReg|
-  00000		 |$M42300|
+  00000		 |$M42305|
 
 ; 432  : 	UNREFERENCED_PARAMETER(inCh);
 ; 433  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M42301|
+  00004		 |$M42306|
 
 			 ENDP  ; |?DumpDMARegs@CSDIOControllerBase@@QAAXH@Z|, CSDIOControllerBase::DumpDMARegs
 

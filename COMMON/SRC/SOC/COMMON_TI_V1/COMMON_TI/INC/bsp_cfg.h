@@ -104,11 +104,10 @@ typedef enum OMAP_HOTKEY_COLD_RESET{
 //------------------------------------------------------------------------
 
 typedef enum OMAP_LCM_BACKLIGHT{
-	BK_PLUS=0,
-	BK_MINUS,
+	BK_TEST=0,
 	BK_ON,
 	BK_OFF,
-	BK_EXIT=4
+	BK_EXIT=3
 }OMAP_LCM_BACKLIGHT;
 //------------------------------------------------------------------------
 //  Triton Access
