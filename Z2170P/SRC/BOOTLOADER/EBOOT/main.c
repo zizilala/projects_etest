@@ -138,6 +138,7 @@ BOOL OEMPlatformInit()
             GPIO_PADS_37XX
 	     	USBOTG_PADS
 	     	MCSPI1_EBOOT_PADS
+            MCSPI4_PADS         //Ray 131119
             END_OF_PAD_ARRAY
     };
 	
@@ -208,8 +209,7 @@ BOOL OEMPlatformInit()
 	GPIOSetMode(hGPIO, 136,GPIO_DIR_OUTPUT);
     GPIOClrBit(hGPIO,16); // WLAN_EN
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
-	
-    //GPIOSetBit(hGPIO,15);     // test 
+	//GPIOSetBit(hGPIO,15);     // test 
 
     GPIOClrBit(hGPIO, 155);     // Keypad_LED, Ray 131112 
     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
@@ -425,7 +425,7 @@ ULONG OEMPreDownload()
     //BLReserveBootBlocks(); // brian
 #endif
 	
-	//BLShowLogo(); // Ray 13115
+	BLShowLogo(); // Ray 13115
 	
     // Read saved configration      //Bootstrap message(LCD init after), Ray
     if (BLReadBootCfg(&g_bootCfg) &&

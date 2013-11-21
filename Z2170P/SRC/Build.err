@@ -1,3 +1,5 @@
 BUILD: [Thrd:Sequence:Type  ] Message
-BUILD: [01:0000000493:ERRORE] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\.\bsp_logo.c(1105) : error C2065: 'LOGO_WIDTH' : undeclared identifier
-BUILD: [01:0000000494:ERRORE] C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\.\bsp_logo.c(1105) : error C2065: 'LOGO_HEIGHT' : undeclared identifier
+BUILD: [01:0000003978:ERRORE] menu.obj : error LNK2001: unresolved external symbol g_menu2170PTest
+BUILD: [01:0000003979:ERRORE] menu.obj : error LNK2001: unresolved external symbol g_menuZ2000Test
+BUILD: [01:0000003980:ERRORE] C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootnd.exe : fatal error LNK1120: 2 unresolved externals
+BUILD: [01:0000003985:ERRORE] EDITBIN : fatal error LNK1104: cannot open file 'C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootnd.exe'

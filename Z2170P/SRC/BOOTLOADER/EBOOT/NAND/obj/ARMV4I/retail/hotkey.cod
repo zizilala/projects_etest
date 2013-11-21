@@ -164,7 +164,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\hotkey.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47325| DCD	|$LN5@HotKeyInit|
+|$T47337| DCD	|$LN5@HotKeyInit|
 	DCD	0x40001402
 ; Function compile flags: /Ogspy
 
@@ -177,7 +177,7 @@
   00000		 |$LN5@HotKeyInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47322|
+  00008		 |$M47334|
   00008	e1a04000	 mov         r4, r0
   0000c	e3a05802	 mov         r5, #2, 16
 
@@ -213,14 +213,14 @@
   00044	e28dd004	 add         sp, sp, #4
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M47323|
+  00050		 |$M47335|
 
 			 ENDP  ; |HotKeyInit|
 
 	EXPORT	|matrixStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47336| DCD	|$LN7@matrixStat|
+|$T47348| DCD	|$LN7@matrixStat|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -231,7 +231,7 @@
 ; 58   : {
 
   00000		 |$LN7@matrixStat|
-  00000		 |$M47333|
+  00000		 |$M47345|
 
 ; 59   :     int temp;
 ; 60   :     BOOL event = FALSE;
@@ -260,7 +260,7 @@
   0001c		 |$LN8@matrixStat|
   0001c		 |$LN9@matrixStat|
   0001c	00000000	 DCD         |gMatrix|
-  00020		 |$M47334|
+  00020		 |$M47346|
 
 			 ENDP  ; |matrixStatus|
 
@@ -274,7 +274,7 @@
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47420| DCD	|$LN68@HotKeyFunc|
+|$T47432| DCD	|$LN68@HotKeyFunc|
 	DCD	0x40004601
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -316,7 +316,7 @@
 
   00000		 |$LN68@HotKeyFunc|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M47417|
+  00004		 |$M47429|
   00004	e1a08000	 mov         r8, r0
 
 ; 73   : 	//UINT8 matrix[8];
@@ -526,14 +526,14 @@
   00110	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
   00114		 |$LN75@HotKeyFunc|
   00114	00000000	 DCD         |hotkeyColdReset|
-  00118		 |$M47418|
+  00118		 |$M47430|
 
 			 ENDP  ; |HotKeyFunction|
 
 	EXPORT	|HotKeyColdReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47435| DCD	|$LN5@HotKeyCold|
+|$T47447| DCD	|$LN5@HotKeyCold|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -545,7 +545,7 @@
 
   00000		 |$LN5@HotKeyCold|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47432|
+  00004		 |$M47444|
 
 ; 148  :    HotKeyFunction(hTwl);
 
@@ -556,7 +556,7 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47433|
+  00010		 |$M47445|
 
 			 ENDP  ; |HotKeyColdReset|
 

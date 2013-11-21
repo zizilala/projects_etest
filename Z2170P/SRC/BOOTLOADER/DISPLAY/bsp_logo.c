@@ -47,6 +47,8 @@ void LcdStall(DWORD dwMicroseconds);
 void LcdSleep(DWORD dwMilliseconds);
 BOOL FillASCII(BYTE showCharMode[][15]);    //Ray 131105
 BOOL BLShowLogo(void);
+VOID Initial_lcd_TSC2046(void);                 //Ray 131119
+
 
 //------------------------------------------------------------------------------
 //
@@ -60,7 +62,6 @@ BOOL BLShowLogo(void);
 	#define LOGO_HEIGHT			320	
 #endif*/
 //static int g_board;    //Ray 131115
-
 //#define DEFINE_LOGO g_board 
 
 #if DEFINE_LOGO == 2000
@@ -87,6 +88,11 @@ BOOL BLShowLogo(void);
 #define SPI_CS0_PIN     174         //mcspi1_cs0
 #define SPI_CLK_PIN     171         //mcspi1_clk
 #define SPI_DOUT_PIN    172         //mcspi1_simo
+//Ray 131119
+#define TSC2046_CS      161         //mcbsp1_fsx      
+#define TSC2046_DCLK    156         //mcbsp1_clkr       
+#define TSC2046_DIN     158         //mcbsp1_dx  
+#define TSC2046_DOUT    159         //mcbsp1_dr 
 
 DWORD   g_dwLogoPosX;
 DWORD   g_dwLogoPosY;
@@ -1205,6 +1211,9 @@ BOOL ShowSDLogo()
     DWORD dwLcdHeight = 0;
 	DWORD dwLength = 0;
 	PUCHAR 	pChar;          //Ray 131028
+#ifdef DEFINE_LOGO
+    OALLog(L"\r\n!!!!%d\r\n", DEFINE_LOGO);
+#endif	
     // Get the LCD width and height
     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
 	//OALMSG(OAL_INFO, (L"ShowSDLogo: dwLcdWidth = %d, dwLcdHeight = %d\r\n",dwLcdWidth,dwLcdHeight));
@@ -1234,7 +1243,7 @@ BOOL ShowSDLogo()
 		return FALSE;
 	}
 #endif*/
-#if DEFINE_LOGO == 2000    //Ray 131115
+#if DEFINE_LOGO == 2000   //Ray 131115
         if (!BLSDCardReadLogo(L"Logo.bmp", (UCHAR*)framebuffer, dwLength))
         {
             return FALSE;
@@ -1599,7 +1608,7 @@ VOID ShowTestGreen(UINT32 flashAddr, UINT32 offset)
 //
 //  Function:  ShowTest
 //
-VOID ShowTest(UINT32 flashAddr, UINT32 offset, int board)
+VOID ShowTest(UINT32 flashAddr, UINT32 offset/*, int board*/)
 {
     HANDLE  hFlash = NULL;
     DWORD	framebuffer;
@@ -1612,7 +1621,7 @@ VOID ShowTest(UINT32 flashAddr, UINT32 offset, int board)
     DWORD   dwLength;
     //DWORD   d5Sec = 5000000;
     //DWORD   sleep5sec = 5000;
-    int n_board = board;
+    //int n_board = board;
     
     //  Get the LCD width and height
     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
@@ -1776,6 +1785,9 @@ void lcd_config(UINT32 framebuffer)
 	// Turn on backlight last
 	enable_lcd_backlight();
 
+	// Initial Touch Panel, Ray 131119
+	//Initial_lcd_TSC2046();
+    
 }
 
 //------------------------------------------------------------------------------
@@ -1929,6 +1941,126 @@ UINT32 disable_lcd_backlight( void )
      //OALMSG(OAL_INFO, (L"disable_lcd_backlight-\r\n"));
     return ERROR_SUCCESS;
 }
+
+//------------------------------------------------------------------------------
+//
+//  Below function Initial LCD touch panel for TSC2046 controller, Ray 131120
+//
+/*VOID spi4WrBitHigh(HANDLE hGPIO_2046)
+{
+ 
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(10);
+    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(10);
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+}
+//
+//
+VOID spi4WrBitLow(HANDLE hGPIO_2046)
+{
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(10);
+    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(10);
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+}*/
+VOID spi4Clock(HANDLE hGPIO_2046)
+{
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(10);
+    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(10);
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+}
+//  This function are first cycle used in the control byte via the DIN pin 
+// 
+VOID sendData(HANDLE hGPIO_2046, int TXControlByte) 
+{
+   int iData;
+   
+   GPIOClrBit(hGPIO_2046, TSC2046_CS);     //Start controlling 
+   for(iData=7; iData>=0; iData--)
+   {
+        if(TXControlByte & (1<<iData))
+        {
+            GPIOSetBit(hGPIO_2046, TSC2046_DIN);
+            spi4Clock(hGPIO_2046);  
+        }else{
+            GPIOClrBit(hGPIO_2046, TSC2046_DIN);
+            spi4Clock(hGPIO_2046); 
+        }
+   }
+   //GPIOSetBit(hGPIO_2046, TSC2046_CS);     //Stop controlling 
+}
+//  This function are next cycle used conversion phase has 12 bits, Ray 131121
+//
+VOID receiveData(HANDLE hGPIO_2046,)
+{
+    int iData,temp;
+    int RXConversion;
+
+    for(iData=16; iData>=0; iData--)
+    {
+        temp = RXConversion & (1<<iData);
+        
+        if(temp){
+            GPIOSetBit(hGPIO_2046, TSC2046_DOUT);
+            spi4Clock(hGPIO_2046); 
+            //OALLog(L"\r High !%d\r\n",temp);            
+        }else{
+            GPIOClrBit(hGPIO_2046, TSC2046_DOUT);
+            spi4Clock(hGPIO_2046);
+            //OALLog(L"\r Low !%d\r\n",temp);  
+        }
+    }
+   
+    GPIOSetBit(hGPIO_2046, TSC2046_CS);     //Stop controlling 
+}
+//
+//
+VOID read_x(HANDLE hGPIO_2046, int xValue)
+{
+   sendData(hGPIO_2046, xValue);
+   LcdStall(1);
+   receiveData(hGPIO_2046);
+}
+//
+//
+VOID read_y(HANDLE hGPIO_2046, int yValue)
+{
+   sendData(hGPIO_2046, yValue);
+   LcdStall(1);
+   receiveData(hGPIO_2046);
+}
+//  
+//  control byte: | S| A2| A1| A0| MODE| SER/DFR| PD1| PD0|
+//    
+VOID Initial_lcd_TSC2046(void)
+{
+    HANDLE hGPIO_2046;
+    //int i=24;
+    hGPIO_2046 = GPIOOpen();
+
+    //Initialization the "SPI4" buses, Ray 131119    
+    GPIOSetMode(hGPIO_2046, TSC2046_CS,   GPIO_DIR_OUTPUT);
+    GPIOSetMode(hGPIO_2046, TSC2046_DCLK, GPIO_DIR_OUTPUT);
+    GPIOSetMode(hGPIO_2046, TSC2046_DIN,  GPIO_DIR_OUTPUT);
+    GPIOSetMode(hGPIO_2046, TSC2046_DOUT, GPIO_DIR_INPUT);
+
+    read_x(hGPIO_2046, 0x94);           //1001_0100 
+    
+    //read_y(hGPIO_2046, 0xd4);         //1101_0100
+    /*while(i>0){
+        spi4WrBitHigh(hGPIO_2046);
+        i--;
+    }*/
+    
+    
+    
+    LcdSleep(3000);
+    GPIOClose(hGPIO_2046);
+ }
 
 //------------------------------------------------------------------------------
 //
