@@ -1,6 +1,6 @@
  ebootsd
 
- Timestamp is 528dd5ba (Thu Nov 21 17:43:22 2013)
+ Timestamp is 528f261c (Fri Nov 22 17:38:36 2013)
 
  Preferred load address is 00000000
 
@@ -8,12 +8,12 @@
  0001:00000000 00000214H .astart                 CODE
  0001:00000220 0000fd8cH .rdata                  CODE
  0001:0000ffac 00000024H .rdata$debug            CODE
- 0001:0000ffd0 0001c158H .text                   CODE
- 0001:0002c128 00000060H .xdata                  CODE
- 0001:0002c188 00000000H .edata                  CODE
+ 0001:0000ffd0 0001c19cH .text                   CODE
+ 0001:0002c16c 00000060H .xdata                  CODE
+ 0001:0002c1cc 00000000H .edata                  CODE
  0002:00000000 000010c3H .data                   DATA
  0002:000010e0 0003fc98H .bss                    DATA
- 0003:00000000 00000ec0H .pdata                  DATA
+ 0003:00000000 00000ec8H .pdata                  DATA
 
   Address         Publics by Value              Rva+Base       Lib:Object
 
@@ -43,8 +43,8 @@
  0001:00000708       ??_C@_1M@MMBAGLLJ@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?$AA@ 00001708     main.obj
  0001:00000714       ??_C@_1M@HEKMAMNM@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?$AA@ 00001714     main.obj
  0001:00000720       ??_C@_1M@PKCDALDP@?$AAE?$AAS?$AA1?$AA?4?$AA0?$AA?$AA@ 00001720     main.obj
- 0001:0000072c       ??_C@_08INICNLEG@17?343?312?$AA@ 0000172c     main.obj
- 0001:00000738       ??_C@_0M@NDKKEOPM@Nov?521?52013?$AA@ 00001738     main.obj
+ 0001:0000072c       ??_C@_08JIGGJAPD@17?338?327?$AA@ 0000172c     main.obj
+ 0001:00000738       ??_C@_0M@OCECFEGB@Nov?522?52013?$AA@ 00001738     main.obj
  0001:00000748       ??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@ 00001748     main.obj
  0001:000007c0       ??_C@_1CC@DJCPIFGO@?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA0?$AA?4?$AA0?$AA?4?$AA1?$AA?$AN?$AA?6?$AA?$AA@ 000017c0     main.obj
  0001:000007e8       ??_C@_1GG@GNNPKEFL@?$AAI?$AAN?$AAF?$AAO?$AA?3?$AA?5?$AAO?$AAE?$AAM?$AAP?$AAl?$AAa?$AAt?$AAf?$AAo?$AAr?$AAm?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AA?5?$AAD?$AAi?$AAs?$AAa?$AAb@ 000017e8     main.obj
@@ -639,8 +639,7 @@
  0001:0000cdf4       ??_C@_05PENDHGHB@F2?$CLF4?$AA@ 0000ddf4     bsp_display:bsp_logo.obj
  0001:0000cdfc       ??_C@_05MJLDFPMB@F3?$CLF4?$AA@ 0000ddfc     bsp_display:bsp_logo.obj
  0001:0000ce04       ??_C@_1DA@HJDMHHHF@?$AAL?$AAC?$AAD?$AA?5?$AAs?$AAe?$AAn?$AAd?$AA?5?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AA?5?$AAC?$AAo?$AAd?$AAe?$AA?$AN?$AA?6?$AA?$AA@ 0000de04     bsp_display:bsp_logo.obj
- 0001:0000ce34       ??_C@_1BI@FLGMKAFD@?$AA?$AN?$AA?5?$AAL?$AAo?$AAw?$AA?5?$AA?$CB?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@ 0000de34     bsp_display:bsp_logo.obj
- 0001:0000ce4c       ??_C@_1BK@LOGBBALA@?$AA?$AN?$AA?5?$AAH?$AAi?$AAg?$AAh?$AA?5?$AA?$CB?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@ 0000de4c     bsp_display:bsp_logo.obj
+ 0001:0000ce34       ??_C@_1DE@ECGNECFE@?$AA?$AN?$AA?5?$AA?$CB?$AAC?$AAo?$AAn?$AAv?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AAa?$AAt?$AA?5?$AAs?$AAu?$AAm?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@ 0000de34     bsp_display:bsp_logo.obj
  0001:0000ce68       ??_C@_1BK@ENFEEAKA@?$AAl?$AAc?$AAd?$AA_?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AA?$AN?$AA?6?$AA?$AA@ 0000de68     bsp_display:bsp_logo.obj
  0001:0000ce88       ??_C@_1GK@BOLHCJDJ@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAW?$AAi?$AAd?$AAt?$AAh?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg@ 0000de88     bsp_display:bsp_logo.obj
  0001:0000cef8       ??_C@_1GE@MOPAKJBC@?$AAS?$AAh?$AAo?$AAw?$AAS?$AAD?$AAL?$AAo?$AAg?$AAo?$AA?3?$AA?5?$AAg?$AA_?$AAd?$AAw?$AAL?$AAo?$AAg?$AAo?$AAP?$AAo?$AAs?$AAX?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?0?$AAg?$AA_@ 0000def8     bsp_display:bsp_logo.obj
@@ -1086,90 +1085,91 @@
  0001:00025b18       LCD_Initial_Code           00026b18 f   bsp_display:bsp_logo.obj
  0001:00026090       enable_lcd_backlight       00027090 f   bsp_display:bsp_logo.obj
  0001:00026184       spi4Clock                  00027184 f   bsp_display:bsp_logo.obj
- 0001:000261c4       sendData                   000271c4 f   bsp_display:bsp_logo.obj
- 0001:00026214       receiveData                00027214 f   bsp_display:bsp_logo.obj
- 0001:0002628c       Initial_lcd_TSC2046        0002728c f   bsp_display:bsp_logo.obj
- 0001:00026314       lcd_config                 00027314 f   bsp_display:bsp_logo.obj
- 0001:00026358       ShowLogo                   00027358 f   bsp_display:bsp_logo.obj
- 0001:00026560       ShowSDLogo                 00027560 f   bsp_display:bsp_logo.obj
- 0001:0002671c       ShowTestWhite              0002771c f   bsp_display:bsp_logo.obj
- 0001:000268fc       ShowTestBlack              000278fc f   bsp_display:bsp_logo.obj
- 0001:00026ad4       ShowTestBlue               00027ad4 f   bsp_display:bsp_logo.obj
- 0001:00026cb0       ShowTestGreen              00027cb0 f   bsp_display:bsp_logo.obj
- 0001:00026e8c       ShowTest                   00027e8c f   bsp_display:bsp_logo.obj
- 0001:00027074       LcdPdd_LCD_InitResolution  00028074 f   bsp_display_init:lcd_qvga.obj
- 0001:00027188       LcdPdd_GetMemory           00028188 f   bsp_display_init:lcd_qvga.obj
- 0001:000271bc       LcdPdd_LCD_GetMode         000281bc f   bsp_display_init:lcd_qvga.obj
- 0001:00027260       LcdPdd_SetPowerLevel       00028260 f   bsp_display_init:lcd_qvga.obj
- 0001:00027328       LcdPdd_LCD_Initialize      00028328 f   bsp_display_init:lcd_qvga.obj
- 0001:000274b8       LcdInitGpio                000284b8 f   bsp_display_init:lcd_support.obj
- 0001:00027538       LcdPowerControl            00028538 f   bsp_display_init:lcd_support.obj
- 0001:0002756c       LcdResBControl             0002856c f   bsp_display_init:lcd_support.obj
- 0001:000275a8       OALLogSerial               000285a8 f   oal_log:log.obj
- 0001:00027b54       FileNameToDirEntry         00028b54 f   common_ti_boot_fatfs:fileio.obj
- 0001:00027c28       FileIoInit                 00028c28 f   common_ti_boot_fatfs:fileio.obj
- 0001:00027f74       FileIoOpen                 00028f74 f   common_ti_boot_fatfs:fileio.obj
- 0001:00028194       FileIoRead                 00029194 f   common_ti_boot_fatfs:fileio.obj
- 0001:00028304       PDD_GetDescriptor          00029304 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:0002845c       PDD_DoVendorCommand        0002945c f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00028578       SetupEP1Transfer           00029578 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00028688       HandleSetupPacket          00029688 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00028854       TxComplete                 00029854 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:000288bc       NotifyHandler              000298bc f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00028e44       RegisterUSBDevice          00029e44 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00028f10       PDD_SendRndisMessage       00029f10 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00029018       PDD_SendRndisPacket        0002a018 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00029130       PDD_Set                    0002a130 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00029248       PDD_Get                    0002a248 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00029368       PDD_ISR                    0002a368 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00029388       PDD_IndicateRndisPacketComplete 0002a388 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:000293e0       SetRNDISMACAddress         0002a3e0 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00029414       SetRNDISSerialNumber       0002a414 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:000294c4       PDDInit                    0002a4c4 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:00029744       strcpy                     0002a744 f   fulllibc:strcpy.obj
- 0001:0002983c       _itoa                      0002a83c f   fulllibc:xtoa.obj
- 0001:00029874       strncpy                    0002a874 f   fulllibc:astrncpy.obj
- 0001:0002991c       strcat                     0002a91c f   fulllibc:mdsstrcat.obj
- 0001:00029944       toupper                    0002a944 f   fulllibc:toupper.obj
- 0001:00029954       __rt_sdiv                  0002a954 f   fulllibc:__div.obj
- 0001:00029a30       PowerOnT2USBTransceiver    0002aa30 f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:00029c34       RequestPHYAccess           0002ac34 f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:00029cb4       InitTransceiver            0002acb4 f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:00029e88       InitializeHardware         0002ae88 f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:00029f1c       ResetHardware              0002af1c f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:00029f20       ConnectHardware            0002af20 f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:00029f9c       DisconnectHardware         0002af9c f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:0002a018       EnableUSBClocks            0002b018 f   bsp_boot_ethdrv_usbfn:trans.obj
- 0001:0002a074       ReadFIFO                   0002b074 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002a11c       WriteFIFO                  0002b11c f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002a814       GetUniqueDeviceID          0002b814 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002a858       Device_Disconnect          0002b858 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002a8b0       Device_ResetIRQ            0002b8b0 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002a9e0       Device_ProcessEP0          0002b9e0 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002ae58       Device_ProcessEPx_RX       0002be58 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b05c       Device_ProcessEPx_TX       0002c05c f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b25c       InterruptThread            0002c25c f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b37c       UfnPdd_IssueTransfer       0002c37c f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b47c       UfnPdd_AbortTransfer       0002c47c f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b554       UfnPdd_StallEndpoint       0002c554 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b5cc       UfnPdd_ClearEndpointStall  0002c5cc f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b658       UfnPdd_IsEndpointHalted    0002c658 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b6cc       UfnPdd_SendControlStatusHandshake 0002c6cc f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b7d0       UfnPdd_InitiateRemoteWakeup 0002c7d0 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b800       UfnPdd_PowerDown           0002c800 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b838       UfnPdd_PowerUp             0002c838 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b870       UfnPdd_IOControl           0002c870 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b8bc       UfnPdd_Deinit              0002c8bc f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b8ec       UfnPdd_DeregisterDevice    0002c8ec f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b8f4       UfnPdd_Stop                0002c8f4 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b958       UfnPdd_DeinitEndpoint      0002c958 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b960       UfnPdd_InitEndpoint        0002c960 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b968       UfnPdd_SetAddress          0002c968 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002b9ac       UfnPdd_Start               0002c9ac f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002ba6c       UfnPdd_RegisterDevice      0002ca6c f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002bdb8       UfnPdd_IsEndpointSupportable 0002cdb8 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002bdd4       UfnPdd_IsConfigurationSupportable 0002cdd4 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002bec0       UfnPdd_Init                0002cec0 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:000261c4       spi4ClockRXData            000271c4 f   bsp_display:bsp_logo.obj
+ 0001:00026218       sendData                   00027218 f   bsp_display:bsp_logo.obj
+ 0001:00026268       receiveData                00027268 f   bsp_display:bsp_logo.obj
+ 0001:000262bc       Initial_lcd_TSC2046        000272bc f   bsp_display:bsp_logo.obj
+ 0001:00026358       lcd_config                 00027358 f   bsp_display:bsp_logo.obj
+ 0001:0002639c       ShowLogo                   0002739c f   bsp_display:bsp_logo.obj
+ 0001:000265a4       ShowSDLogo                 000275a4 f   bsp_display:bsp_logo.obj
+ 0001:00026760       ShowTestWhite              00027760 f   bsp_display:bsp_logo.obj
+ 0001:00026940       ShowTestBlack              00027940 f   bsp_display:bsp_logo.obj
+ 0001:00026b18       ShowTestBlue               00027b18 f   bsp_display:bsp_logo.obj
+ 0001:00026cf4       ShowTestGreen              00027cf4 f   bsp_display:bsp_logo.obj
+ 0001:00026ed0       ShowTest                   00027ed0 f   bsp_display:bsp_logo.obj
+ 0001:000270b8       LcdPdd_LCD_InitResolution  000280b8 f   bsp_display_init:lcd_qvga.obj
+ 0001:000271cc       LcdPdd_GetMemory           000281cc f   bsp_display_init:lcd_qvga.obj
+ 0001:00027200       LcdPdd_LCD_GetMode         00028200 f   bsp_display_init:lcd_qvga.obj
+ 0001:000272a4       LcdPdd_SetPowerLevel       000282a4 f   bsp_display_init:lcd_qvga.obj
+ 0001:0002736c       LcdPdd_LCD_Initialize      0002836c f   bsp_display_init:lcd_qvga.obj
+ 0001:000274fc       LcdInitGpio                000284fc f   bsp_display_init:lcd_support.obj
+ 0001:0002757c       LcdPowerControl            0002857c f   bsp_display_init:lcd_support.obj
+ 0001:000275b0       LcdResBControl             000285b0 f   bsp_display_init:lcd_support.obj
+ 0001:000275ec       OALLogSerial               000285ec f   oal_log:log.obj
+ 0001:00027b98       FileNameToDirEntry         00028b98 f   common_ti_boot_fatfs:fileio.obj
+ 0001:00027c6c       FileIoInit                 00028c6c f   common_ti_boot_fatfs:fileio.obj
+ 0001:00027fb8       FileIoOpen                 00028fb8 f   common_ti_boot_fatfs:fileio.obj
+ 0001:000281d8       FileIoRead                 000291d8 f   common_ti_boot_fatfs:fileio.obj
+ 0001:00028348       PDD_GetDescriptor          00029348 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:000284a0       PDD_DoVendorCommand        000294a0 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:000285bc       SetupEP1Transfer           000295bc f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:000286cc       HandleSetupPacket          000296cc f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00028898       TxComplete                 00029898 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00028900       NotifyHandler              00029900 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00028e88       RegisterUSBDevice          00029e88 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00028f54       PDD_SendRndisMessage       00029f54 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:0002905c       PDD_SendRndisPacket        0002a05c f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00029174       PDD_Set                    0002a174 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:0002928c       PDD_Get                    0002a28c f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:000293ac       PDD_ISR                    0002a3ac f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:000293cc       PDD_IndicateRndisPacketComplete 0002a3cc f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00029424       SetRNDISMACAddress         0002a424 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00029458       SetRNDISSerialNumber       0002a458 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00029508       PDDInit                    0002a508 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00029788       strcpy                     0002a788 f   fulllibc:strcpy.obj
+ 0001:00029880       _itoa                      0002a880 f   fulllibc:xtoa.obj
+ 0001:000298b8       strncpy                    0002a8b8 f   fulllibc:astrncpy.obj
+ 0001:00029960       strcat                     0002a960 f   fulllibc:mdsstrcat.obj
+ 0001:00029988       toupper                    0002a988 f   fulllibc:toupper.obj
+ 0001:00029998       __rt_sdiv                  0002a998 f   fulllibc:__div.obj
+ 0001:00029a74       PowerOnT2USBTransceiver    0002aa74 f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:00029c78       RequestPHYAccess           0002ac78 f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:00029cf8       InitTransceiver            0002acf8 f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:00029ecc       InitializeHardware         0002aecc f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:00029f60       ResetHardware              0002af60 f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:00029f64       ConnectHardware            0002af64 f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:00029fe0       DisconnectHardware         0002afe0 f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:0002a05c       EnableUSBClocks            0002b05c f   bsp_boot_ethdrv_usbfn:trans.obj
+ 0001:0002a0b8       ReadFIFO                   0002b0b8 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002a160       WriteFIFO                  0002b160 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002a858       GetUniqueDeviceID          0002b858 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002a89c       Device_Disconnect          0002b89c f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002a8f4       Device_ResetIRQ            0002b8f4 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002aa24       Device_ProcessEP0          0002ba24 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002ae9c       Device_ProcessEPx_RX       0002be9c f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b0a0       Device_ProcessEPx_TX       0002c0a0 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b2a0       InterruptThread            0002c2a0 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b3c0       UfnPdd_IssueTransfer       0002c3c0 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b4c0       UfnPdd_AbortTransfer       0002c4c0 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b598       UfnPdd_StallEndpoint       0002c598 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b610       UfnPdd_ClearEndpointStall  0002c610 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b69c       UfnPdd_IsEndpointHalted    0002c69c f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b710       UfnPdd_SendControlStatusHandshake 0002c710 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b814       UfnPdd_InitiateRemoteWakeup 0002c814 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b844       UfnPdd_PowerDown           0002c844 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b87c       UfnPdd_PowerUp             0002c87c f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b8b4       UfnPdd_IOControl           0002c8b4 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b900       UfnPdd_Deinit              0002c900 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b930       UfnPdd_DeregisterDevice    0002c930 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b938       UfnPdd_Stop                0002c938 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b99c       UfnPdd_DeinitEndpoint      0002c99c f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b9a4       UfnPdd_InitEndpoint        0002c9a4 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b9ac       UfnPdd_SetAddress          0002c9ac f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002b9f0       UfnPdd_Start               0002c9f0 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002bab0       UfnPdd_RegisterDevice      0002cab0 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002bdfc       UfnPdd_IsEndpointSupportable 0002cdfc f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002be18       UfnPdd_IsConfigurationSupportable 0002ce18 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002bf04       UfnPdd_Init                0002cf04 f   common_ti_ethdrv_usbfn:pdd.obj
  0002:00000000       g_kitlEthLan911x           0002e000     main.obj
  0002:0000002c       g_kitlUsbRndis             0002e02c     main.obj
  0002:00000058       g_kitlDevices              0002e058     main.obj
@@ -1414,10 +1414,10 @@
  0001:00023d34       CRC                        00024d34 f   eboot:udp.obj
  0001:000244f0       FormatDHCPName             000254f0 f   eboot:dhcp.obj
  0001:00025758       FlipFrameBuffer            00026758 f   bsp_display:bsp_logo.obj
- 0001:000275fc       BpbCopy                    000285fc f   common_ti_boot_fatfs:fileio.obj
- 0001:0002776c       FileIoReadNextSectors      0002876c f   common_ti_boot_fatfs:fileio.obj
- 0001:000282a0       PDD_SendNotification       000292a0 f   common_ti_ethdrv_rndis:rndis.obj
- 0001:000282cc       PDD_RecvNotification       000292cc f   common_ti_ethdrv_rndis:rndis.obj
- 0001:000297c8       xtoa                       0002a7c8 f   fulllibc:xtoa.obj
- 0001:0002a1f8       ContinueTxTransfer         0002b1f8 f   common_ti_ethdrv_usbfn:pdd.obj
- 0001:0002a528       StartRxTransfer            0002b528 f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:00027640       BpbCopy                    00028640 f   common_ti_boot_fatfs:fileio.obj
+ 0001:000277b0       FileIoReadNextSectors      000287b0 f   common_ti_boot_fatfs:fileio.obj
+ 0001:000282e4       PDD_SendNotification       000292e4 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:00028310       PDD_RecvNotification       00029310 f   common_ti_ethdrv_rndis:rndis.obj
+ 0001:0002980c       xtoa                       0002a80c f   fulllibc:xtoa.obj
+ 0001:0002a23c       ContinueTxTransfer         0002b23c f   common_ti_ethdrv_usbfn:pdd.obj
+ 0001:0002a56c       StartRxTransfer            0002b56c f   common_ti_ethdrv_usbfn:pdd.obj

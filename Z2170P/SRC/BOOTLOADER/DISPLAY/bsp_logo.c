@@ -1954,24 +1954,33 @@ UINT32 disable_lcd_backlight( void )
     GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
     LcdStall(10);
     GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
-}
-//
-//
-VOID spi4WrBitLow(HANDLE hGPIO_2046)
-{
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(10);
-    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(10);
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
 }*/
+//
+//
 VOID spi4Clock(HANDLE hGPIO_2046)
 {
     GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(10);
+    LcdStall(50);
     GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(10);
+    LcdStall(50);
     GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+}
+//
+//
+DWORD spi4ClockRXData(HANDLE hGPIO_2046)
+{
+    DWORD temp=0;
+
+    
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(50);
+
+    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
+    LcdStall(50);  
+    temp = GPIOGetBit(hGPIO_2046, TSC2046_DOUT);
+    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    
+    return temp;
 }
 //  This function are first cycle used in the control byte via the DIN pin 
 // 
@@ -1995,27 +2004,22 @@ VOID sendData(HANDLE hGPIO_2046, int TXControlByte)
 }
 //  This function are next cycle used conversion phase has 12 bits, Ray 131121
 //
-VOID receiveData(HANDLE hGPIO_2046,)
+VOID receiveData(HANDLE hGPIO_2046)
 {
-    int iData,temp;
-    int RXConversion;
+    int iData;
+    DWORD RXConversion;
+    DWORD sum;
 
-    for(iData=16; iData>=0; iData--)
+    spi4Clock(hGPIO_2046);
+    for(iData=15, sum=0; iData>=0; iData--)
     {
-        temp = RXConversion & (1<<iData);
-        
-        if(temp){
-            GPIOSetBit(hGPIO_2046, TSC2046_DOUT);
-            spi4Clock(hGPIO_2046); 
-            //OALLog(L"\r High !%d\r\n",temp);            
-        }else{
-            GPIOClrBit(hGPIO_2046, TSC2046_DOUT);
-            spi4Clock(hGPIO_2046);
-            //OALLog(L"\r Low !%d\r\n",temp);  
-        }
+        RXConversion = spi4ClockRXData(hGPIO_2046);
+        //sum += RXConversion & (1<<(iData-1));
+        sum += iData & (1<<RXConversion);
     }
-   
     GPIOSetBit(hGPIO_2046, TSC2046_CS);     //Stop controlling 
+
+    OALLog(L"\r !Conversion at sum %d\r\n", sum);
 }
 //
 //
@@ -2048,15 +2052,14 @@ VOID Initial_lcd_TSC2046(void)
     GPIOSetMode(hGPIO_2046, TSC2046_DIN,  GPIO_DIR_OUTPUT);
     GPIOSetMode(hGPIO_2046, TSC2046_DOUT, GPIO_DIR_INPUT);
 
-    read_x(hGPIO_2046, 0x94);           //1001_0100 
+    read_x(hGPIO_2046, 0x94);           //1001_0100
+    //LcdStall(100);
+    read_y(hGPIO_2046, 0xd4);           //1101_0100
     
-    //read_y(hGPIO_2046, 0xd4);         //1101_0100
     /*while(i>0){
         spi4WrBitHigh(hGPIO_2046);
         i--;
     }*/
-    
-    
     
     LcdSleep(3000);
     GPIOClose(hGPIO_2046);

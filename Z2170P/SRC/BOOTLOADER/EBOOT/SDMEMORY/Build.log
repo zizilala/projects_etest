@@ -141,7 +141,7 @@ BUILD: [01:0000000138:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000139:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
 BUILD: [01:0000000140:INFO  ] 	set LIB=C:\WINCE600\sdk\CE\lib
 BUILD: [01:0000000141:PROGC ] Linking C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe
-BUILD: [01:0000000142:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm47D.tmp
+BUILD: [01:0000000142:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nmA59.tmp
 BUILD: [01:0000000143:INFO  ] Microsoft (R) Incremental Linker Version 8.00.50727.42
 BUILD: [01:0000000144:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000145:INFO  ] 
@@ -1219,10 +1219,10 @@ BUILD: [01:0000001216:INFO  ] No imports for nk.exe
 BUILD: [01:0000001217:INFO  ] Processing EBOOTSD
 BUILD: [01:0000001218:INFO  ] 
 BUILD: [01:0000001219:INFO  ] Writing C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\EBOOTSD.bin
-BUILD: [01:0000001220:INFO  ] Table of contents  87e2efd4  00000020  (        32)
+BUILD: [01:0000001220:INFO  ] Table of contents  87e2efdc  00000020  (        32)
 BUILD: [01:0000001221:INFO  ] Writing ROM signature and TOC pointer at 87e00040
-BUILD: [01:0000001222:INFO  ] Kernel data copy section  87e2d188  00000010  (        16)
-BUILD: [01:0000001223:INFO  ] ROM Header                87e2ef80  00000054  (        84)
+BUILD: [01:0000001222:INFO  ] Kernel data copy section  87e2d1cc  00000010  (        16)
+BUILD: [01:0000001223:INFO  ] ROM Header                87e2ef88  00000054  (        84)
 BUILD: [01:0000001224:INFO  ] First DLL Address:       4001c001
 BUILD: [01:0000001225:INFO  ] Last DLL Address:        4001c001
 BUILD: [01:0000001226:INFO  ] Physical Start Address:  87e00000
@@ -1232,7 +1232,7 @@ BUILD: [01:0000001229:INFO  ] Start of free RAM:       87ec3000
 BUILD: [01:0000001230:INFO  ] End of RAM:              87ed0000
 BUILD: [01:0000001231:INFO  ] Number of Modules:       1
 BUILD: [01:0000001232:INFO  ] Number of Copy Sections: 1
-BUILD: [01:0000001233:INFO  ] Copy Section Offset:     87e2d188
+BUILD: [01:0000001233:INFO  ] Copy Section Offset:     87e2d1cc
 BUILD: [01:0000001234:INFO  ] FileSys 4K Chunks/Mbyte: 128 <2Mbyte  128 2-4Mbyte  0 4-6Mbyte  0 >6Mbyte
 BUILD: [01:0000001235:INFO  ] CPU Type:                    01c2h
 BUILD: [01:0000001236:INFO  ] Miscellaneous Flags:         0002h
@@ -1245,10 +1245,10 @@ BUILD: [01:0000001242:INFO  ] Writing rom file...
 BUILD: [01:0000001243:INFO  ] Start 87e00000 Len 00000004
 BUILD: [01:0000001244:INFO  ] Start 87e00040 Len 00000008
 BUILD: [01:0000001245:INFO  ] Start 87e00048 Len 00000004
-BUILD: [01:0000001246:INFO  ] Start 87e01000 Len 0002c198
-BUILD: [01:0000001247:INFO  ] Start 87e2e000 Len 00000f80
-BUILD: [01:0000001248:INFO  ] Start 87e2ef80 Len 00000054
-BUILD: [01:0000001249:INFO  ] Start 87e2efd4 Len 000010f0
+BUILD: [01:0000001246:INFO  ] Start 87e01000 Len 0002c1dc
+BUILD: [01:0000001247:INFO  ] Start 87e2e000 Len 00000f88
+BUILD: [01:0000001248:INFO  ] Start 87e2ef88 Len 00000054
+BUILD: [01:0000001249:INFO  ] Start 87e2efdc Len 000010e8
 BUILD: [01:0000001250:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\EBOOTSD.nb0
 BUILD: [01:0000001251:INFO  ] Done!
 BUILD: [01:0000001252:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.bin C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
@@ -1280,5 +1280,5 @@ BUILD: [00:0000001277:PROGC ]
 BUILD: [00:0000001278:PROGC ] Total                     13         6       0
 BUILD: [00:0000001279:PROGC ] 
 BUILD: [00:0000001280:PROGC ] 6 Warnings,  0 Errors
-BUILD: [00:0000001281:PROGC ] GetSystemTimes (seconds): Idle: 8     Kernel: 14    User: 7    
-BUILD: [00:0000001282:PROGC ] Elapsed  time  (seconds): 11   
+BUILD: [00:0000001281:PROGC ] GetSystemTimes (seconds): Idle: 10    Kernel: 14    User: 6    
+BUILD: [00:0000001282:PROGC ] Elapsed  time  (seconds): 10   

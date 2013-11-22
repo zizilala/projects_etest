@@ -7,7 +7,7 @@
 //
 //  Function:  GetGroupByID
 //  Helper function to get the gpio group where a pio belongs (basedon the pio id)
-static BOOL GetGroupByID(GpioDevice_t *pDevice,DWORD id,int* pGrp)
+static BOOL GetGroupByID(GpioDevice_t *pDevice, DWORD id, int* pGrp)
 {    
     int i=0;
     while (pDevice->rgRanges[i] <= id)
@@ -21,6 +21,7 @@ static BOOL GetGroupByID(GpioDevice_t *pDevice,DWORD id,int* pGrp)
     *pGrp = i-1;
     return TRUE;
 } 
+
 BOOL GPIOPostInit()
 {
     int i;
