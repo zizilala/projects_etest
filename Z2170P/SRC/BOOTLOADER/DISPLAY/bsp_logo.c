@@ -2014,8 +2014,10 @@ VOID receiveData(HANDLE hGPIO_2046)
     for(iData=15, sum=0; iData>=0; iData--)
     {
         RXConversion = spi4ClockRXData(hGPIO_2046);
-        //sum += RXConversion & (1<<(iData-1));
-        sum += iData & (1<<RXConversion);
+
+        if(iData<=11 && iData>3)
+            sum += RXConversion & (1<<(iData-1));
+        //sum += iData & (1<<RXConversion);
     }
     GPIOSetBit(hGPIO_2046, TSC2046_CS);     //Stop controlling 
 
