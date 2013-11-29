@@ -1,5 +1,7 @@
 V|601
-D|C:\WINCE600\platform\common\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\PROGRA~1\MI0D56~1\6.00\CEPB\WCETK\TUX\INC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\platform\common\lib\ARMV4I\retail\|2000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|am3517_boot_emac.lib|80000|0|1CEC3CD353A6B17
  F|am3517_boot_emac.pdb|80000|0|1CEC3CD070C43FB
  F|am3517_devmon_policy_lib.lib|80000|0|1CEC3CD35086291
@@ -459,28 +461,28 @@ D|C:\WINCE600\platform\common\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|
  F|wrapper_omap.lib|80000|0|1CEDEC08CDFDAA1
  F|wrapper_omap.pdb|80000|0|1CEDEC080118E7D
 
-D|C:\WINCE600\platform\COMMON\src\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\platform\COMMON\src\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|oal.h|4|0|1C6D1EF08B36000
-  I|oal_args.h|1
-  I|oal_cache.h|1
-  I|oal_memory.h|1
-  I|oal_io.h|1
-  I|oal_ethdrv.h|1
-  I|oal_flash.h|1
-  I|oal_ilt.h|1
-  I|oal_intr.h|1
-  I|oal_ioctl.h|1
-  I|oal_kitl.h|1
-  I|oemglobal.h|1
-  I|oal_misc.h|1
-  I|oal_log.h|1
-  I|oal_pci.h|1
-  I|oal_pcmcia.h|1
-  I|oal_power.h|1
-  I|oal_rtc.h|1
-  I|oal_timer.h|1
-  I|oal_perreg.h|1
-  I|nkexport.h|0
+  I|oal_args.h|1001
+  I|oal_cache.h|1001
+  I|oal_memory.h|1001
+  I|oal_io.h|1001
+  I|oal_ethdrv.h|1001
+  I|oal_flash.h|1001
+  I|oal_ilt.h|1001
+  I|oal_intr.h|1001
+  I|oal_ioctl.h|1001
+  I|oal_kitl.h|1001
+  I|oemglobal.h|1001
+  I|oal_misc.h|1001
+  I|oal_log.h|1001
+  I|oal_pci.h|1001
+  I|oal_pcmcia.h|1001
+  I|oal_power.h|1001
+  I|oal_rtc.h|1001
+  I|oal_timer.h|1001
+  I|oal_perreg.h|1001
+  I|nkexport.h|1000
  F|oal_args.h|4|0|1C6D1EF08B36000
  F|oal_blmenu.h|4|0|1CEE42E6BBF2411
  F|oal_blserial.h|4|0|1C6D1EF08B36000
@@ -492,19 +494,19 @@ D|C:\WINCE600\platform\COMMON\src\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|oal_cache.h|4|0|1C6D1EF08B36000
  F|oal_cache.inc|4|0|1C6D1EF08B36000
  F|oal_ethdrv.h|4|0|1C6D1EF08B36000
-  I|halether.h|0
+  I|halether.h|1000
  F|oal_flash.h|4|0|1C6D1EF08B36000
  F|oal_ilt.h|4|0|1C6D1EF08B36000
  F|oal_intr.h|4|0|1C6D1EF08B36000
  F|oal_io.h|4|0|1C6D1EF08B36000
-  I|ceddk.h|0
-  I|pkfuncs.h|0
+  I|ceddk.h|1000
+  I|pkfuncs.h|1000
  F|oal_ioctl.h|4|0|1C6D1EF08B36000
  F|oal_ioctl_tab.h|4|0|1C6D1EF08B36000
  F|oal_keyvalue.h|4|0|1C6D1EF08B36000
   I|blcommon.h|1
  F|oal_kitl.h|4|0|1C6D1EF08B36000
-  I|kitl.h|0
+  I|kitl.h|1000
  F|oal_log.h|4|0|1CEB03375FF9C75
  F|oal_memory.h|4|0|1C6D1EF08B36000
  F|oal_memory.inc|4|0|1C6D1EF08B36000
@@ -516,11 +518,11 @@ D|C:\WINCE600\platform\COMMON\src\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|oal_rtc.h|4|0|1C6D1EF08B36000
  F|oal_timer.h|4|0|1C6D1EF08B36000
 
-D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|backlight_class.h|4|0|1CE97FBAD46B1FF
  F|bsp_cfg.h|4|0|1CEDEC005F87B15
-  I|sdk_gpio.h|1
-  I|sdk_padcfg.h|1
+  I|sdk_gpio.h|1001
+  I|sdk_padcfg.h|1001
  F|ceddkex.h|4|0|1CC1614548410FF
  F|devloadex.h|4|0|1CC1614548410FF
  F|display_drvesc.h|4|0|1CC1614548410FF
@@ -548,7 +550,7 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc\|b000|0|0|0|0|0
  F|memtxapi.h|4|0|1CC1614548410FF
  F|nand.h|4|0|1CC1614548410FF
  F|oalex.h|4|0|1CEB9B81FDCACFF
-  I|omap_cpuver.h|1
+  I|omap_cpuver.h|1001
  F|oalex.h.bak|80000|0|1CEA914DB0FA9FF
  F|oal_alloc.h|4|0|1CC1614548410FF
  F|oal_clock.h|4|0|1CC1614548410FF
@@ -566,10 +568,10 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc\|b000|0|0|0|0|0
  F|oal_sr.h|4|0|1CC1614548410FF
   I|omap_sr_regs.h|1
  F|omap.h|4|0|1CC1614548410FF
-  I|windows.h|0
-  I|oal.h|0
-  I|omap_types.h|1
-  I|omap_devices_map.h|1
+  I|windows.h|1000
+  I|oal.h|1000
+  I|omap_types.h|1001
+  I|omap_devices_map.h|9001
  F|omap_32ksyncnt_regs.h|4|0|1CC1614548410FF
  F|omap_bus.h|4|0|1CC1614548410FF
   I|defbus.h|0
@@ -577,7 +579,7 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc\|b000|0|0|0|0|0
  F|omap_cpgmac_regs.h|4|0|1CC1614548410FF
  F|omap_cpuver.h|4|0|1CED059C959DD91
  F|omap_devices_map.h|4|0|1CC1614548410FF
-  I|omap.h|1
+  I|omap.h|9001
  F|omap_dss_regs.h|4|0|1CC1614548410FF
  F|omap_dvfs.h|4|0|1CC1614548410FF
  F|omap_gpio_regs.h|4|0|1CE1E22699DE57F
@@ -637,10 +639,10 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc\|b000|0|0|0|0|0
  F|sdk_can.h|4|0|1CC1614548410FF
   I|omap.h|1
  F|sdk_gpio.h|4|0|1CC1614548410FF
-  I|omap.h|1
+  I|omap.h|1001
  F|sdk_i2c.h|4|0|1CC1614548410FF
  F|sdk_padcfg.h|4|0|1CC1614548410FF
-  I|omap.h|1
+  I|omap.h|1001
  F|sdk_spi.h|4|0|1CC1614548410FF
  F|soc_cfg.h|4|0|1CE2B8BFAE3BA7F
   I|sdk_gpio.h|1
@@ -649,7 +651,9 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc\|b000|0|0|0|0|0
  F|vrfb.h|4|0|1CC1614548410FF
  F|wavext.h|4|0|1CC1614548410FF
 
-D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\PM\INC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|batt.h|4|0|1CC1614564DD47F
  F|dma_utility.h|4|0|1CC1614564DD47F
   I|oal.h|0
@@ -659,25 +663,25 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc\|b000|0|0|0|0|0|
  F|HwcodecAPI.h|4|0|1CC1614564DD47F
   I|windows.h|0
  F|omap3530.h|4|0|1CC1614564DD47F
-  I|omap.h|1
-  I|omap_i2c_regs.h|1
-  I|omap_gpio_regs.h|1
-  I|omap_wdog_regs.h|1
-  I|omap_gpmc_regs.h|1
-  I|omap_sdrc_regs.h|1
-  I|omap_gptimer_regs.h|1
-  I|omap_sdhc_regs.h|1
-  I|omap_intc_regs.h|1
-  I|omap_uart_regs.h|1
-  I|omap_usbhost_regs.h|1
-  I|omap_mcspi_regs.h|1
-  I|omap_32ksyncnt_regs.h|1
-  I|omap_dss_regs.h|1
-  I|omap_sdma_regs.h|1
-  I|omap3530_prcm.h|1
-  I|omap3530_base_regs.h|1
-  I|omap3530_clocks.h|1
-  I|omap3530_config.h|1
+  I|omap.h|1001
+  I|omap_i2c_regs.h|1001
+  I|omap_gpio_regs.h|1001
+  I|omap_wdog_regs.h|1001
+  I|omap_gpmc_regs.h|1001
+  I|omap_sdrc_regs.h|1001
+  I|omap_gptimer_regs.h|1001
+  I|omap_sdhc_regs.h|1001
+  I|omap_intc_regs.h|1001
+  I|omap_uart_regs.h|1001
+  I|omap_usbhost_regs.h|1001
+  I|omap_mcspi_regs.h|1001
+  I|omap_32ksyncnt_regs.h|1001
+  I|omap_dss_regs.h|1001
+  I|omap_sdma_regs.h|1001
+  I|omap3530_prcm.h|1001
+  I|omap3530_base_regs.h|1001
+  I|omap3530_clocks.h|1001
+  I|omap3530_config.h|1001
  F|omap3530_base_regs.h|4|0|1CC1614564DD47F
  F|omap3530_clocks.h|4|0|1CEBA7AA1950EFF
  F|omap3530_clocks.h.bak|80000|0|1CEBA7A92AE5C7F
@@ -691,11 +695,11 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc\|b000|0|0|0|0|0|
  F|omap3530_oal.h|4|0|1CC1614564DD47F
  F|omap3530_prcm.h|4|0|1CC1614564DD47F
 
-D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|bci.h|4|0|1CC1614577F017F
  F|madc.h|4|0|1CC1614577F017F
  F|tps659xx.h|4|0|1CC1614577F017F
-  I|triton.h|1
+  I|triton.h|1001
  F|tps659xxusb.h|4|0|1CC1614577F017F
  F|tps659xx_batt.h|4|0|1CC1614577F017F
  F|tps659xx_bci.h|4|0|1CC1614577F017F
@@ -707,46 +711,46 @@ D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc\|b000|0|0|0|0|0|
  F|tps659xx_usb.h|4|0|1CC1614577F017F
  F|tps659xx_wave.h|4|0|1CC1614577F017F
 
-D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|triton.h|4|0|1CC1614581797FF
-  I|omap.h|1
+  I|omap.h|1001
  F|twl.h|4|0|1CC1614581797FF
-  I|ceddkex.h|1
+  I|ceddkex.h|1001
 
-D|C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\|2000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|backlight.exp|80000|0|1CEE508413BA232
  F|backlight.lib|80000|0|1CEE508413BA232
  F|battdrvr_bq27410.exp|80000|0|1CEE508447BB99E
  F|battdrvr_bq27410.lib|80000|0|1CEE508447BB99E
- F|BSPCFG.lib|c0000|0|1CEE5083C178BD2
- F|bspcfg.pdb|80000|0|1CEE507DDE0D062
+ F|BSPCFG.lib|c0000|0|1CEECE4642F5990
+ F|bspcfg.pdb|80000|0|1CEEA57C2F3164E
  F|bsppnl.exp|80000|0|1CEE508457F9ACA
  F|bsppnl.lib|80000|0|1CEE508457F9ACA
- F|bsp_args.lib|80000|0|1CEE5083C44D8A6
- F|bsp_args.pdb|80000|0|1CEE507DE93A156
+ F|bsp_args.lib|80000|0|1CEECE464662FA6
+ F|bsp_args.pdb|80000|0|1CEEA57C3AD1336
  F|bsp_bootstubs.lib|c0000|0|1CEE5083CCF217E
  F|bsp_bootstubs.pdb|80000|0|1CEE507ED9E23BA
  F|bsp_bootstubs_xldr.lib|80000|0|1CEE5083CE496BA
  F|bsp_bootstubs_xldr.pdb|80000|0|1CEE507EE34585E
- F|bsp_boot_ethdrv_usbfn.lib|c0000|0|1CEE5083C9F724E
- F|bsp_boot_ethdrv_usbfn.pdb|80000|0|1CEE507E176BCBE
- F|bsp_display.lib|c0000|0|1CEE76696BE490C
- F|bsp_display.pdb|80000|0|1CEE76695FF8C9C
- F|bsp_display_init.lib|c0000|0|1CEE5083C5A4DE2
- F|bsp_display_init.pdb|80000|0|1CEE507DFA10BF2
- F|bsp_kitl_ethdrv_usbfn.lib|80000|0|1CEE5083CB9AC42
- F|bsp_kitl_ethdrv_usbfn.pdb|80000|0|1CEE507E2298DB2
+ F|bsp_boot_ethdrv_usbfn.lib|c0000|0|1CEECE464DD653A
+ F|bsp_boot_ethdrv_usbfn.pdb|80000|0|1CEEA57C667B8D2
+ F|bsp_display.lib|c0000|0|1CEECE46511D8F6
+ F|bsp_display.pdb|80000|0|1CEECE45CF0740C
+ F|bsp_display_init.lib|c0000|0|1CEECE4648C5546
+ F|bsp_display_init.pdb|80000|0|1CEEA57C4BA84E2
+ F|bsp_kitl_ethdrv_usbfn.lib|80000|0|1CEECE464FA0172
+ F|bsp_kitl_ethdrv_usbfn.pdb|80000|0|1CEEA57C6F92C8E
  F|bsp_kitl_reg.lib|80000|0|1CEE5084511EE42
  F|bsp_kitl_reg.pdb|80000|0|1CEE50818483C06
- F|BSP_PADCFG.lib|80000|0|1CEE5083C72257A
- F|bsp_padcfg.pdb|80000|0|1CEE507E02DB726
- F|bsp_stall.lib|c0000|0|1CEE5083C2D010E
- F|bsp_tps659xx.lib|80000|0|1CEE5083C879AB6
- F|bsp_tps659xx.pdb|80000|0|1CEE507E0D96106
+ F|BSP_PADCFG.lib|80000|0|1CEECE906B56354
+ F|bsp_padcfg.pdb|80000|0|1CEECE901B9D93E
+ F|bsp_stall.lib|c0000|0|1CEECE46449936E
+ F|bsp_tps659xx.lib|80000|0|1CEECE464C0C902
+ F|bsp_tps659xx.pdb|80000|0|1CEEA57C5D1803E
  F|bsp_unit_test.lib|80000|0|1CEE50845E8829A
  F|bsp_unit_test.pdb|80000|0|1CEE5082837A0EA
- F|ceddk.exp|80000|0|1CEE5083E2B39F6
- F|ceddk.lib|80000|0|1CEE5083E2B39F6
+ F|ceddk.exp|80000|0|1CEECE906FA8786
+ F|ceddk.lib|80000|0|1CEECE906FCE9E0
  F|cetk_fstest.exp|80000|0|1CEE508470DC4CE
  F|cetk_fstest.lib|80000|0|1CEE508470DC4CE
  F|headset.exp|80000|0|1CEE5084431D07A
@@ -755,37 +759,37 @@ D|C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|
  F|i2cproxy.lib|80000|0|1CEE508460C45FE
  F|kitl.exp|80000|0|1CEE50844F2EF96
  F|kitl.lib|80000|0|1CEE50844F2EF96
- F|NullSink.exp|80000|0|1CEE50846647D4A
- F|NullSink.lib|80000|0|1CEE50846647D4A
+ F|NullSink.exp|80000|0|1CEECE4681FDC46
+ F|NullSink.lib|80000|0|1CEECE4681FDC46
  F|null_battdrvr.exp|80000|0|1CEE5084457F63A
  F|null_battdrvr.lib|80000|0|1CEE5084457F63A
- F|oal.lib|80000|0|1CEE50845334F4A
- F|oal.pdb|80000|0|1CEE5081EBC7F12
+ F|oal.lib|80000|0|1CEECE907C9F41C
+ F|oal.pdb|80000|0|1CEECE9061CCCD4
  F|oalioctl.exp|80000|0|1CEE508455712AE
  F|oalioctl.lib|80000|0|1CEE508455712AE
  F|Omapbus.exp|80000|0|1CEE5083FDF89BA
  F|Omapbus.lib|80000|0|1CEE5083FDF89BA
- F|omap_dss.exp|80000|0|1CEE5083F5540E2
- F|omap_dss.lib|80000|0|1CEE5083F5540E2
+ F|omap_dss.exp|80000|0|1CEECE90727D434
+ F|omap_dss.lib|80000|0|1CEECE90727D434
  F|omap_ehcihcd.exp|80000|0|1CEE50841C12652
  F|omap_ehcihcd.lib|80000|0|1CEE50841C12652
- F|omap_gpio.exp|80000|0|1CEE5083E62103A
- F|omap_gpio.lib|80000|0|1CEE5083E62103A
+ F|omap_gpio.exp|80000|0|1CEECE465C96E08
+ F|omap_gpio.lib|80000|0|1CEECE465C96E08
  F|omap_isp_resizer.exp|80000|0|1CEE50844A6A416
  F|omap_isp_resizer.lib|80000|0|1CEE50844A6A416
  F|omap_mcbsp.exp|80000|0|1CEE508400811D6
  F|omap_mcbsp.lib|80000|0|1CEE508400811D6
  F|omap_mcspi.exp|80000|0|1CEE5083E8A9856
  F|omap_mcspi.lib|80000|0|1CEE5083E8CFAB2
- F|omap_musbfn.exp|80000|0|1CEE5084364C592
- F|omap_musbfn.lib|80000|0|1CEE5084364C592
+ F|omap_musbfn.exp|80000|0|1CEECE9077DA8DC
+ F|omap_musbfn.lib|80000|0|1CEECE9077DA8DC
  F|omap_musbhcd.exp|80000|0|1CEE508438FB00A
  F|omap_musbhcd.lib|80000|0|1CEE508438FB00A
  F|omap_musbotg.exp|80000|0|1CEE50843BF5F3A
  F|omap_musbotg.lib|80000|0|1CEE50843BF5F3A
  F|omap_sdhc.def|80000|0|1CEAF67A1DF87DA
- F|omap_sdhc.exp|80000|0|1CEE50841963BDA
- F|omap_sdhc.lib|80000|0|1CEE50841963BDA
+ F|omap_sdhc.exp|80000|0|1CEECE46701C216
+ F|omap_sdhc.lib|80000|0|1CEECE46701C216
  F|omap_sdma.exp|80000|0|1CEE5083F7DC8FE
  F|omap_sdma.lib|80000|0|1CEE5083F7DC8FE
  F|omap_shell.exp|80000|0|1CEE50845A822E6
@@ -820,8 +824,8 @@ D|C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|
  F|ti_policies.lib|80000|0|1CEE50842EFF1F6
  F|ti_systemstatepolicy.exp|80000|0|1CEE508431617B6
  F|ti_systemstatepolicy.lib|80000|0|1CEE508431617B6
- F|TPS659xx.exp|80000|0|1CEE508405DE6C6
- F|TPS659xx.lib|80000|0|1CEE508405DE6C6
+ F|TPS659xx.exp|80000|0|1CEECE466B576D6
+ F|TPS659xx.lib|80000|0|1CEECE466B576D6
  F|TPS659xx_gpio.exp|80000|0|1CEE50840866EE2
  F|TPS659xx_gpio.lib|80000|0|1CEE50840866EE2
  F|tps659xx_keypad.exp|80000|0|1CEE5084117DECE
@@ -832,45 +836,88 @@ D|C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|
  F|tps659xx_madc.lib|80000|0|1CEE50840A7CFEA
  F|tps659xx_pwrkey.exp|80000|0|1CEE50840EF56B2
  F|tps659xx_pwrkey.lib|80000|0|1CEE50840EF56B2
- F|tps659xx_rtc.exp|80000|0|1CEE50843DE5DE6
- F|tps659xx_rtc.lib|80000|0|1CEE50843DE5DE6
+ F|tps659xx_rtc.exp|80000|0|1CEECE9079CA76E
+ F|tps659xx_rtc.lib|80000|0|1CEECE9079CA76E
  F|tps659xx_wave.exp|80000|0|1CEE50840D05806
  F|tps659xx_wave.lib|80000|0|1CEE50840D05806
  F|TSC2046_touch.def|80000|0|1CECE04E69715BA
  F|TSC2046_touch.exp|80000|0|1CEE5084037C106
  F|TSC2046_touch.lib|80000|0|1CEE5084037C106
 
-D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\BSPVERSION\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\BSPVERSION\EXE\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\BSPVERSION\PNL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\CaptureTest\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\platform\Z2170P\src\APP\common\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\DOCMD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\I2CPROXY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\KeyHook\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\NullSink\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\PROXYDRIVER\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\SampleGrabber\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\SHELL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\SIMPLE\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\SIMPLE\DLL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\SIMPLE\EXE\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\APP\WAVMIXER\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\DISPLAY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|a002|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|BQ27410.c|0|0|1CEC40EE3C1377F
   I|bsp.h|1
   I|sdk_i2c.h|1
- F|Build.log|80000|0|1CED48AA1FE1DBF
- F|Build.wrn|80000|0|1CED48AA1FBBB64
+ F|Build.log|80000|0|1CEECD7363ED112
+ F|Build.wrn|80000|0|1CEECD7363ED112
  F|eboot.h|4|0|1CEB34B9A1F887F
-  I|bsp.h|1
-  I|blcommon.h|0
-  I|nkintr.h|0
-  I|halether.h|0
-  I|fmd.h|0
-  I|bootpart.h|0
-  I|oal.h|0
-  I|oal_blmenu.h|0
-  I|boot_args.h|1
-  I|args.h|1
+  I|bsp.h|1001
+  I|blcommon.h|1000
+  I|nkintr.h|1000
+  I|halether.h|1000
+  I|fmd.h|1000
+  I|bootpart.h|1000
+  I|oal.h|1000
+  I|oal_blmenu.h|1000
+  I|boot_args.h|1001
+  I|args.h|1001
  F|eth.c|40000|0|1CEB99D5EB1397F
-  I|eboot.h|1
+  I|eboot.h|1001
  F|flashmenu.c|40000|0|1CED140C93A5C04
-  I|eboot.h|0
-  I|fmdext.h|0
- F|functionTest.c|40000|0|1CEE67D678BDABF
-  I|eboot.h|0
+  I|eboot.h|1000
+  I|fmdext.h|1000
+ F|functionTest.c|40000|0|1CEECE3102FCEAE
+  I|eboot.h|1000
+  I|sdk_i2c.h|1001
+  I|bsp.h|1001
+  I|bq27xxx_new.h|1001
  F|hotkey.c|40000|0|1CEE013A262432F
-  I|bsp.h|1
-  I|tps659xx.h|1
-  I|tps659xx_internals.h|1
-  I|twl.h|1
-  I|eboot.h|0
-  I|bsp_logo.h|0
+  I|bsp.h|1001
+  I|tps659xx.h|1001
+  I|tps659xx_internals.h|1001
+  I|twl.h|1001
+  I|eboot.h|1000
+  I|bsp_logo.h|1000
  F|hotkey_backup.c|0|0|1CED5ED13A4CE8C
   I|bsp.h|1
   I|tps659xx.h|1
@@ -879,10 +926,10 @@ D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0
   I|eboot.h|0
   I|bsp_logo.h|0
  F|jumpto.s|40000|0|1CC161459E15B7F
-  I|kxarm.h|1
-  I|armmacros.s|1
+  I|kxarm.h|1001
+  I|armmacros.s|1001
  F|keypad.h|4|0|1CE9FB290FCEAC9
- F|main.c|40000|0|1CEE50E412E32A6
+ F|main.c|40000|0|1CEECEA4626F5EC
   I|bsp.h|1
   I|eboot.h|0
   I|sdk_i2c.h|1
@@ -898,15 +945,15 @@ D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0
   I|omap_cpuver.h|1
  F|map.c|0|0|1CC161459E15B7F
   I|eboot.h|0
- F|menu.c|40000|0|1CEE43230E1E54B
-  I|eboot.h|0
-  I|omap_cpuver.h|1
+ F|menu.c|40000|0|1CEECA3CDA454FE
+  I|eboot.h|1000
+  I|omap_cpuver.h|1001
  F|mmu.c|40000|0|1CC161459E15B7F
-  I|windows.h|0
-  I|oal.h|0
-  I|oal_log.h|0
-  I|oal_memory.h|0
-  I|omap_cpuver.h|1
+  I|windows.h|1000
+  I|oal.h|1000
+  I|oal_log.h|1000
+  I|oal_memory.h|1000
+  I|omap_cpuver.h|1001
  F|NAND\|0|10|0
  F|NOR\|0|10|0
  F|SDMEMORY\|0|10|0
@@ -914,99 +961,253 @@ D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\|b002|0|0|0|0|0|0|0|0|0|0|0|0
   I|bsp.h|1
   I|omap_mcspi_regs.h|1
  F|startup.s|40000|0|1CED47C21E4D07F
-  I|kxarm.h|1
-  I|bsp.inc|1
-  I|addrtab_cfg.inc|1
+  I|kxarm.h|1001
+  I|bsp.inc|1001
+  I|addrtab_cfg.inc|1001
  F|stub.c|40000|0|1CC16145B12887F
-  I|bsp.h|1
+  I|bsp.h|1001
+ F|Build.err|80000|0|1CEECD7363ED112
+ F|bq27xxx_new.h|4|0|1CEECDBA41F0D74
 
-D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\|21005|0|0|dd907df5|0|0|0|dd907df5|dd907df5|0|0|0|0|0|0
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\|20005|0|0|dd907df5|0|0|0|dd907df5|dd907df5|0|0|0|0|0|0
  F|boot_cfg.h|4|0|1CEB844F3ECEA7F
- F|Build.err|80000|0|1CEE766985D22E6
- F|Build.log|80000|0|1CEE766985D22E6
- F|Build.wrn|80000|0|1CEE766985D22E6
- F|cfg.c|40000|0|1CEE58ABEDB139D
-  I|eboot.h|0
-  I|bsp_logo.h|0
-  I|lcd.h|1
+ F|Build.log|80000|0|1CEECEA47D8E1E8
+ F|cfg.c|40000|0|1CEEA581C6FB059
+  I|eboot.h|1000
+  I|bsp_logo.h|1000
+  I|lcd.h|1001
  F|ebootsd.bib|80000|0|1CC161459E15B7F
  F|flash.c|40000|0|1CEB44528C4007F
-  I|bsp.h|1
-  I|bootpart.h|0
-  I|boot_args.h|1
-  I|eboot.h|1
-  I|nand.h|1
-  I|blcommon.h|0
-  I|oalex.h|1
+  I|bsp.h|1001
+  I|bootpart.h|1000
+  I|boot_args.h|1001
+  I|eboot.h|1001
+  I|nand.h|1001
+  I|blcommon.h|1000
+  I|oalex.h|1001
  F|obj\|0|10|0
  F|sources - dd|80000|0|1CECA48B968AC94
+ F|Build.wrn|80000|0|1CEECEA47D8E1E8
+ F|Build.err|80000|0|1CEECEA47D8E1E8
 
-D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\obj\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
- F|main.obj|c0000|0|1CEE766992A2D78
- F|hotkey.obj|c0000|0|1CEE76699A88A4F
- F|eth.obj|c0000|0|1CEE7669A222270
- F|menu.obj|c0000|0|1CEE7669AA07F47
- F|stub.obj|c0000|0|1CEE7669B1552B2
- F|flashmenu.obj|c0000|0|1CEE7669B9F9B50
- F|mmu.obj|c0000|0|1CEE7669C120C60
- F|functionTest.obj|c0000|0|1CEE7669C8E06DC
- F|flash.obj|c0000|0|1CEE7669D39B074
- F|cfg.obj|c0000|0|1CEE7669DBA6FA6
- F|startup.obj|c0000|0|1CEE7669CB42C8C
- F|jumpto.obj|c0000|0|1CEE7669CC27AAE
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\obj\ARMV4I\retail\|2000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+ F|main.obj|c0000|0|1CEECEA488E14A0
  F|BQ27410.cod|80000|0|1CEC40F592D07FF
  F|BQ27410.obj|80000|0|1CEC40F592D07FF
- F|cfg.cod|80000|0|1CEE7669DBCD201
- F|eth.cod|80000|0|1CEE7669A222270
- F|flash.cod|80000|0|1CEE7669D39B074
- F|flashmenu.cod|80000|0|1CEE7669B9F9B50
- F|functionTest.cod|80000|0|1CEE7669C8E06DC
+ F|cfg.cod|80000|0|1CEEB53220490C8
+ F|cfg.obj|c0000|0|1CEEB53220490C8
+ F|eth.cod|80000|0|1CEEB531E6EA46C
+ F|eth.obj|c0000|0|1CEEB531E6EA46C
+ F|flash.cod|80000|0|1CEEB5321816F04
+ F|flash.obj|c0000|0|1CEEB5321816F04
+ F|flashmenu.cod|80000|0|1CEEB531FEE8048
+ F|flashmenu.obj|c0000|0|1CEEB531FEE8048
+ F|functionTest.cod|80000|0|1CEECE45C95DAB0
+ F|functionTest.obj|c0000|0|1CEECE45C95DAB0
  F|graphic_engine.cod|80000|0|1CE9D3FE3C60986
  F|graphic_engine.obj|80000|0|1CE9D3FE3C60986
- F|hotkey.cod|80000|0|1CEE76699A88A4F
- F|jumpto.lst|80000|0|1CEE7669CC27AAE
- F|main.cod|80000|0|1CEE766992A2D78
- F|menu.cod|80000|0|1CEE7669AA2E1A2
- F|mmu.cod|80000|0|1CEE7669C120C60
+ F|hotkey.cod|80000|0|1CEEB531DF50C18
+ F|hotkey.obj|c0000|0|1CEEB531DF50C18
+ F|jumpto.lst|80000|0|1CEEB53210C9B68
+ F|jumpto.obj|c0000|0|1CEEB53210C9B68
+ F|main.cod|80000|0|1CEECEA488E14A0
+ F|menu.cod|80000|0|1CEECCB3F0A8FC2
+ F|menu.obj|c0000|0|1CEECCB3F0A8FC2
+ F|mmu.cod|80000|0|1CEEB53205E8F2C
+ F|mmu.obj|c0000|0|1CEEB53205E8F2C
  F|spi.cod|80000|0|1CEC3BF1E9B7EFF
  F|spi.obj|80000|0|1CEC3BF1E9B7EFF
- F|startup.lst|80000|0|1CEE7669CB1CA31
- F|stub.cod|80000|0|1CEE7669B17B50D
- F|_objects.mac|80000|0|1CEE766989FE4DA
+ F|startup.lst|80000|0|1CEEB5320FE4D40
+ F|startup.obj|c0000|0|1CEEB5320FE4D40
+ F|stub.cod|80000|0|1CEEB531F643770
+ F|stub.obj|c0000|0|1CEEB531F643770
+ F|_objects.mac|80000|0|1CEECEA47E4CDAA
 
-D|C:\WINCE600\platform\Z2170P\src\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\STUB\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\STUB\EBOOT\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\STUB\XLDR\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\NAND\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\SDMEMORY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\XLDR\UART\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\ARGS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\BSP_PADCFG\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\BSPCFG\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\DISPLAY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\STALL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\TPS659XX\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\USBFN\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\USBFN\BOOT\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\BSP_COMMON\USBFN\KITL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\BACKLIGHT\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\BATTERY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\BATTERY\BQ27410\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\BATTERY\NULL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\BLOCK\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\BLOCK\NAND\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\BUS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\DLL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\inc\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CEDDK\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CEDDK\DLL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\DISPLAY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\DISPLAY\DSS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\DMA\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\GPIO\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\HDQ\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\HEADSET\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MCBSP\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MCSPI\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MUSB\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MUSB\MUSBFN\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MUSB\MUSBHCD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MUSB\MUSBOTG\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\NLED\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\CONSTRAINTADAPTERS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\CONSTRAINTADAPTERS\DLL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\DLL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\PMEXT\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\PMXPROXY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\POLICYADAPTERS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\POLICYADAPTERS\CPULOAD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\POLICYADAPTERS\DLL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\PM\POLICYADAPTERS\SYSTEMSTATE\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDBUS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDHC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDHC\IMPL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMAPROXY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMEMORY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\sysctrl\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TOUCH\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659XX\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659XX_GPIO\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659XX_KEYPAD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659xx_LED\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659xx_MADC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659XX_PWRKEY\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659XX_RTC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\TPS659XX_WAVE\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\UART\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\USBHS\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\VRFB\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\platform\Z2170P\src\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|addrtab_cfg.inc|4|0|1CEA2D1CD8170FF
  F|args.h|4|0|1CEE0111D96E74D
-  I|oal_args.h|0
-  I|oal_kitl.h|0
-  I|bsp_cfg.h|0
+  I|oal_args.h|1000
+  I|oal_kitl.h|1000
+  I|bsp_cfg.h|1000
  F|args.h.bak|80000|0|1CEB9C8879AF3FF
  F|boot_args.h|4|0|1CEDAA3B2AFDDE2
-  I|oal_args.h|0
-  I|oal_kitl.h|0
-  I|bsp_cfg.h|0
+  I|oal_args.h|1000
+  I|oal_kitl.h|1000
+  I|bsp_cfg.h|1000
  F|boot_args.h.bak|80000|0|1CEB999E7C6717F
  F|bsp.h|4|0|1CEB9C7DB590D7F
-  I|windows.h|0
-  I|nkintr.h|0
-  I|ceddk.h|0
-  I|omap3530.h|1
-  I|bsp_base_regs.h|1
-  I|image_cfg.h|1
-  I|bsp_def.h|1
-  I|bsp_version.h|1
+  I|windows.h|1000
+  I|nkintr.h|1000
+  I|ceddk.h|1000
+  I|omap3530.h|1001
+  I|bsp_base_regs.h|1001
+  I|image_cfg.h|1001
+  I|bsp_def.h|1001
+  I|bsp_version.h|1001
  F|bsp.h.bak|80000|0|1CEB9B0C45AF0FF
  F|bsp.inc|4|0|1CC16145C43B57F
  F|bsp_base_regs.h|4|0|1CC16145C43B57F
  F|bsp_camera_prop.h|4|0|1CC16145C43B57F
  F|bsp_def.h|4|0|1CECEBFB7EA8AFF
  F|bsp_def.h.bak|80000|0|1CEB99F0ED371FF
- F|bsp_logo.h|4|0|1CEE5074AD209DA
+ F|bsp_logo.h|4|0|1CEEA5761AE2AAA
  F|bsp_oal.h|4|0|1CC16145C43B57F
   I|oal.h|0
  F|bsp_opp_map.h|4|0|1CC16145C43B57F
   I|Bsp_cfg.h|1
- F|bsp_padcfg.h|4|0|1CEE51178BEB665
+ F|bsp_padcfg.h|4|0|1CEECE8CB2B49CA
   I|bsp.h|1
   I|soc_cfg.h|1
   I|oal_padcfg.h|1
@@ -1029,7 +1230,7 @@ D|C:\WINCE600\platform\Z2170P\src\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|sdmaproxy.h|1
   I|sdmapxclient.h|1
 
-D|C:\WINCE600\platform\Z2170P\src\inc\OEMDefs\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\platform\Z2170P\src\inc\OEMDefs\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|backlightCtls.h|4|0|1CE9704C9B3F2FF
  F|BCRConfig.h|4|0|1CE8C3001646A7F
  F|BroadcastEvent.h|4|0|1CE9EF68FADD27F
@@ -1037,9 +1238,59 @@ D|C:\WINCE600\platform\Z2170P\src\inc\OEMDefs\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|OEMVirtualKey.h|4|0|1CE9287A19D3D7F
  F|sysctrl.h|4|0|1CE970DF9B3C3FF
 
-D|C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\|1000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\KITL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
 
-D|C:\WINCE600\public\common\ddk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\KITL\KITLDLL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\KITL\KITLREG\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\OAL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\OAL\OALEXE\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\OAL\OALIOCTL\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\OAL\OALLIB\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\FSTEST\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\PMTEST\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\PMTEST\PMGET\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\PMTEST\PMGETD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\PMTEST\PMMON\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\PMTEST\PMREQ\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\PMTEST\PMSET\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\PMTEST\PMSETD\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\testGPIO\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\testKeypad\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\testRTC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\testSerial\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\testSerialPerf\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\Tux_I2C\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\Tux_PowerManagement\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\Tux_SPI\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PLATFORM\Z2170P\SRC\test\wakeme\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\public\common\ddk\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|6to4svc.h|4|0|1C6D1EF08B36000
  F|acmdrvr.def|80000|0|1C6D1EF08B36000
  F|autoras.h|4|0|1C6D1EF08B36000
@@ -1048,18 +1299,18 @@ D|C:\WINCE600\public\common\ddk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|cardsv2.h|4|0|1C6D1EF08B36000
   I|SockSv2.h|0
  F|cebus.h|4|0|1C6D1EF08B36000
-  I|ceddk.h|0
-  I|pm.h|0
-  I|pkfuncs.h|0
+  I|ceddk.h|9000
+  I|pm.h|9000
+  I|pkfuncs.h|9000
  F|cebuscfg.h|4|0|1C6D1EF08B36000
  F|ceddk.h|4|0|1C6D1EF08B36000
-  I|ntstatus.h|0
-  I|macwin32.h|0
-  I|ddkmacro.h|0
-  I|pkfuncs.h|0
-  I|pm.h|0
-  I|CeBus.h|0
-  I|oaldma.h|0
+  I|ntstatus.h|1000
+  I|macwin32.h|1400
+  I|ddkmacro.h|1000
+  I|pkfuncs.h|1000
+  I|pm.h|1000
+  I|CeBus.h|9000
+  I|oaldma.h|9000
  F|cedma.h|4|0|1C6D1EF08B36000
   I|ceddk.h|0
   I|pm.h|0
@@ -1104,7 +1355,7 @@ D|C:\WINCE600\public\common\ddk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|specstrings.h|0
  F|nuiouser.h|4|0|1C6D1EF08B36000
  F|oaldma.h|4|0|1C6D1EF08B36000
-  I|ceddk.h|0
+  I|ceddk.h|9000
  F|pcibus.h|4|0|1C6D1EF08B36000
   I|PCIrsrc.h|0
  F|pcirsrc.h|4|0|1C6D1EF08B36000
@@ -1167,11 +1418,11 @@ D|C:\WINCE600\public\common\ddk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|wzcmsq.h|4|0|1C6D1EF08B36000
  F|xfilter.h|4|0|1C6D1EF08B36000
 
-D|C:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|ecc.h|4|0|1C6D1EF08B36000
   I|windows.h|0
 
-D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\public\common\oak\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|aablt.h|4|0|1C6D1EF08B36000
   I|gpe.h|0
  F|adb.h|4|0|1C6D1EF08B36000
@@ -1210,13 +1461,13 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|battery.h|0
  F|bcoemglobal.h|4|0|1C6D1EF08B36000
  F|blcommon.h|4|0|1C6D1EF08B36000
-  I|pehdr.h|0
-  I|romldr.h|0
+  I|pehdr.h|1000
+  I|romldr.h|1000
  F|block_allocator.hxx|4|0|1C6D1EF08B36000
   I|svsutil.hxx|0
  F|bootpart.h|4|0|1C6D1EF08B36000
-  I|windows.h|0
-  I|pcireg.h|0
+  I|windows.h|1000
+  I|pcireg.h|1000
  F|btagnetwork.h|4|0|1C6D1EF08B36000
   I|windows.h|0
  F|btagpub.h|4|0|1C6D1EF08B36000
@@ -1364,8 +1615,8 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|emul.h|4|0|1C6D1EF08B36000
   I|gpe.h|0
  F|ethdbg.h|4|0|1C6D1EF08B36000
-  I|pshpack1.h|0
-  I|poppack.h|0
+  I|pshpack1.h|1000
+  I|poppack.h|1000
  F|evgen.h|4|0|1C6D1EF08B36000
  F|extfile.h|4|0|1C6D1EF08B36000
   I|mextfile.h|0
@@ -1379,11 +1630,11 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|FlashCommon.h|1
  F|fls.h|4|0|1C6D1EF08B36000
  F|fmd.h|4|0|1C6D1EF08B36000
-  I|windows.h|0
-  I|diskio.h|0
-  I|bldver.h|0
-  I|pcireg.h|0
-  I|fls.h|1
+  I|windows.h|1000
+  I|diskio.h|1000
+  I|bldver.h|1000
+  I|pcireg.h|1000
+  I|fls.h|1001
  F|fontdrv.h|4|0|1C8033865BD0F00
  F|fslog.h|4|0|1C6D1EF08B36000
  F|fwentry.h|4|0|1C6D1EF08B36000
@@ -1406,9 +1657,9 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|windows.h|0
  F|gxinfo.h|4|0|1C6D1EF08B36000
  F|halether.h|4|0|1C6D1EF08B36000
-  I|pkfuncs.h|0
-  I|ethdbg.h|0
-  I|kitl.h|0
+  I|pkfuncs.h|1000
+  I|ethdbg.h|1000
+  I|kitl.h|1000
  F|handle_map.hxx|4|0|1C6D1EF08B36000
   I|hash_map.hxx|0
   I|sync.hxx|0
@@ -1485,10 +1736,10 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|keybdpdd.h|4|0|1C6D1EF08B36000
   I|windows.h|0
  F|kitl.h|4|0|1C6D1EF08B36000
-  I|KitlProt.h|1
+  I|KitlProt.h|1001
  F|kitlprot.h|4|0|1C6D1EF08B36000
-  I|pshpack1.h|0
-  I|poppack.h|0
+  I|pshpack1.h|1000
+  I|poppack.h|1000
  F|l2tpcfg.h|4|0|1C6D1EF08B36000
  F|laymgr.h|4|0|1C6D1EF08B36000
   I|keybddbg.h|0
@@ -1518,7 +1769,7 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|wincrypt.h|0
   I|minasn1.h|0
  F|mkfuncs.h|4|0|1C6D1EF08B36000
-  I|toolhelp.h|0
+  I|toolhelp.h|1000
  F|mmaudio.h|4|0|1C6D1EF08B36000
   I|pshpack1.h|1
   I|poppack.h|1
@@ -1526,7 +1777,7 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|pshpack1.h|1
   I|poppack.h|1
  F|mpm.h|4|0|1C6D1EF08B36000
-  I|kfuncs.h|0
+  I|kfuncs.h|1000
  F|mru.h|4|0|1C6D1EF08B36000
  F|mservice.h|4|0|1C6D1EF08B36000
   I|mwinbase.h|0
@@ -1570,10 +1821,10 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|windev.h|0
   I|netui_args.h|0
  F|nkexport.h|4|0|1C6D1EF08B36000
-  I|nkglobal.h|1
+  I|nkglobal.h|1001
  F|nkglobal.h|4|0|1C6D1EF08B36000
-  I|oemglobal.h|1
-  I|profiler.h|1
+  I|oemglobal.h|1001
+  I|profiler.h|1001
  F|nkintr.h|4|0|1C6D1EF08B36000
  F|nmpioctl.h|4|0|1C6D1EF08B36000
  F|notifdev.h|4|0|1C6D1EF08B36000
@@ -1602,8 +1853,8 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|winerror.h|0
  F|oemfw.h|4|0|1C6D1EF08B36000
  F|oemglobal.h|4|0|1CB9D8734ABA100
-  I|kitl.h|0
-  I|bcoemglobal.h|0
+  I|kitl.h|1000
+  I|bcoemglobal.h|1000
  F|oemglobal.h.110211_KB982563|80000|0|1C6D1EF08B36000
  F|ohcd.def|80000|0|1C6D1EF08B36000
  F|ohcdddsi.h|4|0|1C6D1EF08B36000
@@ -1623,8 +1874,8 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|storemgr.h|0
   I|fsioctl.h|0
  F|pcireg.h|4|0|1C6D1EF08B36000
-  I|devload.h|0
-  I|ceddk.h|0
+  I|devload.h|1000
+  I|ceddk.h|1000
  F|pcmcia.def|80000|0|1C6D1EF08B36000
  F|pcmfuncs.h|4|0|1C6D1EF08B36000
  F|pcmtrace.h|4|0|1C6D1EF08B36000
@@ -1659,11 +1910,11 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|pimm.h|4|0|1C6D1EF08B36000
  F|pinglib.h|4|0|1C6D1EF08B36000
  F|pkfuncs.h|4|0|1CC0B94946AE300
-  I|excpt.h|0
-  I|toolhelp.h|0
-  I|winioctl.h|0
-  I|wdogapi.h|0
-  I|vmlayout.h|1
+  I|excpt.h|1000
+  I|toolhelp.h|1000
+  I|winioctl.h|1000
+  I|wdogapi.h|1000
+  I|vmlayout.h|1001
  F|pkfuncs.h.110520_KB2540556|80000|0|1C6D1EF08B36000
  F|pm.def|80000|0|1C6D1EF08B36000
  F|pmimpl.h|4|0|1C6D1EF08B36000
@@ -1699,19 +1950,19 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|psyscall.h|4|0|1C6D1EF08B36000
  F|ptapi.h|4|0|1C6D1EF08B36000
  F|pwinbase.h|4|0|1C6D1EF08B36000
-  I|dbgapi.h|0
+  I|dbgapi.h|1000
  F|pwindbas.h|4|0|1C6D1EF08B36000
  F|pwindowx.h|4|0|1C6D1EF08B36000
  F|pwingdi.h|4|0|1C6D1EF08B36000
-  I|windbase.h|0
+  I|windbase.h|1000
  F|pwinreg.h|4|0|1C6D1EF08B36000
  F|pwinuser.h|4|0|1CA2BF7C5448900
-  I|keybd.h|0
+  I|keybd.h|1000
  F|rebarview.hpp|4|0|1C6D1EF08B36000
   I|windows.h|0
  F|romldr.h|4|0|1C6D1EF08B36000
-  I|pshpack1.h|0
-  I|poppack.h|0
+  I|pshpack1.h|1000
+  I|poppack.h|1000
  F|romxip.h|4|0|1C6D1EF08B36000
   I|winioctl.h|0
  F|rtinfo.h|4|0|1C6D1EF08B36000
@@ -1774,7 +2025,7 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|toolbarview.hpp|4|0|1C6D1EF08B36000
   I|windows.h|0
  F|toolhelp.h|4|0|1C6D1EF08B36000
-  I|tlhelp32.h|1
+  I|tlhelp32.h|1001
  F|touch.def|80000|0|1C6D1EF08B36000
  F|touchperf.h|4|0|1C9C8AC1DFFC000
   I|windows.h|0
@@ -1848,7 +2099,7 @@ D|C:\WINCE600\public\common\oak\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|objidl.h|1
   I|oaidl.h|1
 
-D|C:\WINCE600\public\common\oak\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\public\common\oak\lib\ARMV4I\retail\|2000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|0404\|0|10|0
  F|0407\|0|10|0
  F|0409\|0|10|0
@@ -4165,7 +4416,7 @@ D|C:\WINCE600\public\common\oak\lib\ARMV4I\retail\|3000|0|0|0|0|0|0|0|0|0|0|0|0|
  F|zlib.lib|80000|0|1C6D1EF08B36000
  F|zlib.pdb|80000|0|1C6D1EF08B36000
 
-D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+D|C:\WINCE600\public\common\sdk\inc\|a000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|afdfunc.h|4|0|1C6D1EF08B36000
   I|ras.h|1
   I|tapi.h|1
@@ -4238,7 +4489,7 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|windows.h|0
   I|svsutil.hxx|1
  F|crtdefs.h|4|0|1C6D1EF08B36000
-  I|sal.h|0
+  I|sal.h|1000
  F|csetjmp|80000|0|1C6D1EF08B36000
  F|cstdarg|80000|0|1C6D1EF08B36000
  F|cstddef|80000|0|1C6D1EF08B36000
@@ -4246,7 +4497,7 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|cstdlib|80000|0|1C6D1EF08B36000
  F|cstring|80000|0|1C6D1EF08B36000
  F|ctype.h|4|0|1C6D1EF08B36000
-  I|stdlib.h|1
+  I|stdlib.h|1001
  F|cwchar|80000|0|1C6D1EF08B36000
  F|cwctype|80000|0|1C6D1EF08B36000
  F|d3dm.h|4|0|1C6D1EF08B36000
@@ -4308,7 +4559,7 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|icmpapi.h|4|0|1C6D1EF08B36000
   I|ipexport.h|1
  F|imm.h|4|0|1C6D1EF08B36000
-  I|pimm.h|0
+  I|pimm.h|1000
  F|initguid.h|4|0|1C6D1EF08B36000
  F|intsafe.h|4|0|1C6D1EF08B36000
   I|specstrings.h|0
@@ -4327,9 +4578,9 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|iterator|80000|0|1C6D1EF08B36000
  F|keybd.h|4|0|1C6D1EF08B36000
  F|kfuncs.h|4|0|1C9C8AC31129000
-  I|psyscall.h|0
-  I|pkfuncs.h|0
-  I|mkfuncs.h|0
+  I|psyscall.h|1000
+  I|pkfuncs.h|1000
+  I|mkfuncs.h|1000
  F|khronos_types.h|4|0|1C9F36403A20A00
  F|kxarm.h|4|0|1C6D1EF08B36000
  F|kxmips.h|4|0|1C6D1EF08B36000
@@ -4380,9 +4631,9 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|pshpack1.h|1
   I|poppack.h|1
  F|mmsystem.h|4|0|1C6D1EF08B36000
-  I|pshpack1.h|1
-  I|pshpack4.h|1
-  I|poppack.h|1
+  I|pshpack1.h|1001
+  I|pshpack4.h|1001
+  I|poppack.h|1001
  F|msacm.h|4|0|1C6D1EF08B36000
  F|msacmdlg.h|4|0|1C6D1EF08B36000
  F|msgqueue.h|4|0|1C6D1EF08B36000
@@ -4400,31 +4651,31 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|ntstatus.h.101208_KB2267634|80000|0|1C7D4F563376800
  F|numeric|80000|0|1C6D1EF08B36000
  F|oaidl.h|4|0|1C6D1EF08B36000
-  I|rpc.h|1
-  I|rpcndr.h|1
-  I|windows.h|1
-  I|ole2.h|1
-  I|objidl.h|1
+  I|rpc.h|9001
+  I|rpcndr.h|9001
+  I|windows.h|9001
+  I|ole2.h|9001
+  I|objidl.h|5001
  F|oaidl.idl|0|0|1C6D1EF08B36000
   I|objidl.idl|1
  F|objbase.h|4|0|1C6D1EF08B36000
-  I|rpc.h|0
-  I|rpcndr.h|0
-  I|pshpack8.h|0
-  I|stdlib.h|0
-  I|wtypes.h|0
-  I|unknwn.h|0
-  I|objidl.h|0
-  I|cguid.h|0
-  I|poppack.h|0
+  I|rpc.h|9000
+  I|rpcndr.h|5000
+  I|pshpack8.h|5000
+  I|stdlib.h|5000
+  I|wtypes.h|5000
+  I|unknwn.h|9000
+  I|objidl.h|9000
+  I|cguid.h|5000
+  I|poppack.h|9000
  F|objerror.h|4|0|1C6D1EF08B36000
   I|winerror.h|0
  F|objidl.h|4|0|1C6D1EF08B36000
-  I|rpc.h|1
-  I|rpcndr.h|1
-  I|windows.h|1
-  I|ole2.h|1
-  I|unknwn.h|1
+  I|rpc.h|9001
+  I|rpcndr.h|9001
+  I|windows.h|9001
+  I|ole2.h|9001
+  I|unknwn.h|5001
  F|objidl.idl|0|0|1C6D1EF08B36000
   I|unknwn.idl|1
   I|wtypes.idl|1
@@ -4439,32 +4690,32 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|oleidl.idl|1
   I|oaidl.idl|1
  F|ole2.h|4|0|1C6D1EF08B36000
-  I|pshpack8.h|0
-  I|winerror.h|0
-  I|objbase.h|0
-  I|oleauto.h|0
-  I|oleidl.h|0
-  I|poppack.h|0
+  I|pshpack8.h|9000
+  I|winerror.h|9000
+  I|objbase.h|9000
+  I|oleauto.h|9000
+  I|oleidl.h|9000
+  I|poppack.h|9000
  F|oleauto.h|4|0|1C6D1EF08B36000
-  I|pshpack8.h|0
-  I|oaidl.h|0
-  I|poppack.h|0
+  I|pshpack8.h|9000
+  I|oaidl.h|9000
+  I|poppack.h|9000
  F|olectl.h|4|0|1C6D1EF08B36000
   I|macocidl.h|0
   I|ocidl.h|0
  F|oleidl.h|4|0|1C6D1EF08B36000
-  I|rpc.h|1
-  I|rpcndr.h|1
-  I|windows.h|1
-  I|ole2.h|1
-  I|objidl.h|1
+  I|rpc.h|9001
+  I|rpcndr.h|9001
+  I|windows.h|9001
+  I|ole2.h|9001
+  I|objidl.h|9001
  F|oleidl.idl|0|0|1C6D1EF08B36000
   I|objidl.idl|1
  F|osassemblyversion.cs|0|0|1C6D1EF08B36000
  F|packoff.h|4|0|1C6D1EF08B36000
  F|packon.h|4|0|1C6D1EF08B36000
  F|pm.h|4|0|1C6D1EF08B36000
-  I|mpm.h|0
+  I|mpm.h|1000
  F|pmpolicy.h|4|0|1C6D1EF08B36000
   I|msgqueue.h|0
  F|pnp.h|4|0|1C6D1EF08B36000
@@ -4493,26 +4744,26 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|regext.h|4|0|1C6D1EF08B36000
   I|windows.h|0
  F|rpc.h|4|0|1C6D1EF08B36000
-  I|windows.h|0
-  I|pshpack2.h|0
-  I|setjmp.h|0
-  I|rpcdce.h|0
-  I|rpcnsi.h|0
-  I|rpcerr.h|0
-  I|rpcmac.h|0
-  I|poppack.h|0
-  I|rpcnterr.h|0
-  I|excpt.h|0
-  I|winerror.h|0
-  I|rpcasync.h|0
+  I|windows.h|9000
+  I|pshpack2.h|5000
+  I|setjmp.h|5000
+  I|rpcdce.h|5000
+  I|rpcnsi.h|5000
+  I|rpcerr.h|1400
+  I|rpcmac.h|1400
+  I|poppack.h|5000
+  I|rpcnterr.h|5000
+  I|excpt.h|9000
+  I|winerror.h|5000
+  I|rpcasync.h|5000
  F|rpcasync.h|4|0|1C6D1EF08B36000
  F|rpcdce.h|4|0|1C6D1EF08B36000
-  I|rpcdcep.h|0
+  I|rpcdcep.h|1000
  F|rpcdcep.h|4|0|1C6D1EF08B36000
  F|rpcndr.h|4|0|1C6D1EF08B36000
-  I|rpcnsip.h|0
-  I|pshpack4.h|0
-  I|poppack.h|0
+  I|rpcnsip.h|1000
+  I|pshpack4.h|1000
+  I|poppack.h|1000
  F|rpcnsi.h|4|0|1C6D1EF08B36000
  F|rpcnsip.h|4|0|1C6D1EF08B36000
  F|rpcnterr.h|4|0|1C6D1EF08B36000
@@ -4536,11 +4787,11 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|mwinbase.h|0
  F|set|80000|0|1C6D1EF08B36000
  F|setjmp.h|4|0|1C6D1EF08B36000
-  I|stdlib.h|1
+  I|stdlib.h|1001
  F|shellapi.h|4|0|1C6D1EF08B36000
-  I|pshpack1.h|0
-  I|mshellap.h|0
-  I|poppack.h|0
+  I|pshpack1.h|1000
+  I|mshellap.h|1000
+  I|poppack.h|1000
  F|shellsdk.h|4|0|1C6D1EF08B36000
   I|windows.h|0
   I|sipapi.h|0
@@ -4558,7 +4809,7 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|sipapi.h|1
  F|sipapi.h|4|0|1C6D1EF08B36000
  F|specstrings.h|4|0|1CA3A3CFFF25200
-  I|sal.h|0
+  I|sal.h|1000
  F|specstrings.h.090930_KBSOURCE|80000|0|1C6D1EF08B36000
  F|splapi.h|4|0|1C6D1EF08B36000
  F|spseal.h|4|0|1C6D1EF08B36000
@@ -4567,27 +4818,27 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|sspi.h.101208_KB2267634|80000|0|1C7D4F56599C200
  F|stack|80000|0|1C6D1EF08B36000
  F|stdarg.h|4|0|1C6D1EF08B36000
-  I|stdlib.h|1
+  I|stdlib.h|1001
  F|stddef.h|4|0|1C6D1EF08B36000
   I|stdlib.h|1
  F|stdexcept|80000|0|1C6D1EF08B36000
  F|stdio.h|4|0|1C6D1EF08B36000
-  I|stdlib.h|0
-  I|crtdefs.h|0
+  I|stdlib.h|1000
+  I|crtdefs.h|1000
  F|stdlib.h|4|0|1C6D1EF08B36000
-  I|crtdefs.h|0
+  I|crtdefs.h|1000
  F|storemgr.h|4|0|1C6D1EF08B36000
   I|windows.h|0
   I|mstoremgr.h|0
  F|string|80000|0|1C6D1EF08B36000
  F|string.h|4|0|1C6D1EF08B36000
-  I|stdlib.h|0
-  I|crtdefs.h|0
+  I|stdlib.h|1000
+  I|crtdefs.h|1000
  F|strsafe.h|4|0|1C6D1EF08B36000
-  I|stdio.h|0
-  I|string.h|0
-  I|stdarg.h|0
-  I|specstrings.h|0
+  I|stdio.h|1000
+  I|string.h|1000
+  I|stdarg.h|1000
+  I|specstrings.h|1000
  F|svcguid.h|4|0|1C6D1EF08B36000
   I|basetyps.h|0
  F|svsutil.hxx|4|0|1C6D1EF08B36000
@@ -4599,8 +4850,8 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|ptapi.h|0
   I|mtapi.h|0
  F|tchar.h|4|0|1C6D1EF08B36000
-  I|windef.h|0
-  I|stdlib.h|0
+  I|windef.h|1000
+  I|stdlib.h|1000
  F|time.h|4|0|1C6D1EF08B36000
   I|crtdefs.h|0
  F|tlhelp32.h|4|0|1C6D1EF08B36000
@@ -4608,11 +4859,11 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|typeinfo|80000|0|1C6D1EF08B36000
  F|types.h|4|0|1C6D1EF08B36000
  F|unknwn.h|4|0|1C6D1EF08B36000
-  I|rpc.h|1
-  I|rpcndr.h|1
-  I|windows.h|1
-  I|ole2.h|1
-  I|wtypes.h|1
+  I|rpc.h|5001
+  I|rpcndr.h|9001
+  I|windows.h|9001
+  I|ole2.h|5001
+  I|wtypes.h|9001
  F|unknwn.idl|0|0|1C6D1EF08B36000
   I|wtypes.idl|1
  F|use_ansi.h|4|0|1C6D1EF08B36000
@@ -4631,17 +4882,17 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
  F|wfmtmidi.h|4|0|1C6D1EF08B36000
   I|windows.h|1
  F|winbase.h|4|0|1C7D4F56599C200
-  I|windef.h|0
-  I|winver.h|0
-  I|stdarg.h|0
-  I|winerror.h|0
-  I|dbgapi.h|0
-  I|kfuncs.h|0
-  I|msgqueue.h|1
-  I|winnls.h|0
-  I|pwinbase.h|0
-  I|mwinbase.h|0
-  I|windbase.h|0
+  I|windef.h|1000
+  I|winver.h|1000
+  I|stdarg.h|1000
+  I|winerror.h|1000
+  I|dbgapi.h|1000
+  I|kfuncs.h|1000
+  I|msgqueue.h|1001
+  I|winnls.h|1000
+  I|pwinbase.h|1000
+  I|mwinbase.h|1000
+  I|windbase.h|1000
  F|winber.h|4|0|1C6D1EF08B36000
  F|wincred.h|4|0|1C7D4F56599C200
   I|cred.h|0
@@ -4649,35 +4900,35 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|specstrings.h|0
  F|wincrypt.h.110711_KB2549497|80000|0|1C7D4F56599C200
  F|windbase.h|4|0|1C6D1EF08B36000
-  I|windbase_edb.h|0
-  I|pwindbas.h|0
-  I|mwindbas.h|0
+  I|windbase_edb.h|1000
+  I|pwindbas.h|1000
+  I|mwindbas.h|1000
  F|windbase_edb.h|4|0|1C6D1EF08B36000
  F|windef.h|4|0|1C6D1EF08B36000
-  I|winnt.h|0
-  I|specstrings.h|0
+  I|winnt.h|1000
+  I|specstrings.h|1000
  F|windns.h|4|0|1C6D1EF08B36000
  F|windows.h|4|0|1C6D1EF08B36000
-  I|windef.h|0
-  I|types.h|0
-  I|winbase.h|0
-  I|wingdi.h|0
-  I|winuser.h|0
-  I|winreg.h|0
-  I|shellapi.h|0
-  I|ole2.h|0
-  I|imm.h|0
-  I|tchar.h|0
-  I|excpt.h|0
-  I|strsafe.h|0
+  I|windef.h|1000
+  I|types.h|1000
+  I|winbase.h|1000
+  I|wingdi.h|1000
+  I|winuser.h|1000
+  I|winreg.h|1000
+  I|shellapi.h|1000
+  I|ole2.h|9000
+  I|imm.h|1000
+  I|tchar.h|1000
+  I|excpt.h|1000
+  I|strsafe.h|1000
  F|windowsx.h|4|0|1C6D1EF08B36000
  F|winerror.h|4|0|1C7D4F56599C200
  F|wingdi.h|4|0|1C9FFF662B77E00
-  I|windef.h|0
-  I|pshpack2.h|1
-  I|poppack.h|1
-  I|pshpack1.h|0
-  I|pwingdi.h|0
+  I|windef.h|1000
+  I|pshpack2.h|1001
+  I|poppack.h|1001
+  I|pshpack1.h|1000
+  I|pwingdi.h|1000
  F|winioctl.h|4|0|1C8033865BD0F00
  F|winldap.h|4|0|1C6D1EF08B36000
   I|windef.h|0
@@ -4686,20 +4937,20 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|mwnetfun.h|0
  F|winnls.h|4|0|1C6D1EF08B36000
  F|winnt.h|4|0|1C7D4F56599C200
-  I|ctype.h|0
-  I|specstrings.h|0
-  I|basetsd.h|0
-  I|ntstatus.h|0
-  I|pshpack4.h|0
-  I|poppack.h|0
-  I|pshpack2.h|1
-  I|pshpack1.h|1
-  I|pshpack8.h|1
-  I|string.h|0
+  I|ctype.h|1000
+  I|specstrings.h|1000
+  I|basetsd.h|1000
+  I|ntstatus.h|1000
+  I|pshpack4.h|1000
+  I|poppack.h|1000
+  I|pshpack2.h|1001
+  I|pshpack1.h|1001
+  I|pshpack8.h|1001
+  I|string.h|1000
  F|winreg.h|4|0|1C6D1EF08B36000
-  I|macwin32.h|0
-  I|pwinreg.h|0
-  I|mwinreg.h|0
+  I|macwin32.h|1400
+  I|pwinreg.h|1000
+  I|mwinreg.h|1000
  F|winscard.h|4|0|1C6D1EF08B36000
   I|wtypes.h|0
   I|winioctl.h|0
@@ -4719,11 +4970,11 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|pshpack8.h|0
   I|poppack.h|0
  F|winuser.h|4|0|1C6D1EF08B36000
-  I|windef.h|0
-  I|mmsystem.h|0
-  I|pshpack2.h|1
-  I|poppack.h|1
-  I|pwinuser.h|0
+  I|windef.h|1000
+  I|mmsystem.h|1000
+  I|pshpack2.h|1001
+  I|poppack.h|1001
+  I|pwinuser.h|1000
  F|winuserm.h|4|0|1C6D1EF08B36000
  F|winver.h|4|0|1C6D1EF08B36000
  F|ws2atm.h|4|0|1C6D1EF08B36000
@@ -4736,8 +4987,8 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|poppack.h|0
  F|ws2tcpip.h|4|0|1C6D1EF08B36000
  F|wtypes.h|4|0|1C6D1EF08B36000
-  I|rpc.h|1
-  I|rpcndr.h|1
+  I|rpc.h|1001
+  I|rpcndr.h|1001
  F|wtypes.idl|0|0|1C6D1EF08B36000
  F|xamlruntime.h|4|0|1CA3D8B02311500
   I|unknwn.h|0
@@ -4765,4 +5016,14 @@ D|C:\WINCE600\public\common\sdk\inc\|b000|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   I|yvals.h|0
  F|yvals.h|4|0|1C6D1EF08B36000
   I|libdefs|0
+
+D|C:\WINCE600\public\directx\sdk\inc\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PUBLIC\DIRECTX\SDK\SAMPLES\DSHOW\BASECLASSES\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PUBLIC\IE\SDK\INC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\public\ostest\sdk\inc\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+
+D|C:\WINCE600\PUBLIC\SHELLSDK\SDK\INC\|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
 

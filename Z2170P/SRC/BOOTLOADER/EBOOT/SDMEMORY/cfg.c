@@ -356,7 +356,7 @@ BOOL DisplayShow(/*int board*/)
 //Ray 131119
 VOID tsc2046Test()
 {
-    Initial_lcd_TSC2046();
+    detect_TSC2046();
     return;
 }
 //-----------------------------------------------------------------------------

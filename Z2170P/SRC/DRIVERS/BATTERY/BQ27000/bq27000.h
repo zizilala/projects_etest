@@ -15,6 +15,8 @@
 
 #ifndef __BQ27000_H
 #define __BQ27000_H
+//
+
 
 // Gas gauge registers
 #define BQ_CTRL             0x00

@@ -36,9 +36,7 @@ static BOOL             _bI2CFnTableInit = FALSE;
 
 
 //-----------------------------------------------------------------------------
-static
-BOOL
-I2CInitialize()
+static BOOL I2CInitialize()
 {
     if (_bI2CFnTableInit == FALSE)
     {
@@ -69,10 +67,7 @@ I2CGetDeviceIdFromMembase(
 
 
 //-----------------------------------------------------------------------------
-void* 
-I2COpen(
-        UINT devId
-        )
+void*  I2COpen(UINT devId)
 {
     if (I2CInitialize() == FALSE) return NULL;
 

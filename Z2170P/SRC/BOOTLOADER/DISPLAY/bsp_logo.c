@@ -725,71 +725,7 @@ BOOL FillASCIIMode(DWORD mode)
    
   // for(i=0; i<15; i++){
    do{
-         c = showChar[mode][i];
-         //OALLog(L"****%d\n",c);   
-    //}
-         /*asciiToHexa = 
-         (c == '0') ? 0x30 :    //if 0~9 
-         (c == '1') ? 0x31 :
-         (c == '2') ? 0x32 :
-         (c == '3') ? 0x33 :
-         (c == '4') ? 0x34 :
-         (c == '5') ? 0x35 :
-         (c == '6') ? 0x36 :
-         (c == '7') ? 0x37 :
-         (c == '8') ? 0x38 :
-         (c == '9') ? 0x39 :
-         (c == 'A') ? 0x41 :    //if A~Z
-         (c == 'B') ? 0x42 :
-         (c == 'C') ? 0x43 :
-         (c == 'D') ? 0x44 :
-         (c == 'E') ? 0x45 :
-         (c == 'F') ? 0x46 :
-         (c == 'G') ? 0x47 :
-         (c == 'H') ? 0x48 :
-         (c == 'I') ? 0x49 :
-         (c == 'J') ? 0x4A :
-         (c == 'K') ? 0x4B :
-         (c == 'L') ? 0x4C :
-         (c == 'M') ? 0x4D :
-         (c == 'O') ? 0x4E :
-         (c == 'P') ? 0x50 :
-         (c == 'Q') ? 0x51 :
-         (c == 'R') ? 0x52 :
-         (c == 'S') ? 0x53 :
-         (c == 'T') ? 0x54 :
-         (c == 'U') ? 0x55 :
-         (c == 'V') ? 0x56 :
-         (c == 'W') ? 0x57 :
-         (c == 'X') ? 0x58 :
-         (c == 'Y') ? 0x59 :
-         (c == 'Z') ? 0x5A :
-         (c == 'a') ? 0x61 :    //if a~z
-         (c == 'b') ? 0x62 :
-         (c == 'c') ? 0x63 :
-         (c == 'd') ? 0x64 :
-         (c == 'e') ? 0x65 :
-         (c == 'f') ? 0x66 :
-         (c == 'g') ? 0x67 :
-         (c == 'h') ? 0x68 :
-         (c == 'i') ? 0x69 :
-         (c == 'j') ? 0x6A :
-         (c == 'k') ? 0x6B :
-         (c == 'l') ? 0x6C :
-         (c == 'm') ? 0x6D :
-         (c == 'o') ? 0x6E :
-         (c == 'p') ? 0x70 :
-         (c == 'q') ? 0x71 :
-         (c == 'r') ? 0x72 :
-         (c == 's') ? 0x73 :
-         (c == 't') ? 0x74 :
-         (c == 'u') ? 0x75 :
-         (c == 'v') ? 0x76 :
-         (c == 'w') ? 0x77 :
-         (c == 'x') ? 0x78 :
-         (c == 'y') ? 0x79 :
-         (c == 'z') ? 0x7A :
-         (c == '.') ? 0x2E : 0x00;*/
+        c = showChar[mode][i];
         showCharToDec[0][i] = (BYTE)c;
         i++;
     }while(c == '\0' || i < SIZE);
@@ -1786,7 +1722,7 @@ void lcd_config(UINT32 framebuffer)
 	enable_lcd_backlight();
 
 	// Initial Touch Panel, Ray 131119
-	//Initial_lcd_TSC2046();
+	Initial_lcd_TSC2046();
     
 }
 
@@ -1946,126 +1882,506 @@ UINT32 disable_lcd_backlight( void )
 //
 //  Below function Initial LCD touch panel for TSC2046 controller, Ray 131120
 //
-/*VOID spi4WrBitHigh(HANDLE hGPIO_2046)
-{
- 
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(10);
-    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(10);
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
-}*/
+//------------------------------------------------------------------------------
+HANDLE g_hGPIO_2046;
+
 //
-//
-VOID spi4Clock(HANDLE hGPIO_2046)
+//  This function shows the logo splash screen
+//  
+BOOL SetDrawCalibration(int position)
 {
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(50);
-    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
-    LcdStall(50);
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    //HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
+    PUCHAR  pChar;
+    ULONG   x, y;
+    //WORD	wSignature = 0;
+    //DWORD   dwOffset = 0;
+    DWORD   dwLcdWidth, dwLcdHeight;
+    DWORD   dwLength;
+
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+
+    //  Get the video memory
+    LcdPdd_GetMemory( NULL, &framebufferPA );
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
+    
+    if(position == 0)
+    {
+        for (y= 0; y < dwLcdHeight; y++)
+            {
+                for( x = 0; x < dwLcdWidth; x++ )
+                {
+                        if( y < 16 )
+                        {
+                            if( x < 16)
+                            {
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else if( x > 223){
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y >= 151 && y <167){
+                            if( x > 111 && x < 127)
+                            {
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y > 303 ){
+                            if( x < 16)
+                            {
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else if( x > 223){
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                        }
+                    }
+                }
+    } 
+    
+    switch(position)
+    {
+        case 1:
+            for (y= 0; y < 16; y++)
+            {
+                for( x = 0; x < dwLcdWidth; x++ )
+                {
+                    if( x < 16)
+                    {
+                        *pChar++ = 0x00;    //  Blue
+                        *pChar++ = 0xFF;    //  Green
+                        *pChar++ = 0x00;    //  Red
+                    }else if( x > 223){
+                        pChar++;    //  Blue
+                        pChar++;    //  Green
+                        pChar++;    //  Red
+                    }else{
+                        *pChar++ = 0xFF;    //  Blue
+                        *pChar++ = 0xFF;    //  Green
+                        *pChar++ = 0xFF;    //  Red
+                    }
+                }  
+            }
+            //OALLog(L"\r Calibration uLeft OK!!\r\n");
+            return TRUE;  
+            break;
+        case 2:
+            for (y= 0; y < 16; y++)
+            {
+                for( x = 0; x < dwLcdWidth; x++ )
+                {
+                    if( x < 16)
+                    {
+                        pChar++;    //  Blue
+                        pChar++;    //  Green
+                        pChar++;    //  Red
+                    }else if( x > 223){
+                        *pChar++ = 0x00;    //  Blue
+                        *pChar++ = 0xFF;    //  Green
+                        *pChar++ = 0x00;    //  Red  
+                    }else{
+                        *pChar++ = 0xFF;    //  Blue
+                        *pChar++ = 0xFF;    //  Green
+                        *pChar++ = 0xFF;    //  Red
+                    }
+                }  
+            }
+            //OALLog(L"\r Calibration uRight OK!!\r\n");
+            return TRUE; 
+            break;
+        case 3:
+            for (y= 0; y < dwLcdHeight; y++)
+            {
+                for( x = 0; x < dwLcdWidth; x++ )
+                {
+                        if( y < 16 )
+                        {
+                            if( x < 16)
+                            {
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else if( x > 223){
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y >= 151 && y <167){
+                            if( x > 111 && x < 127)
+                            {
+                                *pChar++ = 0x00;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y > 303 ){
+                            if( x < 16)
+                            {
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else if( x > 223){
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                        }
+                    }
+                }
+            //OALLog(L"\r Calibration center OK!!\r\n");
+            return TRUE; 
+            break;
+        case 4:
+            for (y = 0; y <dwLcdHeight ; y++)
+            {
+                for( x = 0 ; x <dwLcdWidth ; x++ )
+                {
+                        if( y < 16 )
+                        {
+                            if( x < 16)
+                            {
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else if( x > 223){
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y >= 151 && y <167){
+                            if( x > 111 && x < 127)
+                            {
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y > 303 ){
+                            if( x < 16)
+                            {
+                                *pChar++ = 0x00;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else if( x > 223){
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                        }
+                    }
+                }
+            //OALLog(L"\r Calibration lLeft OK!!\r\n");
+            return TRUE; 
+            break;
+          case 5:
+            for (y= 0; y < dwLcdHeight; y++)
+            {
+                for( x = 0; x < dwLcdWidth; x++ )
+                {
+                        if( y < 16 )
+                        {
+                            if( x < 16)
+                            {
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else if( x > 223){
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y >= 151 && y <167){
+                            if( x > 111 && x < 127)
+                            {
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else if( y > 303 ){
+                            if( x < 16)
+                            {
+                                pChar++;    //  Blue
+                                pChar++;    //  Green
+                                pChar++;    //  Red
+                            }else if( x > 223){
+                                *pChar++ = 0x00;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0x00;    //  Red
+                            }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                            }
+                        }else{
+                                *pChar++ = 0xFF;    //  Blue
+                                *pChar++ = 0xFF;    //  Green
+                                *pChar++ = 0xFF;    //  Red
+                        }
+                    }
+                }
+            //OALLog(L"\r Calibration lRight OK!!\r\n");
+            return TRUE; 
+            break;
+            
+    }
+    return FALSE;
 }
 //
 //
-DWORD spi4ClockRXData(HANDLE hGPIO_2046)
+//
+VOID spi4Clock(HANDLE n_hGPIO_2046)
+{
+    GPIOClrBit(n_hGPIO_2046, TSC2046_DCLK);
+    LcdStall(50);
+    GPIOSetBit(n_hGPIO_2046, TSC2046_DCLK);
+    LcdStall(50);
+    GPIOClrBit(n_hGPIO_2046, TSC2046_DCLK);
+}
+//
+//
+//
+DWORD spi4ClockRXData(HANDLE n_hGPIO_2046)
 {
     DWORD temp=0;
 
     
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    GPIOClrBit(n_hGPIO_2046, TSC2046_DCLK);
     LcdStall(50);
-
-    GPIOSetBit(hGPIO_2046, TSC2046_DCLK);
+    GPIOSetBit(n_hGPIO_2046, TSC2046_DCLK);
     LcdStall(50);  
-    temp = GPIOGetBit(hGPIO_2046, TSC2046_DOUT);
-    GPIOClrBit(hGPIO_2046, TSC2046_DCLK);
+    temp = GPIOGetBit(n_hGPIO_2046, TSC2046_DOUT);
+    GPIOClrBit(n_hGPIO_2046, TSC2046_DCLK);
     
     return temp;
 }
+//
 //  This function are first cycle used in the control byte via the DIN pin 
 // 
-VOID sendData(HANDLE hGPIO_2046, int TXControlByte) 
+VOID sendData(HANDLE n_hGPIO_2046, int TXControlByte) 
 {
    int iData;
    
-   GPIOClrBit(hGPIO_2046, TSC2046_CS);     //Start controlling 
+   GPIOClrBit(n_hGPIO_2046, TSC2046_CS);     //Start controlling 
    for(iData=7; iData>=0; iData--)
    {
         if(TXControlByte & (1<<iData))
         {
-            GPIOSetBit(hGPIO_2046, TSC2046_DIN);
-            spi4Clock(hGPIO_2046);  
+            GPIOSetBit(n_hGPIO_2046, TSC2046_DIN);
+            spi4Clock(n_hGPIO_2046);  
         }else{
-            GPIOClrBit(hGPIO_2046, TSC2046_DIN);
-            spi4Clock(hGPIO_2046); 
+            GPIOClrBit(n_hGPIO_2046, TSC2046_DIN);
+            spi4Clock(n_hGPIO_2046); 
         }
    }
    //GPIOSetBit(hGPIO_2046, TSC2046_CS);     //Stop controlling 
 }
+//
 //  This function are next cycle used conversion phase has 12 bits, Ray 131121
 //
-VOID receiveData(HANDLE hGPIO_2046)
+USHORT receiveData(HANDLE n_hGPIO_2046)
 {
     int iData;
-    DWORD RXConversion;
-    DWORD sum;
+    DWORD RXConversion, sum;
 
-    spi4Clock(hGPIO_2046);
+    spi4Clock(n_hGPIO_2046);
     for(iData=15, sum=0; iData>=0; iData--)
     {
-        RXConversion = spi4ClockRXData(hGPIO_2046);
-
-        if(iData<=11 && iData>3)
-            sum += RXConversion & (1<<(iData-1));
-        //sum += iData & (1<<RXConversion);
+        RXConversion = spi4ClockRXData(n_hGPIO_2046);
+        if(iData<=15 && iData >2)
+            sum += (RXConversion <<(iData-4));
     }
-    GPIOSetBit(hGPIO_2046, TSC2046_CS);     //Stop controlling 
+    GPIOSetBit(n_hGPIO_2046, TSC2046_CS);     //Stop controlling 
 
-    OALLog(L"\r !Conversion at sum %d\r\n", sum);
+    //OALLog(L"\r !Conversion of value: 0X%04X\r\n", sum);
+    return (USHORT)sum;
 }
 //
 //
-VOID read_x(HANDLE hGPIO_2046, int xValue)
+//
+USHORT read_x(HANDLE n_hGPIO_2046, int xCMD)
 {
-   sendData(hGPIO_2046, xValue);
+   USHORT xData;
+   
+   sendData(n_hGPIO_2046, xCMD);
    LcdStall(1);
-   receiveData(hGPIO_2046);
+   xData = receiveData(n_hGPIO_2046);
+
+   return xData;
 }
 //
 //
-VOID read_y(HANDLE hGPIO_2046, int yValue)
+//
+USHORT read_y(HANDLE n_hGPIO_2046, int yCMD)
 {
-   sendData(hGPIO_2046, yValue);
+   USHORT yData;
+   
+   sendData(n_hGPIO_2046, yCMD);
    LcdStall(1);
-   receiveData(hGPIO_2046);
+   yData = receiveData(n_hGPIO_2046);
+
+   return yData;
 }
 //  
 //  control byte: | S| A2| A1| A0| MODE| SER/DFR| PD1| PD0|
-//    
+//
+VOID detect_TSC2046(void)
+{
+    USHORT xData, yData;
+    WCHAR key;
+    int locate=0;
+    //BOOL DONE = FALSE;
+    BOOL uLeft=FALSE, uRight=FALSE, lLeft=FALSE, lRight=FALSE, center=FALSE;
+    HANDLE n_hGPIO_2046 = g_hGPIO_2046; 
+   
+     
+    OALLog(L"\r Continue with any key, 0 are Exit!!\r\n");
+    SetDrawCalibration(0);
+    
+    if((key = OALBLMenuReadKey(TRUE)) == L'0')
+            goto ExitCalibration;
+    
+    OALLog(L"\r Start Calibration...\r\n");
+    while(key != L'0')
+    {
+
+        xData = read_x(n_hGPIO_2046, 0x94);           //1001_0100
+        LcdStall(20);                                   
+        yData = read_y(n_hGPIO_2046, 0xd4);           //1101_0100
+
+        if( xData == 0x0FF0  && yData == 0x0880){ //  in the upper left
+            locate=1;
+            uLeft = SetDrawCalibration(locate);
+        }else if( xData == 0x0FF0 && yData == 0x0FE0){ //in the upper right
+            locate=2;
+            uRight = SetDrawCalibration(locate);
+        }else if((xData >= 0x0C80 && xData <= 0x0CA0) && (yData >= 0x0C80 && yData <= 0x0CA0)){ //in the center
+            locate=3;
+            center = SetDrawCalibration(locate);
+        }else if((xData >= 0x0800 && xData <= 0x08FF) && (yData <= 0x08C0 && yData >= 0x0880)){ //in the lower left
+            locate=4;
+            lLeft = SetDrawCalibration(locate);
+        }else if(xData == 0x0800 && yData == 0x0EE0){ //in the lower right
+            locate=5;
+            lRight = SetDrawCalibration(locate);
+        }
+     
+        if(uLeft && uRight && center && lLeft && lRight){
+            OALLog(L"\r ~~~Calibration OK!!\r\n");
+            LcdSleep(500);
+            //DONE = TRUE;
+            GPIOClose(n_hGPIO_2046);    
+            ShowSDLogo();
+            return;
+        }
+               
+        /*if(uLeft){
+            OALLog(L"\r ~Calibration uLeft!!\r\n");
+        }else if(uRight){
+            OALLog(L"\r ~Calibration uRight!!\r\n");
+        }else if(center){
+            OALLog(L"\r ~Calibration cneter!!\r\n");
+        }else if(lLeft){
+            OALLog(L"\r ~Calibration lLeft!!\r\n");
+        }else if(lRight){
+            OALLog(L"\r ~Calibration lRight!!\r\n");
+        }*/
+        
+    }//while(DONE == FALSE);
+  
+    /*if(DONE == TRUE){
+        
+    }*/
+ExitCalibration:
+        GPIOClose(n_hGPIO_2046);
+        ShowSDLogo();
+        return;
+ 
+    /*while(i>0){
+        spi4WrBitHigh(hGPIO_2046);
+        i--;
+    }*/
+}
+
 VOID Initial_lcd_TSC2046(void)
 {
     HANDLE hGPIO_2046;
-    //int i=24;
+   
     hGPIO_2046 = GPIOOpen();
-
+    
     //Initialization the "SPI4" buses, Ray 131119    
     GPIOSetMode(hGPIO_2046, TSC2046_CS,   GPIO_DIR_OUTPUT);
     GPIOSetMode(hGPIO_2046, TSC2046_DCLK, GPIO_DIR_OUTPUT);
     GPIOSetMode(hGPIO_2046, TSC2046_DIN,  GPIO_DIR_OUTPUT);
     GPIOSetMode(hGPIO_2046, TSC2046_DOUT, GPIO_DIR_INPUT);
-
-    read_x(hGPIO_2046, 0x94);           //1001_0100
-    //LcdStall(100);
-    read_y(hGPIO_2046, 0xd4);           //1101_0100
     
-    /*while(i>0){
-        spi4WrBitHigh(hGPIO_2046);
-        i--;
-    }*/
-    
-    LcdSleep(3000);
-    GPIOClose(hGPIO_2046);
- }
+    OALMSG(OAL_INFO, (L"Initial_lcd_TSC2046\r\n"));
+    g_hGPIO_2046 = hGPIO_2046;
+}
 
 //------------------------------------------------------------------------------
 //

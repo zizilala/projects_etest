@@ -1380,7 +1380,7 @@
 			 ENDP  ; |DisplayShow|
 
 	EXPORT	|tsc2046Test|
-	IMPORT	|Initial_lcd_TSC2046|
+	IMPORT	|detect_TSC2046|
 
   00000			 AREA	 |.pdata|, PDATA
 |$T47166| DCD	|$LN5@tsc2046Tes|
@@ -1397,9 +1397,9 @@
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M47163|
 
-; 359  :     Initial_lcd_TSC2046();
+; 359  :     detect_TSC2046();
 
-  00004	eb000000	 bl          Initial_lcd_TSC2046
+  00004	eb000000	 bl          detect_TSC2046
 
 ; 360  :     return;
 ; 361  : }

@@ -139,6 +139,7 @@ BOOL OEMPlatformInit()
 	     	USBOTG_PADS
 	     	MCSPI1_EBOOT_PADS
             MCSPI4_PADS         //Ray 131119
+            I2C3_PADS           //Ray 131128
             END_OF_PAD_ARRAY
     };
 	
@@ -189,7 +190,8 @@ BOOL OEMPlatformInit()
     // configure i2c devices
     OALI2CInit(OMAP_DEVICE_I2C1); // TPS65650_I2CCNTL
     //OALI2CInit(OMAP_DEVICE_I2C2); // G-sensor for Z-2000
-    OALI2CInit(OMAP_DEVICE_I2C3); // BQ27410
+    //OALI2CInit(OMAP_DEVICE_I2C3);   // BQ27510, Ray 131128 
+  
 
     GPIOInit();
     // Note that T2 accesses must occur after I2C initialization
@@ -213,7 +215,12 @@ BOOL OEMPlatformInit()
 
     GPIOClrBit(hGPIO, 155);     // Keypad_LED, Ray 131112 
     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
-     
+
+    GPIOSetMode( hGPIO, 184, GPIO_DIR_OUTPUT);
+    GPIOSetMode( hGPIO, 185, GPIO_DIR_OUTPUT);
+    GPIOClrBit(hGPIO, 184); 
+    GPIOClrBit(hGPIO, 185); 
+    
 	HotKeyInit(hTwl);           //HotKey Initial ,Ray
     ghTwl = hTwl;              
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray

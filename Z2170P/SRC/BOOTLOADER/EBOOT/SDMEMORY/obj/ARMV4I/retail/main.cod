@@ -391,6 +391,12 @@
 	DCW	0xaf
 	%	2
 	DCD	0x21
+	DCW	0xc9
+	%	2
+	DCD	0x20
+	DCW	0xca
+	%	2
+	DCD	0x20
 	DCW	0xffff
 	%	2
 	DCD	0x0
@@ -398,7 +404,7 @@
 ; File c:\wince600\platform\z2170p\src\inc\bsp_padcfg.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48132| DCD	|$LN9@ConfigureP|
+|$T48138| DCD	|$LN9@ConfigureP|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -406,15 +412,15 @@
 
   00000		 |ConfigurePadArray| PROC
 
-; 575  : {
+; 576  : {
 
   00000		 |$LN9@ConfigureP|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48129|
+  00004		 |$M48135|
   00004	e1a04000	 mov         r4, r0
 
-; 576  :     int i=0;
-; 577  :     while (padArray[i].padID != (UINT16) -1)
+; 577  :     int i=0;
+; 578  :     while (padArray[i].padID != (UINT16) -1)
 
   00008	e1d420b0	 ldrh        r2, [r4]
   0000c	e3a03cff	 mov         r3, #0xFF, 24
@@ -427,15 +433,15 @@
   00028	e1a03004	 mov         r3, r4
   0002c		 |$LL2@ConfigureP|
 
-; 578  :     {
-; 579  :         SOCSetPadConfig(padArray[i].padID,(UINT16) padArray[i].Cfg);
+; 579  :     {
+; 580  :         SOCSetPadConfig(padArray[i].padID,(UINT16) padArray[i].Cfg);
 
   0002c	e5933004	 ldr         r3, [r3, #4]
   00030	e1a00002	 mov         r0, r2
   00034	e0031007	 and         r1, r3, r7
   00038	eb000000	 bl          SOCSetPadConfig
 
-; 580  :         i++;
+; 581  :         i++;
 
   0003c	e2866001	 add         r6, r6, #1
   00040	e0843186	 add         r3, r4, r6, lsl #3
@@ -444,12 +450,12 @@
   0004c	1afffff6	 bne         |$LL2@ConfigureP|
   00050		 |$LN1@ConfigureP|
 
-; 581  :     }
-; 582  : }
+; 582  :     }
+; 583  : }
 
   00050	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00054	e12fff1e	 bx          lr
-  00058		 |$M48130|
+  00058		 |$M48136|
 
 			 ENDP  ; |ConfigurePadArray|
 
@@ -460,7 +466,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\main.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48139| DCD	|$LN5@BSPGpioIni|
+|$T48145| DCD	|$LN5@BSPGpioIni|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -472,7 +478,7 @@
 
   00000		 |$LN5@BSPGpioIni|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48136|
+  00004		 |$M48142|
 
 ; 107  :    BSPInsertGpioDevice(0,&Omap_Gpio,NULL);
 
@@ -497,7 +503,7 @@
   0002c	00000000	 DCD         |Tps659xx_Gpio|
   00030		 |$LN8@BSPGpioIni|
   00030	00000000	 DCD         |Omap_Gpio|
-  00034		 |$M48137|
+  00034		 |$M48143|
 
 			 ENDP  ; |BSPGpioInit|
 
@@ -507,7 +513,7 @@
 	IMPORT	|BSPGetDebugUARTConfig|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48151| DCD	|$LN5@main|
+|$T48157| DCD	|$LN5@main|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -519,7 +525,7 @@
 
   00000		 |$LN5@main|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48148|
+  00004		 |$M48154|
 
 ; 113  : 	//UINT32 CpuRevision;
 ; 114  : 	// Get CPU family
@@ -542,7 +548,7 @@
   00018	e3a00000	 mov         r0, #0
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M48149|
+  00024		 |$M48155|
 
 			 ENDP  ; |main|
 
@@ -563,8 +569,8 @@
 	EXPORT	|??_C@_1M@MMBAGLLJ@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1M@HEKMAMNM@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1M@PKCDALDP@?$AAE?$AAS?$AA1?$AA?4?$AA0?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_08JIGGJAPD@17?338?327?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_0M@OCECFEGB@Nov?522?52013?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_08OCNFBKNE@18?303?341?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_0M@OAEFAAJL@Nov?529?52013?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CC@DJCPIFGO@?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA0?$AA?4?$AA0?$AA?4?$AA1?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|TWLReadIDCode|
@@ -587,8 +593,8 @@
 ; File c:\wince600\platform\z2170p\src\inc\bsp_padcfg.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48207| DCD	|$LN49@OEMPlatfor|
-	DCD	0x4000d602
+|$T48213| DCD	|$LN49@OEMPlatfor|
+	DCD	0x4000e202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DO@MGHPPPEE@?$AAT?$AAP?$AAS?$AA6?$AA5?$AA9?$AAX?$AAX?$AA?5?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA2?$AAx?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "T"
@@ -679,10 +685,10 @@
 	DCB	"1", 0x0, ".", 0x0, "0", 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_08JIGGJAPD@17?338?327?$AA@| DCB "17:38:27", 0x0	; `string'
+|??_C@_08OCNFBKNE@18?303?341?$AA@| DCB "18:03:41", 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_0M@OCECFEGB@Nov?522?52013?$AA@| DCB "Nov 22 2013", 0x0 ; `string'
+|??_C@_0M@OAEFAAJL@Nov?529?52013?$AA@| DCB "Nov 29 2013", 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@| DCB "Z"
@@ -714,7 +720,7 @@
   00000		 |$LN49@OEMPlatfor|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M48204|
+  00008		 |$M48210|
 
 ; 132  :     OMAP_GPTIMER_REGS *pTimerRegs;
 ; 133  :     UINT32 CpuRevision, version;
@@ -726,39 +732,40 @@
 ; 139  : 	     	USBOTG_PADS
 ; 140  : 	     	MCSPI1_EBOOT_PADS
 ; 141  :             MCSPI4_PADS         //Ray 131119
-; 142  :             END_OF_PAD_ARRAY
-; 143  :     };
-; 144  : 	
+; 142  :             I2C3_PADS           //Ray 131128
+; 143  :             END_OF_PAD_ARRAY
+; 144  :     };
 ; 145  : 	
-; 146  :     OALLocalAllocInit(allocationPool,sizeof(allocationPool));
+; 146  : 	
+; 147  :     OALLocalAllocInit(allocationPool,sizeof(allocationPool));
 
-  00008	e59f6334	 ldr         r6, [pc, #0x334]
+  00008	e59f6364	 ldr         r6, [pc, #0x364]
   0000c	e3a01c02	 mov         r1, #2, 24
   00010	e1a00006	 mov         r0, r6
   00014	eb000000	 bl          OALLocalAllocInit
 
-; 147  : 
-; 148  :     // Get processor and companion chip versions
-; 149  : 	g_CPUFamily = CPU_FAMILY_OMAP35XX;
+; 148  : 
+; 149  :     // Get processor and companion chip versions
+; 150  : 	g_CPUFamily = CPU_FAMILY_OMAP35XX;
 
   00018	e3a03000	 mov         r3, #0
   0001c	e5863204	 str         r3, [r6, #0x204]
 
-; 150  :     CpuRevision = Get_CPUVersion();
+; 151  :     CpuRevision = Get_CPUVersion();
 
   00020	eb000000	 bl          Get_CPUVersion
   00024	e1a08000	 mov         r8, r0
 
-; 151  :     version = CPU_REVISION(CpuRevision);
-; 152  :     g_CPUFamily = CPU_FAMILY(CpuRevision);
+; 152  :     version = CPU_REVISION(CpuRevision);
+; 153  :     g_CPUFamily = CPU_FAMILY(CpuRevision);
 
   00028	e1a03808	 mov         r3, r8, lsl #16
   0002c	e3a02312	 mov         r2, #0x12, 6
   00030	e1a03c23	 mov         r3, r3, lsr #24
 
-; 153  : 
-; 154  : 	// Set GPTIMER1 regs pointer
-; 155  : 	pTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
+; 154  : 
+; 155  : 	// Set GPTIMER1 regs pointer
+; 156  : 	pTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
 
   00034	e3a01000	 mov         r1, #0
   00038	e38209c6	 orr         r0, r2, #0xC6, 18
@@ -766,10 +773,10 @@
   00040	e20850ff	 and         r5, r8, #0xFF
   00044	eb000000	 bl          OALPAtoVA
 
-; 156  : 	
-; 157  : 	ConfigurePadArray(ebootPinMux_37XX);
+; 157  : 	
+; 158  : 	ConfigurePadArray(ebootPinMux_37XX);
 
-  00048	e59f92f0	 ldr         r9, [pc, #0x2F0]
+  00048	e59f9320	 ldr         r9, [pc, #0x320]
   0004c	e3a01c7f	 mov         r1, #0x7F, 24
   00050	e381a0ff	 orr         r10, r1, #0xFF
   00054	e2891008	 add         r1, r9, #8
@@ -796,398 +803,422 @@
   000a4	e152000b	 cmp         r2, r11
   000a8	1afffff5	 bne         |$LL38@OEMPlatfor|
 
-; 158  : 	
-; 159  : 	//Bootstrap message(1), Ray 131024
-; 160  :     OALLog(L"ZEBEX Windows CE EBOOT for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );  
+; 159  : 	
+; 160  : 	//Bootstrap message(1), Ray 131024
+; 161  :     OALLog(L"ZEBEX Windows CE EBOOT for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );  
 
-  000ac	e59f22a0	 ldr         r2, [pc, #0x2A0]
-  000b0	e59f1298	 ldr         r1, [pc, #0x298]
-  000b4	e59f0290	 ldr         r0, [pc, #0x290]
+  000ac	e59f22d0	 ldr         r2, [pc, #0x2D0]
+  000b0	e59f12c8	 ldr         r1, [pc, #0x2C8]
+  000b4	e59f02c0	 ldr         r0, [pc, #0x2C0]
   000b8	eb000000	 bl          NKDbgPrintfW
 
-; 161  :     
-; 162  : #if BUILDING_EBOOT_SD           //Bootstrap message(2), Ray
-; 163  :     OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");
+; 162  :     
+; 163  : #if BUILDING_EBOOT_SD           //Bootstrap message(2), Ray
+; 164  :     OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");
 
-  000bc	e59f0284	 ldr         r0, [pc, #0x284]
+  000bc	e59f02b4	 ldr         r0, [pc, #0x2B4]
   000c0	eb000000	 bl          NKDbgPrintfW
 
-; 164  : #else
-; 165  : 	OALLog(L"Version: " BSP_EBLD_NAND_VERSION_STRING L"\r\n");
-; 166  : #endif
-; 167  : 
-; 168  :     // Soft reset GPTIMER1
-; 169  :     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET);
+; 165  : #else
+; 166  : 	OALLog(L"Version: " BSP_EBLD_NAND_VERSION_STRING L"\r\n");
+; 167  : #endif
+; 168  : 
+; 169  :     // Soft reset GPTIMER1
+; 170  :     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET);
 
   000c4	e3a03002	 mov         r3, #2
-  000c8	e59f6274	 ldr         r6, [pc, #0x274]
-  000cc	e59f926c	 ldr         r9, [pc, #0x26C]
+  000c8	e59f62a4	 ldr         r6, [pc, #0x2A4]
+  000cc	e59f929c	 ldr         r9, [pc, #0x29C]
   000d0	e5873010	 str         r3, [r7, #0x10]
   000d4		 |$LL6@OEMPlatfor|
 
-; 170  :     // While until done
-; 171  :     while ((INREG32(&pTimerRegs->TISTAT) & GPTIMER_TISTAT_RESETDONE) == 0)
+; 171  :     // While until done
+; 172  :     while ((INREG32(&pTimerRegs->TISTAT) & GPTIMER_TISTAT_RESETDONE) == 0)
 
   000d4	e5973014	 ldr         r3, [r7, #0x14]
   000d8	e3130001	 tst         r3, #1
   000dc	0afffffc	 beq         |$LL6@OEMPlatfor|
 
-; 172  :     	;
-; 173  :  
-; 174  :     // Enable posted mode
-; 175  :     OUTREG32(&pTimerRegs->TSICR, GPTIMER_TSICR_POSTED);
+; 173  :     	;
+; 174  :  
+; 175  :     // Enable posted mode
+; 176  :     OUTREG32(&pTimerRegs->TSICR, GPTIMER_TSICR_POSTED);
 
   000e0	e3a03004	 mov         r3, #4
   000e4	e5873040	 str         r3, [r7, #0x40]
 
-; 176  :     // Start timer
-; 177  :     OUTREG32(&pTimerRegs->TCLR, GPTIMER_TCLR_AR|GPTIMER_TCLR_ST);
+; 177  :     // Start timer
+; 178  :     OUTREG32(&pTimerRegs->TCLR, GPTIMER_TCLR_AR|GPTIMER_TCLR_ST);
 
   000e8	e3a03003	 mov         r3, #3
 
-; 178  :     
-; 179  : 	// Enable device clocks used by the bootloader
-; 180  :     EnableDeviceClocks(OMAP_DEVICE_GPIO1,TRUE);
+; 179  :     
+; 180  : 	// Enable device clocks used by the bootloader
+; 181  :     EnableDeviceClocks(OMAP_DEVICE_GPIO1,TRUE);
 
   000ec	e3a01001	 mov         r1, #1
   000f0	e3a00029	 mov         r0, #0x29
   000f4	e5873024	 str         r3, [r7, #0x24]
   000f8	eb000000	 bl          EnableDeviceClocks
 
-; 181  :     EnableDeviceClocks(OMAP_DEVICE_GPIO2,TRUE);
+; 182  :     EnableDeviceClocks(OMAP_DEVICE_GPIO2,TRUE);
 
   000fc	e3a01001	 mov         r1, #1
   00100	e3a0002d	 mov         r0, #0x2D
   00104	eb000000	 bl          EnableDeviceClocks
 
-; 182  :     EnableDeviceClocks(OMAP_DEVICE_GPIO3,TRUE);
+; 183  :     EnableDeviceClocks(OMAP_DEVICE_GPIO3,TRUE);
 
   00108	e3a01001	 mov         r1, #1
   0010c	e3a0002e	 mov         r0, #0x2E
   00110	eb000000	 bl          EnableDeviceClocks
 
-; 183  :     EnableDeviceClocks(OMAP_DEVICE_GPIO4,TRUE);
+; 184  :     EnableDeviceClocks(OMAP_DEVICE_GPIO4,TRUE);
 
   00114	e3a01001	 mov         r1, #1
   00118	e3a0002f	 mov         r0, #0x2F
   0011c	eb000000	 bl          EnableDeviceClocks
 
-; 184  :     EnableDeviceClocks(OMAP_DEVICE_GPIO5,TRUE);
+; 185  :     EnableDeviceClocks(OMAP_DEVICE_GPIO5,TRUE);
 
   00120	e3a01001	 mov         r1, #1
   00124	e3a00030	 mov         r0, #0x30
   00128	eb000000	 bl          EnableDeviceClocks
 
-; 185  :     EnableDeviceClocks(OMAP_DEVICE_GPIO6,TRUE);
+; 186  :     EnableDeviceClocks(OMAP_DEVICE_GPIO6,TRUE);
 
   0012c	e3a01001	 mov         r1, #1
   00130	e3a00031	 mov         r0, #0x31
   00134	eb000000	 bl          EnableDeviceClocks
 
-; 186  :     
-; 187  : 	EnableDeviceClocks(OMAP_DEVICE_MCSPI1,TRUE);
+; 187  :     
+; 188  : 	EnableDeviceClocks(OMAP_DEVICE_MCSPI1,TRUE);
 
   00138	e3a01001	 mov         r1, #1
   0013c	e3a0000f	 mov         r0, #0xF
   00140	eb000000	 bl          EnableDeviceClocks
 
-; 188  : 	
-; 189  :     // configure i2c devices
-; 190  :     OALI2CInit(OMAP_DEVICE_I2C1); // TPS65650_I2CCNTL
+; 189  : 	
+; 190  :     // configure i2c devices
+; 191  :     OALI2CInit(OMAP_DEVICE_I2C1); // TPS65650_I2CCNTL
 
   00144	e3a0000c	 mov         r0, #0xC
   00148	eb000000	 bl          OALI2CInit
 
-; 191  :     //OALI2CInit(OMAP_DEVICE_I2C2); // G-sensor for Z-2000
-; 192  :     OALI2CInit(OMAP_DEVICE_I2C3); // BQ27410
+; 192  :     //OALI2CInit(OMAP_DEVICE_I2C2); // G-sensor for Z-2000
+; 193  :     //OALI2CInit(OMAP_DEVICE_I2C3);   // BQ27510, Ray 131128 
+; 194  :   
+; 195  : 
+; 196  :     GPIOInit();
 
-  0014c	e3a0000e	 mov         r0, #0xE
-  00150	eb000000	 bl          OALI2CInit
+  0014c	eb000000	 bl          GPIOInit
 
-; 193  : 
-; 194  :     GPIOInit();
+; 197  :     // Note that T2 accesses must occur after I2C initialization
+; 198  :     hTwl = TWLOpen();
 
-  00154	eb000000	 bl          GPIOInit
+  00150	eb000000	 bl          TWLOpen
+  00154	e1a07000	 mov         r7, r0
 
-; 195  :     // Note that T2 accesses must occur after I2C initialization
-; 196  :     hTwl = TWLOpen();
+; 199  :     hGPIO = GPIOOpen(); 
 
-  00158	eb000000	 bl          TWLOpen
-  0015c	e1a07000	 mov         r7, r0
+  00158	eb000000	 bl          GPIOOpen
 
-; 197  :     hGPIO = GPIOOpen(); 
+; 200  :    
+; 201  :     //if( omap_mcspi_init() )
+; 202  :     //	OALLog(L"omap_mcspi_init: success!!!\r\n");
+; 203  :     	
+; 204  :     // Clear Reset on ethernet controller        
+; 205  :     //GPIOSetBit(hGPIO,LAN9115_RESET_GPIO);            
+; 206  :     //GPIOSetMode(hGPIO, LAN9115_RESET_GPIO,GPIO_DIR_OUTPUT);
+; 207  : 	// test GPIO 
+; 208  : 	GPIOClrBit(hGPIO,15); // BT_EN
 
-  00160	eb000000	 bl          GPIOOpen
+  0015c	e3a0100f	 mov         r1, #0xF
+  00160	e1a04000	 mov         r4, r0
+  00164	eb000000	 bl          GPIOClrBit
 
-; 198  :    
-; 199  :     //if( omap_mcspi_init() )
-; 200  :     //	OALLog(L"omap_mcspi_init: success!!!\r\n");
-; 201  :     	
-; 202  :     // Clear Reset on ethernet controller        
-; 203  :     //GPIOSetBit(hGPIO,LAN9115_RESET_GPIO);            
-; 204  :     //GPIOSetMode(hGPIO, LAN9115_RESET_GPIO,GPIO_DIR_OUTPUT);
-; 205  : 	// test GPIO 
-; 206  : 	GPIOClrBit(hGPIO,15); // BT_EN
+; 209  : 	GPIOSetMode(hGPIO, 15,GPIO_DIR_OUTPUT);
 
-  00164	e3a0100f	 mov         r1, #0xF
-  00168	e1a04000	 mov         r4, r0
-  0016c	eb000000	 bl          GPIOClrBit
+  00168	e3a02000	 mov         r2, #0
+  0016c	e3a0100f	 mov         r1, #0xF
+  00170	e1a00004	 mov         r0, r4
+  00174	eb000000	 bl          GPIOSetMode
 
-; 207  : 	GPIOSetMode(hGPIO, 15,GPIO_DIR_OUTPUT);
+; 210  : 	GPIOClrBit(hGPIO,136); // VIBRATOR
 
-  00170	e3a02000	 mov         r2, #0
-  00174	e3a0100f	 mov         r1, #0xF
-  00178	e1a00004	 mov         r0, r4
-  0017c	eb000000	 bl          GPIOSetMode
+  00178	e3a01088	 mov         r1, #0x88
+  0017c	e1a00004	 mov         r0, r4
+  00180	eb000000	 bl          GPIOClrBit
 
-; 208  : 	GPIOClrBit(hGPIO,136); // VIBRATOR
+; 211  : 	GPIOSetMode(hGPIO, 136,GPIO_DIR_OUTPUT);
 
-  00180	e3a01088	 mov         r1, #0x88
-  00184	e1a00004	 mov         r0, r4
-  00188	eb000000	 bl          GPIOClrBit
+  00184	e3a02000	 mov         r2, #0
+  00188	e3a01088	 mov         r1, #0x88
+  0018c	e1a00004	 mov         r0, r4
+  00190	eb000000	 bl          GPIOSetMode
 
-; 209  : 	GPIOSetMode(hGPIO, 136,GPIO_DIR_OUTPUT);
+; 212  :     GPIOClrBit(hGPIO,16); // WLAN_EN
 
-  0018c	e3a02000	 mov         r2, #0
-  00190	e3a01088	 mov         r1, #0x88
-  00194	e1a00004	 mov         r0, r4
-  00198	eb000000	 bl          GPIOSetMode
+  00194	e3a01010	 mov         r1, #0x10
+  00198	e1a00004	 mov         r0, r4
+  0019c	eb000000	 bl          GPIOClrBit
 
-; 210  :     GPIOClrBit(hGPIO,16); // WLAN_EN
+; 213  : 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 
-  0019c	e3a01010	 mov         r1, #0x10
-  001a0	e1a00004	 mov         r0, r4
-  001a4	eb000000	 bl          GPIOClrBit
+  001a0	e3a02000	 mov         r2, #0
+  001a4	e3a01010	 mov         r1, #0x10
+  001a8	e1a00004	 mov         r0, r4
+  001ac	eb000000	 bl          GPIOSetMode
 
-; 211  : 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
+; 214  : 	//GPIOSetBit(hGPIO,15);     // test 
+; 215  : 
+; 216  :     GPIOClrBit(hGPIO, 155);     // Keypad_LED, Ray 131112 
 
-  001a8	e3a02000	 mov         r2, #0
-  001ac	e3a01010	 mov         r1, #0x10
-  001b0	e1a00004	 mov         r0, r4
-  001b4	eb000000	 bl          GPIOSetMode
+  001b0	e3a0109b	 mov         r1, #0x9B
+  001b4	e1a00004	 mov         r0, r4
+  001b8	eb000000	 bl          GPIOClrBit
 
-; 212  : 	//GPIOSetBit(hGPIO,15);     // test 
-; 213  : 
-; 214  :     GPIOClrBit(hGPIO, 155);     // Keypad_LED, Ray 131112 
+; 217  :     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
 
-  001b8	e3a0109b	 mov         r1, #0x9B
-  001bc	e1a00004	 mov         r0, r4
-  001c0	eb000000	 bl          GPIOClrBit
+  001bc	e3a02000	 mov         r2, #0
+  001c0	e3a0109b	 mov         r1, #0x9B
+  001c4	e1a00004	 mov         r0, r4
+  001c8	eb000000	 bl          GPIOSetMode
 
-; 215  :     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
+; 218  : 
+; 219  :     GPIOSetMode( hGPIO, 184, GPIO_DIR_OUTPUT);
 
-  001c4	e3a02000	 mov         r2, #0
-  001c8	e3a0109b	 mov         r1, #0x9B
-  001cc	e1a00004	 mov         r0, r4
-  001d0	eb000000	 bl          GPIOSetMode
+  001cc	e3a02000	 mov         r2, #0
+  001d0	e3a010b8	 mov         r1, #0xB8
+  001d4	e1a00004	 mov         r0, r4
+  001d8	eb000000	 bl          GPIOSetMode
 
-; 216  :      
-; 217  : 	HotKeyInit(hTwl);           //HotKey Initial ,Ray
+; 220  :     GPIOSetMode( hGPIO, 185, GPIO_DIR_OUTPUT);
 
-  001d4	e1a00007	 mov         r0, r7
-  001d8	eb000000	 bl          HotKeyInit
+  001dc	e3a02000	 mov         r2, #0
+  001e0	e3a010b9	 mov         r1, #0xB9
+  001e4	e1a00004	 mov         r0, r4
+  001e8	eb000000	 bl          GPIOSetMode
 
-; 218  :     ghTwl = hTwl;              
-; 219  :     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
-; 220  : 
-; 221  :     //Bootstrap message(3), Ray
-; 222  :     OALLog(L"TI OMAP%x Version 0x%08x (%s)\r\n", CPU_ID(CpuRevision), CPU_REVISION(CpuRevision),        
-; 223  :         version == CPU_FAMILY_35XX_REVISION_ES_1_0 ? L"ES1.0" :
-; 224  :         version == CPU_FAMILY_35XX_REVISION_ES_2_0 ? L"ES2.0" :
-; 225  :         version == CPU_FAMILY_35XX_REVISION_ES_2_1 ? L"ES2.1" :
-; 226  :         version == CPU_FAMILY_35XX_REVISION_ES_2_0_CRC ? L"ES2.0, ID determined using CRC" :
-; 227  :         version == CPU_FAMILY_35XX_REVISION_ES_2_1_CRC ? L"ES2.1, ID determined using CRC" :
-; 228  :         version == CPU_FAMILY_35XX_REVISION_ES_3_0 ? L"ES3.0" :
-; 229  :         version == CPU_FAMILY_35XX_REVISION_ES_3_1 ? L"ES3.1" : 
-; 230  :         version == CPU_FAMILY_37XX_REVISION_ES_1_0? L"ES1.0" :
-; 231  :         version == CPU_FAMILY_37XX_REVISION_ES_1_1? L"ES1.1" :
-; 232  :         version == CPU_FAMILY_37XX_REVISION_ES_1_2? L"ES1.2" :
-; 233  :         L"Unknown" );  
+; 221  :     GPIOClrBit(hGPIO, 184); 
 
-  001dc	e59f4158	 ldr         r4, [pc, #0x158]
-  001e0	e5867200	 str         r7, [r6, #0x200]
-  001e4	e3550000	 cmp         r5, #0
-  001e8	0a000013	 beq         |$LN44@OEMPlatfor|
-  001ec	e3550001	 cmp         r5, #1
-  001f0	059f3140	 ldreq       r3, [pc, #0x140]
-  001f4	0a000018	 beq         |$LN10@OEMPlatfor|
-  001f8	e3550002	 cmp         r5, #2
-  001fc	059f3130	 ldreq       r3, [pc, #0x130]
-  00200	0a000015	 beq         |$LN10@OEMPlatfor|
-  00204	e3550003	 cmp         r5, #3
-  00208	059f3120	 ldreq       r3, [pc, #0x120]
-  0020c	0a000012	 beq         |$LN10@OEMPlatfor|
-  00210	e3550004	 cmp         r5, #4
-  00214	059f3110	 ldreq       r3, [pc, #0x110]
-  00218	0a00000f	 beq         |$LN10@OEMPlatfor|
-  0021c	e3550005	 cmp         r5, #5
-  00220	059f3100	 ldreq       r3, [pc, #0x100]
-  00224	0a00000c	 beq         |$LN10@OEMPlatfor|
-  00228	e3550006	 cmp         r5, #6
-  0022c	059f30f0	 ldreq       r3, [pc, #0xF0]
-  00230	0a000009	 beq         |$LN10@OEMPlatfor|
-  00234	e3550010	 cmp         r5, #0x10
-  00238	1a000001	 bne         |$LN13@OEMPlatfor|
-  0023c		 |$LN44@OEMPlatfor|
-  0023c	e1a03004	 mov         r3, r4
-  00240	ea000005	 b           |$LN10@OEMPlatfor|
-  00244		 |$LN13@OEMPlatfor|
-  00244	e3550011	 cmp         r5, #0x11
-  00248	059f30bc	 ldreq       r3, [pc, #0xBC]
-  0024c	0a000002	 beq         |$LN10@OEMPlatfor|
-  00250	e3550012	 cmp         r5, #0x12
-  00254	059f30ac	 ldreq       r3, [pc, #0xAC]
-  00258	159f30a0	 ldrne       r3, [pc, #0xA0]
-  0025c		 |$LN10@OEMPlatfor|
-  0025c	e59f00bc	 ldr         r0, [pc, #0xBC]
-  00260	e1a02005	 mov         r2, r5
-  00264	e1a01828	 mov         r1, r8, lsr #16
-  00268	eb000000	 bl          NKDbgPrintfW
+  001ec	e3a010b8	 mov         r1, #0xB8
+  001f0	e1a00004	 mov         r0, r4
+  001f4	eb000000	 bl          GPIOClrBit
 
-; 234  :     /* Initialize Device Prefix */
-; 235  :     if(g_CPUFamily == CPU_FAMILY_DM37XX)
+; 222  :     GPIOClrBit(hGPIO, 185); 
 
-  0026c	e5963204	 ldr         r3, [r6, #0x204]
-  00270	e3530001	 cmp         r3, #1
+  001f8	e3a010b9	 mov         r1, #0xB9
+  001fc	e1a00004	 mov         r0, r4
+  00200	eb000000	 bl          GPIOClrBit
 
-; 236  :     {
-; 237  :         gDevice_prefix = BSP_DEVICE_37xx_PREFIX;
+; 223  :     
+; 224  : 	HotKeyInit(hTwl);           //HotKey Initial ,Ray
 
-  00274	059f20a0	 ldreq       r2, [pc, #0xA0]
-  00278	0a000005	 beq         |$LN45@OEMPlatfor|
+  00204	e1a00007	 mov         r0, r7
+  00208	eb000000	 bl          HotKeyInit
 
-; 238  :     }
-; 239  :     else if (g_CPUFamily == CPU_FAMILY_OMAP35XX)
+; 225  :     ghTwl = hTwl;              
+; 226  :     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
+; 227  : 
+; 228  :     //Bootstrap message(3), Ray
+; 229  :     OALLog(L"TI OMAP%x Version 0x%08x (%s)\r\n", CPU_ID(CpuRevision), CPU_REVISION(CpuRevision),        
+; 230  :         version == CPU_FAMILY_35XX_REVISION_ES_1_0 ? L"ES1.0" :
+; 231  :         version == CPU_FAMILY_35XX_REVISION_ES_2_0 ? L"ES2.0" :
+; 232  :         version == CPU_FAMILY_35XX_REVISION_ES_2_1 ? L"ES2.1" :
+; 233  :         version == CPU_FAMILY_35XX_REVISION_ES_2_0_CRC ? L"ES2.0, ID determined using CRC" :
+; 234  :         version == CPU_FAMILY_35XX_REVISION_ES_2_1_CRC ? L"ES2.1, ID determined using CRC" :
+; 235  :         version == CPU_FAMILY_35XX_REVISION_ES_3_0 ? L"ES3.0" :
+; 236  :         version == CPU_FAMILY_35XX_REVISION_ES_3_1 ? L"ES3.1" : 
+; 237  :         version == CPU_FAMILY_37XX_REVISION_ES_1_0? L"ES1.0" :
+; 238  :         version == CPU_FAMILY_37XX_REVISION_ES_1_1? L"ES1.1" :
+; 239  :         version == CPU_FAMILY_37XX_REVISION_ES_1_2? L"ES1.2" :
+; 240  :         L"Unknown" );  
 
-  0027c	e5963204	 ldr         r3, [r6, #0x204]
-  00280	e3530000	 cmp         r3, #0
+  0020c	e59f4158	 ldr         r4, [pc, #0x158]
+  00210	e5867200	 str         r7, [r6, #0x200]
+  00214	e3550000	 cmp         r5, #0
+  00218	0a000013	 beq         |$LN44@OEMPlatfor|
+  0021c	e3550001	 cmp         r5, #1
+  00220	059f3140	 ldreq       r3, [pc, #0x140]
+  00224	0a000018	 beq         |$LN10@OEMPlatfor|
+  00228	e3550002	 cmp         r5, #2
+  0022c	059f3130	 ldreq       r3, [pc, #0x130]
+  00230	0a000015	 beq         |$LN10@OEMPlatfor|
+  00234	e3550003	 cmp         r5, #3
+  00238	059f3120	 ldreq       r3, [pc, #0x120]
+  0023c	0a000012	 beq         |$LN10@OEMPlatfor|
+  00240	e3550004	 cmp         r5, #4
+  00244	059f3110	 ldreq       r3, [pc, #0x110]
+  00248	0a00000f	 beq         |$LN10@OEMPlatfor|
+  0024c	e3550005	 cmp         r5, #5
+  00250	059f3100	 ldreq       r3, [pc, #0x100]
+  00254	0a00000c	 beq         |$LN10@OEMPlatfor|
+  00258	e3550006	 cmp         r5, #6
+  0025c	059f30f0	 ldreq       r3, [pc, #0xF0]
+  00260	0a000009	 beq         |$LN10@OEMPlatfor|
+  00264	e3550010	 cmp         r5, #0x10
+  00268	1a000001	 bne         |$LN13@OEMPlatfor|
+  0026c		 |$LN44@OEMPlatfor|
+  0026c	e1a03004	 mov         r3, r4
+  00270	ea000005	 b           |$LN10@OEMPlatfor|
+  00274		 |$LN13@OEMPlatfor|
+  00274	e3550011	 cmp         r5, #0x11
+  00278	059f30bc	 ldreq       r3, [pc, #0xBC]
+  0027c	0a000002	 beq         |$LN10@OEMPlatfor|
+  00280	e3550012	 cmp         r5, #0x12
+  00284	059f30ac	 ldreq       r3, [pc, #0xAC]
+  00288	159f30a0	 ldrne       r3, [pc, #0xA0]
+  0028c		 |$LN10@OEMPlatfor|
+  0028c	e59f00bc	 ldr         r0, [pc, #0xBC]
+  00290	e1a02005	 mov         r2, r5
+  00294	e1a01828	 mov         r1, r8, lsr #16
+  00298	eb000000	 bl          NKDbgPrintfW
 
-; 240  :     {
-; 241  :         gDevice_prefix = BSP_DEVICE_35xx_PREFIX;
-; 242  :     }
-; 243  :     else
-; 244  :     {
-; 245  :         OALLog(L"INFO: UnKnown CPU family:%d....\r\n", g_CPUFamily);
+; 241  :     /* Initialize Device Prefix */
+; 242  :     if(g_CPUFamily == CPU_FAMILY_DM37XX)
 
-  00284	15961204	 ldrne       r1, [r6, #0x204]
-  00288	159f0088	 ldrne       r0, [pc, #0x88]
-  0028c	1b000000	 blne        NKDbgPrintfW
+  0029c	e5963204	 ldr         r3, [r6, #0x204]
+  002a0	e3530001	 cmp         r3, #1
 
-; 246  :         gDevice_prefix = BSP_DEVICE_35xx_PREFIX;
+; 243  :     {
+; 244  :         gDevice_prefix = BSP_DEVICE_37xx_PREFIX;
 
-  00290	e59f207c	 ldr         r2, [pc, #0x7C]
-  00294		 |$LN45@OEMPlatfor|
-  00294	e59f3074	 ldr         r3, [pc, #0x74]
+  002a4	059f20a0	 ldreq       r2, [pc, #0xA0]
+  002a8	0a000005	 beq         |$LN45@OEMPlatfor|
 
-; 247  :     }
-; 248  :     version = TWLReadIDCode(hTwl);
+; 245  :     }
+; 246  :     else if (g_CPUFamily == CPU_FAMILY_OMAP35XX)
 
-  00298	e1a00007	 mov         r0, r7
-  0029c	e5832000	 str         r2, [r3]
-  002a0	eb000000	 bl          TWLReadIDCode
-  002a4	e1b01000	 movs        r1, r0
+  002ac	e5963204	 ldr         r3, [r6, #0x204]
+  002b0	e3530000	 cmp         r3, #0
 
-; 249  : 
-; 250  :     //Bootstrap message(4), Ray
-; 251  :     OALLog(L"TPS659XX Version 0x%02x (%s)\r\n", version,
-; 252  :         version == 0x00 ? L"ES1.0" : 
-; 253  :         version == 0x10 ? L"ES1.1" : 
-; 254  :         version == 0x20 ? L"ES1.2" : 
-; 255  :         version == 0x30 ? L"ES1.3" : L"Unknown" );
+; 247  :     {
+; 248  :         gDevice_prefix = BSP_DEVICE_35xx_PREFIX;
+; 249  :     }
+; 250  :     else
+; 251  :     {
+; 252  :         OALLog(L"INFO: UnKnown CPU family:%d....\r\n", g_CPUFamily);
 
-  002a8	0a000008	 beq         |$LN30@OEMPlatfor|
-  002ac	e3510010	 cmp         r1, #0x10
-  002b0	059f4054	 ldreq       r4, [pc, #0x54]
-  002b4	0a000005	 beq         |$LN30@OEMPlatfor|
-  002b8	e3510020	 cmp         r1, #0x20
-  002bc	059f4044	 ldreq       r4, [pc, #0x44]
-  002c0	0a000002	 beq         |$LN30@OEMPlatfor|
-  002c4	e3510030	 cmp         r1, #0x30
-  002c8	059f4034	 ldreq       r4, [pc, #0x34]
-  002cc	159f402c	 ldrne       r4, [pc, #0x2C]
-  002d0		 |$LN30@OEMPlatfor|
-  002d0	e59f0024	 ldr         r0, [pc, #0x24]
-  002d4	e1a02004	 mov         r2, r4
-  002d8	eb000000	 bl          NKDbgPrintfW
+  002b4	15961204	 ldrne       r1, [r6, #0x204]
+  002b8	159f0088	 ldrne       r0, [pc, #0x88]
+  002bc	1b000000	 blne        NKDbgPrintfW
 
-; 256  : 	
-; 257  :     g_ecctype = (UCHAR)dwEbootECCtype;
+; 253  :         gDevice_prefix = BSP_DEVICE_35xx_PREFIX;
 
-  002dc	e5992000	 ldr         r2, [r9]
-  002e0	e59f3010	 ldr         r3, [pc, #0x10]
+  002c0	e59f207c	 ldr         r2, [pc, #0x7C]
+  002c4		 |$LN45@OEMPlatfor|
+  002c4	e59f3074	 ldr         r3, [pc, #0x74]
 
-; 258  : 
-; 259  : 	//Bootstrap message(5), Ray
-; 260  : 	//HotKeyFunction(hTwl);   // Function Locate is right? would to changes it.      
-; 261  : 	//GPIOClrBit(hGPIO,15); // test high puls 20ms
-; 262  :     // Done
-; 263  :     return TRUE;
+; 254  :     }
+; 255  :     version = TWLReadIDCode(hTwl);
 
-  002e4	e3a00001	 mov         r0, #1
-  002e8	e5c32000	 strb        r2, [r3]
+  002c8	e1a00007	 mov         r0, r7
+  002cc	e5832000	 str         r2, [r3]
+  002d0	eb000000	 bl          TWLReadIDCode
+  002d4	e1b01000	 movs        r1, r0
 
-; 264  : }
+; 256  : 
+; 257  :     //Bootstrap message(4), Ray
+; 258  :     OALLog(L"TPS659XX Version 0x%02x (%s)\r\n", version,
+; 259  :         version == 0x00 ? L"ES1.0" : 
+; 260  :         version == 0x10 ? L"ES1.1" : 
+; 261  :         version == 0x20 ? L"ES1.2" : 
+; 262  :         version == 0x30 ? L"ES1.3" : L"Unknown" );
 
-  002ec	e28dd008	 add         sp, sp, #8
-  002f0	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  002f4	e12fff1e	 bx          lr
-  002f8		 |$LN50@OEMPlatfor|
-  002f8		 |$LN51@OEMPlatfor|
-  002f8	00000000	 DCD         |g_ecctype|
-  002fc		 |$LN52@OEMPlatfor|
-  002fc	00000000	 DCD         |??_C@_1DO@MGHPPPEE@?$AAT?$AAP?$AAS?$AA6?$AA5?$AA9?$AAX?$AAX?$AA?5?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA2?$AAx?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  00300		 |$LN53@OEMPlatfor|
-  00300	00000000	 DCD         |??_C@_1BA@LEPJIIOK@?$AAU?$AAn?$AAk?$AAn?$AAo?$AAw?$AAn?$AA?$AA@|
-  00304		 |$LN54@OEMPlatfor|
-  00304	00000000	 DCD         |??_C@_1M@OIJGKENB@?$AAE?$AAS?$AA1?$AA?4?$AA3?$AA?$AA@|
-  00308		 |$LN55@OEMPlatfor|
-  00308	00000000	 DCD         |??_C@_1M@FACKMDLE@?$AAE?$AAS?$AA1?$AA?4?$AA2?$AA?$AA@|
-  0030c		 |$LN56@OEMPlatfor|
-  0030c	00000000	 DCD         |??_C@_1M@ECJPGMFK@?$AAE?$AAS?$AA1?$AA?4?$AA1?$AA?$AA@|
-  00310		 |$LN57@OEMPlatfor|
-  00310	00000000	 DCD         |gDevice_prefix|
-  00314		 |$LN58@OEMPlatfor|
-  00314	00000000	 DCD         |??_C@_08DGJGOJCE@EVM3530?9?$AA@|
-  00318		 |$LN59@OEMPlatfor|
-  00318	00000000	 DCD         |??_C@_1EE@KGKCAFPP@?$AAI?$AAN?$AAF?$AAO?$AA?3?$AA?5?$AAU?$AAn?$AAK?$AAn?$AAo?$AAw?$AAn?$AA?5?$AAC?$AAP?$AAU?$AA?5?$AAf?$AAa?$AAm?$AAi?$AAl?$AAy?$AA?3?$AA?$CF?$AAd?$AA?4?$AA?4?$AA?4?$AA?4?$AA?$AN@|
-  0031c		 |$LN60@OEMPlatfor|
-  0031c	00000000	 DCD         |??_C@_07BFNEHID@Z2170P?9?$AA@|
-  00320		 |$LN61@OEMPlatfor|
-  00320	00000000	 DCD         |??_C@_1EA@CNLHEJHC@?$AAT?$AAI?$AA?5?$AAO?$AAM?$AAA?$AAP?$AA?$CF?$AAx?$AA?5?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
-  00324		 |$LN62@OEMPlatfor|
-  00324	00000000	 DCD         |??_C@_1M@LKGLCH@?$AAE?$AAS?$AA3?$AA?4?$AA1?$AA?$AA@|
-  00328		 |$LN63@OEMPlatfor|
-  00328	00000000	 DCD         |??_C@_1M@LIAGAMEC@?$AAE?$AAS?$AA3?$AA?4?$AA0?$AA?$AA@|
-  0032c		 |$LN64@OEMPlatfor|
-  0032c	00000000	 DCD         |??_C@_1DO@OPHFFOFA@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?0?$AA?5?$AAI?$AAD?$AA?5?$AAd?$AAe?$AAt?$AAe?$AAr?$AAm?$AAi?$AAn?$AAe?$AAd?$AA?5?$AAu?$AAs?$AAi?$AAn?$AAg?$AA?5?$AAC?$AAR?$AAC?$AA?$AA@|
-  00330		 |$LN65@OEMPlatfor|
-  00330	00000000	 DCD         |??_C@_1DO@OONAPHOG@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?0?$AA?5?$AAI?$AAD?$AA?5?$AAd?$AAe?$AAt?$AAe?$AAr?$AAm?$AAi?$AAn?$AAe?$AAd?$AA?5?$AAu?$AAs?$AAi?$AAn?$AAg?$AA?5?$AAC?$AAR?$AAC?$AA?$AA@|
-  00334		 |$LN66@OEMPlatfor|
-  00334	00000000	 DCD         |??_C@_1M@MMBAGLLJ@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?$AA@|
-  00338		 |$LN67@OEMPlatfor|
-  00338	00000000	 DCD         |??_C@_1M@HEKMAMNM@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?$AA@|
-  0033c		 |$LN68@OEMPlatfor|
-  0033c	00000000	 DCD         |??_C@_1M@PKCDALDP@?$AAE?$AAS?$AA1?$AA?4?$AA0?$AA?$AA@|
-  00340		 |$LN69@OEMPlatfor|
-  00340	00000000	 DCD         |dwEbootECCtype|
-  00344		 |$LN70@OEMPlatfor|
-  00344	00000000	 DCD         |?allocationPool@?1??OEMPlatformInit@@9@9|
-  00348		 |$LN71@OEMPlatfor|
-  00348	00000000	 DCD         |??_C@_1CC@DJCPIFGO@?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA0?$AA?4?$AA0?$AA?4?$AA1?$AA?$AN?$AA?6?$AA?$AA@|
-  0034c		 |$LN72@OEMPlatfor|
-  0034c	00000000	 DCD         |??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@|
-  00350		 |$LN73@OEMPlatfor|
-  00350	00000000	 DCD         |??_C@_0M@OCECFEGB@Nov?522?52013?$AA@|
-  00354		 |$LN74@OEMPlatfor|
-  00354	00000000	 DCD         |??_C@_08JIGGJAPD@17?338?327?$AA@|
-  00358		 |$M48205|
+  002d8	0a000008	 beq         |$LN30@OEMPlatfor|
+  002dc	e3510010	 cmp         r1, #0x10
+  002e0	059f4054	 ldreq       r4, [pc, #0x54]
+  002e4	0a000005	 beq         |$LN30@OEMPlatfor|
+  002e8	e3510020	 cmp         r1, #0x20
+  002ec	059f4044	 ldreq       r4, [pc, #0x44]
+  002f0	0a000002	 beq         |$LN30@OEMPlatfor|
+  002f4	e3510030	 cmp         r1, #0x30
+  002f8	059f4034	 ldreq       r4, [pc, #0x34]
+  002fc	159f402c	 ldrne       r4, [pc, #0x2C]
+  00300		 |$LN30@OEMPlatfor|
+  00300	e59f0024	 ldr         r0, [pc, #0x24]
+  00304	e1a02004	 mov         r2, r4
+  00308	eb000000	 bl          NKDbgPrintfW
+
+; 263  : 	
+; 264  :     g_ecctype = (UCHAR)dwEbootECCtype;
+
+  0030c	e5992000	 ldr         r2, [r9]
+  00310	e59f3010	 ldr         r3, [pc, #0x10]
+
+; 265  : 
+; 266  : 	//Bootstrap message(5), Ray
+; 267  : 	//HotKeyFunction(hTwl);   // Function Locate is right? would to changes it.      
+; 268  : 	//GPIOClrBit(hGPIO,15); // test high puls 20ms
+; 269  :     // Done
+; 270  :     return TRUE;
+
+  00314	e3a00001	 mov         r0, #1
+  00318	e5c32000	 strb        r2, [r3]
+
+; 271  : }
+
+  0031c	e28dd008	 add         sp, sp, #8
+  00320	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  00324	e12fff1e	 bx          lr
+  00328		 |$LN50@OEMPlatfor|
+  00328		 |$LN51@OEMPlatfor|
+  00328	00000000	 DCD         |g_ecctype|
+  0032c		 |$LN52@OEMPlatfor|
+  0032c	00000000	 DCD         |??_C@_1DO@MGHPPPEE@?$AAT?$AAP?$AAS?$AA6?$AA5?$AA9?$AAX?$AAX?$AA?5?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA2?$AAx?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  00330		 |$LN53@OEMPlatfor|
+  00330	00000000	 DCD         |??_C@_1BA@LEPJIIOK@?$AAU?$AAn?$AAk?$AAn?$AAo?$AAw?$AAn?$AA?$AA@|
+  00334		 |$LN54@OEMPlatfor|
+  00334	00000000	 DCD         |??_C@_1M@OIJGKENB@?$AAE?$AAS?$AA1?$AA?4?$AA3?$AA?$AA@|
+  00338		 |$LN55@OEMPlatfor|
+  00338	00000000	 DCD         |??_C@_1M@FACKMDLE@?$AAE?$AAS?$AA1?$AA?4?$AA2?$AA?$AA@|
+  0033c		 |$LN56@OEMPlatfor|
+  0033c	00000000	 DCD         |??_C@_1M@ECJPGMFK@?$AAE?$AAS?$AA1?$AA?4?$AA1?$AA?$AA@|
+  00340		 |$LN57@OEMPlatfor|
+  00340	00000000	 DCD         |gDevice_prefix|
+  00344		 |$LN58@OEMPlatfor|
+  00344	00000000	 DCD         |??_C@_08DGJGOJCE@EVM3530?9?$AA@|
+  00348		 |$LN59@OEMPlatfor|
+  00348	00000000	 DCD         |??_C@_1EE@KGKCAFPP@?$AAI?$AAN?$AAF?$AAO?$AA?3?$AA?5?$AAU?$AAn?$AAK?$AAn?$AAo?$AAw?$AAn?$AA?5?$AAC?$AAP?$AAU?$AA?5?$AAf?$AAa?$AAm?$AAi?$AAl?$AAy?$AA?3?$AA?$CF?$AAd?$AA?4?$AA?4?$AA?4?$AA?4?$AA?$AN@|
+  0034c		 |$LN60@OEMPlatfor|
+  0034c	00000000	 DCD         |??_C@_07BFNEHID@Z2170P?9?$AA@|
+  00350		 |$LN61@OEMPlatfor|
+  00350	00000000	 DCD         |??_C@_1EA@CNLHEJHC@?$AAT?$AAI?$AA?5?$AAO?$AAM?$AAA?$AAP?$AA?$CF?$AAx?$AA?5?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?5?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
+  00354		 |$LN62@OEMPlatfor|
+  00354	00000000	 DCD         |??_C@_1M@LKGLCH@?$AAE?$AAS?$AA3?$AA?4?$AA1?$AA?$AA@|
+  00358		 |$LN63@OEMPlatfor|
+  00358	00000000	 DCD         |??_C@_1M@LIAGAMEC@?$AAE?$AAS?$AA3?$AA?4?$AA0?$AA?$AA@|
+  0035c		 |$LN64@OEMPlatfor|
+  0035c	00000000	 DCD         |??_C@_1DO@OPHFFOFA@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?0?$AA?5?$AAI?$AAD?$AA?5?$AAd?$AAe?$AAt?$AAe?$AAr?$AAm?$AAi?$AAn?$AAe?$AAd?$AA?5?$AAu?$AAs?$AAi?$AAn?$AAg?$AA?5?$AAC?$AAR?$AAC?$AA?$AA@|
+  00360		 |$LN65@OEMPlatfor|
+  00360	00000000	 DCD         |??_C@_1DO@OONAPHOG@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?0?$AA?5?$AAI?$AAD?$AA?5?$AAd?$AAe?$AAt?$AAe?$AAr?$AAm?$AAi?$AAn?$AAe?$AAd?$AA?5?$AAu?$AAs?$AAi?$AAn?$AAg?$AA?5?$AAC?$AAR?$AAC?$AA?$AA@|
+  00364		 |$LN66@OEMPlatfor|
+  00364	00000000	 DCD         |??_C@_1M@MMBAGLLJ@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?$AA@|
+  00368		 |$LN67@OEMPlatfor|
+  00368	00000000	 DCD         |??_C@_1M@HEKMAMNM@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?$AA@|
+  0036c		 |$LN68@OEMPlatfor|
+  0036c	00000000	 DCD         |??_C@_1M@PKCDALDP@?$AAE?$AAS?$AA1?$AA?4?$AA0?$AA?$AA@|
+  00370		 |$LN69@OEMPlatfor|
+  00370	00000000	 DCD         |dwEbootECCtype|
+  00374		 |$LN70@OEMPlatfor|
+  00374	00000000	 DCD         |?allocationPool@?1??OEMPlatformInit@@9@9|
+  00378		 |$LN71@OEMPlatfor|
+  00378	00000000	 DCD         |??_C@_1CC@DJCPIFGO@?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA0?$AA?4?$AA0?$AA?4?$AA1?$AA?$AN?$AA?6?$AA?$AA@|
+  0037c		 |$LN72@OEMPlatfor|
+  0037c	00000000	 DCD         |??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@|
+  00380		 |$LN73@OEMPlatfor|
+  00380	00000000	 DCD         |??_C@_0M@OAEFAAJL@Nov?529?52013?$AA@|
+  00384		 |$LN74@OEMPlatfor|
+  00384	00000000	 DCD         |??_C@_08OCNFBKNE@18?303?341?$AA@|
+  00388		 |$M48211|
 
 			 ENDP  ; |OEMPlatformInit|
 
 	EXPORT	|??_C@_1GG@GNNPKEFL@?$AAI?$AAN?$AAF?$AAO?$AA?3?$AA?5?$AAO?$AAE?$AAM?$AAP?$AAl?$AAa?$AAt?$AAf?$AAo?$AAr?$AAm?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AA?5?$AAD?$AAi?$AAs?$AAa?$AAb@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48241| DCD	|$LN8@OEMPlatfor@2|
+|$T48247| DCD	|$LN8@OEMPlatfor@2|
 	DCD	0x40003c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1207,140 +1238,140 @@
 
   00000		 |OEMPlatformDeinit| PROC
 
-; 271  : {
+; 278  : {
 
   00000		 |$LN8@OEMPlatfor@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48238|
+  00004		 |$M48244|
   00004	e3a03312	 mov         r3, #0x12, 6
 
-; 272  :     OMAP_GPTIMER_REGS *pTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
+; 279  :     OMAP_GPTIMER_REGS *pTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
 
   00008	e38309c6	 orr         r0, r3, #0xC6, 18
   0000c	e3a01000	 mov         r1, #0
   00010	eb000000	 bl          OALPAtoVA
 
-; 273  : 
-; 274  :     // Soft reset GPTIMER
-; 275  :     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET);
+; 280  : 
+; 281  :     // Soft reset GPTIMER
+; 282  :     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET);
 
   00014	e3a03002	 mov         r3, #2
   00018	e5803010	 str         r3, [r0, #0x10]
   0001c		 |$LL2@OEMPlatfor@2|
 
-; 276  :     // While until done
-; 277  :     while ((INREG32(&pTimerRegs->TISTAT) & GPTIMER_TISTAT_RESETDONE) == 0);
+; 283  :     // While until done
+; 284  :     while ((INREG32(&pTimerRegs->TISTAT) & GPTIMER_TISTAT_RESETDONE) == 0);
 
   0001c	e5903014	 ldr         r3, [r0, #0x14]
   00020	e3130001	 tst         r3, #1
   00024	0afffffc	 beq         |$LL2@OEMPlatfor@2|
 
-; 278  : 
-; 279  : 	// Disable device clocks that were used by the bootloader
-; 280  : 	OALLog(L"INFO: OEMPlatformDeinit -  Disable device clocks\r\n");
+; 285  : 
+; 286  : 	// Disable device clocks that were used by the bootloader
+; 287  : 	OALLog(L"INFO: OEMPlatformDeinit -  Disable device clocks\r\n");
 
   00028	e59f00bc	 ldr         r0, [pc, #0xBC]
   0002c	eb000000	 bl          NKDbgPrintfW
 
-; 281  :     EnableDeviceClocks(OMAP_DEVICE_GPIO1,FALSE);
+; 288  :     EnableDeviceClocks(OMAP_DEVICE_GPIO1,FALSE);
 
   00030	e3a01000	 mov         r1, #0
   00034	e3a00029	 mov         r0, #0x29
   00038	eb000000	 bl          EnableDeviceClocks
 
-; 282  :     EnableDeviceClocks(OMAP_DEVICE_GPIO2,FALSE);
+; 289  :     EnableDeviceClocks(OMAP_DEVICE_GPIO2,FALSE);
 
   0003c	e3a01000	 mov         r1, #0
   00040	e3a0002d	 mov         r0, #0x2D
   00044	eb000000	 bl          EnableDeviceClocks
 
-; 283  :     EnableDeviceClocks(OMAP_DEVICE_GPIO3,FALSE);
+; 290  :     EnableDeviceClocks(OMAP_DEVICE_GPIO3,FALSE);
 
   00048	e3a01000	 mov         r1, #0
   0004c	e3a0002e	 mov         r0, #0x2E
   00050	eb000000	 bl          EnableDeviceClocks
 
-; 284  :     EnableDeviceClocks(OMAP_DEVICE_GPIO4,FALSE);
+; 291  :     EnableDeviceClocks(OMAP_DEVICE_GPIO4,FALSE);
 
   00054	e3a01000	 mov         r1, #0
   00058	e3a0002f	 mov         r0, #0x2F
   0005c	eb000000	 bl          EnableDeviceClocks
 
-; 285  :     EnableDeviceClocks(OMAP_DEVICE_GPIO5,FALSE);
+; 292  :     EnableDeviceClocks(OMAP_DEVICE_GPIO5,FALSE);
 
   00060	e3a01000	 mov         r1, #0
   00064	e3a00030	 mov         r0, #0x30
   00068	eb000000	 bl          EnableDeviceClocks
 
-; 286  :     EnableDeviceClocks(OMAP_DEVICE_GPIO6,FALSE);
+; 293  :     EnableDeviceClocks(OMAP_DEVICE_GPIO6,FALSE);
 
   0006c	e3a01000	 mov         r1, #0
   00070	e3a00031	 mov         r0, #0x31
   00074	eb000000	 bl          EnableDeviceClocks
 
-; 287  :     EnableDeviceClocks(OMAP_DEVICE_MCSPI1,FALSE);
+; 294  :     EnableDeviceClocks(OMAP_DEVICE_MCSPI1,FALSE);
 
   00078	e3a01000	 mov         r1, #0
   0007c	e3a0000f	 mov         r0, #0xF
   00080	eb000000	 bl          EnableDeviceClocks
 
-; 288  :     EnableDeviceClocks(OMAP_DEVICE_GPTIMER2,FALSE);
+; 295  :     EnableDeviceClocks(OMAP_DEVICE_GPTIMER2,FALSE);
 
   00084	e3a01000	 mov         r1, #0
   00088	e3a00035	 mov         r0, #0x35
   0008c	eb000000	 bl          EnableDeviceClocks
 
-; 289  :     EnableDeviceClocks(OMAP_DEVICE_UART1,FALSE);
+; 296  :     EnableDeviceClocks(OMAP_DEVICE_UART1,FALSE);
 
   00090	e3a01000	 mov         r1, #0
   00094	e3a0000a	 mov         r0, #0xA
   00098	eb000000	 bl          EnableDeviceClocks
 
-; 290  : 	EnableDeviceClocks(OMAP_DEVICE_UART2,FALSE);
+; 297  : 	EnableDeviceClocks(OMAP_DEVICE_UART2,FALSE);
 
   0009c	e3a01000	 mov         r1, #0
   000a0	e3a0000b	 mov         r0, #0xB
   000a4	eb000000	 bl          EnableDeviceClocks
 
-; 291  :     EnableDeviceClocks(OMAP_DEVICE_UART3,FALSE);
+; 298  :     EnableDeviceClocks(OMAP_DEVICE_UART3,FALSE);
 
   000a8	e3a01000	 mov         r1, #0
   000ac	e3a0003d	 mov         r0, #0x3D
   000b0	eb000000	 bl          EnableDeviceClocks
 
-; 292  :     EnableDeviceClocks(OMAP_DEVICE_MMC1,FALSE);
+; 299  :     EnableDeviceClocks(OMAP_DEVICE_MMC1,FALSE);
 
   000b4	e3a01000	 mov         r1, #0
   000b8	e3a00015	 mov         r0, #0x15
   000bc	eb000000	 bl          EnableDeviceClocks
 
-; 293  :     EnableDeviceClocks(OMAP_DEVICE_MMC2,FALSE);
+; 300  :     EnableDeviceClocks(OMAP_DEVICE_MMC2,FALSE);
 
   000c0	e3a01000	 mov         r1, #0
   000c4	e3a00016	 mov         r0, #0x16
   000c8	eb000000	 bl          EnableDeviceClocks
 
-; 294  :     EnableDeviceClocks(OMAP_DEVICE_I2C1,FALSE);
+; 301  :     EnableDeviceClocks(OMAP_DEVICE_I2C1,FALSE);
 
   000cc	e3a01000	 mov         r1, #0
   000d0	e3a0000c	 mov         r0, #0xC
   000d4	eb000000	 bl          EnableDeviceClocks
 
-; 295  :     //EnableDeviceClocks(OMAP_DEVICE_I2C2,FALSE);
-; 296  :     EnableDeviceClocks(OMAP_DEVICE_I2C3,FALSE);
+; 302  :     //EnableDeviceClocks(OMAP_DEVICE_I2C2,FALSE);
+; 303  :     EnableDeviceClocks(OMAP_DEVICE_I2C3,FALSE);
 
   000d8	e3a01000	 mov         r1, #0
   000dc	e3a0000e	 mov         r0, #0xE
   000e0	eb000000	 bl          EnableDeviceClocks
 
-; 297  : }
+; 304  : }
 
   000e4	e49de004	 ldr         lr, [sp], #4
   000e8	e12fff1e	 bx          lr
   000ec		 |$LN9@OEMPlatfor@2|
   000ec		 |$LN10@OEMPlatfor@2|
   000ec	00000000	 DCD         |??_C@_1GG@GNNPKEFL@?$AAI?$AAN?$AAF?$AAO?$AA?3?$AA?5?$AAO?$AAE?$AAM?$AAP?$AAl?$AAa?$AAt?$AAf?$AAo?$AAr?$AAm?$AAD?$AAe?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AA?5?$AAD?$AAi?$AAs?$AAa?$AAb@|
-  000f0		 |$M48239|
+  000f0		 |$M48245|
 
 			 ENDP  ; |OEMPlatformDeinit|
 
@@ -1364,11 +1395,11 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48280| DCD	|$LN43@OEMMultiBi|
+|$T48286| DCD	|$LN43@OEMMultiBi|
 	DCD	0xc0009702
 
   00000			 AREA	 |.xdata|, DATA
-|$T48276| DCD	0xffffffdc
+|$T48282| DCD	0xffffffdc
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CK@FDDKFJJE@?$AA?9?$AAO?$AAE?$AAM?$AAM?$AAu?$AAl?$AAt?$AAi?$AAB?$AAi?$AAn?$AAN?$AAo?$AAt?$AAi?$AAf?$AAy?$AA?$AN?$AA?6?$AA?$AA@| DCB "-"
@@ -1451,51 +1482,51 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T48276|
+  00004	00000000	 DCD         |$T48282|
 
   00008		 |OEMMultiBinNotify| PROC
 
-; 781  : {
+; 788  : {
 
   00008		 |$LN43@OEMMultiBi|
   00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   0000c	e24ddf43	 sub         sp, sp, #0x43, 30
-  00010		 |$M48277|
+  00010		 |$M48283|
   00010	e1a06000	 mov         r6, r0
   00014	e59f3244	 ldr         r3, [pc, #0x244]
   00018	e5933000	 ldr         r3, [r3]
   0001c	e58d3108	 str         r3, [sp, #0x108]
   00020	e3a03102	 mov         r3, #2, 2
 
-; 782  :     BOOL rc = FALSE;
-; 783  :     UINT32 base = OALVAtoPA((UCHAR*)IMAGE_WINCE_CODE_CA);
+; 789  :     BOOL rc = FALSE;
+; 790  :     UINT32 base = OALVAtoPA((UCHAR*)IMAGE_WINCE_CODE_CA);
 
   00024	e3830a02	 orr         r0, r3, #2, 20
   00028	eb000000	 bl          OALVAtoPA
   0002c	e1a0a000	 mov         r10, r0
 
-; 784  :     UINT32 start, length;
-; 785  :     UINT32 ix;
-; 786  : 
-; 787  :     //OALMSG(OAL_INFO, (L"+OEMMultiBinNotify(0x%08x -> %d)\r\n", pInfo, pInfo->dwNumRegions));
-; 788  :     OALMSG(1, (L"Download file information:\r\n"));
+; 791  :     UINT32 start, length;
+; 792  :     UINT32 ix;
+; 793  : 
+; 794  :     //OALMSG(OAL_INFO, (L"+OEMMultiBinNotify(0x%08x -> %d)\r\n", pInfo, pInfo->dwNumRegions));
+; 795  :     OALMSG(1, (L"Download file information:\r\n"));
 
   00030	e59f0224	 ldr         r0, [pc, #0x224]
   00034	eb000000	 bl          NKDbgPrintfW
 
-; 789  :     OALMSG(1, (L"-----------------------------------------------------------\r\n"));
+; 796  :     OALMSG(1, (L"-----------------------------------------------------------\r\n"));
 
   00038	e59f0210	 ldr         r0, [pc, #0x210]
   0003c	eb000000	 bl          NKDbgPrintfW
 
-; 790  : 
-; 791  :     // Copy information to EBOOT structure and set also save address
-; 792  :     g_eboot.numRegions = pInfo->dwNumRegions;
+; 797  : 
+; 798  :     // Copy information to EBOOT structure and set also save address
+; 799  :     g_eboot.numRegions = pInfo->dwNumRegions;
 
   00040	e59f5210	 ldr         r5, [pc, #0x210]
   00044	e5963000	 ldr         r3, [r6]
 
-; 793  :     for (ix = 0; ix < pInfo->dwNumRegions; ix++)
+; 800  :     for (ix = 0; ix < pInfo->dwNumRegions; ix++)
 
   00048	e3a09000	 mov         r9, #0
   0004c	e5853008	 str         r3, [r5, #8]
@@ -1503,19 +1534,19 @@
   00054	e3530000	 cmp         r3, #0
   00058	9a000014	 bls         |$LN22@OEMMultiBi|
 
-; 794  : 	{
-; 795  :         g_eboot.region[ix].start = pInfo->Region[ix].dwRegionStart;
+; 801  : 	{
+; 802  :         g_eboot.region[ix].start = pInfo->Region[ix].dwRegionStart;
 
   0005c	e1a07005	 mov         r7, r5
   00060	e1a08006	 mov         r8, r6
   00064		 |$LL24@OEMMultiBi|
   00064	e5983004	 ldr         r3, [r8, #4]
 
-; 796  :         g_eboot.region[ix].length = pInfo->Region[ix].dwRegionLength;
-; 797  :         g_eboot.region[ix].base = base;
-; 798  :         base += g_eboot.region[ix].length;
-; 799  :         OALMSG(1, (L"[%d]: Address=0x%08x  Length=0x%08x  Save=0x%08x\r\n",
-; 800  :             ix, g_eboot.region[ix].start, g_eboot.region[ix].length,g_eboot.region[ix].base));
+; 803  :         g_eboot.region[ix].length = pInfo->Region[ix].dwRegionLength;
+; 804  :         g_eboot.region[ix].base = base;
+; 805  :         base += g_eboot.region[ix].length;
+; 806  :         OALMSG(1, (L"[%d]: Address=0x%08x  Length=0x%08x  Save=0x%08x\r\n",
+; 807  :             ix, g_eboot.region[ix].start, g_eboot.region[ix].length,g_eboot.region[ix].base));
 
   00068	e59f01e4	 ldr         r0, [pc, #0x1E4]
   0006c	e1a0e00a	 mov         lr, r10
@@ -1537,24 +1568,24 @@
   000ac	3affffec	 bcc         |$LL24@OEMMultiBi|
   000b0		 |$LN22@OEMMultiBi|
 
-; 801  : 	}
-; 802  :     OALMSG(1, (L"-----------------------------------------------------------\r\n"));
+; 808  : 	}
+; 809  :     OALMSG(1, (L"-----------------------------------------------------------\r\n"));
 
   000b0	e59f0198	 ldr         r0, [pc, #0x198]
   000b4	eb000000	 bl          NKDbgPrintfW
 
-; 803  : 
-; 804  : #ifndef IMGMULTIXIP
-; 805  : 
-; 806  :     //Determine type of image downloaded
-; 807  :     if (g_eboot.numRegions > 1) 
+; 810  : 
+; 811  : #ifndef IMGMULTIXIP
+; 812  : 
+; 813  :     //Determine type of image downloaded
+; 814  :     if (g_eboot.numRegions > 1) 
 
   000b8	e5953008	 ldr         r3, [r5, #8]
   000bc	e3530001	 cmp         r3, #1
   000c0	9a000005	 bls         |$LN21@OEMMultiBi|
 
-; 808  :     {
-; 809  :         OALMSG(OAL_ERROR, (L"ERROR: MultiXIP image is not supported\r\n"));
+; 815  :     {
+; 816  :         OALMSG(OAL_ERROR, (L"ERROR: MultiXIP image is not supported\r\n"));
 
   000c4	e59f3178	 ldr         r3, [pc, #0x178]
   000c8	e5933440	 ldr         r3, [r3, #0x440]
@@ -1562,92 +1593,92 @@
   000d0	0a000048	 beq         |$LN36@OEMMultiBi|
   000d4	e59f0170	 ldr         r0, [pc, #0x170]
 
-; 810  :         goto cleanUp;
+; 817  :         goto cleanUp;
 
   000d8	ea000045	 b           |$LN38@OEMMultiBi|
   000dc		 |$LN21@OEMMultiBi|
 
-; 811  :     }
-; 812  : #endif
-; 813  : 
-; 814  :     base = g_eboot.region[0].base;
-; 815  :     start = g_eboot.region[0].start;
+; 818  :     }
+; 819  : #endif
+; 820  : 
+; 821  :     base = g_eboot.region[0].base;
+; 822  :     start = g_eboot.region[0].start;
 
   000dc	e5951010	 ldr         r1, [r5, #0x10]
   000e0	e3a03101	 mov         r3, #1, 2
 
-; 816  :     length = g_eboot.region[0].length; 
-; 817  :     
-; 818  :     if (start == IMAGE_XLDR_CODE_PA)
+; 823  :     length = g_eboot.region[0].length; 
+; 824  :     
+; 825  :     if (start == IMAGE_XLDR_CODE_PA)
 
   000e4	e3833602	 orr         r3, r3, #2, 12
   000e8	e1510003	 cmp         r1, r3
   000ec	e5950018	 ldr         r0, [r5, #0x18]
   000f0	e5954014	 ldr         r4, [r5, #0x14]
 
-; 819  : 	{
-; 820  :         g_eboot.type = DOWNLOAD_TYPE_XLDR;
+; 826  : 	{
+; 827  :         g_eboot.type = DOWNLOAD_TYPE_XLDR;
 
   000f4	03a03003	 moveq       r3, #3
   000f8	0a00000e	 beq         |$LN40@OEMMultiBi|
 
-; 821  :         memset(OALPAtoCA(base), 0xFF, length);
+; 828  :         memset(OALPAtoCA(base), 0xFF, length);
 
   000fc	e3a03487	 mov         r3, #0x87, 8
 
-; 822  : 	} 
-; 823  :     else if (start == IMAGE_EBOOT_CODE_CA)
+; 829  : 	} 
+; 830  :     else if (start == IMAGE_EBOOT_CODE_CA)
 
   00100	e383360e	 orr         r3, r3, #0xE, 12
   00104	e1510003	 cmp         r1, r3
 
-; 824  : 	{
-; 825  :         g_eboot.type = DOWNLOAD_TYPE_EBOOT;
+; 831  : 	{
+; 832  :         g_eboot.type = DOWNLOAD_TYPE_EBOOT;
 
   00108	03a03004	 moveq       r3, #4
   0010c	0a000009	 beq         |$LN40@OEMMultiBi|
 
-; 826  :         memset(OALPAtoCA(base), 0xFF, length);
+; 833  :         memset(OALPAtoCA(base), 0xFF, length);
 
   00110	e3a03103	 mov         r3, #3, 2
 
-; 827  : 	}
-; 828  :     else if (start == (IMAGE_WINCE_CODE_CA + NAND_ROMOFFSET))
+; 834  : 	}
+; 835  :     else if (start == (IMAGE_WINCE_CODE_CA + NAND_ROMOFFSET))
 
   00114	e3833a02	 orr         r3, r3, #2, 20
   00118	e1510003	 cmp         r1, r3
 
-; 829  : 	{
-; 830  :         g_eboot.type = DOWNLOAD_TYPE_FLASHNAND;
+; 836  : 	{
+; 837  :         g_eboot.type = DOWNLOAD_TYPE_FLASHNAND;
 
   0011c	03a03006	 moveq       r3, #6
   00120	0a000004	 beq         |$LN40@OEMMultiBi|
 
-; 831  :         memset(OALPAtoCA(base), 0xFF, length);
+; 838  :         memset(OALPAtoCA(base), 0xFF, length);
 
   00124	e3a0320e	 mov         r3, #0xE, 4
 
-; 832  : 	} 
-; 833  : #ifdef IMGMULTIXIP
-; 834  :     else if (start == (IMAGE_WINCE_EXT_CA))
-; 835  : 	{
-; 836  :         g_eboot.type = DOWNLOAD_TYPE_EXT;
-; 837  :         memset(OALPAtoCA(base), 0xFF, length);
-; 838  : 	} 
-; 839  : #endif	
-; 840  :     else if (start == (IMAGE_WINCE_CODE_CA + NOR_ROMOFFSET))
+; 839  : 	} 
+; 840  : #ifdef IMGMULTIXIP
+; 841  :     else if (start == (IMAGE_WINCE_EXT_CA))
+; 842  : 	{
+; 843  :         g_eboot.type = DOWNLOAD_TYPE_EXT;
+; 844  :         memset(OALPAtoCA(base), 0xFF, length);
+; 845  : 	} 
+; 846  : #endif	
+; 847  :     else if (start == (IMAGE_WINCE_CODE_CA + NOR_ROMOFFSET))
 
   00128	e3833a02	 orr         r3, r3, #2, 20
   0012c	e1510003	 cmp         r1, r3
   00130	1a000007	 bne         |$LN14@OEMMultiBi|
 
-; 841  : 	{
-; 842  :         g_eboot.type = DOWNLOAD_TYPE_FLASHNOR;
+; 848  : 	{
+; 849  :         g_eboot.type = DOWNLOAD_TYPE_FLASHNOR;
 
   00134	e3a03007	 mov         r3, #7
   00138		 |$LN40@OEMMultiBi|
 
-; 843  :         memset(OALPAtoCA(base), 0xFF, length);
+; 850  :         memset(OALPAtoCA(base), 0xFF, length);
 
   00138	e3a01001	 mov         r1, #1
   0013c	e5853004	 str         r3, [r5, #4]
@@ -1658,19 +1689,19 @@
   00150	ea00002d	 b           |$LN4@OEMMultiBi|
   00154		 |$LN14@OEMMultiBi|
 
-; 844  : 	} 
-; 845  : 	else if (start == 0) // Probably a NB0 file, let's fint out
+; 851  : 	} 
+; 852  : 	else if (start == 0) // Probably a NB0 file, let's fint out
 
   00154	e3510000	 cmp         r1, #0
   00158	1a000029	 bne         |$LN12@OEMMultiBi|
 
-; 846  : 	{
-; 847  : 		// Convert the file name to lower case
-; 848  : 		CHAR szFileName[MAX_PATH];
-; 849  : 		int i = 0;
-; 850  : 		int fileExtPos = 0;
-; 851  : 
-; 852  : 		while ((pInfo->Region[0].szFileName[i] != '\0') && (i < MAX_PATH))
+; 853  : 	{
+; 854  : 		// Convert the file name to lower case
+; 855  : 		CHAR szFileName[MAX_PATH];
+; 856  : 		int i = 0;
+; 857  : 		int fileExtPos = 0;
+; 858  : 
+; 859  : 		while ((pInfo->Region[0].szFileName[i] != '\0') && (i < MAX_PATH))
 
   0015c	e1d630dc	 ldrsb       r3, [r6, #0xC]
   00160	e3a00000	 mov         r0, #0
@@ -1683,35 +1714,35 @@
   00178	e3500f41	 cmp         r0, #0x41, 30
   0017c	aa00000a	 bge         |$LN37@OEMMultiBi|
 
-; 853  : 		{
-; 854  : 			if((pInfo->Region[0].szFileName[i] >= 'A') && (pInfo->Region[0].szFileName[i] <= 'Z')) 
+; 860  : 		{
+; 861  : 			if((pInfo->Region[0].szFileName[i] >= 'A') && (pInfo->Region[0].szFileName[i] <= 'Z')) 
 
   00180	e1d230dc	 ldrsb       r3, [r2, #0xC]
   00184	e3530041	 cmp         r3, #0x41
   00188	ba000001	 blt         |$LN9@OEMMultiBi|
   0018c	e353005a	 cmp         r3, #0x5A
 
-; 855  : 			{
-; 856  : 				szFileName[i] = (pInfo->Region[0].szFileName[i] - 'A' + 'a'); 
+; 862  : 			{
+; 863  : 				szFileName[i] = (pInfo->Region[0].szFileName[i] - 'A' + 'a'); 
 
   00190	d2833020	 addle       r3, r3, #0x20
   00194		 |$LN9@OEMMultiBi|
 
-; 857  : 			}
-; 858  : 			else
-; 859  : 			{
-; 860  : 				szFileName[i] = pInfo->Region[0].szFileName[i];
+; 864  : 			}
+; 865  : 			else
+; 866  : 			{
+; 867  : 				szFileName[i] = pInfo->Region[0].szFileName[i];
 
   00194	e7c13002	 strb        r3, [r1, +r2]
 
-; 861  : 			}
-; 862  : 
-; 863  : 			// Keep track of file extension position
-; 864  : 			if (szFileName[i] == '.')
-; 865  : 			{
-; 866  : 				fileExtPos = i;
-; 867  : 			}
-; 868  : 			i++;
+; 868  : 			}
+; 869  : 
+; 870  : 			// Keep track of file extension position
+; 871  : 			if (szFileName[i] == '.')
+; 872  : 			{
+; 873  : 				fileExtPos = i;
+; 874  : 			}
+; 875  : 			i++;
 
   00198	e2822001	 add         r2, r2, #1
   0019c	e1d230dc	 ldrsb       r3, [r2, #0xC]
@@ -1720,17 +1751,17 @@
   001a8	1afffff2	 bne         |$LL11@OEMMultiBi|
   001ac		 |$LN37@OEMMultiBi|
 
-; 869  : 		}
-; 870  : 
-; 871  : 		// Copy string terminator as well
-; 872  : 		szFileName[i] = pInfo->Region[0].szFileName[i];
+; 876  : 		}
+; 877  : 
+; 878  : 		// Copy string terminator as well
+; 879  : 		szFileName[i] = pInfo->Region[0].szFileName[i];
 
   001ac	e0863000	 add         r3, r6, r0
   001b0	e1d320dc	 ldrsb       r2, [r3, #0xC]
 
-; 873  : 
-; 874  : 		// Check if we support this file
-; 875  : 		if (strncmp(szFileName, LOGO_NB0_FILE, LOGO_NB0_FILE_LEN) == 0)
+; 880  : 
+; 881  : 		// Check if we support this file
+; 882  : 		if (strncmp(szFileName, LOGO_NB0_FILE, LOGO_NB0_FILE_LEN) == 0)
 
   001b4	e59f108c	 ldr         r1, [pc, #0x8C]
   001b8	e28d3004	 add         r3, sp, #4
@@ -1740,22 +1771,22 @@
   001c8	eb000000	 bl          strncmp
   001cc	e3500000	 cmp         r0, #0
 
-; 876  : 		{
-; 877  : 			// Remap the start address to the correct NAND location of the logo
-; 878  : 			g_eboot.region[0].start = IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_BOOTSEC_NAND_SIZE;
+; 883  : 		{
+; 884  : 			// Remap the start address to the correct NAND location of the logo
+; 885  : 			g_eboot.region[0].start = IMAGE_XLDR_BOOTSEC_NAND_SIZE + IMAGE_EBOOT_BOOTSEC_NAND_SIZE;
 
   001d0	03a03703	 moveq       r3, #3, 14
   001d4	05853010	 streq       r3, [r5, #0x10]
 
-; 879  : 			g_eboot.type = DOWNLOAD_TYPE_LOGO;
+; 886  : 			g_eboot.type = DOWNLOAD_TYPE_LOGO;
 
   001d8	03a03008	 moveq       r3, #8
   001dc	0a000009	 beq         |$LN39@OEMMultiBi|
 
-; 880  : 		}
-; 881  : 		else
-; 882  : 		{
-; 883  : 		    OALMSG(OAL_ERROR, (L"Unsupported downloaded file\r\n"));
+; 887  : 		}
+; 888  : 		else
+; 889  : 		{
+; 890  : 		    OALMSG(OAL_ERROR, (L"Unsupported downloaded file\r\n"));
 
   001e0	e59f305c	 ldr         r3, [pc, #0x5C]
   001e4	e5933440	 ldr         r3, [r3, #0x440]
@@ -1766,29 +1797,29 @@
   001f4	eb000000	 bl          NKDbgPrintfW
   001f8		 |$LN36@OEMMultiBi|
 
-; 893  :     
-; 894  :     rc = TRUE;
-; 895  : 
-; 896  : cleanUp:
-; 897  :     if (!rc) 
-; 898  : 	{
-; 899  :         OALMSG(1, (L"Spin for ever...\r\n"));
+; 900  :     
+; 901  :     rc = TRUE;
+; 902  : 
+; 903  : cleanUp:
+; 904  :     if (!rc) 
+; 905  : 	{
+; 906  :         OALMSG(1, (L"Spin for ever...\r\n"));
 
   001f8	e59f003c	 ldr         r0, [pc, #0x3C]
   001fc	eb000000	 bl          NKDbgPrintfW
   00200		 |$LL2@OEMMultiBi|
 
-; 900  :         for(;;);
+; 907  :         for(;;);
 
   00200	eafffffe	 b           |$LL2@OEMMultiBi|
   00204		 |$LN12@OEMMultiBi|
 
-; 884  : 			goto cleanUp;
-; 885  : 		}
-; 886  : 	}
-; 887  :     else 
-; 888  : 	{
-; 889  :         g_eboot.type = DOWNLOAD_TYPE_RAM; // 1
+; 891  : 			goto cleanUp;
+; 892  : 		}
+; 893  : 	}
+; 894  :     else 
+; 895  : 	{
+; 896  :         g_eboot.type = DOWNLOAD_TYPE_RAM; // 1
 
   00204	e3a03001	 mov         r3, #1
   00208		 |$LN39@OEMMultiBi|
@@ -1796,23 +1827,23 @@
   0020c		 |$LN4@OEMMultiBi|
   0020c	e5951004	 ldr         r1, [r5, #4]
 
-; 890  : 	}
-; 891  : 
-; 892  :     OALMSG(1, (L"Download file type: %d\r\n", g_eboot.type));
+; 897  : 	}
+; 898  : 
+; 899  :     OALMSG(1, (L"Download file type: %d\r\n", g_eboot.type));
 
   00210	e59f0020	 ldr         r0, [pc, #0x20]
   00214	eb000000	 bl          NKDbgPrintfW
 
-; 901  : 	}
-; 902  :     OALMSG(1, (L"-OEMMultiBinNotify\r\n"));
+; 908  : 	}
+; 909  :     OALMSG(1, (L"-OEMMultiBinNotify\r\n"));
 
   00218	e59f0014	 ldr         r0, [pc, #0x14]
-  0021c		 |$cleanUp$47912|
+  0021c		 |$cleanUp$47918|
   0021c	eb000000	 bl          NKDbgPrintfW
   00220	e59d0108	 ldr         r0, [sp, #0x108]
   00224	eb000000	 bl          __security_check_cookie
 
-; 903  : }
+; 910  : }
 
   00228	e28ddf43	 add         sp, sp, #0x43, 30
   0022c	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
@@ -1842,7 +1873,7 @@
   0025c	00000000	 DCD         |??_C@_1DK@OFMGKCPE@?$AAD?$AAo?$AAw?$AAn?$AAl?$AAo?$AAa?$AAd?$AA?5?$AAf?$AAi?$AAl?$AAe?$AA?5?$AAi?$AAn?$AAf?$AAo?$AAr?$AAm?$AAa?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?$AN?$AA?6?$AA?$AA@|
   00260		 |$LN56@OEMMultiBi|
   00260	00000000	 DCD         |__security_cookie|
-  00264		 |$M48278|
+  00264		 |$M48284|
 
 			 ENDP  ; |OEMMultiBinNotify|
 
@@ -1850,7 +1881,7 @@
 	EXPORT	|??_C@_1GC@BMCFFGLH@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAE?$AAM?$AAM?$AAa?$AAp?$AAM?$AAe?$AAm?$AAA?$AAd?$AAd?$AAr?$AA?3?$AA?5?$AAI?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAd?$AAo@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48308| DCD	|$LN14@OEMMapMemA|
+|$T48314| DCD	|$LN14@OEMMapMemA|
 	DCD	0x40002701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1870,19 +1901,19 @@
 
   00000		 |OEMMapMemAddr| PROC
 
-; 916  : {
+; 923  : {
 
   00000		 |$LN14@OEMMapMemA|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48305|
+  00004		 |$M48311|
   00004	e1a02001	 mov         r2, r1
 
-; 917  :     UINT8 *pAddress = NULL;
-; 918  : 
-; 919  :     //OALMSG(1, (L"+OEMMapMemAddr(0x%08x, 0x%08x)\r\n", image, address));
-; 920  :     //OALMSG(1, (L"+OEMMapMemAddr(g_eboot.type = 0x%08x)\r\n", g_eboot.type));
-; 921  :     
-; 922  :     switch (g_eboot.type) {
+; 924  :     UINT8 *pAddress = NULL;
+; 925  : 
+; 926  :     //OALMSG(1, (L"+OEMMapMemAddr(0x%08x, 0x%08x)\r\n", image, address));
+; 927  :     //OALMSG(1, (L"+OEMMapMemAddr(g_eboot.type = 0x%08x)\r\n", g_eboot.type));
+; 928  :     
+; 929  :     switch (g_eboot.type) {
 
   00008	e59f3088	 ldr         r3, [pc, #0x88]
   0000c	e3a04000	 mov         r4, #0
@@ -1901,16 +1932,16 @@
   00040	0a00000a	 beq         |$LN5@OEMMapMemA|
   00044		 |$LN1@OEMMapMemA|
 
-; 944  : 		
-; 945  : #ifdef IMGMULTIXIP
-; 946  : 	case DOWNLOAD_TYPE_EXT:
-; 947  :         pAddress = (UINT8*) (address);
-; 948  :         break;
-; 949  : #endif
-; 950  : 
-; 951  :     default:
-; 952  :         OALMSG(OAL_ERROR, (L"ERROR: OEMMapMemAddr: " L"Invalid download type %d\r\n", g_eboot.type
-; 953  :         ));
+; 951  : 		
+; 952  : #ifdef IMGMULTIXIP
+; 953  : 	case DOWNLOAD_TYPE_EXT:
+; 954  :         pAddress = (UINT8*) (address);
+; 955  :         break;
+; 956  : #endif
+; 957  : 
+; 958  :     default:
+; 959  :         OALMSG(OAL_ERROR, (L"ERROR: OEMMapMemAddr: " L"Invalid download type %d\r\n", g_eboot.type
+; 960  :         ));
 
   00044	e59f3048	 ldr         r3, [pc, #0x48]
   00048	e5933440	 ldr         r3, [r3, #0x440]
@@ -1921,60 +1952,60 @@
   0005c	ea000008	 b           |$LN11@OEMMapMemA|
   00060		 |$LN2@OEMMapMemA|
 
-; 940  : 
-; 941  : 	case DOWNLOAD_TYPE_FLASHNOR:
-; 942  :         pAddress = (UINT8*) (address - NOR_ROMOFFSET);
+; 947  : 
+; 948  : 	case DOWNLOAD_TYPE_FLASHNOR:
+; 949  :         pAddress = (UINT8*) (address - NOR_ROMOFFSET);
 
   00060	e2424206	 sub         r4, r2, #6, 4
 
-; 943  :         break;
+; 950  :         break;
 
   00064	ea000006	 b           |$LN11@OEMMapMemA|
   00068		 |$LN3@OEMMapMemA|
 
-; 935  :         break;
-; 936  : 
-; 937  :     case DOWNLOAD_TYPE_FLASHNAND:
-; 938  :         pAddress = (UINT8*) (address - NAND_ROMOFFSET);
+; 942  :         break;
+; 943  : 
+; 944  :     case DOWNLOAD_TYPE_FLASHNAND:
+; 945  :         pAddress = (UINT8*) (address - NAND_ROMOFFSET);
 
   00068	e2424101	 sub         r4, r2, #1, 2
 
-; 939  :         break;
+; 946  :         break;
 
   0006c	ea000004	 b           |$LN11@OEMMapMemA|
   00070		 |$LN5@OEMMapMemA|
 
-; 923  : 
-; 924  :         
-; 925  :     case DOWNLOAD_TYPE_XLDR: // 3
-; 926  :     case DOWNLOAD_TYPE_EBOOT:   
-; 927  : 	case DOWNLOAD_TYPE_LOGO:
-; 928  :         //  Map to scratch RAM prior to flashing
-; 929  :         pAddress = (UINT8*)g_eboot.region[0].base + (address - image);
+; 930  : 
+; 931  :         
+; 932  :     case DOWNLOAD_TYPE_XLDR: // 3
+; 933  :     case DOWNLOAD_TYPE_EBOOT:   
+; 934  : 	case DOWNLOAD_TYPE_LOGO:
+; 935  :         //  Map to scratch RAM prior to flashing
+; 936  :         pAddress = (UINT8*)g_eboot.region[0].base + (address - image);
 
   00070	e5933018	 ldr         r3, [r3, #0x18]
   00074	e0433000	 sub         r3, r3, r0
   00078	e0834002	 add         r4, r3, r2
 
-; 930  :         break;
+; 937  :         break;
 
   0007c	ea000000	 b           |$LN11@OEMMapMemA|
   00080		 |$LN4@OEMMapMemA|
 
-; 931  : 
-; 932  :     case DOWNLOAD_TYPE_RAM: // 1
-; 933  :         //  RAM based NK.BIN and EBOOT.BIN files are given in virtual memory addresses
-; 934  :         pAddress = (UINT8*)address;
+; 938  : 
+; 939  :     case DOWNLOAD_TYPE_RAM: // 1
+; 940  :         //  RAM based NK.BIN and EBOOT.BIN files are given in virtual memory addresses
+; 941  :         pAddress = (UINT8*)address;
 
   00080	e1a04002	 mov         r4, r2
   00084		 |$LN11@OEMMapMemA|
 
-; 954  : 
-; 955  :     }
-; 956  : 
-; 957  :     //OALMSGS(1, (L"-OEMMapMemAddr(pAddress = 0x%08x)\r\n", pAddress));
-; 958  :     return pAddress;
-; 959  : }
+; 961  : 
+; 962  :     }
+; 963  : 
+; 964  :     //OALMSGS(1, (L"-OEMMapMemAddr(pAddress = 0x%08x)\r\n", pAddress));
+; 965  :     return pAddress;
+; 966  : }
 
   00084	e1a00004	 mov         r0, r4
   00088	e8bd4010	 ldmia       sp!, {r4, lr}
@@ -1986,14 +2017,14 @@
   00094	00000000	 DCD         |dpCurSettings|
   00098		 |$LN18@OEMMapMemA|
   00098	00000000	 DCD         |g_eboot|
-  0009c		 |$M48306|
+  0009c		 |$M48312|
 
 			 ENDP  ; |OEMMapMemAddr|
 
 	EXPORT	|OEMIsFlashAddr|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48322| DCD	|$LN9@OEMIsFlash|
+|$T48328| DCD	|$LN9@OEMIsFlash|
 	DCD	0x40000e00
 ; Function compile flags: /Ogspy
 
@@ -2001,19 +2032,19 @@
 
   00000		 |OEMIsFlashAddr| PROC
 
-; 972  : {
+; 979  : {
 
   00000		 |$LN9@OEMIsFlash|
-  00000		 |$M48319|
+  00000		 |$M48325|
 
-; 973  :     BOOL rc;
-; 974  : 
-; 975  : 	UNREFERENCED_PARAMETER(address);
-; 976  : 
-; 977  :     //OALMSG(OAL_INFO, (L"+OEMIsFlashAddr(0x%08x)\r\n", address));
-; 978  : 
-; 979  :     // Depending on download type
-; 980  :     switch (g_eboot.type)
+; 980  :     BOOL rc;
+; 981  : 
+; 982  : 	UNREFERENCED_PARAMETER(address);
+; 983  : 
+; 984  :     //OALMSG(OAL_INFO, (L"+OEMIsFlashAddr(0x%08x)\r\n", address));
+; 985  : 
+; 986  :     // Depending on download type
+; 987  :     switch (g_eboot.type)
 
   00000	e59f302c	 ldr         r3, [pc, #0x2C]
   00004	e5933004	 ldr         r3, [r3, #4]
@@ -2026,45 +2057,45 @@
   00020	8a000001	 bhi         |$LN1@OEMIsFlash|
   00024		 |$LN2@OEMIsFlash|
 
-; 981  :         {
-; 982  :         case DOWNLOAD_TYPE_XLDR:
-; 983  :         case DOWNLOAD_TYPE_EBOOT:
-; 984  :         case DOWNLOAD_TYPE_LOGO:
-; 985  :         case DOWNLOAD_TYPE_FLASHNAND:
-; 986  :         case DOWNLOAD_TYPE_FLASHNOR:
-; 987  :         case DOWNLOAD_TYPE_EXT:
-; 988  :             rc = TRUE;
+; 988  :         {
+; 989  :         case DOWNLOAD_TYPE_XLDR:
+; 990  :         case DOWNLOAD_TYPE_EBOOT:
+; 991  :         case DOWNLOAD_TYPE_LOGO:
+; 992  :         case DOWNLOAD_TYPE_FLASHNAND:
+; 993  :         case DOWNLOAD_TYPE_FLASHNOR:
+; 994  :         case DOWNLOAD_TYPE_EXT:
+; 995  :             rc = TRUE;
 
   00024	e3a00001	 mov         r0, #1
 
-; 992  :             break;
-; 993  :         }
-; 994  : 
-; 995  :     //OALMSG(OAL_INFO, (L"-OEMIsFlashAddr(rc = %d)\r\n", rc));
-; 996  :     return rc;
-; 997  : }
+; 999  :             break;
+; 1000 :         }
+; 1001 : 
+; 1002 :     //OALMSG(OAL_INFO, (L"-OEMIsFlashAddr(rc = %d)\r\n", rc));
+; 1003 :     return rc;
+; 1004 : }
 
   00028	e12fff1e	 bx          lr
   0002c		 |$LN1@OEMIsFlash|
 
-; 989  :             break;
-; 990  :         default:
-; 991  :             rc = FALSE;
+; 996  :             break;
+; 997  :         default:
+; 998  :             rc = FALSE;
 
   0002c	e3a00000	 mov         r0, #0
 
-; 992  :             break;
-; 993  :         }
-; 994  : 
-; 995  :     //OALMSG(OAL_INFO, (L"-OEMIsFlashAddr(rc = %d)\r\n", rc));
-; 996  :     return rc;
-; 997  : }
+; 999  :             break;
+; 1000 :         }
+; 1001 : 
+; 1002 :     //OALMSG(OAL_INFO, (L"-OEMIsFlashAddr(rc = %d)\r\n", rc));
+; 1003 :     return rc;
+; 1004 : }
 
   00030	e12fff1e	 bx          lr
   00034		 |$LN10@OEMIsFlash|
   00034		 |$LN11@OEMIsFlash|
   00034	00000000	 DCD         |g_eboot|
-  00038		 |$M48320|
+  00038		 |$M48326|
 
 			 ENDP  ; |OEMIsFlashAddr|
 
@@ -2073,7 +2104,7 @@
 	IMPORT	|BLSDCardReadData|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48336| DCD	|$LN9@OEMReadDat|
+|$T48342| DCD	|$LN9@OEMReadDat|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -2081,15 +2112,15 @@
 
   00000		 |OEMReadData| PROC
 
-; 1007 : {
+; 1014 : {
 
   00000		 |$LN9@OEMReadDat|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48333|
+  00004		 |$M48339|
   00004	e1a02000	 mov         r2, r0
 
-; 1008 :     BOOL rc = FALSE;
-; 1009 :     switch (g_eboot.bootDeviceType)
+; 1015 :     BOOL rc = FALSE;
+; 1016 :     switch (g_eboot.bootDeviceType)
 
   00008	e59f3034	 ldr         r3, [pc, #0x34]
   0000c	e3a00000	 mov         r0, #0
@@ -2099,44 +2130,44 @@
   0001c	e3530004	 cmp         r3, #4
   00020	1a000005	 bne         |$LN3@OEMReadDat|
 
-; 1010 :         {
-; 1011 :         #if BUILDING_EBOOT_SD
-; 1012 :         case BOOT_SDCARD_TYPE: // 4
-; 1013 :         	//OALMSG(1, (L"OEMReadData(size = 0x%x, pData = 0x%x)\r\n", size, pData));
-; 1014 :             rc = BLSDCardReadData(size, pData);
+; 1017 :         {
+; 1018 :         #if BUILDING_EBOOT_SD
+; 1019 :         case BOOT_SDCARD_TYPE: // 4
+; 1020 :         	//OALMSG(1, (L"OEMReadData(size = 0x%x, pData = 0x%x)\r\n", size, pData));
+; 1021 :             rc = BLSDCardReadData(size, pData);
 
   00024	e1a00002	 mov         r0, r2
   00028	eb000000	 bl          BLSDCardReadData
 
-; 1019 :             break;
-; 1020 :         }
-; 1021 :     return rc;
-; 1022 : }
+; 1026 :             break;
+; 1027 :         }
+; 1028 :     return rc;
+; 1029 : }
 
   0002c	e49de004	 ldr         lr, [sp], #4
   00030	e12fff1e	 bx          lr
   00034		 |$LN1@OEMReadDat|
 
-; 1015 :             break;
-; 1016 :         #endif
-; 1017 :         case OAL_KITL_TYPE_ETH: // 2
-; 1018 :             rc = BLEthReadData(size, pData);
+; 1022 :             break;
+; 1023 :         #endif
+; 1024 :         case OAL_KITL_TYPE_ETH: // 2
+; 1025 :             rc = BLEthReadData(size, pData);
 
   00034	e1a00002	 mov         r0, r2
   00038	eb000000	 bl          BLEthReadData
   0003c		 |$LN3@OEMReadDat|
 
-; 1019 :             break;
-; 1020 :         }
-; 1021 :     return rc;
-; 1022 : }
+; 1026 :             break;
+; 1027 :         }
+; 1028 :     return rc;
+; 1029 : }
 
   0003c	e49de004	 ldr         lr, [sp], #4
   00040	e12fff1e	 bx          lr
   00044		 |$LN10@OEMReadDat|
   00044		 |$LN11@OEMReadDat|
   00044	00000000	 DCD         |g_eboot|
-  00048		 |$M48334|
+  00048		 |$M48340|
 
 			 ENDP  ; |OEMReadData|
 
@@ -2144,7 +2175,7 @@
 	EXPORT	|??_C@_13JOFGPIOO@?$AA?4?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48345| DCD	|$LN5@OEMShowPro@2|
+|$T48351| DCD	|$LN5@OEMShowPro@2|
 	DCD	0x40000601
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2155,33 +2186,33 @@
 
   00000		 |OEMShowProgress| PROC
 
-; 1032 : {
+; 1039 : {
 
   00000		 |$LN5@OEMShowPro@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48342|
+  00004		 |$M48348|
 
-; 1033 :     UNREFERENCED_PARAMETER(packetNumber);
-; 1034 :     RETAILMSG(1,(TEXT(".")));
+; 1040 :     UNREFERENCED_PARAMETER(packetNumber);
+; 1041 :     RETAILMSG(1,(TEXT(".")));
 
   00004	e59f0008	 ldr         r0, [pc, #8]
   00008	eb000000	 bl          NKDbgPrintfW
 
-; 1035 : }
+; 1042 : }
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
   00014		 |$LN6@OEMShowPro@2|
   00014		 |$LN7@OEMShowPro@2|
   00014	00000000	 DCD         |??_C@_13JOFGPIOO@?$AA?4?$AA?$AA@|
-  00018		 |$M48343|
+  00018		 |$M48349|
 
 			 ENDP  ; |OEMShowProgress|
 
 	EXPORT	|OALGetTickCount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48357| DCD	|$LN5@OALGetTick|
+|$T48363| DCD	|$LN5@OALGetTick|
 	DCD	0x40000901
 ; Function compile flags: /Ogspy
 
@@ -2189,36 +2220,36 @@
 
   00000		 |OALGetTickCount| PROC
 
-; 1042 : {
+; 1049 : {
 
   00000		 |$LN5@OALGetTick|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48354|
+  00004		 |$M48360|
   00004	e3a03312	 mov         r3, #0x12, 6
 
-; 1043 :     OMAP_GPTIMER_REGS *pGPTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
+; 1050 :     OMAP_GPTIMER_REGS *pGPTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
 
   00008	e38309c6	 orr         r0, r3, #0xC6, 18
   0000c	e3a01000	 mov         r1, #0
   00010	eb000000	 bl          OALPAtoVA
 
-; 1044 :     return INREG32(&pGPTimerRegs->TCRR) >> 5;
+; 1051 :     return INREG32(&pGPTimerRegs->TCRR) >> 5;
 
   00014	e5903028	 ldr         r3, [r0, #0x28]
   00018	e1a002a3	 mov         r0, r3, lsr #5
 
-; 1045 : }
+; 1052 : }
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
-  00024		 |$M48355|
+  00024		 |$M48361|
 
 			 ENDP  ; |OALGetTickCount|
 
 	EXPORT	|OEMKitlGetSecs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48371| DCD	|$LN7@OEMKitlGet|
+|$T48377| DCD	|$LN7@OEMKitlGet|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -2226,14 +2257,14 @@
 
   00000		 |OEMKitlGetSecs| PROC
 
-; 1054 : {
+; 1061 : {
 
   00000		 |$LN7@OEMKitlGet|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48368|
+  00004		 |$M48374|
   00004	e3a03312	 mov         r3, #0x12, 6
 
-; 1055 :     return OALGetTickCount()/1000;
+; 1062 :     return OALGetTickCount()/1000;
 
   00008	e38309c6	 orr         r0, r3, #0xC6, 18
   0000c	e3a01000	 mov         r1, #0
@@ -2244,21 +2275,21 @@
   00020	e0823291	 umull       r3, r2, r1, r2
   00024	e1a00322	 mov         r0, r2, lsr #6
 
-; 1056 : }
+; 1063 : }
 
   00028	e49de004	 ldr         lr, [sp], #4
   0002c	e12fff1e	 bx          lr
   00030		 |$LN8@OEMKitlGet|
   00030		 |$LN9@OEMKitlGet|
   00030	10624dd3	 DCD         0x10624dd3
-  00034		 |$M48369|
+  00034		 |$M48375|
 
 			 ENDP  ; |OEMKitlGetSecs|
 
 	EXPORT	|GetDisplayResolutionFromBootArgs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48381| DCD	|$LN5@GetDisplay|
+|$T48387| DCD	|$LN5@GetDisplay|
 	DCD	0x40000500
 ; Function compile flags: /Ogspy
 
@@ -2266,31 +2297,31 @@
 
   00000		 |GetDisplayResolutionFromBootArgs| PROC
 
-; 1059 : {
+; 1066 : {
 
   00000		 |$LN5@GetDisplay|
-  00000		 |$M48378|
+  00000		 |$M48384|
 
-; 1060 :     *pDispRes=g_bootCfg.displayRes;
+; 1067 :     *pDispRes=g_bootCfg.displayRes;
 
   00000	e59f3008	 ldr         r3, [pc, #8]
   00004	e593307c	 ldr         r3, [r3, #0x7C]
   00008	e5803000	 str         r3, [r0]
 
-; 1061 : }
+; 1068 : }
 
   0000c	e12fff1e	 bx          lr
   00010		 |$LN6@GetDisplay|
   00010		 |$LN7@GetDisplay|
   00010	00000000	 DCD         |g_bootCfg|
-  00014		 |$M48379|
+  00014		 |$M48385|
 
 			 ENDP  ; |GetDisplayResolutionFromBootArgs|
 
 	EXPORT	|IsDVIMode|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48392| DCD	|$LN5@IsDVIMode|
+|$T48398| DCD	|$LN5@IsDVIMode|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -2298,31 +2329,31 @@
 
   00000		 |IsDVIMode| PROC
 
-; 1064 : {
+; 1071 : {
 
   00000		 |$LN5@IsDVIMode|
-  00000		 |$M48389|
+  00000		 |$M48395|
 
-; 1065 :     /*DWORD dispRes;    
-; 1066 :     GetDisplayResolutionFromBootArgs(&dispRes);
-; 1067 :     if (dispRes==OMAP_LCD_DEFAULT)*/
-; 1068 : 	return FALSE;
+; 1072 :     /*DWORD dispRes;    
+; 1073 :     GetDisplayResolutionFromBootArgs(&dispRes);
+; 1074 :     if (dispRes==OMAP_LCD_DEFAULT)*/
+; 1075 : 	return FALSE;
 
   00000	e3a00000	 mov         r0, #0
 
-; 1069 :     //else
-; 1070 : 	//return TRUE;        
-; 1071 : }
+; 1076 :     //else
+; 1077 : 	//return TRUE;        
+; 1078 : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M48390|
+  00008		 |$M48396|
 
 			 ENDP  ; |IsDVIMode|
 
 	EXPORT	|ConvertCAtoPA|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48402| DCD	|$LN5@ConvertCAt|
+|$T48408| DCD	|$LN5@ConvertCAt|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -2330,21 +2361,21 @@
 
   00000		 |ConvertCAtoPA| PROC
 
-; 1074 : {   
+; 1081 : {   
 
   00000		 |$LN5@ConvertCAt|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48399|
+  00004		 |$M48405|
 
-; 1075 :     return OALVAtoPA(va);
+; 1082 :     return OALVAtoPA(va);
 
   00004	eb000000	 bl          OALVAtoPA
 
-; 1076 : }
+; 1083 : }
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M48400|
+  00010		 |$M48406|
 
 			 ENDP  ; |ConvertCAtoPA|
 
@@ -2372,7 +2403,7 @@
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48456| DCD	|$LN64@OEMPreDown|
+|$T48462| DCD	|$LN64@OEMPreDown|
 	DCD	0x4000f801
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2484,16 +2515,16 @@
 
   00000		 |OEMPreDownload| PROC
 
-; 406  : {
+; 413  : {
 
   00000		 |$LN64@OEMPreDown|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M48453|
+  00004		 |$M48459|
 
-; 407  :     ULONG rc = (ULONG) BL_ERROR;
-; 408  :     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
-; 409  :     BOOL bForceBootMenu;
-; 410  :     OMAP_PRCM_GLOBAL_PRM_REGS * pPrmGlobal = OALPAtoUA(OMAP_PRCM_GLOBAL_PRM_REGS_PA);
+; 414  :     ULONG rc = (ULONG) BL_ERROR;
+; 415  :     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
+; 416  :     BOOL bForceBootMenu;
+; 417  :     OMAP_PRCM_GLOBAL_PRM_REGS * pPrmGlobal = OALPAtoUA(OMAP_PRCM_GLOBAL_PRM_REGS_PA);
 
   00004	e59f03d0	 ldr         r0, [pc, #0x3D0]
   00008	e3a01000	 mov         r1, #0
@@ -2501,42 +2532,42 @@
   00010	eb000000	 bl          OALPAtoVA
   00014	e1a08000	 mov         r8, r0
 
-; 411  :     ULONG dwTemp;
-; 412  :     UINT32 *pStatusControlAddr = OALPAtoUA(OMAP_STATUS_CONTROL_REGS_PA);
+; 418  :     ULONG dwTemp;
+; 419  :     UINT32 *pStatusControlAddr = OALPAtoUA(OMAP_STATUS_CONTROL_REGS_PA);
 
   00018	e59f03b8	 ldr         r0, [pc, #0x3B8]
   0001c	e3a01000	 mov         r1, #0
   00020	eb000000	 bl          OALPAtoVA
 
-; 413  :     UINT32 dwSysBootCfg;
-; 414  : #ifdef BUILDING_EBOOT_SD    
-; 415  : 	//BYTE CalibBuffer[CALIBRATE_SIZE];
-; 416  : #endif
-; 417  : 
-; 418  :     //OALLog(L"INFO: Predownload....%d...\r\n",sizeof(BSP_ARGS));
-; 419  : 
-; 420  :     // We need to support multi bin notify
-; 421  :     g_pOEMMultiBINNotify = OEMMultiBinNotify;
+; 420  :     UINT32 dwSysBootCfg;
+; 421  : #ifdef BUILDING_EBOOT_SD    
+; 422  : 	//BYTE CalibBuffer[CALIBRATE_SIZE];
+; 423  : #endif
+; 424  : 
+; 425  :     //OALLog(L"INFO: Predownload....%d...\r\n",sizeof(BSP_ARGS));
+; 426  : 
+; 427  :     // We need to support multi bin notify
+; 428  :     g_pOEMMultiBINNotify = OEMMultiBinNotify;
 
   00024	e59f23a8	 ldr         r2, [pc, #0x3A8]
   00028	e59f33a0	 ldr         r3, [pc, #0x3A0]
   0002c	e1a07000	 mov         r7, r0
   00030	e5823000	 str         r3, [r2]
 
-; 422  : 
-; 423  :     // Ensure bootloader blocks are marked as reserved
-; 424  : #ifdef BUILDING_EBOOT_SD // brian    
-; 425  :     //BLReserveBootBlocks(); // brian
-; 426  : #endif
-; 427  : 	
-; 428  : 	BLShowLogo(); // Ray 13115
+; 429  : 
+; 430  :     // Ensure bootloader blocks are marked as reserved
+; 431  : #ifdef BUILDING_EBOOT_SD // brian    
+; 432  :     //BLReserveBootBlocks(); // brian
+; 433  : #endif
+; 434  : 	
+; 435  : 	BLShowLogo(); // Ray 13115
 
   00034	eb000000	 bl          BLShowLogo
 
-; 429  : 	
-; 430  :     // Read saved configration      //Bootstrap message(LCD init after), Ray
-; 431  :     if (BLReadBootCfg(&g_bootCfg) &&
-; 432  :         (g_bootCfg.signature == BOOT_CFG_SIGNATURE) && (g_bootCfg.version == BOOT_CFG_VERSION))
+; 436  : 	
+; 437  :     // Read saved configration      //Bootstrap message(LCD init after), Ray
+; 438  :     if (BLReadBootCfg(&g_bootCfg) &&
+; 439  :         (g_bootCfg.signature == BOOT_CFG_SIGNATURE) && (g_bootCfg.version == BOOT_CFG_VERSION))
 
   00038	e59f438c	 ldr         r4, [pc, #0x38C]
   0003c	e1a00004	 mov         r0, r4
@@ -2553,58 +2584,58 @@
   00068	e3530002	 cmp         r3, #2
   0006c	1a000002	 bne         |$LN23@OEMPreDown|
 
-; 433  : 	{
-; 434  :         OALLog(L"INFO: Boot configuration found\r\n");
+; 440  : 	{
+; 441  :         OALLog(L"INFO: Boot configuration found\r\n");
 
   00070	e59f0344	 ldr         r0, [pc, #0x344]
   00074	eb000000	 bl          NKDbgPrintfW
 
-; 435  : 	}
-; 436  :     else 
+; 442  : 	}
+; 443  :     else 
 
   00078	ea000054	 b           |$LN22@OEMPreDown|
   0007c		 |$LN23@OEMPreDown|
 
-; 437  : 	{
-; 438  :         OALLog(L"WARN: Boot config wasn't found, using defaults\r\n");
+; 444  : 	{
+; 445  :         OALLog(L"WARN: Boot config wasn't found, using defaults\r\n");
 
   0007c	e59f0334	 ldr         r0, [pc, #0x334]
   00080	eb000000	 bl          NKDbgPrintfW
 
-; 439  :         memset(&g_bootCfg, 0, sizeof(g_bootCfg));
+; 446  :         memset(&g_bootCfg, 0, sizeof(g_bootCfg));
 
   00084	e3a02090	 mov         r2, #0x90
   00088	e3a01000	 mov         r1, #0
   0008c	e1a00004	 mov         r0, r4
   00090	eb000000	 bl          memset
 
-; 440  : 		memcpy(&g_bootCfg.mac,DefaultMacAddress,sizeof(g_bootCfg.mac));
+; 447  : 		memcpy(&g_bootCfg.mac,DefaultMacAddress,sizeof(g_bootCfg.mac));
 
   00094	e2891048	 add         r1, r9, #0x48
   00098	e2840076	 add         r0, r4, #0x76
   0009c	e3a02006	 mov         r2, #6
   000a0	eb000000	 bl          memcpy
 
-; 441  :         g_bootCfg.signature = BOOT_CFG_SIGNATURE;
-; 442  :         g_bootCfg.version = BOOT_CFG_VERSION;
-; 443  : 
-; 444  :         g_bootCfg.oalFlags = 0;
-; 445  :         g_bootCfg.flashNKFlags = 0;
-; 446  :         g_bootCfg.ECCtype =  (UCHAR)dwEbootECCtype;
+; 448  :         g_bootCfg.signature = BOOT_CFG_SIGNATURE;
+; 449  :         g_bootCfg.version = BOOT_CFG_VERSION;
+; 450  : 
+; 451  :         g_bootCfg.oalFlags = 0;
+; 452  :         g_bootCfg.flashNKFlags = 0;
+; 453  :         g_bootCfg.ECCtype =  (UCHAR)dwEbootECCtype;
 
   000a4	e59f3308	 ldr         r3, [pc, #0x308]
   000a8	e3a01002	 mov         r1, #2
 
-; 447  :         // To make it easier to select USB or EBOOT from menus when booting from SD card,
-; 448  :         // preset the kitlFlags. This has no effect if booting from SD card.
-; 449  :         g_bootCfg.kitlFlags = OAL_KITL_FLAGS_DHCP|OAL_KITL_FLAGS_ENABLED;
-; 450  :         g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_VMINI;
-; 451  :         g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_EXTNAME;
-; 452  : 
-; 453  :         //g_bootCfg.displayRes = OMAP_LCD_DEFAULT;
-; 454  : 
-; 455  :         
-; 456  :         if(g_CPUFamily == CPU_FAMILY_DM37XX)
+; 454  :         // To make it easier to select USB or EBOOT from menus when booting from SD card,
+; 455  :         // preset the kitlFlags. This has no effect if booting from SD card.
+; 456  :         g_bootCfg.kitlFlags = OAL_KITL_FLAGS_DHCP|OAL_KITL_FLAGS_ENABLED;
+; 457  :         g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_VMINI;
+; 458  :         g_bootCfg.kitlFlags |= OAL_KITL_FLAGS_EXTNAME;
+; 459  : 
+; 460  :         //g_bootCfg.displayRes = OMAP_LCD_DEFAULT;
+; 461  : 
+; 462  :         
+; 463  :         if(g_CPUFamily == CPU_FAMILY_DM37XX)
 
   000ac	e5845000	 str         r5, [r4]
   000b0	e5933000	 ldr         r3, [r3]
@@ -2619,34 +2650,34 @@
   000d4	e3520001	 cmp         r2, #1
   000d8	e5843030	 str         r3, [r4, #0x30]
 
-; 457  :         {
-; 458  :             g_bootCfg.opp_mode = BSP_OPM_SELECT_37XX-1;
+; 464  :         {
+; 465  :             g_bootCfg.opp_mode = BSP_OPM_SELECT_37XX-1;
 
   000dc	03a03003	 moveq       r3, #3
 
-; 459  :         }
-; 460  :         else
-; 461  :         {
-; 462  :             g_bootCfg.opp_mode = BSP_OPM_SELECT_35XX-1;
+; 466  :         }
+; 467  :         else
+; 468  :         {
+; 469  :             g_bootCfg.opp_mode = BSP_OPM_SELECT_35XX-1;
 
   000e0	13a03004	 movne       r3, #4
   000e4	e5843088	 str         r3, [r4, #0x88]
 
-; 463  :         }
-; 464  :         // select default boot device based on boot select switch setting
-; 465  :         dwSysBootCfg = INREG32(pStatusControlAddr);
+; 470  :         }
+; 471  :         // select default boot device based on boot select switch setting
+; 472  :         dwSysBootCfg = INREG32(pStatusControlAddr);
 
   000e8	e5973000	 ldr         r3, [r7]
 
-; 466  :         OALLog(L"INFO: SW4 boot setting: 0x%02x\r\n", dwSysBootCfg & 0x3f);
+; 473  :         OALLog(L"INFO: SW4 boot setting: 0x%02x\r\n", dwSysBootCfg & 0x3f);
 
   000ec	e59f02bc	 ldr         r0, [pc, #0x2BC]
   000f0	e203503f	 and         r5, r3, #0x3F
   000f4	e1a01005	 mov         r1, r5
   000f8	eb000000	 bl          NKDbgPrintfW
 
-; 467  : 
-; 468  :         switch (dwSysBootCfg & 0x3f)
+; 474  : 
+; 475  :         switch (dwSysBootCfg & 0x3f)
 
   000fc	e3a03302	 mov         r3, #2, 6
   00100	e3832020	 orr         r2, r3, #0x20
@@ -2718,47 +2749,47 @@
   0013f	18ed		 DCB         0x18
   00140		 |$LN15@OEMPreDown|
 
-; 476  :             break;
-; 477  :     
-; 478  :     	case 0x2f: // brian
-; 479  :         case 0x06:
-; 480  :         case 0x12:
-; 481  :         case 0x18:
-; 482  :             // 1st boot device is MMC1 (SD Card Boot)
-; 483  :             g_bootCfg.bootDevLoc.LogicalLoc = OMAP_MMCHS1_REGS_PA;
-; 484  :             break;          
-; 485  : 
-; 486  :         case 0x01: 
-; 487  :         case 0x0c: 
-; 488  :         case 0x15: 
-; 489  :         case 0x1b: 
-; 490  :             // 1st boot device is NAND
-; 491  :             g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;
+; 483  :             break;
+; 484  :     
+; 485  :     	case 0x2f: // brian
+; 486  :         case 0x06:
+; 487  :         case 0x12:
+; 488  :         case 0x18:
+; 489  :             // 1st boot device is MMC1 (SD Card Boot)
+; 490  :             g_bootCfg.bootDevLoc.LogicalLoc = OMAP_MMCHS1_REGS_PA;
+; 491  :             break;          
+; 492  : 
+; 493  :         case 0x01: 
+; 494  :         case 0x0c: 
+; 495  :         case 0x15: 
+; 496  :         case 0x1b: 
+; 497  :             // 1st boot device is NAND
+; 498  :             g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;
 
   00140	e5842010	 str         r2, [r4, #0x10]
 
-; 492  :             break;
+; 499  :             break;
 
   00144	ea000015	 b           |$LN18@OEMPreDown|
   00148		 |$LN14@OEMPreDown|
   00148	e3a03303	 mov         r3, #3, 6
 
-; 493  :             
-; 494  :         case 0x00:
-; 495  :         case 0x02:
-; 496  :         case 0x04:
-; 497  :         case 0x10:
-; 498  :         case 0x16:
-; 499  :             // 1st boot device is ONENAND
-; 500  :             g_bootCfg.bootDevLoc.LogicalLoc = BSP_ONENAND_REGS_PA + 0x20;                       
+; 500  :             
+; 501  :         case 0x00:
+; 502  :         case 0x02:
+; 503  :         case 0x04:
+; 504  :         case 0x10:
+; 505  :         case 0x16:
+; 506  :             // 1st boot device is ONENAND
+; 507  :             g_bootCfg.bootDevLoc.LogicalLoc = BSP_ONENAND_REGS_PA + 0x20;                       
 
   0014c	e3833020	 orr         r3, r3, #0x20
   00150	e5843010	 str         r3, [r4, #0x10]
   00154	ea000011	 b           |$LN18@OEMPreDown|
   00158		 |$LN26@OEMPreDown|
 
-; 467  : 
-; 468  :         switch (dwSysBootCfg & 0x3f)
+; 474  : 
+; 475  :         switch (dwSysBootCfg & 0x3f)
 
   00158	e3550026	 cmp         r5, #0x26
   0015c	0a00000b	 beq         |$LN17@OEMPreDown|
@@ -2768,18 +2799,18 @@
   0016c	0a000007	 beq         |$LN17@OEMPreDown|
   00170		 |$LN13@OEMPreDown|
 
-; 501  :             break;
-; 502  : 
-; 503  :         default:
-; 504  :             // UART,  Ethernet Boot
-; 505  :             g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
+; 508  :             break;
+; 509  : 
+; 510  :         default:
+; 511  :             // UART,  Ethernet Boot
+; 512  :             g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
 
   00170	e3a03302	 mov         r3, #2, 6
   00174	e3832020	 orr         r2, r3, #0x20
   00178	e5842010	 str         r2, [r4, #0x10]
 
-; 506  :             g_bootCfg.kitlDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
-; 507  :             break;
+; 513  :             g_bootCfg.kitlDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
+; 514  :             break;
 
   0017c	ea00000a	 b           |$LN30@OEMPreDown|
   00180		 |$LN16@OEMPreDown|
@@ -2789,49 +2820,49 @@
   0018c	ea000003	 b           |$LN18@OEMPreDown|
   00190		 |$LN17@OEMPreDown|
 
-; 469  :         {
-; 470  :         case 0x24:
-; 471  :         case 0x26:
-; 472  :         case 0x3b:
-; 473  :             // 1st boot device is USB
-; 474  :             g_bootCfg.bootDevLoc.LogicalLoc = OMAP_USBHS_REGS_PA;
+; 476  :         {
+; 477  :         case 0x24:
+; 478  :         case 0x26:
+; 479  :         case 0x3b:
+; 480  :             // 1st boot device is USB
+; 481  :             g_bootCfg.bootDevLoc.LogicalLoc = OMAP_USBHS_REGS_PA;
 
   00190	e3a03312	 mov         r3, #0x12, 6
   00194	e3833aab	 orr         r3, r3, #0xAB, 20
   00198	e5843010	 str         r3, [r4, #0x10]
 
-; 475  :             g_bootCfg.kitlDevLoc.LogicalLoc = OMAP_USBHS_REGS_PA;
+; 482  :             g_bootCfg.kitlDevLoc.LogicalLoc = OMAP_USBHS_REGS_PA;
 
   0019c	e5843024	 str         r3, [r4, #0x24]
   001a0		 |$LN18@OEMPreDown|
 
-; 492  :             break;
+; 499  :             break;
 
   001a0	e5943024	 ldr         r3, [r4, #0x24]
 
-; 508  :         }            
-; 509  :         if (g_bootCfg.kitlDevLoc.LogicalLoc == 0)
+; 515  :         }            
+; 516  :         if (g_bootCfg.kitlDevLoc.LogicalLoc == 0)
 
   001a4	e3530000	 cmp         r3, #0
   001a8	1a000000	 bne         |$LN12@OEMPreDown|
   001ac		 |$LN30@OEMPreDown|
 
-; 510  :         {
-; 511  :             g_bootCfg.kitlDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
+; 517  :         {
+; 518  :             g_bootCfg.kitlDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;;
 
   001ac	e5842024	 str         r2, [r4, #0x24]
   001b0		 |$LN12@OEMPreDown|
 
-; 512  :         }
-; 513  :         //g_bootCfg.deviceID = 0;
-; 514  :         wcscpy(g_bootCfg.SerialNumber, L"");
+; 519  :         }
+; 520  :         //g_bootCfg.deviceID = 0;
+; 521  :         wcscpy(g_bootCfg.SerialNumber, L"");
 
   001b0	e59f11f4	 ldr         r1, [pc, #0x1F4]
   001b4	e2840038	 add         r0, r4, #0x38
   001b8	eb000000	 bl          wcscpy
 
-; 515  :         g_bootCfg.osPartitionSize = IMAGE_WINCE_CODE_SIZE;
-; 516  :         wcscpy(g_bootCfg.filename, L"nk.bin");
+; 522  :         g_bootCfg.osPartitionSize = IMAGE_WINCE_CODE_SIZE;
+; 523  :         wcscpy(g_bootCfg.filename, L"nk.bin");
 
   001bc	e59f11e4	 ldr         r1, [pc, #0x1E4]
   001c0	e3a0350a	 mov         r3, #0xA, 10
@@ -2840,20 +2871,20 @@
   001cc	eb000000	 bl          wcscpy
   001d0		 |$LN22@OEMPreDown|
 
-; 517  : 	}
-; 518  : 	g_bootCfg.displayRes = OMAP_LCD_DEFAULT;
+; 524  : 	}
+; 525  : 	g_bootCfg.displayRes = OMAP_LCD_DEFAULT;
 
   001d0	e3a03000	 mov         r3, #0
 
-; 519  : 	
-; 520  : 	// Initialize flash partitions if needed
-; 521  : #ifdef BUILDING_EBOOT_SD // brian
-; 522  :    //BLConfigureFlashPartitions(FALSE); //brian
-; 523  : #endif
-; 524  :     // Initialize ARGS structure
-; 525  :     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
-; 526  :         (pArgs->header.oalVersion != OAL_ARGS_VERSION) ||
-; 527  :         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
+; 526  : 	
+; 527  : 	// Initialize flash partitions if needed
+; 528  : #ifdef BUILDING_EBOOT_SD // brian
+; 529  :    //BLConfigureFlashPartitions(FALSE); //brian
+; 530  : #endif
+; 531  :     // Initialize ARGS structure
+; 532  :     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
+; 533  :         (pArgs->header.oalVersion != OAL_ARGS_VERSION) ||
+; 534  :         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
 
   001d4	e59f51c8	 ldr         r5, [pc, #0x1C8]
   001d8	e584307c	 str         r3, [r4, #0x7C]
@@ -2868,14 +2899,14 @@
   001fc	0a000006	 beq         |$LN11@OEMPreDown|
   00200		 |$LN10@OEMPreDown|
 
-; 528  : 	{
-; 529  : 		OALLog(L"Clear share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);
+; 535  : 	{
+; 536  : 		OALLog(L"Clear share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);
 
   00200	e59f0198	 ldr         r0, [pc, #0x198]
   00204	e3a01102	 mov         r1, #2, 2
   00208	eb000000	 bl          NKDbgPrintfW
 
-; 530  : 		memset(pArgs, 0, IMAGE_SHARE_ARGS_SIZE);
+; 537  : 		memset(pArgs, 0, IMAGE_SHARE_ARGS_SIZE);
 
   0020c	e3a02a01	 mov         r2, #1, 20
   00210	e3a01000	 mov         r1, #0
@@ -2883,77 +2914,77 @@
   00218	eb000000	 bl          memset
   0021c		 |$LN11@OEMPreDown|
 
-; 531  : 	}        
-; 532  :     
-; 533  :     // Save reset type  //Bootstrap message(final); Determine Clod or Warm Reset, Ray 131024
-; 534  :     dwTemp = INREG32(&pPrmGlobal->PRM_RSTST);
+; 538  : 	}        
+; 539  :     
+; 540  :     // Save reset type  //Bootstrap message(final); Determine Clod or Warm Reset, Ray 131024
+; 541  :     dwTemp = INREG32(&pPrmGlobal->PRM_RSTST);
 
   0021c	e5983058	 ldr         r3, [r8, #0x58]
 
-; 535  :     if (dwTemp & (GLOBALWARM_RST /* actually SW reset */ | EXTERNALWARM_RST))
+; 542  :     if (dwTemp & (GLOBALWARM_RST /* actually SW reset */ | EXTERNALWARM_RST))
 
   00220	e3a08001	 mov         r8, #1
   00224	e3a0b000	 mov         r11, #0
   00228	e3130042	 tst         r3, #0x42
   0022c	0a000003	 beq         |$LN9@OEMPreDown|
 
-; 536  :     {
-; 537  :         pArgs->coldBoot = FALSE;
-; 538  :         OALLog(L"\r>>> Now entry warm-reset... \r\n");
+; 543  :     {
+; 544  :         pArgs->coldBoot = FALSE;
+; 545  :         OALLog(L"\r>>> Now entry warm-reset... \r\n");
 
   00230	e59f0164	 ldr         r0, [pc, #0x164]
   00234	e58ab00c	 str         r11, [r10, #0xC]
   00238	eb000000	 bl          NKDbgPrintfW
 
-; 539  :     }
-; 540  :     else
+; 546  :     }
+; 547  :     else
 
   0023c	ea000006	 b           |$LN8@OEMPreDown|
   00240		 |$LN9@OEMPreDown|
 
-; 541  :     {
-; 542  :         pArgs->coldBoot = TRUE;
-; 543  :         OALLog(L"\r\n>>> Forcing cold boot (non-persistent registry and other data will be wiped) <<< \r\n");
+; 548  :     {
+; 549  :         pArgs->coldBoot = TRUE;
+; 550  :         OALLog(L"\r\n>>> Forcing cold boot (non-persistent registry and other data will be wiped) <<< \r\n");
 
   00240	e59f0150	 ldr         r0, [pc, #0x150]
   00244	e58a800c	 str         r8, [r10, #0xC]
   00248	eb000000	 bl          NKDbgPrintfW
 
-; 544  :         OALLog(L"\r>>> Now entry cold-reset... \r\n");
+; 551  :         OALLog(L"\r>>> Now entry cold-reset... \r\n");
 
   0024c	e59f0140	 ldr         r0, [pc, #0x140]
   00250	eb000000	 bl          NKDbgPrintfW
 
-; 545  :         HotKeyColdReset(ghTwl);
+; 552  :         HotKeyColdReset(ghTwl);
 
   00254	e5960000	 ldr         r0, [r6]
   00258	eb000000	 bl          HotKeyColdReset
   0025c		 |$LN8@OEMPreDown|
 
-; 546  :         //OALLog(L"******hTwl: %X....\r\n", ghTwl);   //address-2, Ray
-; 547  :     }
-; 548  :     
-; 549  :     // Don't force the boot menu, use default action unless user breaks
-; 550  :     // into menu
-; 551  :     bForceBootMenu = FALSE;
+; 553  :         //OALLog(L"******hTwl: %X....\r\n", ghTwl);   //address-2, Ray
+; 554  :     }
+; 555  :     
+; 556  :     // Don't force the boot menu, use default action unless user breaks
+; 557  :     // into menu
+; 558  :     bForceBootMenu = FALSE;
 
   0025c	e59f612c	 ldr         r6, [pc, #0x12C]
   00260	e59f7124	 ldr         r7, [pc, #0x124]
   00264	e3a00000	 mov         r0, #0
-  00268		 |$retryBootMenu$47797|
+  00268		 |$retryBootMenu$47803|
 
-; 552  :     
-; 553  : retryBootMenu:
-; 554  : 	// Call configuration menu
-; 555  :     BLMenu(bForceBootMenu);
+; 559  :     
+; 560  : retryBootMenu:
+; 561  : 	// Call configuration menu
+; 562  :     BLMenu(bForceBootMenu);
 
   00268	eb000000	 bl          BLMenu
 
-; 556  :     
-; 557  :     // Update ARGS structure if necessary
-; 558  :     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
-; 559  :         (pArgs->header.oalVersion != OAL_ARGS_VERSION) || 
-; 560  :         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
+; 563  :     
+; 564  :     // Update ARGS structure if necessary
+; 565  :     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
+; 566  :         (pArgs->header.oalVersion != OAL_ARGS_VERSION) || 
+; 567  :         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
 
   0026c	e59a3000	 ldr         r3, [r10]
   00270	e1530005	 cmp         r3, r5
@@ -2966,31 +2997,31 @@
   0028c	0a000022	 beq         |$LN7@OEMPreDown|
   00290		 |$LN6@OEMPreDown|
 
-; 561  : 	{
-; 562  : 		OALLog(L"Initialize share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);
+; 568  : 	{
+; 569  : 		OALLog(L"Initialize share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);
 
   00290	e59f00f0	 ldr         r0, [pc, #0xF0]
   00294	e3a01102	 mov         r1, #2, 2
   00298	eb000000	 bl          NKDbgPrintfW
 
-; 563  : 		//OALLog(L"Initialize share ARGS - %s\r\n",g_bootCfg.SerialNumber);
-; 564  :         pArgs->header.signature = OAL_ARGS_SIGNATURE;
+; 570  : 		//OALLog(L"Initialize share ARGS - %s\r\n",g_bootCfg.SerialNumber);
+; 571  :         pArgs->header.signature = OAL_ARGS_SIGNATURE;
 
   0029c	e58a5000	 str         r5, [r10]
 
-; 565  :         pArgs->header.oalVersion = OAL_ARGS_VERSION;
+; 572  :         pArgs->header.oalVersion = OAL_ARGS_VERSION;
 
   002a0	e1ca80b4	 strh        r8, [r10, #4]
 
-; 566  :         pArgs->header.bspVersion = BSP_ARGS_VERSION;
+; 573  :         pArgs->header.bspVersion = BSP_ARGS_VERSION;
 
   002a4	e1ca80b6	 strh        r8, [r10, #6]
 
-; 567  :         pArgs->kitl.flags = g_bootCfg.kitlFlags;
+; 574  :         pArgs->kitl.flags = g_bootCfg.kitlFlags;
 
   002a8	e5943030	 ldr         r3, [r4, #0x30]
 
-; 568  :         pArgs->kitl.devLoc = g_bootCfg.kitlDevLoc;
+; 575  :         pArgs->kitl.devLoc = g_bootCfg.kitlDevLoc;
 
   002ac	e284101c	 add         r1, r4, #0x1C
   002b0	e28a001c	 add         r0, r10, #0x1C
@@ -2999,29 +3030,29 @@
   002bc	eb000000	 bl          memcpy
   002c0	e3a0820a	 mov         r8, #0xA, 4
 
-; 569  :         //pArgs->kitl.ipAddress = g_bootCfg.ipAddress;
-; 570  :         //pArgs->kitl.ipMask = g_bootCfg.ipMask;
-; 571  :         //pArgs->kitl.ipRoute = g_bootCfg.ipRoute;
-; 572  : 		memcpy(pArgs->kitl.mac,g_bootCfg.mac,sizeof(pArgs->kitl.mac)); 
+; 576  :         //pArgs->kitl.ipAddress = g_bootCfg.ipAddress;
+; 577  :         //pArgs->kitl.ipMask = g_bootCfg.ipMask;
+; 578  :         //pArgs->kitl.ipRoute = g_bootCfg.ipRoute;
+; 579  : 		memcpy(pArgs->kitl.mac,g_bootCfg.mac,sizeof(pArgs->kitl.mac)); 
 
   002c4	e3880030	 orr         r0, r8, #0x30
   002c8	e2841076	 add         r1, r4, #0x76
   002cc	e3a02006	 mov         r2, #6
   002d0	eb000000	 bl          memcpy
 
-; 573  :  	    pArgs->updateMode = FALSE;
+; 580  :  	    pArgs->updateMode = FALSE;
 
   002d4	e58ab008	 str         r11, [r10, #8]
 
-; 574  :         //pArgs->deviceID = g_bootCfg.deviceID;
-; 575  :         pArgs->oalFlags = g_bootCfg.oalFlags;
+; 581  :         //pArgs->deviceID = g_bootCfg.deviceID;
+; 582  :         pArgs->oalFlags = g_bootCfg.oalFlags;
 
   002d8	e5943034	 ldr         r3, [r4, #0x34]
 
-; 576  :         pArgs->dispRes = g_bootCfg.displayRes;
-; 577  :         pArgs->ECCtype = g_bootCfg.ECCtype; 
-; 578  :         pArgs->opp_mode = g_bootCfg.opp_mode;
-; 579  :         memcpy(pArgs->DevicePrefix, gDevice_prefix, sizeof(pArgs->DevicePrefix));
+; 583  :         pArgs->dispRes = g_bootCfg.displayRes;
+; 584  :         pArgs->ECCtype = g_bootCfg.ECCtype; 
+; 585  :         pArgs->opp_mode = g_bootCfg.opp_mode;
+; 586  :         memcpy(pArgs->DevicePrefix, gDevice_prefix, sizeof(pArgs->DevicePrefix));
 
   002dc	e3880048	 orr         r0, r8, #0x48
   002e0	e3a02012	 mov         r2, #0x12
@@ -3035,7 +3066,7 @@
   00300	e5971000	 ldr         r1, [r7]
   00304	eb000000	 bl          memcpy
 
-; 580  :         memcpy(pArgs->SerialNumber, g_bootCfg.SerialNumber, sizeof(pArgs->SerialNumber));
+; 587  :         memcpy(pArgs->SerialNumber, g_bootCfg.SerialNumber, sizeof(pArgs->SerialNumber));
 
   00308	e388005a	 orr         r0, r8, #0x5A
   0030c	e2841038	 add         r1, r4, #0x38
@@ -3044,34 +3075,34 @@
   00318	e3a08001	 mov         r8, #1
   0031c		 |$LN7@OEMPreDown|
 
-; 581  :         //memcpy((BYTE *)SERIAL_NUMBER_STORE_ADDR, g_bootCfg.SerialNumber, sizeof(g_bootCfg.SerialNumber));
-; 582  :         //OALLog(L"Initialize share ARGS - %s\r\n",pArgs->SerialNumber);
-; 583  : 	}  
-; 584  :     
-; 585  :     // Initialize display
-; 586  : 	//BLShowLogo();	// cfg.c
-; 587  : 	
-; 588  : 	// Read touch Calibration data
-; 589  : #ifdef BUILDING_EBOOT_SD
-; 590  : 	/*memset(pArgs->CalibBuffer, 0, CALIBRATE_SIZE);
-; 591  : 	if( BLSDCardReadCalibData(TOUCHCALIB_EBOOT_FILE, CalibBuffer, CALIBRATE_SIZE) )
-; 592  : 	{
-; 593  : 		//int i;
-; 594  : 		memcpy(pArgs->CalibBuffer, CalibBuffer, CALIBRATE_SIZE);
-; 595  : 		OALLog(L"BLSDCardReadCalibData: %d bytes\r\n", CalibBuffer[1]);
-; 596  : 		//for( i=0 ; i<120 ; i++)
-; 597  : 		//	OALLog(L"BLSDCardReadCalibData: %d = 0x%x\r\n", i, pArgs->CalibBuffer[i]);
-; 598  : 	}*/
-; 599  : 	
-; 600  :     // Image download depends on protocol
-; 601  : 	g_eboot.bootDeviceType = BOOT_SDCARD_TYPE;
-; 602  : #else
-; 603  : 	g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;
-; 604  : 	g_eboot.bootDeviceType = OAL_KITL_TYPE_FLASH;
-; 605  : #endif
-; 606  :     //g_eboot.bootDeviceType = OALKitlDeviceType(&g_bootCfg.bootDevLoc, g_bootDevices);
-; 607  : 
-; 608  : 	OALLog(L"bootDeviceType = %d\r\n", g_eboot.bootDeviceType);
+; 588  :         //memcpy((BYTE *)SERIAL_NUMBER_STORE_ADDR, g_bootCfg.SerialNumber, sizeof(g_bootCfg.SerialNumber));
+; 589  :         //OALLog(L"Initialize share ARGS - %s\r\n",pArgs->SerialNumber);
+; 590  : 	}  
+; 591  :     
+; 592  :     // Initialize display
+; 593  : 	//BLShowLogo();	// cfg.c
+; 594  : 	
+; 595  : 	// Read touch Calibration data
+; 596  : #ifdef BUILDING_EBOOT_SD
+; 597  : 	/*memset(pArgs->CalibBuffer, 0, CALIBRATE_SIZE);
+; 598  : 	if( BLSDCardReadCalibData(TOUCHCALIB_EBOOT_FILE, CalibBuffer, CALIBRATE_SIZE) )
+; 599  : 	{
+; 600  : 		//int i;
+; 601  : 		memcpy(pArgs->CalibBuffer, CalibBuffer, CALIBRATE_SIZE);
+; 602  : 		OALLog(L"BLSDCardReadCalibData: %d bytes\r\n", CalibBuffer[1]);
+; 603  : 		//for( i=0 ; i<120 ; i++)
+; 604  : 		//	OALLog(L"BLSDCardReadCalibData: %d = 0x%x\r\n", i, pArgs->CalibBuffer[i]);
+; 605  : 	}*/
+; 606  : 	
+; 607  :     // Image download depends on protocol
+; 608  : 	g_eboot.bootDeviceType = BOOT_SDCARD_TYPE;
+; 609  : #else
+; 610  : 	g_bootCfg.bootDevLoc.LogicalLoc = BSP_NAND_REGS_PA + 0x20;
+; 611  : 	g_eboot.bootDeviceType = OAL_KITL_TYPE_FLASH;
+; 612  : #endif
+; 613  :     //g_eboot.bootDeviceType = OALKitlDeviceType(&g_bootCfg.bootDevLoc, g_bootDevices);
+; 614  : 
+; 615  : 	OALLog(L"bootDeviceType = %d\r\n", g_eboot.bootDeviceType);
 
   0031c	e59f0060	 ldr         r0, [pc, #0x60]
   00320	e3a03004	 mov         r3, #4
@@ -3079,13 +3110,13 @@
   00328	e5863000	 str         r3, [r6]
   0032c	eb000000	 bl          NKDbgPrintfW
 
-; 609  : 	OALLog(L"LogicalLoc = 0x%x\r\n", g_bootCfg.bootDevLoc.LogicalLoc);
+; 616  : 	OALLog(L"LogicalLoc = 0x%x\r\n", g_bootCfg.bootDevLoc.LogicalLoc);
 
   00330	e5941010	 ldr         r1, [r4, #0x10]
   00334	e59f0044	 ldr         r0, [pc, #0x44]
   00338	eb000000	 bl          NKDbgPrintfW
 
-; 610  : 	switch (g_eboot.bootDeviceType)
+; 617  : 	switch (g_eboot.bootDeviceType)
 
   0033c	e5963000	 ldr         r3, [r6]
   00340	e3530003	 cmp         r3, #3
@@ -3093,53 +3124,53 @@
   00348	e3530004	 cmp         r3, #4
   0034c	1a000007	 bne         |$LN28@OEMPreDown|
 
-; 611  : 	{
-; 612  : 		case BOOT_SDCARD_TYPE: // 4
-; 613  :             rc = BLSDCardDownload(g_bootCfg.filename); // \PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\BOOT\SDMEMORY
+; 618  : 	{
+; 619  : 		case BOOT_SDCARD_TYPE: // 4
+; 620  :             rc = BLSDCardDownload(g_bootCfg.filename); // \PLATFORM\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\BOOT\SDMEMORY
 
   00350	e284005c	 add         r0, r4, #0x5C
   00354	eb000000	 bl          BLSDCardDownload
 
-; 614  :             break;
+; 621  :             break;
 
   00358	ea000002	 b           |$LN4@OEMPreDown|
   0035c		 |$LN2@OEMPreDown|
 
-; 615  :         case OAL_KITL_TYPE_FLASH: // 3
-; 616  :             rc = BLFlashDownload(&g_bootCfg, g_bootDevices);
+; 622  :         case OAL_KITL_TYPE_FLASH: // 3
+; 623  :             rc = BLFlashDownload(&g_bootCfg, g_bootDevices);
 
   0035c	e1a01009	 mov         r1, r9
   00360	e1a00004	 mov         r0, r4
   00364	eb000000	 bl          BLFlashDownload
   00368		 |$LN4@OEMPreDown|
 
-; 617  :             break;
-; 618  :         //case OAL_KITL_TYPE_ETH:
-; 619  :         //    rc = BLEthDownload(&g_bootCfg, g_bootDevices);
-; 620  :         //    break;
-; 621  : 	}
-; 622  :         
-; 623  : 	if (rc == BL_ERROR)
+; 624  :             break;
+; 625  :         //case OAL_KITL_TYPE_ETH:
+; 626  :         //    rc = BLEthDownload(&g_bootCfg, g_bootDevices);
+; 627  :         //    break;
+; 628  : 	}
+; 629  :         
+; 630  : 	if (rc == BL_ERROR)
 
   00368	e3700001	 cmn         r0, #1
   0036c	1a000001	 bne         |$LN1@OEMPreDown|
   00370		 |$LN28@OEMPreDown|
 
-; 624  :     {
-; 625  :         // No automatic mode now, force the boot menu to appear
-; 626  :         bForceBootMenu = TRUE;
+; 631  :     {
+; 632  :         // No automatic mode now, force the boot menu to appear
+; 633  :         bForceBootMenu = TRUE;
 
   00370	e3a00001	 mov         r0, #1
 
-; 627  :         goto retryBootMenu; 
+; 634  :         goto retryBootMenu; 
 
-  00374	eaffffbb	 b           |$retryBootMenu$47797|
+  00374	eaffffbb	 b           |$retryBootMenu$47803|
   00378		 |$LN1@OEMPreDown|
 
-; 628  :     }   
-; 629  :     
-; 630  :     return rc;
-; 631  : }
+; 635  :     }   
+; 636  :     
+; 637  :     return rc;
+; 638  : }
 
   00378	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
   0037c	e12fff1e	 bx          lr
@@ -3192,7 +3223,7 @@
   003d8	480022f0	 DCD         0x480022f0
   003dc		 |$LN89@OEMPreDown|
   003dc	48307200	 DCD         0x48307200
-  003e0		 |$M48454|
+  003e0		 |$M48460|
 
 			 ENDP  ; |OEMPreDownload|
 
@@ -3213,7 +3244,7 @@
 	IMPORT	|BLEthConfig|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48535| DCD	|$LN79@OEMLaunch|
+|$T48541| DCD	|$LN79@OEMLaunch|
 	DCD	0x40009202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3330,24 +3361,24 @@
 
   00000		 |OEMLaunch| PROC
 
-; 641  : {
+; 648  : {
 
   00000		 |$LN79@OEMLaunch|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M48532|
+  00008		 |$M48538|
   00008	e1a05003	 mov         r5, r3
   0000c	e1a08002	 mov         r8, r2
   00010	e1a09001	 mov         r9, r1
   00014	e1a07000	 mov         r7, r0
 
-; 642  :     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
-; 643  : 
-; 644  : 	UNREFERENCED_PARAMETER(size);
-; 645  : 	UNREFERENCED_PARAMETER(pRomHeader);
-; 646  : 
-; 647  :     OALMSG(1, (L"+OEMLaunch(0x%08x, 0x%08x, 0x%08x, 0x%08x - %d/%d)\r\n", start, size,
-; 648  :         launch, pRomHeader, g_eboot.bootDeviceType, g_eboot.type)); // OAL_INFO
+; 649  :     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
+; 650  : 
+; 651  : 	UNREFERENCED_PARAMETER(size);
+; 652  : 	UNREFERENCED_PARAMETER(pRomHeader);
+; 653  : 
+; 654  :     OALMSG(1, (L"+OEMLaunch(0x%08x, 0x%08x, 0x%08x, 0x%08x - %d/%d)\r\n", start, size,
+; 655  :         launch, pRomHeader, g_eboot.bootDeviceType, g_eboot.type)); // OAL_INFO
 
   00018	e59f6224	 ldr         r6, [pc, #0x224]
   0001c	e59f021c	 ldr         r0, [pc, #0x21C]
@@ -3361,9 +3392,9 @@
   0003c	e58d5000	 str         r5, [sp]
   00040	eb000000	 bl          NKDbgPrintfW
 
-; 649  : 
-; 650  :     // Depending on protocol there can be some action required
-; 651  :     switch (g_eboot.bootDeviceType)
+; 656  : 
+; 657  :     // Depending on protocol there can be some action required
+; 658  :     switch (g_eboot.bootDeviceType)
 
   00044	e5963000	 ldr         r3, [r6]
   00048	e59f51ec	 ldr         r5, [pc, #0x1EC]
@@ -3371,43 +3402,43 @@
   00050	0a000018	 beq         |$LN21@OEMLaunch|
   00054	e3530004	 cmp         r3, #4
 
-; 736  :                     break;
-; 737  : 			}
-; 738  :             break;
-; 739  : 
-; 740  :         default:        
-; 741  :             launch = g_eboot.launchAddress;
-; 742  :             break;
+; 743  :                     break;
+; 744  : 			}
+; 745  :             break;
+; 746  : 
+; 747  :         default:        
+; 748  :             launch = g_eboot.launchAddress;
+; 749  :             break;
 
   00058	1a00002b	 bne         |$LN17@OEMLaunch|
   0005c	e5963004	 ldr         r3, [r6, #4]
   00060	e3530001	 cmp         r3, #1
   00064	0a000036	 beq         |$LN16@OEMLaunch|
 
-; 652  : 	{
-; 653  : #if BUILDING_EBOOT_SD
-; 654  :         case BOOT_SDCARD_TYPE: // 4
-; 655  :             switch (g_eboot.type)
+; 659  : 	{
+; 660  : #if BUILDING_EBOOT_SD
+; 661  :         case BOOT_SDCARD_TYPE: // 4
+; 662  :             switch (g_eboot.type)
 
   00068	e3530006	 cmp         r3, #6
   0006c	0a000005	 beq         |$LN26@OEMLaunch|
 
-; 677  : 					}
-; 678  :                     launch = g_eboot.launchAddress;
-; 679  :                     break;
-; 680  : 					
-; 681  : #if 0
-; 682  : /*				case DOWNLOAD_TYPE_EBOOT:
-; 683  :                 case DOWNLOAD_TYPE_XLDR:
-; 684  :                     OALMSG(OAL_INFO, (L"INFO: "
-; 685  :                         L"XLDR/EBOOT/IPL downloaded, spin forever\r\n"
-; 686  :                         ));
-; 687  :                     while (TRUE);
-; 688  :                     break;
-; 689  : */
-; 690  : #endif
-; 691  :                 default:
-; 692  :                     OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown download type, spin forever\r\n"));
+; 684  : 					}
+; 685  :                     launch = g_eboot.launchAddress;
+; 686  :                     break;
+; 687  : 					
+; 688  : #if 0
+; 689  : /*				case DOWNLOAD_TYPE_EBOOT:
+; 690  :                 case DOWNLOAD_TYPE_XLDR:
+; 691  :                     OALMSG(OAL_INFO, (L"INFO: "
+; 692  :                         L"XLDR/EBOOT/IPL downloaded, spin forever\r\n"
+; 693  :                         ));
+; 694  :                     while (TRUE);
+; 695  :                     break;
+; 696  : */
+; 697  : #endif
+; 698  :                 default:
+; 699  :                     OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown download type, spin forever\r\n"));
 
   00070	e59f31ac	 ldr         r3, [pc, #0x1AC]
   00074	e5933440	 ldr         r3, [r3, #0x440]
@@ -3416,29 +3447,29 @@
   00080	1b000000	 blne        NKDbgPrintfW
   00084		 |$LL23@OEMLaunch|
 
-; 693  :                     for(;;);
+; 700  :                     for(;;);
 
   00084	eafffffe	 b           |$LL23@OEMLaunch|
   00088		 |$LN26@OEMLaunch|
 
-; 656  : 			{
-; 657  : #if 0
-; 658  : /*				case DOWNLOAD_TYPE_FLASHRAM:
-; 659  :                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
-; 660  : 					{
-; 661  :                         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Image load from flash memory failed\r\n"));
-; 662  :                         goto cleanUp;
-; 663  : 					}
-; 664  :                     launch = g_eboot.launchAddress;
-; 665  :                     break;
-; 666  : */
-; 667  : #endif
-; 668  :                 case DOWNLOAD_TYPE_RAM: // 1
-; 669  :                     launch = (UINT32)OEMMapMemAddr(start, launch);
-; 670  :                     break;
-; 671  : 					
-; 672  :                 case DOWNLOAD_TYPE_FLASHNAND: // 6
-; 673  :                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
+; 663  : 			{
+; 664  : #if 0
+; 665  : /*				case DOWNLOAD_TYPE_FLASHRAM:
+; 666  :                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
+; 667  : 					{
+; 668  :                         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Image load from flash memory failed\r\n"));
+; 669  :                         goto cleanUp;
+; 670  : 					}
+; 671  :                     launch = g_eboot.launchAddress;
+; 672  :                     break;
+; 673  : */
+; 674  : #endif
+; 675  :                 case DOWNLOAD_TYPE_RAM: // 1
+; 676  :                     launch = (UINT32)OEMMapMemAddr(start, launch);
+; 677  :                     break;
+; 678  : 					
+; 679  :                 case DOWNLOAD_TYPE_FLASHNAND: // 6
+; 680  :                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
 
   00088	e59f11a8	 ldr         r1, [pc, #0x1A8]
   0008c	e1a00005	 mov         r0, r5
@@ -3446,34 +3477,34 @@
   00094	e3500001	 cmp         r0, #1
   00098	0a00001b	 beq         |$LN17@OEMLaunch|
 
-; 674  : 					{
-; 675  :                         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Image load from flash memory failed\r\n"));
+; 681  : 					{
+; 682  :                         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Image load from flash memory failed\r\n"));
 
   0009c	e59f3180	 ldr         r3, [pc, #0x180]
   000a0	e5933440	 ldr         r3, [r3, #0x440]
   000a4	e3130001	 tst         r3, #1
-  000a8	0a000056	 beq         |$cleanUp$47839|
+  000a8	0a000056	 beq         |$cleanUp$47845|
   000ac	e59f0180	 ldr         r0, [pc, #0x180]
   000b0	eb000000	 bl          NKDbgPrintfW
 
-; 676  :                         goto cleanUp;
+; 683  :                         goto cleanUp;
 
-  000b4	ea000053	 b           |$cleanUp$47839|
+  000b4	ea000053	 b           |$cleanUp$47845|
   000b8		 |$LN21@OEMLaunch|
 
-; 694  :                     break;
-; 695  : 			}
-; 696  :             break;
-; 697  : 
-; 698  : #endif
-; 699  : 
-; 700  :         case OAL_KITL_TYPE_ETH:
-; 701  :             BLEthConfig(pArgs);
+; 701  :                     break;
+; 702  : 			}
+; 703  :             break;
+; 704  : 
+; 705  : #endif
+; 706  : 
+; 707  :         case OAL_KITL_TYPE_ETH:
+; 708  :             BLEthConfig(pArgs);
 
   000b8	e3a0020a	 mov         r0, #0xA, 4
   000bc	eb000000	 bl          BLEthConfig
 
-; 702  :             switch (g_eboot.type)
+; 709  :             switch (g_eboot.type)
 
   000c0	e5963004	 ldr         r3, [r6, #4]
   000c4	e3530001	 cmp         r3, #1
@@ -3489,10 +3520,10 @@
   000ec	e3530008	 cmp         r3, #8
   000f0	1a00000d	 bne         |$LN9@OEMLaunch|
 
-; 726  :                     break;
-; 727  : 
-; 728  : 				case DOWNLOAD_TYPE_LOGO:
-; 729  :                     OALMSG(OAL_INFO, (L"INFO: Splashcreen logo downloaded, spin forever\r\n"));
+; 733  :                     break;
+; 734  : 
+; 735  : 				case DOWNLOAD_TYPE_LOGO:
+; 736  :                     OALMSG(OAL_INFO, (L"INFO: Splashcreen logo downloaded, spin forever\r\n"));
 
   000f4	e59f3128	 ldr         r3, [pc, #0x128]
   000f8	e5933440	 ldr         r3, [r3, #0x440]
@@ -3501,37 +3532,37 @@
   00104	1b000000	 blne        NKDbgPrintfW
   00108		 |$LL11@OEMLaunch|
 
-; 730  :                     for(;;);
+; 737  :                     for(;;);
 
   00108	eafffffe	 b           |$LL11@OEMLaunch|
   0010c		 |$LN17@OEMLaunch|
 
-; 703  : 			{
-; 704  : #ifdef IMGMULTIXIP
-; 705  :                 case DOWNLOAD_TYPE_EXT:
-; 706  : #endif					
-; 707  :                 case DOWNLOAD_TYPE_FLASHNAND:
-; 708  : 				case DOWNLOAD_TYPE_FLASHNOR:
-; 709  :                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
-; 710  :                         {
-; 711  :                         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: "
-; 712  :                             L"Image load from flash memory failed\r\n"));
-; 713  :                         goto cleanUp;
-; 714  :                         }
-; 715  :                     launch = g_eboot.launchAddress;
+; 710  : 			{
+; 711  : #ifdef IMGMULTIXIP
+; 712  :                 case DOWNLOAD_TYPE_EXT:
+; 713  : #endif					
+; 714  :                 case DOWNLOAD_TYPE_FLASHNAND:
+; 715  : 				case DOWNLOAD_TYPE_FLASHNOR:
+; 716  :                     if (BLFlashDownload(&g_bootCfg, g_kitlDevices) != BL_JUMP)
+; 717  :                         {
+; 718  :                         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: "
+; 719  :                             L"Image load from flash memory failed\r\n"));
+; 720  :                         goto cleanUp;
+; 721  :                         }
+; 722  :                     launch = g_eboot.launchAddress;
 
   0010c	e596400c	 ldr         r4, [r6, #0xC]
 
-; 716  :                     break;
+; 723  :                     break;
 
   00110	ea00000f	 b           |$LN19@OEMLaunch|
   00114		 |$LN15@OEMLaunch|
 
-; 720  :                     break;
-; 721  : 
-; 722  :                 case DOWNLOAD_TYPE_EBOOT:
-; 723  :                 case DOWNLOAD_TYPE_XLDR:
-; 724  :                     OALMSG(OAL_INFO, (L"INFO: XLDR/EBOOT/IPL downloaded, spin forever\r\n"));
+; 727  :                     break;
+; 728  : 
+; 729  :                 case DOWNLOAD_TYPE_EBOOT:
+; 730  :                 case DOWNLOAD_TYPE_XLDR:
+; 731  :                     OALMSG(OAL_INFO, (L"INFO: XLDR/EBOOT/IPL downloaded, spin forever\r\n"));
 
   00114	e59f3108	 ldr         r3, [pc, #0x108]
   00118	e5933440	 ldr         r3, [r3, #0x440]
@@ -3540,15 +3571,15 @@
   00124	1b000000	 blne        NKDbgPrintfW
   00128		 |$LL14@OEMLaunch|
 
-; 725  :                     for(;;);
+; 732  :                     for(;;);
 
   00128	eafffffe	 b           |$LL14@OEMLaunch|
   0012c		 |$LN9@OEMLaunch|
 
-; 731  :                     break;
-; 732  : 
-; 733  :                 default:
-; 734  :                     OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown download type, spin forever\r\n"));
+; 738  :                     break;
+; 739  : 
+; 740  :                 default:
+; 741  :                     OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown download type, spin forever\r\n"));
 
   0012c	e59f30f0	 ldr         r3, [pc, #0xF0]
   00130	e5933440	 ldr         r3, [r3, #0x440]
@@ -3557,14 +3588,14 @@
   0013c	1b000000	 blne        NKDbgPrintfW
   00140		 |$LL8@OEMLaunch|
 
-; 735  :                     for(;;);
+; 742  :                     for(;;);
 
   00140	eafffffe	 b           |$LL8@OEMLaunch|
   00144		 |$LN16@OEMLaunch|
 
-; 717  : 
-; 718  :                 case DOWNLOAD_TYPE_RAM:
-; 719  :                     launch = (UINT32)OEMMapMemAddr(start, launch);
+; 724  : 
+; 725  :                 case DOWNLOAD_TYPE_RAM:
+; 726  :                     launch = (UINT32)OEMMapMemAddr(start, launch);
 
   00144	e1a01008	 mov         r1, r8
   00148	e1a00007	 mov         r0, r7
@@ -3572,13 +3603,13 @@
   00150	e1a04000	 mov         r4, r0
   00154		 |$LN19@OEMLaunch|
 
-; 743  :         }
-; 744  : 
-; 745  : #ifndef BSP_NO_NAND_IN_SDBOOT
-; 746  : 	/* if loading from NAND then do not need to flash NAND again */
-; 747  :     if ((g_bootCfg.flashNKFlags & ENABLE_FLASH_NK) && (g_eboot.bootDeviceType != OAL_KITL_TYPE_FLASH) && 
-; 748  : 	    (start != (IMAGE_WINCE_CODE_CA + NAND_ROMOFFSET)) && // 0x80002000 + 0x40000000
-; 749  : 	    (start != (IMAGE_WINCE_CODE_CA + NOR_ROMOFFSET)))	 // 0x80002000 + 0x60000000
+; 750  :         }
+; 751  : 
+; 752  : #ifndef BSP_NO_NAND_IN_SDBOOT
+; 753  : 	/* if loading from NAND then do not need to flash NAND again */
+; 754  :     if ((g_bootCfg.flashNKFlags & ENABLE_FLASH_NK) && (g_eboot.bootDeviceType != OAL_KITL_TYPE_FLASH) && 
+; 755  : 	    (start != (IMAGE_WINCE_CODE_CA + NAND_ROMOFFSET)) && // 0x80002000 + 0x40000000
+; 756  : 	    (start != (IMAGE_WINCE_CODE_CA + NOR_ROMOFFSET)))	 // 0x80002000 + 0x60000000
 
   00154	e5953080	 ldr         r3, [r5, #0x80]
   00158	e59f50c4	 ldr         r5, [pc, #0xC4]
@@ -3596,15 +3627,15 @@
   00188	e1570003	 cmp         r7, r3
   0018c	0a00000d	 beq         |$LN66@OEMLaunch|
 
-; 750  : 	{
-; 751  : 		OALMSG(1, (L"WriteFlashNK: start = 0x%x,size = 0x%x\r\n",start,size));	
+; 757  : 	{
+; 758  : 		OALMSG(1, (L"WriteFlashNK: start = 0x%x,size = 0x%x\r\n",start,size));	
 
   00190	e59f0088	 ldr         r0, [pc, #0x88]
   00194	e1a02009	 mov         r2, r9
   00198	e1a01007	 mov         r1, r7
   0019c	eb000000	 bl          NKDbgPrintfW
 
-; 752  : 		if( !WriteFlashNK(start, size))
+; 759  : 		if( !WriteFlashNK(start, size))
 
   001a0	e1a01009	 mov         r1, r9
   001a4	e1a00007	 mov         r0, r7
@@ -3612,7 +3643,7 @@
   001ac	e3500000	 cmp         r0, #0
   001b0	1a000004	 bne         |$LN66@OEMLaunch|
 
-; 753  : 			OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Flash NK.bin failed, start=%x\r\n", start));
+; 760  : 			OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Flash NK.bin failed, start=%x\r\n", start));
 
   001b4	e5953440	 ldr         r3, [r5, #0x440]
   001b8	e3130001	 tst         r3, #1
@@ -3621,62 +3652,62 @@
   001c4	1b000000	 blne        NKDbgPrintfW
   001c8		 |$LN66@OEMLaunch|
 
-; 754  : 	}
-; 755  : #endif
-; 756  : 
-; 757  :     // Check if we get launch address
-; 758  :     if (launch == (UINT32)INVALID_HANDLE_VALUE)
+; 761  : 	}
+; 762  : #endif
+; 763  : 
+; 764  :     // Check if we get launch address
+; 765  :     if (launch == (UINT32)INVALID_HANDLE_VALUE)
 
   001c8	e3740001	 cmn         r4, #1
   001cc	1a000004	 bne         |$LN1@OEMLaunch|
   001d0	e5953440	 ldr         r3, [r5, #0x440]
 
-; 759  : 	{
-; 760  :         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown image launch address, spin forever\r\n"));
+; 766  : 	{
+; 767  :         OALMSG(OAL_ERROR, (L"ERROR: OEMLaunch: Unknown image launch address, spin forever\r\n"));
 
   001d4	e3130001	 tst         r3, #1
   001d8	159f0038	 ldrne       r0, [pc, #0x38]
   001dc	1b000000	 blne        NKDbgPrintfW
   001e0		 |$LL2@OEMLaunch|
 
-; 761  :         for(;;);
+; 768  :         for(;;);
 
   001e0	eafffffe	 b           |$LL2@OEMLaunch|
   001e4		 |$LN1@OEMLaunch|
 
-; 762  : 	}        
-; 763  : 
-; 764  :     // Print message, flush caches and jump to image
-; 765  :     OALLog(L"Launch Windows CE image by jumping to 0x%08x...\r\n\r\n", launch);
+; 769  : 	}        
+; 770  : 
+; 771  :     // Print message, flush caches and jump to image
+; 772  :     OALLog(L"Launch Windows CE image by jumping to 0x%08x...\r\n\r\n", launch);
 
   001e4	e59f0028	 ldr         r0, [pc, #0x28]
   001e8	e1a01004	 mov         r1, r4
   001ec	eb000000	 bl          NKDbgPrintfW
 
-; 766  : 
-; 767  : 	OEMDeinitDebugSerial();
+; 773  : 
+; 774  : 	OEMDeinitDebugSerial();
 
   001f0	eb000000	 bl          OEMDeinitDebugSerial
 
-; 768  :     OEMPlatformDeinit();
+; 775  :     OEMPlatformDeinit();
 
   001f4	eb000000	 bl          OEMPlatformDeinit
 
-; 769  :     ClearDisplayBuffer();
+; 776  :     ClearDisplayBuffer();
 
   001f8	eb000000	 bl          ClearDisplayBuffer
 
-; 770  :     JumpTo(OALVAtoPA((UCHAR*)launch));
+; 777  :     JumpTo(OALVAtoPA((UCHAR*)launch));
 
   001fc	e1a00004	 mov         r0, r4
   00200	eb000000	 bl          OALVAtoPA
   00204	eb000000	 bl          JumpTo
-  00208		 |$cleanUp$47839|
+  00208		 |$cleanUp$47845|
 
-; 771  : 
-; 772  : cleanUp:
-; 773  :     return;
-; 774  : }
+; 778  : 
+; 779  : cleanUp:
+; 780  :     return;
+; 781  : }
 
   00208	e28dd00c	 add         sp, sp, #0xC
   0020c	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
@@ -3708,7 +3739,7 @@
   00240	00000000	 DCD         |??_C@_1GK@MMIDCEGF@?$AA?$CL?$AAO?$AAE?$AAM?$AAL?$AAa?$AAu?$AAn?$AAc?$AAh?$AA?$CI?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8?$AAx?$AA?0?$AA?5?$AA0?$AAx?$AA?$CF?$AA0?$AA8@|
   00244		 |$LN93@OEMLaunch|
   00244	00000000	 DCD         |g_eboot|
-  00248		 |$M48533|
+  00248		 |$M48539|
 
 			 ENDP  ; |OEMLaunch|
 

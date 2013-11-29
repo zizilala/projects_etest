@@ -1,75 +1,51 @@
 BUILD: [Thrd:Sequence:Type  ] Message
-BUILD: [00:0000000007:WARNS ] COMMON is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\.
-BUILD: [00:0000000024:WARNS ] PWRKEY is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
-BUILD: [00:0000000025:WARNS ] HEAD is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
-BUILD: [00:0000000026:WARNS ] KEYPAD is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
-BUILD: [00:0000000027:WARNS ] WAVEDEV2 is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
-BUILD: [00:0000000051:WARNS ] Directory: C:\WINCE600\platform\Z2170P\src\inc\OEMDefs C:\WINCE600\public\directx\sdk\inc\ does not exist.
-BUILD: [00:0000000054:WARNS ] Directory: C:\WINCE600\platform\Z2170P\src\inc\OEMDefs C:\WINCE600\public\directx\sdk\inc\ does not exist.
-BUILD: [01:0000001089:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(867) : warning C4100: 'lpvReserved' : unreferenced formal parameter
-BUILD: [01:0000001090:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(883) : warning C4100: 'lpvBusContext' : unreferenced formal parameter
-BUILD: [01:0000001091:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(883) : warning C4100: 'pContext' : unreferenced formal parameter
-BUILD: [01:0000001092:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(921) : warning C4100: 'ShareMode' : unreferenced formal parameter
-BUILD: [01:0000001093:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(921) : warning C4100: 'AccessCode' : unreferenced formal parameter
-BUILD: [01:0000001094:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(978) : warning C4189: 'dev' : local variable is initialized but not referenced
-BUILD: [01:0000001095:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1051) : warning C4100: 'Count' : unreferenced formal parameter
-BUILD: [01:0000001096:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1051) : warning C4100: 'pBuffer' : unreferenced formal parameter
-BUILD: [01:0000001097:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1051) : warning C4100: 'hOpenContext' : unreferenced formal parameter
-BUILD: [01:0000001098:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1057) : warning C4100: 'Count' : unreferenced formal parameter
-BUILD: [01:0000001099:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1057) : warning C4100: 'pBuffer' : unreferenced formal parameter
-BUILD: [01:0000001100:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1057) : warning C4100: 'hOpenContext' : unreferenced formal parameter
-BUILD: [01:0000001101:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1063) : warning C4100: 'hDeviceContext' : unreferenced formal parameter
-BUILD: [01:0000001102:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\ISP_RESIZER\.\isp_resizer.cpp(1069) : warning C4100: 'hDeviceContext' : unreferenced formal parameter
-BUILD: [01:0000001224:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\OAL\OALLIB\startup.s(62) warning : A0241: Instruction clz not supported for -cpu "-arch 4t"
-BUILD: [01:0000001453:WARNN ] c:\wince600\others\atl8\include\atlosapice.h(334) : warning C6315: Incorrect order of operations: bitwise-and has higher precedence than bitwise-or. Add parentheses to clarify intent
-BUILD: [01:0000001454:WARNN ] c:\wince600\others\atl8\include\atlosapice.h(817) : warning C6246: Local declaration of 'dwType' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '802' of 'c:\wince600\others\atl8\include\atlosapice.h': Lines: 802
-BUILD: [01:0000001455:WARNN ] c:\wince600\others\atl8\include\atlosapice.h(940) : warning C6314: Incorrect order of operations: bitwise-or has higher precedence than the conditional-expression operator. Add parentheses to clarify intent
-BUILD: [01:0000001456:WARNN ] c:\wince600\others\atl8\include\atlosapice.h(965) : warning C6296: Ill-defined for-loop. Loop body only executed once
-BUILD: [00:0000001989:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
-BUILD: [00:0000002036:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\DISPLAY\DSS\sources(40) : Build.exe does not evaluate IF conditional statements. Conditional statements that affect macro definitions might cause Build.exe to not rebuild modified source code. Refer to the Platform Builder documentation.
-BUILD: [00:0000002037:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
-BUILD: [00:0000002038:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\DISPLAY\DSS\: Missing source file: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib.
-BUILD: [00:0000002116:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\lan9118.obj does not exist (2).
-BUILD: [00:0000002117:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\os.obj does not exist (2).
-BUILD: [00:0000002118:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\smsc9118.obj does not exist (2).
-BUILD: [00:0000002119:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\platform.obj does not exist (2).
-BUILD: [00:0000002120:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\util.obj does not exist (2).
-BUILD: [00:0000002190:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMEMORY\obj\ARMV4I\retail\sdmemmain.obj does not exist (2).
-BUILD: [00:0000002191:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMEMORY\obj\ARMV4I\retail\SDMemDiskIO.obj does not exist (2).
-BUILD: [00:0000002192:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMEMORY\obj\ARMV4I\retail\SDMemCardIO.obj does not exist (2).
-BUILD: [00:0000002232:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
-BUILD: [00:0000002233:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib does not exist (2).
-BUILD: [00:0000002234:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\smsc9118.lib does not exist (2).
-BUILD: [00:0000002235:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_SDMemory.lib does not exist (2).
-BUILD: [00:0000002454:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
-BUILD: [00:0000002455:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib does not exist (2).
-BUILD: [00:0000002456:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\smsc9118.lib does not exist (2).
-BUILD: [00:0000002457:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_SDMemory.lib does not exist (2).
-BUILD: [00:0000002511:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\CameraDevice.obj does not exist (2).
-BUILD: [00:0000002512:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\cameradriver.obj does not exist (2).
-BUILD: [00:0000002513:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\pindevice.obj does not exist (2).
-BUILD: [00:0000002514:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\pindriver.obj does not exist (2).
-BUILD: [00:0000002530:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\PDD_Intf.obj does not exist (2).
-BUILD: [00:0000002531:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\CameraDrvPdd.obj does not exist (2).
-BUILD: [00:0000002532:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\IspCtrl.obj does not exist (2).
-BUILD: [00:0000002533:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\TvpCtrl.obj does not exist (2).
-BUILD: [00:0000002534:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\util.obj does not exist (2).
-BUILD: [00:0000002551:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
-BUILD: [00:0000002552:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib does not exist (2).
-BUILD: [00:0000002553:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\smsc9118.lib does not exist (2).
-BUILD: [00:0000002554:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_SDMemory.lib does not exist (2).
-BUILD: [00:0000002555:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMMDD.lib does not exist (2).
-BUILD: [00:0000002556:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMPDD.lib does not exist (2).
-BUILD: [00:0000002557:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\DLL\obj\ARMV4I\retail\main.obj does not exist (2).
-BUILD: [00:0000002791:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MUSB\MUSBFN\: Missing source file: C:\WINCE600\public\common\oak\lib\ARMV4I\retail\ufnmdd.lib.
-BUILD: [00:0000002908:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\NLED\obj\ARMV4I\retail\nled.obj does not exist (2).
-BUILD: [00:0000003426:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
-BUILD: [00:0000003427:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib does not exist (2).
-BUILD: [00:0000003428:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\smsc9118.lib does not exist (2).
-BUILD: [00:0000003429:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_SDMemory.lib does not exist (2).
-BUILD: [00:0000003430:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMMDD.lib does not exist (2).
-BUILD: [00:0000003431:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMPDD.lib does not exist (2).
-BUILD: [00:0000003432:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_camera.lib does not exist (2).
-BUILD: [00:0000003433:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nled.lib does not exist (2).
-BUILD: [00:0000003434:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_hdq.lib does not exist (2).
-BUILD: [00:0000003435:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\BootImage does not exist (2).
+BUILD: [00:0000000008:WARNS ] COMMON is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\.
+BUILD: [00:0000000025:WARNS ] PWRKEY is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
+BUILD: [00:0000000026:WARNS ] HEAD is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
+BUILD: [00:0000000027:WARNS ] KEYPAD is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
+BUILD: [00:0000000028:WARNS ] WAVEDEV2 is not a subdirectory of C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\.
+BUILD: [00:0000000052:WARNS ] Directory: C:\WINCE600\platform\Z2170P\src\inc\OEMDefs C:\WINCE600\public\directx\sdk\inc\ does not exist.
+BUILD: [00:0000000055:WARNS ] Directory: C:\WINCE600\platform\Z2170P\src\inc\OEMDefs C:\WINCE600\public\directx\sdk\inc\ does not exist.
+BUILD: [00:0000000369:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
+BUILD: [00:0000000370:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\DISPLAY\DSS\sources(40) : Build.exe does not evaluate IF conditional statements. Conditional statements that affect macro definitions might cause Build.exe to not rebuild modified source code. Refer to the Platform Builder documentation.
+BUILD: [00:0000000371:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\DISPLAY\DSS\: Missing source file: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib.
+BUILD: [00:0000000393:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\lan9118.obj does not exist (2).
+BUILD: [00:0000000394:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\os.obj does not exist (2).
+BUILD: [00:0000000395:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\smsc9118.obj does not exist (2).
+BUILD: [00:0000000396:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\platform.obj does not exist (2).
+BUILD: [00:0000000397:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SMSC9118\obj\ARMV4I\retail\util.obj does not exist (2).
+BUILD: [00:0000000414:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMEMORY\obj\ARMV4I\retail\sdmemmain.obj does not exist (2).
+BUILD: [00:0000000415:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMEMORY\obj\ARMV4I\retail\SDMemDiskIO.obj does not exist (2).
+BUILD: [00:0000000416:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\SDMEMORY\obj\ARMV4I\retail\SDMemCardIO.obj does not exist (2).
+BUILD: [00:0000000431:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
+BUILD: [00:0000000432:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib does not exist (2).
+BUILD: [00:0000000433:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\smsc9118.lib does not exist (2).
+BUILD: [00:0000000434:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_SDMemory.lib does not exist (2).
+BUILD: [00:0000000435:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\CameraDevice.obj does not exist (2).
+BUILD: [00:0000000436:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\cameradriver.obj does not exist (2).
+BUILD: [00:0000000437:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\pindevice.obj does not exist (2).
+BUILD: [00:0000000438:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\MDD\obj\ARMV4I\retail\pindriver.obj does not exist (2).
+BUILD: [00:0000000454:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\PDD_Intf.obj does not exist (2).
+BUILD: [00:0000000455:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\CameraDrvPdd.obj does not exist (2).
+BUILD: [00:0000000456:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\IspCtrl.obj does not exist (2).
+BUILD: [00:0000000457:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\TvpCtrl.obj does not exist (2).
+BUILD: [00:0000000458:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\PDD\obj\ARMV4I\retail\util.obj does not exist (2).
+BUILD: [00:0000000475:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
+BUILD: [00:0000000476:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib does not exist (2).
+BUILD: [00:0000000477:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\smsc9118.lib does not exist (2).
+BUILD: [00:0000000478:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_SDMemory.lib does not exist (2).
+BUILD: [00:0000000479:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMMDD.lib does not exist (2).
+BUILD: [00:0000000480:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMPDD.lib does not exist (2).
+BUILD: [00:0000000481:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\CAMERA\DLL\obj\ARMV4I\retail\main.obj does not exist (2).
+BUILD: [00:0000000496:WARNN ] C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\MUSB\MUSBFN\: Missing source file: C:\WINCE600\public\common\oak\lib\ARMV4I\retail\ufnmdd.lib.
+BUILD: [00:0000000540:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\DRIVERS\NLED\obj\ARMV4I\retail\nled.obj does not exist (2).
+BUILD: [00:0000000581:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nand.lib does not exist (2).
+BUILD: [00:0000000582:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap35xx_ddgpe_neon.lib does not exist (2).
+BUILD: [00:0000000583:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\smsc9118.lib does not exist (2).
+BUILD: [00:0000000584:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_SDMemory.lib does not exist (2).
+BUILD: [00:0000000585:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMMDD.lib does not exist (2).
+BUILD: [00:0000000586:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\CAMPDD.lib does not exist (2).
+BUILD: [00:0000000587:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_camera.lib does not exist (2).
+BUILD: [00:0000000588:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_nled.lib does not exist (2).
+BUILD: [00:0000000589:WARNN ] File: C:\WINCE600\platform\Z2170P\lib\ARMV4I\retail\omap_hdq.lib does not exist (2).
+BUILD: [00:0000000590:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\NAND\BootImage does not exist (2).
