@@ -10,7 +10,7 @@ BUILD: [00:0000000007:PROGC ] Checking for SDK include directory: C:\WINCE600\sd
 BUILD: [00:0000000008:PROGC ] Scan C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\
 BUILD: [00:0000000009:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
 BUILD: [00:0000000010:INFO  ] Done.
-BUILD: [00:0000000011:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\main.c because target: obj\ARMV4I\retail\main.obj is missing.
+BUILD: [00:0000000011:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\functionTest.c because target: obj\ARMV4I\retail\functionTest.obj is out of date.
 BUILD: [00:0000000012:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\ because target: BootImage is missing.
 BUILD: [00:0000000013:PROGC ] Building COMPILE Pass in C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\ directory.
 BUILD: [00:0000000014:PROG  ] 'NMAKE.EXE TargetCompilePass  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\Z2170P NOLINK=1 NOPASS0=1'
@@ -24,11 +24,11 @@ BUILD: [01:0000000021:INFO  ] TARGETNAME: ebootsd
 BUILD: [01:0000000022:INFO  ] makefile.def: Including C:\WINCE600\public\common\oak\misc\sources.ReleaseType_PLATFORM
 BUILD: [01:0000000023:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000024:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
-BUILD: [01:0000000025:PROGC ] Compiling ..\main.c
-BUILD: [01:0000000026:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\main.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\Z2170P\src\inc\OEMDefs -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -I.. -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DCOREDLL -DBUILDING_EBOOT_SD -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\main.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\..\main.c
-BUILD: [01:0000000027:INFO  ] main.c
+BUILD: [01:0000000025:PROGC ] Compiling ..\functionTest.c
+BUILD: [01:0000000026:INFO  ] cl -nologo   /Gy -Foobj\ARMV4I\retail\functionTest.obj -c -IARM\ -I. -IC:\WINCE600\platform\COMMON\src\inc -IC:\WINCE600\platform\Z2170P\src\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TRITON\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\TPS659xx\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\inc -IC:\WINCE600\platform\COMMON\src\soc\COMMON_TI_V1\OMAP3530\inc -IC:\WINCE600\platform\Z2170P\src\inc\OEMDefs -IC:\WINCE600\public\common\oak\drivers\block\msflashfmd\inc -I.. -IC:\WINCE600\public\common\sdk\inc -IC:\WINCE600\public\common\oak\inc -IC:\WINCE600\public\common\ddk\inc -IC:\WINCE600\sdk\CE\inc -I.\Resource\0409 -Ox -Os -GF -Zi -FdC:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.pdb -D_CRT_SECURE_NO_DEPRECATE -D_USE_32BIT_TIME_T -DUNICODE -D_UNICODE -DUNDER_CE=600 -D_WIN32_WCE=0x600 -DWINCEOEM -DWINCEINTERNAL -DWIN32 -DSTRICT -DARM -DARMV4I -D_ARM_ -DNDEBUG=1  -D_SOC_MODEL=OMAP3530 -D_TRITON_MODEL=TPS659xx -DCEDDK_USEDDKMACRO -D_WINCEOSVER=600 -DBSP_EVM2 -DBSP_OPM_SELECT_37XX=4 -DBSP_OPM_SELECT_35XX=5 -DBSP_RTC_WAKES_CPU -DBSP_SDRAM_BANK1_ENABLE -DCOREDLL -DBUILDING_EBOOT_SD -DINTERNATIONAL -DINTLMSG_CODEPAGE=1252 -FAsc -Faobj\ARMV4I\retail\functionTest.cod -WX -QRimplicit-import- -Zi  -Zc:wchar_t- -Zc:forScope- -wd4867 -wd4430 -MT -U_MT -W4 /analyze   /GR- -QRarch4T -DTHUMBSUPPORT -QRinterwork-return   C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\..\functionTest.c
+BUILD: [01:0000000027:INFO  ] functionTest.c
 BUILD: [00:0000000028:WARNN ] File: C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\BootImage does not exist (2).
-BUILD: [00:0000000029:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\obj\ARMV4I\retail\main.obj because target: C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe is out of date.
+BUILD: [00:0000000029:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\obj\ARMV4I\retail\functionTest.obj because target: C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe is out of date.
 BUILD: [00:0000000030:INFO  ] Will Build C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\ because target: BootImage is missing.
 BUILD: [00:0000000031:PROGC ] Building LINK Pass in C:\WINCE600\PLATFORM\Z2170P\SRC\BOOTLOADER\EBOOT\SDMEMORY\ directory.
 BUILD: [00:0000000032:PROG  ] 'NMAKE.EXE TargetExeFiles  -i -c BUILDMSG=Stop.  BUILDROOT=C:\WINCE600\PLATFORM\Z2170P LINKONLY=1 NOPASS0=1'
@@ -44,7 +44,7 @@ BUILD: [01:0000000041:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000042:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
 BUILD: [01:0000000043:INFO  ] 	set LIB=C:\WINCE600\sdk\CE\lib
 BUILD: [01:0000000044:PROGC ] Linking C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe
-BUILD: [01:0000000045:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm556.tmp
+BUILD: [01:0000000045:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm3AC.tmp
 BUILD: [01:0000000046:INFO  ] Microsoft (R) Incremental Linker Version 8.00.50727.42
 BUILD: [01:0000000047:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000048:INFO  ] 
@@ -1118,15 +1118,15 @@ BUILD: [01:0000001115:INFO  ] Windows CE ROM Image Builder v4.0.000 Copyright (c
 BUILD: [01:0000001116:INFO  ] Built: Jul 25 2006 16:36:51
 BUILD: [01:0000001117:INFO  ] 
 BUILD: [01:0000001118:INFO  ] Copying C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe to C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\nk.exe for debugger
-BUILD: [01:0000001119:INFO  ] Found pTOC at 00006298
+BUILD: [01:0000001119:INFO  ] Found pTOC at 00006230
 BUILD: [01:0000001120:INFO  ] No imports for nk.exe
 BUILD: [01:0000001121:INFO  ] Processing EBOOTSD
 BUILD: [01:0000001122:INFO  ] 
 BUILD: [01:0000001123:INFO  ] Writing C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\EBOOTSD.bin
-BUILD: [01:0000001124:INFO  ] Table of contents  87e2dc60  00000020  (        32)
+BUILD: [01:0000001124:INFO  ] Table of contents  87e2dd60  00000020  (        32)
 BUILD: [01:0000001125:INFO  ] Writing ROM signature and TOC pointer at 87e00040
-BUILD: [01:0000001126:INFO  ] Kernel data copy section  87e2efc8  00000010  (        16)
-BUILD: [01:0000001127:INFO  ] ROM Header                87e2dc0c  00000054  (        84)
+BUILD: [01:0000001126:INFO  ] Kernel data copy section  87e2efe8  00000010  (        16)
+BUILD: [01:0000001127:INFO  ] ROM Header                87e2dd0c  00000054  (        84)
 BUILD: [01:0000001128:INFO  ] First DLL Address:       4001c001
 BUILD: [01:0000001129:INFO  ] Last DLL Address:        4001c001
 BUILD: [01:0000001130:INFO  ] Physical Start Address:  87e00000
@@ -1136,7 +1136,7 @@ BUILD: [01:0000001133:INFO  ] Start of free RAM:       87ec3000
 BUILD: [01:0000001134:INFO  ] End of RAM:              87ed0000
 BUILD: [01:0000001135:INFO  ] Number of Modules:       1
 BUILD: [01:0000001136:INFO  ] Number of Copy Sections: 1
-BUILD: [01:0000001137:INFO  ] Copy Section Offset:     87e2efc8
+BUILD: [01:0000001137:INFO  ] Copy Section Offset:     87e2efe8
 BUILD: [01:0000001138:INFO  ] FileSys 4K Chunks/Mbyte: 128 <2Mbyte  128 2-4Mbyte  0 4-6Mbyte  0 >6Mbyte
 BUILD: [01:0000001139:INFO  ] CPU Type:                    01c2h
 BUILD: [01:0000001140:INFO  ] Miscellaneous Flags:         0002h
@@ -1149,41 +1149,40 @@ BUILD: [01:0000001146:INFO  ] Writing rom file...
 BUILD: [01:0000001147:INFO  ] Start 87e00000 Len 00000004
 BUILD: [01:0000001148:INFO  ] Start 87e00040 Len 00000008
 BUILD: [01:0000001149:INFO  ] Start 87e00048 Len 00000004
-BUILD: [01:0000001150:INFO  ] Start 87e01000 Len 0002cc0c
-BUILD: [01:0000001151:INFO  ] Start 87e2dc0c Len 00000054
-BUILD: [01:0000001152:INFO  ] Start 87e2dc60 Len 00000020
-BUILD: [01:0000001153:INFO  ] Start 87e2e000 Len 00000fd8
-BUILD: [01:0000001154:INFO  ] Start 87e2f000 Len 000010dc
-BUILD: [01:0000001155:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\EBOOTSD.nb0
-BUILD: [01:0000001156:INFO  ] Done!
-BUILD: [01:0000001157:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.bin C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
-BUILD: [01:0000001158:INFO  ] 複製 1 個檔案
-BUILD: [01:0000001159:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.nb0 C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
-BUILD: [01:0000001160:INFO  ] 複製 1 個檔案
-BUILD: [00:0000001161:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
-BUILD: [00:0000001162:INFO  ] Done.
-BUILD: [00:0000001163:PROGC ] Done.
-BUILD: [00:0000001164:PROGC ]                        Files  Warnings  Errors
-BUILD: [00:0000001165:PROGC ] Midl                       0         0       0
-BUILD: [00:0000001166:PROGC ] Message                    0         0       0
-BUILD: [00:0000001167:PROGC ] Precomp Header             0         0       0
-BUILD: [00:0000001168:PROGC ] Resource                   0         0       0
-BUILD: [00:0000001169:PROGC ] MASM                       0         0       0
-BUILD: [00:0000001170:PROGC ] SHASM                      0         0       0
-BUILD: [00:0000001171:PROGC ] ARMASM                     0         0       0
-BUILD: [00:0000001172:PROGC ] MIPSASM                    0         0       0
-BUILD: [00:0000001173:PROGC ] C++                        0         0       0
-BUILD: [00:0000001174:PROGC ] C                          1         0       0
-BUILD: [00:0000001175:PROGC ] Static Libraries           0         0       0
-BUILD: [00:0000001176:PROGC ] Exe's                      1         6       0
-BUILD: [00:0000001177:PROGC ] Dll's                      0         0       0
-BUILD: [00:0000001178:PROGC ] Preprocess deffile         0         0       0
-BUILD: [00:0000001179:PROGC ] Resx                       0         0       0
-BUILD: [00:0000001180:PROGC ] CSharp Compile             0         0       0
-BUILD: [00:0000001181:PROGC ] Other                      0         0       0
-BUILD: [00:0000001182:PROGC ] 
-BUILD: [00:0000001183:PROGC ] Total                      2         6       0
-BUILD: [00:0000001184:PROGC ] 
-BUILD: [00:0000001185:PROGC ] 6 Warnings,  0 Errors
-BUILD: [00:0000001186:PROGC ] GetSystemTimes (seconds): Idle: 2     Kernel: 3     User: 1    
-BUILD: [00:0000001187:PROGC ] Elapsed  time  (seconds): 2    
+BUILD: [01:0000001150:INFO  ] Start 87e01000 Len 0002cd0c
+BUILD: [01:0000001151:INFO  ] Start 87e2dd0c Len 00000054
+BUILD: [01:0000001152:INFO  ] Start 87e2dd60 Len 00000020
+BUILD: [01:0000001153:INFO  ] Start 87e2e000 Len 000020dc
+BUILD: [01:0000001154:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\EBOOTSD.nb0
+BUILD: [01:0000001155:INFO  ] Done!
+BUILD: [01:0000001156:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.bin C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
+BUILD: [01:0000001157:INFO  ] 複製 1 個檔案
+BUILD: [01:0000001158:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.nb0 C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
+BUILD: [01:0000001159:INFO  ] 複製 1 個檔案
+BUILD: [00:0000001160:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
+BUILD: [00:0000001161:INFO  ] Done.
+BUILD: [00:0000001162:PROGC ] Done.
+BUILD: [00:0000001163:PROGC ]                        Files  Warnings  Errors
+BUILD: [00:0000001164:PROGC ] Midl                       0         0       0
+BUILD: [00:0000001165:PROGC ] Message                    0         0       0
+BUILD: [00:0000001166:PROGC ] Precomp Header             0         0       0
+BUILD: [00:0000001167:PROGC ] Resource                   0         0       0
+BUILD: [00:0000001168:PROGC ] MASM                       0         0       0
+BUILD: [00:0000001169:PROGC ] SHASM                      0         0       0
+BUILD: [00:0000001170:PROGC ] ARMASM                     0         0       0
+BUILD: [00:0000001171:PROGC ] MIPSASM                    0         0       0
+BUILD: [00:0000001172:PROGC ] C++                        0         0       0
+BUILD: [00:0000001173:PROGC ] C                          1         0       0
+BUILD: [00:0000001174:PROGC ] Static Libraries           0         0       0
+BUILD: [00:0000001175:PROGC ] Exe's                      1         6       0
+BUILD: [00:0000001176:PROGC ] Dll's                      0         0       0
+BUILD: [00:0000001177:PROGC ] Preprocess deffile         0         0       0
+BUILD: [00:0000001178:PROGC ] Resx                       0         0       0
+BUILD: [00:0000001179:PROGC ] CSharp Compile             0         0       0
+BUILD: [00:0000001180:PROGC ] Other                      0         0       0
+BUILD: [00:0000001181:PROGC ] 
+BUILD: [00:0000001182:PROGC ] Total                      2         6       0
+BUILD: [00:0000001183:PROGC ] 
+BUILD: [00:0000001184:PROGC ] 6 Warnings,  0 Errors
+BUILD: [00:0000001185:PROGC ] GetSystemTimes (seconds): Idle: 2     Kernel: 3     User: 1    
+BUILD: [00:0000001186:PROGC ] Elapsed  time  (seconds): 2    
