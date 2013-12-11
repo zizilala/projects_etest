@@ -213,16 +213,16 @@ BOOL OEMPlatformInit()
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 	//GPIOSetBit(hGPIO,15);     // test 
 
-    GPIOClrBit(hGPIO, 155);             // Keypad_LED, Ray 131112 
+    GPIOClrBit(hGPIO, 155);                 // Keypad_LED, Ray 131112 
     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
 
-    /*GPIOClrBit(hGPIO, 184);             //I2C3_CLK, Ray 131129                  
+    /*GPIOClrBit(hGPIO, 184);               //I2C3_CLK, Ray 131129                  
     GPIOSetMode(hGPIO, 184, GPIO_DIR_OUTPUT);
-    GPIOClrBit(hGPIO, 185);             //I2C3_SDA, Ray 131129    
-    GPIOSetMode(hGPIO, 185, GPIO_DIR_OUTPUT);
-    OALLog(L"\r\n >>>Set hGPIO: %x \r\n",hGPIO); */
+    GPIOClrBit(hGPIO, 185);                 //I2C3_SDA, Ray 131129    
+    GPIOSetMode(hGPIO, 185, GPIO_DIR_OUTPUT);*/
+    //OALLog(L"\r\n >>>Set hGPIO: %x \r\n",hGPIO); 
     
-	HotKeyInit(hTwl);           //HotKey Initial ,Ray
+	HotKeyInit(hTwl);                       //HotKey Initial ,Ray
     ghTwl = hTwl;              
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
 

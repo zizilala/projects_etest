@@ -569,8 +569,8 @@
 	EXPORT	|??_C@_1M@MMBAGLLJ@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1M@HEKMAMNM@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1M@PKCDALDP@?$AAE?$AAS?$AA1?$AA?4?$AA0?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_08IIDPCOFA@15?355?332?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_0M@OBIMLMGN@Dec?5?56?52013?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_08HJNGKIEK@18?323?308?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_0M@DCENLIOC@Dec?510?52013?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CC@DJCPIFGO@?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA0?$AA?4?$AA0?$AA?4?$AA1?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|TWLReadIDCode|
@@ -685,10 +685,10 @@
 	DCB	"1", 0x0, ".", 0x0, "0", 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_08IIDPCOFA@15?355?332?$AA@| DCB "15:55:32", 0x0	; `string'
+|??_C@_08HJNGKIEK@18?323?308?$AA@| DCB "18:23:08", 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_0M@OBIMLMGN@Dec?5?56?52013?$AA@| DCB "Dec  6 2013", 0x0 ; `string'
+|??_C@_0M@DCENLIOC@Dec?510?52013?$AA@| DCB "Dec 10 2013", 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@| DCB "Z"
@@ -972,7 +972,7 @@
 
 ; 214  : 	//GPIOSetBit(hGPIO,15);     // test 
 ; 215  : 
-; 216  :     GPIOClrBit(hGPIO, 155);             // Keypad_LED, Ray 131112 
+; 216  :     GPIOClrBit(hGPIO, 155);                 // Keypad_LED, Ray 131112 
 
   001b0	e3a0109b	 mov         r1, #0x9B
   001b4	e1a00004	 mov         r0, r4
@@ -986,13 +986,13 @@
   001c8	eb000000	 bl          GPIOSetMode
 
 ; 218  : 
-; 219  :     /*GPIOClrBit(hGPIO, 184);             //I2C3_CLK, Ray 131129                  
+; 219  :     /*GPIOClrBit(hGPIO, 184);               //I2C3_CLK, Ray 131129                  
 ; 220  :     GPIOSetMode(hGPIO, 184, GPIO_DIR_OUTPUT);
-; 221  :     GPIOClrBit(hGPIO, 185);             //I2C3_SDA, Ray 131129    
-; 222  :     GPIOSetMode(hGPIO, 185, GPIO_DIR_OUTPUT);
-; 223  :     OALLog(L"\r\n >>>Set hGPIO: %x \r\n",hGPIO); */
+; 221  :     GPIOClrBit(hGPIO, 185);                 //I2C3_SDA, Ray 131129    
+; 222  :     GPIOSetMode(hGPIO, 185, GPIO_DIR_OUTPUT);*/
+; 223  :     //OALLog(L"\r\n >>>Set hGPIO: %x \r\n",hGPIO); 
 ; 224  :     
-; 225  : 	HotKeyInit(hTwl);           //HotKey Initial ,Ray
+; 225  : 	HotKeyInit(hTwl);                       //HotKey Initial ,Ray
 
   001cc	e1a00007	 mov         r0, r7
   001d0	eb000000	 bl          HotKeyInit
@@ -1187,9 +1187,9 @@
   00344		 |$LN72@OEMPlatfor|
   00344	00000000	 DCD         |??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@|
   00348		 |$LN73@OEMPlatfor|
-  00348	00000000	 DCD         |??_C@_0M@OBIMLMGN@Dec?5?56?52013?$AA@|
+  00348	00000000	 DCD         |??_C@_0M@DCENLIOC@Dec?510?52013?$AA@|
   0034c		 |$LN74@OEMPlatfor|
-  0034c	00000000	 DCD         |??_C@_08IIDPCOFA@15?355?332?$AA@|
+  0034c	00000000	 DCD         |??_C@_08HJNGKIEK@18?323?308?$AA@|
   00350		 |$M48211|
 
 			 ENDP  ; |OEMPlatformInit|
