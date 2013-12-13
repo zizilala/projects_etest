@@ -396,7 +396,7 @@
 	DCD	0x20
 	DCW	0xca
 	%	2
-	DCD	0x20
+	DCD	0x21
 	DCW	0xffff
 	%	2
 	DCD	0x0
@@ -569,8 +569,8 @@
 	EXPORT	|??_C@_1M@MMBAGLLJ@?$AAE?$AAS?$AA2?$AA?4?$AA1?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1M@HEKMAMNM@?$AAE?$AAS?$AA2?$AA?4?$AA0?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1M@PKCDALDP@?$AAE?$AAS?$AA1?$AA?4?$AA0?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_08HJNGKIEK@18?323?308?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_0M@DCENLIOC@Dec?510?52013?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_08INIPEDDC@14?345?302?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_0M@JEDKLDFG@Dec?511?52013?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CC@DJCPIFGO@?$AAV?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA0?$AA?4?$AA0?$AA?4?$AA1?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|TWLReadIDCode|
@@ -685,10 +685,10 @@
 	DCB	"1", 0x0, ".", 0x0, "0", 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_08HJNGKIEK@18?323?308?$AA@| DCB "18:23:08", 0x0	; `string'
+|??_C@_08INIPEDDC@14?345?302?$AA@| DCB "14:45:02", 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_0M@DCENLIOC@Dec?510?52013?$AA@| DCB "Dec 10 2013", 0x0 ; `string'
+|??_C@_0M@JEDKLDFG@Dec?511?52013?$AA@| DCB "Dec 11 2013", 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@| DCB "Z"
@@ -1187,9 +1187,9 @@
   00344		 |$LN72@OEMPlatfor|
   00344	00000000	 DCD         |??_C@_1HG@KGFFNHHE@?$AAZ?$AAE?$AAB?$AAE?$AAX?$AA?5?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?5?$AAC?$AAE?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAZ?$AA?9?$AA2?$AA1?$AA7@|
   00348		 |$LN73@OEMPlatfor|
-  00348	00000000	 DCD         |??_C@_0M@DCENLIOC@Dec?510?52013?$AA@|
+  00348	00000000	 DCD         |??_C@_0M@JEDKLDFG@Dec?511?52013?$AA@|
   0034c		 |$LN74@OEMPlatfor|
-  0034c	00000000	 DCD         |??_C@_08HJNGKIEK@18?323?308?$AA@|
+  0034c	00000000	 DCD         |??_C@_08INIPEDDC@14?345?302?$AA@|
   00350		 |$M48211|
 
 			 ENDP  ; |OEMPlatformInit|
