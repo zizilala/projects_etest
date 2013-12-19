@@ -413,26 +413,6 @@ VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 //------------------------------------------------------------------------------
 //  The Battery Test, Ray 131128
 //
-//  ACKnowledge are processor(master) sent data after bq27XXX(slave) device must be return a value     
-//
-VOID I2C_ACKnowledge(HANDLE hGPIO_I2C)
-{
-
-//dd    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
-    LcdStall(100);
-    GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
-    LcdStall(50); 
-    GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-    LcdStall(50);
-
-    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
-    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
-    LcdStall(50);  
-    //Doesnot Needs SDA Line falling time!!
-    //GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-}
-//
 //
 //
 VOID I2C_Clk(HANDLE hGPIO_I2C)
@@ -443,19 +423,46 @@ VOID I2C_Clk(HANDLE hGPIO_I2C)
     //LcdStall(50);
 }
 //
-//  xxx
+//  ACKnowledge are processor(master) sent data after bq27XXX(slave) device must be return a value     
+//
+VOID I2C_ACKnowledge(HANDLE hGPIO_I2C)
+{
+
+    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+    LcdStall(50);
+    GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
+    LcdStall(50); 
+    GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+    LcdStall(50);
+
+    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
+    //LcdStall(50);
+    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
+    LcdStall(50);   
+    //Doesnot Needs SDA Line falling time!!
+    /*GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+    LcdStall(50);*/
+}
+//
+//  
 //
 VOID I2C_ACKnowledge_READ(HANDLE hGPIO_I2C)
 {       
-   
+
+    //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+    //LcdStall(50);
     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
-    LcdStall(50);
+    LcdStall(50); 
     GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
     LcdStall(50);
     
+    //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
+    //LcdStall(50);
     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
-    LcdStall(50);
-    
+    LcdStall(50); 
+    //Doesnot Needs SDA Line falling time!!
+    /*GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+    LcdStall(50);*/         
 }
 //
 //
@@ -464,43 +471,44 @@ int I2C_Clk_READ(HANDLE hGPIO_I2C)
 {
     DWORD data=0;
     
-    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
-    LcdStall(50);
+    /*GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+    LcdStall(50);*/
     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
     LcdStall(50);
     data = GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-    LcdStall(50);
+    LcdStall(10);
 
-    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);      
-   
+    //IOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);      
     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
     LcdStall(50); 
-    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-   
+    /*IOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+    LcdStall(50); */ 
     return (int)data;
 }
 //
-//
+//  Read Data
 //
 int I2C_READ(HANDLE hGPIO_I2C)
 {
     int i, rx, value;
     
+    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+    LcdStall(50);
     for(i=7, value=0; i>=0; i--)
     {
         rx = I2C_Clk_READ(hGPIO_I2C); 
         value += (rx<<i);
     }
-    //LcdStall(50);
-    //I2C_ACKnowledge_READ(hGPIO_I2C);
-
-     
-    //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
-    //GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);
+    
+    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);      
+    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);    
+    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+    //LcdStall(50); 
+    
     return value;
 }
 //
-//
+//  Write CMD
 //
 VOID I2C_WRITE(HANDLE hGPIO_I2C, int CMD)
 {
@@ -509,141 +517,253 @@ VOID I2C_WRITE(HANDLE hGPIO_I2C, int CMD)
     {
         if( CMD&(1<<i) ){
             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
-            LcdStall(70);
+            LcdStall(50);
             I2C_Clk(hGPIO_I2C);
         }else{
             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
-            LcdStall(70);
+            LcdStall(50);
             I2C_Clk(hGPIO_I2C);
         }
     }           
 }
-
 //
 //  Set-up device Slave Addressing  
 //
 VOID I2C_setSlaveAddress(HANDLE hGPIO_I2C, int addr)
 {    
     int i; 
-    LcdStall(30); 
+    //LcdStall(30); 
     for(i=7; i >=0; i--)
     {         
         if( addr&(1<<i) ){
             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
-            LcdStall(70);
+            LcdStall(50);
             I2C_Clk(hGPIO_I2C);
         }else{
             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
-            LcdStall(70);
+            LcdStall(50);
             I2C_Clk(hGPIO_I2C);
         }
     }  
 }
+//
+//
+//
+VOID I2C_setSlaveAddress_READ(HANDLE hGPIO_I2C, int addr)
+{    
+    int i; 
+    for(i=7; i >=0; i--)
+    {         
+        if( addr&(1<<i) ){
+            GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
+            LcdStall(50);
+            I2C_Clk(hGPIO_I2C);
+        }else{
+            GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
+            LcdStall(50);
+            I2C_Clk(hGPIO_I2C);
+        }
+    }
+    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+    LcdStall(50);
+}
+
 //
 //  Start condition
 //
 VOID I2C_START(HANDLE hGPIO_I2C)
 {
     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S1, SDA = High
+    LcdStall(100);                          //??
     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S2, SCL = High ; kept high   
     LcdStall(100);
-
+    
     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S3, When SDA changes High -> Low , start bit generating
-    LcdStall(70);                           
+    LcdStall(50);                           
     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S4, SCL = Low 
+    LcdStall(50);                           //??
 }
 //
 //  Stop condition
 //
 VOID I2C_STOP(HANDLE hGPIO_I2C)
 {   
-    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);
+    //GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);
     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P1
     LcdStall(50);
     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //P2
-    LcdStall(70);
+    LcdStall(50);
     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P3
     LcdStall(50);    
 }
+//
+//
+//
+int gaugeInformation(HANDLE hGPIO_I2C,int stdCMD)
+{
+    int LSB = 0, MSB = 0; 
+    int i, temp, sum, a[16];
+
+    //LcdStall(5000);
+    LcdStall(10000);
+    //*************************
+    I2C_START(hGPIO_I2C);  
+    I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
+    LcdStall(100);    
+    I2C_ACKnowledge(hGPIO_I2C);
+    
+    I2C_WRITE(hGPIO_I2C,  stdCMD);              //CMD[7:0]
+    //I2C_WRITE(hGPIO_I2C, bq27500CMD_VOLT_LSB);
+    LcdStall(300);                                          //100 200 500-ok 50, Maybe trouble        
+    I2C_ACKnowledge(hGPIO_I2C);
+    //*************************
+     
+    //Sr
+    LcdStall(1000); 
+
+    //*************************    
+    I2C_START(hGPIO_I2C);
+    I2C_setSlaveAddress_READ(hGPIO_I2C, BQ27510_ADDRESS_READ);
+    LcdStall(300);  
+    I2C_ACKnowledge(hGPIO_I2C);
+
+    //prepare get Data LSB
+    LcdStall(300); 
+    LSB  = I2C_READ(hGPIO_I2C);
+    LcdStall(300);
+    I2C_ACKnowledge_READ(hGPIO_I2C);
+
+    //prepare get Data MSB
+    LcdStall(1000); 
+    MSB = I2C_READ(hGPIO_I2C);
+    LcdStall(300);
+    I2C_ACKnowledge_READ(hGPIO_I2C);
+    LcdStall(500);
+    I2C_STOP(hGPIO_I2C);
+    //*************************
+    
+    //RETAILMSG(1, (L" ~Value = 0x%02x 0x%02x \r\n",MSB ,LSB));
+
+    temp = (MSB<<8);
+    temp |= LSB;
+
+    for(i=0, sum=0; i<16; i++){
+		if(i<8)
+			a[i] = temp & (1<<i);
+		else
+			a[i] = temp & (1<<i);
+			
+		sum += a[i];
+	}
+    return sum;
+}
+
 //
 //  Initialize I2C interface with BQ27510 communications
 //
 VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
 {
-    int  VOLT=0, VOLT1=0;
-    //INT16 TEMP, TEMP1;
+    bq_dataram data;
+    int LSB = 0, MSB = 0; 
+    //int i, temp, sum, a[16];
     
-    //Using incremental write 
-    I2C_START(hGPIO_I2C);
-    I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);  //ADDR[6:0] 
+    //*************************
+    I2C_START(hGPIO_I2C);  
+    I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
     LcdStall(100);    
     I2C_ACKnowledge(hGPIO_I2C);
-
-    I2C_WRITE(hGPIO_I2C, 0x00);         //CMD[7:0]
-    LcdStall(100);
+    
+    I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
+    LcdStall(300);                                          //100 200 500-ok 50, Maybe trouble        
     I2C_ACKnowledge(hGPIO_I2C);
 
-    I2C_WRITE(hGPIO_I2C, 0x01);         //DATA[7:0](LSB)
-    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);  
-    LcdStall(100);
+    I2C_WRITE(hGPIO_I2C,  0x01);          
+    LcdStall(300);                                                  
     I2C_ACKnowledge(hGPIO_I2C);
 
-    I2C_WRITE(hGPIO_I2C, 0x00);         //DATA[7:0](MSB)
-    LcdStall(100);
+    I2C_WRITE(hGPIO_I2C,  0x00);          
+    LcdStall(300);                                                  
     I2C_ACKnowledge(hGPIO_I2C);
     I2C_STOP(hGPIO_I2C);
-    //Delay 
-    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);
-    LcdStall(500);
-    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
-    LcdStall(500);
-
-    
-    //Voltage
-    I2C_START(hGPIO_I2C);                                       //Start
-    I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);      //ADDR[6:0]    
-    LcdStall(50);
-    I2C_ACKnowledge(hGPIO_I2C);
-
-    I2C_WRITE(hGPIO_I2C, 0x00);                                 //CMD[7:0]
-    LcdStall(100);
-    I2C_ACKnowledge(hGPIO_I2C);
-          
-    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
-    LcdStall(200); 
-    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
-    LcdStall(200); 
+    //*************************
+     
     //Sr
-    I2C_START(hGPIO_I2C);                                                                     
-    I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_READ);
-    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);  
-    LcdStall(100);
-    I2C_ACKnowledge(hGPIO_I2C);
+    LcdStall(1000); 
 
-    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
-    LcdStall(200); 
-    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
-    LcdStall(200); 
-    VOLT  = I2C_READ(hGPIO_I2C);
-    LcdStall(100);
-    I2C_ACKnowledge(hGPIO_I2C);
-
-    GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
-    LcdStall(200); 
-    GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
-    LcdStall(200);
-    VOLT1 = I2C_READ(hGPIO_I2C);
-    LcdStall(100);
+    //*************************    
+    I2C_START(hGPIO_I2C);  
+    I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
+    LcdStall(100);    
     I2C_ACKnowledge(hGPIO_I2C);
     
-    LcdStall(200);
-    GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);
+    I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
+    LcdStall(300);                                          //100 200 500-ok 50, Maybe trouble        
+    I2C_ACKnowledge(hGPIO_I2C);
+
+    I2C_START(hGPIO_I2C);
+    I2C_setSlaveAddress_READ(hGPIO_I2C, BQ27510_ADDRESS_READ);
+    LcdStall(300);  
+    I2C_ACKnowledge(hGPIO_I2C);
+
+    //prepare get Data LSB
+    LcdStall(300); 
+    LSB  = I2C_READ(hGPIO_I2C);
+    LcdStall(300);
+    I2C_ACKnowledge_READ(hGPIO_I2C);
+
+    //prepare get Data MSB
+    LcdStall(1000); 
+    MSB = I2C_READ(hGPIO_I2C);
+    LcdStall(300);
+    I2C_ACKnowledge_READ(hGPIO_I2C);
+    LcdStall(500);
     I2C_STOP(hGPIO_I2C);
-   
-    //GPIOClose(hGPIO_I2C);
-    //RETAILMSG(1,(L" ~Temperature = 0X%02X, 0X%02X\r\n", TEMP, TEMP1));  
-    RETAILMSG(TRUE, (L" ~Voltage = 0X%02X%02X\r\n",VOLT1 ,VOLT));
+    //*************************
+    
+    I2C_START(hGPIO_I2C);
+    I2C_STOP(hGPIO_I2C);
+    gaugeInformation(hGPIO_I2C,  0x00);
+    data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
+
+    LcdStall(1000);
+    data.FullAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_FAC_LSB);
+    
+    LcdStall(1000);
+    //I2C_START(hGPIO_I2C);
+    //I2C_STOP(hGPIO_I2C);
+    //gaugeInformation(hGPIO_I2C,  0x00);
+    //data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
+    //I2C_START(hGPIO_I2C);
+    //I2C_STOP(hGPIO_I2C);
+    //gaugeInformation(hGPIO_I2C,  0x00);
+    data.Voltage =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_VOLT_LSB);
+
+     LcdStall(1000);
+    data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
+    
+    //LcdStall(1000);
+    //gaugeInformation(hGPIO_I2C,  0x00);
+    
+    //gaugeInformation(hGPIO_I2C,  0x00);
+    //LcdStall(1000);
+    //I2C_START(hGPIO_I2C);
+    //I2C_STOP(hGPIO_I2C);
+    //gaugeInformation(hGPIO_I2C,  0x00);
+    
+
+   /* RETAILMSG(1, (L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB));
+    RETAILMSG(1, (L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap));
+    RETAILMSG(1, (L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273));
+    RETAILMSG(1, (L" ~Battery Voltages = %d mV\r\n",data.Voltage));*/
+
+    OALLog(L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB);
+    OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
+    OALLog(L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273);
+    OALLog(L" ~Battery Voltages = %d mV\r\n",data.Voltage);
+    
+    
 }
+//
 //
 //
 VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
@@ -668,7 +788,7 @@ VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     GPIOSetMode(hGPIO_I2C, 185, GPIO_DIR_OUTPUT);   //I2C3_SDA, Ray 131129 
     
     InitI2CWithBQ27510(hGPIO_I2C);
-    //GPIOClose(hGPIO_I2C);
+    GPIOClose(hGPIO_I2C);
 I2COpenFalse: 
     return;    
 }
