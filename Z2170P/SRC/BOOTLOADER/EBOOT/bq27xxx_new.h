@@ -5,7 +5,7 @@
 #ifndef __BQ27510_H
 #define __BQ27510_H
 
-typedef struct bq_dataram_s {	
+typedef struct bq_dataram_s {	          //Ray 131220
     unsigned short Control;	
     short AtRate;	
     unsigned short AtRateTTE;	

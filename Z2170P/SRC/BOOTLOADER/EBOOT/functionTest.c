@@ -10,11 +10,20 @@
 //------------------------------------------------------------------------------
 //#define BSP_Z2170P      2170 
 //#define BSP_Z2000       2000 
-#define BK_SET_GPIO     61
-#define KP_LED_SET_GPIO 155
-#define I2C3_SCL_GPIO   184
-#define I2C3_SDA_GPIO   185
+#define BK_SET_GPIO             61
+#define KP_LED_SET_GPIO         155
+#define I2C3_SCL_GPIO           184
+#define I2C3_SDA_GPIO           185
 
+#define BARCODE_LED_SET_GPIO    160     // high-active
+#define GREEN_LED_SET_GPIO      34      // high-active
+#define RED_LED_SET_GPIO        140     // high-active
+
+//Barcode set-up
+#define BCR_ENG_TRIG			36	    // nENG_TRIG(low-active)
+#define BCR_ENG_PWEN			38	    // ENG_PWEN			
+#define ENG_SET1_GPIO			152	    // ENG_SET1(IN)		//determine machine state
+#define ENG_SET2_GPIO			153 	// ENG_SET2(IN)
 
 //------------------------------------------------------------------------------
 //  Prototype
@@ -28,6 +37,8 @@ static VOID AllFunctionTest_Z2000(OAL_BLMENU_ITEM *pMenu);
 static VOID DisplayTest_Z2000(OAL_BLMENU_ITEM *pMenu);
 static VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
 static VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+static VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+static VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);            
 
 
 BOOL DisplayShow(void);
@@ -83,7 +94,13 @@ OAL_BLMENU_ITEM g_menu2170PTest[] = {
     },  {
         L'7', L"Battery Test", BatteryTest_Z2170P,
         NULL, NULL, NULL
+    },  {
+        L'8', L"LED Indicator", LEDTest_Z2170P,
+        NULL, NULL, NULL
     }, {
+        L'9', L"Barcode Scanning", BarcodeTest_Z2170P,
+        NULL, NULL, NULL
+    },{
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, NULL
     },  {
@@ -459,10 +476,7 @@ VOID I2C_ACKnowledge_READ(HANDLE hGPIO_I2C)
     //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
     //LcdStall(50);
     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
-    LcdStall(50); 
-    //Doesnot Needs SDA Line falling time!!
-    /*GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-    LcdStall(50);*/         
+    LcdStall(50);         
 }
 //
 //
@@ -471,18 +485,14 @@ int I2C_Clk_READ(HANDLE hGPIO_I2C)
 {
     DWORD data=0;
     
-    /*GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
-    LcdStall(50);*/
     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
     LcdStall(50);
     data = GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
     LcdStall(10);
-
-    //IOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);      
+    
     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
     LcdStall(50); 
-    /*IOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-    LcdStall(50); */ 
+    
     return (int)data;
 }
 //
@@ -527,26 +537,6 @@ VOID I2C_WRITE(HANDLE hGPIO_I2C, int CMD)
     }           
 }
 //
-//  Set-up device Slave Addressing  
-//
-VOID I2C_setSlaveAddress(HANDLE hGPIO_I2C, int addr)
-{    
-    int i; 
-    //LcdStall(30); 
-    for(i=7; i >=0; i--)
-    {         
-        if( addr&(1<<i) ){
-            GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
-            LcdStall(50);
-            I2C_Clk(hGPIO_I2C);
-        }else{
-            GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
-            LcdStall(50);
-            I2C_Clk(hGPIO_I2C);
-        }
-    }  
-}
-//
 //
 //
 VOID I2C_setSlaveAddress_READ(HANDLE hGPIO_I2C, int addr)
@@ -567,21 +557,39 @@ VOID I2C_setSlaveAddress_READ(HANDLE hGPIO_I2C, int addr)
     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
     LcdStall(50);
 }
-
+//
+//  Set-up device Slave Addressing  
+//
+VOID I2C_setSlaveAddress(HANDLE hGPIO_I2C, int addr)
+{    
+    int i;  
+    for(i=7; i >=0; i--)
+    {         
+        if( addr&(1<<i) ){
+            GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
+            LcdStall(50);
+            I2C_Clk(hGPIO_I2C);
+        }else{
+            GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
+            LcdStall(50);
+            I2C_Clk(hGPIO_I2C);
+        }
+    }  
+}
 //
 //  Start condition
 //
 VOID I2C_START(HANDLE hGPIO_I2C)
 {
     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S1, SDA = High
-    LcdStall(100);                          //??
+    LcdStall(100);                          
     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S2, SCL = High ; kept high   
     LcdStall(100);
     
     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S3, When SDA changes High -> Low , start bit generating
     LcdStall(50);                           
     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S4, SCL = Low 
-    LcdStall(50);                           //??
+    LcdStall(50);                          
 }
 //
 //  Stop condition
@@ -604,8 +612,7 @@ int gaugeInformation(HANDLE hGPIO_I2C,int stdCMD)
     int LSB = 0, MSB = 0; 
     int i, temp, sum, a[16];
 
-    //LcdStall(5000);
-    LcdStall(10000);
+    LcdStall(12500);
     //*************************
     I2C_START(hGPIO_I2C);  
     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
@@ -657,7 +664,6 @@ int gaugeInformation(HANDLE hGPIO_I2C,int stdCMD)
 	}
     return sum;
 }
-
 //
 //  Initialize I2C interface with BQ27510 communications
 //
@@ -674,7 +680,7 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     I2C_ACKnowledge(hGPIO_I2C);
     
     I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
-    LcdStall(300);                                          //100 200 500-ok 50, Maybe trouble        
+    LcdStall(300);                                          
     I2C_ACKnowledge(hGPIO_I2C);
 
     I2C_WRITE(hGPIO_I2C,  0x01);          
@@ -686,18 +692,16 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     I2C_ACKnowledge(hGPIO_I2C);
     I2C_STOP(hGPIO_I2C);
     //*************************
-     
-    //Sr
+    
     LcdStall(1000); 
-
     //*************************    
-    I2C_START(hGPIO_I2C);  
+    I2C_START(hGPIO_I2C);                                    //Sr 
     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
     LcdStall(100);    
     I2C_ACKnowledge(hGPIO_I2C);
     
     I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
-    LcdStall(300);                                          //100 200 500-ok 50, Maybe trouble        
+    LcdStall(300);                                         
     I2C_ACKnowledge(hGPIO_I2C);
 
     I2C_START(hGPIO_I2C);
@@ -720,48 +724,21 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     I2C_STOP(hGPIO_I2C);
     //*************************
     
+    
     I2C_START(hGPIO_I2C);
     I2C_STOP(hGPIO_I2C);
-    gaugeInformation(hGPIO_I2C,  0x00);
+    gaugeInformation(hGPIO_I2C,  0x00);         //This opreating means clean register
     data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
-
-    LcdStall(1000);
-    data.FullAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_FAC_LSB);
-    
-    LcdStall(1000);
-    //I2C_START(hGPIO_I2C);
-    //I2C_STOP(hGPIO_I2C);
-    //gaugeInformation(hGPIO_I2C,  0x00);
-    //data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
-    //I2C_START(hGPIO_I2C);
-    //I2C_STOP(hGPIO_I2C);
-    //gaugeInformation(hGPIO_I2C,  0x00);
+    gaugeInformation(hGPIO_I2C,  0x00);
     data.Voltage =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_VOLT_LSB);
-
-     LcdStall(1000);
+    gaugeInformation(hGPIO_I2C,  0x00);
     data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
+    gaugeInformation(hGPIO_I2C,  0x00);
     
-    //LcdStall(1000);
-    //gaugeInformation(hGPIO_I2C,  0x00);
-    
-    //gaugeInformation(hGPIO_I2C,  0x00);
-    //LcdStall(1000);
-    //I2C_START(hGPIO_I2C);
-    //I2C_STOP(hGPIO_I2C);
-    //gaugeInformation(hGPIO_I2C,  0x00);
-    
-
-   /* RETAILMSG(1, (L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB));
-    RETAILMSG(1, (L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap));
-    RETAILMSG(1, (L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273));
-    RETAILMSG(1, (L" ~Battery Voltages = %d mV\r\n",data.Voltage));*/
-
     OALLog(L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB);
-    OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
     OALLog(L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273);
     OALLog(L" ~Battery Voltages = %d mV\r\n",data.Voltage);
-    
-    
+    OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
 }
 //
 //
@@ -792,7 +769,61 @@ VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 I2COpenFalse: 
     return;    
 }
+//------------------------------------------------------------------------------
+//   Barcode & Charge LED Indicator, Ray 131220 
+//   ??has trouble   
+//
+VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
+{
+    DWORD delay = 1000;
+    int i;
+	HANDLE hGPIO;
+	UNREFERENCED_PARAMETER(pMenu);
+	
+	OALBLMenuHeader(L"LED Indicator Test");
+    hGPIO = GPIOOpen();
 
+
+    //for(i=0; i<2; i++){
+        GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
+        LcdStall(1);
+        GPIOSetBit(hGPIO, BARCODE_LED_SET_GPIO);
+        LcdStall(delay);
+        GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
+        LcdSleep(delay*3);
+
+        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
+        LcdStall(1);
+        GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
+        LcdStall(500);
+        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO );
+        LcdStall(1);
+        
+        GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
+        LcdStall(1);
+        GPIOSetBit(hGPIO, RED_LED_SET_GPIO);
+        LcdStall(500);
+        GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
+        LcdStall(1);
+    //}
+
+    GPIOClose(hGPIO);
+}
+//------------------------------------------------------------------------------
+//
+//
+VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
+{
+    OMAP_UART_REGS bb;
+    HANDLE hGPIO;
+    
+	UNREFERENCED_PARAMETER(pMenu);	
+	OALBLMenuHeader(L"LED Indicator Test");
+    hGPIO = GPIOOpen();
+}
+//
+//
+//
 //==============================================================================
 //  Running Z2000...
 //
