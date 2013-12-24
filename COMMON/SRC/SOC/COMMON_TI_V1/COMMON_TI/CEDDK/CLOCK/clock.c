@@ -56,13 +56,10 @@ EnableDeviceClockAutoIdle(
 
 //-----------------------------------------------------------------------------
 
-BOOL
-EnableDeviceClocks(
-			  OMAP_DEVICE	devID,
-			  BOOL			bEnable
-			 )
+BOOL EnableDeviceClocks(OMAP_DEVICE	devID, BOOL bEnable)
 {
-	if (!bclockTableInit) ClockInitialize();
+	if (!bclockTableInit)
+	    ClockInitialize();
     if (clockFnTable.pfnEnableDeviceClocks)
 	    return clockFnTable.pfnEnableDeviceClocks( devID, bEnable );
     return FALSE;

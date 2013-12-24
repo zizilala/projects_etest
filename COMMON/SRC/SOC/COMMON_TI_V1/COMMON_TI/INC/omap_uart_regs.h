@@ -138,7 +138,7 @@ typedef struct {
    };
    REG8  RESERVED_20[3];
    
-   REG8 SYSC;                      //offset 0x54
+   REG8  SYSC;                      //offset 0x54
    REG8  RESERVED_21[3];
    
    union {                          //offset 0x58   

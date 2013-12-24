@@ -40,7 +40,6 @@ static VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
 static VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
 static VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);            
 
-
 BOOL DisplayShow(void);
 VOID SetBacklight(void);
 VOID tsc2046Test(void);
@@ -810,20 +809,105 @@ VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     GPIOClose(hGPIO);
 }
 //------------------------------------------------------------------------------
+//  Barcode, Ray 131224
+//
+OMAP_UART_REGS *pUartRegs = NULL;
+//
+//
+VOID BCRSetRTS(BOOL bSet)
+{
+    UINT bData = INREG8(pUartRegs->MCR);
+
+    if(bSet)
+        bData |= UART_MCR_RTS;
+    else
+        bData &= ~UART_MCR_RTS;
+
+    OUTREG8(&s_pUartRegs->MCR, bData);      
+}
 //
 //
 VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
-    OMAP_UART_REGS bb;
-    HANDLE hGPIO;
+    
+    HANDLE  hGPIO;
+    UINT8   status, ch;
+    int count, inNum;
+    WCHAR key;
+    
     
 	UNREFERENCED_PARAMETER(pMenu);	
 	OALBLMenuHeader(L"LED Indicator Test");
+	
     hGPIO = GPIOOpen();
+    GPIOSetBit(hGPIO, BCR_ENG_PWEN);
+    EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE);
+    pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
+
+    // reset uart
+	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
+    while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0);
+
+    // Set baud rate
+    OUTREG8(&pUartRegs->LCR, UART_LCR_DLAB);    //Line control register, DIV_EN
+    OUTREG8(&pUartRegs->DLL, 0x38);             //9.6kbps
+    OUTREG8(&pUartRegs->DLH, 0x01);
+    OUTREG8(&pUartRegs->LCR, 0x00);
+
+    // 8 bit, 1 stop bit, no parity
+    OUTREG8(&pUartRegs->LCR, 0x03);
+    // Enable FIFO
+    OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN);
+    OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN|UART_FCR_RX_FIFO_CLEAR|UART_FCR_TX_FIFO_CLEAR);
+    // Pool
+    OUTREG8(&pUartRegs->IER, 0);
+    // Set DTR/RTS signals
+    OUTREG8(&pUartRegs->MCR, 0); //UART_MCR_DTR|UART_MCR_RTS);
+    // Configuration complete so select UART 16x mode
+	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
+    BCRSetRTS(TRUE);
+    OALLog(L"\r Scan Mode key '9', if Cancel '0'.\r\n")
+    while(1)
+    {
+        key = OALBLMenuReadKey(TRUE);
+		if(key == L'0') // ESC KEY
+		{
+			OALLog(L"Cancel \r\n");
+			break;
+		}
+		
+		if(key == L'9') // SCAN KEY
+		{
+			GPIOClrBit(hGPIO,BCR_ENG_TRIG);
+			BCRSetRTS(FALSE);
+			LcdSleep(100);
+			
+			while( count-- )
+			{
+				status = INREG8(&s_pUartRegs->LSR);
+				if ((status & UART_LSR_RX_FIFO_E) != 0)
+				{
+					ch = INREG8(&s_pUartRegs->RHR);
+					psz[inNum++] = ch;
+					//OALLog(L" %c\r\n",ch);
+				}
+				LcdSleep(100);
+			}
+			
+			GPIOSetBit(hGPIO, BCR_ENG_TRIG);
+			if( inNum > 0 )
+			{
+				psz[inNum] = '\0';
+				OALLog(L"->%s\r\n",psz);
+			}
+			break;
+		}
+		LcdSleep(150);
+	}
+	GPIOClrBit(hGPIO,BCR_ENG_PWEN);
+	GPIOClose(hGPIO);
 }
-//
-//
-//
+
 //==============================================================================
 //  Running Z2000...
 //

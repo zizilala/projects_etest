@@ -123,15 +123,15 @@ void HotKeyFunction(HANDLE hTwl)
 
    
     //Ray 131106
-    if(matrixStatus(4, 2) && matrixStatus(4, 3)){           //F1 + F2
+    if(matrixStatus(4, 2) && matrixStatus(4, 3)){               //F1 + F2
         keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
-    }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){     //F1 + F4
+    }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         //F1 + F4
         keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
-    }else if( matrixStatus(3, 2)){      //F1   
+    }else if( matrixStatus(3, 2)){                              //F1   
         keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
-    }else if( matrixStatus(4, 3)){      //F2
+    }else if( matrixStatus(4, 3)){                              //F2
         keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
-    }else if( matrixStatus(3, 1)){      //F4
+    }else if( matrixStatus(3, 1)){                              //F4
         keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
     }
         
