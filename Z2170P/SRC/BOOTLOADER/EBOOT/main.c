@@ -75,7 +75,7 @@ extern DEVICE_IFC_GPIO Tps659xx_Gpio;
 //
 //  This global variable is used to save information about CPU family: 35x or 37x.
 //
-volatile UINT32 g_CPUFamily=0;
+volatile UINT32 g_CPUFamily = 0;
 
 //------------------------------------------------------------------------------
 // External Functions
@@ -138,8 +138,9 @@ BOOL OEMPlatformInit()
             GPIO_PADS_37XX
 	     	USBOTG_PADS
 	     	MCSPI1_EBOOT_PADS
-            MCSPI4_PADS         //Ray 131119
-            I2C3_PADS           //Ray 131128
+            MCSPI4_PADS                 //Ray 131119
+            I2C3_PADS                   //Ray 131128
+            UART1_PADS                  //Ray 131225
             END_OF_PAD_ARRAY
     };
 	
@@ -186,6 +187,7 @@ BOOL OEMPlatformInit()
     EnableDeviceClocks(OMAP_DEVICE_GPIO6,TRUE);
     
 	EnableDeviceClocks(OMAP_DEVICE_MCSPI1,TRUE);
+	EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE); 
 	
     // configure i2c devices
     OALI2CInit(OMAP_DEVICE_I2C1); // TPS65650_I2CCNTL
@@ -286,22 +288,22 @@ static VOID OEMPlatformDeinit()
 
 	// Disable device clocks that were used by the bootloader
 	OALLog(L"INFO: OEMPlatformDeinit -  Disable device clocks\r\n");
-    EnableDeviceClocks(OMAP_DEVICE_GPIO1,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO2,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO3,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO4,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO5,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_GPIO6,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_MCSPI1,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_GPTIMER2,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_UART1,FALSE);
-	EnableDeviceClocks(OMAP_DEVICE_UART2,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_UART3,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_MMC1,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_MMC2,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_I2C1,FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO1, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO2, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO3, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO4, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO5, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_GPIO6, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_MCSPI1, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_GPTIMER2, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_UART1, FALSE);
+	EnableDeviceClocks(OMAP_DEVICE_UART2, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_UART3, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_MMC1, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_MMC2, FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_I2C1, FALSE);
     //EnableDeviceClocks(OMAP_DEVICE_I2C2,FALSE);
-    EnableDeviceClocks(OMAP_DEVICE_I2C3,FALSE);
+    EnableDeviceClocks(OMAP_DEVICE_I2C3, FALSE); 
 }
 /*
 //------------------------------------------------------------------------------

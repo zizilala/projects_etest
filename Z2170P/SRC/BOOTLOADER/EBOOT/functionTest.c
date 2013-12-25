@@ -5,6 +5,10 @@
 #include "sdk_i2c.h"
 #include "bsp.h"
 #include "bq27xxx_new.h"
+#include "omap.h"
+#include "oal_clock.h"      //
+
+
 
 
 //------------------------------------------------------------------------------
@@ -20,10 +24,10 @@
 #define RED_LED_SET_GPIO        140     // high-active
 
 //Barcode set-up
-#define BCR_ENG_TRIG			36	    // nENG_TRIG(low-active)
+/*#define BCR_ENG_TRIG			36	    // nENG_TRIG(low-active)
 #define BCR_ENG_PWEN			38	    // ENG_PWEN			
 #define ENG_SET1_GPIO			152	    // ENG_SET1(IN)		//determine machine state
-#define ENG_SET2_GPIO			153 	// ENG_SET2(IN)
+#define ENG_SET2_GPIO			153 	// ENG_SET2(IN)*/
 
 //------------------------------------------------------------------------------
 //  Prototype
@@ -775,7 +779,7 @@ I2COpenFalse:
 VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
     DWORD delay = 1000;
-    int i;
+//    int i;
 	HANDLE hGPIO;
 	UNREFERENCED_PARAMETER(pMenu);
 	
@@ -816,34 +820,48 @@ OMAP_UART_REGS *pUartRegs = NULL;
 //
 VOID BCRSetRTS(BOOL bSet)
 {
-    UINT bData = INREG8(pUartRegs->MCR);
+    UINT bData = INREG8(&pUartRegs->MCR);
 
     if(bSet)
         bData |= UART_MCR_RTS;
     else
         bData &= ~UART_MCR_RTS;
 
-    OUTREG8(&s_pUartRegs->MCR, bData);      
+    OUTREG8(&pUartRegs->MCR, bData);      
 }
 //
 //
 VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
-    
     HANDLE  hGPIO;
-    UINT8   status, ch;
-    int count, inNum;
-    WCHAR key;
-    
-    
+    UINT8   status, ch, running = 1;
+    int     count = 30, inNum = 0;
+    WCHAR   key, scan[50];
+       
 	UNREFERENCED_PARAMETER(pMenu);	
 	OALBLMenuHeader(L"LED Indicator Test");
-	
     hGPIO = GPIOOpen();
-    GPIOSetBit(hGPIO, BCR_ENG_PWEN);
-    EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE);
+    
+	//barcode, Ray 131225
+    GPIOSetMode(hGPIO, 148, GPIO_DIR_OUTPUT);       //uart1_tx
+    GPIOSetBit(hGPIO, 148);
+    GPIOSetMode(hGPIO, 151, GPIO_DIR_INPUT);        //uart1_rx
+    GPIOGetBit(hGPIO, 151);                 
+    GPIOSetMode(hGPIO, 150, GPIO_DIR_INPUT);        //uart1_cts
+    GPIOGetBit(hGPIO, 150);                
+    GPIOSetMode(hGPIO, 149, GPIO_DIR_OUTPUT);       //uart1_rts    
+    GPIOSetBit(hGPIO, 149);
+    GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);       //uart1_rts    
+    GPIOSetBit(hGPIO, ENG_SET1_GPIO);
+    GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       //uart1_rts    
+    GPIOSetBit(hGPIO, ENG_SET2_GPIO);
+    OALLog(L"Initial Barcode\n");
+	
+    
+    GPIOSetBit(hGPIO, BCR_ENG_PWEN);                //Power ON
     pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
-
+    EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE);    
+    
     // reset uart
 	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
     while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0);
@@ -866,29 +884,30 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     // Configuration complete so select UART 16x mode
 	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
     BCRSetRTS(TRUE);
-    OALLog(L"\r Scan Mode key '9', if Cancel '0'.\r\n")
-    while(1)
+    OALLog(L"\r Scan Mode key '5', if Cancel '0'.\r\n");
+    
+    while(running)
     {
         key = OALBLMenuReadKey(TRUE);
-		if(key == L'0') // ESC KEY
+		if(key == L'0')             // ESC KEY
 		{
 			OALLog(L"Cancel \r\n");
 			break;
 		}
 		
-		if(key == L'9') // SCAN KEY
+		if(key == L'5')             // SCAN KEY
 		{
-			GPIOClrBit(hGPIO,BCR_ENG_TRIG);
+			GPIOClrBit(hGPIO, BCR_ENG_TRIG);
 			BCRSetRTS(FALSE);
 			LcdSleep(100);
 			
 			while( count-- )
 			{
-				status = INREG8(&s_pUartRegs->LSR);
+				status = INREG8(&pUartRegs->LSR);
 				if ((status & UART_LSR_RX_FIFO_E) != 0)
 				{
-					ch = INREG8(&s_pUartRegs->RHR);
-					psz[inNum++] = ch;
+					ch = INREG8(&pUartRegs->RHR);
+					scan[inNum++] = ch;
 					//OALLog(L" %c\r\n",ch);
 				}
 				LcdSleep(100);
@@ -897,14 +916,14 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 			GPIOSetBit(hGPIO, BCR_ENG_TRIG);
 			if( inNum > 0 )
 			{
-				psz[inNum] = '\0';
-				OALLog(L"->%s\r\n",psz);
+				scan[inNum] = '\0';
+				OALLog(L"->%s\r\n",scan);
 			}
 			break;
 		}
 		LcdSleep(150);
 	}
-	GPIOClrBit(hGPIO,BCR_ENG_PWEN);
+	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
 	GPIOClose(hGPIO);
 }
 

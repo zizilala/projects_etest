@@ -450,7 +450,7 @@
 ; 123  : 
 ; 124  :    
 ; 125  :     //Ray 131106
-; 126  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){           //F1 + F2
+; 126  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               //F1 + F2
 
   000a8	e3120004	 tst         r2, #4
   000ac	13120008	 tstne       r2, #8
@@ -461,7 +461,7 @@
   000b4	1a00000e	 bne         |$LN65@HotKeyFunc|
   000b8	e5d71003	 ldrb        r1, [r7, #3]
 
-; 128  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){     //F1 + F4
+; 128  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         //F1 + F4
 
   000bc	e20130ff	 and         r3, r1, #0xFF
   000c0	e2133002	 ands        r3, r3, #2
@@ -472,7 +472,7 @@
   000c8	15940030	 ldrne       r0, [r4, #0x30]
   000cc	1a000008	 bne         |$LN65@HotKeyFunc|
 
-; 130  :     }else if( matrixStatus(3, 2)){      //F1   
+; 130  :     }else if( matrixStatus(3, 2)){                              //F1   
 
   000d0	e3110004	 tst         r1, #4
 
@@ -481,7 +481,7 @@
   000d4	15940000	 ldrne       r0, [r4]
   000d8	1a000005	 bne         |$LN65@HotKeyFunc|
 
-; 132  :     }else if( matrixStatus(4, 3)){      //F2
+; 132  :     }else if( matrixStatus(4, 3)){                              //F2
 
   000dc	e3120008	 tst         r2, #8
 
@@ -490,7 +490,7 @@
   000e0	15940008	 ldrne       r0, [r4, #8]
   000e4	1a000002	 bne         |$LN65@HotKeyFunc|
 
-; 134  :     }else if( matrixStatus(3, 1)){      //F4
+; 134  :     }else if( matrixStatus(3, 1)){                              //F4
 
   000e8	e3530000	 cmp         r3, #0
   000ec	0a000001	 beq         |$LN2@HotKeyFunc|

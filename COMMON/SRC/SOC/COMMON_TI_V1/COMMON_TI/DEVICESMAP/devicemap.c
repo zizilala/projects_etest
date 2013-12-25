@@ -24,6 +24,7 @@ UINT32 GetAddressByDevice(OMAP_DEVICE dev)
 {
     UINT32 Addr = 0;
     DWORD i=0;
+    
     while (s_DeviceAddressMap[i].device != OMAP_DEVICE_NONE)
     {   
         if (s_DeviceAddressMap[i].device == dev)
