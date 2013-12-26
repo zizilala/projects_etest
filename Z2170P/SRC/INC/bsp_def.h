@@ -1608,7 +1608,6 @@ BOOL BSPInsertGpioDevice(UINT range,void* fnTbl,WCHAR* name);
 #define ENG_SET2_GPIO			(153)	// ENG_SET2(IN)
 #define LCD_POWER_GPIO      	(154)	// LCD_PWEN
 #define KEYPAD_LED_GPIO			(155)	// KP_LED
-
 #define MMC1_CARDDET_GPIO       (TRITON_GPIO(0))     // Triton GPIO 0 
 
 

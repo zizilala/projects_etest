@@ -218,6 +218,15 @@ BOOL OEMPlatformInit()
     GPIOClrBit(hGPIO, 155);                 // Keypad_LED, Ray 131112 
     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
 
+    //barcode, Ray 131225
+    
+    GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);       
+    GPIOSetBit(hGPIO, ENG_SET1_GPIO);
+    GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       
+    GPIOSetBit(hGPIO, ENG_SET2_GPIO);
+    
+    OALLog(L"Initial Barcode\n");
+
     /*GPIOClrBit(hGPIO, 184);               //I2C3_CLK, Ray 131129                  
     GPIOSetMode(hGPIO, 184, GPIO_DIR_OUTPUT);
     GPIOClrBit(hGPIO, 185);                 //I2C3_SDA, Ray 131129    

@@ -825,7 +825,7 @@ VOID BCRSetRTS(BOOL bSet)
     if(bSet)
         bData |= UART_MCR_RTS;
     else
-        bData &= ~UART_MCR_RTS;
+        bData &= ~UART_MCR_RTS;     //
 
     OUTREG8(&pUartRegs->MCR, bData);      
 }
@@ -836,35 +836,25 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     HANDLE  hGPIO;
     UINT8   status, ch, running = 1;
     int     count = 30, inNum = 0;
-    WCHAR   key, scan[50];
+    //int     i = 0;
+    WCHAR   key;
+    WCHAR   scan[50];
        
 	UNREFERENCED_PARAMETER(pMenu);	
 	OALBLMenuHeader(L"LED Indicator Test");
     hGPIO = GPIOOpen();
+    GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);   
+    GPIOSetMode(hGPIO, BCR_ENG_TRIG, GPIO_DIR_OUTPUT);
     
-	//barcode, Ray 131225
-    GPIOSetMode(hGPIO, 148, GPIO_DIR_OUTPUT);       //uart1_tx
-    GPIOSetBit(hGPIO, 148);
-    GPIOSetMode(hGPIO, 151, GPIO_DIR_INPUT);        //uart1_rx
-    GPIOGetBit(hGPIO, 151);                 
-    GPIOSetMode(hGPIO, 150, GPIO_DIR_INPUT);        //uart1_cts
-    GPIOGetBit(hGPIO, 150);                
-    GPIOSetMode(hGPIO, 149, GPIO_DIR_OUTPUT);       //uart1_rts    
-    GPIOSetBit(hGPIO, 149);
-    GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);       //uart1_rts    
-    GPIOSetBit(hGPIO, ENG_SET1_GPIO);
-    GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       //uart1_rts    
-    GPIOSetBit(hGPIO, ENG_SET2_GPIO);
-    OALLog(L"Initial Barcode\n");
-	
-    
-    GPIOSetBit(hGPIO, BCR_ENG_PWEN);                //Power ON
+    GPIOSetBit(hGPIO, BCR_ENG_PWEN);                    //Power ON
+    EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE); 
     pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
-    EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE);    
+       
     
     // reset uart
 	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
-    while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0);
+    while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0)
+        ;
 
     // Set baud rate
     OUTREG8(&pUartRegs->LCR, UART_LCR_DLAB);    //Line control register, DIV_EN
@@ -873,7 +863,7 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     OUTREG8(&pUartRegs->LCR, 0x00);
 
     // 8 bit, 1 stop bit, no parity
-    OUTREG8(&pUartRegs->LCR, 0x03);
+    OUTREG8(&pUartRegs->LCR, 0x03);             
     // Enable FIFO
     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN);
     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN|UART_FCR_RX_FIFO_CLEAR|UART_FCR_TX_FIFO_CLEAR);
@@ -884,22 +874,16 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     // Configuration complete so select UART 16x mode
 	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
     BCRSetRTS(TRUE);
-    OALLog(L"\r Scan Mode key '5', if Cancel '0'.\r\n");
+    //OALLog(L"\r Scan Mode key '5', if Cancel '0'.\r\n");
     
+    OALLog(L"\r The Cancel key '0'.\r\n");
     while(running)
     {
-        key = OALBLMenuReadKey(TRUE);
-		if(key == L'0')             // ESC KEY
-		{
-			OALLog(L"Cancel \r\n");
-			break;
-		}
-		
-		if(key == L'5')             // SCAN KEY
-		{
+		//if(key == L'5')             // SCAN KEY
+		//{
 			GPIOClrBit(hGPIO, BCR_ENG_TRIG);
 			BCRSetRTS(FALSE);
-			LcdSleep(100);
+			LcdSleep(500);
 			
 			while( count-- )
 			{
@@ -916,11 +900,23 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 			GPIOSetBit(hGPIO, BCR_ENG_TRIG);
 			if( inNum > 0 )
 			{
+				/*while(scan[i] != L'\0'){
+				    OALLog(L"%c ",scan[i]);
+				    i++;
+				}
+				OALLog(L"\r\n");*/
 				scan[inNum] = '\0';
 				OALLog(L"->%s\r\n",scan);
+				break;
 			}
-			break;
-		}
+			
+			key = OALBLMenuReadKey(TRUE);
+			if(key == L'0')             // ESC KEY
+		    {
+			    OALLog(L"Cancel \r\n");
+			    break;
+		    }
+		//}
 		LcdSleep(150);
 	}
 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
