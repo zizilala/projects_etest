@@ -141,10 +141,10 @@ BOOL OEMPlatformInit()
             MCSPI4_PADS                 //Ray 131119
             I2C3_PADS                   //Ray 131128
             UART1_PADS                  //Ray 131225
+            LED_PADS                    //Ray 131227
             END_OF_PAD_ARRAY
     };
-	
-	
+		
     OALLocalAllocInit(allocationPool,sizeof(allocationPool));
 
     // Get processor and companion chip versions
@@ -215,12 +215,16 @@ BOOL OEMPlatformInit()
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 	//GPIOSetBit(hGPIO,15);     // test 
 
-    GPIOClrBit(hGPIO, 155);                 // Keypad_LED, Ray 131112 
-    GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
+    GPIOClrBit(hGPIO, 155);                 
+    GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);       // Keypad_LED, Ray 131112 
+    GPIOClrBit(hGPIO, 160);                 
+    GPIOSetMode(hGPIO, 160, GPIO_DIR_OUTPUT);       // BARCODE_LED, Ray 131227 
+    GPIOClrBit(hGPIO, 34);                  
+    GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);        // GREEN_LED, Ray 131227 
+    GPIOClrBit(hGPIO, 140);                 
+    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);       // RED_LED, Ray 131227 
 
-    //barcode, Ray 131225
-    
-    GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);       
+    GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);  //barcode, Ray 131225     
     GPIOSetBit(hGPIO, ENG_SET1_GPIO);
     GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       
     GPIOSetBit(hGPIO, ENG_SET2_GPIO);

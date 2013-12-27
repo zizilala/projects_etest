@@ -42,7 +42,10 @@ static VOID DisplayTest_Z2000(OAL_BLMENU_ITEM *pMenu);
 static VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
 static VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
 static VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);            
+static VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);   
+static VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu); 
+static VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu); 
+static VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu); 
 
 BOOL DisplayShow(void);
 VOID SetBacklight(void);
@@ -56,7 +59,7 @@ VOID LcdSleep(DWORD);
 //  Global variable
 //
 DWORD stall_1Sec = 1000000;      //Lcd Stall
-//DWORD sleep1Sec = 1000;         //Lcd Sleep 
+DWORD sleep1Sec = 1000;         //Lcd Sleep 
 
 //------------------------------------------------------------------------------
 //
@@ -103,6 +106,15 @@ OAL_BLMENU_ITEM g_menu2170PTest[] = {
     }, {
         L'9', L"Barcode Scanning", BarcodeTest_Z2170P,
         NULL, NULL, NULL
+    }, {
+        L'A', L"Audio and MIC", AudioAndMIC_Z2170P,
+        NULL, NULL, NULL
+    },{
+        L'B', L"Keypad functional", KeypadFunc_Z2170P,
+        NULL, NULL, NULL
+    },{
+        L'C', L"Burn-In", BurnIn_Z2170P,
+        NULL, NULL, NULL
     },{
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, NULL
@@ -141,16 +153,16 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r\n >>>All function testing...\r\n");    
 
 	DisplayTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*3);                         //2
+	LcdStall(stall_1Sec*2);                         //2
   
 	BkTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*3);                         //3
+	LcdStall(stall_1Sec*2);                         //3
          
 	DRAMTest_Z2170P(ptr);                                  
-	LcdStall(stall_1Sec*3);                         //4 
+	LcdStall(stall_1Sec*2);                         //4 
 	   
 	KeypadBkTest_Z2170P(ptr);                              
-	LcdStall(stall_1Sec*3);                         //5 
+	LcdStall(stall_1Sec*2);                         //5 
 
 	
 	OALLog(L"\r\n >>>All function tested...\r\n");
@@ -204,9 +216,7 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     BYTE    value, temp, pattern = 0x1A; 
     //ULONG   percentRange;
     ULONG   percent;        
- 
-   
-    
+     
 	UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"DRAM Test");
 
@@ -260,7 +270,7 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
         }
 
         if( (percent%1024) == 0){   //scan 1k show tip 
-            OALLog(L"\r\n %d\r\n",percent);
+            OALLog(L"\r\nScan size: %dk\r\n",percent/1024);
             LcdStall(stall_1Sec/1000); 
         }
 	}
@@ -419,7 +429,6 @@ VOID SetBacklight()
 //------------------------------------------------------------------------------
 //  The Touch Panel Test, Ray 131120
 //
-
 VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
     UNREFERENCED_PARAMETER(pMenu);
@@ -772,46 +781,46 @@ VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 I2COpenFalse: 
     return;    
 }
+
 //------------------------------------------------------------------------------
 //   Barcode & Charge LED Indicator, Ray 131220 
-//   ??has trouble   
+//    
 //
 VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
-    DWORD delay = 1000;
+    DWORD stall_1mSec = 1000;
 //    int i;
 	HANDLE hGPIO;
 	UNREFERENCED_PARAMETER(pMenu);
 	
 	OALBLMenuHeader(L"LED Indicator Test");
     hGPIO = GPIOOpen();
-
-
+    
     //for(i=0; i<2; i++){
         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdStall(1);
+        LcdStall(stall_1mSec);
         GPIOSetBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdStall(delay);
+        LcdStall(stall_1Sec);
         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdSleep(delay*3);
-
-        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
-        LcdStall(1);
-        GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
-        LcdStall(500);
-        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO );
-        LcdStall(1);
+        LcdStall(stall_1Sec);
         
-        GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
-        LcdStall(1);
+        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO); //??
+        LcdStall(stall_1mSec);
+        GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
+        LcdStall(stall_1Sec);
+        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
+        LcdStall(stall_1Sec);
+        
+        GPIOClrBit(hGPIO, RED_LED_SET_GPIO);    //?
+        LcdStall(stall_1mSec);
         GPIOSetBit(hGPIO, RED_LED_SET_GPIO);
-        LcdStall(500);
+        LcdStall(stall_1Sec);
         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
-        LcdStall(1);
+        LcdStall(stall_1Sec);
     //}
-
     GPIOClose(hGPIO);
 }
+
 //------------------------------------------------------------------------------
 //  Barcode, Ray 131224
 //
@@ -881,6 +890,7 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     {
 		//if(key == L'5')             // SCAN KEY
 		//{
+		    LcdSleep(500);
 			GPIOClrBit(hGPIO, BCR_ENG_TRIG);
 			BCRSetRTS(FALSE);
 			LcdSleep(500);
@@ -921,6 +931,33 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	}
 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
 	GPIOClose(hGPIO);
+}
+
+//------------------------------------------------------------------------------
+//  Audio And MIC Testing, Ray 131227
+//
+VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu)
+{
+    UNREFERENCED_PARAMETER(pMenu);
+	OALBLMenuHeader(L"Audio And MIC");
+}
+
+//------------------------------------------------------------------------------
+//  Keypad functional Testing, Ray 131227
+//
+VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu)
+{
+    UNREFERENCED_PARAMETER(pMenu);
+	OALBLMenuHeader(L"Keypad Functional Test");
+}
+
+//------------------------------------------------------------------------------
+//  Burn-In Testing, Ray 131227
+//
+VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu)
+{
+    UNREFERENCED_PARAMETER(pMenu);
+	OALBLMenuHeader(L"Burn-In Test");
 }
 
 //==============================================================================
