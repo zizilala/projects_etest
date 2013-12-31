@@ -7,8 +7,7 @@
 #include "bq27xxx_new.h"
 #include "omap.h"
 #include "oal_clock.h"      //
-
-
+#include "tps659xx_audio.h"
 
 
 //------------------------------------------------------------------------------
@@ -28,6 +27,9 @@
 #define BCR_ENG_PWEN			38	    // ENG_PWEN			
 #define ENG_SET1_GPIO			152	    // ENG_SET1(IN)		//determine machine state
 #define ENG_SET2_GPIO			153 	// ENG_SET2(IN)*/
+
+#define MIC_PWR_EN              74
+#define SPK_EN                  37
 
 //------------------------------------------------------------------------------
 //  Prototype
@@ -107,13 +109,13 @@ OAL_BLMENU_ITEM g_menu2170PTest[] = {
         L'9', L"Barcode Scanning", BarcodeTest_Z2170P,
         NULL, NULL, NULL
     }, {
-        L'A', L"Audio and MIC", AudioAndMIC_Z2170P,
+        L'a', L"Audio and MIC", AudioAndMIC_Z2170P,
         NULL, NULL, NULL
     },{
-        L'B', L"Keypad functional", KeypadFunc_Z2170P,
+        L'b', L"Keypad functional", KeypadFunc_Z2170P,
         NULL, NULL, NULL
     },{
-        L'C', L"Burn-In", BurnIn_Z2170P,
+        L'c', L"Burn-In", BurnIn_Z2170P,
         NULL, NULL, NULL
     },{
         L'0', L"Exit and Continue", NULL,
@@ -153,17 +155,37 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r\n >>>All function testing...\r\n");    
 
 	DisplayTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*2);                         //2
+	LcdStall(stall_1Sec*2);                     //2
   
 	BkTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*2);                         //3
+	LcdStall(stall_1Sec*2);                     //3
          
 	DRAMTest_Z2170P(ptr);                                  
-	LcdStall(stall_1Sec*2);                         //4 
+	LcdStall(stall_1Sec*2);                     //4 
 	   
 	KeypadBkTest_Z2170P(ptr);                              
-	LcdStall(stall_1Sec*2);                         //5 
+	LcdStall(stall_1Sec*2);                     //5 
 
+	TouchPanelTest_Z2170P(ptr);                 //6 
+    LcdStall(stall_1Sec*2);
+    
+    BatteryTest_Z2170P(ptr);                    //7 
+    LcdStall(stall_1Sec*2);
+    
+    LEDTest_Z2170P(ptr);                        //8
+    LcdStall(stall_1Sec*2);
+    
+    BarcodeTest_Z2170P(ptr);                    //9 
+    LcdStall(stall_1Sec*2);
+    
+    AudioAndMIC_Z2170P(ptr);                    //a
+    LcdStall(stall_1Sec*2);
+    
+    KeypadFunc_Z2170P(ptr);                     //b
+    LcdStall(stall_1Sec*2);
+    
+    BurnIn_Z2170P(ptr);                         //c
+    LcdStall(stall_1Sec*2);
 	
 	OALLog(L"\r\n >>>All function tested...\r\n");
 }
@@ -936,19 +958,54 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 //------------------------------------------------------------------------------
 //  Audio And MIC Testing, Ray 131227
 //
+void SetAudioI2SProfile(HANDLE handle)
+{
+    UINT8 regVal;
+    
+    if(handle)
+    {
+        TWLReadRegs(handle, TWL_CODEC_MODE, &regVal, sizeof(regVal));   //System mode control register
+        regVal &= ~(CODEC_MODE_CODEC_OPT_MODE);                         //Audio and voice option selection
+        TWLWriteRegs(handle, TWL_CODEC_MODE, &regVal, sizeof(regVal));  
+
+        TWLReadRegs(handle, TWL_AUDIO_IF, &regVal, sizeof(regVal));     //Control mode for audio interface
+        regVal &= ~( AUDIO_IF_AIF_FORMAT(3) | AUDIO_IF_DATA_WIDTH(0));  //TDM mode data format ,16-bit word width
+        TWLWriteRegs(handle, TWL_AUDIO_IF, &regVal, sizeof(regVal));    
+
+        // Side tone gain
+        //
+        regVal = 0x0;      // Mute
+        TWLWriteRegs(handle, TWL_VSTPGA, &regVal, sizeof(regVal));      //Voice side tone gain control register
+    }else{
+        RETAILMSG(TRUE, (L"Handle is NULL!!!\r\n"));     
+    }  
+}
+
+
+//
+//
 VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
     UNREFERENCED_PARAMETER(pMenu);
-	OALBLMenuHeader(L"Audio And MIC");
+	OALBLMenuHeader(L"Audio And MIC");	
 }
 
 //------------------------------------------------------------------------------
 //  Keypad functional Testing, Ray 131227
 //
+void hotKeyFuncMatrix(int row, int col)
+{
+    
+
+}
+//
+//
 VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
     UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"Keypad Functional Test");
+
+	
 }
 
 //------------------------------------------------------------------------------

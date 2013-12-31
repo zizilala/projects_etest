@@ -141,7 +141,7 @@ BUILD: [01:0000000138:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000139:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
 BUILD: [01:0000000140:INFO  ] 	set LIB=C:\WINCE600\sdk\CE\lib
 BUILD: [01:0000000141:PROGC ] Linking C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe
-BUILD: [01:0000000142:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm72C.tmp
+BUILD: [01:0000000142:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm2C5.tmp
 BUILD: [01:0000000143:INFO  ] Microsoft (R) Incremental Linker Version 8.00.50727.42
 BUILD: [01:0000000144:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000145:INFO  ] 
@@ -1290,5 +1290,5 @@ BUILD: [00:0000001287:PROGC ]
 BUILD: [00:0000001288:PROGC ] Total                     13         6       0
 BUILD: [00:0000001289:PROGC ] 
 BUILD: [00:0000001290:PROGC ] 6 Warnings,  0 Errors
-BUILD: [00:0000001291:PROGC ] GetSystemTimes (seconds): Idle: 10    Kernel: 14    User: 6    
-BUILD: [00:0000001292:PROGC ] Elapsed  time  (seconds): 10   
+BUILD: [00:0000001291:PROGC ] GetSystemTimes (seconds): Idle: 9     Kernel: 20    User: 7    
+BUILD: [00:0000001292:PROGC ] Elapsed  time  (seconds): 13   
