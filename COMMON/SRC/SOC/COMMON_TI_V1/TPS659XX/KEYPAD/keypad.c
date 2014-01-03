@@ -318,11 +318,7 @@ cleanUp:
 //
 //  Called by device manager to initialize device.
 //
-DWORD
-KPD_Init(
-    LPCTSTR szContext,
-    LPCVOID pBusContext
-    )
+DWORD KPD_Init(LPCTSTR szContext, LPCVOID pBusContext)
 {
     DWORD rc = (DWORD)NULL;
     KeypadDevice_t *pDevice = NULL;

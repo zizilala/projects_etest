@@ -362,7 +362,7 @@
 ; 89   :     //printing matrix array, Ray
 ; 90   : 	/*for( ik=0 ; ik<3 ; ik++ )
 ; 91   : 	{*/
-; 92   : 		TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));
+; 92   :     TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));    
 
   00044	e59f70b8	 ldr         r7, [pc, #0xB8]
   00048	e3a010db	 mov         r1, #0xDB
@@ -372,7 +372,7 @@
   00058	e1a00008	 mov         r0, r8
   0005c	eb000000	 bl          TWLReadRegs
 
-; 93   : 	/*    //OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+; 93   : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
 ; 94   : 	    
 ; 95   : 		OALLog(L" HotKeyFunction: matrix  ");
 ; 96   : 		for( ix=0 ; ix <8 ; ix++ )
@@ -380,44 +380,43 @@
 ; 98   : 		OALLog(L"\r\n");
 ; 99   : 	}*/
 ; 100  : 	
-; 101  : 	
-; 102  : 	for(row = 0, ik = 0; row < 8; row++)
+; 101  : 	for(row = 0, ik = 0; row < 8; row++)
 
   00060	e3a06000	 mov         r6, #0
   00064	e3a09001	 mov         r9, #1
   00068		 |$LL18@HotKeyFunc|
 
-; 103  : 	{
-; 104  :         // Get matrix state        
-; 105  :         ix = row;
-; 106  :         state = gMatrix[ix] & 0xFF;     
+; 102  : 	{
+; 103  :         // Get matrix state        
+; 104  :         ix = row;
+; 105  :         state = gMatrix[ix] & 0xFF;     
 
   00068	e7d68007	 ldrb        r8, [r6, +r7]
 
-; 107  : 
-; 108  :         // If no-key is pressed continue with new rows
-; 109  :         if (state == 0) 
+; 106  : 
+; 107  :         // If no-key is pressed continue with new rows
+; 108  :         if (state == 0) 
 
   0006c	e3580000	 cmp         r8, #0
   00070	0a000008	 beq         |$LN17@HotKeyFunc|
 
-; 110  : 		{
-; 111  :             ik += 8;
-; 112  :             continue;               //if state event desnot 
-; 113  : 		}
-; 114  :         
-; 115  :         for (column = 0; column < 8; column++, ik++)
+; 109  : 		{
+; 110  :             ik += 8;
+; 111  :             continue;               //if state event desnot 
+; 112  : 		}
+; 113  :         
+; 114  :         for (column = 0; column < 8; column++, ik++)
 
   00074	e3a05000	 mov         r5, #0
   00078		 |$LL14@HotKeyFunc|
 
-; 116  : 		{
-; 117  :             if ((state & (1 << column)) != 0)
+; 115  : 		{
+; 116  :             if ((state & (1 << column)) != 0)
 
   00078	e1180519	 tst         r8, r9, lsl r5
 
-; 118  : 			{
-; 119  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
+; 117  : 			{
+; 118  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
 
   0007c	159f007c	 ldrne       r0, [pc, #0x7C]
   00080	11a02005	 movne       r2, r5
@@ -428,7 +427,7 @@
   00094	3afffff7	 bcc         |$LL14@HotKeyFunc|
   00098		 |$LN17@HotKeyFunc|
 
-; 93   : 	/*    //OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+; 93   : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
 ; 94   : 	    
 ; 95   : 		OALLog(L" HotKeyFunction: matrix  ");
 ; 96   : 		for( ix=0 ; ix <8 ; ix++ )
@@ -436,80 +435,78 @@
 ; 98   : 		OALLog(L"\r\n");
 ; 99   : 	}*/
 ; 100  : 	
-; 101  : 	
-; 102  : 	for(row = 0, ik = 0; row < 8; row++)
+; 101  : 	for(row = 0, ik = 0; row < 8; row++)
 
   00098	e2866001	 add         r6, r6, #1
   0009c	e3560008	 cmp         r6, #8
   000a0	3afffff0	 bcc         |$LL18@HotKeyFunc|
   000a4	e5d72004	 ldrb        r2, [r7, #4]
 
-; 120  : 			}
-; 121  : 		}
-; 122  : 	}
-; 123  : 
-; 124  :    
-; 125  :     //Ray 131106
-; 126  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               //F1 + F2
+; 119  : 			}
+; 120  : 		}
+; 121  : 	}
+; 122  :    
+; 123  :     //Ray 131106
+; 124  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               	//F1 + F2
 
   000a8	e3120004	 tst         r2, #4
   000ac	13120008	 tstne       r2, #8
 
-; 127  :         keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
+; 125  :         keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
 
   000b0	15940020	 ldrne       r0, [r4, #0x20]
   000b4	1a00000e	 bne         |$LN65@HotKeyFunc|
   000b8	e5d71003	 ldrb        r1, [r7, #3]
 
-; 128  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         //F1 + F4
+; 126  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         	//F1 + F4
 
   000bc	e20130ff	 and         r3, r1, #0xFF
   000c0	e2133002	 ands        r3, r3, #2
   000c4	13110004	 tstne       r1, #4
 
-; 129  :         keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
+; 127  :         keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
 
   000c8	15940030	 ldrne       r0, [r4, #0x30]
   000cc	1a000008	 bne         |$LN65@HotKeyFunc|
 
-; 130  :     }else if( matrixStatus(3, 2)){                              //F1   
+; 128  :     }else if( matrixStatus(3, 2)){                              	//F1   
 
   000d0	e3110004	 tst         r1, #4
 
-; 131  :         keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
+; 129  :         keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
 
   000d4	15940000	 ldrne       r0, [r4]
   000d8	1a000005	 bne         |$LN65@HotKeyFunc|
 
-; 132  :     }else if( matrixStatus(4, 3)){                              //F2
+; 130  :     }else if( matrixStatus(4, 3)){                              	//F2
 
   000dc	e3120008	 tst         r2, #8
 
-; 133  :         keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
+; 131  :         keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
 
   000e0	15940008	 ldrne       r0, [r4, #8]
   000e4	1a000002	 bne         |$LN65@HotKeyFunc|
 
-; 134  :     }else if( matrixStatus(3, 1)){                              //F4
+; 132  :     }else if( matrixStatus(3, 1)){                              	//F4
 
   000e8	e3530000	 cmp         r3, #0
   000ec	0a000001	 beq         |$LN2@HotKeyFunc|
 
-; 135  :         keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
+; 133  :         keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
 
   000f0	e5940018	 ldr         r0, [r4, #0x18]
   000f4		 |$LN65@HotKeyFunc|
   000f4	eb000000	 bl          FillASCIIMode
   000f8		 |$LN2@HotKeyFunc|
 
-; 136  :     }
-; 137  :         
-; 138  :     /*do{   
-; 139  :         key = OALBLMenuReadKey(TRUE);
-; 140  : 	}while(key != L'0');*/
-; 141  : 
-; 142  : 	if (/*key == L'0' || */keyPressed == TRUE) return;
-; 143  : }
+; 134  :     }
+; 135  :         
+; 136  :     /*do{   
+; 137  :         key = OALBLMenuReadKey(TRUE);
+; 138  : 	}while(key != L'0');*/
+; 139  : 
+; 140  : 	if (/*key == L'0' || */keyPressed == TRUE) return;
+; 141  : }
 
   000f8	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000fc	e12fff1e	 bx          lr
@@ -541,18 +538,18 @@
 
   00000		 |HotKeyColdReset| PROC
 
-; 147  : {
+; 145  : {
 
   00000		 |$LN5@HotKeyCold|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M47444|
 
-; 148  :    HotKeyFunction(hTwl);
+; 146  :    HotKeyFunction(hTwl);
 
   00004	eb000000	 bl          HotKeyFunction
 
-; 149  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
-; 150  : }
+; 147  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
+; 148  : }
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr

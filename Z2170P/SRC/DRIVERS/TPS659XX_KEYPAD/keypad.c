@@ -324,9 +324,7 @@ cleanUp:
 //
 //  Called by device manager to initialize device.
 //
-DWORD KPD_Init(
-    LPCTSTR szContext,
-    LPCVOID pBusContext)
+DWORD KPD_Init(LPCTSTR szContext, LPCVOID pBusContext)
 {
     DWORD rc = (DWORD)NULL;
     KeypadDevice_t *pDevice = NULL;
@@ -341,12 +339,12 @@ DWORD KPD_Init(
     // Create device structure
     pDevice = (KeypadDevice_t *)LocalAlloc(LPTR, sizeof(KeypadDevice_t));
     if (pDevice == NULL)
-        {
+		{
         DEBUGMSG(ZONE_ERROR, (L"ERROR: KPD_Init: "
             L"Failed allocate KDP driver structure\r\n"
             ));
         goto cleanUp;
-        }
+		}
 
     memset(pDevice, 0, sizeof(KeypadDevice_t));
 

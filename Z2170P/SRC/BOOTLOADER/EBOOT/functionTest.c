@@ -6,9 +6,13 @@
 #include "bsp.h"
 #include "bq27xxx_new.h"
 #include "omap.h"
-#include "oal_clock.h"      //
-#include "tps659xx_audio.h"
+#include "oal_clock.h"          //
+//#include "tps659xx_audio.h"
+#include "tps659xx_internals.h"
+#include "twl.h"                //Use TWLReadRegs(), Ray 140102
 
+
+extern HANDLE ghTwl;
 
 //------------------------------------------------------------------------------
 //#define BSP_Z2170P      2170 
@@ -181,11 +185,11 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     AudioAndMIC_Z2170P(ptr);                    //a
     LcdStall(stall_1Sec*2);
     
-    KeypadFunc_Z2170P(ptr);                     //b
+    /*KeypadFunc_Z2170P(ptr);                     //b
     LcdStall(stall_1Sec*2);
     
     BurnIn_Z2170P(ptr);                         //c
-    LcdStall(stall_1Sec*2);
+    LcdStall(stall_1Sec*2);*/
 	
 	OALLog(L"\r\n >>>All function tested...\r\n");
 }
@@ -958,7 +962,7 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 //------------------------------------------------------------------------------
 //  Audio And MIC Testing, Ray 131227
 //
-void SetAudioI2SProfile(HANDLE handle)
+/*void SetAudioI2SProfile(HANDLE handle)
 {
     UINT8 regVal;
     
@@ -979,7 +983,7 @@ void SetAudioI2SProfile(HANDLE handle)
     }else{
         RETAILMSG(TRUE, (L"Handle is NULL!!!\r\n"));     
     }  
-}
+}*/
 
 
 //
@@ -993,19 +997,146 @@ VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu)
 //------------------------------------------------------------------------------
 //  Keypad functional Testing, Ray 131227
 //
-void hotKeyFuncMatrix(int row, int col)
-{
-    
+UINT8   padMatrix[8];  
 
+BOOL KeypadMatrixStatus(int row, int col)
+{
+    //UINT8   matrix[8];
+    int  temp;
+    BOOL event = FALSE;
+    
+    temp = padMatrix[row] & (1<<col);
+ 
+    if(temp)
+        return event = TRUE;
+    else
+        return event;
+}
+//
+//
+BOOL KeypadFuncMatrix()
+{
+    ULONG   ik, ix, row, column;
+    USHORT  state;
+    BOOL    ESC = FALSE;
+    
+    //printing matrix array, Ray
+    for(;;){
+        //for(ik=0; ik<3; ik++)
+        //{
+        TWLReadRegs(ghTwl, TWL_LOGADDR_FULL_CODE_7_0, padMatrix, sizeof(padMatrix));  //Stand by read value, Ray 140103   
+
+        /*OALLog(L" HotKeyFunction: matrix  ");
+            for(ix=0; ix<8; ix++)
+                 OALLog(L"[%d]", matrix[ix]);
+            OALLog(L"\r\n");      
+        }*/
+
+        for(row=0, ik=0; row<8; row++)
+        {
+            // Get matrix state 
+            ix = row;
+            state = padMatrix[ix] & 0xFF;     
+
+            // If no-key is pressed continue with new rows
+            if(state == 0)
+            {
+                ik += 8;
+                continue;           //if state event desnot 
+            }
+            
+            for(column=0; column<8; column++, ik++)
+            {
+                if((state & (1<<column)) !=0 ){
+                    //RETAILMSG(TRUE, (L" HotKeyFunction: [%d,%d]\r\n",row ,column));
+                    //OALLog(L" HotKeyFunction: [%d,%d]\r\n",row ,column);
+                    goto status;
+                }
+            }
+        }
+        
+        
+    }   
+status:
+        if( KeypadMatrixStatus(0, 5)){
+            OALLog(L"\r[ENT] ");
+        }else if( KeypadMatrixStatus(1, 4)){
+            OALLog(L"[SCAN] ");
+        }else if( KeypadMatrixStatus(0, 1)){
+            OALLog(L"[ENT]\r\n");
+        }else if( KeypadMatrixStatus(1, 5)){
+            OALLog(L"\r[ESC] ");
+        }else if( KeypadMatrixStatus(0, 1)){
+            OALLog(L"[SCAN] ");
+        }else if( KeypadMatrixStatus(0, 2)){
+            OALLog(L"[BS]\r\n");
+        }else if( KeypadMatrixStatus(1, 3)){
+            OALLog(L"\r[L] ");
+        }else if( KeypadMatrixStatus(1, 2)){
+            OALLog(L"\r[UP]");
+        }else if( KeypadMatrixStatus(2, 4)){
+            OALLog(L"\r[DOWN]");
+        }else if( KeypadMatrixStatus(1, 0)){
+            OALLog(L"\r [R]\r\n");
+        }else if( KeypadMatrixStatus(2, 3)){
+            OALLog(L"\r   [1]\r\n");
+        }else if( KeypadMatrixStatus(2, 5)){
+            OALLog(L"\r   [2]\r\n");
+        }else if( KeypadMatrixStatus(1, 1)){
+            OALLog(L"\r   [3]\r\n");
+        }else{
+            OALLog(L"Key doesnt range\r\n");
+            ESC = TRUE;
+        }
+        return ESC;
 }
 //
 //
 VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
+    int num;
+    BOOL LOOP = TRUE;
+    WCHAR   key;
+    BOOL ESC;
+    
     UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"Keypad Functional Test");
+	OALLog(L"!!!!!!hTwl: %X....\r\n", ghTwl);
 
-	
+	//printing keypad 
+	OALLog(L"\r [ENT] [SCAN] [ENT]\r\n");
+	OALLog(L"\r [ESC] [SCAN]  [BS]\r\n");
+	OALLog(L"\r [L] [UP][DOWN] [R]\r\n");
+		
+	for(num=1; num<10; num++){
+        OALLog(L"   [%d]",num);
+        if((num%3) == 0)
+            OALLog(L"\r\n");
+    }
+	OALLog(L"\r [ . ] [ 0 ] [+-*/]\r\n");
+	OALLog(L" "); 
+	for(num=1; num<5; num++){
+        OALLog(L"[F%d]",num);
+        if((num%2) == 0)
+            OALLog(L"  ");
+    }
+	OALLog(L"\n");   
+    OALLog(L"\r [PWR][TAB][FN][SP] \r\n");
+	OALLog(L"\r\n");
+
+	while(LOOP){
+       ESC = KeypadFuncMatrix();
+        if(ESC)
+	        goto CANCEL;
+    }
+CANCEL:
+
+    key = OALBLMenuReadKey(TRUE);
+    if(key == L'0')             // ESC KEY
+    {
+        OALLog(L"Cancel \r\n");
+        return;
+    }
 }
 
 //------------------------------------------------------------------------------

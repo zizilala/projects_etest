@@ -226,13 +226,13 @@ extern "C" {
 
 
 // TWL_KEYP_CTRL_REG
-#define TWL_KBD_CTRL_NRESET             (1 << 0)
-#define TWL_KBD_CTRL_NSOFT_MODE         (1 << 1)
+#define TWL_KBD_CTRL_NRESET             (1 << 0)    //Normal operation
+#define TWL_KBD_CTRL_NSOFT_MODE         (1 << 1)    //Hardware decoding using internal sequencer
 #define TWL_KBD_CTRL_LK_EN              (1 << 2)
 #define TWL_KBD_CTRL_TOE_EN             (1 << 3)
 #define TWL_KBD_CTRL_TOLE_EN            (1 << 4)
 #define TWL_KBD_CTRL_RP_EN              (1 << 5)
-#define TWL_KBD_CTRL_KBD_ON             (1 << 6)
+#define TWL_KBD_CTRL_KBD_ON             (1 << 6)    //the keypad requests the 32-kHz functional clock
 
 // TWL_KEYP_IMR1
 #define TWL_KBD_INT_EVENT               (1 << 0)

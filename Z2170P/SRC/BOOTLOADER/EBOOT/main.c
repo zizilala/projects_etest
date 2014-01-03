@@ -98,7 +98,7 @@ extern void HotKeyColdReset(HANDLE ghTwl);           //Ray 131030
 //------------------------------------------------------------------------------
 //Global Variable
 
-static HANDLE ghTwl;                                //Ray 131029
+HANDLE ghTwl;   //declare variable the "ghTwl", it is give external variable "ghTwl"(at functonTest.c),  Ray 140102
 //------------------------------------------------------------------------------
 //  Local Functions
 
@@ -238,7 +238,7 @@ BOOL OEMPlatformInit()
     //OALLog(L"\r\n >>>Set hGPIO: %x \r\n",hGPIO); 
     
 	HotKeyInit(hTwl);                       //HotKey Initial ,Ray
-    ghTwl = hTwl;              
+    ghTwl = hTwl;                           //assign give "ghTwl"           
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
 
     //Bootstrap message(3), Ray
@@ -566,7 +566,7 @@ ULONG OEMPreDownload()
         OALLog(L"\r\n>>> Forcing cold boot (non-persistent registry and other data will be wiped) <<< \r\n");
         OALLog(L"\r>>> Now entry cold-reset... \r\n");
         HotKeyColdReset(ghTwl);
-        //OALLog(L"******hTwl: %X....\r\n", ghTwl);   //address-2, Ray
+        OALLog(L"******hTwl: %X....\r\n", ghTwl);       //address-2, Ray
     }
     
     // Don't force the boot menu, use default action unless user breaks

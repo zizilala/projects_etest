@@ -83,28 +83,26 @@ TWLClose(
 }
 
 
-BOOL TWLReadRegs( HANDLE hContext, 
-                  DWORD address,
-                  VOID *pBuffer,
-                  DWORD size)
+BOOL TWLReadRegs( HANDLE hContext, DWORD address, VOID *pBuffer, DWORD size)
 {
     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
- 
+  
     if (pContext->ifc.pfnReadRegs != NULL)
     {
-        return pContext->ifc.pfnReadRegs(
-            pContext->ifc.context, address, pBuffer, size
-            );
+        return pContext->ifc.pfnReadRegs(pContext->ifc.context, 
+                                         address, pBuffer, size);
     }else{
         DWORD dwCount = 0;
+        
         if (pContext->seekAddress != address)
-            {
+        {
             SetFilePointer(pContext->hDevice, address, NULL, FILE_CURRENT);
             pContext->seekAddress = address;
-            }
+        }
+        
         ReadFile(pContext->hDevice, pBuffer, size, &dwCount, NULL);
         return dwCount;
-        }
+    }
 }
 
 

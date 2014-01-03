@@ -89,15 +89,14 @@ void HotKeyFunction(HANDLE hTwl)
     //printing matrix array, Ray
 	/*for( ik=0 ; ik<3 ; ik++ )
 	{*/
-		TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));
-	/*    //OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+    TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));    
+	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
 	    
 		OALLog(L" HotKeyFunction: matrix  ");
 		for( ix=0 ; ix <8 ; ix++ )
 			OALLog(L" [%d]",gMatrix[ix]);
 		OALLog(L"\r\n");
 	}*/
-	
 	
 	for(row = 0, ik = 0; row < 8; row++)
 	{
@@ -120,7 +119,6 @@ void HotKeyFunction(HANDLE hTwl)
 			}
 		}
 	}
-
    
     //Ray 131106
     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               	//F1 + F2
