@@ -216,20 +216,20 @@ BOOL OEMPlatformInit()
 	//GPIOSetBit(hGPIO,15);     // test 
 
     GPIOClrBit(hGPIO, 155);                 
-    GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);       // Keypad_LED, Ray 131112 
+    GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);           // Keypad_LED, Ray 131112 
     GPIOClrBit(hGPIO, 160);                 
-    GPIOSetMode(hGPIO, 160, GPIO_DIR_OUTPUT);       // BARCODE_LED, Ray 131227 
+    GPIOSetMode(hGPIO, 160, GPIO_DIR_OUTPUT);           // BARCODE_LED, Ray 131227 
     GPIOClrBit(hGPIO, 34);                  
-    GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);        // GREEN_LED, Ray 131227 
+    GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);            // GREEN_LED, Ray 131227 
     GPIOClrBit(hGPIO, 140);                 
-    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);       // RED_LED, Ray 131227 
+    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227 
 
     GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);  //barcode, Ray 131225     
     GPIOSetBit(hGPIO, ENG_SET1_GPIO);
     GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       
     GPIOSetBit(hGPIO, ENG_SET2_GPIO);
     
-    OALLog(L"Initial Barcode\n");
+    OALLog(L"Initial Barcode\r\n");
 
     /*GPIOClrBit(hGPIO, 184);               //I2C3_CLK, Ray 131129                  
     GPIOSetMode(hGPIO, 184, GPIO_DIR_OUTPUT);
@@ -253,7 +253,8 @@ BOOL OEMPlatformInit()
         version == CPU_FAMILY_37XX_REVISION_ES_1_0? L"ES1.0" :
         version == CPU_FAMILY_37XX_REVISION_ES_1_1? L"ES1.1" :
         version == CPU_FAMILY_37XX_REVISION_ES_1_2? L"ES1.2" :
-        L"Unknown" );  
+        L"Unknown" );
+        
     /* Initialize Device Prefix */
     if(g_CPUFamily == CPU_FAMILY_DM37XX)
     {
@@ -566,7 +567,7 @@ ULONG OEMPreDownload()
         OALLog(L"\r\n>>> Forcing cold boot (non-persistent registry and other data will be wiped) <<< \r\n");
         OALLog(L"\r>>> Now entry cold-reset... \r\n");
         HotKeyColdReset(ghTwl);
-        OALLog(L"******hTwl: %X....\r\n", ghTwl);       //address-2, Ray
+        //LLog(L"******hTwl: %X....\r\n", ghTwl);       //address-2, Ray
     }
     
     // Don't force the boot menu, use default action unless user breaks
