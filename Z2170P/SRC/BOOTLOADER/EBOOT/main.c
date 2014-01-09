@@ -33,6 +33,9 @@
 #include "omap_cpuver.h"
 //#include "sdk_spi.h"
 
+#define EN_VIO_1V8_Z2170P   137
+#define EN_DC_3V3           23
+
 UINT16 DefaultMacAddress[] = DEFAULT_MAC_ADDRESS;
 
 
@@ -142,6 +145,7 @@ BOOL OEMPlatformInit()
             I2C3_PADS                   //Ray 131128
             UART1_PADS                  //Ray 131225
             LED_PADS                    //Ray 131227
+            POWER_ON_PADS               //Ray 140109
             END_OF_PAD_ARRAY
     };
 		
@@ -222,12 +226,25 @@ BOOL OEMPlatformInit()
     GPIOClrBit(hGPIO, 34);                  
     GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);            // GREEN_LED, Ray 131227 
     GPIOClrBit(hGPIO, 140);                 
-    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227 
+    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
+    GPIOClrBit(hGPIO, 140);                 
+    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
+    GPIOClrBit(hGPIO, 140);                 
+    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
 
+    GPIOClrBit(hGPIO,  EN_VIO_1V8_Z2170P);               
+    GPIOSetMode(hGPIO, EN_VIO_1V8_Z2170P, GPIO_DIR_OUTPUT);      // Drive power 1.8, Ray 140109
+    GPIOClrBit(hGPIO, EN_DC_3V3);               
+    GPIOSetMode(hGPIO, EN_DC_3V3 , GPIO_DIR_OUTPUT);           // Drive power 3.3, Ray 140109
+    
     GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);  //barcode, Ray 131225     
     GPIOSetBit(hGPIO, ENG_SET1_GPIO);
     GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       
     GPIOSetBit(hGPIO, ENG_SET2_GPIO);
+
+    GPIOSetBit(hGPIO, EN_DC_3V3 );
+    GPIOSetBit(hGPIO, EN_VIO_1V8_Z2170P); 
+    
     
     OALLog(L"Initial Barcode\r\n");
 

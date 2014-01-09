@@ -117,14 +117,14 @@ OAL_BLMENU_ITEM g_menu2170PTest[] = {
     }, {
         L'9', L"Barcode Scanning", BarcodeTest_Z2170P,
         NULL, NULL, NULL
-    }, {
+    },/* {
         L'a', L"Audio and MIC", AudioAndMIC_Z2170P,
         NULL, NULL, NULL
-    },{
-        L'b', L"Keypad functional", KeypadFunc_Z2170P,
+    },*/{
+        L'a', L"Keypad functional", KeypadFunc_Z2170P,
         NULL, NULL, NULL
     },{
-        L'c', L"Burn-In", BurnIn_Z2170P,
+        L'b', L"Burn-In", BurnIn_Z2170P,
         NULL, NULL, NULL
     },{
         L'0', L"Exit and Continue", NULL,
@@ -397,7 +397,7 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
             LcdStall(stall_1Sec/1000); 
         }
 	}
-    OALLog(L"\r\n");
+    OALLog(L"\r Tested ok!! \r\n");
 
     //LcdStall(stall_1Sec*3); 
     
@@ -1072,7 +1072,7 @@ BOOL KeypadFuncMatrix()
             {
                 if((state & (1<<column)) !=0 ){
                     //RETAILMSG(TRUE, (L" HotKeyFunction: [%d,%d]\r\n",row ,column));
-                    //OALLog(L" HotKeyFunction: [%d,%d]\r\n",row ,column);
+                    OALLog(L" HotKeyFunction: [%d,%d]\r\n",row ,column);
                     goto status;
                 }
             }
@@ -1246,7 +1246,7 @@ VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	OALLog(L"\n");   
     OALLog(L"\r [PWR][TAB][FN][SP] \r\n");
 	OALLog(L"\r\n");
-    OALLog(L"\r Press any key the keypad testing...\r\n");
+    OALLog(L"\r Press any key the keypad testing>>>\r\n");
     
 	while(LOOP){
        EXIT = KeypadFuncMatrix();
