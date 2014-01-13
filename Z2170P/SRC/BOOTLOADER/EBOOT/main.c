@@ -218,7 +218,7 @@ BOOL OEMPlatformInit()
     GPIOClrBit(hGPIO,16); // WLAN_EN
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 	//GPIOSetBit(hGPIO,15);     // test 
-
+    
     GPIOClrBit(hGPIO, 155);                 
     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);           // Keypad_LED, Ray 131112 
     GPIOClrBit(hGPIO, 160);                 
@@ -227,11 +227,7 @@ BOOL OEMPlatformInit()
     GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);            // GREEN_LED, Ray 131227 
     GPIOClrBit(hGPIO, 140);                 
     GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
-    GPIOClrBit(hGPIO, 140);                 
-    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
-    GPIOClrBit(hGPIO, 140);                 
-    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
-
+      
     GPIOClrBit(hGPIO,  EN_VIO_1V8_Z2170P);               
     GPIOSetMode(hGPIO, EN_VIO_1V8_Z2170P, GPIO_DIR_OUTPUT);      // Drive power 1.8, Ray 140109
     GPIOClrBit(hGPIO, EN_DC_3V3);               
@@ -241,12 +237,12 @@ BOOL OEMPlatformInit()
     GPIOSetBit(hGPIO, ENG_SET1_GPIO);
     GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       
     GPIOSetBit(hGPIO, ENG_SET2_GPIO);
-
+  
+    GPIOSetBit(hGPIO, EN_VIO_1V8_Z2170P);
     GPIOSetBit(hGPIO, EN_DC_3V3 );
-    GPIOSetBit(hGPIO, EN_VIO_1V8_Z2170P); 
+    GPIOSetBit(hGPIO, 155);                             // Keypad_LED are Low-active;So use GPIOSetBit() let light close, Ray 131112                          
     
-    
-    OALLog(L"Initial Barcode\r\n");
+    //OALLog(L"Initial Barcode\r\n");
 
     /*GPIOClrBit(hGPIO, 184);               //I2C3_CLK, Ray 131129                  
     GPIOSetMode(hGPIO, 184, GPIO_DIR_OUTPUT);

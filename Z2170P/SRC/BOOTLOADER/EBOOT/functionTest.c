@@ -19,7 +19,7 @@
 //#define BSP_Z2170P      2170 
 //#define BSP_Z2000       2000 
 #define BK_SET_GPIO             61
-#define KP_LED_SET_GPIO         155
+#define KP_LED_SET_GPIO         155     //Keypad LED ,Low-active
 #define I2C3_SCL_GPIO           184
 #define I2C3_SDA_GPIO           185
 
@@ -187,13 +187,13 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     BarcodeTest_Z2170P(ptr);                    //9 
     LcdStall(stall_1Sec*2);
     
-    AudioAndMIC_Z2170P(ptr);                    //a
+    /*AudioAndMIC_Z2170P(ptr);                  //
+    LcdStall(stall_1Sec*2);*/
+    
+    KeypadFunc_Z2170P(ptr);                     //a
     LcdStall(stall_1Sec*2);
     
-    /*KeypadFunc_Z2170P(ptr);                     //b
-    LcdStall(stall_1Sec*2);
-    
-    BurnIn_Z2170P(ptr);                         //c
+    /*BurnIn_Z2170P(ptr);                       //b
     LcdStall(stall_1Sec*2);*/
 	
 	OALLog(L"\r\n >>>All function tested...\r\n");
@@ -397,7 +397,8 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
             LcdStall(stall_1Sec/1000); 
         }
 	}
-    OALLog(L"\r Tested ok!! \r\n");
+	OALLog(L"\r\n");
+    OALLog(L"\rTested ok!! \r\n");
 
     //LcdStall(stall_1Sec*3); 
     
@@ -437,21 +438,20 @@ VOID KeypadBkTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	OALBLMenuHeader(L"Keypad Backlight Test");
 
     hGPIO = GPIOOpen();
-
-    GPIOClrBit(hGPIO, KP_LED_SET_GPIO);
-    LcdStall(1);
+       
     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);
+    LcdStall(100);
+    GPIOClrBit(hGPIO, KP_LED_SET_GPIO);         //Low-active
     OALLog(L"\r !Now Keypad LED first flash \r\n");
     LcdSleep(delay*2);
-    
-    
-    GPIOClrBit(hGPIO, KP_LED_SET_GPIO);
-    LcdStall(delay);
+  
     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);
+    LcdStall(stall_1Sec);
+    GPIOClrBit(hGPIO, KP_LED_SET_GPIO);
     OALLog(L"\r !Now Keypad LED twice flash \r\n");
     LcdSleep(delay*2);
 
-    GPIOClrBit(hGPIO, KP_LED_SET_GPIO);
+    GPIOSetBit(hGPIO, KP_LED_SET_GPIO);         //Keypad LED liht Close 
 
     GPIOClose(hGPIO);
 
@@ -770,18 +770,19 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     
     I2C_START(hGPIO_I2C);
     I2C_STOP(hGPIO_I2C);
-    gaugeInformation(hGPIO_I2C,  0x00);         //This opreating means clean register
+    gaugeInformation(hGPIO_I2C,  0x00);        //This opreating means clean register
     data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
-    gaugeInformation(hGPIO_I2C,  0x00);
+    //gaugeInformation(hGPIO_I2C,  0x00);
     data.Voltage =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_VOLT_LSB);
     gaugeInformation(hGPIO_I2C,  0x00);
-    data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
-    gaugeInformation(hGPIO_I2C,  0x00);
+    //data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
+    //gaugeInformation(hGPIO_I2C,  0x00);
+ 
     
     OALLog(L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB);
     OALLog(L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273);
     OALLog(L" ~Battery Voltages = %d mV\r\n",data.Voltage);
-    OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
+    //OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
 }
 //
 //
@@ -797,9 +798,9 @@ VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	{
         RETAILMSG(1,(L"ERROR: BQ27510_init - Open I2C device Failed!!\r\n"));
         goto I2COpenFalse;
-	}else{
+	}/*else{
         RETAILMSG(1,(L"SUCCESS: BQ27510_init - Open I2C device OK!!\r\n"));
-	}
+	}*/
     //OALLog(L"\r\n >>>Set hGPIO_I2C:%X \r\n",hGPIO_I2C);  
     
     GPIOClrBit(hGPIO_I2C,  184);  
@@ -827,14 +828,7 @@ VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	OALBLMenuHeader(L"LED Indicator Test");
     hGPIO = GPIOOpen();
     
-    //for(i=0; i<2; i++){
-        GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdStall(stall_1mSec);
-        GPIOSetBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
-        GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
-        
+    //for(i=0; i<2; i++){       
         GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO); //??
         LcdStall(stall_1mSec);
         GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
@@ -847,6 +841,13 @@ VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
         GPIOSetBit(hGPIO, RED_LED_SET_GPIO);
         LcdStall(stall_1Sec);
         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
+        LcdStall(stall_1Sec);
+
+        GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
+        LcdStall(stall_1mSec);
+        GPIOSetBit(hGPIO, BARCODE_LED_SET_GPIO);
+        LcdStall(stall_1Sec);
+        GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
         LcdStall(stall_1Sec);
     //}
     GPIOClose(hGPIO);
@@ -1033,9 +1034,9 @@ BOOL KeypadFuncMatrix()
 {
     ULONG   ik, ix, row, column;
     USHORT  state;
-    int     k, entry;
+    int     k, entry; 
     BOOL    press = FALSE;
-    
+    static int count;
     /*static int  ENTL=0, SCAN=0, ENTR=0, ESC=0, BS=0, L=0,
                 U=0, D=0, R=0, ONE=0, TWO=0, THREE=0, 
                 FOUR=0, FIVE=0, SIX=0, SEVEN=0, NINE=0, ZERO=0,
@@ -1072,7 +1073,7 @@ BOOL KeypadFuncMatrix()
             {
                 if((state & (1<<column)) !=0 ){
                     //RETAILMSG(TRUE, (L" HotKeyFunction: [%d,%d]\r\n",row ,column));
-                    OALLog(L" HotKeyFunction: [%d,%d]\r\n",row ,column);
+                    //OALLog(L" HotKeyFunction: [%d,%d]\r\n",row ,column);
                     goto status;
                 }
             }
@@ -1080,65 +1081,68 @@ BOOL KeypadFuncMatrix()
     }   
 status:
         OALLog(L"\r");
+
+        
         if(KeypadMatrixStatus(0, 5)){
             OALLog(L"[ENTL]");
             keyStatus[0]=1;
+            count = keyStatus[KEYPAD_SIZE-1];
             //ENTL = 1;
-        }else if( KeypadMatrixStatus(1, 4)|| KeypadMatrixStatus(0, 3)){
+        }else if( KeypadMatrixStatus(0, 0)){
             OALLog(L"[SCAN]");
             keyStatus[1]=1;
+            count = keyStatus[KEYPAD_SIZE-1];
             //SCAN = 1;
-        }else if( KeypadMatrixStatus(0, 1)){
+        }else if( KeypadMatrixStatus(0, 2)){
             OALLog(L"[ENTR]");
             keyStatus[2]=1;
+            count = keyStatus[KEYPAD_SIZE-1];
             //ENTR = 1;
-        }else if( KeypadMatrixStatus(1, 5)){
+        }else if( KeypadMatrixStatus(0, 1)){
             OALLog(L"[ESC]  ");
             keyStatus[3]=1;
            //ESC = 1;
-        }/*else if( KeypadMatrixStatus(0, 1)){
-            OALLog(L"[SCAN] ");
-        }*/else if( KeypadMatrixStatus(0, 2)){
+        }else if( KeypadMatrixStatus(0, 3)){
             OALLog(L"[BS]  ");
             keyStatus[4]=1;
             //BS = 1;
-        }else if( KeypadMatrixStatus(1, 3)){
+        }else if( KeypadMatrixStatus(1, 5)){
             OALLog(L"[L]   ");
             keyStatus[5]=1;
             //L = 1;
-        }else if( KeypadMatrixStatus(1, 2)){
+        }else if( KeypadMatrixStatus(1, 4)){
             OALLog(L"[UP]  ");
             keyStatus[6]=1;
             //U = 1;
-        }else if( KeypadMatrixStatus(2, 4)){
+        }else if( KeypadMatrixStatus(1, 0)){
             OALLog(L"[DOWN]");
             keyStatus[7]=1;
             //D = 1;
-        }else if( KeypadMatrixStatus(1, 0)){
+        }else if( KeypadMatrixStatus(1, 2)){
             OALLog(L"[R]   ");
             keyStatus[8]=1;
             //R = 1;
-        }else if( KeypadMatrixStatus(2, 3)){
+        }else if( KeypadMatrixStatus(2, 5)){
             OALLog(L"[1]   ");
             keyStatus[9]=1;
             //ONE = 1;
-        }else if( KeypadMatrixStatus(2, 5)){
+        }else if( KeypadMatrixStatus(1, 1)){
             OALLog(L"[2]   ");
             keyStatus[10]=1;
             //TWO = 1;
-        }else if( KeypadMatrixStatus(1, 1)){
+        }else if( KeypadMatrixStatus(1, 3)){
             OALLog(L"[3]   ");
             keyStatus[11]=1;
             //THREE = 1;
-        }else if( KeypadMatrixStatus(3, 3)){
+        }else if( KeypadMatrixStatus(2, 1)){
             OALLog(L"[4]   ");
             keyStatus[12]=1;
             //FOUR = 1;
-        }else if( KeypadMatrixStatus(2, 2)){
+        }else if( KeypadMatrixStatus(2, 4)){
             OALLog(L"[5]   ");
             keyStatus[13]=1;
             //FIVE = 1;
-        }else if( KeypadMatrixStatus(2, 1)){
+        }else if( KeypadMatrixStatus(2, 3)){
             OALLog(L"[6]   ");
             keyStatus[14]=1;
             //SIX = 1;
@@ -1146,10 +1150,10 @@ status:
             OALLog(L"[7]   ");
             keyStatus[15]=1;
             //SEVEN = 1;
-        }/*else if( KeypadMatrixStatus(?, ?))
+        }else if( KeypadMatrixStatus(2, 0))
             OALLog(L"\r[8] ");
-            EIGHT = 1;*/
-        else if( KeypadMatrixStatus(2, 0)){
+            //EIGHT = 1
+        else if( KeypadMatrixStatus(2, 2)){
             OALLog(L"[9]   ");
             keyStatus[16]=1;
             //NINE = 1;
@@ -1157,7 +1161,7 @@ status:
             OALLog(L"[0]   ");
             keyStatus[17]=1;
             //ZERO = 1;
-        }else if( KeypadMatrixStatus(3, 0)){
+        }else if( KeypadMatrixStatus(3, 1)){
             OALLog(L"[.]   ");
             keyStatus[18]=1;
             //DOT = 1;
@@ -1165,7 +1169,7 @@ status:
             OALLog(L"[+-*/]");
             keyStatus[19]=1;
             //PLUS = 1;
-        }else if( KeypadMatrixStatus(3, 2)){
+        }else if( KeypadMatrixStatus(3, 3)){
             OALLog(L"[F1]  ");
             keyStatus[20]=1;
             //F1 = 1;
@@ -1173,10 +1177,10 @@ status:
             OALLog(L"[F2]  ");
             keyStatus[21]=1;
             //F2 = 1;
-        }/*else if( KeypadMatrixStatus(?, ?)){
+        }else if( KeypadMatrixStatus(3, 0)){
             OALLog(L"\r[F3] ");
-            F3 = 1;
-        }*/else if( KeypadMatrixStatus(3, 1)){
+            //F3 = 1;
+        }else if( KeypadMatrixStatus(3, 2)){
             OALLog(L"[F4]  ");
             keyStatus[22]=1;
             //F4 = 1;
@@ -1196,6 +1200,7 @@ status:
             OALLog(L"Key doesnt range\r\n");
         }
 
+        OALLog(L"count: %d",count);
         /*OALLog(L"%d\n",keyStatus[0]);
         OALLog(L"%d\n",*(keyStatus+1));
         OALLog(L"%d\n",*(keyStatus+2));
@@ -1203,8 +1208,13 @@ status:
         
         for(k=0, entry=1; k<KEYPAD_SIZE; k++){
             entry &= keyStatus[k];
+            /*if(entry == 0){
+                OALLog(L"*%d:%d",k, keyStatus[k]);
+            }*/    
         }
-        
+
+        //if(count == )
+             
         //ENTL && SCAN && ENTR && ESC;/* && BS && L && U && D && R*/
         if(entry){
             clear();

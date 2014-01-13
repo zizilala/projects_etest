@@ -1613,16 +1613,16 @@ VOID ShowTest(UINT32 flashAddr, UINT32 offset/*, int board*/)
     {
         for( x = 0; x < dwLcdWidth; x++ )
         {
-            if(y < dwLcdHeight/2)
-            {
+            //if(y < dwLcdHeight/2)
+            //{
                 *pChar++ = 0x00;    //  Blue    ;SO.. Start Addressing = 0, Ray 131107
                 *pChar++ = 0x00;    //  Green   ;SO.. Start Addressing = 1
                 *pChar++ = 0xFF;    //  Red     ;SO.. Start Addressing = 2
-            }else{
+            /*}else{
                 *pChar++ = 0x00;    //  Blue
                 *pChar++ = 0xFF;    //  Green
                 *pChar++ = 0x00;    //  Red
-            }
+            }*/
         }
     }
     LcdStall(g_d3Sec);
@@ -1813,7 +1813,7 @@ UINT32 enable_lcd_backlight( void )
 #else
 	int i = 25;
 	
-	hGpio = GPIOOpen();
+	hGpio = GPIOOpen();             //***740
 
 	GPIOSetMode(hGpio, SPI_CS0_PIN, GPIO_DIR_OUTPUT);
 	GPIOSetMode(hGpio, SPI_DOUT_PIN, GPIO_DIR_OUTPUT);
@@ -1976,8 +1976,8 @@ BOOL SetDrawCalibration(int position)
                     if( x < 16)
                     {
                         *pChar++ = 0x00;    //  Blue
-                        *pChar++ = 0xFF;    //  Green
-                        *pChar++ = 0x00;    //  Red
+                        *pChar++ = 0x00;    //  Green
+                        *pChar++ = 0xFF;    //  Red
                     }else if( x > 223){
                         pChar++;    //  Blue
                         pChar++;    //  Green
@@ -2004,8 +2004,8 @@ BOOL SetDrawCalibration(int position)
                         pChar++;    //  Red
                     }else if( x > 223){
                         *pChar++ = 0x00;    //  Blue
-                        *pChar++ = 0xFF;    //  Green
-                        *pChar++ = 0x00;    //  Red  
+                        *pChar++ = 0x00;    //  Green
+                        *pChar++ = 0xFF;    //  Red  
                     }else{
                         *pChar++ = 0xFF;    //  Blue
                         *pChar++ = 0xFF;    //  Green
@@ -2041,8 +2041,8 @@ BOOL SetDrawCalibration(int position)
                             if( x > 111 && x < 127)
                             {
                                 *pChar++ = 0x00;    //  Blue
-                                *pChar++ = 0xFF;    //  Green
-                                *pChar++ = 0x00;    //  Red
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0xFF;    //  Red
                             }else{
                                 *pChar++ = 0xFF;    //  Blue
                                 *pChar++ = 0xFF;    //  Green
@@ -2109,8 +2109,8 @@ BOOL SetDrawCalibration(int position)
                             if( x < 16)
                             {
                                 *pChar++ = 0x00;    //  Blue
-                                *pChar++ = 0xFF;    //  Green
-                                *pChar++ = 0x00;    //  Red
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0xFF;    //  Red
                             }else if( x > 223){
                                 pChar++;    //  Blue
                                 pChar++;    //  Green
@@ -2170,8 +2170,8 @@ BOOL SetDrawCalibration(int position)
                                 pChar++;    //  Red
                             }else if( x > 223){
                                 *pChar++ = 0x00;    //  Blue
-                                *pChar++ = 0xFF;    //  Green
-                                *pChar++ = 0x00;    //  Red
+                                *pChar++ = 0x00;    //  Green
+                                *pChar++ = 0xFF;    //  Red
                             }else{
                                 *pChar++ = 0xFF;    //  Blue
                                 *pChar++ = 0xFF;    //  Green
@@ -2291,14 +2291,13 @@ USHORT read_y(HANDLE n_hGPIO_2046, int yCMD)
 //
 VOID detect_TSC2046(void)
 {
-    USHORT xData, yData;
+    USHORT xData = 0x0000, yData = 0x0000;
     WCHAR key;
     int locate=0;
     //BOOL DONE = FALSE;
     BOOL uLeft=FALSE, uRight=FALSE, lLeft=FALSE, lRight=FALSE, center=FALSE;
     HANDLE n_hGPIO_2046 = g_hGPIO_2046; 
-   
-     
+      
     OALLog(L"\r Continue with any key, 0 are Exit!!\r\n");
     SetDrawCalibration(0);
     
@@ -2306,26 +2305,25 @@ VOID detect_TSC2046(void)
             goto ExitCalibration;
     
     OALLog(L"\r Start Calibration...\r\n");
-    while(key != L'0')
-    {
-
+    while(key != L'0'){
+    //do{
         xData = read_x(n_hGPIO_2046, 0x94);           //1001_0100
         LcdStall(20);                                   
         yData = read_y(n_hGPIO_2046, 0xd4);           //1101_0100
 
-        if( xData == 0x0FF0  && yData == 0x0880){ //  in the upper left
+        if((xData >= 0x0CC0 && xData <= 0x0FF0)  && (yData == 0x0800)){ //  in the upper left
             locate=1;
             uLeft = SetDrawCalibration(locate);
-        }else if( xData == 0x0FF0 && yData == 0x0FE0){ //in the upper right
+        }else if((xData >= 0x0CC0 && xData <= 0x0E80) && (yData == 0x0C80)){ //in the upper right
             locate=2;
             uRight = SetDrawCalibration(locate);
-        }else if((xData >= 0x0C80 && xData <= 0x0CA0) && (yData >= 0x0C80 && yData <= 0x0CA0)){ //in the center
+        }else if((xData >= 0x08C0 && xData <= 0x0AC0) && (yData == 0x0880)){ //in the center
             locate=3;
             center = SetDrawCalibration(locate);
-        }else if((xData >= 0x0800 && xData <= 0x08FF) && (yData <= 0x08C0 && yData >= 0x0880)){ //in the lower left
+        }else if((xData >= 0x0440 && xData <= 0x09C0) && (yData == 0x0800)){ //in the lower left
             locate=4;
             lLeft = SetDrawCalibration(locate);
-        }else if(xData == 0x0800 && yData == 0x0EE0){ //in the lower right
+        }else if((xData >= 0x0440 && xData <= 0x0800) &&  (yData ==  0x0C80)){ //in the lower right
             locate=5;
             lRight = SetDrawCalibration(locate);
         }
@@ -2351,20 +2349,13 @@ VOID detect_TSC2046(void)
             OALLog(L"\r ~Calibration lRight!!\r\n");
         }*/
         
-    }//while(DONE == FALSE);
+    }//while((key = OALBLMenuReadKey(TRUE)) == L'0');
   
-    /*if(DONE == TRUE){
-        
-    }*/
+    
 ExitCalibration:
         GPIOClose(n_hGPIO_2046);
         ShowSDLogo();
         return;
- 
-    /*while(i>0){
-        spi4WrBitHigh(hGPIO_2046);
-        i--;
-    }*/
 }
 
 VOID Initial_lcd_TSC2046(void)
