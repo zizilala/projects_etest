@@ -211,10 +211,10 @@ static OAL_BLMENU_ITEM g_menuRoot = {
 static OAL_MENU_ITEM_TEST g_menuBoardTest[] ={
     {
         L'1', L"Z2000 Device", OALBLMenuShow,
-        L"Z2000 Test Management", &g_menuZ2000Test, BSP_Z2000
+        L"Z2000 E-Test Management", &g_menuZ2000Test, BSP_Z2000
     }, {
         L'2', L"Z2170P Device", OALBLMenuShow,
-        L"Z2170P Test Management", &g_menu2170PTest, BSP_Z2170P
+        L"Z2170P E-Test Management", &g_menu2170PTest, BSP_Z2170P
     }, {
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, 0

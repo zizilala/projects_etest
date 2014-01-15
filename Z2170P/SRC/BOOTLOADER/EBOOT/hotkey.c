@@ -71,20 +71,21 @@ BOOL matrixStatus(int row, int col)
 void HotKeyFunction(HANDLE hTwl)
 {
 	//UINT8 matrix[8];
-	ULONG ik, ix, row, column, i;
+	ULONG ik, ix, row, column;
+	//ULONG i;
     USHORT state;
     BOOL keyPressed = FALSE;
     //WCHAR key; 
     
        
     //Ray 131104
-    for(i=0; i<Hotkey_EXIT; i++)
+    /*for(i=0; i<Hotkey_EXIT; i++)
     {
 		OALLog(L" [%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
 	}
 	OALLog(L" [0] Exit and Continue\r\n");
 	
-	OALLog(L"\r>>> Now entry cold-reset... \r\n"); 
+	OALLog(L"\r>>> Now entry cold-reset... \r\n");*/
 	
     //printing matrix array, Ray
 	/*for( ik=0 ; ik<3 ; ik++ )

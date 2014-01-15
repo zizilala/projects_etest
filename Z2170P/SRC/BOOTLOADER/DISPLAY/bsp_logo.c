@@ -48,6 +48,7 @@ void LcdSleep(DWORD dwMilliseconds);
 BOOL FillASCII(BYTE showCharMode[][15]);    //Ray 131105
 BOOL BLShowLogo(void);
 VOID Initial_lcd_TSC2046(void);                 //Ray 131119
+//BOOL KeypadMatrixStatus(int row, int col);
 
 
 //------------------------------------------------------------------------------
@@ -2311,19 +2312,19 @@ VOID detect_TSC2046(void)
         LcdStall(20);                                   
         yData = read_y(n_hGPIO_2046, 0xd4);           //1101_0100
 
-        if((xData >= 0x0CC0 && xData <= 0x0FF0)  && (yData == 0x0800)){ //  in the upper left
+        if((xData >= 0x0EE0 && xData <= 0x0FF0)  && (yData == 0x0800)){ //  in the upper left
             locate=1;
             uLeft = SetDrawCalibration(locate);
-        }else if((xData >= 0x0CC0 && xData <= 0x0E80) && (yData == 0x0C80)){ //in the upper right
+        }else if((xData >= 0x0EC0 && xData <= 0x0FA0) && (yData == 0x0FA0)){ //in the upper right
             locate=2;
             uRight = SetDrawCalibration(locate);
-        }else if((xData >= 0x08C0 && xData <= 0x0AC0) && (yData == 0x0880)){ //in the center
+        }else if((xData >= 0x0C80 && xData <= 0x0E40) && (yData == 0x0C80)){ //in the center
             locate=3;
             center = SetDrawCalibration(locate);
-        }else if((xData >= 0x0440 && xData <= 0x09C0) && (yData == 0x0800)){ //in the lower left
+        }else if((xData >= 0x0640 && xData <= 0x0800) && (yData == 0x0880)){ //in the lower left
             locate=4;
             lLeft = SetDrawCalibration(locate);
-        }else if((xData >= 0x0440 && xData <= 0x0800) &&  (yData ==  0x0C80)){ //in the lower right
+        }else if((xData >= 0x0680 && xData <= 0x0A00) &&  (yData ==  0x0EC0)){ //in the lower right
             locate=5;
             lRight = SetDrawCalibration(locate);
         }
@@ -2336,7 +2337,7 @@ VOID detect_TSC2046(void)
             ShowSDLogo();
             return;
         }
-               
+         
         /*if(uLeft){
             OALLog(L"\r ~Calibration uLeft!!\r\n");
         }else if(uRight){
@@ -2348,9 +2349,8 @@ VOID detect_TSC2046(void)
         }else if(lRight){
             OALLog(L"\r ~Calibration lRight!!\r\n");
         }*/
-        
-    }//while((key = OALBLMenuReadKey(TRUE)) == L'0');
-  
+    }
+    //}while((key = OALBLMenuReadKey(TRUE)) == L'0');
     
 ExitCalibration:
         GPIOClose(n_hGPIO_2046);

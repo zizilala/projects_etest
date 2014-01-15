@@ -161,12 +161,16 @@ BOOL OEMPlatformInit()
 	pTimerRegs = OALPAtoUA(OMAP_GPTIMER1_REGS_PA);
 	
 	ConfigurePadArray(ebootPinMux_37XX);
-	
+	 
 	//Bootstrap message(1), Ray 131024
-    OALLog(L"ZEBEX Windows CE EBOOT for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );  
+	OALMSG(TRUE, (L"Bootstrap messages\r\n")); 
+ 
+    OALMSG(TRUE,(L"ZEBEX E-TEST for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ ));    
+    //OALLog(L"ZEBEX Windows CE EBOOT for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );  
     
 #if BUILDING_EBOOT_SD           //Bootstrap message(2), Ray
-    OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");
+    //OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");
+    OALLog(L"Version: " BSP_ETEST_SD_VERSION_STRING L"\r\n");
 #else
 	OALLog(L"Version: " BSP_EBLD_NAND_VERSION_STRING L"\r\n");
 #endif
@@ -221,25 +225,27 @@ BOOL OEMPlatformInit()
     
     GPIOClrBit(hGPIO, 155);                 
     GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);           // Keypad_LED, Ray 131112 
-    GPIOClrBit(hGPIO, 160);                 
-    GPIOSetMode(hGPIO, 160, GPIO_DIR_OUTPUT);           // BARCODE_LED, Ray 131227 
+    
     GPIOClrBit(hGPIO, 34);                  
     GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);            // GREEN_LED, Ray 131227 
     GPIOClrBit(hGPIO, 140);                 
     GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
-      
+    GPIOClrBit(hGPIO, 160);                 
+    GPIOSetMode(hGPIO, 160, GPIO_DIR_OUTPUT);           // BARCODE_LED, Ray 131227 
+
+    GPIOClrBit(hGPIO, EN_DC_3V3);               
+    GPIOSetMode(hGPIO, EN_DC_3V3, GPIO_DIR_OUTPUT);           // Drive power 3.3, Ray 140109      
     GPIOClrBit(hGPIO,  EN_VIO_1V8_Z2170P);               
     GPIOSetMode(hGPIO, EN_VIO_1V8_Z2170P, GPIO_DIR_OUTPUT);      // Drive power 1.8, Ray 140109
-    GPIOClrBit(hGPIO, EN_DC_3V3);               
-    GPIOSetMode(hGPIO, EN_DC_3V3 , GPIO_DIR_OUTPUT);           // Drive power 3.3, Ray 140109
-    
+        
     GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);  //barcode, Ray 131225     
     GPIOSetBit(hGPIO, ENG_SET1_GPIO);
     GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       
     GPIOSetBit(hGPIO, ENG_SET2_GPIO);
-  
+
     GPIOSetBit(hGPIO, EN_VIO_1V8_Z2170P);
     GPIOSetBit(hGPIO, EN_DC_3V3 );
+    
     GPIOSetBit(hGPIO, 155);                             // Keypad_LED are Low-active;So use GPIOSetBit() let light close, Ray 131112                          
     
     //OALLog(L"Initial Barcode\r\n");
