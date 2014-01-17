@@ -28,7 +28,7 @@ typedef struct OAL_MENU_ITEM {
     VOID *pParam3;
 } OAL_BLMENU_ITEM;
 
-typedef struct _OAL_MENU_ITEM_TEST{
+typedef struct _OAL_MENU_ITEM_TEST{             //Ray
     WCHAR key;
     LPCWSTR text;
     VOID (*pfnAction)(struct OAL_MENU_ITEM *);

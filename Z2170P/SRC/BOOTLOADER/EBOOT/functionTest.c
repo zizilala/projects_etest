@@ -776,8 +776,8 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     gaugeInformation(hGPIO_I2C,  0x00);*/
     data.Voltage =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_VOLT_LSB);
     gaugeInformation(hGPIO_I2C,  0x00);        //This opreating means clean register
-    data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
-    gaugeInformation(hGPIO_I2C,  0x00);
+    //data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
+    //gaugeInformation(hGPIO_I2C,  0x00);
     
     
     OALLog(L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB);
@@ -851,7 +851,9 @@ VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
         GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
         LcdStall(stall_1Sec);
     //}
+    OALLog(L"\rTested ok!! \r\n");
     GPIOClose(hGPIO);
+    
 }
 
 //------------------------------------------------------------------------------

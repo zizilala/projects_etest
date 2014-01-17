@@ -38,7 +38,6 @@
 
 UINT16 DefaultMacAddress[] = DEFAULT_MAC_ADDRESS;
 
-
 //------------------------------------------------------------------------------
 //
 //  Global: g_bootCfg
@@ -163,17 +162,16 @@ BOOL OEMPlatformInit()
 	ConfigurePadArray(ebootPinMux_37XX);
 	 
 	//Bootstrap message(1), Ray 131024
-	OALMSG(TRUE, (L"Bootstrap messages\r\n")); 
- 
-    OALMSG(TRUE,(L"ZEBEX E-TEST for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ ));    
+	/*OALMSG(TRUE, (L"Bootstrap messages\r\n"));    //e-test comment, Ray 
+    OALMSG(TRUE,(L"ZEBEX E-TEST for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ ));*/    
     //OALLog(L"ZEBEX Windows CE EBOOT for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );  
-    
-#if BUILDING_EBOOT_SD           //Bootstrap message(2), Ray
-    //OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");
+    OALLog(L"ZEBEX ZEBEX ZEBEX ZEBEX ZEBEX\n");  
+/*#if BUILDING_EBOOT_SD           //Bootstrap message(2), Ray
+    //OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");  //e-test comment, Ray 
     OALLog(L"Version: " BSP_ETEST_SD_VERSION_STRING L"\r\n");
 #else
 	OALLog(L"Version: " BSP_EBLD_NAND_VERSION_STRING L"\r\n");
-#endif
+#endif*/
 
     // Soft reset GPTIMER1
     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET);
@@ -454,6 +452,7 @@ ULONG OEMPreDownload()
     ULONG dwTemp;
     UINT32 *pStatusControlAddr = OALPAtoUA(OMAP_STATUS_CONTROL_REGS_PA);
     UINT32 dwSysBootCfg;
+    
 #ifdef BUILDING_EBOOT_SD    
 	//BYTE CalibBuffer[CALIBRATE_SIZE];
 #endif
@@ -474,7 +473,7 @@ ULONG OEMPreDownload()
     if (BLReadBootCfg(&g_bootCfg) &&
         (g_bootCfg.signature == BOOT_CFG_SIGNATURE) && (g_bootCfg.version == BOOT_CFG_VERSION))
 	{
-        OALLog(L"INFO: Boot configuration found\r\n");
+        //OALLog(L"INFO: Boot configuration found\r\n");    //e-test comment, Ray
 	}
     else 
 	{
@@ -569,7 +568,7 @@ ULONG OEMPreDownload()
         (pArgs->header.oalVersion != OAL_ARGS_VERSION) ||
         (pArgs->header.bspVersion != BSP_ARGS_VERSION))
 	{
-		OALLog(L"Clear share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);
+		//OALLog(L"Clear share ARGS - 0x%x\r\n",IMAGE_SHARE_ARGS_CA);   //e-test comment, Ray
 		memset(pArgs, 0, IMAGE_SHARE_ARGS_SIZE);
 	}        
     
@@ -578,21 +577,21 @@ ULONG OEMPreDownload()
     if (dwTemp & (GLOBALWARM_RST /* actually SW reset */ | EXTERNALWARM_RST))
     {
         pArgs->coldBoot = FALSE;
-        OALLog(L"\r>>> Now entry warm-reset... \r\n");
+        //OALLog(L"\r>>> Now entry warm-reset... \r\n");    //e-test comment, Ray
     }
     else
     {
         pArgs->coldBoot = TRUE;
-        OALLog(L"\r\n>>> Forcing cold boot (non-persistent registry and other data will be wiped) <<< \r\n");
-        OALLog(L"\r>>> Now entry cold-reset... \r\n");
+        //OALLog(L"\r\n>>> Forcing cold boot (non-persistent registry and other data will be wiped) <<< \r\n");     //e-test comment, Ray
+        //OALLog(L"\r>>> Now entry cold-reset... \r\n");    //e-test comment, Ray
         HotKeyColdReset(ghTwl);
         //LLog(L"******hTwl: %X....\r\n", ghTwl);       //address-2, Ray
     }
     
     // Don't force the boot menu, use default action unless user breaks
     // into menu
-    bForceBootMenu = FALSE;
-    
+    //bForceBootMenu = FALSE;   //e-test comment, Ray
+    bForceBootMenu = TRUE; 
 retryBootMenu:
 	// Call configuration menu
     BLMenu(bForceBootMenu);
@@ -1021,7 +1020,7 @@ BOOL OEMIsFlashAddr(ULONG address)
 
     // Depending on download type
     switch (g_eboot.type)
-        {
+    {
         case DOWNLOAD_TYPE_XLDR:
         case DOWNLOAD_TYPE_EBOOT:
         case DOWNLOAD_TYPE_LOGO:
@@ -1033,7 +1032,7 @@ BOOL OEMIsFlashAddr(ULONG address)
         default:
             rc = FALSE;
             break;
-        }
+    }
 
     //OALMSG(OAL_INFO, (L"-OEMIsFlashAddr(rc = %d)\r\n", rc));
     return rc;

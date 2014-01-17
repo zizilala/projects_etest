@@ -76,7 +76,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45367| DCD	|$LN5@TWLWriteBy|
+|$T45386| DCD	|$LN5@TWLWriteBy|
 	DCD	0x40000803
 ; Function compile flags: /Ogspy
 
@@ -90,7 +90,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5000	 stmdb       sp!, {r12, lr}
-  0000c		 |$M45364|
+  0000c		 |$M45383|
 
 ; 58   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 
@@ -102,14 +102,14 @@
 
   00018	e89d6000	 ldmia       sp, {sp, lr}
   0001c	e12fff1e	 bx          lr
-  00020		 |$M45365|
+  00020		 |$M45384|
 
 			 ENDP  ; |TWLWriteByteReg|
 
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45379| DCD	|$LN5@TWLReadByt|
+|$T45398| DCD	|$LN5@TWLReadByt|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -121,7 +121,7 @@
 
   00000		 |$LN5@TWLReadByt|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45376|
+  00004		 |$M45395|
 
 ; 68   :     return TWLReadRegs(hTWL,address,data,sizeof(*data));
 
@@ -132,7 +132,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M45377|
+  00014		 |$M45396|
 
 			 ENDP  ; |TWLReadByteReg|
 
@@ -146,7 +146,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\oalrtc\rtc.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45389| DCD	|$LN5@SystemTime|
+|$T45408| DCD	|$LN5@SystemTime|
 	DCD	0x40001902
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -168,7 +168,7 @@
   00000		 |$LN5@SystemTime|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M45386|
+  00008		 |$M45405|
 
 ; 95   :     static WCHAR buffer[64];
 ; 96   : 
@@ -209,7 +209,7 @@
   0005c	00000000	 DCD         |?buffer@?1??SystemTimeToString@@9@9|
   00060		 |$LN8@SystemTime|
   00060	00000000	 DCD         |??_C@_1EG@LALIIKNN@?$AA?$CF?$AA0?$AA4?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?4?$AA?$CF?$AA0@|
-  00064		 |$M45387|
+  00064		 |$M45406|
 
 			 ENDP  ; |SystemTimeToString|
 
@@ -221,7 +221,7 @@
 |?buffer@?1??HWTimeToString@@9@9| % 0x80		; `HWTimeToString'::`2'::buffer
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45402| DCD	|$LN5@HWTimeToSt|
+|$T45421| DCD	|$LN5@HWTimeToSt|
 	DCD	0x40003a02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -242,7 +242,7 @@
   00000		 |$LN5@HWTimeToSt|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd028	 sub         sp, sp, #0x28
-  00008		 |$M45399|
+  00008		 |$M45418|
 
 ; 113  :     static WCHAR buffer[64];
 ; 114  : 
@@ -319,7 +319,7 @@
   000e0	00000000	 DCD         |?buffer@?1??HWTimeToString@@9@9|
   000e4		 |$LN8@HWTimeToSt|
   000e4	00000000	 DCD         |??_C@_1DM@BLINKFCK@?$AA?$CF?$AA0?$AA4?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?4?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?$AA@|
-  000e8		 |$M45400|
+  000e8		 |$M45419|
 
 			 ENDP  ; |HWTimeToString|
 
@@ -327,7 +327,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45445| DCD	|$LN21@ReadBaseOf|
+|$T45464| DCD	|$LN21@ReadBaseOf|
 	DCD	0x40007402
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\oalrtc\rtc.c
@@ -341,7 +341,7 @@
   00000		 |$LN21@ReadBaseOf|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M45442|
+  00008		 |$M45461|
   00008	e1a05000	 mov         r5, r0
 
 ; 134  :     UCHAR   val;
@@ -521,7 +521,7 @@
   001cc		 |$LN22@ReadBaseOf|
   001cc		 |$LN23@ReadBaseOf|
   001cc	00000000	 DCD         |s_rtc|
-  001d0		 |$M45443|
+  001d0		 |$M45462|
 
 			 ENDP  ; |ReadBaseOffset|
 
@@ -529,7 +529,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45495| DCD	|$LN21@WriteBaseO|
+|$T45514| DCD	|$LN21@WriteBaseO|
 	DCD	0x40004b02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\oalrtc\rtc.c
@@ -543,7 +543,7 @@
   00000		 |$LN21@WriteBaseO|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M45492|
+  00008		 |$M45511|
   00008	e1a05000	 mov         r5, r0
 
 ; 171  :     UCHAR   val;
@@ -674,7 +674,7 @@
   00128		 |$LN22@WriteBaseO|
   00128		 |$LN23@WriteBaseO|
   00128	00000000	 DCD         |s_rtc|
-  0012c		 |$M45493|
+  0012c		 |$M45512|
 
 			 ENDP  ; |WriteBaseOffset|
 
@@ -702,11 +702,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45655| DCD	|$LN74@OALIoCtlHa|
+|$T45674| DCD	|$LN74@OALIoCtlHa|
 	DCD	0xc001a302
 
   00000			 AREA	 |.xdata|, DATA
-|$T45651| DCD	0xffffffd8
+|$T45670| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1EA@NFLJEDAN@?$AA?9?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?5?$AAr?$AAc?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "-"
@@ -793,7 +793,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T45651|
+  00004	00000000	 DCD         |$T45670|
 
   00008		 |OALIoCtlHalInitRTC| PROC
 
@@ -802,7 +802,7 @@
   00008		 |$LN74@OALIoCtlHa|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd054	 sub         sp, sp, #0x54
-  00010		 |$M45652|
+  00010		 |$M45671|
   00010	e1a06001	 mov         r6, r1
   00014	e58d602c	 str         r6, [sp, #0x2C]
   00018	e59f3670	 ldr         r3, [pc, #0x670]
@@ -874,7 +874,7 @@
 
   00070	e5943440	 ldr         r3, [r4, #0x440]
   00074	e3130001	 tst         r3, #1
-  00078	0a00016d	 beq         |$cleanUp$45157|
+  00078	0a00016d	 beq         |$cleanUp$45176|
   0007c	e59f0600	 ldr         r0, [pc, #0x600]
   00080	eb000000	 bl          NKDbgPrintfW
 
@@ -1484,7 +1484,7 @@
   0062c	e3a05001	 mov         r5, #1
   00630		 |$LN71@OALIoCtlHa|
   00630	e5943440	 ldr         r3, [r4, #0x440]
-  00634		 |$cleanUp$45157|
+  00634		 |$cleanUp$45176|
 
 ; 368  : 
 ; 369  : 
@@ -1535,7 +1535,7 @@
   0068c	00000000	 DCD         |??_C@_1DA@GMIOKMIL@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAI?$AAn?$AAi?$AAt?$AAR?$AAT?$AAC?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00690		 |$LN88@OALIoCtlHa|
   00690	00000000	 DCD         |__security_cookie|
-  00694		 |$M45653|
+  00694		 |$M45672|
 
 			 ENDP  ; |OALIoCtlHalInitRTC|
 
@@ -1547,11 +1547,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45724| DCD	|$LN23@OALIoCtlHa@2|
+|$T45743| DCD	|$LN23@OALIoCtlHa@2|
 	DCD	0xc0008102
 
   00000			 AREA	 |.xdata|, DATA
-|$T45720| DCD	0xffffffd8
+|$T45739| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DA@PEAOFAFN@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAR?$AAt?$AAc?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "+"
@@ -1565,7 +1565,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T45720|
+  00004	00000000	 DCD         |$T45739|
 
   00008		 |OALIoCtlHalRtcTime| PROC
 
@@ -1574,7 +1574,7 @@
   00008		 |$LN23@OALIoCtlHa@2|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M45721|
+  00010		 |$M45740|
   00010	e59f31f0	 ldr         r3, [pc, #0x1F0]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
@@ -1805,7 +1805,7 @@
   00204	00000000	 DCD         |dpCurSettings|
   00208		 |$LN28@OALIoCtlHa@2|
   00208	00000000	 DCD         |__security_cookie|
-  0020c		 |$M45722|
+  0020c		 |$M45741|
 
 			 ENDP  ; |OALIoCtlHalRtcTime|
 
@@ -1814,7 +1814,7 @@
 	IMPORT	|NKSetInterruptEvent|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45741| DCD	|$LN7@OALIoCtlHa@3|
+|$T45760| DCD	|$LN7@OALIoCtlHa@3|
 	DCD	0x40000e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1834,7 +1834,7 @@
 
   00000		 |$LN7@OALIoCtlHa@3|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45738|
+  00004		 |$M45757|
 
 ; 637  :     OALMSG(OAL_TIMER && OAL_FUNC, (L"+OALIoCtlHalRtcAlarm()\r\n"));
 
@@ -1872,7 +1872,7 @@
   00030	00000000	 DCD         |??_C@_1DC@KHBDMOPE@?$AA?$CL?$AAO?$AAA?$AAL?$AAI?$AAo?$AAC?$AAt?$AAl?$AAH?$AAa?$AAl?$AAR?$AAt?$AAc?$AAA?$AAl?$AAa?$AAr?$AAm?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00034		 |$LN10@OALIoCtlHa@3|
   00034	00000000	 DCD         |dpCurSettings|
-  00038		 |$M45739|
+  00038		 |$M45758|
 
 			 ENDP  ; |OALIoCtlHalRtcAlarm|
 
@@ -1880,7 +1880,7 @@
 	IMPORT	|NKFileTimeToSystemTime|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45755| DCD	|$LN7@FiletimeTo|
+|$T45774| DCD	|$LN7@FiletimeTo|
 	DCD	0x40006a04
 ; Function compile flags: /Ogspy
 
@@ -1895,7 +1895,7 @@
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5ff0	 stmdb       sp!, {r4 - r12, lr}
   0000c	e24dd044	 sub         sp, sp, #0x44
-  00010		 |$M45752|
+  00010		 |$M45771|
   00010	e58d2018	 str         r2, [sp, #0x18]
 
 ; 659  :     SYSTEMTIME systemTime;
@@ -2037,7 +2037,7 @@
   001a4		 |$LN8@FiletimeTo|
   001a4		 |$LN9@FiletimeTo|
   001a4	66666667	 DCD         0x66666667
-  001a8		 |$M45753|
+  001a8		 |$M45772|
 
 			 ENDP  ; |FiletimeToHWTime|
 
@@ -2047,7 +2047,7 @@
 	IMPORT	|g_ResumeRTC|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45771| DCD	|$LN12@OEMGetReal|
+|$T45790| DCD	|$LN12@OEMGetReal|
 	DCD	0x40005202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2075,7 +2075,7 @@
   00000		 |$LN12@OEMGetReal|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M45768|
+  00008		 |$M45787|
   00008	e1a05000	 mov         r5, r0
 
 ; 388  :     DWORD       delta;
@@ -2245,7 +2245,7 @@
   00140	00000000	 DCD         |??_C@_1CI@OLGNILCF@?$AA?$CL?$AAO?$AAE?$AAM?$AAG?$AAe?$AAt?$AAR?$AAe?$AAa?$AAl?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00144		 |$LN18@OEMGetReal|
   00144	00000000	 DCD         |dpCurSettings|
-  00148		 |$M45769|
+  00148		 |$M45788|
 
 			 ENDP  ; |OEMGetRealTime|
 
@@ -2254,7 +2254,7 @@
 	EXPORT	|??_C@_1CM@NEGNBBJ@?$AA?$CL?$AAO?$AAE?$AAM?$AAS?$AAe?$AAt?$AAR?$AAe?$AAa?$AAl?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45792| DCD	|$LN12@OEMSetReal|
+|$T45811| DCD	|$LN12@OEMSetReal|
 	DCD	0x40005102
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2280,7 +2280,7 @@
   00000		 |$LN12@OEMSetReal|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
-  00008		 |$M45789|
+  00008		 |$M45808|
   00008	e1a04000	 mov         r4, r0
 
 ; 439  :     BOOL        rc = FALSE;
@@ -2445,7 +2445,7 @@
   0013c	00000000	 DCD         |??_C@_1CM@NEGNBBJ@?$AA?$CL?$AAO?$AAE?$AAM?$AAS?$AAe?$AAt?$AAR?$AAe?$AAa?$AAl?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@|
   00140		 |$LN18@OEMSetReal|
   00140	00000000	 DCD         |dpCurSettings|
-  00144		 |$M45790|
+  00144		 |$M45809|
 
 			 ENDP  ; |OEMSetRealTime|
 
@@ -2455,11 +2455,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45856| DCD	|$LN26@OEMSetAlar|
+|$T45875| DCD	|$LN26@OEMSetAlar|
 	DCD	0xc0007d02
 
   00000			 AREA	 |.xdata|, DATA
-|$T45852| DCD	0xffffffe4
+|$T45871| DCD	0xffffffe4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CO@MAJAHDBK@?$AA?$CL?$AAO?$AAE?$AAM?$AAS?$AAe?$AAt?$AAA?$AAl?$AAa?$AAr?$AAm?$AAT?$AAi?$AAm?$AAe?$AA?$CI?$AA?$CF?$AAs?$AA?$CJ?$AA?$AN?$AA?6?$AA?$AA@| DCB "+"
@@ -2473,7 +2473,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T45852|
+  00004	00000000	 DCD         |$T45871|
 
   00008		 |OEMSetAlarmTime| PROC
 
@@ -2482,7 +2482,7 @@
   00008		 |$LN26@OEMSetAlar|
   00008	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   0000c	e24dd018	 sub         sp, sp, #0x18
-  00010		 |$M45853|
+  00010		 |$M45872|
   00010	e1a05000	 mov         r5, r0
   00014	e59f31dc	 ldr         r3, [pc, #0x1DC]
   00018	e5933000	 ldr         r3, [r3]
@@ -2713,7 +2713,7 @@
   001f4	00000000	 DCD         |dpCurSettings|
   001f8		 |$LN32@OEMSetAlar|
   001f8	00000000	 DCD         |__security_cookie|
-  001fc		 |$M45854|
+  001fc		 |$M45873|
 
 			 ENDP  ; |OEMSetAlarmTime|
 

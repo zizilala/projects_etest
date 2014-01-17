@@ -725,7 +725,7 @@ BOOL FillASCIIMode(DWORD mode)
    //BYTE asciiToHexa; 
    
   // for(i=0; i<15; i++){
-   do{
+    do{
         c = showChar[mode][i];
         showCharToDec[0][i] = (BYTE)c;
         i++;
@@ -1042,7 +1042,7 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
     //  Get the LCD width and height
     LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
 	
-   dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
 
     //  Get the video memory
     LcdPdd_GetMemory( NULL, &framebufferPA );
@@ -1291,8 +1291,9 @@ VOID ShowTestWhite(UINT32 flashAddr, UINT32 offset)
     }
     LcdStall(g_d3Sec);
     OALLog(L"\r Display tested end...\r\n");
-    
-    ShowSDLogo();
+
+    ShowLogo((UINT32)-1, 0);
+    //ShowSDLogo();
 }
 
 //------------------------------------------------------------------------------
@@ -1706,7 +1707,7 @@ void reset_display_controller( void )
 //
 void lcd_config(UINT32 framebuffer)
 {
-	OALMSG(OAL_INFO, (L"lcd_config\r\n"));
+	//OALMSG(OAL_INFO, (L"lcd_config\r\n"));  //e-test comment, Ray 
 	
     reset_display_controller();
 
@@ -1824,7 +1825,7 @@ UINT32 enable_lcd_backlight( void )
     GPIOSetBit(hGpio, SPI_CLK_PIN);
     GPIOSetBit(hGpio, SPI_DOUT_PIN);
     
-    OALMSG(1, (L"LCD send Initial Code\r\n"));
+    //OALMSG(1, (L"LCD send Initial Code\r\n"));    //e-test comment, Ray
     LCD_Initial_Code();
     
     GPIOClrBit(hGpio, BL_EN_SET_GPIO);
@@ -2334,7 +2335,7 @@ VOID detect_TSC2046(void)
             LcdSleep(500);
             //DONE = TRUE;
             GPIOClose(n_hGPIO_2046);    
-            ShowSDLogo();
+            ShowLogo((UINT32)-1, 0);
             return;
         }
          
@@ -2354,7 +2355,7 @@ VOID detect_TSC2046(void)
     
 ExitCalibration:
         GPIOClose(n_hGPIO_2046);
-        ShowSDLogo();
+        ShowLogo((UINT32)-1, 0);
         return;
 }
 
@@ -2370,7 +2371,7 @@ VOID Initial_lcd_TSC2046(void)
     GPIOSetMode(hGPIO_2046, TSC2046_DIN,  GPIO_DIR_OUTPUT);
     GPIOSetMode(hGPIO_2046, TSC2046_DOUT, GPIO_DIR_INPUT);
     
-    OALMSG(OAL_INFO, (L"Initial_lcd_TSC2046\r\n"));
+    //OALMSG(OAL_INFO, (L"Initial_lcd_TSC2046\r\n"));   //e-test comment, Ray
     g_hGPIO_2046 = hGPIO_2046;
 }
 

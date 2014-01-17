@@ -281,9 +281,6 @@ static OMAP_LCD_DVI_RES g_dwSelectedDSSResolution = OMAP_RES_INVALID;
 #define BSP_CM_CLKSEL_DSS   (BSP_DSS_CLKSEL_TV | \
                              BSP_DSS_CLKSEL_DSS1)
 
-
-
-
 void LcdPdd_LCD_InitResolution()
 {
     if (g_dwSelectedDSSResolution == OMAP_RES_INVALID)
@@ -315,7 +312,6 @@ void LcdPdd_LCD_InitResolution()
         if (LCD_VBP > 255)
             RETAILMSG(1,(L"error LCD_VBP out of range \r\n"));
     }
-        
 }
 
 //------------------------------------------------------------------------------
@@ -329,7 +325,7 @@ LcdPdd_LCD_Initialize(
 {
     PHYSICAL_ADDRESS pa;
     OMAP_PRCM_DSS_CM_REGS *pPrcmDssCM;
-
+    OALLog(L"2.XXXXXXXXXXXXXXXXXXX");
 	UNREFERENCED_PARAMETER(pVencRegs);
 	UNREFERENCED_PARAMETER(pRfbiRegs);
 	UNREFERENCED_PARAMETER(pDSSRegs);
@@ -588,7 +584,7 @@ LcdPdd_SetPowerLevel(
     // Do nothing if LCD has not yet been initialized
     if (g_pDispRegs == NULL)
         return FALSE;
-        
+    OALLog(L"33.XXXXXXXXXXXXXXXXXXX");      
     // Power display up/down
     switch(dwPowerLevel)
     {

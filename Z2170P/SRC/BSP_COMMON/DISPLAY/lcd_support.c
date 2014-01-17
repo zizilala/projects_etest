@@ -12,7 +12,7 @@ static DWORD g_gpioLcdResB;
 BOOL LcdInitGpio(void)
 {
     // Configure Backlight/Power pins as outputs
-    RETAILMSG(1,(L"LcdInitGpio\n\r"));
+    //RETAILMSG(1,(L"LcdInitGpio\n\r"));    //e-test comment, Ray
     g_hGpio = GPIOOpen();
     
     GPIOSetBit(g_hGpio,LCD_POWER_GPIO);

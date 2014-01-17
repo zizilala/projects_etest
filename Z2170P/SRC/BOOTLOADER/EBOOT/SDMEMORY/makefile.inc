@@ -17,8 +17,8 @@ BootImage:
 !IF "$(NOLINK)" == ""
     romimage $(ROMIMAGE_FLAGS) ebootsd.bib
 !IF "$(WINCEREL)"=="1"
-    xcopy /Q /I $(_TGT)\ebootsd.bin $(_FLATRELEASEDIR)
-    xcopy /Q /I $(_TGT)\ebootsd.nb0 $(_FLATRELEASEDIR)
+    xcopy /Q /I $(_TGT)\etest.bin $(_FLATRELEASEDIR)
+	xcopy /Q /I $(_TGT)\etest.nb0 $(_FLATRELEASEDIR)
 !ENDIF
 !ENDIF        
 

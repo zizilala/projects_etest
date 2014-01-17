@@ -337,7 +337,7 @@ cleanUp:
 BOOL BLShowLogo()
 {
 	//  Show the bootloader splashscreen if present on the SDCard
-	if (!ShowSDLogo())
+	//if (!ShowSDLogo())
 	{
 		ShowLogo((UINT32)-1, 0);
 	}

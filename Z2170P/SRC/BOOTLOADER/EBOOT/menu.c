@@ -222,11 +222,12 @@ static OAL_MENU_ITEM_TEST g_menuBoardTest[] ={
         0, NULL, NULL,
         NULL, NULL, 0
     }
+   
 };
 
 static OAL_BLMENU_ITEM g_menuBoard = {
     0, NULL, OALBLMenuShow,
-    L"Selection Devices", g_menuBoardTest, NULL
+    L"Zebex for e-test V1.0.0", g_menuBoardTest, NULL
 };
 
 #define DEFINE_LOGO g_menuBoardTest->pParam3    //DEFINE_LOGO are has Value 
@@ -319,12 +320,12 @@ OPP_MODE_MENU oppModeMenu37x[OMAP37x_OPP_NUM] = {
 //-----------------------------------------------------------------------------
 VOID BLMenu(BOOL bForced)
 {
-    UINT32 time, delay = 6;
-    WCHAR key = 0;
+    //UINT32 time, delay = 6;
+    //WCHAR key = 0;
     BSP_ARGS *pArgs = OALCAtoUA(IMAGE_SHARE_ARGS_CA);
     
     // First let user break to menu
-    while (!bForced && (delay > 0 && key != L' ')) 
+    /*while (!bForced && (delay > 0 && key != L' ')) 
 	{
 		OALLog(L"Hit space to enter configuration menu %d...\r\n", delay);
 		time = OALGetTickCount();
@@ -334,9 +335,9 @@ VOID BLMenu(BOOL bForced)
 				break;
 		}
 		delay--;
-	}
+	}*/
     
-    if ((bForced == TRUE) || (key == L' ')) 
+    if ((bForced == TRUE)/* || (key == L' ')*/) 
     {
         //OALBLMenuShow(&g_menuRoot);       
         OALBLMenuShow(&g_menuBoard);        //Ray 131115 

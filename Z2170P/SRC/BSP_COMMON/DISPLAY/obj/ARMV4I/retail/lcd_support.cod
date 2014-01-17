@@ -73,23 +73,15 @@
 	DCB	0x6
 	DCB	"3C", 0x0
 	EXPORT	|LcdInitGpio|
-	EXPORT	|??_C@_1BM@CAGMDMLN@?$AAL?$AAc?$AAd?$AAI?$AAn?$AAi?$AAt?$AAG?$AAp?$AAi?$AAo?$AA?6?$AA?$AN?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|GPIOClrBit|
 	IMPORT	|GPIOSetMode|
 	IMPORT	|GPIOSetBit|
 	IMPORT	|GPIOOpen|
-	IMPORT	|NKDbgPrintfW|
 ; File c:\wince600\platform\z2170p\src\bsp_common\display\lcd_support.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45685| DCD	|$LN5@LcdInitGpi|
-	DCD	0x40002001
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@CAGMDMLN@?$AAL?$AAc?$AAd?$AAI?$AAn?$AAi?$AAt?$AAG?$AAp?$AAi?$AAo?$AA?6?$AA?$AN?$AA?$AA@| DCB "L"
-	DCB	0x0, "c", 0x0, "d", 0x0, "I", 0x0, "n", 0x0, "i", 0x0, "t"
-	DCB	0x0, "G", 0x0, "p", 0x0, "i", 0x0, "o", 0x0, 0xa, 0x0, 0xd
-	DCB	0x0, 0x0, 0x0				; `string'
+|$T45683| DCD	|$LN5@LcdInitGpi|
+	DCD	0x40001d01
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -100,67 +92,63 @@
 
   00000		 |$LN5@LcdInitGpi|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M45682|
+  00004		 |$M45680|
 
 ; 14   :     // Configure Backlight/Power pins as outputs
-; 15   :     RETAILMSG(1,(L"LcdInitGpio\n\r"));
-
-  00004	e59f0070	 ldr         r0, [pc, #0x70]
-  00008	eb000000	 bl          NKDbgPrintfW
-
+; 15   :     //RETAILMSG(1,(L"LcdInitGpio\n\r"));    //e-test comment, Ray
 ; 16   :     g_hGpio = GPIOOpen();
 
-  0000c	eb000000	 bl          GPIOOpen
-  00010	e59f4060	 ldr         r4, [pc, #0x60]
-  00014	e1a03000	 mov         r3, r0
+  00004	eb000000	 bl          GPIOOpen
+  00008	e59f4060	 ldr         r4, [pc, #0x60]
+  0000c	e1a03000	 mov         r3, r0
 
 ; 17   :     
 ; 18   :     GPIOSetBit(g_hGpio,LCD_POWER_GPIO);
 
-  00018	e3a0109a	 mov         r1, #0x9A
-  0001c	e5843000	 str         r3, [r4]
-  00020	eb000000	 bl          GPIOSetBit
+  00010	e3a0109a	 mov         r1, #0x9A
+  00014	e5843000	 str         r3, [r4]
+  00018	eb000000	 bl          GPIOSetBit
 
 ; 19   :     //GPIOClrBit(g_hGpio,LCD_POWER_GPIO);
 ; 20   :     GPIOSetMode(g_hGpio,LCD_POWER_GPIO,GPIO_DIR_OUTPUT);
 
-  00024	e5940000	 ldr         r0, [r4]
-  00028	e3a02000	 mov         r2, #0
-  0002c	e3a0109a	 mov         r1, #0x9A
-  00030	eb000000	 bl          GPIOSetMode
+  0001c	e5940000	 ldr         r0, [r4]
+  00020	e3a02000	 mov         r2, #0
+  00024	e3a0109a	 mov         r1, #0x9A
+  00028	eb000000	 bl          GPIOSetMode
 
 ; 21   : 
 ; 22   : 	//GPIOSetBit(g_hGpio,LCD_RESB_GPIO);
 ; 23   : 	GPIOClrBit(g_hGpio,LCD_RESB_GPIO);
 
-  00034	e5940000	 ldr         r0, [r4]
-  00038	e3a01093	 mov         r1, #0x93
-  0003c	eb000000	 bl          GPIOClrBit
+  0002c	e5940000	 ldr         r0, [r4]
+  00030	e3a01093	 mov         r1, #0x93
+  00034	eb000000	 bl          GPIOClrBit
 
 ; 24   : 	GPIOSetMode(g_hGpio,LCD_RESB_GPIO,GPIO_DIR_OUTPUT);
 
-  00040	e5940000	 ldr         r0, [r4]
-  00044	e3a02000	 mov         r2, #0
-  00048	e3a01093	 mov         r1, #0x93
-  0004c	eb000000	 bl          GPIOSetMode
+  00038	e5940000	 ldr         r0, [r4]
+  0003c	e3a02000	 mov         r2, #0
+  00040	e3a01093	 mov         r1, #0x93
+  00044	eb000000	 bl          GPIOSetMode
 
 ; 25   : 
 ; 26   : //#ifdef BSP_Z2000
 ; 27   : 	GPIOSetBit(g_hGpio,BL_EN_SET_GPIO);
 
-  00050	e5940000	 ldr         r0, [r4]
-  00054	e3a0103d	 mov         r1, #0x3D
-  00058	eb000000	 bl          GPIOSetBit
+  00048	e5940000	 ldr         r0, [r4]
+  0004c	e3a0103d	 mov         r1, #0x3D
+  00050	eb000000	 bl          GPIOSetBit
 
 ; 28   : //#else
 ; 29   : //	GPIOClrBit(g_hGpio,BL_EN_SET_GPIO);
 ; 30   : //#endif
 ; 31   : 	GPIOSetMode(g_hGpio,BL_EN_SET_GPIO,GPIO_DIR_OUTPUT);
 
-  0005c	e5940000	 ldr         r0, [r4]
-  00060	e3a02000	 mov         r2, #0
-  00064	e3a0103d	 mov         r1, #0x3D
-  00068	eb000000	 bl          GPIOSetMode
+  00054	e5940000	 ldr         r0, [r4]
+  00058	e3a02000	 mov         r2, #0
+  0005c	e3a0103d	 mov         r1, #0x3D
+  00060	eb000000	 bl          GPIOSetMode
 
 ; 32   :     //GPIOSetBit(g_hGpio,BSP_BL_EN_GPIO);
 ; 33   : 	//GPIOSetBit(g_hGpio,BSP_LCD_UP_DOWN_GPIO);
@@ -179,18 +167,16 @@
 ; 46   : 
 ; 47   : 	return TRUE;
 
-  0006c	e3a00001	 mov         r0, #1
+  00064	e3a00001	 mov         r0, #1
 
 ; 48   : }
 
-  00070	e8bd4010	 ldmia       sp!, {r4, lr}
-  00074	e12fff1e	 bx          lr
-  00078		 |$LN6@LcdInitGpi|
-  00078		 |$LN7@LcdInitGpi|
-  00078	00000000	 DCD         |g_hGpio|
-  0007c		 |$LN8@LcdInitGpi|
-  0007c	00000000	 DCD         |??_C@_1BM@CAGMDMLN@?$AAL?$AAc?$AAd?$AAI?$AAn?$AAi?$AAt?$AAG?$AAp?$AAi?$AAo?$AA?6?$AA?$AN?$AA?$AA@|
-  00080		 |$M45683|
+  00068	e8bd4010	 ldmia       sp!, {r4, lr}
+  0006c	e12fff1e	 bx          lr
+  00070		 |$LN6@LcdInitGpi|
+  00070		 |$LN7@LcdInitGpi|
+  00070	00000000	 DCD         |g_hGpio|
+  00074		 |$M45681|
 
 			 ENDP  ; |LcdInitGpio|
 
@@ -198,7 +184,7 @@
 	IMPORT	|GPIOClose|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45697| DCD	|$LN5@LcdDeinitG|
+|$T45694| DCD	|$LN5@LcdDeinitG|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -210,7 +196,7 @@
 
   00000		 |$LN5@LcdDeinitG|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45694|
+  00004		 |$M45691|
 
 ; 52   : 	// Close GPIO driver
 ; 53   :     GPIOClose(g_hGpio);
@@ -231,14 +217,14 @@
   0001c		 |$LN6@LcdDeinitG|
   0001c		 |$LN7@LcdDeinitG|
   0001c	00000000	 DCD         |g_hGpio|
-  00020		 |$M45695|
+  00020		 |$M45692|
 
 			 ENDP  ; |LcdDeinitGpio|
 
 	EXPORT	|LcdPowerControl|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45707| DCD	|$LN7@LcdPowerCo|
+|$T45704| DCD	|$LN7@LcdPowerCo|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -250,7 +236,7 @@
 
   00000		 |$LN7@LcdPowerCo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45704|
+  00004		 |$M45701|
   00004	e3500000	 cmp         r0, #0
 
 ; 60   :     if (!bEnable)
@@ -285,14 +271,14 @@
   00030		 |$LN8@LcdPowerCo|
   00030		 |$LN9@LcdPowerCo|
   00030	00000000	 DCD         |g_hGpio|
-  00034		 |$M45705|
+  00034		 |$M45702|
 
 			 ENDP  ; |LcdPowerControl|
 
 	EXPORT	|LcdResBControl|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45717| DCD	|$LN7@LcdResBCon|
+|$T45714| DCD	|$LN7@LcdResBCon|
 	DCD	0x40000d01
 ; Function compile flags: /Ogspy
 
@@ -304,7 +290,7 @@
 
   00000		 |$LN7@LcdResBCon|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M45714|
+  00004		 |$M45711|
   00004	e3500000	 cmp         r0, #0
 
 ; 72   :     if (bEnable)
@@ -339,14 +325,14 @@
   00030		 |$LN8@LcdResBCon|
   00030		 |$LN9@LcdResBCon|
   00030	00000000	 DCD         |g_hGpio|
-  00034		 |$M45715|
+  00034		 |$M45712|
 
 			 ENDP  ; |LcdResBControl|
 
 	EXPORT	|LcdIniControl|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45726| DCD	|$LN7@LcdIniCont|
+|$T45723| DCD	|$LN7@LcdIniCont|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -357,7 +343,7 @@
 ; 83   : {
 
   00000		 |$LN7@LcdIniCont|
-  00000		 |$M45723|
+  00000		 |$M45720|
 
 ; 84   :     if (!bEnable)
 ; 85   :     {
@@ -370,14 +356,14 @@
 ; 92   : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M45724|
+  00004		 |$M45721|
 
 			 ENDP  ; |LcdIniControl|
 
 	EXPORT	|LcdDviEnableControl|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T45733| DCD	|$LN7@LcdDviEnab|
+|$T45730| DCD	|$LN7@LcdDviEnab|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -388,7 +374,7 @@
 ; 96   : {
 
   00000		 |$LN7@LcdDviEnab|
-  00000		 |$M45730|
+  00000		 |$M45727|
 
 ; 97   :     if (!bEnable)
 ; 98   :     {
@@ -401,7 +387,7 @@
 ; 105  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M45731|
+  00004		 |$M45728|
 
 			 ENDP  ; |LcdDviEnableControl|
 

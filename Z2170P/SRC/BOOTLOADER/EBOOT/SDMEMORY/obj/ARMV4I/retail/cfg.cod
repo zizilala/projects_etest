@@ -90,11 +90,11 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\sdmemory\cfg.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47028| DCD	|$LN23@BLReadBoot|
+|$T47027| DCD	|$LN23@BLReadBoot|
 	DCD	0xc0006303
 
   00000			 AREA	 |.xdata|, DATA
-|$T47024| DCD	0xffffffe4
+|$T47023| DCD	0xffffffe4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HE@BDJAOKHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAR?$AAe?$AAa?$AAd?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa?$AAs@| DCB "E"
@@ -146,7 +146,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47024|
+  00004	00000000	 DCD         |$T47023|
 
   00008		 |BLReadBootCfg| PROC
 
@@ -156,7 +156,7 @@
   00008	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   0000c	e59fc17c	 ldr         r12, [pc, #0x17C]
   00010	e08dd00c	 add         sp, sp, r12
-  00014		 |$M47025|
+  00014		 |$M47024|
   00014	e1a07000	 mov         r7, r0
   00018	e59f316c	 ldr         r3, [pc, #0x16C]
   0001c	e5933000	 ldr         r3, [r3]
@@ -406,7 +406,7 @@
   0018c	00000000	 DCD         |__security_cookie|
   00190		 |$LN32@BLReadBoot|
   00190	fffff464	 DCD         0xfffff464
-  00194		 |$M47026|
+  00194		 |$M47025|
 
 			 ENDP  ; |BLReadBootCfg|
 
@@ -421,11 +421,11 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47086| DCD	|$LN40@BLWriteBoo|
+|$T47085| DCD	|$LN40@BLWriteBoo|
 	DCD	0xc000a502
 
   00000			 AREA	 |.xdata|, DATA
-|$T47082| DCD	0xffffffd8
+|$T47081| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HI@NMGONLPH@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAW?$AAr?$AAi?$AAt?$AAe?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa@| DCB "E"
@@ -486,7 +486,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47082|
+  00004	00000000	 DCD         |$T47081|
 
   00008		 |BLWriteBootCfg| PROC
 
@@ -495,7 +495,7 @@
   00008		 |$LN40@BLWriteBoo|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24ddfe7	 sub         sp, sp, #0xE7, 30
-  00010		 |$M47083|
+  00010		 |$M47082|
   00010	e1a0a000	 mov         r10, r0
   00014	e59f327c	 ldr         r3, [pc, #0x27C]
   00018	e5933000	 ldr         r3, [r3]
@@ -883,7 +883,7 @@
   00294	00000000	 DCD         |g_ulFlashBase|
   00298		 |$LN50@BLWriteBoo|
   00298	00000000	 DCD         |__security_cookie|
-  0029c		 |$M47084|
+  0029c		 |$M47083|
 
 			 ENDP  ; |BLWriteBootCfg|
 
@@ -903,11 +903,11 @@
 	IMPORT	|__rt_udiv|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47124| DCD	|$LN23@BLReserveB|
+|$T47123| DCD	|$LN23@BLReserveB|
 	DCD	0xc0006f02
 
   00000			 AREA	 |.xdata|, DATA
-|$T47120| DCD	0xffffffec
+|$T47119| DCD	0xffffffec
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1FG@GECOJCBP@?$AA?5?$AAO?$AAo?$AAp?$AAs?$AA?0?$AA?5?$AAc?$AAa?$AAn?$AA?8?$AAt?$AA?5?$AAm?$AAa?$AAr?$AAk?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?$CF?$AAd?$AA?5?$AA?9?$AA?5?$AAa?$AAs?$AA?5@| DCB " "
@@ -1000,7 +1000,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47120|
+  00004	00000000	 DCD         |$T47119|
 
   00008		 |BLReserveBootBlocks| PROC
 
@@ -1009,7 +1009,7 @@
   00008		 |$LN23@BLReserveB|
   00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   0000c	e24ddfe5	 sub         sp, sp, #0xE5, 30
-  00010		 |$M47121|
+  00010		 |$M47120|
   00010	e59f31a8	 ldr         r3, [pc, #0x1A8]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3390	 str         r3, [sp, #0x390]
@@ -1293,17 +1293,16 @@
   001bc	00000000	 DCD         |dpCurSettings|
   001c0		 |$LN39@BLReserveB|
   001c0	00000000	 DCD         |__security_cookie|
-  001c4		 |$M47122|
+  001c4		 |$M47121|
 
 			 ENDP  ; |BLReserveBootBlocks|
 
 	EXPORT	|BLShowLogo|
 	IMPORT	|ShowLogo|
-	IMPORT	|ShowSDLogo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47150| DCD	|$LN6@BLShowLogo|
-	DCD	0x40000901
+|$T47149| DCD	|$LN5@BLShowLogo|
+	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -1312,34 +1311,30 @@
 
 ; 338  : {
 
-  00000		 |$LN6@BLShowLogo|
+  00000		 |$LN5@BLShowLogo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47147|
+  00004		 |$M47146|
 
 ; 339  : 	//  Show the bootloader splashscreen if present on the SDCard
-; 340  : 	if (!ShowSDLogo())
-
-  00004	eb000000	 bl          ShowSDLogo
-  00008	e3500000	 cmp         r0, #0
-
+; 340  : 	//if (!ShowSDLogo())
 ; 341  : 	{
 ; 342  : 		ShowLogo((UINT32)-1, 0);
 
-  0000c	03a01000	 moveq       r1, #0
-  00010	03e00000	 mvneq       r0, #0
-  00014	0b000000	 bleq        ShowLogo
+  00004	e3a01000	 mov         r1, #0
+  00008	e3e00000	 mvn         r0, #0
+  0000c	eb000000	 bl          ShowLogo
 
 ; 343  : 	}
 ; 344  : 
 ; 345  :     return TRUE;
 
-  00018	e3a00001	 mov         r0, #1
+  00010	e3a00001	 mov         r0, #1
 
 ; 346  : }
 
-  0001c	e49de004	 ldr         lr, [sp], #4
-  00020	e12fff1e	 bx          lr
-  00024		 |$M47148|
+  00014	e49de004	 ldr         lr, [sp], #4
+  00018	e12fff1e	 bx          lr
+  0001c		 |$M47147|
 
 			 ENDP  ; |BLShowLogo|
 
@@ -1347,7 +1342,7 @@
 	IMPORT	|ShowTest|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47159| DCD	|$LN5@DisplaySho|
+|$T47158| DCD	|$LN5@DisplaySho|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -1359,7 +1354,7 @@
 
   00000		 |$LN5@DisplaySho|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47156|
+  00004		 |$M47155|
 
 ; 351  :     ShowTest((UINT32)-1, 0/*, board*/);
 
@@ -1375,7 +1370,7 @@
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
-  0001c		 |$M47157|
+  0001c		 |$M47156|
 
 			 ENDP  ; |DisplayShow|
 
@@ -1383,7 +1378,7 @@
 	IMPORT	|detect_TSC2046|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47166| DCD	|$LN5@tsc2046Tes|
+|$T47165| DCD	|$LN5@tsc2046Tes|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -1395,7 +1390,7 @@
 
   00000		 |$LN5@tsc2046Tes|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47163|
+  00004		 |$M47162|
 
 ; 359  :     detect_TSC2046();
 
@@ -1406,7 +1401,7 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47164|
+  00010		 |$M47163|
 
 			 ENDP  ; |tsc2046Test|
 

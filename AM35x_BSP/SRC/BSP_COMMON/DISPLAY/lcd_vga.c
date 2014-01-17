@@ -337,7 +337,7 @@ LcdPdd_LCD_Initialize(
 {
     PHYSICAL_ADDRESS pa;
     OMAP_PRCM_DSS_CM_REGS *pPrcmDssCM;
-
+    OALLog(L"4.XXXXXXXXXXXXXXXXXXX");
 	UNREFERENCED_PARAMETER(pVencRegs);
 	UNREFERENCED_PARAMETER(pRfbiRegs);
 	UNREFERENCED_PARAMETER(pDSSRegs);
@@ -598,7 +598,7 @@ LcdPdd_SetPowerLevel(
     // Do nothing if LCD has not yet been initialized
     if (g_pDispRegs == NULL)
         return FALSE;
-        
+    OALLog(L"44.XXXXXXXXXXXXXXXXXXX");      
     // Power display up/down
     switch(dwPowerLevel)
     {

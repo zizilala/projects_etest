@@ -225,7 +225,7 @@
 
   00000		 |EnableDeviceClocks| PROC
 
-; 64   : {
+; 60   : {
 
   00000		 |$LN7@EnableDevi@2|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
@@ -233,37 +233,40 @@
   00004	e1a05001	 mov         r5, r1
   00008	e1a06000	 mov         r6, r0
 
-; 65   : 	if (!bclockTableInit) ClockInitialize();
+; 61   : 	if (!bclockTableInit)
 
   0000c	e59f4038	 ldr         r4, [pc, #0x38]
   00010	e5943020	 ldr         r3, [r4, #0x20]
   00014	e3530000	 cmp         r3, #0
+
+; 62   : 	    ClockInitialize();
+
   00018	0b000000	 bleq        ClockInitialize
 
-; 66   :     if (clockFnTable.pfnEnableDeviceClocks)
+; 63   :     if (clockFnTable.pfnEnableDeviceClocks)
 
   0001c	e5943000	 ldr         r3, [r4]
   00020	e3530000	 cmp         r3, #0
   00024	0a000005	 beq         |$LN1@EnableDevi@2|
 
-; 67   : 	    return clockFnTable.pfnEnableDeviceClocks( devID, bEnable );
+; 64   : 	    return clockFnTable.pfnEnableDeviceClocks( devID, bEnable );
 
   00028	e1a01005	 mov         r1, r5
   0002c	e1a00006	 mov         r0, r6
   00030	e1a0e00f	 mov         lr, pc
   00034	e12fff13	 bx          r3
 
-; 69   : }
+; 66   : }
 
   00038	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   0003c	e12fff1e	 bx          lr
   00040		 |$LN1@EnableDevi@2|
 
-; 68   :     return FALSE;
+; 65   :     return FALSE;
 
   00040	e3a00000	 mov         r0, #0
 
-; 69   : }
+; 66   : }
 
   00044	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00048	e12fff1e	 bx          lr
@@ -285,7 +288,7 @@
 
   00000		 |EnableDeviceIClock| PROC
 
-; 79   : {
+; 76   : {
 
   00000		 |$LN7@EnableDevi@3|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
@@ -293,37 +296,37 @@
   00004	e1a05001	 mov         r5, r1
   00008	e1a06000	 mov         r6, r0
 
-; 80   : 	if (!bclockTableInit) ClockInitialize();
+; 77   : 	if (!bclockTableInit) ClockInitialize();
 
   0000c	e59f4038	 ldr         r4, [pc, #0x38]
   00010	e5943020	 ldr         r3, [r4, #0x20]
   00014	e3530000	 cmp         r3, #0
   00018	0b000000	 bleq        ClockInitialize
 
-; 81   :     if (clockFnTable.pfnEnableDeviceIClock)
+; 78   :     if (clockFnTable.pfnEnableDeviceIClock)
 
   0001c	e5943004	 ldr         r3, [r4, #4]
   00020	e3530000	 cmp         r3, #0
   00024	0a000005	 beq         |$LN1@EnableDevi@3|
 
-; 82   : 	    return clockFnTable.pfnEnableDeviceIClock( devID, bEnable );
+; 79   : 	    return clockFnTable.pfnEnableDeviceIClock( devID, bEnable );
 
   00028	e1a01005	 mov         r1, r5
   0002c	e1a00006	 mov         r0, r6
   00030	e1a0e00f	 mov         lr, pc
   00034	e12fff13	 bx          r3
 
-; 84   : }
+; 81   : }
 
   00038	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   0003c	e12fff1e	 bx          lr
   00040		 |$LN1@EnableDevi@3|
 
-; 83   :     return FALSE;
+; 80   :     return FALSE;
 
   00040	e3a00000	 mov         r0, #0
 
-; 84   : }
+; 81   : }
 
   00044	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00048	e12fff1e	 bx          lr
@@ -345,7 +348,7 @@
 
   00000		 |EnableDeviceFClock| PROC
 
-; 93   : {
+; 90   : {
 
   00000		 |$LN7@EnableDevi@4|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
@@ -353,37 +356,37 @@
   00004	e1a05001	 mov         r5, r1
   00008	e1a06000	 mov         r6, r0
 
-; 94   : 	if (!bclockTableInit) ClockInitialize();
+; 91   : 	if (!bclockTableInit) ClockInitialize();
 
   0000c	e59f4038	 ldr         r4, [pc, #0x38]
   00010	e5943020	 ldr         r3, [r4, #0x20]
   00014	e3530000	 cmp         r3, #0
   00018	0b000000	 bleq        ClockInitialize
 
-; 95   :     if (clockFnTable.pfnEnableDeviceFClock)
+; 92   :     if (clockFnTable.pfnEnableDeviceFClock)
 
   0001c	e5943008	 ldr         r3, [r4, #8]
   00020	e3530000	 cmp         r3, #0
   00024	0a000005	 beq         |$LN1@EnableDevi@4|
 
-; 96   : 	    return clockFnTable.pfnEnableDeviceFClock( devID, bEnable );
+; 93   : 	    return clockFnTable.pfnEnableDeviceFClock( devID, bEnable );
 
   00028	e1a01005	 mov         r1, r5
   0002c	e1a00006	 mov         r0, r6
   00030	e1a0e00f	 mov         lr, pc
   00034	e12fff13	 bx          r3
 
-; 98   : }
+; 95   : }
 
   00038	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   0003c	e12fff1e	 bx          lr
   00040		 |$LN1@EnableDevi@4|
 
-; 97   :     return FALSE;
+; 94   :     return FALSE;
 
   00040	e3a00000	 mov         r0, #0
 
-; 98   : }
+; 95   : }
 
   00044	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00048	e12fff1e	 bx          lr
@@ -405,7 +408,7 @@
 
   00000		 |SelectDeviceSourceClocks| PROC
 
-; 108  : {
+; 105  : {
 
   00000		 |$LN7@SelectDevi|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
@@ -414,21 +417,21 @@
   00008	e1a06001	 mov         r6, r1
   0000c	e1a07000	 mov         r7, r0
 
-; 109  : 	if (!bclockTableInit) ClockInitialize();
+; 106  : 	if (!bclockTableInit) ClockInitialize();
 
   00010	e59f403c	 ldr         r4, [pc, #0x3C]
   00014	e5943020	 ldr         r3, [r4, #0x20]
   00018	e3530000	 cmp         r3, #0
   0001c	0b000000	 bleq        ClockInitialize
 
-; 110  : 
-; 111  :     if (clockFnTable.pfnSetSourceDeviceClocks)
+; 107  : 
+; 108  :     if (clockFnTable.pfnSetSourceDeviceClocks)
 
   00020	e5943010	 ldr         r3, [r4, #0x10]
   00024	e3530000	 cmp         r3, #0
   00028	0a000006	 beq         |$LN1@SelectDevi|
 
-; 112  : 	    return clockFnTable.pfnSetSourceDeviceClocks( devID, count, clockIDs );
+; 109  : 	    return clockFnTable.pfnSetSourceDeviceClocks( devID, count, clockIDs );
 
   0002c	e1a02005	 mov         r2, r5
   00030	e1a01006	 mov         r1, r6
@@ -436,17 +439,17 @@
   00038	e1a0e00f	 mov         lr, pc
   0003c	e12fff13	 bx          r3
 
-; 114  : }
+; 111  : }
 
   00040	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00044	e12fff1e	 bx          lr
   00048		 |$LN1@SelectDevi|
 
-; 113  :     return FALSE;
+; 110  :     return FALSE;
 
   00048	e3a00000	 mov         r0, #0
 
-; 114  : }
+; 111  : }
 
   0004c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00050	e12fff1e	 bx          lr
@@ -469,28 +472,28 @@
 
   00000		 |GetSystemClockFrequency| PROC
 
-; 120  : {
+; 117  : {
 
   00000		 |$LN6@GetSystemC|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M44246|
 
-; 121  : 	if (!bclockTableInit) ClockInitialize();
+; 118  : 	if (!bclockTableInit) ClockInitialize();
 
   00004	e59f4020	 ldr         r4, [pc, #0x20]
   00008	e5943020	 ldr         r3, [r4, #0x20]
   0000c	e3530000	 cmp         r3, #0
   00010	0b000000	 bleq        ClockInitialize
 
-; 122  :     
-; 123  :     return (DWORD) clockFnTable.pfnGetSystemClockFrequency();
+; 119  :     
+; 120  :     return (DWORD) clockFnTable.pfnGetSystemClockFrequency();
 
   00014	e594301c	 ldr         r3, [r4, #0x1C]
   00018	e1a0e00f	 mov         lr, pc
   0001c	e12fff13	 bx          r3
   00020	eb000000	 bl          __stou
 
-; 124  : }
+; 121  : }
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
@@ -512,7 +515,7 @@
 
   00000		 |PrcmDeviceGetContextState| PROC
 
-; 131  : {
+; 128  : {
 
   00000		 |$LN7@PrcmDevice|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
@@ -520,39 +523,39 @@
   00004	e1a05001	 mov         r5, r1
   00008	e1a06000	 mov         r6, r0
 
-; 132  :     if (!bclockTableInit) ClockInitialize();
+; 129  :     if (!bclockTableInit) ClockInitialize();
 
   0000c	e59f4038	 ldr         r4, [pc, #0x38]
   00010	e5943020	 ldr         r3, [r4, #0x20]
   00014	e3530000	 cmp         r3, #0
   00018	0b000000	 bleq        ClockInitialize
 
-; 133  :     if (clockFnTable.pfnGetDeviceContextState)
+; 130  :     if (clockFnTable.pfnGetDeviceContextState)
 
   0001c	e5943014	 ldr         r3, [r4, #0x14]
   00020	e3530000	 cmp         r3, #0
   00024	0a000005	 beq         |$LN1@PrcmDevice|
 
-; 134  : 	    return clockFnTable.pfnGetDeviceContextState( devId, bSet );
+; 131  : 	    return clockFnTable.pfnGetDeviceContextState( devId, bSet );
 
   00028	e1a01005	 mov         r1, r5
   0002c	e1a00006	 mov         r0, r6
   00030	e1a0e00f	 mov         lr, pc
   00034	e12fff13	 bx          r3
 
-; 136  : 
-; 137  : }
+; 133  : 
+; 134  : }
 
   00038	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   0003c	e12fff1e	 bx          lr
   00040		 |$LN1@PrcmDevice|
 
-; 135  :     return FALSE;
+; 132  :     return FALSE;
 
   00040	e3a00000	 mov         r0, #0
 
-; 136  : 
-; 137  : }
+; 133  : 
+; 134  : }
 
   00044	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00048	e12fff1e	 bx          lr

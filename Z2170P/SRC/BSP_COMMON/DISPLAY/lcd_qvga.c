@@ -286,8 +286,8 @@ BOOL LcdPdd_LCD_Initialize(
 {
     PHYSICAL_ADDRESS pa;
     OMAP_PRCM_DSS_CM_REGS *pPrcmDssCM;
-    RETAILMSG(1,(L"\n\r*** LcdPdd_LCD_Initialize ***\n\r"));
-
+    //RETAILMSG(1,(L"\n\r*** LcdPdd_LCD_Initialize ***\n\r"));  //e-test comment, Ray
+    
 	UNREFERENCED_PARAMETER(pVencRegs);
 	UNREFERENCED_PARAMETER(pRfbiRegs);
 	UNREFERENCED_PARAMETER(pDSSRegs);
@@ -395,7 +395,7 @@ BOOL LcdPdd_LCD_GetMode(
     DWORD   *pHeight,
     DWORD   *pPixelClock)
 {
-	//RETAILMSG(1,(L"\n\r*** LcdPdd_LCD_GetMode ***\n\r"));
+	RETAILMSG(1,(L"\n\r*** LcdPdd_LCD_GetMode ***\n\r"));     //e-test comment, Ray
     LcdPdd_LCD_InitResolution();        
     
     //  Return default LCD parameters
@@ -427,7 +427,8 @@ BOOL LcdPdd_SetPowerLevel(DWORD   dwPowerLevel)
     // Do nothing if LCD has not yet been initialized
     if (g_pDispRegs == NULL)
         return FALSE;
-	RETAILMSG(1,(L"*** LcdPdd_SetPowerLevel(%d) ***\n\r",dwPowerLevel));
+	//RETAILMSG(1,(L"*** LcdPdd_SetPowerLevel(%d) ***\n\r",dwPowerLevel));    //e-test comment, Ray
+  
     // Power display up/down
     switch(dwPowerLevel)
     {

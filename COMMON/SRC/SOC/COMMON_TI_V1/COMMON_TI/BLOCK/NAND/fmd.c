@@ -380,12 +380,9 @@ NAND_Uninitialize(
 }
 
 //-----------------------------------------------------------------------------
-HANDLE 
-NAND_Initialize(
-    LPCTSTR szContext,
-    PCI_REG_INFO *pRegIn,
-    PCI_REG_INFO *pRegOut
-    )
+HANDLE NAND_Initialize( LPCTSTR szContext,
+                        PCI_REG_INFO *pRegIn,
+                        PCI_REG_INFO *pRegOut)
 {
     DWORD chipSelect = BSPGetNandCS();
     const NAND_INFO *  pBSPNandInfo;

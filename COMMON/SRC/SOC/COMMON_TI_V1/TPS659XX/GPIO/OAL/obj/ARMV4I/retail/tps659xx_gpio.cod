@@ -100,7 +100,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\tps659xx\gpio\tps659xx_gpio.cpp
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37403| DCD	|$LN7@OpenTwl|
+|$T37420| DCD	|$LN7@OpenTwl|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -112,7 +112,7 @@
 
   00000		 |$LN7@OpenTwl|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37400|
+  00004		 |$M37417|
 
 ; 210  :     // Try open TWL device driver
 ; 211  :     s_hTritonDriver = TWLOpen();
@@ -145,14 +145,14 @@
   00028		 |$LN8@OpenTwl|
   00028		 |$LN9@OpenTwl|
   00028	00000000	 DCD         |s_hTritonDriver|
-  0002c		 |$M37401|
+  0002c		 |$M37418|
 
 			 ENDP  ; |?OpenTwl@@YAHXZ|, OpenTwl
 
 	IMPORT	|TWLClose|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37412| DCD	|$LN6@CloseTwl|
+|$T37429| DCD	|$LN6@CloseTwl|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -164,7 +164,7 @@
 
   00000		 |$LN6@CloseTwl|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37409|
+  00004		 |$M37426|
 
 ; 223  :     if (s_hTritonDriver != NULL)
 
@@ -192,14 +192,14 @@
   00028		 |$LN7@CloseTwl|
   00028		 |$LN8@CloseTwl|
   00028	00000000	 DCD         |s_hTritonDriver|
-  0002c		 |$M37410|
+  0002c		 |$M37427|
 
 			 ENDP  ; |?CloseTwl@@YAXXZ|, CloseTwl
 
 	IMPORT	|TWLWriteRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37434| DCD	|$LN11@WriteTwlRe|
+|$T37451| DCD	|$LN11@WriteTwlRe|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -211,7 +211,7 @@
 
   00000		 |$LN11@WriteTwlRe|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M37431|
+  00004		 |$M37448|
   00004	e1a06002	 mov         r6, r2
   00008	e1a07001	 mov         r7, r1
   0000c	e1a08000	 mov         r8, r0
@@ -229,7 +229,7 @@
   00024	eb000000	 bl          TWLOpen
   00028	e3500000	 cmp         r0, #0
   0002c	e5850000	 str         r0, [r5]
-  00030	0a000004	 beq         |$cleanUp$37192|
+  00030	0a000004	 beq         |$cleanUp$37209|
   00034		 |$LN2@WriteTwlRe|
 
 ; 243  : 
@@ -241,7 +241,7 @@
   0003c	e1a01008	 mov         r1, r8
   00040	eb000000	 bl          TWLWriteRegs
   00044	e1a04000	 mov         r4, r0
-  00048		 |$cleanUp$37192|
+  00048		 |$cleanUp$37209|
 
 ; 246  : 
 ; 247  : cleanUp:
@@ -254,14 +254,14 @@
   00054		 |$LN12@WriteTwlRe|
   00054		 |$LN13@WriteTwlRe|
   00054	00000000	 DCD         |s_hTritonDriver|
-  00058		 |$M37432|
+  00058		 |$M37449|
 
 			 ENDP  ; |?WriteTwlReg@@YAHKPAEI@Z|, WriteTwlReg
 
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37456| DCD	|$LN11@ReadTwlReg|
+|$T37473| DCD	|$LN11@ReadTwlReg|
 	DCD	0x40001601
 ; Function compile flags: /Ogspy
 
@@ -273,7 +273,7 @@
 
   00000		 |$LN11@ReadTwlReg|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M37453|
+  00004		 |$M37470|
   00004	e1a06002	 mov         r6, r2
   00008	e1a07001	 mov         r7, r1
   0000c	e1a08000	 mov         r8, r0
@@ -291,7 +291,7 @@
   00024	eb000000	 bl          TWLOpen
   00028	e3500000	 cmp         r0, #0
   0002c	e5850000	 str         r0, [r5]
-  00030	0a000004	 beq         |$cleanUp$37201|
+  00030	0a000004	 beq         |$cleanUp$37218|
   00034		 |$LN2@ReadTwlReg|
 
 ; 264  : 
@@ -303,7 +303,7 @@
   0003c	e1a01008	 mov         r1, r8
   00040	eb000000	 bl          TWLReadRegs
   00044	e1a04000	 mov         r4, r0
-  00048		 |$cleanUp$37201|
+  00048		 |$cleanUp$37218|
 
 ; 267  : 
 ; 268  : cleanUp:
@@ -316,7 +316,7 @@
   00054		 |$LN12@ReadTwlReg|
   00054		 |$LN13@ReadTwlReg|
   00054	00000000	 DCD         |s_hTritonDriver|
-  00058		 |$M37454|
+  00058		 |$M37471|
 
 			 ENDP  ; |?ReadTwlReg@@YAHKPAEI@Z|, ReadTwlReg
 
@@ -324,7 +324,7 @@
 	IMPORT	|EnterCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37465| DCD	|$LN6@Lock|
+|$T37482| DCD	|$LN6@Lock|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -336,7 +336,7 @@
 
   00000		 |$LN6@Lock|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37462|
+  00004		 |$M37479|
 
 ; 277  :     if (g_fGpioPostInit)
 
@@ -355,7 +355,7 @@
   0001c		 |$LN7@Lock|
   0001c		 |$LN8@Lock|
   0001c	00000000	 DCD         |?csGpio@@3UCRITICAL_SECTION@@A|
-  00020		 |$M37463|
+  00020		 |$M37480|
 
 			 ENDP  ; |?Lock@@YAXXZ|, Lock
 
@@ -363,7 +363,7 @@
 	IMPORT	|LeaveCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37474| DCD	|$LN6@Unlock|
+|$T37491| DCD	|$LN6@Unlock|
 	DCD	0x40000801
 ; Function compile flags: /Ogspy
 
@@ -375,7 +375,7 @@
 
   00000		 |$LN6@Unlock|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M37471|
+  00004		 |$M37488|
 
 ; 286  :     if (g_fGpioPostInit)
 
@@ -394,13 +394,13 @@
   0001c		 |$LN7@Unlock|
   0001c		 |$LN8@Unlock|
   0001c	00000000	 DCD         |?csGpio@@3UCRITICAL_SECTION@@A|
-  00020		 |$M37472|
+  00020		 |$M37489|
 
 			 ENDP  ; |?Unlock@@YAXXZ|, Unlock
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37483| DCD	|$LN5@SetGpioBan|
+|$T37500| DCD	|$LN5@SetGpioBan|
 	DCD	0x40000100
 ; Function compile flags: /Ogspy
 
@@ -411,20 +411,20 @@
 ; 297  : {
 
   00000		 |$LN5@SetGpioBan|
-  00000		 |$M37480|
+  00000		 |$M37497|
 
 ; 298  :     UNREFERENCED_PARAMETER(id);
 ; 299  :     UNREFERENCED_PARAMETER(state);
 ; 300  : }
 
   00000	e12fff1e	 bx          lr
-  00004		 |$M37481|
+  00004		 |$M37498|
 
 			 ENDP  ; |?SetGpioBankPowerState@@YAXIW4_CEDEVICE_POWER_STATE@@@Z|, SetGpioBankPowerState
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37493| DCD	|$LN5@Tps659xxGp|
+|$T37510| DCD	|$LN5@Tps659xxGp|
 	DCD	0x40000400
 ; Function compile flags: /Ogspy
 
@@ -435,7 +435,7 @@
 ; 316  : {
 
   00000		 |$LN5@Tps659xxGp|
-  00000		 |$M37490|
+  00000		 |$M37507|
 
 ; 317  : 
 ; 318  :     UNREFERENCED_PARAMETER(szContext);
@@ -459,14 +459,14 @@
 ; 329  : }
 
   0000c	e12fff1e	 bx          lr
-  00010		 |$M37491|
+  00010		 |$M37508|
 
 			 ENDP  ; |?Tps659xxGpioInit@@YAHPBGPAPAXPAI@Z|, Tps659xxGpioInit
 
 	IMPORT	|InitializeCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37502| DCD	|$LN5@Tps659xxGp@2|
+|$T37519| DCD	|$LN5@Tps659xxGp@2|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -478,7 +478,7 @@
 
   00000		 |$LN5@Tps659xxGp@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37499|
+  00004		 |$M37516|
 
 ; 343  : 
 ; 344  :     UNREFERENCED_PARAMETER(context);
@@ -505,14 +505,14 @@
   00024		 |$LN6@Tps659xxGp@2|
   00024		 |$LN7@Tps659xxGp@2|
   00024	00000000	 DCD         |?csGpio@@3UCRITICAL_SECTION@@A|
-  00028		 |$M37500|
+  00028		 |$M37517|
 
 			 ENDP  ; |?Tps659xxGpioPostInit@@YAHPAX@Z|, Tps659xxGpioPostInit
 
 	IMPORT	|DeleteCriticalSection|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37517| DCD	|$LN9@Tps659xxGp@3|
+|$T37534| DCD	|$LN9@Tps659xxGp@3|
 	DCD	0x40001001
 ; Function compile flags: /Ogspy
 
@@ -524,7 +524,7 @@
 
   00000		 |$LN9@Tps659xxGp@3|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M37514|
+  00004		 |$M37531|
 
 ; 362  :     UNREFERENCED_PARAMETER(context);
 ; 363  :     DEBUGMSG(ZONE_FUNCTION, (L"+Tps659xxGpioDeinit(0x%08x)\r\n", context));
@@ -560,13 +560,13 @@
   0003c		 |$LN10@Tps659xxGp@3|
   0003c		 |$LN11@Tps659xxGp@3|
   0003c	00000000	 DCD         |?csGpio@@3UCRITICAL_SECTION@@A|
-  00040		 |$M37515|
+  00040		 |$M37532|
 
 			 ENDP  ; |?Tps659xxGpioDeinit@@YAHPAX@Z|, Tps659xxGpioDeinit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37554| DCD	|$LN24@Tps659xxGp@4|
+|$T37571| DCD	|$LN24@Tps659xxGp@4|
 	DCD	0x40005a02
 ; Function compile flags: /Ogspy
 
@@ -579,7 +579,7 @@
   00000		 |$LN24@Tps659xxGp@4|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M37551|
+  00008		 |$M37568|
   00008	e1a04002	 mov         r4, r2
 
 ; 383  :     BOOL rc = FALSE;
@@ -784,13 +784,13 @@
   00160	00000000	 DCD         |s_rgGpioRegs|
   00164		 |$LN27@Tps659xxGp@4|
   00164	00000000	 DCD         |?csGpio@@3UCRITICAL_SECTION@@A|
-  00168		 |$M37552|
+  00168		 |$M37569|
 
 			 ENDP  ; |?Tps659xxGpioSetMode@@YAHPAXII@Z|, Tps659xxGpioSetMode
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37584| DCD	|$LN16@Tps659xxGp@5|
+|$T37601| DCD	|$LN16@Tps659xxGp@5|
 	DCD	0x40003402
 ; Function compile flags: /Ogspy
 
@@ -803,7 +803,7 @@
   00000		 |$LN16@Tps659xxGp@5|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37581|
+  00008		 |$M37598|
 
 ; 454  :     UINT bit = GPIO_BIT(id);
 ; 455  :     UINT bank = GPIO_BANK(id);
@@ -917,13 +917,13 @@
   000cc		 |$LN17@Tps659xxGp@5|
   000cc		 |$LN18@Tps659xxGp@5|
   000cc	00000000	 DCD         |s_rgGpioRegs|
-  000d0		 |$M37582|
+  000d0		 |$M37599|
 
 			 ENDP  ; |?Tps659xxGpioGetMode@@YAKPAXI@Z|, Tps659xxGpioGetMode
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37616| DCD	|$LN17@Tps659xxGp@6|
+|$T37633| DCD	|$LN17@Tps659xxGp@6|
 	DCD	0x40002d02
 ; Function compile flags: /Ogspy
 
@@ -936,7 +936,7 @@
   00000		 |$LN17@Tps659xxGp@6|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37613|
+  00008		 |$M37630|
   00008	e1a04002	 mov         r4, r2
 
 ; 502  :     BOOL rc = FALSE;
@@ -1032,13 +1032,13 @@
   000ac	00000000	 DCD         |s_rgGpioRegs|
   000b0		 |$LN20@Tps659xxGp@6|
   000b0	00000000	 DCD         |?csGpio@@3UCRITICAL_SECTION@@A|
-  000b4		 |$M37614|
+  000b4		 |$M37631|
 
 			 ENDP  ; |?Tps659xxGpioPullup@@YAHPAXII@Z|, Tps659xxGpioPullup
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37649| DCD	|$LN17@Tps659xxGp@7|
+|$T37666| DCD	|$LN17@Tps659xxGp@7|
 	DCD	0x40002d02
 ; Function compile flags: /Ogspy
 
@@ -1051,7 +1051,7 @@
   00000		 |$LN17@Tps659xxGp@7|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37646|
+  00008		 |$M37663|
   00008	e1a04002	 mov         r4, r2
 
 ; 545  :     BOOL rc = FALSE;
@@ -1147,13 +1147,13 @@
   000ac	00000000	 DCD         |s_rgGpioRegs|
   000b0		 |$LN20@Tps659xxGp@7|
   000b0	00000000	 DCD         |?csGpio@@3UCRITICAL_SECTION@@A|
-  000b4		 |$M37647|
+  000b4		 |$M37664|
 
 			 ENDP  ; |?Tps659xxGpioPulldown@@YAHPAXII@Z|, Tps659xxGpioPulldown
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37669| DCD	|$LN10@Tps659xxGp@8|
+|$T37686| DCD	|$LN10@Tps659xxGp@8|
 	DCD	0x40001602
 ; Function compile flags: /Ogspy
 
@@ -1166,7 +1166,7 @@
   00000		 |$LN10@Tps659xxGp@8|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37666|
+  00008		 |$M37683|
 
 ; 729  :     BOOL rc = FALSE;
 
@@ -1219,13 +1219,13 @@
   00054		 |$LN11@Tps659xxGp@8|
   00054		 |$LN12@Tps659xxGp@8|
   00054	00000000	 DCD         |s_rgGpioRegs|
-  00058		 |$M37667|
+  00058		 |$M37684|
 
 			 ENDP  ; |?Tps659xxGpioSetBit@@YAHPAXI@Z|, Tps659xxGpioSetBit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37688| DCD	|$LN10@Tps659xxGp@9|
+|$T37705| DCD	|$LN10@Tps659xxGp@9|
 	DCD	0x40001602
 ; Function compile flags: /Ogspy
 
@@ -1238,7 +1238,7 @@
   00000		 |$LN10@Tps659xxGp@9|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37685|
+  00008		 |$M37702|
 
 ; 762  :     BOOL rc = FALSE;
 
@@ -1291,13 +1291,13 @@
   00054		 |$LN11@Tps659xxGp@9|
   00054		 |$LN12@Tps659xxGp@9|
   00054	00000000	 DCD         |s_rgGpioRegs|
-  00058		 |$M37686|
+  00058		 |$M37703|
 
 			 ENDP  ; |?Tps659xxGpioClrBit@@YAHPAXI@Z|, Tps659xxGpioClrBit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37709| DCD	|$LN12@Tps659xxGp@10|
+|$T37726| DCD	|$LN12@Tps659xxGp@10|
 	DCD	0x40001702
 ; Function compile flags: /Ogspy
 
@@ -1310,7 +1310,7 @@
   00000		 |$LN12@Tps659xxGp@10|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M37706|
+  00008		 |$M37723|
   00008	e1a04001	 mov         r4, r1
 
 ; 792  :     DWORD value = (DWORD) -1;
@@ -1361,13 +1361,13 @@
   00058		 |$LN13@Tps659xxGp@10|
   00058		 |$LN14@Tps659xxGp@10|
   00058	00000000	 DCD         |s_rgGpioRegs|
-  0005c		 |$M37707|
+  0005c		 |$M37724|
 
 			 ENDP  ; |?Tps659xxGpioGetBit@@YAKPAXI@Z|, Tps659xxGpioGetBit
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T37720| DCD	|$LN5@Tps659xxGp@11|
+|$T37737| DCD	|$LN5@Tps659xxGp@11|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -1378,7 +1378,7 @@
 ; 825  : {
 
   00000		 |$LN5@Tps659xxGp@11|
-  00000		 |$M37717|
+  00000		 |$M37734|
 
 ; 826  : #ifdef DEVICE
 ; 827  :     UINT id;
@@ -1551,7 +1551,7 @@
 ; 991  : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M37718|
+  00008		 |$M37735|
 
 			 ENDP  ; |?Tps659xxGpioIoControl@@YAHPAXIPAEI1IPAK@Z|, Tps659xxGpioIoControl
 

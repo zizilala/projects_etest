@@ -91,7 +91,8 @@
 
 ; 25   :     UINT32 Addr = 0;
 ; 26   :     DWORD i=0;
-; 27   :     while (s_DeviceAddressMap[i].device != OMAP_DEVICE_NONE)
+; 27   :     
+; 28   :     while (s_DeviceAddressMap[i].device != OMAP_DEVICE_NONE)
 
   00008	e59f103c	 ldr         r1, [pc, #0x3C]
   0000c	e3a00000	 mov         r0, #0
@@ -100,15 +101,15 @@
   00018	ea000004	 b           |$LN9@GetAddress|
   0001c		 |$LL3@GetAddress|
 
-; 28   :     {   
-; 29   :         if (s_DeviceAddressMap[i].device == dev)
+; 29   :     {   
+; 30   :         if (s_DeviceAddressMap[i].device == dev)
 
   0001c	e153000e	 cmp         r3, lr
   00020	0a000006	 beq         |$LN7@GetAddress|
 
-; 32   :             break;
-; 33   :         }
-; 34   :         i++;
+; 33   :             break;
+; 34   :         }
+; 35   :         i++;
 
   00024	e2822001	 add         r2, r2, #1
   00028	e0813182	 add         r3, r1, r2, lsl #3
@@ -117,22 +118,22 @@
   00030	e3730001	 cmn         r3, #1
   00034	1afffff8	 bne         |$LL3@GetAddress|
 
-; 35   :     }
-; 36   :     return Addr;
-; 37   : }
+; 36   :     }
+; 37   :     return Addr;
+; 38   : }
 
   00038	e49de004	 ldr         lr, [sp], #4
   0003c	e12fff1e	 bx          lr
   00040		 |$LN7@GetAddress|
 
-; 30   :         {
-; 31   :             Addr = s_DeviceAddressMap[i].deviceAddress;
+; 31   :         {
+; 32   :             Addr = s_DeviceAddressMap[i].deviceAddress;
 
   00040	e7910182	 ldr         r0, [r1, +r2, lsl #3]
 
-; 35   :     }
-; 36   :     return Addr;
-; 37   : }
+; 36   :     }
+; 37   :     return Addr;
+; 38   : }
 
   00044	e49de004	 ldr         lr, [sp], #4
   00048	e12fff1e	 bx          lr
@@ -154,16 +155,16 @@
 
   00000		 |GetDeviceByAddress| PROC
 
-; 40   : {
+; 41   : {
 
   00000		 |$LN11@GetDeviceB|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M43155|
   00004	e1a04000	 mov         r4, r0
 
-; 41   :     OMAP_DEVICE dev = 0;
-; 42   :     DWORD i=0;
-; 43   :     while (s_DeviceAddressMap[i].device != OMAP_DEVICE_NONE)
+; 42   :     OMAP_DEVICE dev = 0;
+; 43   :     DWORD i=0;
+; 44   :     while (s_DeviceAddressMap[i].device != OMAP_DEVICE_NONE)
 
   00008	e59f2050	 ldr         r2, [pc, #0x50]
   0000c	e3a00000	 mov         r0, #0
@@ -174,16 +175,16 @@
   00020	e3a01000	 mov         r1, #0
   00024		 |$LL3@GetDeviceB|
 
-; 44   :     {   
-; 45   :         if (s_DeviceAddressMap[i].deviceAddress == addr)
+; 45   :     {   
+; 46   :         if (s_DeviceAddressMap[i].deviceAddress == addr)
 
   00024	e7913002	 ldr         r3, [r1, +r2]
   00028	e1530004	 cmp         r3, r4
   0002c	0a000007	 beq         |$LN7@GetDeviceB|
 
-; 48   :             break;
-; 49   :         }
-; 50   :         i++;
+; 49   :             break;
+; 50   :         }
+; 51   :         i++;
 
   00030	e28ee001	 add         lr, lr, #1
   00034	e1a0118e	 mov         r1, lr, lsl #3
@@ -192,24 +193,24 @@
   00040	e3730001	 cmn         r3, #1
   00044	1afffff6	 bne         |$LL3@GetDeviceB|
 
-; 51   :     }
-; 52   :     return dev;
-; 53   : }
+; 52   :     }
+; 53   :     return dev;
+; 54   : }
 
   00048	e8bd4010	 ldmia       sp!, {r4, lr}
   0004c	e12fff1e	 bx          lr
   00050		 |$LN7@GetDeviceB|
 
-; 46   :         {
-; 47   :             dev = s_DeviceAddressMap[i].device;
+; 47   :         {
+; 48   :             dev = s_DeviceAddressMap[i].device;
 
   00050	e082318e	 add         r3, r2, lr, lsl #3
   00054	e5930004	 ldr         r0, [r3, #4]
   00058		 |$LN2@GetDeviceB|
 
-; 51   :     }
-; 52   :     return dev;
-; 53   : }
+; 52   :     }
+; 53   :     return dev;
+; 54   : }
 
   00058	e8bd4010	 ldmia       sp!, {r4, lr}
   0005c	e12fff1e	 bx          lr
@@ -233,7 +234,7 @@
 
   00000		 |GetIrqByDevice| PROC
 
-; 57   : {
+; 58   : {
 
   00000		 |$LN16@GetIrqByDe|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
@@ -241,9 +242,9 @@
   00004	e1a07001	 mov         r7, r1
   00008	e1a08000	 mov         r8, r0
 
-; 58   :     UINT32 irq = (UINT32) -1;
-; 59   :     DWORD i=0;
-; 60   :     while (s_DeviceIrqMap[i].device != OMAP_DEVICE_NONE)
+; 59   :     UINT32 irq = (UINT32) -1;
+; 60   :     DWORD i=0;
+; 61   :     while (s_DeviceIrqMap[i].device != OMAP_DEVICE_NONE)
 
   0000c	e59f5074	 ldr         r5, [pc, #0x74]
   00010	e3e06000	 mvn         r6, #0
@@ -254,24 +255,24 @@
   00024	e1a02005	 mov         r2, r5
   00028		 |$LL7@GetIrqByDe|
 
-; 61   :     {   
-; 62   :         if (s_DeviceIrqMap[i].device == dev)
+; 62   :     {   
+; 63   :         if (s_DeviceIrqMap[i].device == dev)
 
   00028	e1530008	 cmp         r3, r8
   0002c	1a000009	 bne         |$LN2@GetIrqByDe|
 
-; 63   :         {
-; 64   :             BOOL bFound = TRUE;
-; 65   : 
-; 66   :             //If we extra information, then we will check that the extra information match
-; 67   :             if (s_DeviceIrqMap[i].extra)                 
+; 64   :         {
+; 65   :             BOOL bFound = TRUE;
+; 66   : 
+; 67   :             //If we extra information, then we will check that the extra information match
+; 68   :             if (s_DeviceIrqMap[i].extra)                 
 
   00030	e5923008	 ldr         r3, [r2, #8]
   00034	e3530000	 cmp         r3, #0
   00038	0a00000d	 beq         |$LN11@GetIrqByDe|
 
-; 68   :             {
-; 69   :                 if ((extra==NULL) || wcscmp(extra,s_DeviceIrqMap[i].extra))
+; 69   :             {
+; 70   :                 if ((extra==NULL) || wcscmp(extra,s_DeviceIrqMap[i].extra))
 
   0003c	e3570000	 cmp         r7, #0
   00040	0a000004	 beq         |$LN2@GetIrqByDe|
@@ -282,11 +283,11 @@
   00054	0a000006	 beq         |$LN11@GetIrqByDe|
   00058		 |$LN2@GetIrqByDe|
 
-; 78   :                 break;
-; 79   :             }
-; 80   :             
-; 81   :         }
-; 82   :         i++;
+; 79   :                 break;
+; 80   :             }
+; 81   :             
+; 82   :         }
+; 83   :         i++;
 
   00058	e2844001	 add         r4, r4, #1
   0005c	e0843084	 add         r3, r4, r4, lsl #1
@@ -297,22 +298,22 @@
   00070	ea000001	 b           |$LN13@GetIrqByDe|
   00074		 |$LN11@GetIrqByDe|
 
-; 70   :                 {
-; 71   :                     bFound = FALSE;
-; 72   :                 }
-; 73   :             }
-; 74   : 
-; 75   :             if (bFound)
-; 76   :             {
-; 77   :                 irq = s_DeviceIrqMap[i].irq;
+; 71   :                 {
+; 72   :                     bFound = FALSE;
+; 73   :                 }
+; 74   :             }
+; 75   : 
+; 76   :             if (bFound)
+; 77   :             {
+; 78   :                 irq = s_DeviceIrqMap[i].irq;
 
   00074	e0843084	 add         r3, r4, r4, lsl #1
   00078	e7956103	 ldr         r6, [r5, +r3, lsl #2]
   0007c		 |$LN13@GetIrqByDe|
 
-; 83   :     }
-; 84   :     return irq;
-; 85   : }
+; 84   :     }
+; 85   :     return irq;
+; 86   : }
 
   0007c	e1a00006	 mov         r0, r6
   00080	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
@@ -335,17 +336,17 @@
 
   00000		 |GetDeviceByIrq| PROC
 
-; 88   : {
+; 89   : {
 
   00000		 |$LN10@GetDeviceB@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M43191|
   00004	e1a04000	 mov         r4, r0
 
-; 89   : 	DWORD devID = OMAP_DEVICE_NONE;
-; 90   :     DWORD i=0;
-; 91   : 
-; 92   : 	while (s_DeviceIrqMap[i].irq != 0)
+; 90   : 	DWORD devID = OMAP_DEVICE_NONE;
+; 91   :     DWORD i=0;
+; 92   : 
+; 93   : 	while (s_DeviceIrqMap[i].irq != 0)
 
   00008	e59f1040	 ldr         r1, [pc, #0x40]
   0000c	e3e00000	 mvn         r0, #0
@@ -356,19 +357,19 @@
   00020	e3a02000	 mov         r2, #0
   00024		 |$LL3@GetDeviceB@2|
 
-; 93   :     {   
-; 94   :         if (s_DeviceIrqMap[i].irq == irq)
+; 94   :     {   
+; 95   :         if (s_DeviceIrqMap[i].irq == irq)
 
   00024	e1530004	 cmp         r3, r4
 
-; 95   :         {
-; 96   : 			devID = s_DeviceIrqMap[i].device;
+; 96   :         {
+; 97   : 			devID = s_DeviceIrqMap[i].device;
 
   00028	00823001	 addeq       r3, r2, r1
   0002c	05930004	 ldreq       r0, [r3, #4]
 
-; 97   :         }
-; 98   :         i++;
+; 98   :         }
+; 99   :         i++;
 
   00030	e28ee001	 add         lr, lr, #1
   00034	e08e308e	 add         r3, lr, lr, lsl #1
@@ -378,10 +379,10 @@
   00044	1afffff6	 bne         |$LL3@GetDeviceB@2|
   00048		 |$LN2@GetDeviceB@2|
 
-; 99   :     }
-; 100  : 
-; 101  :     return devID;
-; 102  : }
+; 100  :     }
+; 101  : 
+; 102  :     return devID;
+; 103  : }
 
   00048	e8bd4010	 ldmia       sp!, {r4, lr}
   0004c	e12fff1e	 bx          lr

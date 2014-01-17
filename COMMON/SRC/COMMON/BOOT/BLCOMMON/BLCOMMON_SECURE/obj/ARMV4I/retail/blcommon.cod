@@ -93,7 +93,7 @@
 |pTOC|	DCD	0xffffffff
 	%	4
 |NKSignon| DCB	0xa, "Microsoft Windows CE Secure Bootloader Common Libra"
-	DCB	"ry Version %d.%d Built Oct  8 2013 10:19:01", 0xd, 0xa, 0x0
+	DCB	"ry Version %d.%d Built Jan 17 2014 16:22:37", 0xd, 0xa, 0x0
 ; File c:\wince600\platform\common\src\common\boot\blcommon\blcommon.c
 
   00000			 AREA	 |.pdata|, PDATA
@@ -3737,7 +3737,7 @@
   000dc	eb000000	 bl          KITLOutputDebugString
 
 ; 177  : 
-; 178  :     // (3) initialize platform (clock, drivers, transports, etc)
+; 178  :     // (2) initialize platform (clock, drivers, transports, etc)
 ; 179  :     if (!OEMPlatformInit ())
 
   000e0	eb000000	 bl          OEMPlatformInit
@@ -3768,7 +3768,7 @@
   00110	eb000000	 bl          KITLOutputDebugString
 
 ; 187  : 
-; 188  :     // (4) call OEM specific pre-download function
+; 188  :     // (3) call OEM specific pre-download function
 ; 189  :     switch (dwAction = OEMPreDownload ())
 
   00114	eb000000	 bl          OEMPreDownload
@@ -3782,7 +3782,7 @@
 
 ; 190  :     {
 ; 191  :     case BL_DOWNLOAD:
-; 192  :         // (5) download image
+; 192  :         // (4) download image
 ; 193  :         if (!DownloadImage (&dwImageStart, &dwImageLength, &dwLaunchAddr))
 
   00130	e28d2004	 add         r2, sp, #4

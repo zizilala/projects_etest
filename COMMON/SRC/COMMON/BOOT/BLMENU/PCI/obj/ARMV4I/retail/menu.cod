@@ -78,7 +78,7 @@
 ; File c:\wince600\platform\common\src\common\boot\blmenu\menu.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43486| DCD	|$LN15@OALBLMenuH|
+|$T43498| DCD	|$LN15@OALBLMenuH|
 	DCD	0x40001d03
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -102,7 +102,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5010	 stmdb       sp!, {r4, r12, lr}
-  0000c		 |$M43483|
+  0000c		 |$M43495|
 
 ; 61   :     va_list pArgList;
 ; 62   :     UINT32 i;
@@ -168,7 +168,7 @@
   0006c	00000000	 DCD         |??_C@_13IMODFHAA@?$AA?9?$AA?$AA@|
   00070		 |$LN19@OALBLMenuH|
   00070	00000000	 DCD         |??_C@_17HBLJBP@?$AA?$AN?$AA?6?$AA?5?$AA?$AA@|
-  00074		 |$M43484|
+  00074		 |$M43496|
 
 			 ENDP  ; |OALBLMenuHeader|
 
@@ -176,7 +176,7 @@
 	IMPORT	|OEMReadDebugByte|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43502| DCD	|$LN9@OALBLMenuR|
+|$T43514| DCD	|$LN9@OALBLMenuR|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -184,17 +184,17 @@
 
   00000		 |OALBLMenuReadKey| PROC
 
-; 443  : {
+; 442  : {
 
   00000		 |$LN9@OALBLMenuR|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M43499|
+  00004		 |$M43511|
   00004	e1a04000	 mov         r4, r0
   00008		 |$LL3@OALBLMenuR|
 
-; 444  :     CHAR key;
-; 445  : 
-; 446  :     while ((key = OEMReadDebugByte()) == OEM_DEBUG_READ_NODATA && wait);
+; 443  :     CHAR key;
+; 444  : 
+; 445  :     while ((key = OEMReadDebugByte()) == OEM_DEBUG_READ_NODATA && wait);
 
   00008	eb000000	 bl          OEMReadDebugByte
   0000c	e1a03c00	 mov         r3, r0, lsl #24
@@ -205,28 +205,32 @@
   00020	1afffff8	 bne         |$LL3@OALBLMenuR|
   00024		 |$LN2@OALBLMenuR|
 
-; 447  :     if (key == OEM_DEBUG_READ_NODATA) key = 0;
+; 446  : 
+; 447  :     if (key == OEM_DEBUG_READ_NODATA) 
 
   00024	e3730001	 cmn         r3, #1
+
+; 448  :             key = 0;
+
   00028	03a03000	 moveq       r3, #0
 
-; 448  :     return (WCHAR)key;
+; 449  :     return (WCHAR)key;
 
   0002c	e1a00803	 mov         r0, r3, lsl #16
   00030	e1a00820	 mov         r0, r0, lsr #16
 
-; 449  : }
+; 450  : }
 
   00034	e8bd4010	 ldmia       sp!, {r4, lr}
   00038	e12fff1e	 bx          lr
-  0003c		 |$M43500|
+  0003c		 |$M43512|
 
 			 ENDP  ; |OALBLMenuReadKey|
 
 	EXPORT	|??_C@_0N@LKBAFPFA@?$CK?$CK?$CK?5auto?5?$CK?$CK?$CK?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43514| DCD	|$LN7@DeviceId|
+|$T43526| DCD	|$LN7@DeviceId|
 	DCD	0x40000500
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -238,24 +242,24 @@
 
   00000		 |DeviceId| PROC
 
-; 454  : {
+; 455  : {
 
   00000		 |$LN7@DeviceId|
-  00000		 |$M43511|
+  00000		 |$M43523|
 
-; 455  :     return deviceId[0] == '\0' ? "*** auto ***" : deviceId;
+; 456  :     return deviceId[0] == '\0' ? "*** auto ***" : deviceId;
 
   00000	e1d030d0	 ldrsb       r3, [r0]
   00004	e3530000	 cmp         r3, #0
   00008	059f0000	 ldreq       r0, [pc]
 
-; 456  : }
+; 457  : }
 
   0000c	e12fff1e	 bx          lr
   00010		 |$LN8@DeviceId|
   00010		 |$LN9@DeviceId|
   00010	00000000	 DCD         |??_C@_0N@LKBAFPFA@?$CK?$CK?$CK?5auto?5?$CK?$CK?$CK?$AA@|
-  00014		 |$M43512|
+  00014		 |$M43524|
 
 			 ENDP  ; |DeviceId|
 
@@ -266,7 +270,7 @@
 	EXPORT	|??_C@_15GANGMFKL@?$AA?$CF?$AAs?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43543| DCD	|$LN32@OALBLMenuS|
+|$T43555| DCD	|$LN32@OALBLMenuS|
 	DCD	0x40002f01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -296,7 +300,7 @@
 
   00000		 |$LN32@OALBLMenuS|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M43540|
+  00004		 |$M43552|
 
 ; 83   :     LPCWSTR title = pMenu->pParam1;
 
@@ -408,8 +412,7 @@
   000a4		 |$LN24@OALBLMenuS|
 
 ; 118  :     } 
-; 119  : 
-; 120  : }
+; 119  : }
 
   000a4	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   000a8	e12fff1e	 bx          lr
@@ -422,7 +425,7 @@
   000b4	00000000	 DCD         |??_C@_1BG@EBHIGBFG@?$AA?5?$AA?$FL?$AA?$CF?$AAc?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
   000b8		 |$LN37@OALBLMenuS|
   000b8	00000000	 DCD         |??_C@_15GANGMFKL@?$AA?$CF?$AAs?$AA?$AA@|
-  000bc		 |$M43541|
+  000bc		 |$M43553|
 
 			 ENDP  ; |OALBLMenuShow|
 
@@ -438,7 +441,7 @@
 	IMPORT	|dpCurSettings|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43580| DCD	|$LN32@OALBLMenuE|
+|$T43592| DCD	|$LN32@OALBLMenuE|
 	DCD	0x40004701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -495,54 +498,54 @@
 
   00000		 |OALBLMenuEnable| PROC
 
-; 125  : {
+; 124  : {
 
   00000		 |$LN32@OALBLMenuE|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M43577|
+  00004		 |$M43589|
 
-; 126  :     LPCWSTR title = pMenu->pParam1;
+; 125  :     LPCWSTR title = pMenu->pParam1;
 
   00004	e590300c	 ldr         r3, [r0, #0xC]
 
-; 127  :     UINT32 *pFlags = pMenu->pParam2;
+; 126  :     UINT32 *pFlags = pMenu->pParam2;
 
   00008	e5904010	 ldr         r4, [r0, #0x10]
 
-; 128  :     UINT32 mask = (UINT32)pMenu->pParam3;
+; 127  :     UINT32 mask = (UINT32)pMenu->pParam3;
 
   0000c	e5906014	 ldr         r6, [r0, #0x14]
   00010	e1b08003	 movs        r8, r3
 
-; 129  :     BOOL flag;
-; 130  :     WCHAR key;
-; 131  : 
-; 132  :     // First check input parameter   
-; 133  :     if (title == NULL || pFlags == NULL) {
+; 128  :     BOOL flag;
+; 129  :     WCHAR key;
+; 130  : 
+; 131  :     // First check input parameter   
+; 132  :     if (title == NULL || pFlags == NULL) {
 
   00014	0a00002f	 beq         |$LN7@OALBLMenuE|
   00018	e3540000	 cmp         r4, #0
   0001c	0a00002d	 beq         |$LN7@OALBLMenuE|
 
-; 135  :         goto cleanUp;
-; 136  :     }
-; 137  :     if (mask == 0) mask = 0xFFFF;
+; 134  :         goto cleanUp;
+; 135  :     }
+; 136  :     if (mask == 0) mask = 0xFFFF;
 
   00020	e3560000	 cmp         r6, #0
   00024	03a03cff	 moveq       r3, #0xFF, 24
   00028	038360ff	 orreq       r6, r3, #0xFF
 
-; 138  : 
-; 139  :     flag = (*pFlags & mask) != 0;
+; 137  : 
+; 138  :     flag = (*pFlags & mask) != 0;
 
   0002c	e5943000	 ldr         r3, [r4]
   00030	e59f70e0	 ldr         r7, [pc, #0xE0]
 
-; 140  :     
-; 141  :     OALLog(
-; 142  :         L" %s %s (actually %s) [y/-]: ", flag ? L"Disable" : L"Enable",
-; 143  :         title, flag ? L"enabled" : L"disabled"
-; 144  :     );
+; 139  :     
+; 140  :     OALLog(
+; 141  :         L" %s %s (actually %s) [y/-]: ", flag ? L"Disable" : L"Enable",
+; 142  :         title, flag ? L"enabled" : L"disabled"
+; 143  :     );
 
   00034	e59f00d8	 ldr         r0, [pc, #0xD8]
   00038	e1130006	 tst         r3, r6
@@ -555,32 +558,32 @@
   00054	03a05000	 moveq       r5, #0
   00058	eb000000	 bl          NKDbgPrintfW
 
-; 145  : 
-; 146  :     // Get key
-; 147  :     key = OALBLMenuReadKey(TRUE);
+; 144  : 
+; 145  :     // Get key
+; 146  :     key = OALBLMenuReadKey(TRUE);
 
   0005c	e3a00001	 mov         r0, #1
   00060	eb000000	 bl          OALBLMenuReadKey
   00064	e1a09000	 mov         r9, r0
 
-; 148  :     OALLog(L"%c\r\n", key);
+; 147  :     OALLog(L"%c\r\n", key);
 
   00068	e59f0098	 ldr         r0, [pc, #0x98]
   0006c	e1a01009	 mov         r1, r9
   00070	eb000000	 bl          NKDbgPrintfW
 
-; 149  : 
-; 150  :     if (key == L'y' || key == L'Y') {
+; 148  : 
+; 149  :     if (key == L'y' || key == L'Y') {
 
   00074	e3590079	 cmp         r9, #0x79
   00078	0a000005	 beq         |$LN4@OALBLMenuE|
   0007c	e3590059	 cmp         r9, #0x59
   00080	0a000003	 beq         |$LN4@OALBLMenuE|
 
-; 153  :     } else {
-; 154  :         OALLog(
-; 155  :             L" %s stays %s\r\n", title, flag ? L"enabled" : L"disabled"
-; 156  :         );
+; 152  :     } else {
+; 153  :         OALLog(
+; 154  :             L" %s stays %s\r\n", title, flag ? L"enabled" : L"disabled"
+; 155  :         );
 
   00084	e3550000	 cmp         r5, #0
   00088	059f7070	 ldreq       r7, [pc, #0x70]
@@ -588,11 +591,11 @@
   00090	ea000004	 b           |$LN28@OALBLMenuE|
   00094		 |$LN4@OALBLMenuE|
 
-; 151  :         flag = !flag;
+; 150  :         flag = !flag;
 
   00094	e3550000	 cmp         r5, #0
 
-; 152  :         OALLog(L" %s %s\r\n", title, flag ? L"enabled" : L"disabled");
+; 151  :         OALLog(L" %s %s\r\n", title, flag ? L"enabled" : L"disabled");
 
   00098	159f7060	 ldrne       r7, [pc, #0x60]
   0009c	e59f0058	 ldr         r0, [pc, #0x58]
@@ -603,11 +606,11 @@
   000ac	e1a01008	 mov         r1, r8
   000b0	eb000000	 bl          NKDbgPrintfW
 
-; 157  :     }
-; 158  : 
-; 159  :     // Save value
-; 160  :     if (flag) {
-; 161  :         *pFlags |= mask;
+; 156  :     }
+; 157  : 
+; 158  :     // Save value
+; 159  :     if (flag) {
+; 160  :         *pFlags |= mask;
 
   000b4	e5943000	 ldr         r3, [r4]
   000b8	e3550000	 cmp         r5, #0
@@ -616,35 +619,35 @@
   000c4		 |$LN29@OALBLMenuE|
   000c4	e5843000	 str         r3, [r4]
 
-; 164  :     }
-; 165  : 
-; 166  : cleanUp:;
-; 167  : }
+; 163  :     }
+; 164  : 
+; 165  : cleanUp:;
+; 166  : }
 
   000c8	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000cc	e12fff1e	 bx          lr
   000d0		 |$LN2@OALBLMenuE|
 
-; 162  :     } else {
-; 163  :         *pFlags &= ~mask;
+; 161  :     } else {
+; 162  :         *pFlags &= ~mask;
 
   000d0	e1c33006	 bic         r3, r3, r6
   000d4	eafffffa	 b           |$LN29@OALBLMenuE|
   000d8		 |$LN7@OALBLMenuE|
 
-; 134  :         OALMSG(OAL_ERROR, (L"ERROR: OALBLMenuEnable: Invalid parameter\r\n"));
+; 133  :         OALMSG(OAL_ERROR, (L"ERROR: OALBLMenuEnable: Invalid parameter\r\n"));
 
   000d8	e59f3018	 ldr         r3, [pc, #0x18]
   000dc	e5933440	 ldr         r3, [r3, #0x440]
   000e0	e3130001	 tst         r3, #1
   000e4	159f0008	 ldrne       r0, [pc, #8]
   000e8	1b000000	 blne        NKDbgPrintfW
-  000ec		 |$cleanUp$43232|
+  000ec		 |$cleanUp$43244|
 
-; 164  :     }
-; 165  : 
-; 166  : cleanUp:;
-; 167  : }
+; 163  :     }
+; 164  : 
+; 165  : cleanUp:;
+; 166  : }
 
   000ec	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000f0	e12fff1e	 bx          lr
@@ -669,7 +672,7 @@
   00114	00000000	 DCD         |??_C@_1DK@PCLKELEH@?$AA?5?$AA?$CF?$AAs?$AA?5?$AA?$CF?$AAs?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AAl?$AAy?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5?$AA?$AA@|
   00118		 |$LN43@OALBLMenuE|
   00118	00000000	 DCD         |??_C@_1BA@BKMGIBPB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
-  0011c		 |$M43578|
+  0011c		 |$M43590|
 
 			 ENDP  ; |OALBLMenuEnable|
 
@@ -685,7 +688,7 @@
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43616| DCD	|$LN31@OALBLMenuS@2|
+|$T43628| DCD	|$LN31@OALBLMenuS@2|
 	DCD	0x40008202
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -739,33 +742,33 @@
 
   00000		 |OALBLMenuSelectDevice| PROC
 
-; 332  : {
+; 331  : {
 
   00000		 |$LN31@OALBLMenuS@2|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd0a8	 sub         sp, sp, #0xA8
-  00008		 |$M43613|
+  00008		 |$M43625|
 
-; 333  :     LPCWSTR title = pMenu->pParam1;
+; 332  :     LPCWSTR title = pMenu->pParam1;
 
   00008	e590300c	 ldr         r3, [r0, #0xC]
 
-; 334  :     DEVICE_LOCATION *pDevLoc = pMenu->pParam2;
+; 333  :     DEVICE_LOCATION *pDevLoc = pMenu->pParam2;
 
   0000c	e5907010	 ldr         r7, [r0, #0x10]
 
-; 335  :     OAL_KITL_DEVICE *aDevices = pMenu->pParam3, *pDevice;
+; 334  :     OAL_KITL_DEVICE *aDevices = pMenu->pParam3, *pDevice;
 
   00010	e5905014	 ldr         r5, [r0, #0x14]
   00014	e1b09003	 movs        r9, r3
   00018	e58d9004	 str         r9, [sp, #4]
 
-; 336  :     DEVICE_LOCATION devLoc[OAL_MENU_MAX_DEVICES];
-; 337  :     UINT32 i;
-; 338  :     WCHAR key;
-; 339  : 
-; 340  :     // First check input parameters    
-; 341  :     if (title == NULL || pDevLoc == NULL || aDevices == NULL) {
+; 335  :     DEVICE_LOCATION devLoc[OAL_MENU_MAX_DEVICES];
+; 336  :     UINT32 i;
+; 337  :     WCHAR key;
+; 338  : 
+; 339  :     // First check input parameters    
+; 340  :     if (title == NULL || pDevLoc == NULL || aDevices == NULL) {
 
   0001c	0a000069	 beq         |$LN15@OALBLMenuS@2|
   00020	e3570000	 cmp         r7, #0
@@ -773,19 +776,19 @@
   00028	e3550000	 cmp         r5, #0
   0002c	0a000065	 beq         |$LN15@OALBLMenuS@2|
 
-; 345  :         goto cleanUp;
-; 346  :     }
-; 347  : 
-; 348  :     OALBLMenuHeader(L"Select %s Device", title);
+; 344  :         goto cleanUp;
+; 345  :     }
+; 346  : 
+; 347  :     OALBLMenuHeader(L"Select %s Device", title);
 
   00030	e59f01cc	 ldr         r0, [pc, #0x1CC]
   00034	e1a01009	 mov         r1, r9
   00038	eb000000	 bl          OALBLMenuHeader
 
-; 349  : 
-; 350  :     i = 0;
-; 351  :     pDevice = aDevices;
-; 352  :     while (pDevice->name != NULL && i < OAL_MENU_MAX_DEVICES) {
+; 348  : 
+; 349  :     i = 0;
+; 350  :     pDevice = aDevices;
+; 351  :     while (pDevice->name != NULL && i < OAL_MENU_MAX_DEVICES) {
 
   0003c	e5953000	 ldr         r3, [r5]
   00040	e3a06000	 mov         r6, #0
@@ -800,17 +803,17 @@
   00060	e3560008	 cmp         r6, #8
   00064	2a000032	 bcs         |$LN27@OALBLMenuS@2|
 
-; 353  :         switch (pDevice->ifcType) {
+; 352  :         switch (pDevice->ifcType) {
 
   00068	e5941004	 ldr         r1, [r4, #4]
   0006c	e1b03001	 movs        r3, r1
   00070	0a00001b	 beq         |$LN10@OALBLMenuS@2|
   00074	e3530005	 cmp         r3, #5
 
-; 386  : #endif
-; 387  :         default:
-; 388  :             pDevice++;
-; 389  :             break;
+; 385  : #endif
+; 386  :         default:
+; 387  :             pDevice++;
+; 388  :             break;
 
   00078	1a000029	 bne         |$LN28@OALBLMenuS@2|
   0007c	e0863106	 add         r3, r6, r6, lsl #2
@@ -840,52 +843,52 @@
   000d8	e3560008	 cmp         r6, #8
   000dc	3affffe9	 bcc         |$LL8@OALBLMenuS@2|
 
-; 364  :             break;
-; 365  : #ifdef OAL_BLMENU_PCI
-; 366  :         case PCIBus:
-; 367  :             {
-; 368  :                 OAL_PCI_LOCATION pciLoc;
-; 369  : 
-; 370  :                 pciLoc.logicalLoc = 0;
-; 371  :                 while (i < OAL_MENU_MAX_DEVICES) {
-; 372  :                     if (!OALPCIFindNextId(0, pDevice->id, &pciLoc)) break;
-; 373  :                     devLoc[i].IfcType = pDevice->ifcType;
-; 374  :                     devLoc[i].BusNumber = 0;
-; 375  :                     devLoc[i].LogicalLoc = pciLoc.logicalLoc;
-; 376  :                     devLoc[i].PhysicalLoc = 0;
-; 377  :                     OALLog(
-; 378  :                         L" [%d] %s\r\n", i + 1, 
-; 379  :                         OALKitlDeviceName(&devLoc[i], aDevices)
-; 380  :                     );
-; 381  :                     i++;
-; 382  :                 }
-; 383  :                 pDevice++;
-; 384  :             }
-; 385  :             break;
+; 363  :             break;
+; 364  : #ifdef OAL_BLMENU_PCI
+; 365  :         case PCIBus:
+; 366  :             {
+; 367  :                 OAL_PCI_LOCATION pciLoc;
+; 368  : 
+; 369  :                 pciLoc.logicalLoc = 0;
+; 370  :                 while (i < OAL_MENU_MAX_DEVICES) {
+; 371  :                     if (!OALPCIFindNextId(0, pDevice->id, &pciLoc)) break;
+; 372  :                     devLoc[i].IfcType = pDevice->ifcType;
+; 373  :                     devLoc[i].BusNumber = 0;
+; 374  :                     devLoc[i].LogicalLoc = pciLoc.logicalLoc;
+; 375  :                     devLoc[i].PhysicalLoc = 0;
+; 376  :                     OALLog(
+; 377  :                         L" [%d] %s\r\n", i + 1, 
+; 378  :                         OALKitlDeviceName(&devLoc[i], aDevices)
+; 379  :                     );
+; 380  :                     i++;
+; 381  :                 }
+; 382  :                 pDevice++;
+; 383  :             }
+; 384  :             break;
 
   000e0	ea00000e	 b           |$LN25@OALBLMenuS@2|
   000e4		 |$LN10@OALBLMenuS@2|
 
-; 354  :         case Internal:
-; 355  :             devLoc[i].IfcType = pDevice->ifcType;
+; 353  :         case Internal:
+; 354  :             devLoc[i].IfcType = pDevice->ifcType;
 
   000e4	e0863106	 add         r3, r6, r6, lsl #2
 
-; 356  :             devLoc[i].BusNumber = 0;
+; 355  :             devLoc[i].BusNumber = 0;
 
   000e8	e08b2103	 add         r2, r11, r3, lsl #2
   000ec	e28d0008	 add         r0, sp, #8
   000f0	e5829004	 str         r9, [r2, #4]
   000f4	e7a01103	 str         r1, [r0, +r3, lsl #2]!
 
-; 357  :             devLoc[i].LogicalLoc = pDevice->id;
+; 356  :             devLoc[i].LogicalLoc = pDevice->id;
 
   000f8	e5943008	 ldr         r3, [r4, #8]
 
-; 358  :             devLoc[i].PhysicalLoc = 0;
-; 359  :             OALLog(
-; 360  :                 L" [%d] %s\r\n", i + 1, OALKitlDeviceName(&devLoc[i], aDevices)
-; 361  :             );
+; 357  :             devLoc[i].PhysicalLoc = 0;
+; 358  :             OALLog(
+; 359  :                 L" [%d] %s\r\n", i + 1, OALKitlDeviceName(&devLoc[i], aDevices)
+; 360  :             );
 
   000fc	e1a01005	 mov         r1, r5
   00100	e582900c	 str         r9, [r2, #0xC]
@@ -900,8 +903,8 @@
   00120	e3a02000	 mov         r2, #0
   00124		 |$LN28@OALBLMenuS@2|
 
-; 362  :             i++;
-; 363  :             pDevice++;
+; 361  :             i++;
+; 362  :             pDevice++;
 
   00124	e2844018	 add         r4, r4, #0x18
   00128	e5943000	 ldr         r3, [r4]
@@ -909,22 +912,22 @@
   00130	1affffca	 bne         |$LL14@OALBLMenuS@2|
   00134		 |$LN27@OALBLMenuS@2|
 
-; 335  :     OAL_KITL_DEVICE *aDevices = pMenu->pParam3, *pDevice;
+; 334  :     OAL_KITL_DEVICE *aDevices = pMenu->pParam3, *pDevice;
 
   00134	e59d9004	 ldr         r9, [sp, #4]
   00138		 |$LN13@OALBLMenuS@2|
 
-; 390  :         }        
-; 391  :     }    
-; 392  :     OALLog(L" [0] Exit and Continue\r\n");
+; 389  :         }        
+; 390  :     }    
+; 391  :     OALLog(L" [0] Exit and Continue\r\n");
 
   00138	e59f00bc	 ldr         r0, [pc, #0xBC]
   0013c	eb000000	 bl          NKDbgPrintfW
 
-; 393  : 
-; 394  :     OALLog(
-; 395  :         L"\r\n Selection (actual %s): ", OALKitlDeviceName(pDevLoc, aDevices)
-; 396  :     );
+; 392  : 
+; 393  :     OALLog(
+; 394  :         L"\r\n Selection (actual %s): ", OALKitlDeviceName(pDevLoc, aDevices)
+; 395  :     );
 
   00140	e1a01005	 mov         r1, r5
   00144	e1a00007	 mov         r0, r7
@@ -935,36 +938,36 @@
   00158	e2866030	 add         r6, r6, #0x30
   0015c		 |$LL4@OALBLMenuS@2|
 
-; 397  : 
-; 398  :     do {
-; 399  :         key = OALBLMenuReadKey(TRUE);
+; 396  : 
+; 397  :     do {
+; 398  :         key = OALBLMenuReadKey(TRUE);
 
   0015c	e3a00001	 mov         r0, #1
   00160	eb000000	 bl          OALBLMenuReadKey
   00164	e1a04000	 mov         r4, r0
 
-; 400  :     } while (key < L'0' || key > L'0' + i);
+; 399  :     } while (key < L'0' || key > L'0' + i);
 
   00168	e3540030	 cmp         r4, #0x30
   0016c	3afffffa	 bcc         |$LL4@OALBLMenuS@2|
   00170	e1540006	 cmp         r4, r6
   00174	8afffff8	 bhi         |$LL4@OALBLMenuS@2|
 
-; 401  :     OALLog(L"%c\r\n", key);
+; 400  :     OALLog(L"%c\r\n", key);
 
   00178	e59f0074	 ldr         r0, [pc, #0x74]
   0017c	e1a01004	 mov         r1, r4
   00180	eb000000	 bl          NKDbgPrintfW
 
-; 402  : 
-; 403  :     // If user select exit don't change device
-; 404  :     if (key == L'0') goto cleanUp;
+; 401  : 
+; 402  :     // If user select exit don't change device
+; 403  :     if (key == L'0') goto cleanUp;
 
   00184	e3540030	 cmp         r4, #0x30
-  00188	0a000013	 beq         |$cleanUp$43336|
+  00188	0a000013	 beq         |$cleanUp$43348|
 
-; 405  :     
-; 406  :     memcpy(pDevLoc, &devLoc[key - L'0' - 1], sizeof(DEVICE_LOCATION));
+; 404  :     
+; 405  :     memcpy(pDevLoc, &devLoc[key - L'0' - 1], sizeof(DEVICE_LOCATION));
 
   0018c	e0842104	 add         r2, r4, r4, lsl #2
   00190	e28d3008	 add         r3, sp, #8
@@ -974,9 +977,9 @@
   001a0	e1a00007	 mov         r0, r7
   001a4	eb000000	 bl          memcpy
 
-; 407  :     OALLog(
-; 408  :         L" %s device set to %s\r\n", title, OALKitlDeviceName(pDevLoc, aDevices)
-; 409  :     );
+; 406  :     OALLog(
+; 407  :         L" %s device set to %s\r\n", title, OALKitlDeviceName(pDevLoc, aDevices)
+; 408  :     );
 
   001a8	e1a01005	 mov         r1, r5
   001ac	e1a00007	 mov         r0, r7
@@ -985,23 +988,23 @@
   001b8	e59f0030	 ldr         r0, [pc, #0x30]
   001bc	e1a01009	 mov         r1, r9
   001c0	eb000000	 bl          NKDbgPrintfW
-  001c4	ea000004	 b           |$cleanUp$43336|
+  001c4	ea000004	 b           |$cleanUp$43348|
   001c8		 |$LN15@OALBLMenuS@2|
 
-; 342  :         OALMSG(OAL_ERROR, (
-; 343  :             L"ERROR: OALBLMenuSelectDevice: Invalid parameters\r\n"
-; 344  :         ));
+; 341  :         OALMSG(OAL_ERROR, (
+; 342  :             L"ERROR: OALBLMenuSelectDevice: Invalid parameters\r\n"
+; 343  :         ));
 
   001c8	e59f301c	 ldr         r3, [pc, #0x1C]
   001cc	e5933440	 ldr         r3, [r3, #0x440]
   001d0	e3130001	 tst         r3, #1
   001d4	159f000c	 ldrne       r0, [pc, #0xC]
   001d8	1b000000	 blne        NKDbgPrintfW
-  001dc		 |$cleanUp$43336|
+  001dc		 |$cleanUp$43348|
 
-; 410  : 
-; 411  : cleanUp:;    
-; 412  : }
+; 409  : 
+; 410  : cleanUp:;    
+; 411  : }
 
   001dc	e28dd0a8	 add         sp, sp, #0xA8
   001e0	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
@@ -1023,7 +1026,7 @@
   00200	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
   00204		 |$LN40@OALBLMenuS@2|
   00204	00000000	 DCD         |??_C@_1CC@GHCHDPIM@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AA?$CF?$AAs?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@|
-  00208		 |$M43614|
+  00208		 |$M43626|
 
 			 ENDP  ; |OALBLMenuSelectDevice|
 
@@ -1032,7 +1035,7 @@
 	EXPORT	|??_C@_17ILCABGPK@?$AA?$AI?$AA?5?$AA?$AI?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43640| DCD	|$LN14@OALBLMenuR@2|
+|$T43652| DCD	|$LN14@OALBLMenuR@2|
 	DCD	0x40002e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1047,70 +1050,70 @@
 
   00000		 |OALBLMenuReadLine| PROC
 
-; 417  : {
+; 416  : {
 
   00000		 |$LN14@OALBLMenuR@2|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M43637|
+  00004		 |$M43649|
   00004	e1b07001	 movs        r7, r1
   00008	e1a06000	 mov         r6, r0
 
-; 418  :     UINT32 count;
-; 419  :     WCHAR key;
-; 420  :     
-; 421  :     count = 0;
+; 417  :     UINT32 count;
+; 418  :     WCHAR key;
+; 419  :     
+; 420  :     count = 0;
 
   0000c	e3a04000	 mov         r4, #0
 
-; 422  :     while (count < CharCount) {
+; 421  :     while (count < CharCount) {
 
   00010	0a00001f	 beq         |$LN6@OALBLMenuR@2|
   00014	e1a05006	 mov         r5, r6
   00018	e2478001	 sub         r8, r7, #1
   0001c		 |$LL7@OALBLMenuR@2|
 
-; 423  :         key = OALBLMenuReadKey(TRUE);
+; 422  :         key = OALBLMenuReadKey(TRUE);
 
   0001c	e3a00001	 mov         r0, #1
   00020	eb000000	 bl          OALBLMenuReadKey
   00024	e1a03000	 mov         r3, r0
 
-; 424  :        if (key == L'\r' || key == L'\n') {
+; 423  :        if (key == L'\r' || key == L'\n') {
 
   00028	e353000d	 cmp         r3, #0xD
   0002c	0a000016	 beq         |$LN11@OALBLMenuR@2|
   00030	e353000a	 cmp         r3, #0xA
   00034	0a000014	 beq         |$LN11@OALBLMenuR@2|
 
-; 426  :           break;
-; 427  :        } if (key == L'\b' && count > 0) {
+; 425  :           break;
+; 426  :        } if (key == L'\b' && count > 0) {
 
   00038	e3530008	 cmp         r3, #8
   0003c	1a000006	 bne         |$LN3@OALBLMenuR@2|
   00040	e3540000	 cmp         r4, #0
   00044	0a000004	 beq         |$LN3@OALBLMenuR@2|
 
-; 428  :           OALLog(L"\b \b");
+; 427  :           OALLog(L"\b \b");
 
   00048	e59f0064	 ldr         r0, [pc, #0x64]
   0004c	eb000000	 bl          NKDbgPrintfW
 
-; 429  :           count--;
+; 428  :           count--;
 
   00050	e2444001	 sub         r4, r4, #1
   00054	e2455002	 sub         r5, r5, #2
   00058	ea000008	 b           |$LN1@OALBLMenuR@2|
   0005c		 |$LN3@OALBLMenuR@2|
 
-; 430  :        } else if (key >= L' ' && key < 128 && count < (CharCount - 1)) {
+; 429  :        } else if (key >= L' ' && key < 128 && count < (CharCount - 1)) {
 
   0005c	e3530020	 cmp         r3, #0x20
   00060	3a000006	 bcc         |$LN1@OALBLMenuR@2|
   00064	e3530080	 cmp         r3, #0x80
   00068	31540008	 cmpcc       r4, r8
 
-; 431  :           szBuffer[count++] = key;
-; 432  :           OALLog(L"%c", key);
+; 430  :           szBuffer[count++] = key;
+; 431  :           OALLog(L"%c", key);
 
   0006c	359f003c	 ldrcc       r0, [pc, #0x3C]
   00070	31a01003	 movcc       r1, r3
@@ -1119,33 +1122,33 @@
   0007c	3b000000	 blcc        NKDbgPrintfW
   00080		 |$LN1@OALBLMenuR@2|
 
-; 422  :     while (count < CharCount) {
+; 421  :     while (count < CharCount) {
 
   00080	e1540007	 cmp         r4, r7
   00084	3affffe4	 bcc         |$LL7@OALBLMenuR@2|
 
-; 424  :        if (key == L'\r' || key == L'\n') {
+; 423  :        if (key == L'\r' || key == L'\n') {
 
   00088	ea000001	 b           |$LN6@OALBLMenuR@2|
   0008c		 |$LN11@OALBLMenuR@2|
 
-; 425  :           OALLog(L"\r\n");
+; 424  :           OALLog(L"\r\n");
 
   0008c	e59f0018	 ldr         r0, [pc, #0x18]
   00090	eb000000	 bl          NKDbgPrintfW
   00094		 |$LN6@OALBLMenuR@2|
 
-; 433  :        } 
-; 434  :     }
-; 435  :     szBuffer[count] = '\0';
+; 432  :        } 
+; 433  :     }
+; 434  :     szBuffer[count] = '\0';
 
   00094	e0863084	 add         r3, r6, r4, lsl #1
   00098	e3a02000	 mov         r2, #0
   0009c	e1c320b0	 strh        r2, [r3]
 
-; 436  :     return count;
-; 437  :     
-; 438  : }
+; 435  :     return count;
+; 436  :     
+; 437  : }
 
   000a0	e1a00004	 mov         r0, r4
   000a4	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
@@ -1157,7 +1160,7 @@
   000b0	00000000	 DCD         |??_C@_15DAMPJCDE@?$AA?$CF?$AAc?$AA?$AA@|
   000b4		 |$LN18@OALBLMenuR@2|
   000b4	00000000	 DCD         |??_C@_17ILCABGPK@?$AA?$AI?$AA?5?$AA?$AI?$AA?$AA@|
-  000b8		 |$M43638|
+  000b8		 |$M43650|
 
 			 ENDP  ; |OALBLMenuReadLine|
 
@@ -1167,7 +1170,7 @@
 	IMPORT	|OALGetTickCount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43663| DCD	|$LN19@OALBLMenuA|
+|$T43675| DCD	|$LN19@OALBLMenuA|
 	DCD	0x40002c02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1191,7 +1194,7 @@
   00000		 |$LN19@OALBLMenuA|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   00004	e24dd00c	 sub         sp, sp, #0xC
-  00008		 |$M43660|
+  00008		 |$M43672|
   00008	e1a07001	 mov         r7, r1
   0000c	e1b05000	 movs        r5, r0
 
@@ -1289,7 +1292,7 @@
   000ac		 |$LN20@OALBLMenuA|
   000ac		 |$LN21@OALBLMenuA|
   000ac	00000000	 DCD         |??_C@_1FM@KKEGFMMC@?$AAH?$AAi?$AAt?$AA?5?$AAs?$AAp?$AAa?$AAc?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAa?$AAt?$AAi?$AAo?$AAn@|
-  000b0		 |$M43661|
+  000b0		 |$M43673|
 
 			 ENDP  ; |OALBLMenuActivate|
 
@@ -1306,11 +1309,11 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43684| DCD	|$LN11@OALBLMenuS@3|
+|$T43696| DCD	|$LN11@OALBLMenuS@3|
 	DCD	0xc0004202
 
   00000			 AREA	 |.xdata|, DATA
-|$T43680| DCD	0xfffffff0
+|$T43692| DCD	0xfffffff0
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GG@KAOMNNAE@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAB?$AAL?$AAM?$AAe?$AAn?$AAu?$AAS?$AAe?$AAt?$AAM?$AAa?$AAc?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AAI@| DCB "E"
@@ -1354,54 +1357,54 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43680|
+  00004	00000000	 DCD         |$T43692|
 
   00008		 |OALBLMenuSetMacAddress| PROC
 
-; 172  : {
+; 171  : {
 
   00008		 |$LN11@OALBLMenuS@3|
   00008	e92d4030	 stmdb       sp!, {r4, r5, lr}
   0000c	e24dd030	 sub         sp, sp, #0x30
-  00010		 |$M43681|
+  00010		 |$M43693|
   00010	e59f30f4	 ldr         r3, [pc, #0xF4]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d302c	 str         r3, [sp, #0x2C]
 
-; 173  :     LPCWSTR title = pMenu->pParam1;
+; 172  :     LPCWSTR title = pMenu->pParam1;
 
   0001c	e590300c	 ldr         r3, [r0, #0xC]
 
-; 174  :     UINT16 *pMac = pMenu->pParam2;
+; 173  :     UINT16 *pMac = pMenu->pParam2;
 
   00020	e5904010	 ldr         r4, [r0, #0x10]
   00024	e1b05003	 movs        r5, r3
 
-; 175  :     UINT16 mac[3];
-; 176  :     WCHAR buffer[18];
-; 177  : 
-; 178  :     // First check input parameters    
-; 179  :     if (title == NULL || pMac == NULL) {
+; 174  :     UINT16 mac[3];
+; 175  :     WCHAR buffer[18];
+; 176  : 
+; 177  :     // First check input parameters    
+; 178  :     if (title == NULL || pMac == NULL) {
 
   00028	0a000028	 beq         |$LN3@OALBLMenuS@3|
   0002c	e3540000	 cmp         r4, #0
   00030	0a000026	 beq         |$LN3@OALBLMenuS@3|
 
-; 183  :         goto cleanUp;
-; 184  :     }
-; 185  : 
-; 186  :     // Get actual setting
-; 187  :     mac[0] = pMac[0];
+; 182  :         goto cleanUp;
+; 183  :     }
+; 184  : 
+; 185  :     // Get actual setting
+; 186  :     mac[0] = pMac[0];
 
   00034	e1d430b0	 ldrh        r3, [r4]
 
-; 188  :     mac[1] = pMac[1];
-; 189  :     mac[2] = pMac[2];
-; 190  : 
-; 191  :     // Print prompt
-; 192  :     OALLog(
-; 193  :         L" Enter %s MAC address (actual %s): ", title, OALKitlMACtoString(mac)
-; 194  :     );
+; 187  :     mac[1] = pMac[1];
+; 188  :     mac[2] = pMac[2];
+; 189  : 
+; 190  :     // Print prompt
+; 191  :     OALLog(
+; 192  :         L" Enter %s MAC address (actual %s): ", title, OALKitlMACtoString(mac)
+; 193  :     );
 
   00038	e28d0000	 add         r0, sp, #0
   0003c	e1cd30b0	 strh        r3, [sp]
@@ -1415,19 +1418,19 @@
   0005c	e1a01005	 mov         r1, r5
   00060	eb000000	 bl          NKDbgPrintfW
 
-; 195  :     
-; 196  :     // Read input line
-; 197  :     if (OALBLMenuReadLine(buffer, dimof(buffer)) == 0) goto cleanUp;
+; 194  :     
+; 195  :     // Read input line
+; 196  :     if (OALBLMenuReadLine(buffer, dimof(buffer)) == 0) goto cleanUp;
 
   00064	e3a01012	 mov         r1, #0x12
   00068	e28d0008	 add         r0, sp, #8
   0006c	eb000000	 bl          OALBLMenuReadLine
   00070	e3500000	 cmp         r0, #0
-  00074	0a00001a	 beq         |$cleanUp$43259|
+  00074	0a00001a	 beq         |$cleanUp$43271|
 
-; 198  : 
-; 199  :     // Convert string to MAC address
-; 200  :     if (!OALKitlStringToMAC(buffer, mac)) {
+; 197  : 
+; 198  :     // Convert string to MAC address
+; 199  :     if (!OALKitlStringToMAC(buffer, mac)) {
 
   00078	e28d1000	 add         r1, sp, #0
   0007c	e28d0008	 add         r0, sp, #8
@@ -1435,21 +1438,21 @@
   00084	e3500000	 cmp         r0, #0
   00088	1a000003	 bne         |$LN1@OALBLMenuS@3|
 
-; 201  :         OALLog(L" '%s' isn't valid MAC address\r\n", buffer);
+; 200  :         OALLog(L" '%s' isn't valid MAC address\r\n", buffer);
 
   0008c	e59f0070	 ldr         r0, [pc, #0x70]
   00090	e28d1008	 add         r1, sp, #8
   00094	eb000000	 bl          NKDbgPrintfW
 
-; 202  :         goto cleanUp;
+; 201  :         goto cleanUp;
 
-  00098	ea000011	 b           |$cleanUp$43259|
+  00098	ea000011	 b           |$cleanUp$43271|
   0009c		 |$LN1@OALBLMenuS@3|
 
-; 203  :     }
-; 204  : 
-; 205  :     // Print final MAC address
-; 206  :     OALLog(L" %s MAC address set to %s\r\n", title, OALKitlMACtoString(mac));        
+; 202  :     }
+; 203  : 
+; 204  :     // Print final MAC address
+; 205  :     OALLog(L" %s MAC address set to %s\r\n", title, OALKitlMACtoString(mac));        
 
   0009c	e28d0000	 add         r0, sp, #0
   000a0	eb000000	 bl          OALKitlMACtoString
@@ -1458,41 +1461,41 @@
   000ac	e1a01005	 mov         r1, r5
   000b0	eb000000	 bl          NKDbgPrintfW
 
-; 207  : 
-; 208  :     // Save new setting
-; 209  :     pMac[0] = mac[0];
+; 206  : 
+; 207  :     // Save new setting
+; 208  :     pMac[0] = mac[0];
 
   000b4	e1dd30b0	 ldrh        r3, [sp]
   000b8	e1c430b0	 strh        r3, [r4]
 
-; 210  :     pMac[1] = mac[1];
+; 209  :     pMac[1] = mac[1];
 
   000bc	e1dd30b2	 ldrh        r3, [sp, #2]
   000c0	e1c430b2	 strh        r3, [r4, #2]
 
-; 211  :     pMac[2] = mac[2];
+; 210  :     pMac[2] = mac[2];
 
   000c4	e1dd30b4	 ldrh        r3, [sp, #4]
   000c8	e1c430b4	 strh        r3, [r4, #4]
-  000cc	ea000004	 b           |$cleanUp$43259|
+  000cc	ea000004	 b           |$cleanUp$43271|
   000d0		 |$LN3@OALBLMenuS@3|
 
-; 180  :         OALMSG(OAL_ERROR, (
-; 181  :             L"ERROR: OALBLMenuSetMacAddress: Invalid parameter\r\n"
-; 182  :         ));
+; 179  :         OALMSG(OAL_ERROR, (
+; 180  :             L"ERROR: OALBLMenuSetMacAddress: Invalid parameter\r\n"
+; 181  :         ));
 
   000d0	e59f3024	 ldr         r3, [pc, #0x24]
   000d4	e5933440	 ldr         r3, [r3, #0x440]
   000d8	e3130001	 tst         r3, #1
   000dc	159f0014	 ldrne       r0, [pc, #0x14]
   000e0	1b000000	 blne        NKDbgPrintfW
-  000e4		 |$cleanUp$43259|
+  000e4		 |$cleanUp$43271|
   000e4	e59d002c	 ldr         r0, [sp, #0x2C]
   000e8	eb000000	 bl          __security_check_cookie
 
-; 212  :     
-; 213  : cleanUp:;
-; 214  : }
+; 211  :     
+; 212  : cleanUp:;
+; 213  : }
 
   000ec	e28dd030	 add         sp, sp, #0x30
   000f0	e8bd4030	 ldmia       sp!, {r4, r5, lr}
@@ -1510,7 +1513,7 @@
   00108	00000000	 DCD         |??_C@_1EI@KGHANMNL@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs@|
   0010c		 |$LN18@OALBLMenuS@3|
   0010c	00000000	 DCD         |__security_cookie|
-  00110		 |$M43682|
+  00110		 |$M43694|
 
 			 ENDP  ; |OALBLMenuSetMacAddress|
 
@@ -1524,11 +1527,11 @@
 	IMPORT	|OALKitlIPtoString|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43710| DCD	|$LN11@OALBLMenuS@4|
+|$T43722| DCD	|$LN11@OALBLMenuS@4|
 	DCD	0xc0003602
 
   00000			 AREA	 |.xdata|, DATA
-|$T43706| DCD	0xffffffec
+|$T43718| DCD	0xffffffec
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GG@LBBLODG@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAB?$AAL?$AAM?$AAe?$AAn?$AAu?$AAS?$AAe?$AAt?$AAI?$AAp?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AAI?$AAn@| DCB "E"
@@ -1572,50 +1575,50 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43706|
+  00004	00000000	 DCD         |$T43718|
 
   00008		 |OALBLMenuSetIpAddress| PROC
 
-; 219  : {
+; 218  : {
 
   00008		 |$LN11@OALBLMenuS@4|
   00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M43707|
+  00010		 |$M43719|
   00010	e59f30c4	 ldr         r3, [pc, #0xC4]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
 
-; 220  :     LPCWSTR title = pMenu->pParam1;
+; 219  :     LPCWSTR title = pMenu->pParam1;
 
   0001c	e590300c	 ldr         r3, [r0, #0xC]
 
-; 221  :     UINT32 *pIp = pMenu->pParam2;
+; 220  :     UINT32 *pIp = pMenu->pParam2;
 
   00020	e5904010	 ldr         r4, [r0, #0x10]
   00024	e1b06003	 movs        r6, r3
 
-; 222  :     UINT32 ip;
-; 223  :     WCHAR buffer[16];
-; 224  : 
-; 225  :     // First check input parameters    
-; 226  :     if (title == NULL || pIp == NULL) {
+; 221  :     UINT32 ip;
+; 222  :     WCHAR buffer[16];
+; 223  : 
+; 224  :     // First check input parameters    
+; 225  :     if (title == NULL || pIp == NULL) {
 
   00028	0a00001c	 beq         |$LN3@OALBLMenuS@4|
   0002c	e3540000	 cmp         r4, #0
   00030	0a00001a	 beq         |$LN3@OALBLMenuS@4|
 
-; 230  :         goto cleanUp;
-; 231  :     }
-; 232  : 
-; 233  :     // Get actual value
-; 234  :     ip = *pIp;
+; 229  :         goto cleanUp;
+; 230  :     }
+; 231  : 
+; 232  :     // Get actual value
+; 233  :     ip = *pIp;
 
   00034	e5940000	 ldr         r0, [r4]
 
-; 235  : 
-; 236  :     // Print prompt
-; 237  :     OALLog(L" Enter %s IP address (actual %s): ", title, OALKitlIPtoString(ip));
+; 234  : 
+; 235  :     // Print prompt
+; 236  :     OALLog(L" Enter %s IP address (actual %s): ", title, OALKitlIPtoString(ip));
 
   00038	eb000000	 bl          OALKitlIPtoString
   0003c	e1a02000	 mov         r2, r0
@@ -1623,43 +1626,43 @@
   00044	e1a01006	 mov         r1, r6
   00048	eb000000	 bl          NKDbgPrintfW
 
-; 238  : 
-; 239  :     // Read input line
-; 240  :     if (OALBLMenuReadLine(buffer, dimof(buffer)) == 0) goto cleanUp;
+; 237  : 
+; 238  :     // Read input line
+; 239  :     if (OALBLMenuReadLine(buffer, dimof(buffer)) == 0) goto cleanUp;
 
   0004c	e3a01010	 mov         r1, #0x10
   00050	e28d0000	 add         r0, sp, #0
   00054	eb000000	 bl          OALBLMenuReadLine
   00058	e3500000	 cmp         r0, #0
-  0005c	0a000014	 beq         |$cleanUp$43278|
+  0005c	0a000014	 beq         |$cleanUp$43290|
 
-; 241  : 
-; 242  :     // Convert string to IP address
-; 243  :     ip = OALKitlStringToIP(buffer);
+; 240  : 
+; 241  :     // Convert string to IP address
+; 242  :     ip = OALKitlStringToIP(buffer);
 
   00060	e28d0000	 add         r0, sp, #0
   00064	eb000000	 bl          OALKitlStringToIP
   00068	e1b05000	 movs        r5, r0
 
-; 244  :     if (ip == 0) {
+; 243  :     if (ip == 0) {
 
   0006c	1a000003	 bne         |$LN1@OALBLMenuS@4|
 
-; 245  :         OALLog(L" '%s' isn't valid IP address\r\n", buffer);
+; 244  :         OALLog(L" '%s' isn't valid IP address\r\n", buffer);
 
   00070	e59f005c	 ldr         r0, [pc, #0x5C]
   00074	e28d1000	 add         r1, sp, #0
   00078	eb000000	 bl          NKDbgPrintfW
 
-; 246  :         goto cleanUp;
+; 245  :         goto cleanUp;
 
-  0007c	ea00000c	 b           |$cleanUp$43278|
+  0007c	ea00000c	 b           |$cleanUp$43290|
   00080		 |$LN1@OALBLMenuS@4|
 
-; 247  :     }
-; 248  : 
-; 249  :     // Print final IP address
-; 250  :     OALLog(L" %s IP address set to %s\r\n", title, OALKitlIPtoString(ip));
+; 246  :     }
+; 247  : 
+; 248  :     // Print final IP address
+; 249  :     OALLog(L" %s IP address set to %s\r\n", title, OALKitlIPtoString(ip));
 
   00080	e1a00005	 mov         r0, r5
   00084	eb000000	 bl          OALKitlIPtoString
@@ -1668,30 +1671,30 @@
   00090	e1a01006	 mov         r1, r6
   00094	eb000000	 bl          NKDbgPrintfW
 
-; 251  : 
-; 252  :     // Save new setting
-; 253  :     *pIp = ip;
+; 250  : 
+; 251  :     // Save new setting
+; 252  :     *pIp = ip;
 
   00098	e5845000	 str         r5, [r4]
-  0009c	ea000004	 b           |$cleanUp$43278|
+  0009c	ea000004	 b           |$cleanUp$43290|
   000a0		 |$LN3@OALBLMenuS@4|
 
-; 227  :         OALMSG(OAL_ERROR, (
-; 228  :             L"ERROR: OALBLMenuSetIpAddress: Invalid parameters\r\n"
-; 229  :         ));
+; 226  :         OALMSG(OAL_ERROR, (
+; 227  :             L"ERROR: OALBLMenuSetIpAddress: Invalid parameters\r\n"
+; 228  :         ));
 
   000a0	e59f3024	 ldr         r3, [pc, #0x24]
   000a4	e5933440	 ldr         r3, [r3, #0x440]
   000a8	e3130001	 tst         r3, #1
   000ac	159f0014	 ldrne       r0, [pc, #0x14]
   000b0	1b000000	 blne        NKDbgPrintfW
-  000b4		 |$cleanUp$43278|
+  000b4		 |$cleanUp$43290|
   000b4	e59d0020	 ldr         r0, [sp, #0x20]
   000b8	eb000000	 bl          __security_check_cookie
 
-; 254  :     
-; 255  : cleanUp:;
-; 256  : }
+; 253  :     
+; 254  : cleanUp:;
+; 255  : }
 
   000bc	e28dd024	 add         sp, sp, #0x24
   000c0	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
@@ -1709,7 +1712,7 @@
   000d8	00000000	 DCD         |??_C@_1EG@NJNHINMH@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ@|
   000dc		 |$LN18@OALBLMenuS@4|
   000dc	00000000	 DCD         |__security_cookie|
-  000e0		 |$M43708|
+  000e0		 |$M43720|
 
 			 ENDP  ; |OALBLMenuSetIpAddress|
 
@@ -1721,11 +1724,11 @@
 	EXPORT	|??_C@_1EA@LJMJMOFH@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43736| DCD	|$LN11@OALBLMenuS@5|
+|$T43748| DCD	|$LN11@OALBLMenuS@5|
 	DCD	0xc0003602
 
   00000			 AREA	 |.xdata|, DATA
-|$T43732| DCD	0xffffffec
+|$T43744| DCD	0xffffffec
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GA@BNPDEIDO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAB?$AAL?$AAM?$AAe?$AAn?$AAu?$AAS?$AAe?$AAt?$AAI?$AAp?$AAM?$AAa?$AAs?$AAk?$AA?3?$AA?5?$AAI?$AAn?$AAv?$AAa?$AAl@| DCB "E"
@@ -1766,50 +1769,50 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43732|
+  00004	00000000	 DCD         |$T43744|
 
   00008		 |OALBLMenuSetIpMask| PROC
 
-; 261  : {
+; 260  : {
 
   00008		 |$LN11@OALBLMenuS@5|
   00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M43733|
+  00010		 |$M43745|
   00010	e59f30c4	 ldr         r3, [pc, #0xC4]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
 
-; 262  :     LPCWSTR title = pMenu->pParam1;
+; 261  :     LPCWSTR title = pMenu->pParam1;
 
   0001c	e590300c	 ldr         r3, [r0, #0xC]
 
-; 263  :     UINT32 *pIp = pMenu->pParam2;
+; 262  :     UINT32 *pIp = pMenu->pParam2;
 
   00020	e5904010	 ldr         r4, [r0, #0x10]
   00024	e1b06003	 movs        r6, r3
 
-; 264  :     UINT32 ip;
-; 265  :     WCHAR buffer[16];
-; 266  : 
-; 267  :     // First check input parameters    
-; 268  :     if (title == NULL || pIp == NULL) {
+; 263  :     UINT32 ip;
+; 264  :     WCHAR buffer[16];
+; 265  : 
+; 266  :     // First check input parameters    
+; 267  :     if (title == NULL || pIp == NULL) {
 
   00028	0a00001c	 beq         |$LN3@OALBLMenuS@5|
   0002c	e3540000	 cmp         r4, #0
   00030	0a00001a	 beq         |$LN3@OALBLMenuS@5|
 
-; 272  :         goto cleanUp;
-; 273  :     }
-; 274  : 
-; 275  :     // Get actual value
-; 276  :     ip = *pIp;
+; 271  :         goto cleanUp;
+; 272  :     }
+; 273  : 
+; 274  :     // Get actual value
+; 275  :     ip = *pIp;
 
   00034	e5940000	 ldr         r0, [r4]
 
-; 277  : 
-; 278  :     // Print prompt
-; 279  :     OALLog(L" Enter %s IP mask (actual %s): ", title, OALKitlIPtoString(ip));
+; 276  : 
+; 277  :     // Print prompt
+; 278  :     OALLog(L" Enter %s IP mask (actual %s): ", title, OALKitlIPtoString(ip));
 
   00038	eb000000	 bl          OALKitlIPtoString
   0003c	e1a02000	 mov         r2, r0
@@ -1817,43 +1820,43 @@
   00044	e1a01006	 mov         r1, r6
   00048	eb000000	 bl          NKDbgPrintfW
 
-; 280  : 
-; 281  :     // Read input line
-; 282  :     if (OALBLMenuReadLine(buffer, dimof(buffer)) == 0) goto cleanUp;
+; 279  : 
+; 280  :     // Read input line
+; 281  :     if (OALBLMenuReadLine(buffer, dimof(buffer)) == 0) goto cleanUp;
 
   0004c	e3a01010	 mov         r1, #0x10
   00050	e28d0000	 add         r0, sp, #0
   00054	eb000000	 bl          OALBLMenuReadLine
   00058	e3500000	 cmp         r0, #0
-  0005c	0a000014	 beq         |$cleanUp$43297|
+  0005c	0a000014	 beq         |$cleanUp$43309|
 
-; 283  : 
-; 284  :     // Convert string to MAC address
-; 285  :     ip = OALKitlStringToIP(buffer);
+; 282  : 
+; 283  :     // Convert string to MAC address
+; 284  :     ip = OALKitlStringToIP(buffer);
 
   00060	e28d0000	 add         r0, sp, #0
   00064	eb000000	 bl          OALKitlStringToIP
   00068	e1b05000	 movs        r5, r0
 
-; 286  :     if (ip == 0) {
+; 285  :     if (ip == 0) {
 
   0006c	1a000003	 bne         |$LN1@OALBLMenuS@5|
 
-; 287  :         OALLog(L" '%s' isn't valid IP mask\r\n", buffer);
+; 286  :         OALLog(L" '%s' isn't valid IP mask\r\n", buffer);
 
   00070	e59f005c	 ldr         r0, [pc, #0x5C]
   00074	e28d1000	 add         r1, sp, #0
   00078	eb000000	 bl          NKDbgPrintfW
 
-; 288  :         goto cleanUp;
+; 287  :         goto cleanUp;
 
-  0007c	ea00000c	 b           |$cleanUp$43297|
+  0007c	ea00000c	 b           |$cleanUp$43309|
   00080		 |$LN1@OALBLMenuS@5|
 
-; 289  :     }
-; 290  : 
-; 291  :     // Print final IP mask
-; 292  :     OALLog(L" %s IP mask set to %s\r\n", title, OALKitlIPtoString(ip));
+; 288  :     }
+; 289  : 
+; 290  :     // Print final IP mask
+; 291  :     OALLog(L" %s IP mask set to %s\r\n", title, OALKitlIPtoString(ip));
 
   00080	e1a00005	 mov         r0, r5
   00084	eb000000	 bl          OALKitlIPtoString
@@ -1862,30 +1865,30 @@
   00090	e1a01006	 mov         r1, r6
   00094	eb000000	 bl          NKDbgPrintfW
 
-; 293  : 
-; 294  :     // Save new setting
-; 295  :     *pIp = ip;
+; 292  : 
+; 293  :     // Save new setting
+; 294  :     *pIp = ip;
 
   00098	e5845000	 str         r5, [r4]
-  0009c	ea000004	 b           |$cleanUp$43297|
+  0009c	ea000004	 b           |$cleanUp$43309|
   000a0		 |$LN3@OALBLMenuS@5|
 
-; 269  :         OALMSG(OAL_ERROR, (
-; 270  :             L"ERROR: OALBLMenuSetIpMask: Invalid parameters\r\n"
-; 271  :         ));
+; 268  :         OALMSG(OAL_ERROR, (
+; 269  :             L"ERROR: OALBLMenuSetIpMask: Invalid parameters\r\n"
+; 270  :         ));
 
   000a0	e59f3024	 ldr         r3, [pc, #0x24]
   000a4	e5933440	 ldr         r3, [r3, #0x440]
   000a8	e3130001	 tst         r3, #1
   000ac	159f0014	 ldrne       r0, [pc, #0x14]
   000b0	1b000000	 blne        NKDbgPrintfW
-  000b4		 |$cleanUp$43297|
+  000b4		 |$cleanUp$43309|
   000b4	e59d0020	 ldr         r0, [sp, #0x20]
   000b8	eb000000	 bl          __security_check_cookie
 
-; 296  :     
-; 297  : cleanUp:;
-; 298  : }
+; 295  :     
+; 296  : cleanUp:;
+; 297  : }
 
   000bc	e28dd024	 add         sp, sp, #0x24
   000c0	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
@@ -1903,7 +1906,7 @@
   000d8	00000000	 DCD         |??_C@_1EA@LJMJMOFH@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@|
   000dc		 |$LN18@OALBLMenuS@5|
   000dc	00000000	 DCD         |__security_cookie|
-  000e0		 |$M43734|
+  000e0		 |$M43746|
 
 			 ENDP  ; |OALBLMenuSetIpMask|
 
@@ -1914,11 +1917,11 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43775| DCD	|$LN21@OALBLMenuS@6|
+|$T43787| DCD	|$LN21@OALBLMenuS@6|
 	DCD	0xc0003702
 
   00000			 AREA	 |.xdata|, DATA
-|$T43771| DCD	0xfffffff0
+|$T43783| DCD	0xfffffff0
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DC@OGIHKHPF@?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAd?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AA?8?$AA?$CF?$AAS?$AA?8?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
@@ -1943,36 +1946,36 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43771|
+  00004	00000000	 DCD         |$T43783|
 
   00008		 |OALBLMenuSetDeviceId| PROC
 
-; 303  : {
+; 302  : {
 
   00008		 |$LN21@OALBLMenuS@6|
   00008	e92d4030	 stmdb       sp!, {r4, r5, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M43772|
+  00010		 |$M43784|
   00010	e59f30c8	 ldr         r3, [pc, #0xC8]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
 
-; 304  :     WCHAR deviceId[OAL_KITL_ID_SIZE];
-; 305  :     LPSTR pDeviceId = pMenu->pParam1;
+; 303  :     WCHAR deviceId[OAL_KITL_ID_SIZE];
+; 304  :     LPSTR pDeviceId = pMenu->pParam1;
 
   0001c	e590400c	 ldr         r4, [r0, #0xC]
 
-; 306  :     UINT i;
-; 307  : 
-; 308  :     memset(deviceId, 0, sizeof(deviceId));
+; 305  :     UINT i;
+; 306  : 
+; 307  :     memset(deviceId, 0, sizeof(deviceId));
 
   00020	e28d0000	 add         r0, sp, #0
   00024	e3a02020	 mov         r2, #0x20
   00028	e3a01000	 mov         r1, #0
   0002c	eb000000	 bl          memset
 
-; 309  :     
-; 310  :     OALLog(L" Enter Device Id (* = auto, actual '%S'): ", DeviceId(pDeviceId));
+; 308  :     
+; 309  :     OALLog(L" Enter Device Id (* = auto, actual '%S'): ", DeviceId(pDeviceId));
 
   00030	e1d430d0	 ldrsb       r3, [r4]
   00034	e59f50a0	 ldr         r5, [pc, #0xA0]
@@ -1982,19 +1985,19 @@
   00044	11a01004	 movne       r1, r4
   00048	eb000000	 bl          NKDbgPrintfW
 
-; 311  :     
-; 312  :     // Read input line
-; 313  :     if (OALBLMenuReadLine(deviceId, dimof(deviceId)) == 0) goto cleanUp;
+; 310  :     
+; 311  :     // Read input line
+; 312  :     if (OALBLMenuReadLine(deviceId, dimof(deviceId)) == 0) goto cleanUp;
 
   0004c	e3a01010	 mov         r1, #0x10
   00050	e28d0000	 add         r0, sp, #0
   00054	eb000000	 bl          OALBLMenuReadLine
   00058	e3500000	 cmp         r0, #0
-  0005c	0a000017	 beq         |$cleanUp$43311|
+  0005c	0a000017	 beq         |$cleanUp$43323|
 
-; 314  : 
-; 315  :     // Convert unicode to one-byte character string
-; 316  :     if (deviceId[0] == L'*' && deviceId[1] == L'\0') {
+; 313  : 
+; 314  :     // Convert unicode to one-byte character string
+; 315  :     if (deviceId[0] == L'*' && deviceId[1] == L'\0') {
 
   00060	e1dd30b0	 ldrh        r3, [sp]
   00064	e353002a	 cmp         r3, #0x2A
@@ -2003,25 +2006,25 @@
   00070	e3530000	 cmp         r3, #0
   00074	1a000004	 bne         |$LN5@OALBLMenuS@6|
 
-; 317  :         memset(pDeviceId, 0, OAL_KITL_ID_SIZE);
+; 316  :         memset(pDeviceId, 0, OAL_KITL_ID_SIZE);
 
   00078	e3a02010	 mov         r2, #0x10
   0007c	e3a01000	 mov         r1, #0
   00080	e1a00004	 mov         r0, r4
   00084	eb000000	 bl          memset
 
-; 318  :     } else {
+; 317  :     } else {
 
   00088	ea000006	 b           |$LN1@OALBLMenuS@6|
   0008c		 |$LN5@OALBLMenuS@6|
 
-; 319  :         for (i = 0; i < OAL_KITL_ID_SIZE; i++) {
+; 318  :         for (i = 0; i < OAL_KITL_ID_SIZE; i++) {
 
   0008c	e3a02000	 mov         r2, #0
   00090	e28d1000	 add         r1, sp, #0
   00094		 |$LL3@OALBLMenuS@6|
 
-; 320  :             pDeviceId[i] = (UCHAR)deviceId[i];
+; 319  :             pDeviceId[i] = (UCHAR)deviceId[i];
 
   00094	e0d130b2	 ldrh        r3, [r1], #2
   00098	e7c23004	 strb        r3, [r2, +r4]
@@ -2030,10 +2033,10 @@
   000a4	3afffffa	 bcc         |$LL3@OALBLMenuS@6|
   000a8		 |$LN1@OALBLMenuS@6|
 
-; 321  :         }
-; 322  :     }        
-; 323  : 
-; 324  :     OALLog(L" Device Id set to '%S'\r\n", DeviceId(pDeviceId));       
+; 320  :         }
+; 321  :     }        
+; 322  : 
+; 323  :     OALLog(L" Device Id set to '%S'\r\n", DeviceId(pDeviceId));       
 
   000a8	e1d430d0	 ldrsb       r3, [r4]
   000ac	e59f0020	 ldr         r0, [pc, #0x20]
@@ -2041,13 +2044,13 @@
   000b4	11a05004	 movne       r5, r4
   000b8	e1a01005	 mov         r1, r5
   000bc	eb000000	 bl          NKDbgPrintfW
-  000c0		 |$cleanUp$43311|
+  000c0		 |$cleanUp$43323|
   000c0	e59d0020	 ldr         r0, [sp, #0x20]
   000c4	eb000000	 bl          __security_check_cookie
 
-; 325  :     
-; 326  : cleanUp: ;
-; 327  : }
+; 324  :     
+; 325  : cleanUp: ;
+; 326  : }
 
   000c8	e28dd024	 add         sp, sp, #0x24
   000cc	e8bd4030	 ldmia       sp!, {r4, r5, lr}
@@ -2061,7 +2064,7 @@
   000dc	00000000	 DCD         |??_C@_0N@LKBAFPFA@?$CK?$CK?$CK?5auto?5?$CK?$CK?$CK?$AA@|
   000e0		 |$LN26@OALBLMenuS@6|
   000e0	00000000	 DCD         |__security_cookie|
-  000e4		 |$M43773|
+  000e4		 |$M43785|
 
 			 ENDP  ; |OALBLMenuSetDeviceId|
 

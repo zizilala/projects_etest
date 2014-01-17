@@ -89,24 +89,24 @@
 
   00000		 |I2CInitialize| PROC
 
-; 42   : {
+; 40   : {
 
   00000		 |$LN8@I2CInitial|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004	e24dd008	 sub         sp, sp, #8
   00008		 |$M44618|
 
-; 43   :     if (_bI2CFnTableInit == FALSE)
+; 41   :     if (_bI2CFnTableInit == FALSE)
 
   00008	e59f405c	 ldr         r4, [pc, #0x5C]
   0000c	e5940034	 ldr         r0, [r4, #0x34]
   00010	e3500000	 cmp         r0, #0
   00014	1a000010	 bne         |$LN1@I2CInitial|
 
-; 44   :     {
-; 45   :         // get clock ref counter table from kernel
-; 46   :         if (KernelIoControl(IOCTL_HAL_I2CCOPYFNTABLE, (void*)&_i2cFnTable,
-; 47   :             sizeof(OAL_IFC_I2C), NULL, 0, NULL))
+; 42   :     {
+; 43   :         // get clock ref counter table from kernel
+; 44   :         if (KernelIoControl(IOCTL_HAL_I2CCOPYFNTABLE, (void*)&_i2cFnTable,
+; 45   :             sizeof(OAL_IFC_I2C), NULL, 0, NULL))
 
   00018	e59f0048	 ldr         r0, [pc, #0x48]
   0001c	e3a0e000	 mov         lr, #0
@@ -118,17 +118,17 @@
   00034	eb000000	 bl          KernelIoControl
   00038	e3500000	 cmp         r0, #0
 
-; 48   :         {
-; 49   :             _bI2CFnTableInit = TRUE;
+; 46   :         {
+; 47   :             _bI2CFnTableInit = TRUE;
 
   0003c	13a00001	 movne       r0, #1
   00040	15840034	 strne       r0, [r4, #0x34]
   00044	1a000004	 bne         |$LN1@I2CInitial|
 
-; 50   :         }
-; 51   :         else
-; 52   :         {
-; 53   :             memset(&_i2cFnTable,0,sizeof(_i2cFnTable));
+; 48   :         }
+; 49   :         else
+; 50   :         {
+; 51   :             memset(&_i2cFnTable,0,sizeof(_i2cFnTable));
 
   00048	e3a02034	 mov         r2, #0x34
   0004c	e3a01000	 mov         r1, #0
@@ -137,10 +137,10 @@
   00058	e5940034	 ldr         r0, [r4, #0x34]
   0005c		 |$LN1@I2CInitial|
 
-; 54   :         }
-; 55   :     }
-; 56   :     return _bI2CFnTableInit;
-; 57   : }
+; 52   :         }
+; 53   :     }
+; 54   :     return _bI2CFnTableInit;
+; 55   : }
 
   0005c	e28dd008	 add         sp, sp, #8
   00060	e8bd4010	 ldmia       sp!, {r4, lr}
@@ -166,17 +166,17 @@
 
   00000		 |I2CGetDeviceIdFromMembase| PROC
 
-; 66   : {
+; 64   : {
 
   00000		 |$LN5@I2CGetDevi|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44631|
 
-; 67   :     return GetDeviceByAddress(memBase);
+; 65   :     return GetDeviceByAddress(memBase);
 
   00004	eb000000	 bl          GetDeviceByAddress
 
-; 68   : }
+; 66   : }
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
@@ -195,7 +195,7 @@
 
   00000		 |I2COpen| PROC
 
-; 76   : {
+; 71   : {
 
   00000		 |$LN11@I2COpen|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
@@ -203,7 +203,7 @@
   00008		 |$M44647|
   00008	e1a05000	 mov         r5, r0
 
-; 77   :     if (I2CInitialize() == FALSE) return NULL;
+; 72   :     if (I2CInitialize() == FALSE) return NULL;
 
   0000c	e59f407c	 ldr         r4, [pc, #0x7C]
   00010	e5943034	 ldr         r3, [r4, #0x34]
@@ -223,8 +223,8 @@
   00048	e5843034	 str         r3, [r4, #0x34]
   0004c		 |$LN1@I2COpen|
 
-; 78   : 
-; 79   :     return _i2cFnTable.fnI2COpen(devId);
+; 73   : 
+; 74   :     return _i2cFnTable.fnI2COpen(devId);
 
   0004c	e5943008	 ldr         r3, [r4, #8]
   00050	e1a00005	 mov         r0, r5
@@ -232,13 +232,13 @@
   00058	e12fff13	 bx          r3
   0005c		 |$LN2@I2COpen|
 
-; 80   : }
+; 75   : }
 
   0005c	e28dd008	 add         sp, sp, #8
   00060	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00064	e12fff1e	 bx          lr
 
-; 77   :     if (I2CInitialize() == FALSE) return NULL;
+; 72   :     if (I2CInitialize() == FALSE) return NULL;
 
   00068		 |$LN5@I2COpen|
   00068	e3a02034	 mov         r2, #0x34
@@ -270,20 +270,20 @@
 
   00000		 |I2CSetSlaveAddress| PROC
 
-; 89   : {
+; 84   : {
 
   00000		 |$LN5@I2CSetSlav|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44661|
 
-; 90   :     return _i2cFnTable.fnI2CSetSlaveAddress(hContext,slaveAddress);
+; 85   :     return _i2cFnTable.fnI2CSetSlaveAddress(hContext,slaveAddress);
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e5933018	 ldr         r3, [r3, #0x18]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 91   : }
+; 86   : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -305,20 +305,20 @@
 
   00000		 |I2CSetSubAddressMode| PROC
 
-; 99   : {
+; 94   : {
 
   00000		 |$LN5@I2CSetSubA|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44672|
 
-; 100  :     _i2cFnTable.fnI2CSetSubAddressMode(hContext,subAddressMode);    
+; 95   :     _i2cFnTable.fnI2CSetSubAddressMode(hContext,subAddressMode);    
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e593301c	 ldr         r3, [r3, #0x1C]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 101  : }
+; 96   : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -340,20 +340,20 @@
 
   00000		 |I2CSetBaudIndex| PROC
 
-; 109  : {
+; 104  : {
 
   00000		 |$LN5@I2CSetBaud|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44683|
 
-; 110  :     _i2cFnTable.fnI2CSetBaudIndex(hContext,baudIndex);    
+; 105  :     _i2cFnTable.fnI2CSetBaudIndex(hContext,baudIndex);    
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e5933020	 ldr         r3, [r3, #0x20]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 111  : }
+; 106  : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -375,20 +375,20 @@
 
   00000		 |I2CSetTimeout| PROC
 
-; 119  : {
+; 114  : {
 
   00000		 |$LN5@I2CSetTime|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44694|
 
-; 120  :     _i2cFnTable.fnI2CSetTimeout(hContext,timeOut); 
+; 115  :     _i2cFnTable.fnI2CSetTimeout(hContext,timeOut); 
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e5933024	 ldr         r3, [r3, #0x24]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 121  : }
+; 116  : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -410,20 +410,20 @@
 
   00000		 |I2CClose| PROC
 
-; 129  : {
+; 124  : {
 
   00000		 |$LN5@I2CClose|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44704|
 
-; 130  :     _i2cFnTable.fnI2CClose(hContext);
+; 125  :     _i2cFnTable.fnI2CClose(hContext);
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e593300c	 ldr         r3, [r3, #0xC]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 131  : }
+; 126  : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -445,20 +445,20 @@
 
   00000		 |I2CRead| PROC
 
-; 141  : {
+; 136  : {
 
   00000		 |$LN5@I2CRead|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M44719|
 
-; 142  :     return _i2cFnTable.fnI2CRead(hCtx, subAddr, pBuffer, size);
+; 137  :     return _i2cFnTable.fnI2CRead(hCtx, subAddr, pBuffer, size);
 
   00004	e59fe010	 ldr         lr, [pc, #0x10]
   00008	e59e4014	 ldr         r4, [lr, #0x14]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff14	 bx          r4
 
-; 143  : }
+; 138  : }
 
   00014	e8bd4010	 ldmia       sp!, {r4, lr}
   00018	e12fff1e	 bx          lr
@@ -480,20 +480,20 @@
 
   00000		 |I2CWrite| PROC
 
-; 153  : {
+; 148  : {
 
   00000		 |$LN5@I2CWrite|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M44734|
 
-; 154  :     return _i2cFnTable.fnI2CWrite(hCtx, subAddr, (VOID*)pBuffer, size);
+; 149  :     return _i2cFnTable.fnI2CWrite(hCtx, subAddr, (VOID*)pBuffer, size);
 
   00004	e59fe010	 ldr         lr, [pc, #0x10]
   00008	e59e4010	 ldr         r4, [lr, #0x10]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff14	 bx          r4
 
-; 155  : }
+; 150  : }
 
   00014	e8bd4010	 ldmia       sp!, {r4, lr}
   00018	e12fff1e	 bx          lr
@@ -515,20 +515,20 @@
 
   00000		 |I2CLock| PROC
 
-; 158  : {
+; 153  : {
 
   00000		 |$LN5@I2CLock|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44744|
 
-; 159  :     _i2cFnTable.fnI2CLock(hCtx);
+; 154  :     _i2cFnTable.fnI2CLock(hCtx);
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e5933000	 ldr         r3, [r3]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 160  : }           
+; 155  : }           
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -550,20 +550,20 @@
 
   00000		 |I2CUnlock| PROC
 
-; 163  : {
+; 158  : {
 
   00000		 |$LN5@I2CUnlock|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44754|
 
-; 164  :     _i2cFnTable.fnI2CUnlock(hCtx);
+; 159  :     _i2cFnTable.fnI2CUnlock(hCtx);
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e5933004	 ldr         r3, [r3, #4]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 165  : } 
+; 160  : } 
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -585,20 +585,20 @@
 
   00000		 |I2CSetManualDriveMode| PROC
 
-; 169  : {
+; 164  : {
 
   00000		 |$LN5@I2CSetManu|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44765|
 
-; 170  :     _i2cFnTable.fnSetManualDriveMode(hCtx,fOn);
+; 165  :     _i2cFnTable.fnSetManualDriveMode(hCtx,fOn);
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e5933028	 ldr         r3, [r3, #0x28]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 171  : }
+; 166  : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -620,20 +620,20 @@
 
   00000		 |I2CDriveSCL| PROC
 
-; 173  : {
+; 168  : {
 
   00000		 |$LN5@I2CDriveSC|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44776|
 
-; 174  :     _i2cFnTable.fnDriveSCL(hCtx,fHigh);
+; 169  :     _i2cFnTable.fnDriveSCL(hCtx,fHigh);
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e593302c	 ldr         r3, [r3, #0x2C]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 175  : }
+; 170  : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
@@ -655,20 +655,20 @@
 
   00000		 |I2CDriveSDA| PROC
 
-; 177  : {
+; 172  : {
 
   00000		 |$LN5@I2CDriveSD|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M44787|
 
-; 178  :     _i2cFnTable.fnDriveSDA(hCtx,fHigh);
+; 173  :     _i2cFnTable.fnDriveSDA(hCtx,fHigh);
 
   00004	e59f3010	 ldr         r3, [pc, #0x10]
   00008	e5933030	 ldr         r3, [r3, #0x30]
   0000c	e1a0e00f	 mov         lr, pc
   00010	e12fff13	 bx          r3
 
-; 179  : }
+; 174  : }
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr

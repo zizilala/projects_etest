@@ -281,9 +281,6 @@ static OMAP_LCD_DVI_RES g_dwSelectedDSSResolution = OMAP_RES_INVALID;
 #define BSP_CM_CLKSEL_DSS   (BSP_DSS_CLKSEL_TV | \
                              BSP_DSS_CLKSEL_DSS1)
 
-
-
-
 void LcdPdd_LCD_InitResolution()
 {
     if (g_dwSelectedDSSResolution == OMAP_RES_INVALID)
@@ -319,8 +316,7 @@ void LcdPdd_LCD_InitResolution()
 }
 
 //------------------------------------------------------------------------------
-BOOL
-LcdPdd_LCD_Initialize(
+BOOL LcdPdd_LCD_Initialize(     //??
     OMAP_DSS_REGS         *pDSSRegs,
     OMAP_DISPC_REGS       *pDispRegs,
     OMAP_RFBI_REGS        *pRfbiRegs,
@@ -329,7 +325,7 @@ LcdPdd_LCD_Initialize(
 {
     PHYSICAL_ADDRESS pa;
     OMAP_PRCM_DSS_CM_REGS *pPrcmDssCM;
-
+    OALLog(L"3.XXXXXXXXXXXXXXXXXXX");
 	UNREFERENCED_PARAMETER(pVencRegs);
 	UNREFERENCED_PARAMETER(pRfbiRegs);
 	UNREFERENCED_PARAMETER(pDSSRegs);
@@ -344,8 +340,8 @@ LcdPdd_LCD_Initialize(
     // Store pointer to display controller for future use
     g_pDispRegs = pDispRegs;
     
-    // Initialize GPIO
-    LcdInitGpio();
+    // Initialize GPIO  
+    LcdInitGpio();      //??
     
     // setup the DSS1 clock divider - disable DSS1 clock, change divider, enable DSS clock
     OUTREG32(&pPrcmDssCM->CM_FCLKEN_DSS, INREG32(&pPrcmDssCM->CM_FCLKEN_DSS) & ~CM_CLKEN_DSS1);
@@ -588,7 +584,7 @@ LcdPdd_SetPowerLevel(
     // Do nothing if LCD has not yet been initialized
     if (g_pDispRegs == NULL)
         return FALSE;
-        
+    OALLog(L"22.XXXXXXXXXXXXXXXXXXX");    
     // Power display up/down
     switch(dwPowerLevel)
     {
