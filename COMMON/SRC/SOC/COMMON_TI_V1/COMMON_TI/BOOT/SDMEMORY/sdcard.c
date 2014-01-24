@@ -1236,6 +1236,7 @@ BOOL MMCInitDisk(PDISK pDisk)
     pDisk->d_DiskInfo.di_heads = 0;
     pDisk->d_DiskInfo.di_sectors = 0;
     pDisk->d_Supports4Bit = FALSE;
+    
     //pDisk->d_DiskInfo.di_flags = DISK_INFO_FLAG_CHS_UNCERTAIN |   DISK_INFO_FLAG_MBR;
 
     // move to removable thread
@@ -1261,10 +1262,10 @@ int SDCardInit(DISK *pDisk)
 {
     OALMSGX(OAL_INFO, (L"SDCardInit: Init device ...\r\n"));
 
-    pDisk->d_MMCState = MMC_STATE_IDLE;
+    pDisk->d_MMCState = MMC_STATE_IDLE;         // current state of MMC card
 
-    pDisk->d_DiskCardState = STATE_INITING;
-
+    pDisk->d_DiskCardState = STATE_INITING;     // current state of drive 
+    
     if (MMCInitDisk(pDisk))
     {
         OALMSG(OAL_ERROR, (L"SDCardInit: MMCInitDisk failed!\r\n"));
@@ -1319,17 +1320,15 @@ int SDCardReadSector(DISK *pDisk, UINT32 LogicalSector, void *pSector)
     DWORD Status;
     
     OALMSGX(OAL_FUNC, (L"SDCardReadSector %d\r\n", LogicalSector));
-
-    do
-    {
+    
+    do {
         Status = MMCRead(pDisk, LogicalSector, pSector);
         if (Status != MMCREAD_SUCCESS)
         {
             if (retry > 0)
                 OALMSG(OAL_ERROR, (L"SDCardReadSector: Error reading file, retry (sector %d)\r\n", LogicalSector));
         }
-    } 
-    while (Status != MMCREAD_SUCCESS && retry--);
+    } while (Status != MMCREAD_SUCCESS && retry--);
     
     if (Status != MMCREAD_SUCCESS)
     {
@@ -1346,21 +1345,19 @@ int SDCardReadSector(DISK *pDisk, UINT32 LogicalSector, void *pSector)
  */
 int SDCardReadMultiSectors(void *pDisk, UINT32 LogicalSector, void *pBuffer, UINT16 numSectors)
 {
-    int retry = 0;      //allow 3 attempts to read sector correctly
+    int   retry = 0;      //allow 3 attempts to read sector correctly
     DWORD Status;
     
     OALMSGX(OAL_FUNC, (L"SDCardReadMultiSectors %d, num sec %d\r\n", LogicalSector, numSectors));
 
-    do
-    {
+    do {
         Status = MMCReadMultiSectors((DISK *)pDisk, LogicalSector, pBuffer, numSectors);
         if (Status != MMCREAD_SUCCESS)
         {
             if (retry > 0)
                 OALMSG(OAL_ERROR, (L"SDCardReadMultiSectors: Error reading file, retry (sector %d)\r\n", LogicalSector));
         }
-    } 
-    while (Status != MMCREAD_SUCCESS && retry--);
+    } while (Status != MMCREAD_SUCCESS && retry--);
     
     if (Status != MMCREAD_SUCCESS)
     {
@@ -1456,19 +1453,14 @@ BLSDCardReadData(
 //  This function is called to read the splaschreen bitmap from SDCard
 //
 //
-BOOL
-BLSDCardReadLogo(
-    WCHAR *filename,
-    UCHAR *pData,
-	DWORD size
-	)
+BOOL BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size)
 {
 	FILEHANDLE logoFile;
 	WORD	   wSignature = 0;
 	DWORD	   dwOffset = 0;
 	BYTE*	   pTmpBuf = NULL;
 	DWORD	   dwCursor = 0;
-	DWORD i;
+	DWORD       i;
 	
 	if (!bFileIoInit)
 	{
@@ -1644,3 +1636,109 @@ BOOL BLSDCardReadEbootData(WCHAR *filename, BYTE *pData, DWORD size)
 
 	return TRUE;
 }
+
+//------------------------------------------------------------------------------
+//
+//  Function:   SDCardUpdatingFW
+//
+BOOL SDCardUpdatingFW(WCHAR *filename, UCHAR *pData, DWORD size)
+{
+	FILEHANDLE  firmwareFile;
+	WORD        wSignature = 0;
+	DWORD	    dwOffset = 0;
+	BYTE*	    pTmpBuf = NULL;
+	DWORD	    dwCursor = 0;
+	DWORD       i;
+	
+	if(!bFileIoInit)
+	{
+        // set up data structure used by file system driver
+        fileio_ops.init         =   &SDCardInit;
+        fileio_ops.identify     =   &SDCardIdentify;
+        fileio_ops.read_sector  =   &SDCardReadSector;
+        fileio_ops.read_multi_sectors   =   &SDCardReadMultiSectors;
+        fileio_ops.drive_info   =   (PVOID)&Disk;	
+	
+	    // initialize file system driver (1)
+	    if( FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
+	    {
+            OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  fileio init failed\r\n"));
+			return FALSE;
+	    }
+	    bFileIoInit = TRUE;
+    }
+    
+    // fill in file name (8.3 format)
+    FileNameToDirEntry(filename, firmwareFile.name, firmwareFile.extension);
+    
+    // try to open file specified by pConfig->filename, return BL_ERROR on failure (2)
+	if( FileIoOpen( &fileio_ops, &firmwareFile) != FILEIO_STATUS_OK)    //it is not 0 failure
+	{
+        OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot open %s\r\n", filename));
+        return FALSE;
+	}
+    OALLog(L"!!FileIoOpen\r\n");    //~~
+    
+	// Read signature (3)
+	if( FileIoRead( &fileio_ops, &firmwareFile, (PVOID)&wSignature, sizeof(wSignature) ) != FILEIO_STATUS_OK)
+	{
+        OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file signature\r\n"));
+        return FALSE;  
+	}
+    OALLog(L"!!FileIoRead\r\n");    //~~
+	dwCursor += sizeof(wSignature);
+
+	/*if( wSignature != 0x4D42 )  
+    {
+        OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  Invalid file signature\r\n"));
+        return FALSE;
+	}*/
+    OALLog(L"!!wSignature\r\n");    //~~
+
+	// Read dummy data
+	pTmpBuf = (BYTE*)OALLocalAlloc(0, sizeof(DWORD));
+	for(i=0; i<2; i++)
+	{
+        if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
+        {
+            OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file header\r\n"));
+			OALLocalFree((HLOCAL)pTmpBuf);
+        	return FALSE;
+        }
+    }
+    OALLog(L"!!Read dummy data\r\n");   //~~
+    //OALLocalFree((HLOCAL)pTmpBuf);
+	dwCursor += 2*sizeof(DWORD);
+	
+	// Read data offset
+    if (FileIoRead(&fileio_ops, &firmwareFile, (PVOID)&dwOffset, sizeof(dwOffset)) != FILEIO_STATUS_OK)
+	{
+        OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read firmware data offset\r\n"));
+        return FALSE;
+	}
+    OALLog(L"!!Read data offset\r\n");  //~~
+	dwOffset = dwOffset / sizeof(DWORD);
+
+	// Read dummy data before pixel data offset
+	for(i=0; i<dwOffset; i++)
+	{
+        if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pTmpBuf, sizeof(DWORD)))
+        {
+        	OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file\r\n"));
+			OALLocalFree((HLOCAL)pTmpBuf);
+        	return FALSE;
+        }
+	}
+    OALLocalFree((HLOCAL)pTmpBuf);
+    OALLog(L"!!Read dummy data before pixel data offset\r\n");  //~~
+    // Read data
+    if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
+    {
+        OALLog(L"!!??\r\n");
+        OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file header\r\n"));
+        return FALSE;
+    }
+    OALLog(L"!!Read data\r\n"); //~~
+    return TRUE;	
+}
+

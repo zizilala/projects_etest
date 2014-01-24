@@ -29,7 +29,6 @@
 #define BSP_Z2170P 2170 
 
 //------------------------------------------------------------------------------
-
 static VOID SetMacAddress(OAL_BLMENU_ITEM *pMenu);
 static VOID ShowSettings(OAL_BLMENU_ITEM *pMenu);
 //static VOID ShowNetworkSettings(OAL_BLMENU_ITEM *pMenu);
@@ -41,8 +40,6 @@ static VOID SetRetailMsgMode(OAL_BLMENU_ITEM *pMenu);
 //static VOID SetDisplayResolution(OAL_BLMENU_ITEM *pMenu);
 static VOID SetOPPmode(OAL_BLMENU_ITEM *pMenu);
 //static VOID FunctionTest(OAL_BLMENU_ITEM *pMenu);     //Ray   131106
-
-
 
 #if BUILDING_EBOOT_SD
 static VOID ShowSDCardSettings(OAL_BLMENU_ITEM *pMenu);
@@ -59,10 +56,11 @@ extern BOOL LAN911XGetMacAddress(void* pAddr, UINT16 mac[3]);
 extern OAL_BLMENU_ITEM g_menuFlash[];
 //------------------------------------------------------------------------------
 
-//extern OAL_BLMENU_ITEM g_menuTest[];            //Ray   131106 
-extern OAL_BLMENU_ITEM g_menu2170PTest[];       //Ray   131115  
-extern OAL_BLMENU_ITEM g_menuZ2000Test[];     //Ray   131115 
-
+//extern OAL_BLMENU_ITEM g_menuTest[];              //Ray   131106 
+extern OAL_BLMENU_ITEM g_menu2170PTest[];           //Ray   131115  
+extern OAL_BLMENU_ITEM g_menuZ2000Test[];           //Ray   131115 
+//VOID UpdatingGauge(OAL_BLMENU_ITEM *pMenu);       //Ray   140121 , doesnot need use extern.   
+VOID UpdatingGaugeFW(OAL_BLMENU_ITEM *pMenu);       //Ray   140124
 
 //------------------------------------------------------------------------------
 /*
@@ -216,18 +214,20 @@ static OAL_MENU_ITEM_TEST g_menuBoardTest[] ={
         L'2', L"Z2170P Device", OALBLMenuShow,
         L"Z2170P E-Test Management", &g_menu2170PTest, BSP_Z2170P
     }, {
+        L'3', L"Updating Fuel Gauge Firmware", UpdatingGaugeFW,
+        NULL, NULL, 0
+    }, /*{
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, 0
-    }, {
+    },*/ {
         0, NULL, NULL,
         NULL, NULL, 0
-    }
-   
+    }  
 };
 
 static OAL_BLMENU_ITEM g_menuBoard = {
     0, NULL, OALBLMenuShow,
-    L"Zebex for e-test V1.0.0", g_menuBoardTest, NULL
+    L"Zebex for e-test V0.0.1", g_menuBoardTest, NULL
 };
 
 #define DEFINE_LOGO g_menuBoardTest->pParam3    //DEFINE_LOGO are has Value 
@@ -651,7 +651,6 @@ VOID SetOPPmode(OAL_BLMENU_ITEM *pMenu)
 {
     
 }*/
-
 //------------------------------------------------------------------------------
 
 VOID SaveSettings(OAL_BLMENU_ITEM *pMenu)

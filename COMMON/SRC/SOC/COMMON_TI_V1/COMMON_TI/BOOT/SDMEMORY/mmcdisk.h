@@ -58,18 +58,18 @@ extern "C" {
 // Structure to keep track of a disk
 //
 typedef struct _DISK {
-    struct _DISK * d_next;
-    DWORD Interface;                // selects which MMC interface this drive is connected to
-    //CRITICAL_SECTION d_DiskCardCrit;// guard access to global state and card
-    DWORD d_DiskCardState;          // current state of drive
-    DWORD d_MMCState;               // current state of MMC card
-    DWORD d_CardType;               // type of card
-    DWORD d_RelAddress;             // card relative address
-    DISK_INFO d_DiskInfo;           // for DISK_IOCTL_GET/SETINFOs
-    DWORD MaxClkFreq;               // Maximum clock frequency for interface
+    struct _DISK *d_next;
+    DWORD Interface;                    // selects which MMC interface this drive is connected to
+    //CRITICAL_SECTION d_DiskCardCrit;  // guard access to global state and card
+    DWORD d_DiskCardState;              // current state of drive
+    DWORD d_MMCState;                   // current state of MMC card
+    DWORD d_CardType;                   // type of card
+    DWORD d_RelAddress;                 // card relative address
+    DISK_INFO d_DiskInfo;               // for DISK_IOCTL_GET/SETINFOs
+    DWORD MaxClkFreq;                   // Maximum clock frequency for interface
     //DWORD d_OpenCount;                // open ref count
-    //LPWSTR d_ActivePath;          // Active key registry path
-    //DWORD d_Flags;                    // Misc flags for device
+    //LPWSTR d_ActivePath;              // Active key registry path
+    //DWORD d_Flags                     // Misc flags for device
     BOOL d_Supports4Bit;
 } DISK, * PDISK; 
 

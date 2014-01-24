@@ -769,13 +769,13 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     
     I2C_START(hGPIO_I2C);
     I2C_STOP(hGPIO_I2C);
-    gaugeInformation(hGPIO_I2C,  0x00);
+    gaugeInformation(hGPIO_I2C,  0x00);                 //This opreating means clean register
     data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
     /*I2C_START(hGPIO_I2C);
     I2C_STOP(hGPIO_I2C);
     gaugeInformation(hGPIO_I2C,  0x00);*/
     data.Voltage =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_VOLT_LSB);
-    gaugeInformation(hGPIO_I2C,  0x00);        //This opreating means clean register
+    gaugeInformation(hGPIO_I2C,  0x00);        
     //data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
     //gaugeInformation(hGPIO_I2C,  0x00);
     

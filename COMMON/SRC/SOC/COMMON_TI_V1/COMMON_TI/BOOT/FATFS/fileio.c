@@ -159,11 +159,12 @@ static BOOL ByteIsPowerOfTwo(UINT8 b)
  *
  *  RETURNS: 0 on success, error code on failure
  *
- */
+ */   //in FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)
 static int FileIoReadNextSectors (S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile, void * pBuffer, UINT16 numSectors) 
 {
     UINT32 SectorNumber;
     UINT16 FatOffsetInSector, FatSectorNumber;
+    
     #if BOOTLOADER_SUPPORTS_FAT12
         UINT16 FatOffsetInByte;
     #endif
@@ -172,16 +173,20 @@ static int FileIoReadNextSectors (S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHAND
 
     if (numSectors == 0)
         return FILEIO_STATUS_OK;  // done by default
-
+        
+    OALLog(L"~~FileIoReadNextSectors1\r\n");    //~~
+    
     // check if is this an attempt to read past the end of the file
     if (pFile->current_sector_in_cluster == CURRENT_SECTOR_EOF_VALUE)
     {
+        OALLog(L"~~pFile-> %d\r\n", pFile->current_sector_in_cluster);  //~~
         #if BOOTLOADER_DEBUG_DISPLAY_CALLS
             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoReadNextSectors EOF\r\n"));
         #endif
         return FILEIO_STATUS_READ_EOF;
     }
-        
+    OALLog(L"~~FileIoReadNextSectors2\r\n");    //~~
+
     // check for invalid current_cluster
     switch (FilesysInfo.FatType)
     {
@@ -906,15 +911,16 @@ NoPartitionTable:
 int FileIoOpen(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile) 
 {
     UINT32 sector_number = 0;
-    int status;
-    int entry;
-    int i;
+    int    status;
+    int    entry;
+    int    i;
     UINT16 DirEntryCount = 0;
     void * pSector = &pFile->buffer;
 
+    OALLog(L"~~Entry switch\r\n");                //~~
     switch (FilesysInfo.FatType)
-    {
-        #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
+    {     
+       #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
         case FAT_TYPE_FAT12:
         case FAT_TYPE_FAT16:
             // starting sector of directory
@@ -928,36 +934,44 @@ int FileIoOpen(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile)
                 #endif
                 return FILEIO_STATUS_OPEN_FAILED;
             }
-
+            OALLog(L"~~BOOTLOADER_SUPPORTS_FAT16\r\n");   //~~
             break;
         #endif
-
+        
         #if BOOTLOADER_SUPPORTS_FAT32
-        case FAT_TYPE_FAT32:
+        case FAT_TYPE_FAT32:        //--OK
+            OALLog(L"~~FilesysInfo.FatType1:%d\r\n", FilesysInfo.FatType);    //~~
             // setup to read first directory sector
             pFile->current_cluster = FilesysInfo.root_directory_start;
             pFile->current_sector_in_cluster = 0;
-            pFile->current_sector = 0;
+            pFile->current_sector  = 0;
             pFile->bytes_in_buffer = 0;
 
             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)) != FILEIO_STATUS_OK)
                 return FILEIO_STATUS_OPEN_FAILED;
-            
+                
+            OALLog(L"~~BOOTLOADER_SUPPORTS_FAT32\r\n");   //~~
             break;
         #endif
+        
     }
-
+    
+    OALLog(L"~~Entry for\r\n");         //????
     // scan the entire root directory looking for the file
     for ( ; ; )
     {
         // check each directory entry in the sector
-        #if BOOTLOADER_SUPPORTS_FAT32
-        for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && (FilesysInfo.FatType == FAT_TYPE_FAT32 ? 1 : (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries)); entry++)
+        #if BOOTLOADER_SUPPORTS_FAT32       //--OK
+            OALLog(L"~~Entry #if\r\n");     //~~
+            for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && 
+                        (FilesysInfo.FatType == FAT_TYPE_FAT32 ? 1 : (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries));
+                entry++)              //~~
         #else
-        for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries); entry++)
+            OALLog(L"~~Entry #else\r\n");     //~~
+            for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries); entry++)
         #endif      
         {
-            UINT8 * pName = (((DIRECTORY_ENTRY *)pSector) + entry)->filename;
+            UINT8 *pName   = (((DIRECTORY_ENTRY *)pSector) + entry)->filename;
             UINT8 Attribute = (((DIRECTORY_ENTRY *)pSector) + entry)->attribute;
             
             // bump count of total directory entries scanned
@@ -984,6 +998,7 @@ int FileIoOpen(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile)
                 if ((((DIRECTORY_ENTRY *)pSector) + entry)->filename[i] != pFile->name[i])
                     break;
             }
+            
             if (i == 8)
             {
                 // compare extension
@@ -992,40 +1007,47 @@ int FileIoOpen(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile)
                     if ((((DIRECTORY_ENTRY *)pSector) + entry)->extension[i] != pFile->extension[i])
                         break;
                 }
+                
                 if (i == 3) 
                 {
                     // save starting cluster information
                     
                     #if BOOTLOADER_SUPPORTS_FAT32
+                        OALLog(L"~~BOOTLOADER_SUPPORTS_FAT32\r\n");   //~~
                     if (FilesysInfo.FatType == FAT_TYPE_FAT32)
                         pFile->current_cluster = ((UINT32)((((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster)) | (((UINT32)((((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster_high)) << 16);
                     else
                     #endif
                         pFile->current_cluster = (((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster;
-                    pFile->current_sector_in_cluster = 0;
-                    pFile->file_size = (((DIRECTORY_ENTRY *)pSector) + entry)->file_size;
-                    // initialize other stuff in File handle
-                    pFile->current_sector = 0;
-                    pFile->bytes_in_buffer = 0;
+                        pFile->current_sector_in_cluster = 0;
+                        pFile->file_size = (((DIRECTORY_ENTRY *)pSector) + entry)->file_size;
+                        // initialize other stuff in File handle
+                        pFile->current_sector = 0;
+                        pFile->bytes_in_buffer = 0;
+                        
                     #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
+                        OALLog(L"~~BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES\r\n");    //~~
                         OALMSG(OAL_INFO, (L"Found file, starting cluster = %x, file size = %X\r\n", pFile->current_cluster, pFile->file_size));
                     #endif
-                    return FILEIO_STATUS_OK;
+                    return FILEIO_STATUS_OK;        //success
                 }
             }
             #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
                 OALMSG(OAL_INFO, (L"\r\n"));
             #endif
-        }                
-
+        }    
+        
+        OALLog(L"~~Entry switch2\r\n");     //~~
         switch (FilesysInfo.FatType)
         {
+            
             #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
             case FAT_TYPE_FAT12:
             case FAT_TYPE_FAT16:
                 // point to next sector
                 sector_number++;
-
+                
+                OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~1\r\n");    //~~
                 #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
                     OALMSG(OAL_INFO, (L"Next directory sector %d, file data area start %d\r\n", sector_number, FilesysInfo.file_data_area_start));
                 #endif
@@ -1033,7 +1055,7 @@ int FileIoOpen(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile)
                 // check for end of directory
                 if (sector_number >= FilesysInfo.file_data_area_start)
                     return FILEIO_STATUS_OPEN_FAILED;
-
+                OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~2\r\n");    //~~
                 // read next directory sector
                 if ((status = pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector, pSector)) != ATA_STATUS_OK)
                 {
@@ -1042,16 +1064,20 @@ int FileIoOpen(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile)
                     #endif
                     return FILEIO_STATUS_OPEN_FAILED;
                 }
-
+                OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~3\r\n");    //~~
                 break;
             #endif
 
             #if BOOTLOADER_SUPPORTS_FAT32
-            case FAT_TYPE_FAT32:
-                // try to read the next directory sector
-                if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)) != FILEIO_STATUS_OK)
+            case FAT_TYPE_FAT32:        //~~ok
+                OALLog(L"~~FilesysInfo.FatType1:%d\r\n", FilesysInfo.FatType);      //~~
+                OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT32~1\r\n");    //~~
+                // try to read the next directory sector, trouble
+                if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)) != FILEIO_STATUS_OK){
+                    OALLog(L"~~status: %d\r\n", status);        //~~
                     return FILEIO_STATUS_OPEN_FAILED;
-
+                }
+                OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT32~2\r\n");    //~~
                 break;
             #endif
         }
@@ -1079,7 +1105,10 @@ int FileIoRead(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile, UINT8 * p
     UINT8 * s;
 
     UINT32 numSectorsToRead = 0;
-            
+    static int i = 1;
+    
+    OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
+    i++;
     while (Count)
     {
         // create pointer to start of valid data in buffer

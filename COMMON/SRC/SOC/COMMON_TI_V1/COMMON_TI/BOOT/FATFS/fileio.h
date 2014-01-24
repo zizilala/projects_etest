@@ -36,7 +36,7 @@ typedef struct _FILEHANDLE {
     UINT32 current_sector;             // sector count
     UINT32 current_cluster;
     UINT16 current_sector_in_cluster;  // next sector in cluster to read
-    int bytes_in_buffer;
+    int    bytes_in_buffer;
     UINT8  buffer[SECTOR_SIZE];
 } FILEHANDLE, * PFILEHANDLE;
 
@@ -47,31 +47,31 @@ typedef struct _FILEHANDLE {
 // these function pointers to access the block device.
 // Note that the implementation of these functions is custom for each device.
 typedef struct fileio_operations_t {
-    // Pointer to an initialization function for the block device.  Function
-    // takes a pointer to a data structure that describes the device.  
+    // "Pointer to an initialization function for the block device."  
+    // Function takes a pointer to a data structure that describes the device.  
     // This function should initialize the device, making it ready for read
     // access.
     int (*init)(void *drive_info);
 
-    // Pointer to a diagnostic function that can return information about the
-    // block device.  This function takes a pointer to the device information
+    // "Pointer to a diagnostic function that can return information about the
+    // block device."  This function takes a pointer to the device information
     // data structure, and a pointer to a user buffer with size equal to the 
     // sector size.  Note that the use of the user buffer is not specified.  
     // NOTE - This diagnostic function may not be called by all versions of 
     // the fileio library.
     int (*identify)(void *drive_info, void *Sector);
 
-    // Pointer to a function that reads the specified logical sector into
-    // the provided sector buffer.  Function also takes a pointer to the 
+    // "Pointer to a function that reads the specified logical sector into
+    // the provided sector buffer."  Function also takes a pointer to the 
     // device specific information data structure.
     int (*read_sector)(void *drive_info, UINT32 LogicalSector, void *pSector);
 
-    // Pointer to a function that reads the specified logical sector into
-    // the provided sector buffer.  Function also takes a pointer to the 
+    // "Pointer to a function that reads the specified logical sector into
+    // the provided sector buffer."  Function also takes a pointer to the 
     // device specific information data structure.
     int (*read_multi_sectors)(void *drive_info, UINT32 LogicalSector, void *pBuffer, UINT16 numSectors);
 
-    // Pointer to a device specific data structure.  This data structure 
+    // "Pointer to a device specific data structure."  This data structure 
     // must contain whatever information is needed by other device specific
     // functions.  The device information data structure must be initialized 
     // with the correct values, and this pointer must be initialized to the 

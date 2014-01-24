@@ -165,7 +165,7 @@ BOOL OEMPlatformInit()
 	/*OALMSG(TRUE, (L"Bootstrap messages\r\n"));    //e-test comment, Ray 
     OALMSG(TRUE,(L"ZEBEX E-TEST for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ ));*/    
     //OALLog(L"ZEBEX Windows CE EBOOT for Z-2170P - Ray\r\nBuilt %S at %S\r\n", __DATE__, __TIME__ );  
-    OALLog(L"ZEBEX ZEBEX ZEBEX ZEBEX ZEBEX\n");  
+    //OALLog(L"ZEBEX~~~~~~~~~~~~~~~~~~~~X\n");  
 /*#if BUILDING_EBOOT_SD           //Bootstrap message(2), Ray
     //OALLog(L"Version: " BSP_EBLD_SD_VERSION_STRING L"\r\n");  //e-test comment, Ray 
     OALLog(L"Version: " BSP_ETEST_SD_VERSION_STRING L"\r\n");

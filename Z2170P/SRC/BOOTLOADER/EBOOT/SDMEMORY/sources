@@ -46,11 +46,11 @@ SOURCES= \
     ..\stub.c \
     ..\flashmenu.c \
     ..\mmu.c \
-	..\functionTest.c \
+    ..\functionTest.c \
+	..\updatingFirmware.c \
     flash.c \
     cfg.c \
 
-    
 ARM_SOURCES= \
     ..\startup.s \
     ..\jumpto.s \
@@ -69,7 +69,7 @@ TARGETLIBS= \
     $(_TILIBS)\$(TI_COMMON)_oal_alloc.lib                                       \
     $(_TILIBS)\$(TI_COMMON)_debugserial.lib                                     \
     $(_TILIBS)\$(TI_COMMON)_oali2c.lib                                          \
-    $(_TILIBS)\$(OMAP3530)_oalcpuver.lib                                          \
+    $(_TILIBS)\$(OMAP3530)_oalcpuver.lib                                       	\
     $(_TILIBS)\$(TI_COMMON)_devicesmap.lib                                      \
     $(_TILIBS)\$(TI_COMMON)_boot_fatfs.lib                                      \
     $(_TILIBS)\$(TI_COMMON)_boot_sdmemory.lib                                   \
@@ -95,8 +95,9 @@ TARGETLIBS= \
     $(_EBOOTLIBS)\$(_CPUDEPPATH)\eboot.lib                                      \
     $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_ethdrv_usbfn.lib                  \
     $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_display.lib                            \
-    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_display_init.lib
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_display_init.lib						\
 
+		
 FILE_VIEW_INCLUDES_FOLDER= \
     boot_cfg.h \
     makefile.inc \

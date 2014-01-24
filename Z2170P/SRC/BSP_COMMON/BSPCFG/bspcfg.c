@@ -112,10 +112,12 @@ DWORD BSPGetNandIrqWait()
 {
     return BSP_GPMC_IRQ_WAIT_EDGE;
 }
+
 DWORD BSPGetNandCS()
 {
     return BSP_GPMC_NAND_CS;
 }
+
 const NAND_INFO* BSPGetNandInfo(DWORD manufacturer,DWORD device)
 {
     int i;    
@@ -123,8 +125,9 @@ const NAND_INFO* BSPGetNandInfo(DWORD manufacturer,DWORD device)
     {
         if ((SupportedNands[i].manufacturerId == manufacturer) && (SupportedNands[i].deviceId == device))
         {
-        	RETAILMSG(1,(TEXT("NAND manufacturer ID: 0x%x  device ID: 0x%x\r\n"),manufacturer,device));
-            return &SupportedNands[i];
+        	//RETAILMSG(1,(TEXT("NAND manufacturer ID: 0x%x  device ID: 0x%x\r\n"),manufacturer,device));
+            //OALLog(L"XXX\r\n");
+            return &SupportedNands[i];            
         }
     }
     RETAILMSG(1,(TEXT("NAND manufacturer %x device %x : no matching device found\r\n"),manufacturer,device));    

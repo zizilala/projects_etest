@@ -29,6 +29,7 @@
 #include "twl.h"
 #include "triton.h"
 #include "tps659xx_internals.h"
+
 //------------------------------------------------------------------------------
 //
 // prototypes
@@ -49,6 +50,7 @@ BOOL FillASCII(BYTE showCharMode[][15]);    //Ray 131105
 BOOL BLShowLogo(void);
 VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 //BOOL KeypadMatrixStatus(int row, int col);
+
 
 
 //------------------------------------------------------------------------------
@@ -1185,9 +1187,9 @@ BOOL ShowSDLogo()
         {
             return FALSE;
         }
-#else
+#else       //1.file name, 2. address, 3. data size 
         if (!BLSDCardReadLogo(L"LOGO_VER.bmp", (UCHAR*)framebuffer, dwLength))  //Ray 131115
-        {
+        { 
             return FALSE;
         }
 #endif

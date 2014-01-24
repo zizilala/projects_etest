@@ -408,7 +408,7 @@ HANDLE NAND_Initialize( LPCTSTR szContext,
     if((pDevice->ECCtype > BCH8bit) || (pDevice->ECCtype < Hamming1bit))
     	{
             pDevice->ECCtype = Hamming1bit;
-            RETAILMSG(TRUE, (L"Incorrect ECC type setting\r\n"));			
+            //RETAILMSG(TRUE, (L"Incorrect ECC type setting\r\n"));             //e-test comment, Ray
     	}
 #else    
     if (szContext != NULL)
@@ -900,21 +900,18 @@ WaitForReadyStatus(
 //
 //  This function is called to initialize flash subsystem.
 //
-VOID*
-FMD_Init(
-    LPCTSTR szContext,
-    PCI_REG_INFO *pRegIn,
-    PCI_REG_INFO *pRegOut
-    )
+VOID* FMD_Init (LPCTSTR szContext,
+                PCI_REG_INFO *pRegIn,
+                PCI_REG_INFO *pRegOut)
 {
     HANDLE hRet = NULL;
 
     // Map NAND registers
     s_hNand = NAND_Initialize(szContext, pRegIn, pRegOut);
     if (s_hNand == NULL)
-        {
+    {
         goto cleanUp;
-        }
+    }
         
     // We are done
     hRet = s_hNand;

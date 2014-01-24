@@ -118,6 +118,8 @@ BOOL   BLSDCardReadLogo(WCHAR *filename, UCHAR *pData, DWORD size);
 BOOL   BLSDCardReadEbootData(WCHAR *filename, BYTE *pData, DWORD size);
 //UINT32 BLVAtoPA(UINT32 address);
 
+BOOL   SDCardUpdatingFW(WCHAR *filename, UCHAR *pData, DWORD size);    //Ray 140122, Read SD card update firmware 
+
 UINT32 OALStringToUINT32(LPCWSTR psz);
 
 //------------------------------------------------------------------------------
