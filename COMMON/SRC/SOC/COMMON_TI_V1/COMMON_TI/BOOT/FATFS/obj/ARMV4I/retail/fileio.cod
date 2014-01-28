@@ -83,7 +83,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\boot\fatfs\fileio.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43565| DCD	|$LN5@BpbCopy|
+|$T43551| DCD	|$LN5@BpbCopy|
 	DCD	0x40005c01
 ; Function compile flags: /Ogspy
 
@@ -95,7 +95,7 @@
 
   00000		 |$LN5@BpbCopy|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M43562|
+  00004		 |$M43548|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -250,13 +250,13 @@
 
   00168	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0016c	e12fff1e	 bx          lr
-  00170		 |$M43563|
+  00170		 |$M43549|
 
 			 ENDP  ; |BpbCopy|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43577| DCD	|$LN7@ByteIsPowe|
+|$T43563| DCD	|$LN7@ByteIsPowe|
 	DCD	0x40001400
 ; Function compile flags: /Ogspy
 
@@ -267,7 +267,7 @@
 ; 145  : {
 
   00000		 |$LN7@ByteIsPowe|
-  00000		 |$M43574|
+  00000		 |$M43560|
 
 ; 146  :     return ( b == 1 || b == 2 || b == 4 || b == 8 || b == 16 || b == 32 || b == 64 || b == 128 || b == 256 );
 
@@ -301,14 +301,10 @@
 ; 147  : }
 
   0004c	e12fff1e	 bx          lr
-  00050		 |$M43575|
+  00050		 |$M43561|
 
 			 ENDP  ; |ByteIsPowerOfTwo|
 
-	EXPORT	|??_C@_1DG@COMCKACJ@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAI?$AAo?$AAR?$AAe?$AAa?$AAd?$AAN?$AAe?$AAx?$AAt?$AAS?$AAe?$AAc?$AAt?$AAo?$AAr?$AAs?$AA2?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BO@KDEMCBKP@?$AA?$HO?$AA?$HO?$AAp?$AAF?$AAi?$AAl?$AAe?$AA?9?$AA?$DO?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DG@KAENKHMK@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAI?$AAo?$AAR?$AAe?$AAa?$AAd?$AAN?$AAe?$AAx?$AAt?$AAS?$AAe?$AAc?$AAt?$AAo?$AAr?$AAs?$AA1?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	IMPORT	|NKDbgPrintfW|
 
   00004			 AREA	 |.bss|, NOINIT
 |FilesysInfo| %	0x48
@@ -316,829 +312,785 @@
 |FatBuffer| %	0x200
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43610| DCD	|$LN59@FileIoRead|
-	DCD	0x40010602
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DG@COMCKACJ@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAI?$AAo?$AAR?$AAe?$AAa?$AAd?$AAN?$AAe?$AAx?$AAt?$AAS?$AAe?$AAc?$AAt?$AAo?$AAr?$AAs?$AA2?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "F", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "I"
-	DCB	0x0, "o", 0x0, "R", 0x0, "e", 0x0, "a", 0x0, "d", 0x0, "N"
-	DCB	0x0, "e", 0x0, "x", 0x0, "t", 0x0, "S", 0x0, "e", 0x0, "c"
-	DCB	0x0, "t", 0x0, "o", 0x0, "r", 0x0, "s", 0x0, "2", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@KDEMCBKP@?$AA?$HO?$AA?$HO?$AAp?$AAF?$AAi?$AAl?$AAe?$AA?9?$AA?$DO?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "p", 0x0, "F", 0x0, "i", 0x0, "l", 0x0, "e"
-	DCB	0x0, "-", 0x0, ">", 0x0, " ", 0x0, "%", 0x0, "d", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DG@KAENKHMK@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAI?$AAo?$AAR?$AAe?$AAa?$AAd?$AAN?$AAe?$AAx?$AAt?$AAS?$AAe?$AAc?$AAt?$AAo?$AAr?$AAs?$AA1?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "F", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "I"
-	DCB	0x0, "o", 0x0, "R", 0x0, "e", 0x0, "a", 0x0, "d", 0x0, "N"
-	DCB	0x0, "e", 0x0, "x", 0x0, "t", 0x0, "S", 0x0, "e", 0x0, "c"
-	DCB	0x0, "t", 0x0, "o", 0x0, "r", 0x0, "s", 0x0, "1", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
+|$T43596| DCD	|$LN59@FileIoRead|
+	DCD	0x4000fa02
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |FileIoReadNextSectors| PROC
 
-; 164  : {
+; 167  : {
 
   00000		 |$LN59@FileIoRead|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M43607|
+  00008		 |$M43593|
   00008	e1cd30b0	 strh        r3, [sp]
   0000c	e58d2008	 str         r2, [sp, #8]
   00010	e1a05001	 mov         r5, r1
   00014	e1a0a000	 mov         r10, r0
 
-; 165  :     UINT32 SectorNumber;
-; 166  :     UINT16 FatOffsetInSector, FatSectorNumber;
-; 167  :     
-; 168  :     #if BOOTLOADER_SUPPORTS_FAT12
-; 169  :         UINT16 FatOffsetInByte;
-; 170  :     #endif
-; 171  : 
-; 172  :     int status;
-; 173  : 
-; 174  :     if (numSectors == 0)
+; 168  :     UINT32 SectorNumber;           
+; 169  :     UINT16 FatOffsetInSector, FatSectorNumber;
+; 170  :     
+; 171  :     #if BOOTLOADER_SUPPORTS_FAT12
+; 172  :         UINT16 FatOffsetInByte;
+; 173  :     #endif
+; 174  : 
+; 175  :     int status;
+; 176  : 
+; 177  :     if (numSectors == 0)
 
-  00018	e1b04003	 movs        r4, r3
-  0001c	e58d4014	 str         r4, [sp, #0x14]
+  00018	e1b00003	 movs        r0, r3
+  0001c	e58d0014	 str         r0, [sp, #0x14]
 
-; 175  :         return FILEIO_STATUS_OK;  // done by default
+; 178  :         return FILEIO_STATUS_OK;  // done by default
 
   00020	03a00000	 moveq       r0, #0
-  00024	0a000023	 beq         |$LN45@FileIoRead|
-
-; 176  :         
-; 177  :     OALLog(L"~~FileIoReadNextSectors1\r\n");    //~~
-
-  00028	e59f03e4	 ldr         r0, [pc, #0x3E4]
-  0002c	eb000000	 bl          NKDbgPrintfW
-
-; 178  :     
-; 179  :     // check if is this an attempt to read past the end of the file
-; 180  :     if (pFile->current_sector_in_cluster == CURRENT_SECTOR_EOF_VALUE)
-
-  00030	e1d531bc	 ldrh        r3, [r5, #0x1C]
-  00034	e3a02cff	 mov         r2, #0xFF, 24
-  00038	e38270ff	 orr         r7, r2, #0xFF
-  0003c	e1530007	 cmp         r3, r7
-  00040	1a000004	 bne         |$LN43@FileIoRead|
-
-; 181  :     {
-; 182  :         OALLog(L"~~pFile-> %d\r\n", pFile->current_sector_in_cluster);  //~~
-
-  00044	e59f03c4	 ldr         r0, [pc, #0x3C4]
-  00048	e1a01007	 mov         r1, r7
-  0004c	eb000000	 bl          NKDbgPrintfW
-
-; 183  :         #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 184  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoReadNextSectors EOF\r\n"));
-; 185  :         #endif
-; 186  :         return FILEIO_STATUS_READ_EOF;
-
-  00050	e3a00004	 mov         r0, #4
-  00054	ea000017	 b           |$LN45@FileIoRead|
-  00058		 |$LN43@FileIoRead|
-
-; 187  :     }
-; 188  :     OALLog(L"~~FileIoReadNextSectors2\r\n");    //~~
-
-  00058	e59f03ac	 ldr         r0, [pc, #0x3AC]
-  0005c	eb000000	 bl          NKDbgPrintfW
-
-; 189  : 
-; 190  :     // check for invalid current_cluster
-; 191  :     switch (FilesysInfo.FatType)
-
-  00060	e3a03cff	 mov         r3, #0xFF, 24
-  00064	e59f639c	 ldr         r6, [pc, #0x39C]
-  00068	e38390f8	 orr         r9, r3, #0xF8
-  0006c	e3a03c0f	 mov         r3, #0xF, 24
-  00070	e383b0f8	 orr         r11, r3, #0xF8
-  00074	e5963044	 ldr         r3, [r6, #0x44]
-  00078	e3530001	 cmp         r3, #1
-  0007c	0a000019	 beq         |$LN40@FileIoRead|
-  00080	e3530002	 cmp         r3, #2
-  00084	0a00000e	 beq         |$LN37@FileIoRead|
-  00088	e3530003	 cmp         r3, #3
-  0008c	1a00001e	 bne         |$LN39@FileIoRead|
-
-; 204  :             break;
-; 205  :         #endif
-; 206  : 
-; 207  :         #if BOOTLOADER_SUPPORTS_FAT32
-; 208  :         case FAT_TYPE_FAT32:
-; 209  :             if (pFile->current_cluster < FAT32_CLUSTER_NEXT_START || (pFile->current_cluster > FAT32_CLUSTER_NEXT_END && pFile->current_cluster < FAT32_CLUSTER_LAST_START))
-
-  00090	e5952018	 ldr         r2, [r5, #0x18]
-  00094	e3520001	 cmp         r2, #1
-  00098	3a000005	 bcc         |$LN38@FileIoRead|
-  0009c	e3e0320f	 mvn         r3, #0xF, 4
-  000a0	e2233010	 eor         r3, r3, #0x10
-  000a4	e1520003	 cmp         r2, r3
-  000a8	9a000017	 bls         |$LN39@FileIoRead|
-  000ac	e372028f	 cmn         r2, #0x8F, 4
-  000b0		 |$LN53@FileIoRead|
-
-; 210  :             {
-; 211  :                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 212  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoReadNextSectors failed, invalide current_cluster 0x%x\r\n", pFile->current_cluster));
-; 213  :                 #endif
-; 214  :                 return FILEIO_STATUS_READ_FAILED;
-; 215  :             }
-; 216  :             break;
-
-  000b0	2a000015	 bcs         |$LN39@FileIoRead|
-  000b4		 |$LN38@FileIoRead|
-
-; 196  :                 return FILEIO_STATUS_READ_FAILED;
-
-  000b4	e3a00003	 mov         r0, #3
-  000b8		 |$LN45@FileIoRead|
-
-; 517  : } // FileIoReadNextSectors  
-
-  000b8	e28dd018	 add         sp, sp, #0x18
-  000bc	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  000c0	e12fff1e	 bx          lr
-  000c4		 |$LN37@FileIoRead|
-
-; 197  :             break;
-; 198  :         #endif
-; 199  : 
-; 200  :         #if BOOTLOADER_SUPPORTS_FAT16
-; 201  :         case FAT_TYPE_FAT16:
-; 202  :             if (pFile->current_cluster < FAT16_CLUSTER_NEXT_START || (pFile->current_cluster > FAT16_CLUSTER_NEXT_END && pFile->current_cluster < FAT16_CLUSTER_LAST_START))
-
-  000c4	e5952018	 ldr         r2, [r5, #0x18]
-  000c8	e3520001	 cmp         r2, #1
-  000cc	3afffff8	 bcc         |$LN38@FileIoRead|
-  000d0	e3a03cff	 mov         r3, #0xFF, 24
-  000d4	e38330ef	 orr         r3, r3, #0xEF
-  000d8	e1520003	 cmp         r2, r3
-  000dc	9a00000a	 bls         |$LN39@FileIoRead|
-  000e0	e1520009	 cmp         r2, r9
-
-; 203  :                 return FILEIO_STATUS_READ_FAILED;
-
-  000e4	eafffff1	 b           |$LN53@FileIoRead|
-  000e8		 |$LN40@FileIoRead|
-
-; 192  :     {
-; 193  :         #if BOOTLOADER_SUPPORTS_FAT12
-; 194  :         case FAT_TYPE_FAT12:
-; 195  :             if (pFile->current_cluster < FAT12_CLUSTER_NEXT_START || (pFile->current_cluster > FAT12_CLUSTER_NEXT_END && pFile->current_cluster < FAT12_CLUSTER_LAST_START))
-
-  000e8	e5952018	 ldr         r2, [r5, #0x18]
-  000ec	e3520001	 cmp         r2, #1
-  000f0	3affffef	 bcc         |$LN38@FileIoRead|
-  000f4	e3a03c0f	 mov         r3, #0xF, 24
-  000f8	e38330ef	 orr         r3, r3, #0xEF
-  000fc	e1520003	 cmp         r2, r3
-  00100	9a000001	 bls         |$LN39@FileIoRead|
-  00104	e152000b	 cmp         r2, r11
-  00108	3affffe9	 bcc         |$LN38@FileIoRead|
-  0010c		 |$LN39@FileIoRead|
-
-; 217  :         #endif
-; 218  :     }
-; 219  : 
-; 220  :     // calculate the sector number, used to read sector later
-; 221  :     // file data area starting sector
-; 222  :     SectorNumber = FilesysInfo.file_data_area_start;
-; 223  :     // plus first sector of current cluster 
-; 224  :     // Note: first 2 fat entries are reserved, making first cluster in file area = 2
-; 225  :     // ??? The reserved fat entry stuff is poorly documented, this code may be wrong
-; 226  :     #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 227  :         if (pFile->current_cluster < 2)
-; 228  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoReadNextSectors() called with current_cluster < 2!\r\n"));
-; 229  :     #endif
-; 230  :     SectorNumber += (pFile->current_cluster - 2) * (FilesysInfo.BiosParameterBlock.sectors_per_cluster);
-
-  0010c	e1d501bc	 ldrh        r0, [r5, #0x1C]
-  00110	e5958018	 ldr         r8, [r5, #0x18]
-  00114	e5d62002	 ldrb        r2, [r6, #2]
-
-; 231  :     // plus sector offset within cluster
-; 232  :     SectorNumber += pFile->current_sector_in_cluster;
-; 233  : 
-; 234  :     // increment current_sector_in_cluster and check if this reads the last sector in the cluster
-; 235  :     pFile->current_sector_in_cluster = pFile->current_sector_in_cluster + numSectors;
-
-  00118	e0803004	 add         r3, r0, r4
-  0011c	e1a0e803	 mov         lr, r3, lsl #16
-  00120	e2483002	 sub         r3, r8, #2
-  00124	e5961040	 ldr         r1, [r6, #0x40]
-  00128	e1a0e82e	 mov         lr, lr, lsr #16
-  0012c	e0220293	 mla         r2, r3, r2, r0
-  00130	e1c5e1bc	 strh        lr, [r5, #0x1C]
-
-; 236  :     if (pFile->current_sector_in_cluster >= (FilesysInfo.BiosParameterBlock.sectors_per_cluster))
-
-  00134	e5d63002	 ldrb        r3, [r6, #2]
-  00138	e0821001	 add         r1, r2, r1
-  0013c	e59f42c0	 ldr         r4, [pc, #0x2C0]
-  00140	e58d1004	 str         r1, [sp, #4]
-  00144	e15e0003	 cmp         lr, r3
-  00148	3a000094	 bcc         |$LN16@FileIoRead|
-
-; 237  :     {
-; 238  :         // the current read reads the last sector in the current cluster, 
-; 239  :         // get the next cluster number from the FAT
-; 240  :         switch (FilesysInfo.FatType)
-
-  0014c	e5963044	 ldr         r3, [r6, #0x44]
-  00150	e3530001	 cmp         r3, #1
-  00154	0a000048	 beq         |$LN28@FileIoRead|
-  00158	e3530002	 cmp         r3, #2
-  0015c	0a000025	 beq         |$LN15@FileIoRead|
-  00160	e3530003	 cmp         r3, #3
-  00164	1a00008d	 bne         |$LN16@FileIoRead|
-
-; 403  : 
-; 404  :             #endif
-; 405  : 
-; 406  :             #if BOOTLOADER_SUPPORTS_FAT32
-; 407  :             case FAT_TYPE_FAT32:
-; 408  :                 // check to see if this was the last cluster, set flag so next read returns EOF
-; 409  :                 if (pFile->current_cluster >= FAT32_CLUSTER_LAST_START)
-
-  00168	e378028f	 cmn         r8, #0x8F, 4
-
-; 410  :                 {
-; 411  :                     pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
-; 412  :                 }
-; 413  :                 else
-
-  0016c	2a00008a	 bcs         |$LN52@FileIoRead|
-
-; 414  :                 {           
-; 415  :                     FatOffsetInSector = (UINT16) ((pFile->current_cluster * 4) % SECTOR_SIZE);
-
-  00170	e1a03108	 mov         r3, r8, lsl #2
-
-; 416  :                     FatSectorNumber = (UINT16) ((pFile->current_cluster * 4) / SECTOR_SIZE);
-
-  00174	e1a034a3	 mov         r3, r3, lsr #9
-
-; 417  : 
-; 418  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
-; 419  :                         // if not already contained in FatBuffer,
-; 420  :                         // read sector containing next fat entry, FatSectorNumber is an
-; 421  :                         // offset from the start of the partition + reserved area
-; 422  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
-
-  00178	e1d620b4	 ldrh        r2, [r6, #4]
-  0017c	e1a03803	 mov         r3, r3, lsl #16
-  00180	e5961038	 ldr         r1, [r6, #0x38]
-  00184	e1a03823	 mov         r3, r3, lsr #16
-  00188	e0823003	 add         r3, r2, r3
-  0018c	e5962248	 ldr         r2, [r6, #0x248]
-  00190	e3a00c01	 mov         r0, #1, 24
-  00194	e0839001	 add         r9, r3, r1
-  00198	e38030ff	 orr         r3, r0, #0xFF
-  0019c	e1520009	 cmp         r2, r9
-  001a0	e0038108	 and         r8, r3, r8, lsl #2
-  001a4	0a00000c	 beq         |$LN5@FileIoRead|
-
-; 423  :                         {
-; 424  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors;
-; 425  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
-
-  001a8	e5943000	 ldr         r3, [r4]
-  001ac	e59a0010	 ldr         r0, [r10, #0x10]
-  001b0	e59a4008	 ldr         r4, [r10, #8]
-  001b4	e0831009	 add         r1, r3, r9
-  001b8	e2862048	 add         r2, r6, #0x48
-  001bc	e5869248	 str         r9, [r6, #0x248]
-  001c0	e1a0e00f	 mov         lr, pc
-  001c4	e12fff14	 bx          r4
-  001c8	e3500000	 cmp         r0, #0
-  001cc	0a000002	 beq         |$LN5@FileIoRead|
-  001d0		 |$LN54@FileIoRead|
-
-; 426  :                             {
-; 427  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 428  :                                     OALMSG(OAL_INFO, 
-; 429  :                                         (L"BOOTLOADER: FileIoReadNextSectors failed reading FAT: LBA 0x%x (cluster 0x%x, sector 0x%x)\r\n",
-; 430  :                                         FatBufferSectorNumber + ExtendedPartionBaseSector, 
-; 431  :                                         pFile->current_cluster, 
-; 432  :                                         pFile->current_sector_in_cluster)
-; 433  :                                           );
-; 434  :                                 #endif
-; 435  :                                 FatBufferSectorNumber = 0;
-
-  001d0	e3a03000	 mov         r3, #0
-  001d4	e5863248	 str         r3, [r6, #0x248]
-
-; 436  :                                 return FILEIO_STATUS_READ_FAILED;
-
-  001d8	eaffffb5	 b           |$LN38@FileIoRead|
-  001dc		 |$LN5@FileIoRead|
-
-; 437  :                             }
-; 438  :                         }
-; 439  :                         //  update current fat index
-; 440  :                         pFile->current_cluster = (*(((UINT32 *)FatBuffer) + (FatOffsetInSector/4))) & FAT32_CLUSTER_MASK;
-
-  001dc	e1a02128	 mov         r2, r8, lsr #2
-  001e0	e2863048	 add         r3, r6, #0x48
-  001e4	e7933102	 ldr         r3, [r3, +r2, lsl #2]
-
-; 441  :                     #else
-; 442  :                         // read sector containing next fat entry, FatSectorNumber is an
-; 443  :                         // offset from the start of the partition + reserved area
-; 444  :                         if (pfileio_ops->read_sector(pfileio_ops->drive_info, 
-; 445  :                                                      (FilesysInfo.partition_start + FatSectorNumber + 
-; 446  :                                                       FilesysInfo.BiosParameterBlock.reserved_sectors) + 
-; 447  :                                                       ExtendedPartionBaseSector, 
-; 448  :                                                      pBuffer
-; 449  :                                                     )
-; 450  :                                        != ATA_STATUS_OK
-; 451  :                            )
-; 452  :                         {
-; 453  :                             #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 454  :                                 OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", 
-; 455  :                                          (FilesysInfo.partition_start + FatSectorNumber + 
-; 456  :                                           FilesysInfo.BiosParameterBlock.reserved_sectors) + 
-; 457  :                                           ExtendedPartionBaseSector)
-; 458  :                                       );
-; 459  :                             #endif
-; 460  :                             return FILEIO_STATUS_READ_FAILED;
-; 461  :                         }
-; 462  : 
-; 463  :                         //  update current fat index
-; 464  :                         pFile->current_cluster = *(((UINT32 *)pBuffer) + (FatOffsetInSector/4)) & FAT32_CLUSTER_MASK;
-; 465  :                     #endif
-; 466  :                     //  reset current_sector_in_cluster
-; 467  :                     pFile->current_sector_in_cluster = 0;
-
-  001e8	e3c3320f	 bic         r3, r3, #0xF, 4
-  001ec	e5853018	 str         r3, [r5, #0x18]
-
-; 468  : 
-; 469  :                     if (pFile->current_cluster >= FAT32_CLUSTER_LAST_START)
-
-  001f0	e373028f	 cmn         r3, #0x8F, 4
-
-; 470  :                     {
-; 471  :                         // no more clusters, signal end of file or directory
-; 472  :                         pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
-; 473  :                     }
-; 474  :                 }
-; 475  :                 break;
-
-  001f4	ea000064	 b           |$LN56@FileIoRead|
-  001f8		 |$LN15@FileIoRead|
-
-; 345  :                     }
-; 346  :                 }
-; 347  :                 break;
-; 348  :             #endif
-; 349  : 
-; 350  :             #if BOOTLOADER_SUPPORTS_FAT16
-; 351  :             case FAT_TYPE_FAT16:
-; 352  :                 // check to see if this was the last cluster, set flag so next read returns EOF
-; 353  :                 if (pFile->current_cluster >= FAT16_CLUSTER_LAST_START)
-
-  001f8	e1580009	 cmp         r8, r9
-
-; 354  :                 {
-; 355  :                     pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
-; 356  :                 }
-; 357  :                 else
-
-  001fc	2a000066	 bcs         |$LN52@FileIoRead|
-
-; 358  :                 {           
-; 359  :                     FatOffsetInSector = (UINT16) ((pFile->current_cluster * 2) % SECTOR_SIZE);
-
-  00200	e1a03088	 mov         r3, r8, lsl #1
-
-; 360  :                     FatSectorNumber = (UINT16) ((pFile->current_cluster * 2) / SECTOR_SIZE);
-
-  00204	e1a034a3	 mov         r3, r3, lsr #9
-
-; 361  : 
-; 362  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
-; 363  :                         // if not already contained in FatBuffer,
-; 364  :                         // read sector containing next fat entry, FatSectorNumber is an
-; 365  :                         // offset from the start of the partition + reserved area
-; 366  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
-
-  00208	e1d620b4	 ldrh        r2, [r6, #4]
-  0020c	e1a03803	 mov         r3, r3, lsl #16
-  00210	e5961038	 ldr         r1, [r6, #0x38]
-  00214	e1a03823	 mov         r3, r3, lsr #16
-  00218	e0823003	 add         r3, r2, r3
-  0021c	e5962248	 ldr         r2, [r6, #0x248]
-  00220	e3a00c01	 mov         r0, #1, 24
-  00224	e083b001	 add         r11, r3, r1
-  00228	e38030ff	 orr         r3, r0, #0xFF
-  0022c	e152000b	 cmp         r2, r11
-  00230	e0038088	 and         r8, r3, r8, lsl #1
-  00234	0a000009	 beq         |$LN11@FileIoRead|
-
-; 367  :                         {
-; 368  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors;
-; 369  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
-
-  00238	e5943000	 ldr         r3, [r4]
-  0023c	e59a0010	 ldr         r0, [r10, #0x10]
-  00240	e59a4008	 ldr         r4, [r10, #8]
-  00244	e083100b	 add         r1, r3, r11
-  00248	e2862048	 add         r2, r6, #0x48
-  0024c	e586b248	 str         r11, [r6, #0x248]
-  00250	e1a0e00f	 mov         lr, pc
-  00254	e12fff14	 bx          r4
-  00258	e3500000	 cmp         r0, #0
-
-; 370  :                             {
-; 371  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 372  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", FatBufferSectorNumber + ExtendedPartionBaseSector));
-; 373  :                                 #endif
-; 374  :                                 FatBufferSectorNumber = 0;
-; 375  :                                 return FILEIO_STATUS_READ_FAILED;
-
-  0025c	1affffdb	 bne         |$LN54@FileIoRead|
-  00260		 |$LN11@FileIoRead|
-
-; 376  :                             }
-; 377  :                         }
-; 378  :                         //  update current fat index
-; 379  :                         pFile->current_cluster = *(((UINT16 *)FatBuffer) + (FatOffsetInSector/2));
-
-  00260	e1a020a8	 mov         r2, r8, lsr #1
-  00264	e2863048	 add         r3, r6, #0x48
-  00268	e0833082	 add         r3, r3, r2, lsl #1
-  0026c	e1d330b0	 ldrh        r3, [r3]
-
-; 380  :                     #else
-; 381  :                         // read sector containing next fat entry, FatSectorNumber is an
-; 382  :                         // offset from the start of the partition + reserved area
-; 383  :                         if (pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector, pBuffer) != ATA_STATUS_OK)
-; 384  :                         {
-; 385  :                             #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 386  :                                 OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector));
-; 387  :                             #endif
-; 388  :                             return FILEIO_STATUS_READ_FAILED;
-; 389  :                         }
-; 390  :                         //  update current fat index
-; 391  :                         pFile->current_cluster = *(((UINT16 *)pBuffer) + (FatOffsetInSector/2));
-; 392  :                     #endif
-; 393  :                     //  reset current_sector_in_cluster
-; 394  :                     pFile->current_sector_in_cluster = 0;
-
-  00270	e5853018	 str         r3, [r5, #0x18]
-
-; 395  : 
-; 396  :                     // check to see if this was the last cluster, set flag so next read returns EOF
-; 397  :                     if (pFile->current_cluster >= FAT16_CLUSTER_LAST_START)
-
-  00274	e1530009	 cmp         r3, r9
-
-; 398  :                     {
-; 399  :                         pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
-; 400  :                     }
-; 401  :                 }
-; 402  :                 break;
-
-  00278	ea000043	 b           |$LN56@FileIoRead|
-  0027c		 |$LN28@FileIoRead|
-
-; 241  :         {
-; 242  :             #if BOOTLOADER_SUPPORTS_FAT12
-; 243  :             case FAT_TYPE_FAT12:
-; 244  :                 if (pFile->current_cluster >= FAT12_CLUSTER_LAST_START)
-
-  0027c	e158000b	 cmp         r8, r11
-
-; 245  :                 {
-; 246  :                     pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
-; 247  :                 }
-; 248  :                 else
-
-  00280	2a000045	 bcs         |$LN52@FileIoRead|
-
-; 249  :                 {
-; 250  :                     //   FatOffsetInByte is 0 if fat entry starts on byte boundary, 1 if in mid-byte
-; 251  :                     //   FatOffsetInSector is a byte pointer to byte containing first part of 12 bit fat entry
-; 252  :                     FatOffsetInByte = (UINT16) (pFile->current_cluster & 1);
-; 253  :                     FatOffsetInSector = (UINT16) (((pFile->current_cluster * 3) / 2) % SECTOR_SIZE);
-
-  00284	e0881088	 add         r1, r8, r8, lsl #1
-
-; 254  :                     FatSectorNumber = (UINT16) (((pFile->current_cluster * 3) / 2) / SECTOR_SIZE);
-
-  00288	e1a03521	 mov         r3, r1, lsr #10
-
-; 255  : 
-; 256  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
-; 257  :                         // if not already contained in FatBuffer, read sector containing next fat entry.
-; 258  :                         // FatSectorNumber is an offset from the start of the partition + reserved area
-; 259  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
-
-  0028c	e1d620b4	 ldrh        r2, [r6, #4]
-  00290	e1a03803	 mov         r3, r3, lsl #16
-  00294	e1a03823	 mov         r3, r3, lsr #16
-  00298	e5960038	 ldr         r0, [r6, #0x38]
-  0029c	e58d3010	 str         r3, [sp, #0x10]
-  002a0	e0823003	 add         r3, r2, r3
-  002a4	e5962248	 ldr         r2, [r6, #0x248]
-  002a8	e1a01b01	 mov         r1, r1, lsl #22
-  002ac	e083e000	 add         lr, r3, r0
-  002b0	e152000e	 cmp         r2, lr
-  002b4	e58de00c	 str         lr, [sp, #0xC]
-  002b8	e1a09ba1	 mov         r9, r1, lsr #23
-  002bc	0a00000b	 beq         |$LN24@FileIoRead|
-
-; 260  :                         {
-; 261  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors;
-; 262  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
-
-  002c0	e5943000	 ldr         r3, [r4]
-  002c4	e59a0010	 ldr         r0, [r10, #0x10]
-  002c8	e59a4008	 ldr         r4, [r10, #8]
-  002cc	e083100e	 add         r1, r3, lr
-  002d0	e1a0300e	 mov         r3, lr
-  002d4	e5863248	 str         r3, [r6, #0x248]
-  002d8	e2862048	 add         r2, r6, #0x48
-  002dc	e1a0e00f	 mov         lr, pc
-  002e0	e12fff14	 bx          r4
-  002e4	e3500000	 cmp         r0, #0
-
-; 263  :                             {
-; 264  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 265  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", FatBufferSectorNumber + ExtendedPartionBaseSector));
-; 266  :                                 #endif
-; 267  :                                 FatBufferSectorNumber = 0;
-; 268  :                                 return FILEIO_STATUS_READ_FAILED;
-
-  002e8	1affffb8	 bne         |$LN54@FileIoRead|
-
-; 255  : 
-; 256  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
-; 257  :                         // if not already contained in FatBuffer, read sector containing next fat entry.
-; 258  :                         // FatSectorNumber is an offset from the start of the partition + reserved area
-; 259  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
-
-  002ec	e59f4110	 ldr         r4, [pc, #0x110]
-  002f0		 |$LN24@FileIoRead|
-
-; 269  :                             }
-; 270  :                         }
-; 271  :                         // build current fat index from two bytes (which may be in different sectors)
-; 272  :                         // get data from first byte of containing current FAT entry
-; 273  :                         if (FatOffsetInByte)
-; 274  :                             pFile->current_cluster = (*(((UINT8 *)FatBuffer) + FatOffsetInSector) >> 4) & 0xf;  // lower 4 bits of 12 from upper half of byte
-
-  002f0	e2863048	 add         r3, r6, #0x48
-  002f4	e7d93003	 ldrb        r3, [r9, +r3]
-  002f8	e2188001	 ands        r8, r8, #1
-  002fc	11a03223	 movne       r3, r3, lsr #4
-
-; 275  :                         else
-; 276  :                             pFile->current_cluster = *(((UINT8 *)FatBuffer) + FatOffsetInSector);   // lower 8 bits of 12 from entire byte
-
-  00300	e5853018	 str         r3, [r5, #0x18]
-  00304	e3a03c01	 mov         r3, #1, 24
-
-; 277  :                     #else
-; 278  :                         // read sector containing (at least the beginning of) the next fat entry
-; 279  :                         if (pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector, pBuffer) != ATA_STATUS_OK)
-; 280  :                         {
-; 281  :                             #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 282  :                                 OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector));
-; 283  :                             #endif
-; 284  :                             return FILEIO_STATUS_READ_FAILED;
-; 285  :                         }
-; 286  : 
-; 287  :                         // build current fat index from two bytes (which may be in different sectors)
-; 288  :                         // get data from first byte of containing current FAT entry
-; 289  :                         if (FatOffsetInByte)
-; 290  :                             pFile->current_cluster = (*(((UINT8 *)pBuffer) + FatOffsetInSector) >> 4) & 0xf;    // lower 4 bits of 12 from upper half of byte
-; 291  :                         else
-; 292  :                             pFile->current_cluster = *(((UINT8 *)pBuffer) + FatOffsetInSector); // lower 8 bits of 12 from entire byte
-; 293  :                     #endif
-; 294  : 
-; 295  :                     // get data from second byte of FAT12 entry, first check if fat entry spans sector
-; 296  :                     if (FatOffsetInSector == 511)
-
-  00308	e38330ff	 orr         r3, r3, #0xFF
-  0030c	e1590003	 cmp         r9, r3
-  00310	1a000011	 bne         |$LN21@FileIoRead|
-
-; 297  :                     {
-; 298  :                         // second byte spans sector, read next sector, reset offset
-; 299  :                         #if FILEIO_USE_FAT_SECTOR_BUFFER
-; 300  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors + 1;
-
-  00314	e1d630b4	 ldrh        r3, [r6, #4]
-
-; 301  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
-
-  00318	e59d0010	 ldr         r0, [sp, #0x10]
-  0031c	e5962038	 ldr         r2, [r6, #0x38]
-  00320	e5941000	 ldr         r1, [r4]
-  00324	e0833000	 add         r3, r3, r0
-  00328	e0833002	 add         r3, r3, r2
-  0032c	e2834001	 add         r4, r3, #1
-  00330	e59a0010	 ldr         r0, [r10, #0x10]
-  00334	e59a3008	 ldr         r3, [r10, #8]
-  00338	e0811004	 add         r1, r1, r4
-  0033c	e5864248	 str         r4, [r6, #0x248]
-  00340	e2862048	 add         r2, r6, #0x48
-  00344	e1a0e00f	 mov         lr, pc
-  00348	e12fff13	 bx          r3
-  0034c	e3500000	 cmp         r0, #0
-
-; 302  :                             {
-; 303  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 304  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", FatBufferSectorNumber + ExtendedPartionBaseSector));
-; 305  :                                 #endif
-; 306  :                                 FatBufferSectorNumber = 0;
-; 307  :                                 return FILEIO_STATUS_READ_FAILED;
-
-  00350	1affff9e	 bne         |$LN54@FileIoRead|
-
-; 308  :                             }
-; 309  :                         #else
-; 310  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors + 1) + ExtendedPartionBaseSector, pBuffer) != ATA_STATUS_OK)
-; 311  :                             {
-; 312  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 313  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors + 1) + ExtendedPartionBaseSector));
-; 314  :                                 #endif
-; 315  :                                 return FILEIO_STATUS_READ_FAILED;
-; 316  :                             }
-; 317  :                         #endif
-; 318  :                         FatOffsetInSector = 0;
-
-  00354	e3a02000	 mov         r2, #0
-
-; 319  :                     }
-; 320  :                     else
-
-  00358	ea000000	 b           |$LN19@FileIoRead|
-  0035c		 |$LN21@FileIoRead|
-
-; 321  :                     {
-; 322  :                         // second byte is in current sector, just increment offset
-; 323  :                         FatOffsetInSector += 1;
-
-  0035c	e2892001	 add         r2, r9, #1
-  00360		 |$LN19@FileIoRead|
-
-; 324  :                     }
-; 325  : 
-; 326  :                     //  build remainder of current fat index from the next byte
-; 327  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
-; 328  :                         if (FatOffsetInByte)
-
-  00360	e3580000	 cmp         r8, #0
-
-; 329  :                             pFile->current_cluster |= *(((UINT8 *)FatBuffer) + FatOffsetInSector) << 4;         // upper 8 of 12 from entire byte
-
-  00364	e2863048	 add         r3, r6, #0x48
-  00368	17d22003	 ldrneb      r2, [r2, +r3]
-  0036c	15953018	 ldrne       r3, [r5, #0x18]
-  00370	11833202	 orrne       r3, r3, r2, lsl #4
-
-; 330  :                         else
-; 331  :                             pFile->current_cluster |= (*(((UINT8 *)FatBuffer) + FatOffsetInSector) & 0xf) << 8; // upper 4 of 12 from lower half of byte
-
-  00374	07d23003	 ldreqb      r3, [r2, +r3]
-  00378	05952018	 ldreq       r2, [r5, #0x18]
-  0037c	0203300f	 andeq       r3, r3, #0xF
-  00380	01823403	 orreq       r3, r2, r3, lsl #8
-  00384	e5853018	 str         r3, [r5, #0x18]
-
-; 332  :                     #else
-; 333  :                         if (FatOffsetInByte)
-; 334  :                             pFile->current_cluster |= *(((UINT8 *)pBuffer) + FatOffsetInSector) << 4;           // upper 8 of 12 from entire byte
-; 335  :                         else
-; 336  :                             pFile->current_cluster |= (*(((UINT8 *)pBuffer) + FatOffsetInSector) & 0xf) << 8;   // upper 4 of 12 from lower half of byte
-; 337  :                     #endif
-; 338  :                     //  reset current_sector_in_cluster
-; 339  :                     pFile->current_sector_in_cluster = 0;
-; 340  : 
-; 341  :                     // check to see if this was the last cluster, set flag so next read returns EOF
-; 342  :                     if (pFile->current_cluster >= FAT12_CLUSTER_LAST_START)
-
-  00388	e153000b	 cmp         r3, r11
-  0038c		 |$LN56@FileIoRead|
-  0038c	e3a02000	 mov         r2, #0
-  00390	e59d1004	 ldr         r1, [sp, #4]
-  00394	e1c521bc	 strh        r2, [r5, #0x1C]
-  00398	3a000000	 bcc         |$LN16@FileIoRead|
-  0039c		 |$LN52@FileIoRead|
-
-; 343  :                     {
-; 344  :                         pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
-
-  0039c	e1c571bc	 strh        r7, [r5, #0x1C]
-  003a0		 |$LN16@FileIoRead|
-
-; 476  :             #endif
-; 477  :         }
-; 478  :     }
-; 479  : 
-; 480  :     if (numSectors > 1)
-; 481  :     {
-; 482  :         status = pfileio_ops->read_multi_sectors(
-; 483  :                              pfileio_ops->drive_info, 
-; 484  :                              (FilesysInfo.partition_start + SectorNumber) + 
-; 485  :                                  ExtendedPartionBaseSector, 
-; 486  :                              pBuffer,
-; 487  :                              numSectors);
-
-  003a0	e59f305c	 ldr         r3, [pc, #0x5C]
-  003a4	e59d7014	 ldr         r7, [sp, #0x14]
-  003a8	e59a0010	 ldr         r0, [r10, #0x10]
-  003ac	e5932000	 ldr         r2, [r3]
-  003b0	e5963038	 ldr         r3, [r6, #0x38]
-  003b4	e3570001	 cmp         r7, #1
-  003b8	e0823003	 add         r3, r2, r3
-  003bc	e59d2008	 ldr         r2, [sp, #8]
-  003c0	e0831001	 add         r1, r3, r1
-  003c4	9a000004	 bls         |$LN3@FileIoRead|
-  003c8	e59a400c	 ldr         r4, [r10, #0xC]
-  003cc	e1dd30b0	 ldrh        r3, [sp]
-  003d0	e1a0e00f	 mov         lr, pc
-  003d4	e12fff14	 bx          r4
-
-; 488  :     }
-; 489  :     else
-
-  003d8	ea000002	 b           |$LN2@FileIoRead|
-  003dc		 |$LN3@FileIoRead|
-
-; 490  :     {
-; 491  :         status = pfileio_ops->read_sector(
-; 492  :                              pfileio_ops->drive_info, 
-; 493  :                              (FilesysInfo.partition_start + SectorNumber) + 
-; 494  :                                  ExtendedPartionBaseSector, 
-; 495  :                              pBuffer);
-
-  003dc	e59a4008	 ldr         r4, [r10, #8]
-  003e0	e1a0e00f	 mov         lr, pc
-  003e4	e12fff14	 bx          r4
-  003e8		 |$LN2@FileIoRead|
-
-; 496  :     }
-; 497  : 
-; 498  :     // read the requested sector
-; 499  :     if (status != ATA_STATUS_OK)
-
-  003e8	e3500000	 cmp         r0, #0
-
-; 500  :     {
-; 501  :         #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 502  :             OALMSG(OAL_INFO, 
-; 503  :               (L"BL: FileIoReadNextSectors failed reading: LBA 0x%x, cluster 0x%x, sec in cluster 0x%x, num sec %d\r\n", 
-; 504  :                (FilesysInfo.partition_start + SectorNumber) + ExtendedPartionBaseSector, 
-; 505  :                pFile->current_cluster - 2, 
-; 506  :                pFile->current_sector_in_cluster,
-; 507  :                numSectors
-; 508  :               ));
-; 509  :         #endif
-; 510  :         return FILEIO_STATUS_READ_FAILED;
-
-  003ec	1affff30	 bne         |$LN38@FileIoRead|
-
-; 511  :     }
-; 512  : 
-; 513  :     // update sector count
-; 514  :     pFile->current_sector += numSectors;
-
-  003f0	e5953014	 ldr         r3, [r5, #0x14]
-
-; 515  :     
-; 516  :     return FILEIO_STATUS_OK;
-
-  003f4	e3a00000	 mov         r0, #0
-  003f8	e0873003	 add         r3, r7, r3
-  003fc	e5853014	 str         r3, [r5, #0x14]
-  00400	eaffff2c	 b           |$LN45@FileIoRead|
-  00404		 |$LN60@FileIoRead|
-  00404		 |$LN61@FileIoRead|
-  00404	00000000	 DCD         |ExtendedPartionBaseSector|
-  00408		 |$LN62@FileIoRead|
-  00408	00000000	 DCD         |FilesysInfo|
-  0040c		 |$LN63@FileIoRead|
-  0040c	00000000	 DCD         |??_C@_1DG@COMCKACJ@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAI?$AAo?$AAR?$AAe?$AAa?$AAd?$AAN?$AAe?$AAx?$AAt?$AAS?$AAe?$AAc?$AAt?$AAo?$AAr?$AAs?$AA2?$AA?$AN?$AA?6?$AA?$AA@|
-  00410		 |$LN64@FileIoRead|
-  00410	00000000	 DCD         |??_C@_1BO@KDEMCBKP@?$AA?$HO?$AA?$HO?$AAp?$AAF?$AAi?$AAl?$AAe?$AA?9?$AA?$DO?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  00414		 |$LN65@FileIoRead|
-  00414	00000000	 DCD         |??_C@_1DG@KAENKHMK@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAI?$AAo?$AAR?$AAe?$AAa?$AAd?$AAN?$AAe?$AAx?$AAt?$AAS?$AAe?$AAc?$AAt?$AAo?$AAr?$AAs?$AA1?$AA?$AN?$AA?6?$AA?$AA@|
-  00418		 |$M43608|
+  00024	0a00001b	 beq         |$LN45@FileIoRead|
+
+; 179  :         
+; 180  :     //OALLog(L"~~FileIoReadNextSectors1\r\n");    //~~
+; 181  :     
+; 182  :     // check if is this an attempt to read past the end of the file
+; 183  :     if (pFile->current_sector_in_cluster == CURRENT_SECTOR_EOF_VALUE)
+
+  00028	e1d541bc	 ldrh        r4, [r5, #0x1C]
+  0002c	e3a03cff	 mov         r3, #0xFF, 24
+  00030	e38380ff	 orr         r8, r3, #0xFF
+  00034	e1540008	 cmp         r4, r8
+
+; 184  :     {
+; 185  :         //OALLog(L"~~pFile-> %d\r\n", pFile->current_sector_in_cluster);  //~~
+; 186  :         #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 187  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoReadNextSectors EOF\r\n"));
+; 188  :         #endif
+; 189  :         return FILEIO_STATUS_READ_EOF;
+
+  00038	03a00004	 moveq       r0, #4
+  0003c	0a000015	 beq         |$LN45@FileIoRead|
+
+; 190  :     }
+; 191  :     //OALLog(L"~~FileIoReadNextSectors2\r\n");    //~~
+; 192  : 
+; 193  :     // check for invalid current_cluster
+; 194  :     switch (FilesysInfo.FatType)
+
+  00040	e3a03cff	 mov         r3, #0xFF, 24
+  00044	e59f6398	 ldr         r6, [pc, #0x398]
+  00048	e38390f8	 orr         r9, r3, #0xF8
+  0004c	e3a03c0f	 mov         r3, #0xF, 24
+  00050	e383b0f8	 orr         r11, r3, #0xF8
+  00054	e5963044	 ldr         r3, [r6, #0x44]
+  00058	e3530001	 cmp         r3, #1
+  0005c	0a000019	 beq         |$LN40@FileIoRead|
+  00060	e3530002	 cmp         r3, #2
+  00064	0a00000e	 beq         |$LN37@FileIoRead|
+  00068	e3530003	 cmp         r3, #3
+  0006c	1a00001e	 bne         |$LN39@FileIoRead|
+
+; 207  :             break;
+; 208  :         #endif
+; 209  : 
+; 210  :         #if BOOTLOADER_SUPPORTS_FAT32
+; 211  :         case FAT_TYPE_FAT32:
+; 212  :             if (pFile->current_cluster < FAT32_CLUSTER_NEXT_START || (pFile->current_cluster > FAT32_CLUSTER_NEXT_END && pFile->current_cluster < FAT32_CLUSTER_LAST_START))
+
+  00070	e5952018	 ldr         r2, [r5, #0x18]
+  00074	e3520001	 cmp         r2, #1
+  00078	3a000005	 bcc         |$LN38@FileIoRead|
+  0007c	e3e0320f	 mvn         r3, #0xF, 4
+  00080	e2233010	 eor         r3, r3, #0x10
+  00084	e1520003	 cmp         r2, r3
+  00088	9a000017	 bls         |$LN39@FileIoRead|
+  0008c	e372028f	 cmn         r2, #0x8F, 4
+  00090		 |$LN53@FileIoRead|
+
+; 213  :             {
+; 214  :                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 215  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoReadNextSectors failed, invalide current_cluster 0x%x\r\n", pFile->current_cluster));
+; 216  :                 #endif
+; 217  :                 return FILEIO_STATUS_READ_FAILED;
+; 218  :             }
+; 219  :             break;
+
+  00090	2a000015	 bcs         |$LN39@FileIoRead|
+  00094		 |$LN38@FileIoRead|
+
+; 199  :                 return FILEIO_STATUS_READ_FAILED;
+
+  00094	e3a00003	 mov         r0, #3
+  00098		 |$LN45@FileIoRead|
+
+; 520  : } // FileIoReadNextSectors  
+
+  00098	e28dd018	 add         sp, sp, #0x18
+  0009c	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  000a0	e12fff1e	 bx          lr
+  000a4		 |$LN37@FileIoRead|
+
+; 200  :             break;
+; 201  :         #endif
+; 202  : 
+; 203  :         #if BOOTLOADER_SUPPORTS_FAT16
+; 204  :         case FAT_TYPE_FAT16:
+; 205  :             if (pFile->current_cluster < FAT16_CLUSTER_NEXT_START || (pFile->current_cluster > FAT16_CLUSTER_NEXT_END && pFile->current_cluster < FAT16_CLUSTER_LAST_START))
+
+  000a4	e5952018	 ldr         r2, [r5, #0x18]
+  000a8	e3520001	 cmp         r2, #1
+  000ac	3afffff8	 bcc         |$LN38@FileIoRead|
+  000b0	e3a03cff	 mov         r3, #0xFF, 24
+  000b4	e38330ef	 orr         r3, r3, #0xEF
+  000b8	e1520003	 cmp         r2, r3
+  000bc	9a00000a	 bls         |$LN39@FileIoRead|
+  000c0	e1520009	 cmp         r2, r9
+
+; 206  :                 return FILEIO_STATUS_READ_FAILED;
+
+  000c4	eafffff1	 b           |$LN53@FileIoRead|
+  000c8		 |$LN40@FileIoRead|
+
+; 195  :     {
+; 196  :         #if BOOTLOADER_SUPPORTS_FAT12
+; 197  :         case FAT_TYPE_FAT12:
+; 198  :             if (pFile->current_cluster < FAT12_CLUSTER_NEXT_START || (pFile->current_cluster > FAT12_CLUSTER_NEXT_END && pFile->current_cluster < FAT12_CLUSTER_LAST_START))
+
+  000c8	e5952018	 ldr         r2, [r5, #0x18]
+  000cc	e3520001	 cmp         r2, #1
+  000d0	3affffef	 bcc         |$LN38@FileIoRead|
+  000d4	e3a03c0f	 mov         r3, #0xF, 24
+  000d8	e38330ef	 orr         r3, r3, #0xEF
+  000dc	e1520003	 cmp         r2, r3
+  000e0	9a000001	 bls         |$LN39@FileIoRead|
+  000e4	e152000b	 cmp         r2, r11
+  000e8	3affffe9	 bcc         |$LN38@FileIoRead|
+  000ec		 |$LN39@FileIoRead|
+
+; 220  :         #endif
+; 221  :     }
+; 222  : 
+; 223  :     // calculate the sector number, used to read sector later
+; 224  :     // file data area starting sector
+; 225  :     SectorNumber = FilesysInfo.file_data_area_start;
+; 226  :     // plus first sector of current cluster 
+; 227  :     // Note: first 2 fat entries are reserved, making first cluster in file area = 2
+; 228  :     // ??? The reserved fat entry stuff is poorly documented, this code may be wrong
+; 229  :     #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 230  :         if (pFile->current_cluster < 2)
+; 231  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoReadNextSectors() called with current_cluster < 2!\r\n"));
+; 232  :     #endif
+; 233  :     SectorNumber += (pFile->current_cluster - 2) * (FilesysInfo.BiosParameterBlock.sectors_per_cluster);
+
+  000ec	e5957018	 ldr         r7, [r5, #0x18]
+  000f0	e5d61002	 ldrb        r1, [r6, #2]
+
+; 234  :     // plus sector offset within cluster
+; 235  :     SectorNumber += pFile->current_sector_in_cluster;
+; 236  : 
+; 237  :     // increment current_sector_in_cluster and check if this reads the last sector in the cluster
+; 238  :     pFile->current_sector_in_cluster = pFile->current_sector_in_cluster + numSectors;
+
+  000f4	e0843000	 add         r3, r4, r0
+  000f8	e1a0e803	 mov         lr, r3, lsl #16
+  000fc	e2472002	 sub         r2, r7, #2
+  00100	e5960040	 ldr         r0, [r6, #0x40]
+  00104	e1a0e82e	 mov         lr, lr, lsr #16
+  00108	e0214192	 mla         r1, r2, r1, r4
+  0010c	e1c5e1bc	 strh        lr, [r5, #0x1C]
+
+; 239  :     if (pFile->current_sector_in_cluster >= (FilesysInfo.BiosParameterBlock.sectors_per_cluster))
+
+  00110	e5d63002	 ldrb        r3, [r6, #2]
+  00114	e0811000	 add         r1, r1, r0
+  00118	e59f42c0	 ldr         r4, [pc, #0x2C0]
+  0011c	e58d1004	 str         r1, [sp, #4]
+  00120	e15e0003	 cmp         lr, r3
+  00124	3a000094	 bcc         |$LN16@FileIoRead|
+
+; 240  :     {
+; 241  :         // the current read reads the last sector in the current cluster, 
+; 242  :         // get the next cluster number from the FAT
+; 243  :         switch (FilesysInfo.FatType)
+
+  00128	e5963044	 ldr         r3, [r6, #0x44]
+  0012c	e3530001	 cmp         r3, #1
+  00130	0a000048	 beq         |$LN28@FileIoRead|
+  00134	e3530002	 cmp         r3, #2
+  00138	0a000025	 beq         |$LN15@FileIoRead|
+  0013c	e3530003	 cmp         r3, #3
+  00140	1a00008d	 bne         |$LN16@FileIoRead|
+
+; 406  : 
+; 407  :             #endif
+; 408  : 
+; 409  :             #if BOOTLOADER_SUPPORTS_FAT32
+; 410  :             case FAT_TYPE_FAT32:
+; 411  :                 // check to see if this was the last cluster, set flag so next read returns EOF
+; 412  :                 if (pFile->current_cluster >= FAT32_CLUSTER_LAST_START)
+
+  00144	e377028f	 cmn         r7, #0x8F, 4
+
+; 413  :                 {
+; 414  :                     pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
+; 415  :                 }
+; 416  :                 else
+
+  00148	2a00008a	 bcs         |$LN52@FileIoRead|
+
+; 417  :                 {           
+; 418  :                     FatOffsetInSector = (UINT16) ((pFile->current_cluster * 4) % SECTOR_SIZE);
+
+  0014c	e1a03107	 mov         r3, r7, lsl #2
+
+; 419  :                     FatSectorNumber = (UINT16) ((pFile->current_cluster * 4) / SECTOR_SIZE);
+
+  00150	e1a034a3	 mov         r3, r3, lsr #9
+
+; 420  : 
+; 421  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
+; 422  :                         // if not already contained in FatBuffer,
+; 423  :                         // read sector containing next fat entry, FatSectorNumber is an
+; 424  :                         // offset from the start of the partition + reserved area
+; 425  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
+
+  00154	e1d620b4	 ldrh        r2, [r6, #4]
+  00158	e1a03803	 mov         r3, r3, lsl #16
+  0015c	e5961038	 ldr         r1, [r6, #0x38]
+  00160	e1a03823	 mov         r3, r3, lsr #16
+  00164	e0823003	 add         r3, r2, r3
+  00168	e5962248	 ldr         r2, [r6, #0x248]
+  0016c	e3a00c01	 mov         r0, #1, 24
+  00170	e0839001	 add         r9, r3, r1
+  00174	e38030ff	 orr         r3, r0, #0xFF
+  00178	e1520009	 cmp         r2, r9
+  0017c	e0037107	 and         r7, r3, r7, lsl #2
+  00180	0a00000c	 beq         |$LN5@FileIoRead|
+
+; 426  :                         {
+; 427  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors;
+; 428  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
+
+  00184	e5943000	 ldr         r3, [r4]
+  00188	e59a0010	 ldr         r0, [r10, #0x10]
+  0018c	e59a4008	 ldr         r4, [r10, #8]
+  00190	e0831009	 add         r1, r3, r9
+  00194	e2862048	 add         r2, r6, #0x48
+  00198	e5869248	 str         r9, [r6, #0x248]
+  0019c	e1a0e00f	 mov         lr, pc
+  001a0	e12fff14	 bx          r4
+  001a4	e3500000	 cmp         r0, #0
+  001a8	0a000002	 beq         |$LN5@FileIoRead|
+  001ac		 |$LN54@FileIoRead|
+
+; 429  :                             {
+; 430  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 431  :                                     OALMSG(OAL_INFO, 
+; 432  :                                         (L"BOOTLOADER: FileIoReadNextSectors failed reading FAT: LBA 0x%x (cluster 0x%x, sector 0x%x)\r\n",
+; 433  :                                         FatBufferSectorNumber + ExtendedPartionBaseSector, 
+; 434  :                                         pFile->current_cluster, 
+; 435  :                                         pFile->current_sector_in_cluster)
+; 436  :                                           );
+; 437  :                                 #endif
+; 438  :                                 FatBufferSectorNumber = 0;
+
+  001ac	e3a03000	 mov         r3, #0
+  001b0	e5863248	 str         r3, [r6, #0x248]
+
+; 439  :                                 return FILEIO_STATUS_READ_FAILED;
+
+  001b4	eaffffb6	 b           |$LN38@FileIoRead|
+  001b8		 |$LN5@FileIoRead|
+
+; 440  :                             }
+; 441  :                         }
+; 442  :                         //  update current fat index
+; 443  :                         pFile->current_cluster = (*(((UINT32 *)FatBuffer) + (FatOffsetInSector/4))) & FAT32_CLUSTER_MASK;
+
+  001b8	e1a02127	 mov         r2, r7, lsr #2
+  001bc	e2863048	 add         r3, r6, #0x48
+  001c0	e7933102	 ldr         r3, [r3, +r2, lsl #2]
+
+; 444  :                     #else
+; 445  :                         // read sector containing next fat entry, FatSectorNumber is an
+; 446  :                         // offset from the start of the partition + reserved area
+; 447  :                         if (pfileio_ops->read_sector(pfileio_ops->drive_info, 
+; 448  :                                                      (FilesysInfo.partition_start + FatSectorNumber + 
+; 449  :                                                       FilesysInfo.BiosParameterBlock.reserved_sectors) + 
+; 450  :                                                       ExtendedPartionBaseSector, 
+; 451  :                                                      pBuffer
+; 452  :                                                     )
+; 453  :                                        != ATA_STATUS_OK
+; 454  :                            )
+; 455  :                         {
+; 456  :                             #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 457  :                                 OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", 
+; 458  :                                          (FilesysInfo.partition_start + FatSectorNumber + 
+; 459  :                                           FilesysInfo.BiosParameterBlock.reserved_sectors) + 
+; 460  :                                           ExtendedPartionBaseSector)
+; 461  :                                       );
+; 462  :                             #endif
+; 463  :                             return FILEIO_STATUS_READ_FAILED;
+; 464  :                         }
+; 465  : 
+; 466  :                         //  update current fat index
+; 467  :                         pFile->current_cluster = *(((UINT32 *)pBuffer) + (FatOffsetInSector/4)) & FAT32_CLUSTER_MASK;
+; 468  :                     #endif
+; 469  :                     //  reset current_sector_in_cluster
+; 470  :                     pFile->current_sector_in_cluster = 0;
+
+  001c4	e3c3320f	 bic         r3, r3, #0xF, 4
+  001c8	e5853018	 str         r3, [r5, #0x18]
+
+; 471  : 
+; 472  :                     if (pFile->current_cluster >= FAT32_CLUSTER_LAST_START)
+
+  001cc	e373028f	 cmn         r3, #0x8F, 4
+
+; 473  :                     {
+; 474  :                         // no more clusters, signal end of file or directory
+; 475  :                         pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
+; 476  :                     }
+; 477  :                 }
+; 478  :                 break;
+
+  001d0	ea000064	 b           |$LN56@FileIoRead|
+  001d4		 |$LN15@FileIoRead|
+
+; 348  :                     }
+; 349  :                 }
+; 350  :                 break;
+; 351  :             #endif
+; 352  : 
+; 353  :             #if BOOTLOADER_SUPPORTS_FAT16
+; 354  :             case FAT_TYPE_FAT16:
+; 355  :                 // check to see if this was the last cluster, set flag so next read returns EOF
+; 356  :                 if (pFile->current_cluster >= FAT16_CLUSTER_LAST_START)
+
+  001d4	e1570009	 cmp         r7, r9
+
+; 357  :                 {
+; 358  :                     pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
+; 359  :                 }
+; 360  :                 else
+
+  001d8	2a000066	 bcs         |$LN52@FileIoRead|
+
+; 361  :                 {           
+; 362  :                     FatOffsetInSector = (UINT16) ((pFile->current_cluster * 2) % SECTOR_SIZE);
+
+  001dc	e1a03087	 mov         r3, r7, lsl #1
+
+; 363  :                     FatSectorNumber = (UINT16) ((pFile->current_cluster * 2) / SECTOR_SIZE);
+
+  001e0	e1a034a3	 mov         r3, r3, lsr #9
+
+; 364  : 
+; 365  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
+; 366  :                         // if not already contained in FatBuffer,
+; 367  :                         // read sector containing next fat entry, FatSectorNumber is an
+; 368  :                         // offset from the start of the partition + reserved area
+; 369  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
+
+  001e4	e1d620b4	 ldrh        r2, [r6, #4]
+  001e8	e1a03803	 mov         r3, r3, lsl #16
+  001ec	e5961038	 ldr         r1, [r6, #0x38]
+  001f0	e1a03823	 mov         r3, r3, lsr #16
+  001f4	e0823003	 add         r3, r2, r3
+  001f8	e5962248	 ldr         r2, [r6, #0x248]
+  001fc	e3a00c01	 mov         r0, #1, 24
+  00200	e083b001	 add         r11, r3, r1
+  00204	e38030ff	 orr         r3, r0, #0xFF
+  00208	e152000b	 cmp         r2, r11
+  0020c	e0037087	 and         r7, r3, r7, lsl #1
+  00210	0a000009	 beq         |$LN11@FileIoRead|
+
+; 370  :                         {
+; 371  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors;
+; 372  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
+
+  00214	e5943000	 ldr         r3, [r4]
+  00218	e59a0010	 ldr         r0, [r10, #0x10]
+  0021c	e59a4008	 ldr         r4, [r10, #8]
+  00220	e083100b	 add         r1, r3, r11
+  00224	e2862048	 add         r2, r6, #0x48
+  00228	e586b248	 str         r11, [r6, #0x248]
+  0022c	e1a0e00f	 mov         lr, pc
+  00230	e12fff14	 bx          r4
+  00234	e3500000	 cmp         r0, #0
+
+; 373  :                             {
+; 374  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 375  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", FatBufferSectorNumber + ExtendedPartionBaseSector));
+; 376  :                                 #endif
+; 377  :                                 FatBufferSectorNumber = 0;
+; 378  :                                 return FILEIO_STATUS_READ_FAILED;
+
+  00238	1affffdb	 bne         |$LN54@FileIoRead|
+  0023c		 |$LN11@FileIoRead|
+
+; 379  :                             }
+; 380  :                         }
+; 381  :                         //  update current fat index
+; 382  :                         pFile->current_cluster = *(((UINT16 *)FatBuffer) + (FatOffsetInSector/2));
+
+  0023c	e1a020a7	 mov         r2, r7, lsr #1
+  00240	e2863048	 add         r3, r6, #0x48
+  00244	e0833082	 add         r3, r3, r2, lsl #1
+  00248	e1d330b0	 ldrh        r3, [r3]
+
+; 383  :                     #else
+; 384  :                         // read sector containing next fat entry, FatSectorNumber is an
+; 385  :                         // offset from the start of the partition + reserved area
+; 386  :                         if (pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector, pBuffer) != ATA_STATUS_OK)
+; 387  :                         {
+; 388  :                             #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 389  :                                 OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector));
+; 390  :                             #endif
+; 391  :                             return FILEIO_STATUS_READ_FAILED;
+; 392  :                         }
+; 393  :                         //  update current fat index
+; 394  :                         pFile->current_cluster = *(((UINT16 *)pBuffer) + (FatOffsetInSector/2));
+; 395  :                     #endif
+; 396  :                     //  reset current_sector_in_cluster
+; 397  :                     pFile->current_sector_in_cluster = 0;
+
+  0024c	e5853018	 str         r3, [r5, #0x18]
+
+; 398  : 
+; 399  :                     // check to see if this was the last cluster, set flag so next read returns EOF
+; 400  :                     if (pFile->current_cluster >= FAT16_CLUSTER_LAST_START)
+
+  00250	e1530009	 cmp         r3, r9
+
+; 401  :                     {
+; 402  :                         pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
+; 403  :                     }
+; 404  :                 }
+; 405  :                 break;
+
+  00254	ea000043	 b           |$LN56@FileIoRead|
+  00258		 |$LN28@FileIoRead|
+
+; 244  :         {
+; 245  :             #if BOOTLOADER_SUPPORTS_FAT12
+; 246  :             case FAT_TYPE_FAT12:
+; 247  :                 if (pFile->current_cluster >= FAT12_CLUSTER_LAST_START)
+
+  00258	e157000b	 cmp         r7, r11
+
+; 248  :                 {
+; 249  :                     pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
+; 250  :                 }
+; 251  :                 else
+
+  0025c	2a000045	 bcs         |$LN52@FileIoRead|
+
+; 252  :                 {
+; 253  :                     //   FatOffsetInByte is 0 if fat entry starts on byte boundary, 1 if in mid-byte
+; 254  :                     //   FatOffsetInSector is a byte pointer to byte containing first part of 12 bit fat entry
+; 255  :                     FatOffsetInByte = (UINT16) (pFile->current_cluster & 1);
+; 256  :                     FatOffsetInSector = (UINT16) (((pFile->current_cluster * 3) / 2) % SECTOR_SIZE);
+
+  00260	e0871087	 add         r1, r7, r7, lsl #1
+
+; 257  :                     FatSectorNumber = (UINT16) (((pFile->current_cluster * 3) / 2) / SECTOR_SIZE);
+
+  00264	e1a03521	 mov         r3, r1, lsr #10
+
+; 258  : 
+; 259  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
+; 260  :                         // if not already contained in FatBuffer, read sector containing next fat entry.
+; 261  :                         // FatSectorNumber is an offset from the start of the partition + reserved area
+; 262  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
+
+  00268	e1d620b4	 ldrh        r2, [r6, #4]
+  0026c	e1a03803	 mov         r3, r3, lsl #16
+  00270	e1a03823	 mov         r3, r3, lsr #16
+  00274	e5960038	 ldr         r0, [r6, #0x38]
+  00278	e58d3010	 str         r3, [sp, #0x10]
+  0027c	e0823003	 add         r3, r2, r3
+  00280	e5962248	 ldr         r2, [r6, #0x248]
+  00284	e1a01b01	 mov         r1, r1, lsl #22
+  00288	e083e000	 add         lr, r3, r0
+  0028c	e152000e	 cmp         r2, lr
+  00290	e58de00c	 str         lr, [sp, #0xC]
+  00294	e1a09ba1	 mov         r9, r1, lsr #23
+  00298	0a00000b	 beq         |$LN24@FileIoRead|
+
+; 263  :                         {
+; 264  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors;
+; 265  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
+
+  0029c	e5943000	 ldr         r3, [r4]
+  002a0	e59a0010	 ldr         r0, [r10, #0x10]
+  002a4	e59a4008	 ldr         r4, [r10, #8]
+  002a8	e083100e	 add         r1, r3, lr
+  002ac	e1a0300e	 mov         r3, lr
+  002b0	e5863248	 str         r3, [r6, #0x248]
+  002b4	e2862048	 add         r2, r6, #0x48
+  002b8	e1a0e00f	 mov         lr, pc
+  002bc	e12fff14	 bx          r4
+  002c0	e3500000	 cmp         r0, #0
+
+; 266  :                             {
+; 267  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 268  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", FatBufferSectorNumber + ExtendedPartionBaseSector));
+; 269  :                                 #endif
+; 270  :                                 FatBufferSectorNumber = 0;
+; 271  :                                 return FILEIO_STATUS_READ_FAILED;
+
+  002c4	1affffb8	 bne         |$LN54@FileIoRead|
+
+; 258  : 
+; 259  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
+; 260  :                         // if not already contained in FatBuffer, read sector containing next fat entry.
+; 261  :                         // FatSectorNumber is an offset from the start of the partition + reserved area
+; 262  :                         if (FatBufferSectorNumber != FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors)
+
+  002c8	e59f4110	 ldr         r4, [pc, #0x110]
+  002cc		 |$LN24@FileIoRead|
+
+; 272  :                             }
+; 273  :                         }
+; 274  :                         // build current fat index from two bytes (which may be in different sectors)
+; 275  :                         // get data from first byte of containing current FAT entry
+; 276  :                         if (FatOffsetInByte)
+; 277  :                             pFile->current_cluster = (*(((UINT8 *)FatBuffer) + FatOffsetInSector) >> 4) & 0xf;  // lower 4 bits of 12 from upper half of byte
+
+  002cc	e2863048	 add         r3, r6, #0x48
+  002d0	e7d93003	 ldrb        r3, [r9, +r3]
+  002d4	e2177001	 ands        r7, r7, #1
+  002d8	11a03223	 movne       r3, r3, lsr #4
+
+; 278  :                         else
+; 279  :                             pFile->current_cluster = *(((UINT8 *)FatBuffer) + FatOffsetInSector);   // lower 8 bits of 12 from entire byte
+
+  002dc	e5853018	 str         r3, [r5, #0x18]
+  002e0	e3a03c01	 mov         r3, #1, 24
+
+; 280  :                     #else
+; 281  :                         // read sector containing (at least the beginning of) the next fat entry
+; 282  :                         if (pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector, pBuffer) != ATA_STATUS_OK)
+; 283  :                         {
+; 284  :                             #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 285  :                                 OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors) + ExtendedPartionBaseSector));
+; 286  :                             #endif
+; 287  :                             return FILEIO_STATUS_READ_FAILED;
+; 288  :                         }
+; 289  : 
+; 290  :                         // build current fat index from two bytes (which may be in different sectors)
+; 291  :                         // get data from first byte of containing current FAT entry
+; 292  :                         if (FatOffsetInByte)
+; 293  :                             pFile->current_cluster = (*(((UINT8 *)pBuffer) + FatOffsetInSector) >> 4) & 0xf;    // lower 4 bits of 12 from upper half of byte
+; 294  :                         else
+; 295  :                             pFile->current_cluster = *(((UINT8 *)pBuffer) + FatOffsetInSector); // lower 8 bits of 12 from entire byte
+; 296  :                     #endif
+; 297  : 
+; 298  :                     // get data from second byte of FAT12 entry, first check if fat entry spans sector
+; 299  :                     if (FatOffsetInSector == 511)
+
+  002e4	e38330ff	 orr         r3, r3, #0xFF
+  002e8	e1590003	 cmp         r9, r3
+  002ec	1a000011	 bne         |$LN21@FileIoRead|
+
+; 300  :                     {
+; 301  :                         // second byte spans sector, read next sector, reset offset
+; 302  :                         #if FILEIO_USE_FAT_SECTOR_BUFFER
+; 303  :                             FatBufferSectorNumber = FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors + 1;
+
+  002f0	e1d630b4	 ldrh        r3, [r6, #4]
+
+; 304  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, FatBufferSectorNumber + ExtendedPartionBaseSector, FatBuffer) != ATA_STATUS_OK)
+
+  002f4	e59d0010	 ldr         r0, [sp, #0x10]
+  002f8	e5962038	 ldr         r2, [r6, #0x38]
+  002fc	e5941000	 ldr         r1, [r4]
+  00300	e0833000	 add         r3, r3, r0
+  00304	e0833002	 add         r3, r3, r2
+  00308	e2834001	 add         r4, r3, #1
+  0030c	e59a0010	 ldr         r0, [r10, #0x10]
+  00310	e59a3008	 ldr         r3, [r10, #8]
+  00314	e0811004	 add         r1, r1, r4
+  00318	e5864248	 str         r4, [r6, #0x248]
+  0031c	e2862048	 add         r2, r6, #0x48
+  00320	e1a0e00f	 mov         lr, pc
+  00324	e12fff13	 bx          r3
+  00328	e3500000	 cmp         r0, #0
+
+; 305  :                             {
+; 306  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 307  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", FatBufferSectorNumber + ExtendedPartionBaseSector));
+; 308  :                                 #endif
+; 309  :                                 FatBufferSectorNumber = 0;
+; 310  :                                 return FILEIO_STATUS_READ_FAILED;
+
+  0032c	1affff9e	 bne         |$LN54@FileIoRead|
+
+; 311  :                             }
+; 312  :                         #else
+; 313  :                             if (pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors + 1) + ExtendedPartionBaseSector, pBuffer) != ATA_STATUS_OK)
+; 314  :                             {
+; 315  :                                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 316  :                                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (FAT) failed\r\n", (FilesysInfo.partition_start + FatSectorNumber + FilesysInfo.BiosParameterBlock.reserved_sectors + 1) + ExtendedPartionBaseSector));
+; 317  :                                 #endif
+; 318  :                                 return FILEIO_STATUS_READ_FAILED;
+; 319  :                             }
+; 320  :                         #endif
+; 321  :                         FatOffsetInSector = 0;
+
+  00330	e3a02000	 mov         r2, #0
+
+; 322  :                     }
+; 323  :                     else
+
+  00334	ea000000	 b           |$LN19@FileIoRead|
+  00338		 |$LN21@FileIoRead|
+
+; 324  :                     {
+; 325  :                         // second byte is in current sector, just increment offset
+; 326  :                         FatOffsetInSector += 1;
+
+  00338	e2892001	 add         r2, r9, #1
+  0033c		 |$LN19@FileIoRead|
+
+; 327  :                     }
+; 328  : 
+; 329  :                     //  build remainder of current fat index from the next byte
+; 330  :                     #if FILEIO_USE_FAT_SECTOR_BUFFER
+; 331  :                         if (FatOffsetInByte)
+
+  0033c	e3570000	 cmp         r7, #0
+
+; 332  :                             pFile->current_cluster |= *(((UINT8 *)FatBuffer) + FatOffsetInSector) << 4;         // upper 8 of 12 from entire byte
+
+  00340	e2863048	 add         r3, r6, #0x48
+  00344	17d22003	 ldrneb      r2, [r2, +r3]
+  00348	15953018	 ldrne       r3, [r5, #0x18]
+  0034c	11833202	 orrne       r3, r3, r2, lsl #4
+
+; 333  :                         else
+; 334  :                             pFile->current_cluster |= (*(((UINT8 *)FatBuffer) + FatOffsetInSector) & 0xf) << 8; // upper 4 of 12 from lower half of byte
+
+  00350	07d23003	 ldreqb      r3, [r2, +r3]
+  00354	05952018	 ldreq       r2, [r5, #0x18]
+  00358	0203300f	 andeq       r3, r3, #0xF
+  0035c	01823403	 orreq       r3, r2, r3, lsl #8
+  00360	e5853018	 str         r3, [r5, #0x18]
+
+; 335  :                     #else
+; 336  :                         if (FatOffsetInByte)
+; 337  :                             pFile->current_cluster |= *(((UINT8 *)pBuffer) + FatOffsetInSector) << 4;           // upper 8 of 12 from entire byte
+; 338  :                         else
+; 339  :                             pFile->current_cluster |= (*(((UINT8 *)pBuffer) + FatOffsetInSector) & 0xf) << 8;   // upper 4 of 12 from lower half of byte
+; 340  :                     #endif
+; 341  :                     //  reset current_sector_in_cluster
+; 342  :                     pFile->current_sector_in_cluster = 0;
+; 343  : 
+; 344  :                     // check to see if this was the last cluster, set flag so next read returns EOF
+; 345  :                     if (pFile->current_cluster >= FAT12_CLUSTER_LAST_START)
+
+  00364	e153000b	 cmp         r3, r11
+  00368		 |$LN56@FileIoRead|
+  00368	e3a02000	 mov         r2, #0
+  0036c	e59d1004	 ldr         r1, [sp, #4]
+  00370	e1c521bc	 strh        r2, [r5, #0x1C]
+  00374	3a000000	 bcc         |$LN16@FileIoRead|
+  00378		 |$LN52@FileIoRead|
+
+; 346  :                     {
+; 347  :                         pFile->current_sector_in_cluster = CURRENT_SECTOR_EOF_VALUE;
+
+  00378	e1c581bc	 strh        r8, [r5, #0x1C]
+  0037c		 |$LN16@FileIoRead|
+
+; 479  :             #endif
+; 480  :         }
+; 481  :     }
+; 482  : 
+; 483  :     if (numSectors > 1)
+; 484  :     {
+; 485  :         status = pfileio_ops->read_multi_sectors(
+; 486  :                              pfileio_ops->drive_info, 
+; 487  :                              (FilesysInfo.partition_start + SectorNumber) + 
+; 488  :                                  ExtendedPartionBaseSector, 
+; 489  :                              pBuffer,
+; 490  :                              numSectors);
+
+  0037c	e59f305c	 ldr         r3, [pc, #0x5C]
+  00380	e59d7014	 ldr         r7, [sp, #0x14]
+  00384	e59a0010	 ldr         r0, [r10, #0x10]
+  00388	e5932000	 ldr         r2, [r3]
+  0038c	e5963038	 ldr         r3, [r6, #0x38]
+  00390	e3570001	 cmp         r7, #1
+  00394	e0823003	 add         r3, r2, r3
+  00398	e59d2008	 ldr         r2, [sp, #8]
+  0039c	e0831001	 add         r1, r3, r1
+  003a0	9a000004	 bls         |$LN3@FileIoRead|
+  003a4	e59a400c	 ldr         r4, [r10, #0xC]
+  003a8	e1dd30b0	 ldrh        r3, [sp]
+  003ac	e1a0e00f	 mov         lr, pc
+  003b0	e12fff14	 bx          r4
+
+; 491  :     }
+; 492  :     else
+
+  003b4	ea000002	 b           |$LN2@FileIoRead|
+  003b8		 |$LN3@FileIoRead|
+
+; 493  :     {
+; 494  :         status = pfileio_ops->read_sector(
+; 495  :                              pfileio_ops->drive_info, 
+; 496  :                              (FilesysInfo.partition_start + SectorNumber) + 
+; 497  :                                  ExtendedPartionBaseSector, 
+; 498  :                              pBuffer);
+
+  003b8	e59a4008	 ldr         r4, [r10, #8]
+  003bc	e1a0e00f	 mov         lr, pc
+  003c0	e12fff14	 bx          r4
+  003c4		 |$LN2@FileIoRead|
+
+; 499  :     }
+; 500  : 
+; 501  :     // read the requested sector
+; 502  :     if (status != ATA_STATUS_OK)
+
+  003c4	e3500000	 cmp         r0, #0
+
+; 503  :     {
+; 504  :         #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 505  :             OALMSG(OAL_INFO, 
+; 506  :               (L"BL: FileIoReadNextSectors failed reading: LBA 0x%x, cluster 0x%x, sec in cluster 0x%x, num sec %d\r\n", 
+; 507  :                (FilesysInfo.partition_start + SectorNumber) + ExtendedPartionBaseSector, 
+; 508  :                pFile->current_cluster - 2, 
+; 509  :                pFile->current_sector_in_cluster,
+; 510  :                numSectors
+; 511  :               ));
+; 512  :         #endif
+; 513  :         return FILEIO_STATUS_READ_FAILED;
+
+  003c8	1affff31	 bne         |$LN38@FileIoRead|
+
+; 514  :     }
+; 515  : 
+; 516  :     // update sector count
+; 517  :     pFile->current_sector += numSectors;
+
+  003cc	e5953014	 ldr         r3, [r5, #0x14]
+
+; 518  :     
+; 519  :     return FILEIO_STATUS_OK;
+
+  003d0	e3a00000	 mov         r0, #0
+  003d4	e0873003	 add         r3, r7, r3
+  003d8	e5853014	 str         r3, [r5, #0x14]
+  003dc	eaffff2d	 b           |$LN45@FileIoRead|
+  003e0		 |$LN60@FileIoRead|
+  003e0		 |$LN61@FileIoRead|
+  003e0	00000000	 DCD         |ExtendedPartionBaseSector|
+  003e4		 |$LN62@FileIoRead|
+  003e4	00000000	 DCD         |FilesysInfo|
+  003e8		 |$M43594|
 
 			 ENDP  ; |FileIoReadNextSectors|
 
@@ -1147,7 +1099,7 @@
 	IMPORT	|toupper|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43634| DCD	|$LN21@FileNameTo|
+|$T43617| DCD	|$LN21@FileNameTo|
 	DCD	0x40003301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1158,26 +1110,26 @@
 
   00000		 |FileNameToDirEntry| PROC
 
-; 528  : {
+; 531  : {
 
   00000		 |$LN21@FileNameTo|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M43631|
+  00004		 |$M43614|
   00004	e1a07002	 mov         r7, r2
   00008	e1a08001	 mov         r8, r1
   0000c	e1a05000	 mov         r5, r0
 
-; 529  :     int i, j;
-; 530  : 
-; 531  :     // fill name and extension with blanks
-; 532  :     strcpy(pName, "        ");
+; 532  :     int i, j;
+; 533  : 
+; 534  :     // fill name and extension with blanks
+; 535  :     strcpy(pName, "        ");
 
   00010	e59f10b0	 ldr         r1, [pc, #0xB0]
   00014	e3a02009	 mov         r2, #9
   00018	e1a00008	 mov         r0, r8
   0001c	eb000000	 bl          memcpy
 
-; 533  :     strcpy(pExtension, "   ");
+; 536  :     strcpy(pExtension, "   ");
 
   00020	e3a03000	 mov         r3, #0
   00024	e3a02020	 mov         r2, #0x20
@@ -1186,18 +1138,18 @@
   00030	e5c72001	 strb        r2, [r7, #1]
   00034	e5c72002	 strb        r2, [r7, #2]
 
-; 534  : 
-; 535  :     //OALMSG(1, (L"FileNameToDirEntry: \""));
-; 536  : 
-; 537  :     // copy name
-; 538  :     for (i = 0; i < 8; i++)
+; 537  : 
+; 538  :     //OALMSG(1, (L"FileNameToDirEntry: \""));
+; 539  : 
+; 540  :     // copy name
+; 541  :     for (i = 0; i < 8; i++)
 
   00038	e3a04000	 mov         r4, #0
   0003c	e1a06005	 mov         r6, r5
   00040		 |$LL11@FileNameTo|
 
-; 539  :     {
-; 540  :         if (pFileName[i] && pFileName[i] != L'.')
+; 542  :     {
+; 543  :         if (pFileName[i] && pFileName[i] != L'.')
 
   00040	e1d630b0	 ldrh        r3, [r6]
   00044	e1b00003	 movs        r0, r3
@@ -1205,8 +1157,8 @@
   0004c	e350002e	 cmp         r0, #0x2E
   00050	0a000008	 beq         |$LN8@FileNameTo|
 
-; 541  :         {
-; 542  :             pName[i] = (CHAR) toupper((CHAR)(pFileName[i]));
+; 544  :         {
+; 545  :             pName[i] = (CHAR) toupper((CHAR)(pFileName[i]));
 
   00054	e1a00c03	 mov         r0, r3, lsl #24
   00058	e1a00c40	 mov         r0, r0, asr #24
@@ -1219,44 +1171,44 @@
   00074	bafffff1	 blt         |$LL11@FileNameTo|
   00078		 |$LN8@FileNameTo|
 
-; 543  :             //OALMSG(1, (L"%c", (CHAR)(pName[i])));
-; 544  :         }
-; 545  :         else
-; 546  :             break;
-; 547  :     }
-; 548  : 
-; 549  :     //OALMSG(1, (L"."));
-; 550  : 
-; 551  :     // check for extension
-; 552  :     if (pFileName[i] == L'.')
+; 546  :             //OALMSG(1, (L"%c", (CHAR)(pName[i])));
+; 547  :         }
+; 548  :         else
+; 549  :             break;
+; 550  :     }
+; 551  : 
+; 552  :     //OALMSG(1, (L"."));
+; 553  : 
+; 554  :     // check for extension
+; 555  :     if (pFileName[i] == L'.')
 
   00078	e0853084	 add         r3, r5, r4, lsl #1
   0007c	e1d330b0	 ldrh        r3, [r3]
   00080	e353002e	 cmp         r3, #0x2E
   00084	1a00000d	 bne         |$LN18@FileNameTo|
 
-; 553  :     {
-; 554  :         // skip period
-; 555  :         i++;
+; 556  :     {
+; 557  :         // skip period
+; 558  :         i++;
 
   00088	e2843001	 add         r3, r4, #1
   0008c	e0855083	 add         r5, r5, r3, lsl #1
 
-; 556  :         // copy extension
-; 557  :         for (j = 0; j < 3; j++)
+; 559  :         // copy extension
+; 560  :         for (j = 0; j < 3; j++)
 
   00090	e3a04000	 mov         r4, #0
   00094		 |$LL5@FileNameTo|
 
-; 558  :         {
-; 559  :             if (pFileName[i])
+; 561  :         {
+; 562  :             if (pFileName[i])
 
   00094	e1d530b0	 ldrh        r3, [r5]
   00098	e3530000	 cmp         r3, #0
   0009c	0a000007	 beq         |$LN18@FileNameTo|
 
-; 560  :             {
-; 561  :                 pExtension[j] = (CHAR)toupper((BYTE)(pFileName[i++]));
+; 563  :             {
+; 564  :                 pExtension[j] = (CHAR)toupper((BYTE)(pFileName[i++]));
 
   000a0	e20300ff	 and         r0, r3, #0xFF
   000a4	eb000000	 bl          toupper
@@ -1268,22 +1220,22 @@
   000bc	bafffff4	 blt         |$LL5@FileNameTo|
   000c0		 |$LN18@FileNameTo|
 
-; 562  :                 //OALMSG(1, (L"%c", (CHAR)(pExtension[j])));
-; 563  :             }
-; 564  :             else
-; 565  :                 break;
-; 566  :         }
-; 567  :     }
-; 568  : 
-; 569  :     //OALMSG(1, (L"\"\r\n"));
-; 570  : }
+; 565  :                 //OALMSG(1, (L"%c", (CHAR)(pExtension[j])));
+; 566  :             }
+; 567  :             else
+; 568  :                 break;
+; 569  :         }
+; 570  :     }
+; 571  : 
+; 572  :     //OALMSG(1, (L"\"\r\n"));
+; 573  : }
 
   000c0	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   000c4	e12fff1e	 bx          lr
   000c8		 |$LN22@FileNameTo|
   000c8		 |$LN23@FileNameTo|
   000c8	00000000	 DCD         |??_C@_08GGFKNFHG@?5?5?5?5?5?5?5?5?$AA@|
-  000cc		 |$M43632|
+  000cc		 |$M43615|
 
 			 ENDP  ; |FileNameToDirEntry|
 
@@ -1296,53 +1248,53 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43686| DCD	|$LN58@FileIoInit|
+|$T43669| DCD	|$LN58@FileIoInit|
 	DCD	0xc000d302
 
   00000			 AREA	 |.xdata|, DATA
-|$T43682| DCD	0xffffffdc
+|$T43665| DCD	0xffffffdc
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43682|
+  00004	00000000	 DCD         |$T43665|
 
   00008		 |FileIoInit| PROC
 
-; 584  : {
+; 587  : {
 
   00008		 |$LN58@FileIoInit|
   00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   0000c	e24ddf81	 sub         sp, sp, #0x81, 30
-  00010		 |$M43683|
+  00010		 |$M43666|
   00010	e1a06000	 mov         r6, r0
   00014	e59f3334	 ldr         r3, [pc, #0x334]
   00018	e5933000	 ldr         r3, [r3]
   0001c	e58d3200	 str         r3, [sp, #0x200]
 
-; 585  :     UINT16 Sector[SECTOR_SIZE/2];
-; 586  :     UINT8 * pSector = (UINT8 *)Sector;
-; 587  :     int status;
-; 588  :     int i;
-; 589  :     UINT32 boot_sector = 0;
-; 590  :     UCHAR partition_type = 0;
-; 591  :     int ExtendedPartitionDepth = 0;
-; 592  :     int PartitionTableEntryCount = 4;
-; 593  :         
-; 594  :     // initialize device driver
-; 595  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 596  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() calling init.\r\n"));
-; 597  :     #endif
-; 598  : 
-; 599  :     // assume no extented partion, no offset
-; 600  :     ExtendedPartionBaseSector = 0;
+; 588  :     UINT16 Sector[SECTOR_SIZE/2];
+; 589  :     UINT8 * pSector = (UINT8 *)Sector;
+; 590  :     int status;
+; 591  :     int i;
+; 592  :     UINT32 boot_sector = 0;
+; 593  :     UCHAR partition_type = 0;
+; 594  :     int ExtendedPartitionDepth = 0;
+; 595  :     int PartitionTableEntryCount = 4;
+; 596  :         
+; 597  :     // initialize device driver
+; 598  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 599  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() calling init.\r\n"));
+; 600  :     #endif
+; 601  : 
+; 602  :     // assume no extented partion, no offset
+; 603  :     ExtendedPartionBaseSector = 0;
 
   00020	e59fa324	 ldr         r10, [pc, #0x324]
   00024	e3a03000	 mov         r3, #0
 
-; 601  : 
-; 602  :     if ((status = pfileio_ops->init(pfileio_ops->drive_info)) != ATA_STATUS_OK)
+; 604  : 
+; 605  :     if ((status = pfileio_ops->init(pfileio_ops->drive_info)) != ATA_STATUS_OK)
 
   00028	e3a08000	 mov         r8, #0
   0002c	e58a3000	 str         r3, [r10]
@@ -1354,35 +1306,35 @@
   00044	e12fff13	 bx          r3
   00048	e3500000	 cmp         r0, #0
 
-; 603  :         return FILEIO_STATUS_INIT_FAILED;
+; 606  :         return FILEIO_STATUS_INIT_FAILED;
 
   0004c	1a000064	 bne         |$LN42@FileIoInit|
 
-; 604  : 
-; 605  :     // the identify drive command is optional, used only to display information for debugging
-; 606  :     //if (pfileio_ops->identify && pfileio_ops->identify(pfileio_ops->drive_info, pSector) != ATA_STATUS_OK)
-; 607  :     //  return FILEIO_STATUS_INIT_FAILED;
-; 608  :     if (pfileio_ops->identify)
+; 607  : 
+; 608  :     // the identify drive command is optional, used only to display information for debugging
+; 609  :     //if (pfileio_ops->identify && pfileio_ops->identify(pfileio_ops->drive_info, pSector) != ATA_STATUS_OK)
+; 610  :     //  return FILEIO_STATUS_INIT_FAILED;
+; 611  :     if (pfileio_ops->identify)
 
   00050	e5963004	 ldr         r3, [r6, #4]
   00054	e3530000	 cmp         r3, #0
 
-; 609  :         pfileio_ops->identify(pfileio_ops->drive_info, pSector);
+; 612  :         pfileio_ops->identify(pfileio_ops->drive_info, pSector);
 
   00058	15960010	 ldrne       r0, [r6, #0x10]
   0005c	128d1000	 addne       r1, sp, #0
   00060	11a0e00f	 movne       lr, pc
   00064	112fff13	 bxne        r3
 
-; 610  : 
-; 611  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 612  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() calling read_sector to get partition table\r\n"));
-; 613  :     #endif
-; 614  : 
-; 615  : CheckPartitionTable:
-; 616  : 
-; 617  :     // read in candidate partition table sector
-; 618  :     if (pfileio_ops->read_sector(pfileio_ops->drive_info, boot_sector + ExtendedPartionBaseSector, pSector) != ATA_STATUS_OK)
+; 613  : 
+; 614  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 615  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() calling read_sector to get partition table\r\n"));
+; 616  :     #endif
+; 617  : 
+; 618  : CheckPartitionTable:
+; 619  : 
+; 620  :     // read in candidate partition table sector
+; 621  :     if (pfileio_ops->read_sector(pfileio_ops->drive_info, boot_sector + ExtendedPartionBaseSector, pSector) != ATA_STATUS_OK)
 
   00068	e59a1000	 ldr         r1, [r10]
   0006c	e5960010	 ldr         r0, [r6, #0x10]
@@ -1393,23 +1345,23 @@
   00080	e3500000	 cmp         r0, #0
   00084	1a000056	 bne         |$LN42@FileIoInit|
   00088	e28d9000	 add         r9, sp, #0
-  0008c		 |$CheckPartitionTable$43354|
+  0008c		 |$CheckPartitionTable$43351|
 
-; 624  :     }
-; 625  : 
-; 626  :     #if BOOTLOADER_DEBUG_DUMP_SECTOR_ZERO || BOOTLOADER_DEBUG_DUMP_ALL_SECTORS
-; 627  :         DumpData((unsigned char *)pSector, 512);
-; 628  :     #endif
-; 629  :         
-; 630  :     // check for valid BPB (Bios Parameter Block) in sector zero (old DOS disk organization, no partition table)
-; 631  :     //if ( (*pSector == 0xe9 || *pSector == 0xeb) && (((PBOOT_SECTOR)pSector)->bpb.bytes_per_sector == 512) )
-; 632  :     //if ( (*pSector == 0xe9 || *pSector == 0xeb) && ((BYTE_STRUCT_2_READ(((PBOOT_SECTOR)pSector)->bpb.bytes_per_sector)) == 512) )
-; 633  :     if (   
-; 634  :         (*pSector == 0xe9 || *pSector == 0xeb) &&
-; 635  :         ((BYTE_STRUCT_2_READ(((PBOOT_SECTOR)pSector)->bpb.bytes_per_sector)) == 512) &&
-; 636  :         ByteIsPowerOfTwo(((PBOOT_SECTOR)pSector)->bpb.sectors_per_cluster) &&
-; 637  :         (((PBOOT_SECTOR)pSector)->bpb.media_descriptor == 0xf8)
-; 638  :     )
+; 627  :     }
+; 628  : 
+; 629  :     #if BOOTLOADER_DEBUG_DUMP_SECTOR_ZERO || BOOTLOADER_DEBUG_DUMP_ALL_SECTORS
+; 630  :         DumpData((unsigned char *)pSector, 512);
+; 631  :     #endif
+; 632  :         
+; 633  :     // check for valid BPB (Bios Parameter Block) in sector zero (old DOS disk organization, no partition table)
+; 634  :     //if ( (*pSector == 0xe9 || *pSector == 0xeb) && (((PBOOT_SECTOR)pSector)->bpb.bytes_per_sector == 512) )
+; 635  :     //if ( (*pSector == 0xe9 || *pSector == 0xeb) && ((BYTE_STRUCT_2_READ(((PBOOT_SECTOR)pSector)->bpb.bytes_per_sector)) == 512) )
+; 636  :     if (   
+; 637  :         (*pSector == 0xe9 || *pSector == 0xeb) &&
+; 638  :         ((BYTE_STRUCT_2_READ(((PBOOT_SECTOR)pSector)->bpb.bytes_per_sector)) == 512) &&
+; 639  :         ByteIsPowerOfTwo(((PBOOT_SECTOR)pSector)->bpb.sectors_per_cluster) &&
+; 640  :         (((PBOOT_SECTOR)pSector)->bpb.media_descriptor == 0xf8)
+; 641  :     )
 
   0008c	e5dd3000	 ldrb        r3, [sp]
   00090	e35300e9	 cmp         r3, #0xE9
@@ -1447,23 +1399,23 @@
   00108	0a00003b	 beq         |$LN43@FileIoInit|
   0010c		 |$LN28@FileIoInit|
 
-; 659  :     }
-; 660  : 
-; 661  :     // assume that sector 0 contains a partition table
-; 662  :     #if BOOTLOADER_DEBUG_DISPLAY_PARTITION_TABLE
-; 663  :         for (i = 0; i < PartitionTableEntryCount; i++)
-; 664  :         {
-; 665  :             OALMSG(OAL_INFO, (L"BOOTLOADER: PartitionTable[%d] Flag:0x%x, Type:0x%x, Start:0x%X, Size:0x%X\r\n", 
-; 666  :                 i,
-; 667  :                 ((PPARTITION_TABLE)pSector)->Entry[i].ActivePartitionFlag, 
-; 668  :                 ((PPARTITION_TABLE)pSector)->Entry[i].PartitionType, 
-; 669  :                 ((PPARTITION_TABLE)pSector)->Entry[i].PartitionStartLBA, 
-; 670  :                 ((PPARTITION_TABLE)pSector)->Entry[i].PartitionSize));
-; 671  :         }
-; 672  :     #endif
-; 673  : 
-; 674  :     // search the partition table for the active partition
-; 675  :     for (i = 0; i < PartitionTableEntryCount; i++)
+; 662  :     }
+; 663  : 
+; 664  :     // assume that sector 0 contains a partition table
+; 665  :     #if BOOTLOADER_DEBUG_DISPLAY_PARTITION_TABLE
+; 666  :         for (i = 0; i < PartitionTableEntryCount; i++)
+; 667  :         {
+; 668  :             OALMSG(OAL_INFO, (L"BOOTLOADER: PartitionTable[%d] Flag:0x%x, Type:0x%x, Start:0x%X, Size:0x%X\r\n", 
+; 669  :                 i,
+; 670  :                 ((PPARTITION_TABLE)pSector)->Entry[i].ActivePartitionFlag, 
+; 671  :                 ((PPARTITION_TABLE)pSector)->Entry[i].PartitionType, 
+; 672  :                 ((PPARTITION_TABLE)pSector)->Entry[i].PartitionStartLBA, 
+; 673  :                 ((PPARTITION_TABLE)pSector)->Entry[i].PartitionSize));
+; 674  :         }
+; 675  :     #endif
+; 676  : 
+; 677  :     // search the partition table for the active partition
+; 678  :     for (i = 0; i < PartitionTableEntryCount; i++)
 
   0010c	e3a05000	 mov         r5, #0
   00110	e3570000	 cmp         r7, #0
@@ -1471,8 +1423,8 @@
   00118	e28d2000	 add         r2, sp, #0
   0011c		 |$LL24@FileIoInit|
 
-; 676  :     {
-; 677  :         if (((PPARTITION_TABLE)pSector)->Entry[i].ActivePartitionFlag == 0x80 || ((PPARTITION_TABLE)pSector)->Entry[i].PartitionType != 0x00)
+; 679  :     {
+; 680  :         if (((PPARTITION_TABLE)pSector)->Entry[i].ActivePartitionFlag == 0x80 || ((PPARTITION_TABLE)pSector)->Entry[i].PartitionType != 0x00)
 
   0011c	e5d231be	 ldrb        r3, [r2, #0x1BE]
   00120	e3530080	 cmp         r3, #0x80
@@ -1485,26 +1437,26 @@
   0013c	e2822010	 add         r2, r2, #0x10
   00140	bafffff5	 blt         |$LL24@FileIoInit|
 
-; 685  :     {
-; 686  :         #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 687  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() no active partition found\r\n"));
-; 688  :         #endif
-; 689  : 
-; 690  :         return FILEIO_STATUS_INIT_FAILED;
-; 691  :     }
+; 688  :     {
+; 689  :         #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 690  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() no active partition found\r\n"));
+; 691  :         #endif
 ; 692  : 
-; 693  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 694  :         OALMSG(OAL_INFO, (L"BOOTLOADER: trying partition %d\r\n", i));
-; 695  :     #endif
-; 696  : 
-; 697  :     // check partition type
-; 698  :     switch (partition_type)
+; 693  :         return FILEIO_STATUS_INIT_FAILED;
+; 694  :     }
+; 695  : 
+; 696  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 697  :         OALMSG(OAL_INFO, (L"BOOTLOADER: trying partition %d\r\n", i));
+; 698  :     #endif
+; 699  : 
+; 700  :     // check partition type
+; 701  :     switch (partition_type)
 
   00144	ea000008	 b           |$LN22@FileIoInit|
   00148		 |$LN41@FileIoInit|
 
-; 678  :         {
-; 679  :             boot_sector = ((PPARTITION_TABLE)pSector)->Entry[i].PartitionStartLBA;
+; 681  :         {
+; 682  :             boot_sector = ((PPARTITION_TABLE)pSector)->Entry[i].PartitionStartLBA;
 
   00148	e089e205	 add         lr, r9, r5, lsl #4
   0014c	e5de01c6	 ldrb        r0, [lr, #0x1C6]
@@ -1514,34 +1466,34 @@
   0015c	e1803403	 orr         r3, r0, r3, lsl #8
   00160	e1833802	 orr         r3, r3, r2, lsl #16
 
-; 680  :             partition_type = ((PPARTITION_TABLE)pSector)->Entry[i].PartitionType;
+; 683  :             partition_type = ((PPARTITION_TABLE)pSector)->Entry[i].PartitionType;
 
   00164	e5de41c2	 ldrb        r4, [lr, #0x1C2]
   00168	e1838c01	 orr         r8, r3, r1, lsl #24
   0016c		 |$LN22@FileIoInit|
 
-; 681  :             break;
-; 682  :         }
-; 683  :     }
-; 684  :     if (i == PartitionTableEntryCount)
+; 684  :             break;
+; 685  :         }
+; 686  :     }
+; 687  :     if (i == PartitionTableEntryCount)
 
   0016c	e1550007	 cmp         r5, r7
   00170	0a00001b	 beq         |$LN42@FileIoInit|
 
-; 685  :     {
-; 686  :         #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 687  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() no active partition found\r\n"));
-; 688  :         #endif
-; 689  : 
-; 690  :         return FILEIO_STATUS_INIT_FAILED;
-; 691  :     }
+; 688  :     {
+; 689  :         #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 690  :             OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() no active partition found\r\n"));
+; 691  :         #endif
 ; 692  : 
-; 693  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 694  :         OALMSG(OAL_INFO, (L"BOOTLOADER: trying partition %d\r\n", i));
-; 695  :     #endif
-; 696  : 
-; 697  :     // check partition type
-; 698  :     switch (partition_type)
+; 693  :         return FILEIO_STATUS_INIT_FAILED;
+; 694  :     }
+; 695  : 
+; 696  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 697  :         OALMSG(OAL_INFO, (L"BOOTLOADER: trying partition %d\r\n", i));
+; 698  :     #endif
+; 699  : 
+; 700  :     // check partition type
+; 701  :     switch (partition_type)
 
   00174	e3540006	 cmp         r4, #6
   00178	ca000006	 bgt         |$LN34@FileIoInit|
@@ -1563,25 +1515,25 @@
   001b4		 |$LN51@FileIoInit|
   001b4	1a00000a	 bne         |$LN42@FileIoInit|
 
-; 727  :             break;
-; 728  :         #endif
-; 729  : 
-; 730  :         case 0x05:
-; 731  :         case 0x0f:
-; 732  :             #if BOOTLOADER_DEBUG_DISPLAY_PARTITION_TABLE
-; 733  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is EXTENDED DOS, reading extended partition table\r\n"));
-; 734  :             #endif
-; 735  :             ExtendedPartitionDepth++;
-; 736  :             PartitionTableEntryCount = 2;
-; 737  :             ExtendedPartionBaseSector = boot_sector;
+; 730  :             break;
+; 731  :         #endif
+; 732  : 
+; 733  :         case 0x05:
+; 734  :         case 0x0f:
+; 735  :             #if BOOTLOADER_DEBUG_DISPLAY_PARTITION_TABLE
+; 736  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is EXTENDED DOS, reading extended partition table\r\n"));
+; 737  :             #endif
+; 738  :             ExtendedPartitionDepth++;
+; 739  :             PartitionTableEntryCount = 2;
+; 740  :             ExtendedPartionBaseSector = boot_sector;
 
   001b8	e58a8000	 str         r8, [r10]
   001bc	e5960010	 ldr         r0, [r6, #0x10]
   001c0	e5963008	 ldr         r3, [r6, #8]
   001c4	e1a01008	 mov         r1, r8
 
-; 738  :             // sector addressing now is relative to partition table sector
-; 739  :             boot_sector = 0;
+; 741  :             // sector addressing now is relative to partition table sector
+; 742  :             boot_sector = 0;
 
   001c8	e3a08000	 mov         r8, #0
   001cc	e28d2000	 add         r2, sp, #0
@@ -1589,133 +1541,133 @@
   001d4	e1a0e00f	 mov         lr, pc
   001d8	e12fff13	 bx          r3
   001dc	e3500000	 cmp         r0, #0
-  001e0	0affffa9	 beq         |$CheckPartitionTable$43354|
+  001e0	0affffa9	 beq         |$CheckPartitionTable$43351|
   001e4		 |$LN42@FileIoInit|
 
-; 619  :     {
-; 620  :         #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 621  :             OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (PT) failed\r\n", boot_sector + ExtendedPartionBaseSector));
-; 622  :         #endif
-; 623  :         return FILEIO_STATUS_INIT_FAILED;
+; 622  :     {
+; 623  :         #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 624  :             OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (PT) failed\r\n", boot_sector + ExtendedPartionBaseSector));
+; 625  :         #endif
+; 626  :         return FILEIO_STATUS_INIT_FAILED;
 
   001e4	e59d0200	 ldr         r0, [sp, #0x200]
   001e8	eb000000	 bl          __security_check_cookie
   001ec	e3a00001	 mov         r0, #1
 
-; 740  :             goto CheckPartitionTable;
-; 741  :             break;
-; 742  : 
-; 743  :         default:
-; 744  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 745  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is not supported (0x%x)\r\n", partition_type));
-; 746  :             #endif
-; 747  :             return FILEIO_STATUS_INIT_FAILED;
+; 743  :             goto CheckPartitionTable;
+; 744  :             break;
+; 745  : 
+; 746  :         default:
+; 747  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 748  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is not supported (0x%x)\r\n", partition_type));
+; 749  :             #endif
+; 750  :             return FILEIO_STATUS_INIT_FAILED;
 
   001f0		 |$LN32@FileIoInit|
 
-; 898  : }
+; 901  : }
 
   001f0	e28ddf81	 add         sp, sp, #0x81, 30
   001f4	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   001f8	e12fff1e	 bx          lr
   001fc		 |$LN43@FileIoInit|
 
-; 639  :     {
-; 640  :         boot_sector = 0;
-; 641  : 
-; 642  :         if ( (BYTE_STRUCT_2_READ(((PBOOT_SECTOR)pSector)->bpb.sectors_per_fat)) == 0)
+; 642  :     {
+; 643  :         boot_sector = 0;
+; 644  : 
+; 645  :         if ( (BYTE_STRUCT_2_READ(((PBOOT_SECTOR)pSector)->bpb.sectors_per_fat)) == 0)
 
   001fc	e5dd2017	 ldrb        r2, [sp, #0x17]
   00200	e5dd3016	 ldrb        r3, [sp, #0x16]
 
-; 643  :         {
-; 644  :             // assume FAT32 for now...
-; 645  :             FilesysInfo.FatType = FAT_TYPE_FAT32;
+; 646  :         {
+; 647  :             // assume FAT32 for now...
+; 648  :             FilesysInfo.FatType = FAT_TYPE_FAT32;
 
   00204	e59f513c	 ldr         r5, [pc, #0x13C]
   00208	e3a08000	 mov         r8, #0
   0020c	e1933402	 orrs        r3, r3, r2, lsl #8
   00210	03a03003	 moveq       r3, #3
 
-; 646  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 647  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Found BPB in sector zero, assuming FAT32 with no partition table\r\n"));
-; 648  :             #endif
-; 649  :         }
-; 650  :         else
-; 651  :         {
-; 652  :             // assume FAT16 for now...
-; 653  :             FilesysInfo.FatType = FAT_TYPE_FAT16;
+; 649  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 650  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Found BPB in sector zero, assuming FAT32 with no partition table\r\n"));
+; 651  :             #endif
+; 652  :         }
+; 653  :         else
+; 654  :         {
+; 655  :             // assume FAT16 for now...
+; 656  :             FilesysInfo.FatType = FAT_TYPE_FAT16;
 
   00214	05853044	 streq       r3, [r5, #0x44]
-  00218	0a000012	 beq         |$NoPartitionTable$43366|
+  00218	0a000012	 beq         |$NoPartitionTable$43363|
   0021c	e3a03002	 mov         r3, #2
   00220	e5853044	 str         r3, [r5, #0x44]
 
-; 654  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 655  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Found BPB in sector zero, assuming FAT16 with no partition table\r\n"));
-; 656  :             #endif
-; 657  :         }
-; 658  :         goto NoPartitionTable;
+; 657  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 658  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Found BPB in sector zero, assuming FAT16 with no partition table\r\n"));
+; 659  :             #endif
+; 660  :         }
+; 661  :         goto NoPartitionTable;
 
-  00224	ea00000f	 b           |$NoPartitionTable$43366|
+  00224	ea00000f	 b           |$NoPartitionTable$43363|
   00228		 |$LN16@FileIoInit|
 
-; 699  :     {
-; 700  :         #if BOOTLOADER_SUPPORTS_FAT12
-; 701  :         case 0x01:
-; 702  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 703  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is FAT12\r\n"));
-; 704  :             #endif
-; 705  :             FilesysInfo.FatType = FAT_TYPE_FAT12;
+; 702  :     {
+; 703  :         #if BOOTLOADER_SUPPORTS_FAT12
+; 704  :         case 0x01:
+; 705  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 706  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is FAT12\r\n"));
+; 707  :             #endif
+; 708  :             FilesysInfo.FatType = FAT_TYPE_FAT12;
 
   00228	e3a03001	 mov         r3, #1
 
-; 706  :             break;
+; 709  :             break;
 
   0022c	ea000002	 b           |$LN52@FileIoInit|
   00230		 |$LN15@FileIoInit|
 
-; 707  :         #endif
-; 708  :         
-; 709  :         #if BOOTLOADER_SUPPORTS_FAT16
-; 710  :         case 0x04:
-; 711  :         case 0x06:
-; 712  :         case 0x0e:
-; 713  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 714  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is FAT16\r\n"));
-; 715  :             #endif
-; 716  :             FilesysInfo.FatType = FAT_TYPE_FAT16;
+; 710  :         #endif
+; 711  :         
+; 712  :         #if BOOTLOADER_SUPPORTS_FAT16
+; 713  :         case 0x04:
+; 714  :         case 0x06:
+; 715  :         case 0x0e:
+; 716  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 717  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is FAT16\r\n"));
+; 718  :             #endif
+; 719  :             FilesysInfo.FatType = FAT_TYPE_FAT16;
 
   00230	e3a03002	 mov         r3, #2
 
-; 717  :             break;
+; 720  :             break;
 
   00234	ea000000	 b           |$LN52@FileIoInit|
   00238		 |$LN14@FileIoInit|
 
-; 718  :         #endif
-; 719  : 
-; 720  :         #if BOOTLOADER_SUPPORTS_FAT32
-; 721  :         case 0x0b:
-; 722  :         case 0x0c:
-; 723  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 724  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is FAT32\r\n"));
-; 725  :             #endif
-; 726  :             FilesysInfo.FatType = FAT_TYPE_FAT32;
+; 721  :         #endif
+; 722  : 
+; 723  :         #if BOOTLOADER_SUPPORTS_FAT32
+; 724  :         case 0x0b:
+; 725  :         case 0x0c:
+; 726  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 727  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: Active partition type is FAT32\r\n"));
+; 728  :             #endif
+; 729  :             FilesysInfo.FatType = FAT_TYPE_FAT32;
 
   00238	e3a03003	 mov         r3, #3
   0023c		 |$LN52@FileIoInit|
   0023c	e59f5104	 ldr         r5, [pc, #0x104]
 
-; 748  :             break;
-; 749  :     }                   
-; 750  : 
-; 751  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 752  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() calling read_sector to read MBR for active partition\r\n"));
-; 753  :     #endif
-; 754  : 
-; 755  :     // read in the master boot record (MBR), fill in the BPB
-; 756  :     if (pfileio_ops->read_sector(pfileio_ops->drive_info, boot_sector + ExtendedPartionBaseSector, pSector) != ATA_STATUS_OK)
+; 751  :             break;
+; 752  :     }                   
+; 753  : 
+; 754  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 755  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() calling read_sector to read MBR for active partition\r\n"));
+; 756  :     #endif
+; 757  : 
+; 758  :     // read in the master boot record (MBR), fill in the BPB
+; 759  :     if (pfileio_ops->read_sector(pfileio_ops->drive_info, boot_sector + ExtendedPartionBaseSector, pSector) != ATA_STATUS_OK)
 
   00240	e28d2000	 add         r2, sp, #0
   00244	e5853044	 str         r3, [r5, #0x44]
@@ -1727,100 +1679,100 @@
   0025c	e12fff14	 bx          r4
   00260	e3500000	 cmp         r0, #0
 
-; 757  :     {
-; 758  :         #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 759  :             OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (MBR) failed\r\n", boot_sector + ExtendedPartionBaseSector));
-; 760  :         #endif
-; 761  :         return FILEIO_STATUS_INIT_FAILED;
+; 760  :     {
+; 761  :         #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 762  :             OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (MBR) failed\r\n", boot_sector + ExtendedPartionBaseSector));
+; 763  :         #endif
+; 764  :         return FILEIO_STATUS_INIT_FAILED;
 
   00264	1affffde	 bne         |$LN42@FileIoInit|
-  00268		 |$NoPartitionTable$43366|
+  00268		 |$NoPartitionTable$43363|
 
-; 762  :     }
-; 763  :     
-; 764  : NoPartitionTable:
-; 765  : 
-; 766  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 767  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() copying BPB into FilesysInfo structure.\r\n"));
-; 768  :     #endif
-; 769  :     // copy bpb info from sector buffer to bpb
-; 770  :     //FilesysInfo.BiosParameterBlock = ((BOOT_SECTOR *)pSector)->bpb;
-; 771  :     BpbCopy(&FilesysInfo.BiosParameterBlock, &((BOOT_SECTOR *)pSector)->bpb);
+; 765  :     }
+; 766  :     
+; 767  : NoPartitionTable:
+; 768  : 
+; 769  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 770  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() copying BPB into FilesysInfo structure.\r\n"));
+; 771  :     #endif
+; 772  :     // copy bpb info from sector buffer to bpb
+; 773  :     //FilesysInfo.BiosParameterBlock = ((BOOT_SECTOR *)pSector)->bpb;
+; 774  :     BpbCopy(&FilesysInfo.BiosParameterBlock, &((BOOT_SECTOR *)pSector)->bpb);
 
   00268	e28d100b	 add         r1, sp, #0xB
   0026c	e1a00005	 mov         r0, r5
   00270	eb000000	 bl          BpbCopy
 
-; 772  : 
-; 773  :     #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 774  :         OALMSG(OAL_INFO, (L"BOOTLOADER: boot sector BPB for valid partition\r\n"));
-; 775  :         OALMSG(OAL_INFO, (L"BOOTLOADER: sector size:     %X\r\n", FilesysInfo.BiosParameterBlock.bytes_per_sector));
-; 776  :         OALMSG(OAL_INFO, (L"BOOTLOADER: sec/cluster:     %X\r\n", FilesysInfo.BiosParameterBlock.sectors_per_cluster));
-; 777  :         OALMSG(OAL_INFO, (L"BOOTLOADER: rsvd sectors:    %X\r\n", FilesysInfo.BiosParameterBlock.reserved_sectors));
-; 778  :         OALMSG(OAL_INFO, (L"BOOTLOADER: # FATs:          %X\r\n", FilesysInfo.BiosParameterBlock.number_of_fats));
-; 779  :         OALMSG(OAL_INFO, (L"BOOTLOADER: media descipt:   %X\r\n", FilesysInfo.BiosParameterBlock.media_descriptor));
-; 780  :         OALMSG(OAL_INFO, (L"BOOTLOADER: sec/track        %X\r\n", FilesysInfo.BiosParameterBlock.sectors_per_track));
-; 781  :         OALMSG(OAL_INFO, (L"BOOTLOADER: # heads          %X\r\n", FilesysInfo.BiosParameterBlock.number_of_heads));
-; 782  : 
-; 783  :         #if BOOTLOADER_SUPPORTS_FAT32
-; 784  :         if (FilesysInfo.FatType != FAT_TYPE_FAT32)
-; 785  :         {
-; 786  :         #endif
-; 787  :             OALMSG(OAL_INFO, (L"BOOTLOADER: # root dir ent:  %X\r\n", FilesysInfo.BiosParameterBlock.number_of_root_directory_entries));
-; 788  :             OALMSG(OAL_INFO, (L"BOOTLOADER: sec/fat:         %X\r\n", FilesysInfo.BiosParameterBlock.sectors_per_fat));
-; 789  : 
-; 790  :             #if BOOTLOADER_SUPPORTS_EBPB || BOOTLOADER_SUPPORTS_FAT32
-; 791  :             if (FilesysInfo.BiosParameterBlock.total_sectors == 0)
-; 792  :             {
-; 793  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: total sectors:   %X\r\n", FilesysInfo.BiosParameterBlock.big_total_sectors));
-; 794  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: # hidden sec:    %X\r\n", (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors_high << 16 || (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors));
-; 795  :             }
-; 796  :             else
-; 797  :             #endif
-; 798  :             {
-; 799  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: total sectors:   %X\r\n", FilesysInfo.BiosParameterBlock.total_sectors));
-; 800  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: # hidden sec:    %X\r\n", FilesysInfo.BiosParameterBlock.number_of_hidden_sectors));
-; 801  :             }
-; 802  :         #if BOOTLOADER_SUPPORTS_FAT32
-; 803  :         }
-; 804  :         else
-; 805  :         {
-; 806  :             OALMSG(OAL_INFO, (L"BOOTLOADER: root dir str cl: %X\r\n", FilesysInfo.BiosParameterBlock.root_dir_starting_cluster));
-; 807  :             OALMSG(OAL_INFO, (L"BOOTLOADER: b# total sectors:%X\r\n", FilesysInfo.BiosParameterBlock.big_total_sectors));
-; 808  :             OALMSG(OAL_INFO, (L"BOOTLOADER: b# sec/fat:      %X\r\n", FilesysInfo.BiosParameterBlock.big_sectors_per_fat));
-; 809  :             OALMSG(OAL_INFO, (L"BOOTLOADER: b# hidden sec:   %X\r\n", (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors_high << 16 || (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors));
-; 810  :         }
-; 811  :         #endif
-; 812  :     #endif
-; 813  : 
-; 814  :     #if BOOTLOADER_SUPPORTS_SPECIAL_FAT12_CHECK
-; 815  :         // switch to FAT12 if total number of clusters is too small (under 4096)
-; 816  :         
-; 817  :         // divide by zero check
-; 818  :         if (FilesysInfo.BiosParameterBlock.sectors_per_cluster == 0)
+; 775  : 
+; 776  :     #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 777  :         OALMSG(OAL_INFO, (L"BOOTLOADER: boot sector BPB for valid partition\r\n"));
+; 778  :         OALMSG(OAL_INFO, (L"BOOTLOADER: sector size:     %X\r\n", FilesysInfo.BiosParameterBlock.bytes_per_sector));
+; 779  :         OALMSG(OAL_INFO, (L"BOOTLOADER: sec/cluster:     %X\r\n", FilesysInfo.BiosParameterBlock.sectors_per_cluster));
+; 780  :         OALMSG(OAL_INFO, (L"BOOTLOADER: rsvd sectors:    %X\r\n", FilesysInfo.BiosParameterBlock.reserved_sectors));
+; 781  :         OALMSG(OAL_INFO, (L"BOOTLOADER: # FATs:          %X\r\n", FilesysInfo.BiosParameterBlock.number_of_fats));
+; 782  :         OALMSG(OAL_INFO, (L"BOOTLOADER: media descipt:   %X\r\n", FilesysInfo.BiosParameterBlock.media_descriptor));
+; 783  :         OALMSG(OAL_INFO, (L"BOOTLOADER: sec/track        %X\r\n", FilesysInfo.BiosParameterBlock.sectors_per_track));
+; 784  :         OALMSG(OAL_INFO, (L"BOOTLOADER: # heads          %X\r\n", FilesysInfo.BiosParameterBlock.number_of_heads));
+; 785  : 
+; 786  :         #if BOOTLOADER_SUPPORTS_FAT32
+; 787  :         if (FilesysInfo.FatType != FAT_TYPE_FAT32)
+; 788  :         {
+; 789  :         #endif
+; 790  :             OALMSG(OAL_INFO, (L"BOOTLOADER: # root dir ent:  %X\r\n", FilesysInfo.BiosParameterBlock.number_of_root_directory_entries));
+; 791  :             OALMSG(OAL_INFO, (L"BOOTLOADER: sec/fat:         %X\r\n", FilesysInfo.BiosParameterBlock.sectors_per_fat));
+; 792  : 
+; 793  :             #if BOOTLOADER_SUPPORTS_EBPB || BOOTLOADER_SUPPORTS_FAT32
+; 794  :             if (FilesysInfo.BiosParameterBlock.total_sectors == 0)
+; 795  :             {
+; 796  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: total sectors:   %X\r\n", FilesysInfo.BiosParameterBlock.big_total_sectors));
+; 797  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: # hidden sec:    %X\r\n", (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors_high << 16 || (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors));
+; 798  :             }
+; 799  :             else
+; 800  :             #endif
+; 801  :             {
+; 802  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: total sectors:   %X\r\n", FilesysInfo.BiosParameterBlock.total_sectors));
+; 803  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: # hidden sec:    %X\r\n", FilesysInfo.BiosParameterBlock.number_of_hidden_sectors));
+; 804  :             }
+; 805  :         #if BOOTLOADER_SUPPORTS_FAT32
+; 806  :         }
+; 807  :         else
+; 808  :         {
+; 809  :             OALMSG(OAL_INFO, (L"BOOTLOADER: root dir str cl: %X\r\n", FilesysInfo.BiosParameterBlock.root_dir_starting_cluster));
+; 810  :             OALMSG(OAL_INFO, (L"BOOTLOADER: b# total sectors:%X\r\n", FilesysInfo.BiosParameterBlock.big_total_sectors));
+; 811  :             OALMSG(OAL_INFO, (L"BOOTLOADER: b# sec/fat:      %X\r\n", FilesysInfo.BiosParameterBlock.big_sectors_per_fat));
+; 812  :             OALMSG(OAL_INFO, (L"BOOTLOADER: b# hidden sec:   %X\r\n", (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors_high << 16 || (UINT32) FilesysInfo.BiosParameterBlock.number_of_hidden_sectors));
+; 813  :         }
+; 814  :         #endif
+; 815  :     #endif
+; 816  : 
+; 817  :     #if BOOTLOADER_SUPPORTS_SPECIAL_FAT12_CHECK
+; 818  :         // switch to FAT12 if total number of clusters is too small (under 4096)
+; 819  :         
+; 820  :         // divide by zero check
+; 821  :         if (FilesysInfo.BiosParameterBlock.sectors_per_cluster == 0)
 
   00274	e5d52002	 ldrb        r2, [r5, #2]
   00278	e1b00002	 movs        r0, r2
 
-; 819  :         {
-; 820  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 821  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: ERROR - sectors_per_cluster is 0!!\r\n"));
-; 822  :             #endif
-; 823  :             return FILEIO_STATUS_INIT_FAILED;
+; 822  :         {
+; 823  :             #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 824  :                 OALMSG(OAL_INFO, (L"BOOTLOADER: ERROR - sectors_per_cluster is 0!!\r\n"));
+; 825  :             #endif
+; 826  :             return FILEIO_STATUS_INIT_FAILED;
 
   0027c	0affffd8	 beq         |$LN42@FileIoInit|
 
-; 824  :         }
-; 825  : 
-; 826  :         // check for partition type override due to small number of sectors
-; 827  :         if (FilesysInfo.BiosParameterBlock.total_sectors == 0)
+; 827  :         }
+; 828  : 
+; 829  :         // check for partition type override due to small number of sectors
+; 830  :         if (FilesysInfo.BiosParameterBlock.total_sectors == 0)
 
   00280	e1d530ba	 ldrh        r3, [r5, #0xA]
   00284	e3530000	 cmp         r3, #0
   00288	1a000008	 bne         |$LN9@FileIoInit|
 
-; 828  :         {
-; 829  :             if ((FilesysInfo.BiosParameterBlock.big_total_sectors / FilesysInfo.BiosParameterBlock.sectors_per_cluster) <= 4087)
+; 831  :         {
+; 832  :             if ((FilesysInfo.BiosParameterBlock.big_total_sectors / FilesysInfo.BiosParameterBlock.sectors_per_cluster) <= 4087)
 
   0028c	e5951018	 ldr         r1, [r5, #0x18]
   00290	eb000000	 bl          __rt_udiv
@@ -1830,24 +1782,24 @@
   002a0	3a000009	 bcc         |$LN49@FileIoInit|
   002a4		 |$LN54@FileIoInit|
 
-; 830  :             {
-; 831  :                 #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 832  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: Disk has under 4096 clusters, switching to FAT12\r\n"));
-; 833  :                 #endif
-; 834  :                 FilesysInfo.FatType = FAT_TYPE_FAT12;
+; 833  :             {
+; 834  :                 #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 835  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: Disk has under 4096 clusters, switching to FAT12\r\n"));
+; 836  :                 #endif
+; 837  :                 FilesysInfo.FatType = FAT_TYPE_FAT12;
 
   002a4	e3a02001	 mov         r2, #1
   002a8	e5852044	 str         r2, [r5, #0x44]
 
-; 835  :             }
-; 836  :         }
-; 837  :         else            
+; 838  :             }
+; 839  :         }
+; 840  :         else            
 
   002ac	ea000007	 b           |$LN6@FileIoInit|
   002b0		 |$LN9@FileIoInit|
 
-; 838  :         {
-; 839  :             if ((FilesysInfo.BiosParameterBlock.total_sectors / FilesysInfo.BiosParameterBlock.sectors_per_cluster) <= 4087)
+; 841  :         {
+; 842  :             if ((FilesysInfo.BiosParameterBlock.total_sectors / FilesysInfo.BiosParameterBlock.sectors_per_cluster) <= 4087)
 
   002b0	e1a00002	 mov         r0, r2
   002b4	e1a01003	 mov         r1, r3
@@ -1856,44 +1808,44 @@
   002c0	e38330f7	 orr         r3, r3, #0xF7
   002c4	e1530000	 cmp         r3, r0
 
-; 840  :             {
-; 841  :                 #if BOOTLOADER_DEBUG_DISPLAY_BPB
-; 842  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: Disk has under 4096 clusters, switching to FAT12\r\n"));
-; 843  :                 #endif
-; 844  :                 FilesysInfo.FatType = FAT_TYPE_FAT12;
+; 843  :             {
+; 844  :                 #if BOOTLOADER_DEBUG_DISPLAY_BPB
+; 845  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: Disk has under 4096 clusters, switching to FAT12\r\n"));
+; 846  :                 #endif
+; 847  :                 FilesysInfo.FatType = FAT_TYPE_FAT12;
 
   002c8	aafffff5	 bge         |$LN54@FileIoInit|
   002cc		 |$LN49@FileIoInit|
   002cc	e5952044	 ldr         r2, [r5, #0x44]
   002d0		 |$LN6@FileIoInit|
 
-; 845  :             }
-; 846  :         }
-; 847  : 
-; 848  :     #endif
-; 849  : 
-; 850  :     // sanity check - sector size
-; 851  :     if (FilesysInfo.BiosParameterBlock.bytes_per_sector != SECTOR_SIZE)
+; 848  :             }
+; 849  :         }
+; 850  : 
+; 851  :     #endif
+; 852  : 
+; 853  :     // sanity check - sector size
+; 854  :     if (FilesysInfo.BiosParameterBlock.bytes_per_sector != SECTOR_SIZE)
 
   002d0	e1d530b0	 ldrh        r3, [r5]
   002d4	e3530c02	 cmp         r3, #2, 24
 
-; 852  :     {
-; 853  :         return FILEIO_STATUS_INIT_FAILED;
+; 855  :     {
+; 856  :         return FILEIO_STATUS_INIT_FAILED;
 
   002d8	1affffc1	 bne         |$LN42@FileIoInit|
 
-; 854  :     }
-; 855  : 
-; 856  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
-; 857  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() initializing data structures.\r\n"));
-; 858  :     #endif
-; 859  :     FilesysInfo.partition_start = boot_sector;
+; 857  :     }
+; 858  : 
+; 859  :     #if BOOTLOADER_DEBUG_DISPLAY_CALLS
+; 860  :         OALMSG(OAL_INFO, (L"BOOTLOADER: FileIoInit() initializing data structures.\r\n"));
+; 861  :     #endif
+; 862  :     FilesysInfo.partition_start = boot_sector;
 
   002dc	e5858038	 str         r8, [r5, #0x38]
 
-; 860  : 
-; 861  :     switch (FilesysInfo.FatType)
+; 863  : 
+; 864  :     switch (FilesysInfo.FatType)
 
   002e0	e3520000	 cmp         r2, #0
   002e4	0a000013	 beq         |$LN3@FileIoInit|
@@ -1902,20 +1854,20 @@
   002f0	e3520003	 cmp         r2, #3
   002f4	1a00000f	 bne         |$LN3@FileIoInit|
 
-; 875  : 
-; 876  :             //FilesysInfo.number_of_hidden_sectors = FilesysInfo.BiosParameterBlock.number_of_hidden_sectors;
-; 877  :             //FilesysInfo.total_sectors = FilesysInfo.BiosParameterBlock.total_sectors;
-; 878  :             //FilesysInfo.sectors_per_fat = FilesysInfo.BiosParameterBlock.sectors_per_fat;
-; 879  : 
-; 880  :             break;
-; 881  :         #endif
-; 882  :         
-; 883  :         #if BOOTLOADER_SUPPORTS_FAT32
-; 884  :         case FAT_TYPE_FAT32:
-; 885  :             // compute file data area starting sector (first sector after FATs and reserved sectors)
-; 886  :             FilesysInfo.file_data_area_start = 
-; 887  :                 FilesysInfo.BiosParameterBlock.reserved_sectors + 
-; 888  :                (FilesysInfo.BiosParameterBlock.number_of_fats * FilesysInfo.BiosParameterBlock.big_sectors_per_fat);
+; 878  : 
+; 879  :             //FilesysInfo.number_of_hidden_sectors = FilesysInfo.BiosParameterBlock.number_of_hidden_sectors;
+; 880  :             //FilesysInfo.total_sectors = FilesysInfo.BiosParameterBlock.total_sectors;
+; 881  :             //FilesysInfo.sectors_per_fat = FilesysInfo.BiosParameterBlock.sectors_per_fat;
+; 882  : 
+; 883  :             break;
+; 884  :         #endif
+; 885  :         
+; 886  :         #if BOOTLOADER_SUPPORTS_FAT32
+; 887  :         case FAT_TYPE_FAT32:
+; 888  :             // compute file data area starting sector (first sector after FATs and reserved sectors)
+; 889  :             FilesysInfo.file_data_area_start = 
+; 890  :                 FilesysInfo.BiosParameterBlock.reserved_sectors + 
+; 891  :                (FilesysInfo.BiosParameterBlock.number_of_fats * FilesysInfo.BiosParameterBlock.big_sectors_per_fat);
 
   002f8	e5d51006	 ldrb        r1, [r5, #6]
   002fc	e595201c	 ldr         r2, [r5, #0x1C]
@@ -1923,27 +1875,27 @@
   00304	e0233291	 mla         r3, r1, r2, r3
   00308	e5853040	 str         r3, [r5, #0x40]
 
-; 889  : 
-; 890  :             // save root directory starting cluster
-; 891  :             FilesysInfo.root_directory_start = FilesysInfo.BiosParameterBlock.root_dir_starting_cluster;
+; 892  : 
+; 893  :             // save root directory starting cluster
+; 894  :             FilesysInfo.root_directory_start = FilesysInfo.BiosParameterBlock.root_dir_starting_cluster;
 
   0030c	e5953024	 ldr         r3, [r5, #0x24]
   00310	e585303c	 str         r3, [r5, #0x3C]
 
-; 892  : 
-; 893  :             break;
+; 895  : 
+; 896  :             break;
 
   00314	ea000007	 b           |$LN3@FileIoInit|
   00318		 |$LN2@FileIoInit|
 
-; 862  :     {
-; 863  :         #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
-; 864  :         case FAT_TYPE_FAT12:
-; 865  :         case FAT_TYPE_FAT16:
-; 866  :             // compute root directory starting sector
-; 867  :             FilesysInfo.root_directory_start = 
-; 868  :                 FilesysInfo.BiosParameterBlock.reserved_sectors + 
-; 869  :                 (FilesysInfo.BiosParameterBlock.number_of_fats * FilesysInfo.BiosParameterBlock.sectors_per_fat);
+; 865  :     {
+; 866  :         #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
+; 867  :         case FAT_TYPE_FAT12:
+; 868  :         case FAT_TYPE_FAT16:
+; 869  :             // compute root directory starting sector
+; 870  :             FilesysInfo.root_directory_start = 
+; 871  :                 FilesysInfo.BiosParameterBlock.reserved_sectors + 
+; 872  :                 (FilesysInfo.BiosParameterBlock.number_of_fats * FilesysInfo.BiosParameterBlock.sectors_per_fat);
 
   00318	e1d510be	 ldrh        r1, [r5, #0xE]
   0031c	e5d52006	 ldrb        r2, [r5, #6]
@@ -1951,21 +1903,21 @@
   00324	e0223291	 mla         r2, r1, r2, r3
   00328	e585203c	 str         r2, [r5, #0x3C]
 
-; 870  : 
-; 871  :             // compute file data area starting sector
-; 872  :             FilesysInfo.file_data_area_start = 
-; 873  :                 FilesysInfo.root_directory_start + 
-; 874  :                 (FilesysInfo.BiosParameterBlock.number_of_root_directory_entries / (SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) );
+; 873  : 
+; 874  :             // compute file data area starting sector
+; 875  :             FilesysInfo.file_data_area_start = 
+; 876  :                 FilesysInfo.root_directory_start + 
+; 877  :                 (FilesysInfo.BiosParameterBlock.number_of_root_directory_entries / (SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) );
 
   0032c	e1d530b8	 ldrh        r3, [r5, #8]
   00330	e0823223	 add         r3, r2, r3, lsr #4
   00334	e5853040	 str         r3, [r5, #0x40]
   00338		 |$LN3@FileIoInit|
 
-; 894  :         #endif
-; 895  :     }
-; 896  : 
-; 897  :     return FILEIO_STATUS_OK;
+; 897  :         #endif
+; 898  :     }
+; 899  : 
+; 900  :     return FILEIO_STATUS_OK;
 
   00338	e59d0200	 ldr         r0, [sp, #0x200]
   0033c	eb000000	 bl          __security_check_cookie
@@ -1978,7 +1930,7 @@
   0034c	00000000	 DCD         |ExtendedPartionBaseSector|
   00350		 |$LN62@FileIoInit|
   00350	00000000	 DCD         |__security_cookie|
-  00354		 |$M43684|
+  00354		 |$M43667|
 
 			 ENDP  ; |FileIoInit|
 
@@ -1988,18 +1940,15 @@
 	EXPORT	|??_C@_1GG@NHAPHAAL@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GG@FJIAHHOI@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GG@DGGBLEKG@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DI@LFLHFIAI@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAs?$AAy?$AAs?$AAI?$AAn?$AAf?$AAo?$AA?4?$AAF?$AAa?$AAt?$AAT?$AAy?$AAp?$AAe?$AA1?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GG@LIOOLDEF@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CE@JOGCKJKN@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BM@POCFBNKP@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AA?$CD?$AAi?$AAf?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BM@KDAKJCNJ@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAf?$AAo?$AAr?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DM@GPMIHEJP@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA1?$AA6?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DM@OPHHKKFI@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA3?$AA2?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1DI@LFLHFIAI@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAs?$AAy?$AAs?$AAI?$AAn?$AAf?$AAo?$AA?4?$AAF?$AAa?$AAt?$AAT?$AAy?$AAp?$AAe?$AA1?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CC@BIKPHNAO@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43730| DCD	|$LN60@FileIoOpen|
-	DCD	0x4000b701
+|$T43728| DCD	|$LN75@FileIoOpen|
+	DCD	0x4000a901
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1BO@BCBHDHEE@?$AA?$HO?$AA?$HO?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
@@ -2056,6 +2005,14 @@
 	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DI@LFLHFIAI@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAs?$AAy?$AAs?$AAI?$AAn?$AAf?$AAo?$AA?4?$AAF?$AAa?$AAt?$AAT?$AAy?$AAp?$AAe?$AA1?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
+	DCB	0x0, "~", 0x0, "F", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "s"
+	DCB	0x0, "y", 0x0, "s", 0x0, "I", 0x0, "n", 0x0, "f", 0x0, "o"
+	DCB	0x0, ".", 0x0, "F", 0x0, "a", 0x0, "t", 0x0, "T", 0x0, "y"
+	DCB	0x0, "p", 0x0, "e", 0x0, "1", 0x0, ":", 0x0, "%", 0x0, "d"
+	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GG@LIOOLDEF@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@| DCB "~"
 	DCB	0x0, "~", 0x0, "E", 0x0, "n", 0x0, "t", 0x0, "r", 0x0, "y"
 	DCB	0x0, " ", 0x0, "s", 0x0, "w", 0x0, "i", 0x0, "t", 0x0, "c"
@@ -2074,542 +2031,495 @@
 	DCB	0x0, "h", 0x0, "2", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@POCFBNKP@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AA?$CD?$AAi?$AAf?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "E", 0x0, "n", 0x0, "t", 0x0, "r", 0x0, "y"
-	DCB	0x0, " ", 0x0, "#", 0x0, "i", 0x0, "f", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@KDAKJCNJ@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAf?$AAo?$AAr?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "E", 0x0, "n", 0x0, "t", 0x0, "r", 0x0, "y"
-	DCB	0x0, " ", 0x0, "f", 0x0, "o", 0x0, "r", 0x0, 0xd, 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DM@GPMIHEJP@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA1?$AA6?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
 	DCB	0x0, "~", 0x0, "B", 0x0, "O", 0x0, "O", 0x0, "T", 0x0, "L"
 	DCB	0x0, "O", 0x0, "A", 0x0, "D", 0x0, "E", 0x0, "R", 0x0, "_"
 	DCB	0x0, "S", 0x0, "U", 0x0, "P", 0x0, "P", 0x0, "O", 0x0, "R"
 	DCB	0x0, "T", 0x0, "S", 0x0, "_", 0x0, "F", 0x0, "A", 0x0, "T"
 	DCB	0x0, "1", 0x0, "6", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DM@OPHHKKFI@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA3?$AA2?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "B", 0x0, "O", 0x0, "O", 0x0, "T", 0x0, "L"
-	DCB	0x0, "O", 0x0, "A", 0x0, "D", 0x0, "E", 0x0, "R", 0x0, "_"
-	DCB	0x0, "S", 0x0, "U", 0x0, "P", 0x0, "P", 0x0, "O", 0x0, "R"
-	DCB	0x0, "T", 0x0, "S", 0x0, "_", 0x0, "F", 0x0, "A", 0x0, "T"
-	DCB	0x0, "3", 0x0, "2", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1DI@LFLHFIAI@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAs?$AAy?$AAs?$AAI?$AAn?$AAf?$AAo?$AA?4?$AAF?$AAa?$AAt?$AAT?$AAy?$AAp?$AAe?$AA1?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "F", 0x0, "i", 0x0, "l", 0x0, "e", 0x0, "s"
-	DCB	0x0, "y", 0x0, "s", 0x0, "I", 0x0, "n", 0x0, "f", 0x0, "o"
-	DCB	0x0, ".", 0x0, "F", 0x0, "a", 0x0, "t", 0x0, "T", 0x0, "y"
-	DCB	0x0, "p", 0x0, "e", 0x0, "1", 0x0, ":", 0x0, "%", 0x0, "d"
-	DCB	0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0	; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CC@BIKPHNAO@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA?$AN?$AA?6?$AA?$AA@| DCB "~"
-	DCB	0x0, "~", 0x0, "E", 0x0, "n", 0x0, "t", 0x0, "r", 0x0, "y"
-	DCB	0x0, " ", 0x0, "s", 0x0, "w", 0x0, "i", 0x0, "t", 0x0, "c"
-	DCB	0x0, "h", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |FileIoOpen| PROC
 
-; 912  : {
+; 915  : {
 
-  00000		 |$LN60@FileIoOpen|
+  00000		 |$LN75@FileIoOpen|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M43727|
+  00004		 |$M43725|
   00004	e1a05001	 mov         r5, r1
-  00008	e1a09000	 mov         r9, r0
+  00008	e1a0a000	 mov         r10, r0
 
-; 913  :     UINT32 sector_number = 0;
-; 914  :     int    status;
-; 915  :     int    entry;
-; 916  :     int    i;
-; 917  :     UINT16 DirEntryCount = 0;
-; 918  :     void * pSector = &pFile->buffer;
-; 919  : 
-; 920  :     OALLog(L"~~Entry switch\r\n");                //~~
+; 916  :     UINT32 sector_number = 0;
+; 917  :     int    status;
+; 918  :     int    entry;
+; 919  :     int    i;
+; 920  :     UINT16 DirEntryCount = 0;
+; 921  :     void * pSector = &pFile->buffer;
+; 922  : 
+; 923  :     //OALLog(L"~~Entry switch\r\n");                //~~
+; 924  :     switch (FilesysInfo.FatType)
 
-  0000c	e59f02c4	 ldr         r0, [pc, #0x2C4]
-  00010	e3a08000	 mov         r8, #0
-  00014	e3a0a000	 mov         r10, #0
-  00018	e2857024	 add         r7, r5, #0x24
-  0001c	eb000000	 bl          NKDbgPrintfW
-
-; 921  :     switch (FilesysInfo.FatType)
-
-  00020	e59f62ac	 ldr         r6, [pc, #0x2AC]
-  00024	e59fb2a4	 ldr         r11, [pc, #0x2A4]
+  0000c	e59f628c	 ldr         r6, [pc, #0x28C]
+  00010	e59f3268	 ldr         r3, [pc, #0x268]
+  00014	e3a09000	 mov         r9, #0
+  00018	e596e044	 ldr         lr, [r6, #0x44]
+  0001c	e3a0b000	 mov         r11, #0
+  00020	e2858024	 add         r8, r5, #0x24
+  00024	e35e0000	 cmp         lr, #0
   00028	e3a04000	 mov         r4, #0
-  0002c	e5963044	 ldr         r3, [r6, #0x44]
-  00030	e3530000	 cmp         r3, #0
-  00034	0a000022	 beq         |$LN33@FileIoOpen|
-  00038	e3530002	 cmp         r3, #2
-  0003c	9a000012	 bls         |$LN32@FileIoOpen|
-  00040	e3530003	 cmp         r3, #3
-  00044	1a00001e	 bne         |$LN33@FileIoOpen|
-
-; 938  :             break;
-; 939  :         #endif
-; 940  :         
-; 941  :         #if BOOTLOADER_SUPPORTS_FAT32
-; 942  :         case FAT_TYPE_FAT32:        //--OK
-; 943  :             OALLog(L"~~FilesysInfo.FatType1:%d\r\n", FilesysInfo.FatType);    //~~
-
-  00048	e59f026c	 ldr         r0, [pc, #0x26C]
-  0004c	e3a01003	 mov         r1, #3
-  00050	eb000000	 bl          NKDbgPrintfW
-
-; 944  :             // setup to read first directory sector
-; 945  :             pFile->current_cluster = FilesysInfo.root_directory_start;
-
-  00054	e596103c	 ldr         r1, [r6, #0x3C]
-
-; 946  :             pFile->current_sector_in_cluster = 0;
-; 947  :             pFile->current_sector  = 0;
-; 948  :             pFile->bytes_in_buffer = 0;
-; 949  : 
-; 950  :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)) != FILEIO_STATUS_OK)
-
-  00058	e3a03001	 mov         r3, #1
-  0005c	e1a02007	 mov         r2, r7
-  00060	e5851018	 str         r1, [r5, #0x18]
-  00064	e1a01005	 mov         r1, r5
-  00068	e1a00009	 mov         r0, r9
-  0006c	e1c541bc	 strh        r4, [r5, #0x1C]
-  00070	e5854014	 str         r4, [r5, #0x14]
-  00074	e5854020	 str         r4, [r5, #0x20]
-  00078	eb000000	 bl          FileIoReadNextSectors
-  0007c	e3500000	 cmp         r0, #0
-
-; 951  :                 return FILEIO_STATUS_OPEN_FAILED;
-
-  00080	1a000083	 bne         |$LN50@FileIoOpen|
-
-; 952  :                 
-; 953  :             OALLog(L"~~BOOTLOADER_SUPPORTS_FAT32\r\n");   //~~
-
-  00084	e59f0218	 ldr         r0, [pc, #0x218]
-
-; 954  :             break;
-
-  00088	ea00000c	 b           |$LN56@FileIoOpen|
-  0008c		 |$LN32@FileIoOpen|
-
-; 922  :     {     
-; 923  :        #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
-; 924  :         case FAT_TYPE_FAT12:
-; 925  :         case FAT_TYPE_FAT16:
-; 926  :             // starting sector of directory
-; 927  :             sector_number = FilesysInfo.root_directory_start;
-; 928  : 
-; 929  :             // read directory sector
-; 930  :             if ((status = pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector, pSector)) != ATA_STATUS_OK)
-
-  0008c	e59b2000	 ldr         r2, [r11]
-  00090	e5963038	 ldr         r3, [r6, #0x38]
-  00094	e596803c	 ldr         r8, [r6, #0x3C]
-  00098	e5990010	 ldr         r0, [r9, #0x10]
-  0009c	e0823003	 add         r3, r2, r3
-  000a0	e5994008	 ldr         r4, [r9, #8]
-  000a4	e0831008	 add         r1, r3, r8
-  000a8	e1a02007	 mov         r2, r7
-  000ac	e1a0e00f	 mov         lr, pc
-  000b0	e12fff14	 bx          r4
-  000b4	e3500000	 cmp         r0, #0
-
-; 931  :             {
-; 932  :                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 933  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (DIR) failed\r\n", (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector));
-; 934  :                 #endif
-; 935  :                 return FILEIO_STATUS_OPEN_FAILED;
-
-  000b8	1a000075	 bne         |$LN50@FileIoOpen|
-
-; 936  :             }
-; 937  :             OALLog(L"~~BOOTLOADER_SUPPORTS_FAT16\r\n");   //~~
-
-  000bc	e59f0208	 ldr         r0, [pc, #0x208]
-  000c0		 |$LN56@FileIoOpen|
-  000c0	eb000000	 bl          NKDbgPrintfW
-  000c4		 |$LN33@FileIoOpen|
-
-; 955  :         #endif
-; 956  :         
-; 957  :     }
-; 958  :     
-; 959  :     OALLog(L"~~Entry for\r\n");         //????
-
-  000c4	e59f01fc	 ldr         r0, [pc, #0x1FC]
-  000c8		 |$LN57@FileIoOpen|
-  000c8	eb000000	 bl          NKDbgPrintfW
-  000cc		 |$LL28@FileIoOpen|
-
-; 960  :     // scan the entire root directory looking for the file
-; 961  :     for ( ; ; )
-; 962  :     {
-; 963  :         // check each directory entry in the sector
-; 964  :         #if BOOTLOADER_SUPPORTS_FAT32       //--OK
-; 965  :             OALLog(L"~~Entry #if\r\n");     //~~
-
-  000cc	e59f01f0	 ldr         r0, [pc, #0x1F0]
-  000d0	eb000000	 bl          NKDbgPrintfW
-
-; 966  :             for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && 
-; 967  :                         (FilesysInfo.FatType == FAT_TYPE_FAT32 ? 1 : (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries));
-; 968  :                 entry++)              //~~
-
-  000d4	e1a0e007	 mov         lr, r7
-  000d8	e3a04000	 mov         r4, #0
-  000dc		 |$LL26@FileIoOpen|
-  000dc	e5963044	 ldr         r3, [r6, #0x44]
-  000e0	e3530003	 cmp         r3, #3
-  000e4	0a000002	 beq         |$LN55@FileIoOpen|
-  000e8	e1d630b8	 ldrh        r3, [r6, #8]
-  000ec	e15a0003	 cmp         r10, r3
-  000f0	2a000027	 bcs         |$LN37@FileIoOpen|
-  000f4		 |$LN55@FileIoOpen|
-
-; 969  :         #else
-; 970  :             OALLog(L"~~Entry #else\r\n");     //~~
-; 971  :             for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries); entry++)
-; 972  :         #endif      
-; 973  :         {
-; 974  :             UINT8 *pName   = (((DIRECTORY_ENTRY *)pSector) + entry)->filename;
-; 975  :             UINT8 Attribute = (((DIRECTORY_ENTRY *)pSector) + entry)->attribute;
-; 976  :             
-; 977  :             // bump count of total directory entries scanned
-; 978  :             DirEntryCount++;
-; 979  : 
-; 980  :             // skip long file names, subdirectories and volume lable
-; 981  :             if (/* Attribute == 0x0f || */ (Attribute & 0x18))
-
-  000f4	e5de200b	 ldrb        r2, [lr, #0xB]
-  000f8	e28a3001	 add         r3, r10, #1
-  000fc	e1a0a803	 mov         r10, r3, lsl #16
-  00100	e1a0a82a	 mov         r10, r10, lsr #16
-  00104	e3120018	 tst         r2, #0x18
-  00108	1a00001d	 bne         |$LN25@FileIoOpen|
-
-; 982  :                 continue;
-; 983  : 
-; 984  :             // skip special directory entries
-; 985  :             if (pName[0] == 0x00 || pName[0] == 0xe5)
-
-  0010c	e5de3000	 ldrb        r3, [lr]
-  00110	e3530000	 cmp         r3, #0
-  00114	0a00001a	 beq         |$LN25@FileIoOpen|
-  00118	e35300e5	 cmp         r3, #0xE5
-  0011c	0a000018	 beq         |$LN25@FileIoOpen|
-
-; 986  :                 continue;
-; 987  :             
-; 988  :             if (pName[0] == 0x05)
-
-  00120	e3530005	 cmp         r3, #5
-
-; 989  :                 pName[0] = 0xe5;
-
-  00124	03a030e5	 moveq       r3, #0xE5
-  00128	05ce3000	 streqb      r3, [lr]
-
-; 990  :                 
-; 991  :             #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
-; 992  :                 OALMSG(OAL_INFO, (L"  Directory Entry #%d: <%c%c%c%c%c%c%c%c %c%c%c> ", DirEntryCount, pName[0], pName[1], pName[2], pName[3], pName[4], pName[5], pName[6], pName[7], pExtension[0], pExtension[1], pExtension[2]));
-; 993  :             #endif
-; 994  : 
-; 995  :             // compare name
-; 996  :             for (i = 0; i < 8; i++)
-
-  0012c	e3a01000	 mov         r1, #0
-  00130		 |$LL19@FileIoOpen|
-
-; 997  :             {
-; 998  :                 if ((((DIRECTORY_ENTRY *)pSector) + entry)->filename[i] != pFile->name[i])
-
-  00130	e7de2001	 ldrb        r2, [lr, +r1]
-  00134	e19130d5	 ldrsb       r3, [r1, +r5]
-  00138	e1520003	 cmp         r2, r3
-  0013c	1a000002	 bne         |$LN46@FileIoOpen|
-  00140	e2811001	 add         r1, r1, #1
-  00144	e3510008	 cmp         r1, #8
-  00148	bafffff8	 blt         |$LL19@FileIoOpen|
-  0014c		 |$LN46@FileIoOpen|
-
-; 999  :                     break;
-; 1000 :             }
-; 1001 :             
-; 1002 :             if (i == 8)
-
-  0014c	e3510008	 cmp         r1, #8
-  00150	1a00000b	 bne         |$LN25@FileIoOpen|
-
-; 1003 :             {
-; 1004 :                 // compare extension
-; 1005 :                 for (i = 0; i < 3; i++) 
-
-  00154	e3a00000	 mov         r0, #0
-  00158		 |$LL14@FileIoOpen|
-
-; 1006 :                 {
-; 1007 :                     if ((((DIRECTORY_ENTRY *)pSector) + entry)->extension[i] != pFile->extension[i])
-
-  00158	e08e3000	 add         r3, lr, r0
-  0015c	e5d31008	 ldrb        r1, [r3, #8]
-  00160	e0802005	 add         r2, r0, r5
-  00164	e1d230d9	 ldrsb       r3, [r2, #9]
-  00168	e1510003	 cmp         r1, r3
-  0016c	1a000002	 bne         |$LN47@FileIoOpen|
-  00170	e2800001	 add         r0, r0, #1
-  00174	e3500003	 cmp         r0, #3
-  00178	bafffff6	 blt         |$LL14@FileIoOpen|
-  0017c		 |$LN47@FileIoOpen|
-
-; 1008 :                         break;
-; 1009 :                 }
-; 1010 :                 
-; 1011 :                 if (i == 3) 
-
-  0017c	e3500003	 cmp         r0, #3
-  00180	0a00002f	 beq         |$LN48@FileIoOpen|
-  00184		 |$LN25@FileIoOpen|
-
-; 966  :             for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && 
-; 967  :                         (FilesysInfo.FatType == FAT_TYPE_FAT32 ? 1 : (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries));
-; 968  :                 entry++)              //~~
-
-  00184	e2844001	 add         r4, r4, #1
-  00188	e3540010	 cmp         r4, #0x10
-  0018c	e28ee020	 add         lr, lr, #0x20
-  00190	3affffd1	 bcc         |$LL26@FileIoOpen|
-  00194		 |$LN37@FileIoOpen|
-
-; 1033 :                 }
-; 1034 :             }
-; 1035 :             #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
-; 1036 :                 OALMSG(OAL_INFO, (L"\r\n"));
-; 1037 :             #endif
-; 1038 :         }    
-; 1039 :         
-; 1040 :         OALLog(L"~~Entry switch2\r\n");     //~~
-
-  00194	e59f0124	 ldr         r0, [pc, #0x124]
-  00198	eb000000	 bl          NKDbgPrintfW
-
-; 1041 :         switch (FilesysInfo.FatType)
-
-  0019c	e5963044	 ldr         r3, [r6, #0x44]
-  001a0	e3530000	 cmp         r3, #0
-  001a4	0affffc8	 beq         |$LL28@FileIoOpen|
-  001a8	e3530002	 cmp         r3, #2
-  001ac	9a00000f	 bls         |$LN5@FileIoOpen|
-  001b0	e3530003	 cmp         r3, #3
-  001b4	1affffc4	 bne         |$LL28@FileIoOpen|
-
-; 1068 :                 break;
-; 1069 :             #endif
-; 1070 : 
-; 1071 :             #if BOOTLOADER_SUPPORTS_FAT32
-; 1072 :             case FAT_TYPE_FAT32:        //~~ok
-; 1073 :                 OALLog(L"~~FilesysInfo.FatType1:%d\r\n", FilesysInfo.FatType);      //~~
-
-  001b8	e59f00fc	 ldr         r0, [pc, #0xFC]
-  001bc	e3a01003	 mov         r1, #3
-  001c0	eb000000	 bl          NKDbgPrintfW
-
-; 1074 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT32~1\r\n");    //~~
-
-  001c4	e59f00ec	 ldr         r0, [pc, #0xEC]
-  001c8	eb000000	 bl          NKDbgPrintfW
-
-; 1075 :                 // try to read the next directory sector, trouble
-; 1076 :                 if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)) != FILEIO_STATUS_OK){
-
-  001cc	e3a03001	 mov         r3, #1
-  001d0	e1a02007	 mov         r2, r7
-  001d4	e1a01005	 mov         r1, r5
-  001d8	e1a00009	 mov         r0, r9
-  001dc	eb000000	 bl          FileIoReadNextSectors
-  001e0	e1b01000	 movs        r1, r0
-  001e4	1a000028	 bne         |$LN49@FileIoOpen|
-
-; 1078 :                     return FILEIO_STATUS_OPEN_FAILED;
-; 1079 :                 }
-; 1080 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT32~2\r\n");    //~~
-
-  001e8	e59f00c4	 ldr         r0, [pc, #0xC4]
-
-; 1081 :                 break;
-
-  001ec	eaffffb5	 b           |$LN57@FileIoOpen|
-  001f0		 |$LN5@FileIoOpen|
-
-; 1042 :         {
-; 1043 :             
-; 1044 :             #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
-; 1045 :             case FAT_TYPE_FAT12:
-; 1046 :             case FAT_TYPE_FAT16:
-; 1047 :                 // point to next sector
-; 1048 :                 sector_number++;
-; 1049 :                 
-; 1050 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~1\r\n");    //~~
-
-  001f0	e59f00b8	 ldr         r0, [pc, #0xB8]
-  001f4	e2888001	 add         r8, r8, #1
-  001f8	eb000000	 bl          NKDbgPrintfW
-
-; 1051 :                 #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
-; 1052 :                     OALMSG(OAL_INFO, (L"Next directory sector %d, file data area start %d\r\n", sector_number, FilesysInfo.file_data_area_start));
-; 1053 :                 #endif
-; 1054 : 
-; 1055 :                 // check for end of directory
-; 1056 :                 if (sector_number >= FilesysInfo.file_data_area_start)
-
-  001fc	e5963040	 ldr         r3, [r6, #0x40]
-  00200	e1580003	 cmp         r8, r3
-  00204	2a000022	 bcs         |$LN50@FileIoOpen|
-
-; 1058 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~2\r\n");    //~~
-
-  00208	e59f009c	 ldr         r0, [pc, #0x9C]
-  0020c	eb000000	 bl          NKDbgPrintfW
-
-; 1059 :                 // read next directory sector
-; 1060 :                 if ((status = pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector, pSector)) != ATA_STATUS_OK)
-
-  00210	e59b2000	 ldr         r2, [r11]
-  00214	e5963038	 ldr         r3, [r6, #0x38]
-  00218	e5990010	 ldr         r0, [r9, #0x10]
-  0021c	e5994008	 ldr         r4, [r9, #8]
-  00220	e0823003	 add         r3, r2, r3
-  00224	e0831008	 add         r1, r3, r8
-  00228	e1a02007	 mov         r2, r7
-  0022c	e1a0e00f	 mov         lr, pc
-  00230	e12fff14	 bx          r4
-  00234	e3500000	 cmp         r0, #0
-  00238	1a000015	 bne         |$LN50@FileIoOpen|
-
-; 1061 :                 {
-; 1062 :                     #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
-; 1063 :                         OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (next DIR) failed\r\n", (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector));
-; 1064 :                     #endif
-; 1065 :                     return FILEIO_STATUS_OPEN_FAILED;
-; 1066 :                 }
-; 1067 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~3\r\n");    //~~
-
-  0023c	e59f0064	 ldr         r0, [pc, #0x64]
-
-; 1082 :             #endif
-; 1083 :         }
-; 1084 :     }
-
-  00240	eaffffa0	 b           |$LN57@FileIoOpen|
-  00244		 |$LN48@FileIoOpen|
-
-; 1012 :                 {
-; 1013 :                     // save starting cluster information
-; 1014 :                     
-; 1015 :                     #if BOOTLOADER_SUPPORTS_FAT32
-; 1016 :                         OALLog(L"~~BOOTLOADER_SUPPORTS_FAT32\r\n");   //~~
-
-  00244	e59f0058	 ldr         r0, [pc, #0x58]
-  00248	eb000000	 bl          NKDbgPrintfW
-
-; 1017 :                     if (FilesysInfo.FatType == FAT_TYPE_FAT32)
-
-  0024c	e5963044	 ldr         r3, [r6, #0x44]
-
-; 1018 :                         pFile->current_cluster = ((UINT32)((((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster)) | (((UINT32)((((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster_high)) << 16);
-
-  00250	e0871284	 add         r1, r7, r4, lsl #5
-
-; 1019 :                     else
-; 1020 :                     #endif
-; 1021 :                         pFile->current_cluster = (((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster;
-; 1022 :                         pFile->current_sector_in_cluster = 0;
-; 1023 :                         pFile->file_size = (((DIRECTORY_ENTRY *)pSector) + entry)->file_size;
-; 1024 :                         // initialize other stuff in File handle
-; 1025 :                         pFile->current_sector = 0;
-; 1026 :                         pFile->bytes_in_buffer = 0;
-; 1027 :                         
-; 1028 :                     #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
-; 1029 :                         OALLog(L"~~BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES\r\n");    //~~
-; 1030 :                         OALMSG(OAL_INFO, (L"Found file, starting cluster = %x, file size = %X\r\n", pFile->current_cluster, pFile->file_size));
-; 1031 :                     #endif
-; 1032 :                     return FILEIO_STATUS_OK;        //success
-
-  00254	e3a00000	 mov         r0, #0
-  00258	e3530003	 cmp         r3, #3
-  0025c	01d121b4	 ldreqh      r2, [r1, #0x14]
-  00260	e1d131ba	 ldrh        r3, [r1, #0x1A]
-  00264	01833802	 orreq       r3, r3, r2, lsl #16
-  00268	e3a02000	 mov         r2, #0
-  0026c	e1c521bc	 strh        r2, [r5, #0x1C]
-  00270	e5853018	 str         r3, [r5, #0x18]
-  00274	e591301c	 ldr         r3, [r1, #0x1C]
-  00278	e5852014	 str         r2, [r5, #0x14]
-  0027c	e5852020	 str         r2, [r5, #0x20]
-  00280	e5853010	 str         r3, [r5, #0x10]
-
-; 1085 : }
-
-  00284	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  00288	e12fff1e	 bx          lr
-  0028c		 |$LN49@FileIoOpen|
-
-; 1077 :                     OALLog(L"~~status: %d\r\n", status);        //~~
-
-  0028c	e59f000c	 ldr         r0, [pc, #0xC]
-  00290	eb000000	 bl          NKDbgPrintfW
-  00294		 |$LN50@FileIoOpen|
-
-; 1057 :                     return FILEIO_STATUS_OPEN_FAILED;
-
-  00294	e3a00002	 mov         r0, #2
-
-; 1085 : }
-
-  00298	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  0029c	e12fff1e	 bx          lr
-  002a0		 |$LN61@FileIoOpen|
-  002a0		 |$LN62@FileIoOpen|
-  002a0	00000000	 DCD         |??_C@_1BO@BCBHDHEE@?$AA?$HO?$AA?$HO?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  002a4		 |$LN63@FileIoOpen|
-  002a4	00000000	 DCD         |??_C@_1DM@OPHHKKFI@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA3?$AA2?$AA?$AN?$AA?6?$AA?$AA@|
-  002a8		 |$LN64@FileIoOpen|
-  002a8	00000000	 DCD         |??_C@_1GG@BLKFHAJF@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
-  002ac		 |$LN65@FileIoOpen|
-  002ac	00000000	 DCD         |??_C@_1GG@NHAPHAAL@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
-  002b0		 |$LN66@FileIoOpen|
-  002b0	00000000	 DCD         |??_C@_1GG@FJIAHHOI@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
-  002b4		 |$LN67@FileIoOpen|
-  002b4	00000000	 DCD         |??_C@_1GG@DGGBLEKG@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
-  002b8		 |$LN68@FileIoOpen|
-  002b8	00000000	 DCD         |??_C@_1GG@LIOOLDEF@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
-  002bc		 |$LN69@FileIoOpen|
-  002bc	00000000	 DCD         |??_C@_1DI@LFLHFIAI@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAs?$AAy?$AAs?$AAI?$AAn?$AAf?$AAo?$AA?4?$AAF?$AAa?$AAt?$AAT?$AAy?$AAp?$AAe?$AA1?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  002c0		 |$LN70@FileIoOpen|
-  002c0	00000000	 DCD         |??_C@_1CE@JOGCKJKN@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?$AN?$AA?6?$AA?$AA@|
-  002c4		 |$LN71@FileIoOpen|
-  002c4	00000000	 DCD         |??_C@_1BM@POCFBNKP@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AA?$CD?$AAi?$AAf?$AA?$AN?$AA?6?$AA?$AA@|
-  002c8		 |$LN72@FileIoOpen|
-  002c8	00000000	 DCD         |??_C@_1BM@KDAKJCNJ@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAf?$AAo?$AAr?$AA?$AN?$AA?6?$AA?$AA@|
-  002cc		 |$LN73@FileIoOpen|
-  002cc	00000000	 DCD         |??_C@_1DM@GPMIHEJP@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA1?$AA6?$AA?$AN?$AA?6?$AA?$AA@|
-  002d0		 |$LN74@FileIoOpen|
-  002d0	00000000	 DCD         |ExtendedPartionBaseSector|
-  002d4		 |$LN75@FileIoOpen|
-  002d4	00000000	 DCD         |FilesysInfo|
-  002d8		 |$LN76@FileIoOpen|
-  002d8	00000000	 DCD         |??_C@_1CC@BIKPHNAO@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA?$AN?$AA?6?$AA?$AA@|
-  002dc		 |$M43728|
+  0002c	0a00001d	 beq         |$LN64@FileIoOpen|
+  00030	e35e0002	 cmp         lr, #2
+  00034	9a00000c	 bls         |$LN32@FileIoOpen|
+  00038	e35e0003	 cmp         lr, #3
+  0003c	1a000019	 bne         |$LN64@FileIoOpen|
+
+; 941  :             break;
+; 942  :         #endif
+; 943  :         
+; 944  :         #if BOOTLOADER_SUPPORTS_FAT32
+; 945  :         case FAT_TYPE_FAT32:        //--OK
+; 946  :             //OALLog(L"~~FilesysInfo.FatType1:%d\r\n", FilesysInfo.FatType);    //~~
+; 947  :             // setup to read first directory sector
+; 948  :             pFile->current_cluster = FilesysInfo.root_directory_start;
+
+  00040	e596e03c	 ldr         lr, [r6, #0x3C]
+
+; 949  :             pFile->current_sector_in_cluster = 0;
+; 950  :             pFile->current_sector  = 0;
+; 951  :             pFile->bytes_in_buffer = 0;
+; 952  : 
+; 953  :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)) != FILEIO_STATUS_OK)
+
+  00044	e3a03001	 mov         r3, #1
+  00048	e1a02008	 mov         r2, r8
+  0004c	e585e018	 str         lr, [r5, #0x18]
+  00050	e1c541bc	 strh        r4, [r5, #0x1C]
+  00054	e5854014	 str         r4, [r5, #0x14]
+  00058	e5854020	 str         r4, [r5, #0x20]
+  0005c	eb000000	 bl          FileIoReadNextSectors
+  00060	e3500000	 cmp         r0, #0
+
+; 954  :                 return FILEIO_STATUS_OPEN_FAILED;
+
+  00064	1a000080	 bne         |$LN50@FileIoOpen|
+
+; 939  :             }
+; 940  :             OALLog(L"~~BOOTLOADER_SUPPORTS_FAT16\r\n");   //~~
+
+  00068	ea00000d	 b           |$LN71@FileIoOpen|
+  0006c		 |$LN32@FileIoOpen|
+
+; 925  :     {     
+; 926  :        #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
+; 927  :         case FAT_TYPE_FAT12:
+; 928  :         case FAT_TYPE_FAT16:
+; 929  :             // starting sector of directory
+; 930  :             sector_number = FilesysInfo.root_directory_start;
+; 931  : 
+; 932  :             // read directory sector
+; 933  :             if ((status = pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector, pSector)) != ATA_STATUS_OK)
+
+  0006c	e5932000	 ldr         r2, [r3]
+  00070	e5963038	 ldr         r3, [r6, #0x38]
+  00074	e596903c	 ldr         r9, [r6, #0x3C]
+  00078	e59a0010	 ldr         r0, [r10, #0x10]
+  0007c	e0823003	 add         r3, r2, r3
+  00080	e59a4008	 ldr         r4, [r10, #8]
+  00084	e0831009	 add         r1, r3, r9
+  00088	e1a02008	 mov         r2, r8
+  0008c	e1a0e00f	 mov         lr, pc
+  00090	e12fff14	 bx          r4
+  00094	e3500000	 cmp         r0, #0
+
+; 934  :             {
+; 935  :                 #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 936  :                     OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (DIR) failed\r\n", (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector));
+; 937  :                 #endif
+; 938  :                 return FILEIO_STATUS_OPEN_FAILED;
+
+  00098	1a000073	 bne         |$LN50@FileIoOpen|
+
+; 939  :             }
+; 940  :             OALLog(L"~~BOOTLOADER_SUPPORTS_FAT16\r\n");   //~~
+
+  0009c	e59f01f8	 ldr         r0, [pc, #0x1F8]
+  000a0		 |$LN72@FileIoOpen|
+  000a0	eb000000	 bl          NKDbgPrintfW
+  000a4		 |$LN71@FileIoOpen|
+  000a4	e596e044	 ldr         lr, [r6, #0x44]
+  000a8		 |$LN64@FileIoOpen|
+  000a8	e3a010e5	 mov         r1, #0xE5
+  000ac		 |$LL28@FileIoOpen|
+
+; 955  :                 
+; 956  :             //OALLog(L"~~BOOTLOADER_SUPPORTS_FAT32\r\n");   //~~
+; 957  :             break;
+; 958  :         #endif
+; 959  :         
+; 960  :     }
+; 961  :     
+; 962  :     //OALLog(L"~~Entry for\r\n");         //????
+; 963  :     // scan the entire root directory looking for the file
+; 964  :     for ( ; ; )
+; 965  :     {
+; 966  :         // check each directory entry in the sector
+; 967  :         #if BOOTLOADER_SUPPORTS_FAT32       //--OK
+; 968  :             //OALLog(L"~~Entry #if\r\n");     //~~
+; 969  :             for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && 
+; 970  :                         (FilesysInfo.FatType == FAT_TYPE_FAT32 ? 1 : (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries));
+; 971  :                 entry++)              //~~
+
+  000ac	e3a04000	 mov         r4, #0
+  000b0	e1a07008	 mov         r7, r8
+  000b4		 |$LL26@FileIoOpen|
+  000b4	e35e0003	 cmp         lr, #3
+  000b8	0a000002	 beq         |$LN55@FileIoOpen|
+  000bc	e1d630b8	 ldrh        r3, [r6, #8]
+  000c0	e15b0003	 cmp         r11, r3
+  000c4	2a000028	 bcs         |$LN37@FileIoOpen|
+  000c8		 |$LN55@FileIoOpen|
+
+; 972  :         #else
+; 973  :             OALLog(L"~~Entry #else\r\n");     //~~
+; 974  :             for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries); entry++)
+; 975  :         #endif      
+; 976  :         {
+; 977  :             UINT8 *pName   = (((DIRECTORY_ENTRY *)pSector) + entry)->filename;
+; 978  :             UINT8 Attribute = (((DIRECTORY_ENTRY *)pSector) + entry)->attribute;
+; 979  :             
+; 980  :             // bump count of total directory entries scanned
+; 981  :             DirEntryCount++;
+; 982  : 
+; 983  :             // skip long file names, subdirectories and volume lable
+; 984  :             if (/* Attribute == 0x0f || */ (Attribute & 0x18))
+
+  000c8	e5d7200b	 ldrb        r2, [r7, #0xB]
+  000cc	e28b3001	 add         r3, r11, #1
+  000d0	e1a0b803	 mov         r11, r3, lsl #16
+  000d4	e1a0b82b	 mov         r11, r11, lsr #16
+  000d8	e3120018	 tst         r2, #0x18
+  000dc	1a00001e	 bne         |$LN25@FileIoOpen|
+
+; 985  :                 continue;
+; 986  : 
+; 987  :             // skip special directory entries
+; 988  :             if (pName[0] == 0x00 || pName[0] == 0xe5)
+
+  000e0	e5d73000	 ldrb        r3, [r7]
+  000e4	e3530000	 cmp         r3, #0
+  000e8	0a00001b	 beq         |$LN25@FileIoOpen|
+  000ec	e35300e5	 cmp         r3, #0xE5
+  000f0	0a000019	 beq         |$LN25@FileIoOpen|
+
+; 989  :                 continue;
+; 990  :             
+; 991  :             if (pName[0] == 0x05)
+
+  000f4	e3530005	 cmp         r3, #5
+
+; 992  :                 pName[0] = 0xe5;
+
+  000f8	05c71000	 streqb      r1, [r7]
+  000fc	0596e044	 ldreq       lr, [r6, #0x44]
+
+; 993  :                 
+; 994  :             #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
+; 995  :                 OALMSG(OAL_INFO, (L"  Directory Entry #%d: <%c%c%c%c%c%c%c%c %c%c%c> ", DirEntryCount, pName[0], pName[1], pName[2], pName[3], pName[4], pName[5], pName[6], pName[7], pExtension[0], pExtension[1], pExtension[2]));
+; 996  :             #endif
+; 997  : 
+; 998  :             // compare name
+; 999  :             for (i = 0; i < 8; i++)
+
+  00100	e3a01000	 mov         r1, #0
+  00104		 |$LL19@FileIoOpen|
+
+; 1000 :             {
+; 1001 :                 if ((((DIRECTORY_ENTRY *)pSector) + entry)->filename[i] != pFile->name[i])
+
+  00104	e7d72001	 ldrb        r2, [r7, +r1]
+  00108	e19130d5	 ldrsb       r3, [r1, +r5]
+  0010c	e1520003	 cmp         r2, r3
+  00110	1a000002	 bne         |$LN46@FileIoOpen|
+  00114	e2811001	 add         r1, r1, #1
+  00118	e3510008	 cmp         r1, #8
+  0011c	bafffff8	 blt         |$LL19@FileIoOpen|
+  00120		 |$LN46@FileIoOpen|
+
+; 1002 :                     break;
+; 1003 :             }
+; 1004 :             
+; 1005 :             if (i == 8)
+
+  00120	e3510008	 cmp         r1, #8
+  00124	1a00000b	 bne         |$LN70@FileIoOpen|
+
+; 1006 :             {
+; 1007 :                 // compare extension
+; 1008 :                 for (i = 0; i < 3; i++) 
+
+  00128	e3a00000	 mov         r0, #0
+  0012c		 |$LL14@FileIoOpen|
+
+; 1009 :                 {
+; 1010 :                     if ((((DIRECTORY_ENTRY *)pSector) + entry)->extension[i] != pFile->extension[i])
+
+  0012c	e0873000	 add         r3, r7, r0
+  00130	e5d31008	 ldrb        r1, [r3, #8]
+  00134	e0802005	 add         r2, r0, r5
+  00138	e1d230d9	 ldrsb       r3, [r2, #9]
+  0013c	e1510003	 cmp         r1, r3
+  00140	1a000002	 bne         |$LN47@FileIoOpen|
+  00144	e2800001	 add         r0, r0, #1
+  00148	e3500003	 cmp         r0, #3
+  0014c	bafffff6	 blt         |$LL14@FileIoOpen|
+  00150		 |$LN47@FileIoOpen|
+
+; 1011 :                         break;
+; 1012 :                 }
+; 1013 :                 
+; 1014 :                 if (i == 3) 
+
+  00150	e3500003	 cmp         r0, #3
+  00154	0a000033	 beq         |$LN48@FileIoOpen|
+  00158		 |$LN70@FileIoOpen|
+  00158	e3a010e5	 mov         r1, #0xE5
+  0015c		 |$LN25@FileIoOpen|
+
+; 955  :                 
+; 956  :             //OALLog(L"~~BOOTLOADER_SUPPORTS_FAT32\r\n");   //~~
+; 957  :             break;
+; 958  :         #endif
+; 959  :         
+; 960  :     }
+; 961  :     
+; 962  :     //OALLog(L"~~Entry for\r\n");         //????
+; 963  :     // scan the entire root directory looking for the file
+; 964  :     for ( ; ; )
+; 965  :     {
+; 966  :         // check each directory entry in the sector
+; 967  :         #if BOOTLOADER_SUPPORTS_FAT32       //--OK
+; 968  :             //OALLog(L"~~Entry #if\r\n");     //~~
+; 969  :             for (entry = 0; (entry < SECTOR_SIZE/sizeof(DIRECTORY_ENTRY)) && 
+; 970  :                         (FilesysInfo.FatType == FAT_TYPE_FAT32 ? 1 : (DirEntryCount < FilesysInfo.BiosParameterBlock.number_of_root_directory_entries));
+; 971  :                 entry++)              //~~
+
+  0015c	e2844001	 add         r4, r4, #1
+  00160	e3540010	 cmp         r4, #0x10
+  00164	e2877020	 add         r7, r7, #0x20
+  00168	3affffd1	 bcc         |$LL26@FileIoOpen|
+  0016c		 |$LN37@FileIoOpen|
+
+; 1036 :                 }
+; 1037 :             }
+; 1038 :             #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
+; 1039 :                 OALMSG(OAL_INFO, (L"\r\n"));
+; 1040 :             #endif
+; 1041 :         }    
+; 1042 :         
+; 1043 :         OALLog(L"~~Entry switch2\r\n");     //~~
+
+  0016c	e59f0124	 ldr         r0, [pc, #0x124]
+  00170	eb000000	 bl          NKDbgPrintfW
+
+; 1044 :         switch (FilesysInfo.FatType)
+
+  00174	e596e044	 ldr         lr, [r6, #0x44]
+  00178	e3a010e5	 mov         r1, #0xE5
+  0017c	e35e0000	 cmp         lr, #0
+  00180	0affffc9	 beq         |$LL28@FileIoOpen|
+  00184	e35e0002	 cmp         lr, #2
+  00188	9a000010	 bls         |$LN5@FileIoOpen|
+  0018c	e35e0003	 cmp         lr, #3
+  00190	e3a010e5	 mov         r1, #0xE5
+  00194	1affffc4	 bne         |$LL28@FileIoOpen|
+
+; 1071 :                 break;
+; 1072 :             #endif
+; 1073 : 
+; 1074 :             #if BOOTLOADER_SUPPORTS_FAT32
+; 1075 :             case FAT_TYPE_FAT32:        //~~ok
+; 1076 :                 OALLog(L"~~FilesysInfo.FatType1:%d\r\n", FilesysInfo.FatType);      //~~
+
+  00198	e59f00f4	 ldr         r0, [pc, #0xF4]
+  0019c	e3a01003	 mov         r1, #3
+  001a0	eb000000	 bl          NKDbgPrintfW
+
+; 1077 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT32~1\r\n");    //~~
+
+  001a4	e59f00e4	 ldr         r0, [pc, #0xE4]
+  001a8	eb000000	 bl          NKDbgPrintfW
+
+; 1078 :                 // try to read the next directory sector, trouble
+; 1079 :                 if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pSector, 1)) != FILEIO_STATUS_OK){
+
+  001ac	e3a03001	 mov         r3, #1
+  001b0	e1a02008	 mov         r2, r8
+  001b4	e1a01005	 mov         r1, r5
+  001b8	e1a0000a	 mov         r0, r10
+  001bc	eb000000	 bl          FileIoReadNextSectors
+  001c0	e1b01000	 movs        r1, r0
+  001c4	1a000026	 bne         |$LN49@FileIoOpen|
+
+; 1081 :                     return FILEIO_STATUS_OPEN_FAILED;
+; 1082 :                 }
+; 1083 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT32~2\r\n");    //~~
+
+  001c8	e59f00bc	 ldr         r0, [pc, #0xBC]
+
+; 1084 :                 break;
+
+  001cc	eaffffb3	 b           |$LN72@FileIoOpen|
+  001d0		 |$LN5@FileIoOpen|
+
+; 1045 :         {
+; 1046 :             
+; 1047 :             #if BOOTLOADER_SUPPORTS_FAT12 || BOOTLOADER_SUPPORTS_FAT16
+; 1048 :             case FAT_TYPE_FAT12:
+; 1049 :             case FAT_TYPE_FAT16:
+; 1050 :                 // point to next sector
+; 1051 :                 sector_number++;
+; 1052 :                 
+; 1053 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~1\r\n");    //~~
+
+  001d0	e59f00b0	 ldr         r0, [pc, #0xB0]
+  001d4	e2899001	 add         r9, r9, #1
+  001d8	eb000000	 bl          NKDbgPrintfW
+
+; 1054 :                 #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
+; 1055 :                     OALMSG(OAL_INFO, (L"Next directory sector %d, file data area start %d\r\n", sector_number, FilesysInfo.file_data_area_start));
+; 1056 :                 #endif
+; 1057 : 
+; 1058 :                 // check for end of directory
+; 1059 :                 if (sector_number >= FilesysInfo.file_data_area_start)
+
+  001dc	e5963040	 ldr         r3, [r6, #0x40]
+  001e0	e1590003	 cmp         r9, r3
+  001e4	2a000020	 bcs         |$LN50@FileIoOpen|
+
+; 1061 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~2\r\n");    //~~
+
+  001e8	e59f0094	 ldr         r0, [pc, #0x94]
+  001ec	eb000000	 bl          NKDbgPrintfW
+
+; 1062 :                 // read next directory sector
+; 1063 :                 if ((status = pfileio_ops->read_sector(pfileio_ops->drive_info, (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector, pSector)) != ATA_STATUS_OK)
+
+  001f0	e59f3088	 ldr         r3, [pc, #0x88]
+  001f4	e59a0010	 ldr         r0, [r10, #0x10]
+  001f8	e59a4008	 ldr         r4, [r10, #8]
+  001fc	e5932000	 ldr         r2, [r3]
+  00200	e5963038	 ldr         r3, [r6, #0x38]
+  00204	e0823003	 add         r3, r2, r3
+  00208	e0831009	 add         r1, r3, r9
+  0020c	e1a02008	 mov         r2, r8
+  00210	e1a0e00f	 mov         lr, pc
+  00214	e12fff14	 bx          r4
+  00218	e3500000	 cmp         r0, #0
+  0021c	1a000012	 bne         |$LN50@FileIoOpen|
+
+; 1064 :                 {
+; 1065 :                     #if BOOTLOADER_DEBUG_DISPLAY_ERRORS
+; 1066 :                         OALMSG(OAL_INFO, (L"BOOTLOADER: read_sector %u (next DIR) failed\r\n", (FilesysInfo.partition_start + sector_number) + ExtendedPartionBaseSector));
+; 1067 :                     #endif
+; 1068 :                     return FILEIO_STATUS_OPEN_FAILED;
+; 1069 :                 }
+; 1070 :                 OALLog(L"~~Entry switch2, #if BOOTLOADER_SUPPORTS_FAT12~3\r\n");    //~~
+
+  00220	e59f0054	 ldr         r0, [pc, #0x54]
+
+; 1085 :             #endif
+; 1086 :         }
+; 1087 :     }
+
+  00224	eaffff9d	 b           |$LN72@FileIoOpen|
+  00228		 |$LN48@FileIoOpen|
+
+; 1015 :                 {
+; 1016 :                     // save starting cluster information
+; 1017 :                     
+; 1018 :                     #if BOOTLOADER_SUPPORTS_FAT32
+; 1019 :                         //OALLog(L"~~BOOTLOADER_SUPPORTS_FAT32\r\n");   //~~
+; 1020 :                     if (FilesysInfo.FatType == FAT_TYPE_FAT32)
+
+  00228	e35e0003	 cmp         lr, #3
+
+; 1021 :                         pFile->current_cluster = ((UINT32)((((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster)) | (((UINT32)((((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster_high)) << 16);
+
+  0022c	e0881284	 add         r1, r8, r4, lsl #5
+  00230	e1d131ba	 ldrh        r3, [r1, #0x1A]
+  00234	01d121b4	 ldreqh      r2, [r1, #0x14]
+
+; 1022 :                     else
+; 1023 :                     #endif
+; 1024 :                         pFile->current_cluster = (((DIRECTORY_ENTRY *)pSector) + entry)->starting_cluster;
+; 1025 :                         pFile->current_sector_in_cluster = 0;
+; 1026 :                         pFile->file_size = (((DIRECTORY_ENTRY *)pSector) + entry)->file_size;
+; 1027 :                         // initialize other stuff in File handle
+; 1028 :                         pFile->current_sector = 0;
+; 1029 :                         pFile->bytes_in_buffer = 0;
+; 1030 :                         
+; 1031 :                     #if BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES
+; 1032 :                         OALLog(L"~~BOOTLOADER_DEBUG_DISPLAY_DIRECTORY_ENTRIES\r\n");    //~~
+; 1033 :                         OALMSG(OAL_INFO, (L"Found file, starting cluster = %x, file size = %X\r\n", pFile->current_cluster, pFile->file_size));
+; 1034 :                     #endif
+; 1035 :                     return FILEIO_STATUS_OK;        //success
+
+  00238	e3a00000	 mov         r0, #0
+  0023c	01833802	 orreq       r3, r3, r2, lsl #16
+  00240	e3a02000	 mov         r2, #0
+  00244	e1c521bc	 strh        r2, [r5, #0x1C]
+  00248	e5853018	 str         r3, [r5, #0x18]
+  0024c	e591301c	 ldr         r3, [r1, #0x1C]
+  00250	e5852014	 str         r2, [r5, #0x14]
+  00254	e5852020	 str         r2, [r5, #0x20]
+  00258	e5853010	 str         r3, [r5, #0x10]
+
+; 1088 : }
+
+  0025c	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  00260	e12fff1e	 bx          lr
+  00264		 |$LN49@FileIoOpen|
+
+; 1080 :                     OALLog(L"~~status: %d\r\n", status);        //~~
+
+  00264	e59f000c	 ldr         r0, [pc, #0xC]
+  00268	eb000000	 bl          NKDbgPrintfW
+  0026c		 |$LN50@FileIoOpen|
+
+; 1060 :                     return FILEIO_STATUS_OPEN_FAILED;
+
+  0026c	e3a00002	 mov         r0, #2
+
+; 1088 : }
+
+  00270	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  00274	e12fff1e	 bx          lr
+  00278		 |$LN76@FileIoOpen|
+  00278		 |$LN77@FileIoOpen|
+  00278	00000000	 DCD         |??_C@_1BO@BCBHDHEE@?$AA?$HO?$AA?$HO?$AAs?$AAt?$AAa?$AAt?$AAu?$AAs?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  0027c		 |$LN78@FileIoOpen|
+  0027c	00000000	 DCD         |??_C@_1GG@BLKFHAJF@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
+  00280		 |$LN79@FileIoOpen|
+  00280	00000000	 DCD         |ExtendedPartionBaseSector|
+  00284		 |$LN80@FileIoOpen|
+  00284	00000000	 DCD         |??_C@_1GG@NHAPHAAL@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
+  00288		 |$LN81@FileIoOpen|
+  00288	00000000	 DCD         |??_C@_1GG@FJIAHHOI@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
+  0028c		 |$LN82@FileIoOpen|
+  0028c	00000000	 DCD         |??_C@_1GG@DGGBLEKG@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
+  00290		 |$LN83@FileIoOpen|
+  00290	00000000	 DCD         |??_C@_1GG@LIOOLDEF@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?0?$AA?5?$AA?$CD?$AAi?$AAf?$AA?5?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_@|
+  00294		 |$LN84@FileIoOpen|
+  00294	00000000	 DCD         |??_C@_1DI@LFLHFIAI@?$AA?$HO?$AA?$HO?$AAF?$AAi?$AAl?$AAe?$AAs?$AAy?$AAs?$AAI?$AAn?$AAf?$AAo?$AA?4?$AAF?$AAa?$AAt?$AAT?$AAy?$AAp?$AAe?$AA1?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
+  00298		 |$LN85@FileIoOpen|
+  00298	00000000	 DCD         |??_C@_1CE@JOGCKJKN@?$AA?$HO?$AA?$HO?$AAE?$AAn?$AAt?$AAr?$AAy?$AA?5?$AAs?$AAw?$AAi?$AAt?$AAc?$AAh?$AA2?$AA?$AN?$AA?6?$AA?$AA@|
+  0029c		 |$LN86@FileIoOpen|
+  0029c	00000000	 DCD         |??_C@_1DM@GPMIHEJP@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA1?$AA6?$AA?$AN?$AA?6?$AA?$AA@|
+  002a0		 |$LN87@FileIoOpen|
+  002a0	00000000	 DCD         |FilesysInfo|
+  002a4		 |$M43726|
 
 			 ENDP  ; |FileIoOpen|
 
@@ -2617,7 +2527,7 @@
 	EXPORT	|??_C@_1CC@IMPEFJAI@?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43775| DCD	|$LN28@FileIoRead@2|
+|$T43769| DCD	|$LN28@FileIoRead@2|
 	DCD	0x40004d01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2631,34 +2541,34 @@
 
   00000		 |FileIoRead| PROC
 
-; 1103 : {
+; 1106 : {
 
   00000		 |$LN28@FileIoRead@2|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M43772|
+  00004		 |$M43766|
   00004	e1a05003	 mov         r5, r3
   00008	e1a07002	 mov         r7, r2
   0000c	e1a06001	 mov         r6, r1
   00010	e1a09000	 mov         r9, r0
 
-; 1104 :     int status;
-; 1105 :     UINT8 * s;
-; 1106 : 
-; 1107 :     UINT32 numSectorsToRead = 0;
-; 1108 :     static int i = 1;
-; 1109 :     
-; 1110 :     OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
+; 1107 :     int status;
+; 1108 :     UINT8 *s;
+; 1109 : 
+; 1110 :     UINT32 numSectorsToRead = 0;
+; 1111 :     static int i = 1;
+; 1112 :     
+; 1113 :     OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
 
   00014	e59f4114	 ldr         r4, [pc, #0x114]
   00018	e59f010c	 ldr         r0, [pc, #0x10C]
   0001c	e5941000	 ldr         r1, [r4]
   00020	eb000000	 bl          NKDbgPrintfW
 
-; 1111 :     i++;
+; 1114 :     i++;
 
   00024	e594e000	 ldr         lr, [r4]
 
-; 1112 :     while (Count)
+; 1115 :     while (Count)
 
   00028	e3550000	 cmp         r5, #0
   0002c	e28ee001	 add         lr, lr, #1
@@ -2668,73 +2578,73 @@
   0003c	e3a0ac02	 mov         r10, #2, 24
   00040		 |$LL12@FileIoRead@2|
 
-; 1113 :     {
-; 1114 :         // create pointer to start of valid data in buffer
-; 1115 :         s = pFile->buffer + (SECTOR_SIZE - pFile->bytes_in_buffer); 
+; 1116 :     {
+; 1117 :         // create pointer to start of valid data in buffer
+; 1118 :         s = pFile->buffer + (SECTOR_SIZE - pFile->bytes_in_buffer); 
 
   00040	e596e020	 ldr         lr, [r6, #0x20]
   00044	e046e00e	 sub         lr, r6, lr
   00048	e28e2f89	 add         r2, lr, #0x89, 30
   0004c		 |$LL10@FileIoRead@2|
 
-; 1116 : 
-; 1117 :         // if any bytes are in the buffer copy them to destination
-; 1118 :         while (Count && pFile->bytes_in_buffer)
+; 1119 : 
+; 1120 :         // if any bytes are in the buffer copy them to destination
+; 1121 :         while (Count && pFile->bytes_in_buffer)
 
   0004c	e5963020	 ldr         r3, [r6, #0x20]
   00050	e3530000	 cmp         r3, #0
   00054	0a000019	 beq         |$LN25@FileIoRead@2|
 
-; 1119 :         {
-; 1120 :             *pDest = *s;
+; 1122 :         {
+; 1123 :             *pDest = *s;
 
   00058	e4d23001	 ldrb        r3, [r2], #1
 
-; 1121 :             pDest++;
-; 1122 :             s++;
-; 1123 :             Count--;
+; 1124 :             pDest++;
+; 1125 :             s++;
+; 1126 :             Count--;
 
   0005c	e2555001	 subs        r5, r5, #1
   00060	e4c73001	 strb        r3, [r7], #1
 
-; 1124 :             pFile->bytes_in_buffer--;
+; 1127 :             pFile->bytes_in_buffer--;
 
   00064	e5963020	 ldr         r3, [r6, #0x20]
   00068	e2433001	 sub         r3, r3, #1
   0006c	e5863020	 str         r3, [r6, #0x20]
   00070	1afffff5	 bne         |$LL10@FileIoRead@2|
 
-; 1160 :                 return status;
-; 1161 : 
-; 1162 :             pDest += (SECTOR_SIZE * numSectorsToRead);
-; 1163 :             Count -= (SECTOR_SIZE * numSectorsToRead);
+; 1163 :                 return status;
+; 1164 : 
+; 1165 :             pDest += (SECTOR_SIZE * numSectorsToRead);
+; 1166 :             Count -= (SECTOR_SIZE * numSectorsToRead);
 
   00074	ea000011	 b           |$LN25@FileIoRead@2|
   00078		 |$LL8@FileIoRead@2|
 
-; 1125 :         }
-; 1126 : 
-; 1127 :         // Note: After the above while loop, the read is sector aligned
-; 1128 : 
-; 1129 :         // if Count is at least one sector size then read sector directly into caller's buffer
-; 1130 :         while (Count >= SECTOR_SIZE)
-; 1131 :         {
-; 1132 :             if (Count < 2*SECTOR_SIZE)
+; 1128 :         }
+; 1129 : 
+; 1130 :         // Note: After the above while loop, the read is sector aligned
+; 1131 : 
+; 1132 :         // if Count is at least one sector size then read sector directly into caller's buffer
+; 1133 :         while (Count >= SECTOR_SIZE)
+; 1134 :         {
+; 1135 :             if (Count < 2*SECTOR_SIZE)
 
   00078	e3550b01	 cmp         r5, #1, 22
   0007c	3a000012	 bcc         |$LN18@FileIoRead@2|
 
-; 1140 :     
-; 1141 :                 break;
-; 1142 :             }
-; 1143 : 
-; 1144 :             // Condition for multi sector read is met 
-; 1145 :             // read sectors in the cluster
-; 1146 :             numSectorsToRead = Count/SECTOR_SIZE;  // number of sectors to read
-; 1147 : 
-; 1148 :             // make sure numSectorsToRead is within the current cluster's limit
-; 1149 :             // number of sectors remain in cluster to be read
-; 1150 :             if (numSectorsToRead + pFile->current_sector_in_cluster > FilesysInfo.BiosParameterBlock.sectors_per_cluster)
+; 1143 :     
+; 1144 :                 break;
+; 1145 :             }
+; 1146 : 
+; 1147 :             // Condition for multi sector read is met 
+; 1148 :             // read sectors in the cluster
+; 1149 :             numSectorsToRead = Count/SECTOR_SIZE;  // number of sectors to read
+; 1150 : 
+; 1151 :             // make sure numSectorsToRead is within the current cluster's limit
+; 1152 :             // number of sectors remain in cluster to be read
+; 1153 :             if (numSectorsToRead + pFile->current_sector_in_cluster > FilesysInfo.BiosParameterBlock.sectors_per_cluster)
 
   00080	e1d621bc	 ldrh        r2, [r6, #0x1C]
   00084	e5d81002	 ldrb        r1, [r8, #2]
@@ -2742,17 +2652,17 @@
   0008c	e0823004	 add         r3, r2, r4
   00090	e1530001	 cmp         r3, r1
 
-; 1151 :             {
-; 1152 :                 // TODO: what if this is the last cluster of the file.
-; 1153 :                 //       in that case, the cluster may be partially filled.
-; 1154 :                 //Read all the remaining sectors in the cluster
-; 1155 :                 numSectorsToRead = (FilesysInfo.BiosParameterBlock.sectors_per_cluster - pFile->current_sector_in_cluster);
+; 1154 :             {
+; 1155 :                 // TODO: what if this is the last cluster of the file.
+; 1156 :                 //       in that case, the cluster may be partially filled.
+; 1157 :                 //Read all the remaining sectors in the cluster
+; 1158 :                 numSectorsToRead = (FilesysInfo.BiosParameterBlock.sectors_per_cluster - pFile->current_sector_in_cluster);
 
   00094	80414002	 subhi       r4, r1, r2
 
-; 1156 :             }
-; 1157 : 
-; 1158 :             status = FileIoReadNextSectors(pfileio_ops, pFile, pDest, (UINT16)numSectorsToRead);
+; 1159 :             }
+; 1160 : 
+; 1161 :             status = FileIoReadNextSectors(pfileio_ops, pFile, pDest, (UINT16)numSectorsToRead);
 
   00098	e1a03804	 mov         r3, r4, lsl #16
   0009c	e1a03823	 mov         r3, r3, lsr #16
@@ -2762,14 +2672,14 @@
   000ac	eb000000	 bl          FileIoReadNextSectors
   000b0	e3500000	 cmp         r0, #0
 
-; 1159 :             if (status != FILEIO_STATUS_OK)
+; 1162 :             if (status != FILEIO_STATUS_OK)
 
   000b4	1a000019	 bne         |$LN13@FileIoRead@2|
 
-; 1160 :                 return status;
-; 1161 : 
-; 1162 :             pDest += (SECTOR_SIZE * numSectorsToRead);
-; 1163 :             Count -= (SECTOR_SIZE * numSectorsToRead);
+; 1163 :                 return status;
+; 1164 : 
+; 1165 :             pDest += (SECTOR_SIZE * numSectorsToRead);
+; 1166 :             Count -= (SECTOR_SIZE * numSectorsToRead);
 
   000b8	e0455484	 sub         r5, r5, r4, lsl #9
   000bc	e0877484	 add         r7, r7, r4, lsl #9
@@ -2777,15 +2687,15 @@
   000c0	e3550c02	 cmp         r5, #2, 24
   000c4	2affffeb	 bcs         |$LL8@FileIoRead@2|
 
-; 1168 :         {
-; 1169 :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pFile->buffer, 1)) != FILEIO_STATUS_OK)
+; 1171 :         {
+; 1172 :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pFile->buffer, 1)) != FILEIO_STATUS_OK)
 
   000c8	ea000008	 b           |$LN7@FileIoRead@2|
   000cc		 |$LN18@FileIoRead@2|
 
-; 1133 :             {
-; 1134 :                 // can only read SINGLE sector
-; 1135 :                 if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pDest, 1)) != FILEIO_STATUS_OK)
+; 1136 :             {
+; 1137 :                 // can only read SINGLE sector
+; 1138 :                 if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pDest, 1)) != FILEIO_STATUS_OK)
 
   000cc	e3a03001	 mov         r3, #1
   000d0	e1a02007	 mov         r2, r7
@@ -2795,27 +2705,27 @@
   000e0	e3500000	 cmp         r0, #0
   000e4	1a00000d	 bne         |$LN13@FileIoRead@2|
 
-; 1136 :                     return status;
-; 1137 :     
-; 1138 :                 pDest += SECTOR_SIZE;
+; 1139 :                     return status;
+; 1140 :     
+; 1141 :                 pDest += SECTOR_SIZE;
 
   000e8	e2877c02	 add         r7, r7, #2, 24
 
-; 1139 :                 Count -= SECTOR_SIZE;
+; 1142 :                 Count -= SECTOR_SIZE;
 
   000ec	e2455c02	 sub         r5, r5, #2, 24
   000f0		 |$LN7@FileIoRead@2|
 
-; 1164 :         }
-; 1165 : 
-; 1166 :         // if Count is not zero, read a sector into the file structure sector buffer
-; 1167 :         if (Count)
+; 1167 :         }
+; 1168 : 
+; 1169 :         // if Count is not zero, read a sector into the file structure sector buffer
+; 1170 :         if (Count)
 
   000f0	e3550000	 cmp         r5, #0
   000f4	0a000008	 beq         |$LN11@FileIoRead@2|
 
-; 1168 :         {
-; 1169 :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pFile->buffer, 1)) != FILEIO_STATUS_OK)
+; 1171 :         {
+; 1172 :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pFile->buffer, 1)) != FILEIO_STATUS_OK)
 
   000f8	e3a03001	 mov         r3, #1
   000fc	e2862024	 add         r2, r6, #0x24
@@ -2825,24 +2735,24 @@
   0010c	e3500000	 cmp         r0, #0
   00110	1a000002	 bne         |$LN13@FileIoRead@2|
 
-; 1170 :                 return status;
-; 1171 :             pFile->bytes_in_buffer = SECTOR_SIZE;
+; 1173 :                 return status;
+; 1174 :             pFile->bytes_in_buffer = SECTOR_SIZE;
 
   00114	e586a020	 str         r10, [r6, #0x20]
 
-; 1112 :     while (Count)
+; 1115 :     while (Count)
 
   00118	eaffffc8	 b           |$LL12@FileIoRead@2|
   0011c		 |$LN11@FileIoRead@2|
 
-; 1172 :         }
-; 1173 :     }
-; 1174 :     return FILEIO_STATUS_OK;
+; 1175 :         }
+; 1176 :     }
+; 1177 :     return FILEIO_STATUS_OK;
 
   0011c	e3a00000	 mov         r0, #0
   00120		 |$LN13@FileIoRead@2|
 
-; 1175 : }
+; 1178 : }
 
   00120	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
   00124	e12fff1e	 bx          lr
@@ -2853,7 +2763,7 @@
   0012c	00000000	 DCD         |??_C@_1CC@IMPEFJAI@?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
   00130		 |$LN32@FileIoRead@2|
   00130	00000000	 DCD         |?i@?1??FileIoRead@@9@9|
-  00134		 |$M43773|
+  00134		 |$M43767|
 
 			 ENDP  ; |FileIoRead|
 

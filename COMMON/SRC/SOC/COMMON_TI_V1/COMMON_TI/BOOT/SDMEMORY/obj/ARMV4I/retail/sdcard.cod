@@ -2264,7 +2264,7 @@
 
   00000		 |BLSDCardReadData| PROC
 
-; 1435 : {
+; 1431 : {
 
   00000		 |$LN7@BLSDCardRe|
   00000	e52de004	 str         lr, [sp, #-4]!
@@ -2272,14 +2272,14 @@
   00004	e1a02001	 mov         r2, r1
   00008	e1a03000	 mov         r3, r0
 
-; 1436 :     // called to read data from MMC/SD card as stream data, not as block data
-; 1437 : 
-; 1438 :     OALMSGX(OAL_FUNC, (L"BLSDCardReadData: address 0x%x, %d bytes\r\n", pData, size));
-; 1439 : 
-; 1440 :     //g_eboot.readSize = size;
-; 1441 :     //g_eboot.pReadBuffer = pData;
-; 1442 : 
-; 1443 :     if (FileIoRead(&fileio_ops, pFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
+; 1432 :     // called to read data from MMC/SD card as stream data, not as block data
+; 1433 : 
+; 1434 :     OALMSGX(OAL_FUNC, (L"BLSDCardReadData: address 0x%x, %d bytes\r\n", pData, size));
+; 1435 : 
+; 1436 :     //g_eboot.readSize = size;
+; 1437 :     //g_eboot.pReadBuffer = pData;
+; 1438 : 
+; 1439 :     if (FileIoRead(&fileio_ops, pFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
 
   0000c	e59f1024	 ldr         r1, [pc, #0x24]
   00010	e59f001c	 ldr         r0, [pc, #0x1C]
@@ -2287,20 +2287,20 @@
   00018	eb000000	 bl          FileIoRead
   0001c	e3500000	 cmp         r0, #0
 
-; 1444 :         return FALSE;
+; 1440 :         return FALSE;
 
   00020	13a00000	 movne       r0, #0
 
-; 1447 : }
+; 1443 : }
 
   00024	149de004	 ldrne       lr, [sp], #4
 
-; 1445 :     else
-; 1446 :         return TRUE;
+; 1441 :     else
+; 1442 :         return TRUE;
 
   00028	03a00001	 moveq       r0, #1
 
-; 1447 : }
+; 1443 : }
 
   0002c	049de004	 ldreq       lr, [sp], #4
   00030	e12fff1e	 bx          lr
@@ -5355,7 +5355,7 @@
 
   00008		 |BLSDCardReadLogo| PROC
 
-; 1457 : {
+; 1453 : {
 
   00008		 |$LN44@BLSDCardRe@2|
   00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
@@ -5368,14 +5368,14 @@
   00020	e5933000	 ldr         r3, [r3]
   00024	e58d322c	 str         r3, [sp, #0x22C]
 
-; 1458 : 	FILEHANDLE logoFile;
-; 1459 : 	WORD	   wSignature = 0;
-; 1460 : 	DWORD	   dwOffset = 0;
-; 1461 : 	BYTE*	   pTmpBuf = NULL;
-; 1462 : 	DWORD	   dwCursor = 0;
-; 1463 : 	DWORD       i;
-; 1464 : 	
-; 1465 : 	if (!bFileIoInit)
+; 1454 : 	FILEHANDLE logoFile;
+; 1455 : 	WORD	   wSignature = 0;
+; 1456 : 	DWORD	   dwOffset = 0;
+; 1457 : 	BYTE*	   pTmpBuf = NULL;
+; 1458 : 	DWORD	   dwCursor = 0;
+; 1459 : 	DWORD       i;
+; 1460 : 	
+; 1461 : 	if (!bFileIoInit)
 
   00028	e59f82ac	 ldr         r8, [pc, #0x2AC]
   0002c	e3a02000	 mov         r2, #0
@@ -5387,29 +5387,29 @@
   00044	e58d1004	 str         r1, [sp, #4]
   00048	1a000015	 bne         |$LN15@BLSDCardRe@2|
 
-; 1466 : 	{
-; 1467 : 		// set up data structure used by file system driver
-; 1468 : 		fileio_ops.init = &SDCardInit;
+; 1462 : 	{
+; 1463 : 		// set up data structure used by file system driver
+; 1464 : 		fileio_ops.init = &SDCardInit;
 
   0004c	e59f3280	 ldr         r3, [pc, #0x280]
 
-; 1469 : 		fileio_ops.identify = &SDCardIdentify;
+; 1465 : 		fileio_ops.identify = &SDCardIdentify;
 
   00050	e59fe278	 ldr         lr, [pc, #0x278]
 
-; 1470 : 		fileio_ops.read_sector = &SDCardReadSector;
+; 1466 : 		fileio_ops.read_sector = &SDCardReadSector;
 
   00054	e59f4270	 ldr         r4, [pc, #0x270]
 
-; 1471 : 		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
+; 1467 : 		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
 
   00058	e59f5268	 ldr         r5, [pc, #0x268]
   0005c	e8864008	 stmia       r6, {r3, lr}
 
-; 1472 : 		fileio_ops.drive_info = (PVOID)&Disk;
-; 1473 : 
-; 1474 : 		// initialize file system driver
-; 1475 : 		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
+; 1468 : 		fileio_ops.drive_info = (PVOID)&Disk;
+; 1469 : 
+; 1470 : 		// initialize file system driver
+; 1471 : 		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
 
   00060	e1a00006	 mov         r0, r6
   00064	e59f3258	 ldr         r3, [pc, #0x258]
@@ -5420,8 +5420,8 @@
   00078	e3500000	 cmp         r0, #0
   0007c	0a000006	 beq         |$LN14@BLSDCardRe@2|
 
-; 1476 : 		{
-; 1477 : 			OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  fileio init failed\r\n"));
+; 1472 : 		{
+; 1473 : 			OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  fileio init failed\r\n"));
 
   00080	e59f3220	 ldr         r3, [pc, #0x220]
   00084	e5933440	 ldr         r3, [r3, #0x440]
@@ -5430,32 +5430,32 @@
   00090	e59f0228	 ldr         r0, [pc, #0x228]
   00094	eb000000	 bl          NKDbgPrintfW
 
-; 1478 : 			return FALSE;
+; 1474 : 			return FALSE;
 
   00098	ea00007b	 b           |$LN18@BLSDCardRe@2|
   0009c		 |$LN14@BLSDCardRe@2|
 
-; 1479 : 		}
-; 1480 : 
-; 1481 : 		bFileIoInit = TRUE;
+; 1475 : 		}
+; 1476 : 
+; 1477 : 		bFileIoInit = TRUE;
 
   0009c	e3a03001	 mov         r3, #1
   000a0	e5883000	 str         r3, [r8]
   000a4		 |$LN15@BLSDCardRe@2|
 
-; 1482 : 	}
-; 1483 : 
-; 1484 :     // fill in file name (8.3 format)
-; 1485 :     FileNameToDirEntry(filename, logoFile.name, logoFile.extension);
+; 1478 : 	}
+; 1479 : 
+; 1480 :     // fill in file name (8.3 format)
+; 1481 :     FileNameToDirEntry(filename, logoFile.name, logoFile.extension);
 
   000a4	e28d2011	 add         r2, sp, #0x11
   000a8	e28d1008	 add         r1, sp, #8
   000ac	e1a00007	 mov         r0, r7
   000b0	eb000000	 bl          FileNameToDirEntry
 
-; 1486 : 	
-; 1487 :     // try to open file specified by pConfig->filename, return BL_ERROR on failure
-; 1488 :     if (FileIoOpen(&fileio_ops, &logoFile) != FILEIO_STATUS_OK)
+; 1482 : 	
+; 1483 :     // try to open file specified by pConfig->filename, return BL_ERROR on failure
+; 1484 :     if (FileIoOpen(&fileio_ops, &logoFile) != FILEIO_STATUS_OK)
 
   000b4	e28d1008	 add         r1, sp, #8
   000b8	e1a00006	 mov         r0, r6
@@ -5463,8 +5463,8 @@
   000c0	e3500000	 cmp         r0, #0
   000c4	0a000007	 beq         |$LN13@BLSDCardRe@2|
 
-; 1489 :     {
-; 1490 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot open %s\r\n", filename));
+; 1485 :     {
+; 1486 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot open %s\r\n", filename));
 
   000c8	e59f31d8	 ldr         r3, [pc, #0x1D8]
   000cc	e5933440	 ldr         r3, [r3, #0x440]
@@ -5474,15 +5474,15 @@
   000dc	e1a01007	 mov         r1, r7
   000e0	eb000000	 bl          NKDbgPrintfW
 
-; 1491 :         return FALSE;
+; 1487 :         return FALSE;
 
   000e4	ea000068	 b           |$LN18@BLSDCardRe@2|
   000e8		 |$LN13@BLSDCardRe@2|
 
-; 1492 :     }
-; 1493 : 
-; 1494 : 	// Read signature
-; 1495 :     if (FileIoRead(&fileio_ops, &logoFile, (PVOID)&wSignature, sizeof(wSignature)) != FILEIO_STATUS_OK)
+; 1488 :     }
+; 1489 : 
+; 1490 : 	// Read signature
+; 1491 :     if (FileIoRead(&fileio_ops, &logoFile, (PVOID)&wSignature, sizeof(wSignature)) != FILEIO_STATUS_OK)
 
   000e8	e3a03002	 mov         r3, #2
   000ec	e28d2000	 add         r2, sp, #0
@@ -5492,8 +5492,8 @@
   000fc	e3500000	 cmp         r0, #0
   00100	0a000006	 beq         |$LN12@BLSDCardRe@2|
 
-; 1496 : 	{
-; 1497 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file signature\r\n"));
+; 1492 : 	{
+; 1493 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file signature\r\n"));
 
   00104	e59f319c	 ldr         r3, [pc, #0x19C]
   00108	e5933440	 ldr         r3, [r3, #0x440]
@@ -5504,11 +5504,11 @@
   0011c	ea00005a	 b           |$LN18@BLSDCardRe@2|
   00120		 |$LN12@BLSDCardRe@2|
 
-; 1498 :         return FALSE;
-; 1499 : 	}
-; 1500 : 
-; 1501 : 	dwCursor += sizeof(wSignature);
-; 1502 :     if( wSignature != 0x4D42 )  
+; 1494 :         return FALSE;
+; 1495 : 	}
+; 1496 : 
+; 1497 : 	dwCursor += sizeof(wSignature);
+; 1498 :     if( wSignature != 0x4D42 )  
 
   00120	e1dd20b0	 ldrh        r2, [sp]
   00124	e3a03c4d	 mov         r3, #0x4D, 24
@@ -5516,8 +5516,8 @@
   0012c	e1520003	 cmp         r2, r3
   00130	0a000006	 beq         |$LN11@BLSDCardRe@2|
 
-; 1503 :     {
-; 1504 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  Invalid file signature\r\n"));
+; 1499 :     {
+; 1500 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  Invalid file signature\r\n"));
 
   00134	e59f316c	 ldr         r3, [pc, #0x16C]
   00138	e5933440	 ldr         r3, [r3, #0x440]
@@ -5528,24 +5528,24 @@
   0014c	ea00004e	 b           |$LN18@BLSDCardRe@2|
   00150		 |$LN11@BLSDCardRe@2|
 
-; 1505 :         return FALSE;
-; 1506 : 	}
-; 1507 : 
-; 1508 : 	// Read dummy data
-; 1509 : 	pTmpBuf = (BYTE*)OALLocalAlloc(0, sizeof(DWORD));
+; 1501 :         return FALSE;
+; 1502 : 	}
+; 1503 : 
+; 1504 : 	// Read dummy data
+; 1505 : 	pTmpBuf = (BYTE*)OALLocalAlloc(0, sizeof(DWORD));
 
   00150	e3a01004	 mov         r1, #4
   00154	e3a00000	 mov         r0, #0
   00158	eb000000	 bl          OALLocalAlloc
   0015c	e1a04000	 mov         r4, r0
 
-; 1510 : 	for( i=0 ; i<2 ; i++ )
+; 1506 : 	for( i=0 ; i<2 ; i++ )
 
   00160	e3a05000	 mov         r5, #0
   00164		 |$LL10@BLSDCardRe@2|
 
-; 1511 : 	{
-; 1512 :     	if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
+; 1507 : 	{
+; 1508 :     	if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
 
   00164	e3a03004	 mov         r3, #4
   00168	e1a02004	 mov         r2, r4
@@ -5558,12 +5558,12 @@
   00184	e3550002	 cmp         r5, #2
   00188	3afffff5	 bcc         |$LL10@BLSDCardRe@2|
 
-; 1517 :         }
-; 1518 : 	}
-; 1519 : 	//OALLocalFree((HLOCAL)pTmpBuf);
-; 1520 : 	dwCursor += 2*sizeof(DWORD);
-; 1521 : 	// Read pixel data offset
-; 1522 :     if (FileIoRead(&fileio_ops, &logoFile, (PVOID)&dwOffset, sizeof(dwOffset)) != FILEIO_STATUS_OK)
+; 1513 :         }
+; 1514 : 	}
+; 1515 : 	//OALLocalFree((HLOCAL)pTmpBuf);
+; 1516 : 	dwCursor += 2*sizeof(DWORD);
+; 1517 : 	// Read pixel data offset
+; 1518 :     if (FileIoRead(&fileio_ops, &logoFile, (PVOID)&dwOffset, sizeof(dwOffset)) != FILEIO_STATUS_OK)
 
   0018c	e3a03004	 mov         r3, #4
   00190	e28d2004	 add         r2, sp, #4
@@ -5573,8 +5573,8 @@
   001a0	e3500000	 cmp         r0, #0
   001a4	0a000006	 beq         |$LN6@BLSDCardRe@2|
 
-; 1523 : 	{
-; 1524 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read pixel data offset\r\n"));
+; 1519 : 	{
+; 1520 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read pixel data offset\r\n"));
 
   001a8	e59f30f8	 ldr         r3, [pc, #0xF8]
   001ac	e5933440	 ldr         r3, [r3, #0x440]
@@ -5585,17 +5585,17 @@
   001c0	ea000031	 b           |$LN18@BLSDCardRe@2|
   001c4		 |$LN6@BLSDCardRe@2|
 
-; 1525 :         return FALSE;
-; 1526 : 	}
-; 1527 : 
-; 1528 : 	//dwCursor += sizeof(dwOffset);
-; 1529 : 	dwOffset = dwOffset / sizeof(DWORD);
+; 1521 :         return FALSE;
+; 1522 : 	}
+; 1523 : 
+; 1524 : 	//dwCursor += sizeof(dwOffset);
+; 1525 : 	dwOffset = dwOffset / sizeof(DWORD);
 
   001c4	e59d3004	 ldr         r3, [sp, #4]
 
-; 1530 : 	// Read dummy data before pixel data offset
-; 1531 : 	//pTmpBuf = (BYTE*)OALLocalAlloc(0, dwOffset - dwCursor);
-; 1532 : 	for( i=0 ; i<dwOffset ; i++)
+; 1526 : 	// Read dummy data before pixel data offset
+; 1527 : 	//pTmpBuf = (BYTE*)OALLocalAlloc(0, dwOffset - dwCursor);
+; 1528 : 	for( i=0 ; i<dwOffset ; i++)
 
   001c8	e3a05000	 mov         r5, #0
   001cc	e1b03123	 movs        r3, r3, lsr #2
@@ -5603,8 +5603,8 @@
   001d4	0a00000a	 beq         |$LN3@BLSDCardRe@2|
   001d8		 |$LL5@BLSDCardRe@2|
 
-; 1533 : 	{
-; 1534 :     	if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
+; 1529 : 	{
+; 1530 :     	if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
 
   001d8	e3a03004	 mov         r3, #4
   001dc	e1a02004	 mov         r2, r4
@@ -5619,16 +5619,16 @@
   00200	3afffff4	 bcc         |$LL5@BLSDCardRe@2|
   00204		 |$LN3@BLSDCardRe@2|
 
-; 1539 :         }
-; 1540 : 	}
-; 1541 : 	OALLocalFree((HLOCAL)pTmpBuf);
+; 1535 :         }
+; 1536 : 	}
+; 1537 : 	OALLocalFree((HLOCAL)pTmpBuf);
 
   00204	e1a00004	 mov         r0, r4
   00208	eb000000	 bl          OALLocalFree
 
-; 1542 : 
-; 1543 : 	// Read pixel data
-; 1544 :     if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
+; 1538 : 
+; 1539 : 	// Read pixel data
+; 1540 :     if (FileIoRead(&fileio_ops, &logoFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
 
   0020c	e1a03009	 mov         r3, r9
   00210	e1a0200a	 mov         r2, r10
@@ -5638,8 +5638,8 @@
   00220	e3500000	 cmp         r0, #0
   00224	0a00000c	 beq         |$LN1@BLSDCardRe@2|
 
-; 1545 : 	{
-; 1546 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file header\r\n"));
+; 1541 : 	{
+; 1542 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file header\r\n"));
 
   00228	e59f3078	 ldr         r3, [pc, #0x78]
   0022c	e5933440	 ldr         r3, [r3, #0x440]
@@ -5650,8 +5650,8 @@
   00240	ea000011	 b           |$LN18@BLSDCardRe@2|
   00244		 |$LN37@BLSDCardRe@2|
 
-; 1535 : 		{
-; 1536 :         	OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file\r\n"));
+; 1531 : 		{
+; 1532 :         	OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file\r\n"));
 
   00244	e59f305c	 ldr         r3, [pc, #0x5C]
   00248	e5933440	 ldr         r3, [r3, #0x440]
@@ -5659,16 +5659,16 @@
   00250	0a00000b	 beq         |$LN26@BLSDCardRe@2|
   00254	e59f0050	 ldr         r0, [pc, #0x50]
 
-; 1537 : 			OALLocalFree((HLOCAL)pTmpBuf);
-; 1538 :         	return FALSE;
+; 1533 : 			OALLocalFree((HLOCAL)pTmpBuf);
+; 1534 :         	return FALSE;
 
   00258	ea000008	 b           |$LN40@BLSDCardRe@2|
   0025c		 |$LN1@BLSDCardRe@2|
 
-; 1547 :         return FALSE;
-; 1548 : 	}
-; 1549 : 
-; 1550 : 	return TRUE;
+; 1543 :         return FALSE;
+; 1544 : 	}
+; 1545 : 
+; 1546 : 	return TRUE;
 
   0025c	e59d022c	 ldr         r0, [sp, #0x22C]
   00260	eb000000	 bl          __security_check_cookie
@@ -5676,8 +5676,8 @@
   00268	ea00000a	 b           |$LN16@BLSDCardRe@2|
   0026c		 |$LN36@BLSDCardRe@2|
 
-; 1513 : 		{
-; 1514 :         	OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file header\r\n"));
+; 1509 : 		{
+; 1510 :         	OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  cannot read file header\r\n"));
 
   0026c	e59f3034	 ldr         r3, [pc, #0x34]
   00270	e5933440	 ldr         r3, [r3, #0x440]
@@ -5688,26 +5688,26 @@
   00280	eb000000	 bl          NKDbgPrintfW
   00284		 |$LN26@BLSDCardRe@2|
 
-; 1515 : 			OALLocalFree((HLOCAL)pTmpBuf);
+; 1511 : 			OALLocalFree((HLOCAL)pTmpBuf);
 
   00284	e1a00004	 mov         r0, r4
   00288	eb000000	 bl          OALLocalFree
   0028c		 |$LN18@BLSDCardRe@2|
 
-; 1516 :         	return FALSE;
+; 1512 :         	return FALSE;
 
   0028c	e59d022c	 ldr         r0, [sp, #0x22C]
   00290	eb000000	 bl          __security_check_cookie
   00294	e3a00000	 mov         r0, #0
 
-; 1547 :         return FALSE;
-; 1548 : 	}
-; 1549 : 
-; 1550 : 	return TRUE;
+; 1543 :         return FALSE;
+; 1544 : 	}
+; 1545 : 
+; 1546 : 	return TRUE;
 
   00298		 |$LN16@BLSDCardRe@2|
 
-; 1551 : }
+; 1547 : }
 
   00298	e28dde23	 add         sp, sp, #0x23, 28
   0029c	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
@@ -5802,7 +5802,7 @@
 
   00008		 |BLSDCardReadEbootData| PROC
 
-; 1597 : {
+; 1593 : {
 
   00008		 |$LN16@BLSDCardRe@3|
   00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
@@ -5815,11 +5815,11 @@
   00020	e5933000	 ldr         r3, [r3]
   00024	e58d3224	 str         r3, [sp, #0x224]
 
-; 1598 : 	FILEHANDLE EbootFile;
-; 1599 : 	UNREFERENCED_PARAMETER(pData);
-; 1600 : 	UNREFERENCED_PARAMETER(size);
-; 1601 : 	
-; 1602 : 	if (!bFileIoInit)
+; 1594 : 	FILEHANDLE EbootFile;
+; 1595 : 	UNREFERENCED_PARAMETER(pData);
+; 1596 : 	UNREFERENCED_PARAMETER(size);
+; 1597 : 	
+; 1598 : 	if (!bFileIoInit)
 
   00028	e59f8128	 ldr         r8, [pc, #0x128]
   0002c	e59f6120	 ldr         r6, [pc, #0x120]
@@ -5827,29 +5827,29 @@
   00034	e3530000	 cmp         r3, #0
   00038	1a000018	 bne         |$LN4@BLSDCardRe@3|
 
-; 1603 : 	{
-; 1604 : 		// set up data structure used by file system driver
-; 1605 : 		fileio_ops.init         = &SDCardInit;
+; 1599 : 	{
+; 1600 : 		// set up data structure used by file system driver
+; 1601 : 		fileio_ops.init         = &SDCardInit;
 
   0003c	e59f310c	 ldr         r3, [pc, #0x10C]
 
-; 1606 : 		fileio_ops.identify     = &SDCardIdentify;
+; 1602 : 		fileio_ops.identify     = &SDCardIdentify;
 
   00040	e59fe104	 ldr         lr, [pc, #0x104]
 
-; 1607 : 		fileio_ops.read_sector  = &SDCardReadSector;
+; 1603 : 		fileio_ops.read_sector  = &SDCardReadSector;
 
   00044	e59f40fc	 ldr         r4, [pc, #0xFC]
 
-; 1608 : 		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
+; 1604 : 		fileio_ops.read_multi_sectors = &SDCardReadMultiSectors;
 
   00048	e59f50f4	 ldr         r5, [pc, #0xF4]
   0004c	e8864008	 stmia       r6, {r3, lr}
 
-; 1609 : 		fileio_ops.drive_info   = (PVOID)&Disk;
-; 1610 : 
-; 1611 : 		// initialize file system driver
-; 1612 : 		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
+; 1605 : 		fileio_ops.drive_info   = (PVOID)&Disk;
+; 1606 : 
+; 1607 : 		// initialize file system driver
+; 1608 : 		if (FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
 
   00050	e1a00006	 mov         r0, r6
   00054	e59f30e4	 ldr         r3, [pc, #0xE4]
@@ -5860,8 +5860,8 @@
   00068	e3500000	 cmp         r0, #0
   0006c	0a000009	 beq         |$LN3@BLSDCardRe@3|
 
-; 1613 : 		{
-; 1614 : 			OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  fileio init failed\r\n"));
+; 1609 : 		{
+; 1610 : 			OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  fileio init failed\r\n"));
 
   00070	e59f30bc	 ldr         r3, [pc, #0xBC]
   00074	e5933440	 ldr         r3, [r3, #0x440]
@@ -5872,7 +5872,7 @@
   00084	eb000000	 bl          NKDbgPrintfW
   00088		 |$LN7@BLSDCardRe@3|
 
-; 1615 : 			return FALSE;
+; 1611 : 			return FALSE;
 
   00088	e59d0224	 ldr         r0, [sp, #0x224]
   0008c	eb000000	 bl          __security_check_cookie
@@ -5880,26 +5880,26 @@
   00094	ea000022	 b           |$LN5@BLSDCardRe@3|
   00098		 |$LN3@BLSDCardRe@3|
 
-; 1616 : 		}
-; 1617 : 		bFileIoInit = TRUE;
+; 1612 : 		}
+; 1613 : 		bFileIoInit = TRUE;
 
   00098	e3a03001	 mov         r3, #1
   0009c	e5883000	 str         r3, [r8]
   000a0		 |$LN4@BLSDCardRe@3|
 
-; 1618 : 	}
-; 1619 : 
-; 1620 :     // fill in file name (8.3 format)
-; 1621 :     FileNameToDirEntry(filename, EbootFile.name, EbootFile.extension);
+; 1614 : 	}
+; 1615 : 
+; 1616 :     // fill in file name (8.3 format)
+; 1617 :     FileNameToDirEntry(filename, EbootFile.name, EbootFile.extension);
 
   000a0	e28d2009	 add         r2, sp, #9
   000a4	e28d1000	 add         r1, sp, #0
   000a8	e1a00007	 mov         r0, r7
   000ac	eb000000	 bl          FileNameToDirEntry
 
-; 1622 : 	
-; 1623 :     // try to open file specified by pConfig->filename, return BL_ERROR on failure
-; 1624 :     if (FileIoOpen(&fileio_ops, &EbootFile) != FILEIO_STATUS_OK)
+; 1618 : 	
+; 1619 :     // try to open file specified by pConfig->filename, return BL_ERROR on failure
+; 1620 :     if (FileIoOpen(&fileio_ops, &EbootFile) != FILEIO_STATUS_OK)
 
   000b0	e28d1000	 add         r1, sp, #0
   000b4	e1a00006	 mov         r0, r6
@@ -5907,8 +5907,8 @@
   000bc	e3500000	 cmp         r0, #0
   000c0	0a000007	 beq         |$LN2@BLSDCardRe@3|
 
-; 1625 :     {
-; 1626 :         OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot open %s\r\n", filename));
+; 1621 :     {
+; 1622 :         OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot open %s\r\n", filename));
 
   000c4	e59f3068	 ldr         r3, [pc, #0x68]
   000c8	e5933440	 ldr         r3, [r3, #0x440]
@@ -5918,15 +5918,15 @@
   000d8	e1a01007	 mov         r1, r7
   000dc	eb000000	 bl          NKDbgPrintfW
 
-; 1627 :         return FALSE;
+; 1623 :         return FALSE;
 
   000e0	eaffffe8	 b           |$LN7@BLSDCardRe@3|
   000e4		 |$LN2@BLSDCardRe@3|
 
-; 1628 :     }
-; 1629 : 
-; 1630 : 	// Read pixel data
-; 1631 :     if (FileIoRead(&fileio_ops, &EbootFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
+; 1624 :     }
+; 1625 : 
+; 1626 : 	// Read pixel data
+; 1627 :     if (FileIoRead(&fileio_ops, &EbootFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
 
   000e4	e1a03009	 mov         r3, r9
   000e8	e1a0200a	 mov         r2, r10
@@ -5936,8 +5936,8 @@
   000f8	e3500000	 cmp         r0, #0
   000fc	0a000005	 beq         |$LN1@BLSDCardRe@3|
 
-; 1632 : 	{
-; 1633 :         OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot read file\r\n"));
+; 1628 : 	{
+; 1629 :         OALMSG(OAL_ERROR, (L"BLSDCardReadCalibData:  cannot read file\r\n"));
 
   00100	e59f302c	 ldr         r3, [pc, #0x2C]
   00104	e5933440	 ldr         r3, [r3, #0x440]
@@ -5945,21 +5945,21 @@
   0010c	0affffdd	 beq         |$LN7@BLSDCardRe@3|
   00110	e59f0018	 ldr         r0, [pc, #0x18]
 
-; 1634 :         return FALSE;
+; 1630 :         return FALSE;
 
   00114	eaffffda	 b           |$LN13@BLSDCardRe@3|
   00118		 |$LN1@BLSDCardRe@3|
 
-; 1635 : 	}
-; 1636 : 
-; 1637 : 	return TRUE;
+; 1631 : 	}
+; 1632 : 
+; 1633 : 	return TRUE;
 
   00118	e59d0224	 ldr         r0, [sp, #0x224]
   0011c	eb000000	 bl          __security_check_cookie
   00120	e3a00001	 mov         r0, #1
   00124		 |$LN5@BLSDCardRe@3|
 
-; 1638 : }
+; 1634 : }
 
   00124	e28ddf8a	 add         sp, sp, #0x8A, 30
   00128	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
@@ -6142,7 +6142,7 @@
 
   00008		 |SDCardUpdatingFW| PROC
 
-; 1645 : {
+; 1641 : {
 
   00008		 |$LN41@SDCardUpda|
   00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
@@ -6155,14 +6155,14 @@
   00020	e5933000	 ldr         r3, [r3]
   00024	e58d322c	 str         r3, [sp, #0x22C]
 
-; 1646 : 	FILEHANDLE  firmwareFile;
-; 1647 : 	WORD        wSignature = 0;
-; 1648 : 	DWORD	    dwOffset = 0;
-; 1649 : 	BYTE*	    pTmpBuf = NULL;
-; 1650 : 	DWORD	    dwCursor = 0;
-; 1651 : 	DWORD       i;
-; 1652 : 	
-; 1653 : 	if(!bFileIoInit)
+; 1642 : 	FILEHANDLE  firmwareFile;
+; 1643 : 	WORD        wSignature = 0;
+; 1644 : 	DWORD	    dwOffset = 0;
+; 1645 : 	BYTE*	    pTmpBuf = NULL;
+; 1646 : 	DWORD	    dwCursor = 0;
+; 1647 : 	DWORD       i;
+; 1648 : 	
+; 1649 : 	if(!bFileIoInit)
 
   00028	e59f82d8	 ldr         r8, [pc, #0x2D8]
   0002c	e3a02000	 mov         r2, #0
@@ -6174,29 +6174,29 @@
   00044	e58d1000	 str         r1, [sp]
   00048	1a000015	 bne         |$LN14@SDCardUpda|
 
-; 1654 : 	{
-; 1655 :         // set up data structure used by file system driver
-; 1656 :         fileio_ops.init         =   &SDCardInit;
+; 1650 : 	{
+; 1651 :         // set up data structure used by file system driver
+; 1652 :         fileio_ops.init         =   &SDCardInit;
 
   0004c	e59f32ac	 ldr         r3, [pc, #0x2AC]
 
-; 1657 :         fileio_ops.identify     =   &SDCardIdentify;
+; 1653 :         fileio_ops.identify     =   &SDCardIdentify;
 
   00050	e59fe2a4	 ldr         lr, [pc, #0x2A4]
 
-; 1658 :         fileio_ops.read_sector  =   &SDCardReadSector;
+; 1654 :         fileio_ops.read_sector  =   &SDCardReadSector;
 
   00054	e59f429c	 ldr         r4, [pc, #0x29C]
 
-; 1659 :         fileio_ops.read_multi_sectors   =   &SDCardReadMultiSectors;
+; 1655 :         fileio_ops.read_multi_sectors   =   &SDCardReadMultiSectors;
 
   00058	e59f5294	 ldr         r5, [pc, #0x294]
   0005c	e8864008	 stmia       r6, {r3, lr}
 
-; 1660 :         fileio_ops.drive_info   =   (PVOID)&Disk;	
-; 1661 : 	
-; 1662 : 	    // initialize file system driver (1)
-; 1663 : 	    if( FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
+; 1656 :         fileio_ops.drive_info   =   (PVOID)&Disk;	
+; 1657 : 	
+; 1658 : 	    // initialize file system driver (1)
+; 1659 : 	    if( FileIoInit(&fileio_ops) != FILEIO_STATUS_OK)
 
   00060	e1a00006	 mov         r0, r6
   00064	e59f3284	 ldr         r3, [pc, #0x284]
@@ -6207,8 +6207,8 @@
   00078	e3500000	 cmp         r0, #0
   0007c	0a000006	 beq         |$LN13@SDCardUpda|
 
-; 1664 : 	    {
-; 1665 :             OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  fileio init failed\r\n"));
+; 1660 : 	    {
+; 1661 :             OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  fileio init failed\r\n"));
 
   00080	e59f3230	 ldr         r3, [pc, #0x230]
   00084	e5933440	 ldr         r3, [r3, #0x440]
@@ -6217,31 +6217,31 @@
   00090	e59f0254	 ldr         r0, [pc, #0x254]
   00094	eb000000	 bl          NKDbgPrintfW
 
-; 1666 : 			return FALSE;
+; 1662 : 			return FALSE;
 
   00098	ea00007f	 b           |$LN17@SDCardUpda|
   0009c		 |$LN13@SDCardUpda|
 
-; 1667 : 	    }
-; 1668 : 	    bFileIoInit = TRUE;
+; 1663 : 	    }
+; 1664 : 	    bFileIoInit = TRUE;
 
   0009c	e3a03001	 mov         r3, #1
   000a0	e5883000	 str         r3, [r8]
   000a4		 |$LN14@SDCardUpda|
 
-; 1669 :     }
-; 1670 :     
-; 1671 :     // fill in file name (8.3 format)
-; 1672 :     FileNameToDirEntry(filename, firmwareFile.name, firmwareFile.extension);
+; 1665 :     }
+; 1666 :     
+; 1667 :     // fill in file name (8.3 format)
+; 1668 :     FileNameToDirEntry(filename, firmwareFile.name, firmwareFile.extension);
 
   000a4	e28d2011	 add         r2, sp, #0x11
   000a8	e28d1008	 add         r1, sp, #8
   000ac	e1a00007	 mov         r0, r7
   000b0	eb000000	 bl          FileNameToDirEntry
 
-; 1673 :     
-; 1674 :     // try to open file specified by pConfig->filename, return BL_ERROR on failure (2)
-; 1675 : 	if( FileIoOpen( &fileio_ops, &firmwareFile) != FILEIO_STATUS_OK)    //it is not 0 failure
+; 1669 :     
+; 1670 :     // try to open file specified by pConfig->filename, return BL_ERROR on failure (2)
+; 1671 : 	if( FileIoOpen( &fileio_ops, &firmwareFile) != FILEIO_STATUS_OK)    //it is not 0 failure
 
   000b4	e28d1008	 add         r1, sp, #8
   000b8	e1a00006	 mov         r0, r6
@@ -6249,8 +6249,8 @@
   000c0	e3500000	 cmp         r0, #0
   000c4	0a000007	 beq         |$LN12@SDCardUpda|
 
-; 1676 : 	{
-; 1677 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot open %s\r\n", filename));
+; 1672 : 	{
+; 1673 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot open %s\r\n", filename));
 
   000c8	e59f31e8	 ldr         r3, [pc, #0x1E8]
   000cc	e5933440	 ldr         r3, [r3, #0x440]
@@ -6260,20 +6260,20 @@
   000dc	e1a01007	 mov         r1, r7
   000e0	eb000000	 bl          NKDbgPrintfW
 
-; 1678 :         return FALSE;
+; 1674 :         return FALSE;
 
   000e4	ea00006c	 b           |$LN17@SDCardUpda|
   000e8		 |$LN12@SDCardUpda|
 
-; 1679 : 	}
-; 1680 :     OALLog(L"!!FileIoOpen\r\n");    //~~
+; 1675 : 	}
+; 1676 :     OALLog(L"!!FileIoOpen\r\n");    //~~
 
   000e8	e59f01f4	 ldr         r0, [pc, #0x1F4]
   000ec	eb000000	 bl          NKDbgPrintfW
 
-; 1681 :     
-; 1682 : 	// Read signature (3)
-; 1683 : 	if( FileIoRead( &fileio_ops, &firmwareFile, (PVOID)&wSignature, sizeof(wSignature) ) != FILEIO_STATUS_OK)
+; 1677 :     
+; 1678 : 	// Read signature (3)
+; 1679 : 	if( FileIoRead( &fileio_ops, &firmwareFile, (PVOID)&wSignature, sizeof(wSignature) ) != FILEIO_STATUS_OK)
 
   000f0	e3a03002	 mov         r3, #2
   000f4	e28d2004	 add         r2, sp, #4
@@ -6283,8 +6283,8 @@
   00104	e3500000	 cmp         r0, #0
   00108	0a000006	 beq         |$LN11@SDCardUpda|
 
-; 1684 : 	{
-; 1685 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file signature\r\n"));
+; 1680 : 	{
+; 1681 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file signature\r\n"));
 
   0010c	e59f31a4	 ldr         r3, [pc, #0x1A4]
   00110	e5933440	 ldr         r3, [r3, #0x440]
@@ -6295,41 +6295,41 @@
   00124	ea00005c	 b           |$LN17@SDCardUpda|
   00128		 |$LN11@SDCardUpda|
 
-; 1686 :         return FALSE;  
-; 1687 : 	}
-; 1688 :     OALLog(L"!!FileIoRead\r\n");    //~~
+; 1682 :         return FALSE;  
+; 1683 : 	}
+; 1684 :     OALLog(L"!!FileIoRead\r\n");    //~~
 
   00128	e59f01ac	 ldr         r0, [pc, #0x1AC]
   0012c	eb000000	 bl          NKDbgPrintfW
 
-; 1689 : 	dwCursor += sizeof(wSignature);
-; 1690 : 
-; 1691 : 	/*if( wSignature != 0x4D42 )  
-; 1692 :     {
-; 1693 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  Invalid file signature\r\n"));
-; 1694 :         return FALSE;
-; 1695 : 	}*/
-; 1696 :     OALLog(L"!!wSignature\r\n");    //~~
+; 1685 : 	dwCursor += sizeof(wSignature);
+; 1686 : 
+; 1687 : 	/*if( wSignature != 0x4D42 )  
+; 1688 :     {
+; 1689 :         OALMSG(OAL_ERROR, (L"BLSDCardReadLogo:  Invalid file signature\r\n"));
+; 1690 :         return FALSE;
+; 1691 : 	}*/
+; 1692 :     OALLog(L"!!wSignature\r\n");    //~~
 
   00130	e59f01a0	 ldr         r0, [pc, #0x1A0]
   00134	eb000000	 bl          NKDbgPrintfW
 
-; 1697 : 
-; 1698 : 	// Read dummy data
-; 1699 : 	pTmpBuf = (BYTE*)OALLocalAlloc(0, sizeof(DWORD));
+; 1693 : 
+; 1694 : 	// Read dummy data
+; 1695 : 	pTmpBuf = (BYTE*)OALLocalAlloc(0, sizeof(DWORD));
 
   00138	e3a01004	 mov         r1, #4
   0013c	e3a00000	 mov         r0, #0
   00140	eb000000	 bl          OALLocalAlloc
   00144	e1a05000	 mov         r5, r0
 
-; 1700 : 	for(i=0; i<2; i++)
+; 1696 : 	for(i=0; i<2; i++)
 
   00148	e3a04000	 mov         r4, #0
   0014c		 |$LL10@SDCardUpda|
 
-; 1701 : 	{
-; 1702 :         if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
+; 1697 : 	{
+; 1698 :         if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pTmpBuf, sizeof(DWORD)) != FILEIO_STATUS_OK)
 
   0014c	e3a03004	 mov         r3, #4
   00150	e1a02005	 mov         r2, r5
@@ -6342,18 +6342,18 @@
   0016c	e3540002	 cmp         r4, #2
   00170	3afffff5	 bcc         |$LL10@SDCardUpda|
 
-; 1707 :         }
-; 1708 :     }
-; 1709 :     OALLog(L"!!Read dummy data\r\n");   //~~
+; 1703 :         }
+; 1704 :     }
+; 1705 :     OALLog(L"!!Read dummy data\r\n");   //~~
 
   00174	e59f0158	 ldr         r0, [pc, #0x158]
   00178	eb000000	 bl          NKDbgPrintfW
 
-; 1710 :     //OALLocalFree((HLOCAL)pTmpBuf);
-; 1711 : 	dwCursor += 2*sizeof(DWORD);
-; 1712 : 	
-; 1713 : 	// Read data offset
-; 1714 :     if (FileIoRead(&fileio_ops, &firmwareFile, (PVOID)&dwOffset, sizeof(dwOffset)) != FILEIO_STATUS_OK)
+; 1706 :     //OALLocalFree((HLOCAL)pTmpBuf);
+; 1707 : 	dwCursor += 2*sizeof(DWORD);
+; 1708 : 	
+; 1709 : 	// Read data offset
+; 1710 :     if (FileIoRead(&fileio_ops, &firmwareFile, (PVOID)&dwOffset, sizeof(dwOffset)) != FILEIO_STATUS_OK)
 
   0017c	e3a03004	 mov         r3, #4
   00180	e28d2000	 add         r2, sp, #0
@@ -6363,8 +6363,8 @@
   00190	e3500000	 cmp         r0, #0
   00194	0a000006	 beq         |$LN6@SDCardUpda|
 
-; 1715 : 	{
-; 1716 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read firmware data offset\r\n"));
+; 1711 : 	{
+; 1712 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read firmware data offset\r\n"));
 
   00198	e59f3118	 ldr         r3, [pc, #0x118]
   0019c	e5933440	 ldr         r3, [r3, #0x440]
@@ -6375,20 +6375,20 @@
   001b0	ea000039	 b           |$LN17@SDCardUpda|
   001b4		 |$LN6@SDCardUpda|
 
-; 1717 :         return FALSE;
-; 1718 : 	}
-; 1719 :     OALLog(L"!!Read data offset\r\n");  //~~
+; 1713 :         return FALSE;
+; 1714 : 	}
+; 1715 :     OALLog(L"!!Read data offset\r\n");  //~~
 
   001b4	e59f0110	 ldr         r0, [pc, #0x110]
   001b8	eb000000	 bl          NKDbgPrintfW
 
-; 1720 : 	dwOffset = dwOffset / sizeof(DWORD);
+; 1716 : 	dwOffset = dwOffset / sizeof(DWORD);
 
   001bc	e59d3000	 ldr         r3, [sp]
 
-; 1721 : 
-; 1722 : 	// Read dummy data before pixel data offset
-; 1723 : 	for(i=0; i<dwOffset; i++)
+; 1717 : 
+; 1718 : 	// Read dummy data before pixel data offset
+; 1719 : 	for(i=0; i<dwOffset; i++)
 
   001c0	e3a04000	 mov         r4, #0
   001c4	e1b03123	 movs        r3, r3, lsr #2
@@ -6396,8 +6396,8 @@
   001cc	0a00000a	 beq         |$LN3@SDCardUpda|
   001d0		 |$LL5@SDCardUpda|
 
-; 1724 : 	{
-; 1725 :         if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pTmpBuf, sizeof(DWORD)))
+; 1720 : 	{
+; 1721 :         if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pTmpBuf, sizeof(DWORD)))
 
   001d0	e3a03004	 mov         r3, #4
   001d4	e1a02005	 mov         r2, r5
@@ -6412,20 +6412,20 @@
   001f8	3afffff4	 bcc         |$LL5@SDCardUpda|
   001fc		 |$LN3@SDCardUpda|
 
-; 1730 :         }
-; 1731 : 	}
-; 1732 :     OALLocalFree((HLOCAL)pTmpBuf);
+; 1726 :         }
+; 1727 : 	}
+; 1728 :     OALLocalFree((HLOCAL)pTmpBuf);
 
   001fc	e1a00005	 mov         r0, r5
   00200	eb000000	 bl          OALLocalFree
 
-; 1733 :     OALLog(L"!!Read dummy data before pixel data offset\r\n");  //~~
+; 1729 :     OALLog(L"!!Read dummy data before pixel data offset\r\n");  //~~
 
   00204	e59f00bc	 ldr         r0, [pc, #0xBC]
   00208	eb000000	 bl          NKDbgPrintfW
 
-; 1734 :     // Read data
-; 1735 :     if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
+; 1730 :     // Read data
+; 1731 :     if(FileIoRead(&fileio_ops, &firmwareFile, (PVOID)pData, size) != FILEIO_STATUS_OK)
 
   0020c	e1a03009	 mov         r3, r9
   00210	e1a0200a	 mov         r2, r10
@@ -6435,13 +6435,13 @@
   00220	e3500000	 cmp         r0, #0
   00224	0a00000e	 beq         |$LN1@SDCardUpda|
 
-; 1736 :     {
-; 1737 :         OALLog(L"!!??\r\n");
+; 1732 :     {
+; 1733 :         OALLog(L"!!??\r\n");
 
   00228	e59f0094	 ldr         r0, [pc, #0x94]
   0022c	eb000000	 bl          NKDbgPrintfW
 
-; 1738 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file header\r\n"));
+; 1734 :         OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file header\r\n"));
 
   00230	e59f3080	 ldr         r3, [pc, #0x80]
   00234	e5933440	 ldr         r3, [r3, #0x440]
@@ -6452,8 +6452,8 @@
   00248	ea000013	 b           |$LN17@SDCardUpda|
   0024c		 |$LN34@SDCardUpda|
 
-; 1726 :         {
-; 1727 :         	OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file\r\n"));
+; 1722 :         {
+; 1723 :         	OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file\r\n"));
 
   0024c	e59f3064	 ldr         r3, [pc, #0x64]
   00250	e5933440	 ldr         r3, [r3, #0x440]
@@ -6461,20 +6461,20 @@
   00258	0a00000d	 beq         |$LN23@SDCardUpda|
   0025c	e59f005c	 ldr         r0, [pc, #0x5C]
 
-; 1728 : 			OALLocalFree((HLOCAL)pTmpBuf);
-; 1729 :         	return FALSE;
+; 1724 : 			OALLocalFree((HLOCAL)pTmpBuf);
+; 1725 :         	return FALSE;
 
   00260	ea00000a	 b           |$LN37@SDCardUpda|
   00264		 |$LN1@SDCardUpda|
 
-; 1739 :         return FALSE;
-; 1740 :     }
-; 1741 :     OALLog(L"!!Read data\r\n"); //~~
+; 1735 :         return FALSE;
+; 1736 :     }
+; 1737 :     OALLog(L"!!Read data\r\n"); //~~
 
   00264	e59f0050	 ldr         r0, [pc, #0x50]
   00268	eb000000	 bl          NKDbgPrintfW
 
-; 1742 :     return TRUE;	
+; 1738 :     return TRUE;	
 
   0026c	e59d022c	 ldr         r0, [sp, #0x22C]
   00270	eb000000	 bl          __security_check_cookie
@@ -6482,8 +6482,8 @@
   00278	ea00000a	 b           |$LN15@SDCardUpda|
   0027c		 |$LN33@SDCardUpda|
 
-; 1703 :         {
-; 1704 :             OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file header\r\n"));
+; 1699 :         {
+; 1700 :             OALMSG(OAL_ERROR, (L"SDCardUpdatingFW:  cannot read file header\r\n"));
 
   0027c	e59f3034	 ldr         r3, [pc, #0x34]
   00280	e5933440	 ldr         r3, [r3, #0x440]
@@ -6494,23 +6494,23 @@
   00290	eb000000	 bl          NKDbgPrintfW
   00294		 |$LN23@SDCardUpda|
 
-; 1705 : 			OALLocalFree((HLOCAL)pTmpBuf);
+; 1701 : 			OALLocalFree((HLOCAL)pTmpBuf);
 
   00294	e1a00005	 mov         r0, r5
   00298	eb000000	 bl          OALLocalFree
   0029c		 |$LN17@SDCardUpda|
 
-; 1706 :         	return FALSE;
+; 1702 :         	return FALSE;
 
   0029c	e59d022c	 ldr         r0, [sp, #0x22C]
   002a0	eb000000	 bl          __security_check_cookie
   002a4	e3a00000	 mov         r0, #0
 
-; 1742 :     return TRUE;	
+; 1738 :     return TRUE;	
 
   002a8		 |$LN15@SDCardUpda|
 
-; 1743 : }
+; 1739 : }
 
   002a8	e28dde23	 add         sp, sp, #0x23, 28
   002ac	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}

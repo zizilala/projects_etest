@@ -1427,11 +1427,7 @@ UINT32 BLSDCardDownload(WCHAR *filename)
 //  This function is called to read data from the transport during
 //  the download process.
 //
-BOOL
-BLSDCardReadData(
-    ULONG size, 
-    UCHAR *pData
-    )
+BOOL BLSDCardReadData(ULONG size, UCHAR *pData)
 {
     // called to read data from MMC/SD card as stream data, not as block data
 

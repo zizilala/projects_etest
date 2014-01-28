@@ -474,9 +474,7 @@ ULONG OEMPreDownload()
         (g_bootCfg.signature == BOOT_CFG_SIGNATURE) && (g_bootCfg.version == BOOT_CFG_VERSION))
 	{
         //OALLog(L"INFO: Boot configuration found\r\n");    //e-test comment, Ray
-	}
-    else 
-	{
+	}else{
         OALLog(L"WARN: Boot config wasn't found, using defaults\r\n");
         memset(&g_bootCfg, 0, sizeof(g_bootCfg));
 		memcpy(&g_bootCfg.mac,DefaultMacAddress,sizeof(g_bootCfg.mac));
