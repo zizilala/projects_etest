@@ -56,42 +56,72 @@ VOID I2C_START_FW(HANDLE hGPIO_I2C)
 //
 //
 // 
-VOID InitI2CWithBQ27510FW(HANDLE hGPIO_I2C,char str[])
-{
-    
-    int size, j;
-    int convertNum[10] = (int) *str;
-    int temp = 0xFF, value;
-    UNREFERENCED_PARAMETER(ch);
-    I2C_START_FW(hGPIO_I2C);
-    size = sizeof(str);
-    OALLog(L"size: %d\r\n",size);
+int g_convertNum[10] = {0};
+int size=0;
 
-    switch(size){
+VOID InitI2CWithBQ27510FW(HANDLE hGPIO_I2C)
+{   
+    int j;
+    int /*temp = 0x0F,*/ value = 0;
+    int temp;
+    //UNREFERENCED_PARAMETER();
+    
+    OALLog(L"\tsize: %d\r\n",size);
+
+    I2C_START_FW(hGPIO_I2C);
+    switch(size)
+    {
         case 1:
-            for(j=0; j<size; j++){
-                temp = convertNum[j];       
-            }
+            value = *(g_convertNum+0); 
+            OALLog(L"OUTPUT:%d.\r\n",value-48);
+            /*for(j=0; j<size; j++){
+                value = g_convertNum[j]; 
+                OALLog(L"----%d", value); 
+            }*/
             break;
         case 2:
+            /*for(j=0; j<size; j++){
+                value = (g_convertNum[j]<<4);       
+                if(j!=0){
+                    temp &= g_convertNum[j];
+                    value |= temp;
+                }
+                OALLog(L"----%d", value); 
+            }*/
             for(j=0; j<size; j++){
-                if(j==0)
-                    value = convertNum[j<<4];       
+                temp = g_convertNum[j];       
+                    //for(i=7; i>=0; i--)
+                       // value&(1<<);
 
-                    temp &= convertNum[j];
-                    value &= temp;
+                if(temp >= 65)
+                    temp-=55;
+                else
+                    temp-=48;
+                    
+                OALLog(L"OUTPUT:%d.\r\n",temp);
+   
+
+                if(j==0){
+                    value = temp<<4;
+                    OALLog(L"value1=%d.\r\n",value);
+                }else{
+                    value |= temp;
+                    OALLog(L"value2=%d.\r\n",value);
+                }
             }
+
+            
             break;
         /*case 3:
             for
             
             break;*/
-
-
+        default:
+            OALLog(L"It is not range.\r\n");
     }  
 }
 //
-//  This function are used in Updating the bq275xx Firmware at Production
+//  This function are used in Update the bq275xx Firmware at Production
 //
 VOID UpdatingGaugeFW(OAL_BLMENU_ITEM *pMenu)
 {
@@ -118,7 +148,7 @@ VOID UpdatingGaugeFW(OAL_BLMENU_ITEM *pMenu)
     GPIOClrBit(hGPIO_I2C,  185);
     GPIOSetMode(hGPIO_I2C, 185, GPIO_DIR_OUTPUT);   //I2C3_SDA, Ray 140128
          
-    rc = BLSDCardDownload(L"BQ275xFW.txt");
+    rc = BLSDCardDownload(L"test.txt");
 
     while( BLSDCardReadData(sizeof(char), (UCHAR *)&ch) )
     {
@@ -128,15 +158,20 @@ VOID UpdatingGaugeFW(OAL_BLMENU_ITEM *pMenu)
             if(i >0)
             {
                 for(j=0; j<i; j++){
-                    OALLog(L"%c", str[j]);       
+                    g_convertNum[j] = str[j];
+                    OALLog(L"READ=>%c|%d ",str[j], g_convertNum[j]);
+                    size = i;
+                }
+                
+                if((ch==0x0D) || (ch==0x20)){
+                    InitI2CWithBQ27510FW(hGPIO_I2C);
                 }
 
-                if(ch==0x0D)
+                /*if(ch==0x0D)
                     OALLog(L"\r\n");
-                else if(ch==0x20){
-                    InitI2CWithBQ27510FW(hGPIO_I2C, str);
-                    OALLog(L" ");
-                }
+                else if(ch==0x20)
+                    OALLog(L" ");*/
+                
                 i=0;
             }
         }else{

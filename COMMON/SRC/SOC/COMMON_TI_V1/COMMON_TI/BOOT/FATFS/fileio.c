@@ -1108,10 +1108,10 @@ int FileIoRead(S_FILEIO_OPERATIONS_PTR pfileio_ops, PFILEHANDLE pFile, UINT8 * p
     UINT8 *s;
 
     UINT32 numSectorsToRead = 0;
-    static int i = 1;
+    //static int i = 1;
     
-    OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
-    i++;
+    //OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
+    //i++;
     while (Count)
     {
         // create pointer to start of valid data in buffer

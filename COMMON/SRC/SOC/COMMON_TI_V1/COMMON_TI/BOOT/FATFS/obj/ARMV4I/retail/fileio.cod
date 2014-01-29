@@ -15,9 +15,6 @@
   00000			 AREA	 |.bss|, NOINIT
 |FatBufferSectorNumber| % 0x4
 
-  00000			 AREA	 |.data|, DATA
-|?i@?1??FileIoRead@@9@9| DCD 0x1			; `FileIoRead'::`2'::i
-
   00000			 AREA	 |.rdata|, DATA, READONLY
 |EdbgVendorIds| DCW 0x0
 	DCW	0x0
@@ -83,7 +80,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\common_ti\boot\fatfs\fileio.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43551| DCD	|$LN5@BpbCopy|
+|$T43547| DCD	|$LN5@BpbCopy|
 	DCD	0x40005c01
 ; Function compile flags: /Ogspy
 
@@ -95,7 +92,7 @@
 
   00000		 |$LN5@BpbCopy|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M43548|
+  00004		 |$M43544|
   00004	e1a05001	 mov         r5, r1
   00008	e1a04000	 mov         r4, r0
 
@@ -250,13 +247,13 @@
 
   00168	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0016c	e12fff1e	 bx          lr
-  00170		 |$M43549|
+  00170		 |$M43545|
 
 			 ENDP  ; |BpbCopy|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43563| DCD	|$LN7@ByteIsPowe|
+|$T43559| DCD	|$LN7@ByteIsPowe|
 	DCD	0x40001400
 ; Function compile flags: /Ogspy
 
@@ -267,7 +264,7 @@
 ; 145  : {
 
   00000		 |$LN7@ByteIsPowe|
-  00000		 |$M43560|
+  00000		 |$M43556|
 
 ; 146  :     return ( b == 1 || b == 2 || b == 4 || b == 8 || b == 16 || b == 32 || b == 64 || b == 128 || b == 256 );
 
@@ -301,7 +298,7 @@
 ; 147  : }
 
   0004c	e12fff1e	 bx          lr
-  00050		 |$M43561|
+  00050		 |$M43557|
 
 			 ENDP  ; |ByteIsPowerOfTwo|
 
@@ -312,7 +309,7 @@
 |FatBuffer| %	0x200
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43596| DCD	|$LN59@FileIoRead|
+|$T43592| DCD	|$LN59@FileIoRead|
 	DCD	0x4000fa02
 ; Function compile flags: /Ogspy
 
@@ -325,7 +322,7 @@
   00000		 |$LN59@FileIoRead|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   00004	e24dd018	 sub         sp, sp, #0x18
-  00008		 |$M43593|
+  00008		 |$M43589|
   00008	e1cd30b0	 strh        r3, [sp]
   0000c	e58d2008	 str         r2, [sp, #8]
   00010	e1a05001	 mov         r5, r1
@@ -1090,7 +1087,7 @@
   003e0	00000000	 DCD         |ExtendedPartionBaseSector|
   003e4		 |$LN62@FileIoRead|
   003e4	00000000	 DCD         |FilesysInfo|
-  003e8		 |$M43594|
+  003e8		 |$M43590|
 
 			 ENDP  ; |FileIoReadNextSectors|
 
@@ -1099,7 +1096,7 @@
 	IMPORT	|toupper|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43617| DCD	|$LN21@FileNameTo|
+|$T43613| DCD	|$LN21@FileNameTo|
 	DCD	0x40003301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1114,7 +1111,7 @@
 
   00000		 |$LN21@FileNameTo|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M43614|
+  00004		 |$M43610|
   00004	e1a07002	 mov         r7, r2
   00008	e1a08001	 mov         r8, r1
   0000c	e1a05000	 mov         r5, r0
@@ -1235,7 +1232,7 @@
   000c8		 |$LN22@FileNameTo|
   000c8		 |$LN23@FileNameTo|
   000c8	00000000	 DCD         |??_C@_08GGFKNFHG@?5?5?5?5?5?5?5?5?$AA@|
-  000cc		 |$M43615|
+  000cc		 |$M43611|
 
 			 ENDP  ; |FileNameToDirEntry|
 
@@ -1248,17 +1245,17 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43669| DCD	|$LN58@FileIoInit|
+|$T43665| DCD	|$LN58@FileIoInit|
 	DCD	0xc000d302
 
   00000			 AREA	 |.xdata|, DATA
-|$T43665| DCD	0xffffffdc
+|$T43661| DCD	0xffffffdc
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43665|
+  00004	00000000	 DCD         |$T43661|
 
   00008		 |FileIoInit| PROC
 
@@ -1267,7 +1264,7 @@
   00008		 |$LN58@FileIoInit|
   00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   0000c	e24ddf81	 sub         sp, sp, #0x81, 30
-  00010		 |$M43666|
+  00010		 |$M43662|
   00010	e1a06000	 mov         r6, r0
   00014	e59f3334	 ldr         r3, [pc, #0x334]
   00018	e5933000	 ldr         r3, [r3]
@@ -1930,7 +1927,7 @@
   0034c	00000000	 DCD         |ExtendedPartionBaseSector|
   00350		 |$LN62@FileIoInit|
   00350	00000000	 DCD         |__security_cookie|
-  00354		 |$M43667|
+  00354		 |$M43663|
 
 			 ENDP  ; |FileIoInit|
 
@@ -1947,7 +1944,7 @@
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43728| DCD	|$LN75@FileIoOpen|
+|$T43724| DCD	|$LN75@FileIoOpen|
 	DCD	0x4000a901
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2047,7 +2044,7 @@
 
   00000		 |$LN75@FileIoOpen|
   00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  00004		 |$M43725|
+  00004		 |$M43721|
   00004	e1a05001	 mov         r5, r1
   00008	e1a0a000	 mov         r10, r0
 
@@ -2519,22 +2516,15 @@
   0029c	00000000	 DCD         |??_C@_1DM@GPMIHEJP@?$AA?$HO?$AA?$HO?$AAB?$AAO?$AAO?$AAT?$AAL?$AAO?$AAA?$AAD?$AAE?$AAR?$AA_?$AAS?$AAU?$AAP?$AAP?$AAO?$AAR?$AAT?$AAS?$AA_?$AAF?$AAA?$AAT?$AA1?$AA6?$AA?$AN?$AA?6?$AA?$AA@|
   002a0		 |$LN87@FileIoOpen|
   002a0	00000000	 DCD         |FilesysInfo|
-  002a4		 |$M43726|
+  002a4		 |$M43722|
 
 			 ENDP  ; |FileIoOpen|
 
 	EXPORT	|FileIoRead|
-	EXPORT	|??_C@_1CC@IMPEFJAI@?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43769| DCD	|$LN28@FileIoRead@2|
-	DCD	0x40004d01
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CC@IMPEFJAI@?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB "X"
-	DCB	0x0, "X", 0x0, "X", 0x0, "X", 0x0, "X", 0x0, "X", 0x0, "X"
-	DCB	0x0, "X", 0x0, "X", 0x0, "X", 0x0, "X", 0x0, ":", 0x0, "%"
-	DCB	0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+|$T43765| DCD	|$LN28@FileIoRead@2|
+	DCD	0x40004301
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -2545,82 +2535,70 @@
 
   00000		 |$LN28@FileIoRead@2|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
-  00004		 |$M43766|
-  00004	e1a05003	 mov         r5, r3
-  00008	e1a07002	 mov         r7, r2
-  0000c	e1a06001	 mov         r6, r1
-  00010	e1a09000	 mov         r9, r0
+  00004		 |$M43762|
+  00004	e1b04003	 movs        r4, r3
+  00008	e1a06002	 mov         r6, r2
+  0000c	e1a05001	 mov         r5, r1
+  00010	e1a08000	 mov         r8, r0
 
 ; 1107 :     int status;
 ; 1108 :     UINT8 *s;
 ; 1109 : 
 ; 1110 :     UINT32 numSectorsToRead = 0;
-; 1111 :     static int i = 1;
+; 1111 :     //static int i = 1;
 ; 1112 :     
-; 1113 :     OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
-
-  00014	e59f4114	 ldr         r4, [pc, #0x114]
-  00018	e59f010c	 ldr         r0, [pc, #0x10C]
-  0001c	e5941000	 ldr         r1, [r4]
-  00020	eb000000	 bl          NKDbgPrintfW
-
-; 1114 :     i++;
-
-  00024	e594e000	 ldr         lr, [r4]
-
+; 1113 :     //OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
+; 1114 :     //i++;
 ; 1115 :     while (Count)
 
-  00028	e3550000	 cmp         r5, #0
-  0002c	e28ee001	 add         lr, lr, #1
-  00030	e584e000	 str         lr, [r4]
-  00034	0a000038	 beq         |$LN11@FileIoRead@2|
-  00038	e59f80e8	 ldr         r8, [pc, #0xE8]
-  0003c	e3a0ac02	 mov         r10, #2, 24
-  00040		 |$LL12@FileIoRead@2|
+  00014	0a000038	 beq         |$LN11@FileIoRead@2|
+  00018	e59f90e8	 ldr         r9, [pc, #0xE8]
+  0001c	e3a0ac02	 mov         r10, #2, 24
+  00020		 |$LL12@FileIoRead@2|
 
 ; 1116 :     {
 ; 1117 :         // create pointer to start of valid data in buffer
 ; 1118 :         s = pFile->buffer + (SECTOR_SIZE - pFile->bytes_in_buffer); 
 
-  00040	e596e020	 ldr         lr, [r6, #0x20]
-  00044	e046e00e	 sub         lr, r6, lr
-  00048	e28e2f89	 add         r2, lr, #0x89, 30
-  0004c		 |$LL10@FileIoRead@2|
+  00020	e595e020	 ldr         lr, [r5, #0x20]
+  00024	e045e00e	 sub         lr, r5, lr
+  00028	e28e2f89	 add         r2, lr, #0x89, 30
+  0002c		 |$LL10@FileIoRead@2|
 
 ; 1119 : 
 ; 1120 :         // if any bytes are in the buffer copy them to destination
 ; 1121 :         while (Count && pFile->bytes_in_buffer)
 
-  0004c	e5963020	 ldr         r3, [r6, #0x20]
-  00050	e3530000	 cmp         r3, #0
-  00054	0a000019	 beq         |$LN25@FileIoRead@2|
+  0002c	e595e020	 ldr         lr, [r5, #0x20]
+  00030	e35e0000	 cmp         lr, #0
+  00034	0a000019	 beq         |$LN25@FileIoRead@2|
 
 ; 1122 :         {
 ; 1123 :             *pDest = *s;
 
-  00058	e4d23001	 ldrb        r3, [r2], #1
+  00038	e4d2e001	 ldrb        lr, [r2], #1
 
 ; 1124 :             pDest++;
 ; 1125 :             s++;
 ; 1126 :             Count--;
 
-  0005c	e2555001	 subs        r5, r5, #1
-  00060	e4c73001	 strb        r3, [r7], #1
+  0003c	e2544001	 subs        r4, r4, #1
+  00040	e4c6e001	 strb        lr, [r6], #1
 
 ; 1127 :             pFile->bytes_in_buffer--;
 
-  00064	e5963020	 ldr         r3, [r6, #0x20]
-  00068	e2433001	 sub         r3, r3, #1
-  0006c	e5863020	 str         r3, [r6, #0x20]
-  00070	1afffff5	 bne         |$LL10@FileIoRead@2|
+  00044	e5953020	 ldr         r3, [r5, #0x20]
+  00048	e2433001	 sub         r3, r3, #1
+  0004c	e5853020	 str         r3, [r5, #0x20]
+  00050	1afffff5	 bne         |$LL10@FileIoRead@2|
 
 ; 1163 :                 return status;
 ; 1164 : 
 ; 1165 :             pDest += (SECTOR_SIZE * numSectorsToRead);
 ; 1166 :             Count -= (SECTOR_SIZE * numSectorsToRead);
 
-  00074	ea000011	 b           |$LN25@FileIoRead@2|
-  00078		 |$LL8@FileIoRead@2|
+  00054	ea000011	 b           |$LN25@FileIoRead@2|
+  00058		 |$LL8@FileIoRead@2|
 
 ; 1128 :         }
 ; 1129 : 
@@ -2631,8 +2609,8 @@
 ; 1134 :         {
 ; 1135 :             if (Count < 2*SECTOR_SIZE)
 
-  00078	e3550b01	 cmp         r5, #1, 22
-  0007c	3a000012	 bcc         |$LN18@FileIoRead@2|
+  00058	e3540b01	 cmp         r4, #1, 22
+  0005c	3a000012	 bcc         |$LN18@FileIoRead@2|
 
 ; 1143 :     
 ; 1144 :                 break;
@@ -2646,11 +2624,11 @@
 ; 1152 :             // number of sectors remain in cluster to be read
 ; 1153 :             if (numSectorsToRead + pFile->current_sector_in_cluster > FilesysInfo.BiosParameterBlock.sectors_per_cluster)
 
-  00080	e1d621bc	 ldrh        r2, [r6, #0x1C]
-  00084	e5d81002	 ldrb        r1, [r8, #2]
-  00088	e1a044a5	 mov         r4, r5, lsr #9
-  0008c	e0823004	 add         r3, r2, r4
-  00090	e1530001	 cmp         r3, r1
+  00060	e1d521bc	 ldrh        r2, [r5, #0x1C]
+  00064	e5d91002	 ldrb        r1, [r9, #2]
+  00068	e1a074a4	 mov         r7, r4, lsr #9
+  0006c	e0823007	 add         r3, r2, r7
+  00070	e1530001	 cmp         r3, r1
 
 ; 1154 :             {
 ; 1155 :                 // TODO: what if this is the last cluster of the file.
@@ -2658,112 +2636,116 @@
 ; 1157 :                 //Read all the remaining sectors in the cluster
 ; 1158 :                 numSectorsToRead = (FilesysInfo.BiosParameterBlock.sectors_per_cluster - pFile->current_sector_in_cluster);
 
-  00094	80414002	 subhi       r4, r1, r2
+  00074	80417002	 subhi       r7, r1, r2
 
 ; 1159 :             }
 ; 1160 : 
 ; 1161 :             status = FileIoReadNextSectors(pfileio_ops, pFile, pDest, (UINT16)numSectorsToRead);
 
-  00098	e1a03804	 mov         r3, r4, lsl #16
-  0009c	e1a03823	 mov         r3, r3, lsr #16
-  000a0	e1a02007	 mov         r2, r7
-  000a4	e1a01006	 mov         r1, r6
-  000a8	e1a00009	 mov         r0, r9
-  000ac	eb000000	 bl          FileIoReadNextSectors
-  000b0	e3500000	 cmp         r0, #0
+  00078	e1a03807	 mov         r3, r7, lsl #16
+  0007c	e1a03823	 mov         r3, r3, lsr #16
+  00080	e1a02006	 mov         r2, r6
+  00084	e1a01005	 mov         r1, r5
+  00088	e1a00008	 mov         r0, r8
+  0008c	eb000000	 bl          FileIoReadNextSectors
+  00090	e3500000	 cmp         r0, #0
 
 ; 1162 :             if (status != FILEIO_STATUS_OK)
 
-  000b4	1a000019	 bne         |$LN13@FileIoRead@2|
+  00094	1a000019	 bne         |$LN13@FileIoRead@2|
 
 ; 1163 :                 return status;
 ; 1164 : 
 ; 1165 :             pDest += (SECTOR_SIZE * numSectorsToRead);
 ; 1166 :             Count -= (SECTOR_SIZE * numSectorsToRead);
 
-  000b8	e0455484	 sub         r5, r5, r4, lsl #9
-  000bc	e0877484	 add         r7, r7, r4, lsl #9
-  000c0		 |$LN25@FileIoRead@2|
-  000c0	e3550c02	 cmp         r5, #2, 24
-  000c4	2affffeb	 bcs         |$LL8@FileIoRead@2|
+  00098	e0444487	 sub         r4, r4, r7, lsl #9
+  0009c	e0866487	 add         r6, r6, r7, lsl #9
+  000a0		 |$LN25@FileIoRead@2|
+  000a0	e3540c02	 cmp         r4, #2, 24
+  000a4	2affffeb	 bcs         |$LL8@FileIoRead@2|
 
 ; 1171 :         {
 ; 1172 :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pFile->buffer, 1)) != FILEIO_STATUS_OK)
 
-  000c8	ea000008	 b           |$LN7@FileIoRead@2|
-  000cc		 |$LN18@FileIoRead@2|
+  000a8	ea000008	 b           |$LN7@FileIoRead@2|
+  000ac		 |$LN18@FileIoRead@2|
 
 ; 1136 :             {
 ; 1137 :                 // can only read SINGLE sector
 ; 1138 :                 if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pDest, 1)) != FILEIO_STATUS_OK)
 
-  000cc	e3a03001	 mov         r3, #1
-  000d0	e1a02007	 mov         r2, r7
-  000d4	e1a01006	 mov         r1, r6
-  000d8	e1a00009	 mov         r0, r9
-  000dc	eb000000	 bl          FileIoReadNextSectors
-  000e0	e3500000	 cmp         r0, #0
-  000e4	1a00000d	 bne         |$LN13@FileIoRead@2|
+  000ac	e3a03001	 mov         r3, #1
+  000b0	e1a02006	 mov         r2, r6
+  000b4	e1a01005	 mov         r1, r5
+  000b8	e1a00008	 mov         r0, r8
+  000bc	eb000000	 bl          FileIoReadNextSectors
+  000c0	e3500000	 cmp         r0, #0
+  000c4	1a00000d	 bne         |$LN13@FileIoRead@2|
 
 ; 1139 :                     return status;
 ; 1140 :     
 ; 1141 :                 pDest += SECTOR_SIZE;
 
-  000e8	e2877c02	 add         r7, r7, #2, 24
+  000c8	e2866c02	 add         r6, r6, #2, 24
 
 ; 1142 :                 Count -= SECTOR_SIZE;
 
-  000ec	e2455c02	 sub         r5, r5, #2, 24
-  000f0		 |$LN7@FileIoRead@2|
+  000cc	e2444c02	 sub         r4, r4, #2, 24
+  000d0		 |$LN7@FileIoRead@2|
 
 ; 1167 :         }
 ; 1168 : 
 ; 1169 :         // if Count is not zero, read a sector into the file structure sector buffer
 ; 1170 :         if (Count)
 
-  000f0	e3550000	 cmp         r5, #0
-  000f4	0a000008	 beq         |$LN11@FileIoRead@2|
+  000d0	e3540000	 cmp         r4, #0
+  000d4	0a000008	 beq         |$LN11@FileIoRead@2|
 
 ; 1171 :         {
 ; 1172 :             if ((status = FileIoReadNextSectors(pfileio_ops, pFile, pFile->buffer, 1)) != FILEIO_STATUS_OK)
 
-  000f8	e3a03001	 mov         r3, #1
-  000fc	e2862024	 add         r2, r6, #0x24
-  00100	e1a01006	 mov         r1, r6
-  00104	e1a00009	 mov         r0, r9
-  00108	eb000000	 bl          FileIoReadNextSectors
-  0010c	e3500000	 cmp         r0, #0
-  00110	1a000002	 bne         |$LN13@FileIoRead@2|
+  000d8	e3a03001	 mov         r3, #1
+  000dc	e2852024	 add         r2, r5, #0x24
+  000e0	e1a01005	 mov         r1, r5
+  000e4	e1a00008	 mov         r0, r8
+  000e8	eb000000	 bl          FileIoReadNextSectors
+  000ec	e3500000	 cmp         r0, #0
+  000f0	1a000002	 bne         |$LN13@FileIoRead@2|
 
 ; 1173 :                 return status;
 ; 1174 :             pFile->bytes_in_buffer = SECTOR_SIZE;
 
-  00114	e586a020	 str         r10, [r6, #0x20]
+  000f4	e585a020	 str         r10, [r5, #0x20]
 
+; 1107 :     int status;
+; 1108 :     UINT8 *s;
+; 1109 : 
+; 1110 :     UINT32 numSectorsToRead = 0;
+; 1111 :     //static int i = 1;
+; 1112 :     
+; 1113 :     //OALLog(L"XXXXXXXXXXX:%d\r\n",i);        
+; 1114 :     //i++;
 ; 1115 :     while (Count)
 
-  00118	eaffffc8	 b           |$LL12@FileIoRead@2|
-  0011c		 |$LN11@FileIoRead@2|
+  000f8	eaffffc8	 b           |$LL12@FileIoRead@2|
+  000fc		 |$LN11@FileIoRead@2|
 
 ; 1175 :         }
 ; 1176 :     }
 ; 1177 :     return FILEIO_STATUS_OK;
 
-  0011c	e3a00000	 mov         r0, #0
-  00120		 |$LN13@FileIoRead@2|
+  000fc	e3a00000	 mov         r0, #0
+  00100		 |$LN13@FileIoRead@2|
 
 ; 1178 : }
 
-  00120	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
-  00124	e12fff1e	 bx          lr
-  00128		 |$LN29@FileIoRead@2|
-  00128		 |$LN30@FileIoRead@2|
-  00128	00000000	 DCD         |FilesysInfo|
-  0012c		 |$LN31@FileIoRead@2|
-  0012c	00000000	 DCD         |??_C@_1CC@IMPEFJAI@?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AAX?$AA?3?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  00130		 |$LN32@FileIoRead@2|
-  00130	00000000	 DCD         |?i@?1??FileIoRead@@9@9|
-  00134		 |$M43767|
+  00100	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
+  00104	e12fff1e	 bx          lr
+  00108		 |$LN29@FileIoRead@2|
+  00108		 |$LN30@FileIoRead@2|
+  00108	00000000	 DCD         |FilesysInfo|
+  0010c		 |$M43763|
 
 			 ENDP  ; |FileIoRead|
 
