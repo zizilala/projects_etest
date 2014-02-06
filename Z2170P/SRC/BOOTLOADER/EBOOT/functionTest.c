@@ -809,7 +809,7 @@ VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     GPIOClrBit(hGPIO_I2C,  185);
     GPIOSetMode(hGPIO_I2C, 185, GPIO_DIR_OUTPUT);   //I2C3_SDA, Ray 131129 
     
-    InitI2CWithBQ27510(hGPIO_I2C);
+    InitI2CWithBQ27510(hGPIO_I2C);                               
     GPIOClose(hGPIO_I2C);
 I2COpenFalse: 
     return;    

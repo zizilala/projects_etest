@@ -7,12 +7,12 @@
 	DCB	"-defaultlib:LIBCMT "
 	DCB	"-defaultlib:OLDNAMES "
 
-	EXPORT	|g_convertNum| [ DATA ]
-	EXPORT	|size| [ DATA ]
 
-  00000			 AREA	 |.bss|, NOINIT
-|g_convertNum| % 0x28
-|size|	%	0x4
+  00000			 AREA	 |.data|, DATA
+	 COMMON	|g_total|, 0x4
+
+	 COMMON	|g_value|, 0x190
+
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |EdbgVendorIds| DCW 0x0
@@ -82,7 +82,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\updatingfirmware.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46888| DCD	|$LN5@I2C_Clk_FW|
+|$T46929| DCD	|$LN5@I2C_Clk_FW|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -94,7 +94,7 @@
 
   00000		 |$LN5@I2C_Clk_FW|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46885|
+  00004		 |$M46926|
   00004	e1a04000	 mov         r4, r0
 
 ; 17   :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);  
@@ -113,19 +113,186 @@
   0001c	e1a00004	 mov         r0, r4
   00020	eb000000	 bl          GPIOClrBit
 
-; 20   :     //LcdStall(50);
+; 20   :     
 ; 21   : }
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
-  0002c		 |$M46886|
+  0002c		 |$M46927|
 
 			 ENDP  ; |I2C_Clk_FW|
+
+	EXPORT	|I2C_ACKnowledge_FW|
+	IMPORT	|GPIOGetBit|
+	IMPORT	|GPIOSetMode|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T46937| DCD	|$LN5@I2C_ACKnow|
+	DCD	0x40001e01
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |I2C_ACKnowledge_FW| PROC
+
+; 25   : {
+
+  00000		 |$LN5@I2C_ACKnow|
+  00000	e92d4010	 stmdb       sp!, {r4, lr}
+  00004		 |$M46934|
+  00004	e1a04000	 mov         r4, r0
+
+; 26   :     //GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);
+; 27   :     //LcdStall(1);
+; 28   :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+
+  00008	e3a02001	 mov         r2, #1
+  0000c	e3a010b9	 mov         r1, #0xB9
+  00010	eb000000	 bl          GPIOSetMode
+
+; 29   :     LcdStall(1);                                             
+
+  00014	e3a00001	 mov         r0, #1
+  00018	eb000000	 bl          LcdStall
+
+; 30   :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
+
+  0001c	e3a010b8	 mov         r1, #0xB8
+  00020	e1a00004	 mov         r0, r4
+  00024	eb000000	 bl          GPIOSetBit
+
+; 31   :     LcdStall(50);
+
+  00028	e3a00032	 mov         r0, #0x32
+  0002c	eb000000	 bl          LcdStall
+
+; 32   :     GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+
+  00030	e3a010b9	 mov         r1, #0xB9
+  00034	e1a00004	 mov         r0, r4
+  00038	eb000000	 bl          GPIOGetBit
+
+; 33   :     LcdStall(50);
+
+  0003c	e3a00032	 mov         r0, #0x32
+  00040	eb000000	 bl          LcdStall
+
+; 34   :         
+; 35   :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
+
+  00044	e3a02000	 mov         r2, #0
+  00048	e3a010b9	 mov         r1, #0xB9
+  0004c	e1a00004	 mov         r0, r4
+  00050	eb000000	 bl          GPIOSetMode
+
+; 36   :     LcdStall(1);
+
+  00054	e3a00001	 mov         r0, #1
+  00058	eb000000	 bl          LcdStall
+
+; 37   :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
+
+  0005c	e3a010b8	 mov         r1, #0xB8
+  00060	e1a00004	 mov         r0, r4
+  00064	eb000000	 bl          GPIOClrBit
+
+; 38   :     LcdStall(50);
+
+  00068	e3a00032	 mov         r0, #0x32
+  0006c	eb000000	 bl          LcdStall
+
+; 39   :     //GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);
+; 40   :     //LcdStall(1);
+; 41   : }
+
+  00070	e8bd4010	 ldmia       sp!, {r4, lr}
+  00074	e12fff1e	 bx          lr
+  00078		 |$M46935|
+
+			 ENDP  ; |I2C_ACKnowledge_FW|
+
+	EXPORT	|I2C_WRITE_FW|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T46956| DCD	|$LN17@I2C_WRITE_|
+	DCD	0x40001a01
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |I2C_WRITE_FW| PROC
+
+; 45   : {
+
+  00000		 |$LN17@I2C_WRITE_|
+  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
+  00004		 |$M46953|
+  00004	e1a06001	 mov         r6, r1
+  00008	e1a05000	 mov         r5, r0
+
+; 46   :     int i;
+; 47   :     for(i=7; i>=0; i--)
+
+  0000c	e3a04007	 mov         r4, #7
+  00010	e3a07001	 mov         r7, #1
+  00014		 |$LL5@I2C_WRITE_|
+
+; 48   :     {
+; 49   :         if( data&(1<<i) ){
+
+  00014	e1160417	 tst         r6, r7, lsl r4
+
+; 50   :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
+
+  00018	e3a010b9	 mov         r1, #0xB9
+  0001c	e1a00005	 mov         r0, r5
+  00020	0a000001	 beq         |$LN2@I2C_WRITE_|
+  00024	eb000000	 bl          GPIOSetBit
+
+; 51   :             LcdStall(50);
+; 52   :             I2C_Clk_FW(hGPIO_I2C);
+; 53   :         }else{
+
+  00028	ea000000	 b           |$LN14@I2C_WRITE_|
+  0002c		 |$LN2@I2C_WRITE_|
+
+; 54   :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
+
+  0002c	eb000000	 bl          GPIOClrBit
+  00030		 |$LN14@I2C_WRITE_|
+
+; 55   :             LcdStall(50);
+
+  00030	e3a00032	 mov         r0, #0x32
+  00034	eb000000	 bl          LcdStall
+
+; 56   :             I2C_Clk_FW(hGPIO_I2C);
+
+  00038	e3a010b8	 mov         r1, #0xB8
+  0003c	e1a00005	 mov         r0, r5
+  00040	eb000000	 bl          GPIOSetBit
+  00044	e3a00032	 mov         r0, #0x32
+  00048	eb000000	 bl          LcdStall
+  0004c	e3a010b8	 mov         r1, #0xB8
+  00050	e1a00005	 mov         r0, r5
+  00054	eb000000	 bl          GPIOClrBit
+  00058	e2544001	 subs        r4, r4, #1
+  0005c	5affffec	 bpl         |$LL5@I2C_WRITE_|
+
+; 57   :         }
+; 58   :     }           
+; 59   : }
+
+  00060	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  00064	e12fff1e	 bx          lr
+  00068		 |$M46954|
+
+			 ENDP  ; |I2C_WRITE_FW|
 
 	EXPORT	|I2C_setSlaveAddress_FW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46907| DCD	|$LN17@I2C_setSla|
+|$T46975| DCD	|$LN17@I2C_setSla|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -133,51 +300,51 @@
 
   00000		 |I2C_setSlaveAddress_FW| PROC
 
-; 26   : {    
+; 63   : {    
 
   00000		 |$LN17@I2C_setSla|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46904|
+  00004		 |$M46972|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
-; 27   :     int i;  
-; 28   :     for(i=7; i >=0; i--)
+; 64   :     int i;  
+; 65   :     for(i=7; i >=0; i--)
 
   0000c	e3a04007	 mov         r4, #7
   00010	e3a07001	 mov         r7, #1
   00014		 |$LL5@I2C_setSla|
 
-; 29   :     {         
-; 30   :         if( addr&(1<<i) ){
+; 66   :     {         
+; 67   :         if( addr&(1<<i) ){
 
   00014	e1160417	 tst         r6, r7, lsl r4
 
-; 31   :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
+; 68   :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
 
   00018	e3a010b9	 mov         r1, #0xB9
   0001c	e1a00005	 mov         r0, r5
   00020	0a000001	 beq         |$LN2@I2C_setSla|
   00024	eb000000	 bl          GPIOSetBit
 
-; 32   :             LcdStall(50);
-; 33   :             I2C_Clk_FW(hGPIO_I2C);
-; 34   :         }else{
+; 69   :             LcdStall(50);
+; 70   :             I2C_Clk_FW(hGPIO_I2C);
+; 71   :         }else{
 
   00028	ea000000	 b           |$LN14@I2C_setSla|
   0002c		 |$LN2@I2C_setSla|
 
-; 35   :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
+; 72   :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
 
   0002c	eb000000	 bl          GPIOClrBit
   00030		 |$LN14@I2C_setSla|
 
-; 36   :             LcdStall(50);
+; 73   :             LcdStall(50);
 
   00030	e3a00032	 mov         r0, #0x32
   00034	eb000000	 bl          LcdStall
 
-; 37   :             I2C_Clk_FW(hGPIO_I2C);
+; 74   :             I2C_Clk_FW(hGPIO_I2C);
 
   00038	e3a010b8	 mov         r1, #0xB8
   0003c	e1a00005	 mov         r0, r5
@@ -190,20 +357,20 @@
   00058	e2544001	 subs        r4, r4, #1
   0005c	5affffec	 bpl         |$LL5@I2C_setSla|
 
-; 38   :         }
-; 39   :     }  
-; 40   : }
+; 75   :         }
+; 76   :     } 
+; 77   : }
 
   00060	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M46905|
+  00068		 |$M46973|
 
 			 ENDP  ; |I2C_setSlaveAddress_FW|
 
 	EXPORT	|I2C_START_FW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46915| DCD	|$LN5@I2C_START_|
+|$T46983| DCD	|$LN5@I2C_START_|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -211,286 +378,361 @@
 
   00000		 |I2C_START_FW| PROC
 
-; 45   : {
+; 81   : {
 
   00000		 |$LN5@I2C_START_|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46912|
+  00004		 |$M46980|
   00004	e1a04000	 mov         r4, r0
 
-; 46   :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S1, SDA = High
+; 82   :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S1, SDA = High
 
   00008	e3a010b9	 mov         r1, #0xB9
   0000c	eb000000	 bl          GPIOSetBit
 
-; 47   :     LcdStall(100);                          
+; 83   :     LcdStall(1);                          
 
-  00010	e3a00064	 mov         r0, #0x64
+  00010	e3a00001	 mov         r0, #1
   00014	eb000000	 bl          LcdStall
 
-; 48   :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S2, SCL = High ; kept high   
+; 84   :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S2, SCL = High ; kept high   
 
   00018	e3a010b8	 mov         r1, #0xB8
   0001c	e1a00004	 mov         r0, r4
   00020	eb000000	 bl          GPIOSetBit
 
-; 49   :     LcdStall(100);
+; 85   :     LcdStall(100);
 
   00024	e3a00064	 mov         r0, #0x64
   00028	eb000000	 bl          LcdStall
 
-; 50   :     
-; 51   :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S3, When SDA changes High -> Low , start bit generating
+; 86   :     
+; 87   :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S3, When SDA changes High -> Low , start bit generating
 
   0002c	e3a010b9	 mov         r1, #0xB9
   00030	e1a00004	 mov         r0, r4
   00034	eb000000	 bl          GPIOClrBit
 
-; 52   :     LcdStall(50);                           
+; 88   :     LcdStall(10);                           
 
-  00038	e3a00032	 mov         r0, #0x32
+  00038	e3a0000a	 mov         r0, #0xA
   0003c	eb000000	 bl          LcdStall
 
-; 53   :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S4, SCL = Low 
+; 89   :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S4, SCL = Low 
 
   00040	e3a010b8	 mov         r1, #0xB8
   00044	e1a00004	 mov         r0, r4
   00048	eb000000	 bl          GPIOClrBit
 
-; 54   :     LcdStall(50);                          
+; 90   :     LcdStall(50);                          
 
   0004c	e3a00032	 mov         r0, #0x32
   00050	eb000000	 bl          LcdStall
 
-; 55   : }
+; 91   : }
 
   00054	e8bd4010	 ldmia       sp!, {r4, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M46913|
+  0005c		 |$M46981|
 
 			 ENDP  ; |I2C_START_FW|
 
+	EXPORT	|I2C_STOP_FW|
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T46991| DCD	|$LN5@I2C_STOP_F|
+	DCD	0x40001201
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |I2C_STOP_FW| PROC
+
+; 95   : {   
+
+  00000		 |$LN5@I2C_STOP_F|
+  00000	e92d4010	 stmdb       sp!, {r4, lr}
+  00004		 |$M46988|
+  00004	e1a04000	 mov         r4, r0
+
+; 96   :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P1
+
+  00008	e3a010b9	 mov         r1, #0xB9
+  0000c	eb000000	 bl          GPIOClrBit
+
+; 97   :     LcdStall(50);
+
+  00010	e3a00032	 mov         r0, #0x32
+  00014	eb000000	 bl          LcdStall
+
+; 98   :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //P2
+
+  00018	e3a010b8	 mov         r1, #0xB8
+  0001c	e1a00004	 mov         r0, r4
+  00020	eb000000	 bl          GPIOSetBit
+
+; 99   :     LcdStall(50);
+
+  00024	e3a00032	 mov         r0, #0x32
+  00028	eb000000	 bl          LcdStall
+
+; 100  :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P3
+
+  0002c	e3a010b9	 mov         r1, #0xB9
+  00030	e1a00004	 mov         r0, r4
+  00034	eb000000	 bl          GPIOSetBit
+
+; 101  :     LcdStall(50);    
+
+  00038	e3a00032	 mov         r0, #0x32
+  0003c	eb000000	 bl          LcdStall
+
+; 102  : }
+
+  00040	e8bd4010	 ldmia       sp!, {r4, lr}
+  00044	e12fff1e	 bx          lr
+  00048		 |$M46989|
+
+			 ENDP  ; |I2C_STOP_FW|
+
 	EXPORT	|InitI2CWithBQ27510FW|
-	EXPORT	|??_C@_1BK@JKCAIILJ@?$AAv?$AAa?$AAl?$AAu?$AAe?$AA2?$AA?$DN?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BK@LDOIDMEL@?$AAv?$AAa?$AAl?$AAu?$AAe?$AA1?$AA?$DN?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BK@DAINCDFO@?$AAO?$AAU?$AAT?$AAP?$AAU?$AAT?$AA?3?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1CG@HLIGJHI@?$AAI?$AAt?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BI@NNCDPGEE@?$AA?7?$AAs?$AAi?$AAz?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1LA@DHIHFKAL@?$AAC?$AA?3?5?$BD?$AAi?$AAn?$AAd?$AAi?$AAc?$AAa?$AAt?$AAe?$AAs?$AA?5?$AAt?$AAh?$AAa?$AAt?$AA?5?$AAt?$AAh?$AAe?$AA?5?$AAr?$AAo?$AAw?$AA?5?$AAi?$AAs?$AA?5?$AAa?$AA?5?$AAc@| [ DATA ] ; `string'
 	IMPORT	|NKDbgPrintfW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46930| DCD	|$LN20@InitI2CWit|
-	DCD	0x40003501
+|$T47005| DCD	|$LN22@InitI2CWit|
+	DCD	0x40004e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BK@JKCAIILJ@?$AAv?$AAa?$AAl?$AAu?$AAe?$AA2?$AA?$DN?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| DCB "v"
-	DCB	0x0, "a", 0x0, "l", 0x0, "u", 0x0, "e", 0x0, "2", 0x0, "="
-	DCB	0x0, "%", 0x0, "d", 0x0, ".", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BK@LDOIDMEL@?$AAv?$AAa?$AAl?$AAu?$AAe?$AA1?$AA?$DN?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| DCB "v"
-	DCB	0x0, "a", 0x0, "l", 0x0, "u", 0x0, "e", 0x0, "1", 0x0, "="
-	DCB	0x0, "%", 0x0, "d", 0x0, ".", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BK@DAINCDFO@?$AAO?$AAU?$AAT?$AAP?$AAU?$AAT?$AA?3?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| DCB "O"
-	DCB	0x0, "U", 0x0, "T", 0x0, "P", 0x0, "U", 0x0, "T", 0x0, ":"
-	DCB	0x0, "%", 0x0, "d", 0x0, ".", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1CG@HLIGJHI@?$AAI?$AAt?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| DCB "I"
-	DCB	0x0, "t", 0x0, " ", 0x0, "i", 0x0, "s", 0x0, " ", 0x0, "n"
-	DCB	0x0, "o", 0x0, "t", 0x0, " ", 0x0, "r", 0x0, "a", 0x0, "n"
-	DCB	0x0, "g", 0x0, "e", 0x0, ".", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
-	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BI@NNCDPGEE@?$AA?7?$AAs?$AAi?$AAz?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@| DCB 0x9
-	DCB	0x0, "s", 0x0, "i", 0x0, "z", 0x0, "e", 0x0, ":", 0x0, " "
-	DCB	0x0, "%", 0x0, "d", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+|??_C@_1LA@DHIHFKAL@?$AAC?$AA?3?5?$BD?$AAi?$AAn?$AAd?$AAi?$AAc?$AAa?$AAt?$AAe?$AAs?$AA?5?$AAt?$AAh?$AAa?$AAt?$AA?5?$AAt?$AAh?$AAe?$AA?5?$AAr?$AAo?$AAw?$AA?5?$AAi?$AAs?$AA?5?$AAa?$AA?5?$AAc@| DCB "C"
+	DCB	0x0, ":", 0x0, 0x13, " i", 0x0, "n", 0x0, "d", 0x0, "i", 0x0
+	DCB	"c", 0x0, "a", 0x0, "t", 0x0, "e", 0x0, "s", 0x0, " ", 0x0
+	DCB	"t", 0x0, "h", 0x0, "a", 0x0, "t", 0x0, " ", 0x0, "t", 0x0
+	DCB	"h", 0x0, "e", 0x0, " ", 0x0, "r", 0x0, "o", 0x0, "w", 0x0
+	DCB	" ", 0x0, "i", 0x0, "s", 0x0, " ", 0x0, "a", 0x0, " ", 0x0
+	DCB	"c", 0x0, "o", 0x0, "m", 0x0, "m", 0x0, "a", 0x0, "n", 0x0
+	DCB	"d", 0x0, " ", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "r", 0x0
+	DCB	"e", 0x0, "a", 0x0, "d", 0x0, " ", 0x0, "a", 0x0, "n", 0x0
+	DCB	"d", 0x0, " ", 0x0, "c", 0x0, "o", 0x0, "m", 0x0, "p", 0x0
+	DCB	"a", 0x0, "r", 0x0, "e", 0x0, " ", 0x0, "o", 0x0, "n", 0x0
+	DCB	"e", 0x0, " ", 0x0, "o", 0x0, "r", 0x0, " ", 0x0, "m", 0x0
+	DCB	"o", 0x0, "r", 0x0, "e", 0x0, " ", 0x0, "b", 0x0, "y", 0x0
+	DCB	"t", 0x0, "e", 0x0, "s", 0x0, " ", 0x0, "o", 0x0, "f", 0x0
+	DCB	" ", 0x0, "d", 0x0, "a", 0x0, "t", 0x0, "a", 0x0, ".", 0x0
+	DCB	0xd, 0x0, 0xa, 0x0, 0x0, 0x0		; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |InitI2CWithBQ27510FW| PROC
 
-; 63   : {   
+; 109  : {    
 
-  00000		 |$LN20@InitI2CWit|
+  00000		 |$LN22@InitI2CWit|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46927|
-  00004	e1a04000	 mov         r4, r0
+  00004		 |$M47002|
+  00004	e1a05000	 mov         r5, r0
 
-; 64   :     int j;
-; 65   :     int /*temp = 0x0F,*/ value = 0;
-; 66   :     int temp;
-; 67   :     //UNREFERENCED_PARAMETER();
-; 68   :     
-; 69   :     OALLog(L"\tsize: %d\r\n",size);
+; 110  :     int i, waitCMD;
+; 111  :     UNREFERENCED_PARAMETER(hGPIO_I2C);    
+; 112  :     
+; 113  :     if( 0x20A == (*(g_value+0)) ){      //Equal "Write Command"
 
-  00008	e59f60c0	 ldr         r6, [pc, #0xC0]
-  0000c	e59f00b8	 ldr         r0, [pc, #0xB8]
-  00010	e3a07000	 mov         r7, #0
-  00014	e5961028	 ldr         r1, [r6, #0x28]
-  00018	eb000000	 bl          NKDbgPrintfW
+  00008	e59f4124	 ldr         r4, [pc, #0x124]
+  0000c	e3a03c02	 mov         r3, #2, 24
+  00010	e383300a	 orr         r3, r3, #0xA
+  00014	e5942000	 ldr         r2, [r4]
+  00018	e59f7110	 ldr         r7, [pc, #0x110]
+  0001c	e1520003	 cmp         r2, r3
+  00020	1a000019	 bne         |$LN13@InitI2CWit|
 
-; 70   : 
-; 71   :     I2C_START_FW(hGPIO_I2C);
+; 114  :         I2C_START_FW(hGPIO_I2C);        
 
-  0001c	e1a00004	 mov         r0, r4
-  00020	eb000000	 bl          I2C_START_FW
+  00024	eb000000	 bl          I2C_START_FW
 
-; 72   :     switch(size)
+; 115  :         for(i=1;i<=g_total;i++){
 
-  00024	e5963028	 ldr         r3, [r6, #0x28]
-  00028	e3530001	 cmp         r3, #1
-  0002c	0a00001c	 beq         |$LN10@InitI2CWit|
-  00030	e3530002	 cmp         r3, #2
-  00034	0a000003	 beq         |$LN9@InitI2CWit|
+  00028	e5973000	 ldr         r3, [r7]
+  0002c	e3a06001	 mov         r6, #1
+  00030	e3530001	 cmp         r3, #1
+  00034	ba000011	 blt         |$LN10@InitI2CWit|
+  00038		 |$LL12@InitI2CWit|
 
-; 110  :                 }
-; 111  :             }
-; 112  : 
-; 113  :             
-; 114  :             break;
-; 115  :         /*case 3:
-; 116  :             for
-; 117  :             
-; 118  :             break;*/
-; 119  :         default:
-; 120  :             OALLog(L"It is not range.\r\n");
+; 116  :             if(i==1){ 
 
-  00038	e59f0088	 ldr         r0, [pc, #0x88]
-  0003c	eb000000	 bl          NKDbgPrintfW
+  00038	e3560001	 cmp         r6, #1
 
-; 121  :     }  
-; 122  : }
+; 117  :                 I2C_setSlaveAddress_FW(hGPIO_I2C, g_value[i]);  
 
-  00040	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  00044	e12fff1e	 bx          lr
-  00048		 |$LN9@InitI2CWit|
+  0003c	e1a00005	 mov         r0, r5
+  00040	1a000002	 bne         |$LN9@InitI2CWit|
+  00044	e5941004	 ldr         r1, [r4, #4]
+  00048	eb000000	 bl          I2C_setSlaveAddress_FW
 
-; 77   :             /*for(j=0; j<size; j++){
-; 78   :                 value = g_convertNum[j]; 
-; 79   :                 OALLog(L"----%d", value); 
-; 80   :             }*/
-; 81   :             break;
-; 82   :         case 2:
-; 83   :             /*for(j=0; j<size; j++){
-; 84   :                 value = (g_convertNum[j]<<4);       
-; 85   :                 if(j!=0){
-; 86   :                     temp &= g_convertNum[j];
-; 87   :                     value |= temp;
-; 88   :                 }
-; 89   :                 OALLog(L"----%d", value); 
-; 90   :             }*/
-; 91   :             for(j=0; j<size; j++){
+; 118  :                 //OALLog(L"setSlaveAddress:%#02X ", g_value[i]);
+; 119  :                 //I2C_setSlaveAddress_FW(hGPIO_I2C, 0XAA);
+; 120  :             }else{
 
-  00048	e3a04000	 mov         r4, #0
-  0004c	e3530000	 cmp         r3, #0
-  00050	da000017	 ble         |$LN11@InitI2CWit|
-  00054		 |$LL8@InitI2CWit|
+  0004c	ea000001	 b           |$LN8@InitI2CWit|
+  00050		 |$LN9@InitI2CWit|
 
-; 92   :                 temp = g_convertNum[j];       
+; 121  :                 I2C_WRITE_FW(hGPIO_I2C, g_value[i]);    
 
-  00054	e7963104	 ldr         r3, [r6, +r4, lsl #2]
+  00050	e7941106	 ldr         r1, [r4, +r6, lsl #2]
+  00054	eb000000	 bl          I2C_WRITE_FW
+  00058		 |$LN8@InitI2CWit|
 
-; 93   :                     //for(i=7; i>=0; i--)
-; 94   :                        // value&(1<<);
-; 95   : 
-; 96   :                 if(temp >= 65)
-; 97   :                     temp-=55;
-; 98   :                 else
-; 99   :                     temp-=48;
-; 100  :                     
-; 101  :                 OALLog(L"OUTPUT:%d.\r\n",temp);
+; 122  :                 //OALLog(L"Write:%#02X ", g_value[i]);
+; 123  :             }
+; 124  : 
+; 125  :             LcdStall(100);    
 
-  00058	e59f005c	 ldr         r0, [pc, #0x5C]
-  0005c	e3530041	 cmp         r3, #0x41
-  00060	a2435037	 subge       r5, r3, #0x37
-  00064	b2435030	 sublt       r5, r3, #0x30
-  00068	e1a01005	 mov         r1, r5
-  0006c	eb000000	 bl          NKDbgPrintfW
+  00058	e3a00064	 mov         r0, #0x64
+  0005c	eb000000	 bl          LcdStall
 
-; 102  :    
-; 103  : 
-; 104  :                 if(j==0){
+; 126  :             I2C_ACKnowledge_FW(hGPIO_I2C);              //OALLog(L"ACKnowledge\r\n");                 
 
-  00070	e3540000	 cmp         r4, #0
+  00060	e1a00005	 mov         r0, r5
+  00064	eb000000	 bl          I2C_ACKnowledge_FW
 
-; 105  :                     value = temp<<4;
-; 106  :                     OALLog(L"value1=%d.\r\n",value);
+; 127  :             LcdStall(200);
 
-  00074	059f0048	 ldreq       r0, [pc, #0x48]
-  00078	01a07205	 moveq       r7, r5, lsl #4
+  00068	e3a000c8	 mov         r0, #0xC8
+  0006c	eb000000	 bl          LcdStall
+  00070	e5973000	 ldr         r3, [r7]
+  00074	e2866001	 add         r6, r6, #1
+  00078	e1560003	 cmp         r6, r3
+  0007c	daffffed	 ble         |$LL12@InitI2CWit|
+  00080		 |$LN10@InitI2CWit|
 
-; 107  :                 }else{
-; 108  :                     value |= temp;
-; 109  :                     OALLog(L"value2=%d.\r\n",value);
+; 128  :          } 
+; 129  :          LcdStall(250);
 
-  0007c	159f003c	 ldrne       r0, [pc, #0x3C]
-  00080	11857007	 orrne       r7, r5, r7
-  00084	e1a01007	 mov         r1, r7
-  00088	eb000000	 bl          NKDbgPrintfW
-  0008c	e5963028	 ldr         r3, [r6, #0x28]
-  00090	e2844001	 add         r4, r4, #1
-  00094	e1540003	 cmp         r4, r3
-  00098	baffffed	 blt         |$LL8@InitI2CWit|
+  00080	e3a000fa	 mov         r0, #0xFA
+  00084	eb000000	 bl          LcdStall
+  00088	e5942000	 ldr         r2, [r4]
+  0008c		 |$LN13@InitI2CWit|
 
-; 121  :     }  
-; 122  : }
+; 130  :     }
+; 131  : 
+; 132  :     if( 0xCA == (*(g_value+0))){    //Equal "Read and Compare Command", How to send data??
 
-  0009c	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  000a0	e12fff1e	 bx          lr
-  000a4		 |$LN10@InitI2CWit|
+  0008c	e35200ca	 cmp         r2, #0xCA
+  00090	1a00001c	 bne         |$LN7@InitI2CWit|
 
-; 73   :     {
-; 74   :         case 1:
-; 75   :             value = *(g_convertNum+0); 
-; 76   :             OALLog(L"OUTPUT:%d.\r\n",value-48);
+; 133  :         I2C_START_FW(hGPIO_I2C);
 
-  000a4	e5963000	 ldr         r3, [r6]
-  000a8	e59f000c	 ldr         r0, [pc, #0xC]
-  000ac	e2431030	 sub         r1, r3, #0x30
-  000b0	eb000000	 bl          NKDbgPrintfW
-  000b4		 |$LN11@InitI2CWit|
+  00094	e1a00005	 mov         r0, r5
+  00098	eb000000	 bl          I2C_START_FW
 
-; 121  :     }  
-; 122  : }
+; 134  :         for(i=1;i<=g_total;i++){
 
-  000b4	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  000b8	e12fff1e	 bx          lr
-  000bc		 |$LN21@InitI2CWit|
-  000bc		 |$LN22@InitI2CWit|
-  000bc	00000000	 DCD         |??_C@_1BK@DAINCDFO@?$AAO?$AAU?$AAT?$AAP?$AAU?$AAT?$AA?3?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
-  000c0		 |$LN23@InitI2CWit|
-  000c0	00000000	 DCD         |??_C@_1BK@JKCAIILJ@?$AAv?$AAa?$AAl?$AAu?$AAe?$AA2?$AA?$DN?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
-  000c4		 |$LN24@InitI2CWit|
-  000c4	00000000	 DCD         |??_C@_1BK@LDOIDMEL@?$AAv?$AAa?$AAl?$AAu?$AAe?$AA1?$AA?$DN?$AA?$CF?$AAd?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
-  000c8		 |$LN25@InitI2CWit|
-  000c8	00000000	 DCD         |??_C@_1CG@HLIGJHI@?$AAI?$AAt?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
-  000cc		 |$LN26@InitI2CWit|
-  000cc	00000000	 DCD         |??_C@_1BI@NNCDPGEE@?$AA?7?$AAs?$AAi?$AAz?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$AN?$AA?6?$AA?$AA@|
-  000d0		 |$LN27@InitI2CWit|
-  000d0	00000000	 DCD         |g_convertNum|
-  000d4		 |$M46928|
+  0009c	e5973000	 ldr         r3, [r7]
+  000a0	e3a06001	 mov         r6, #1
+  000a4	e3530001	 cmp         r3, #1
+  000a8	ba000011	 blt         |$LN4@InitI2CWit|
+  000ac		 |$LL6@InitI2CWit|
+
+; 135  :             if(i==1)
+
+  000ac	e3560001	 cmp         r6, #1
+
+; 136  :                 I2C_setSlaveAddress_FW(hGPIO_I2C, g_value[i]);
+
+  000b0	e1a00005	 mov         r0, r5
+  000b4	1a000002	 bne         |$LN3@InitI2CWit|
+  000b8	e5941004	 ldr         r1, [r4, #4]
+  000bc	eb000000	 bl          I2C_setSlaveAddress_FW
+
+; 137  :             else
+
+  000c0	ea000001	 b           |$LN2@InitI2CWit|
+  000c4		 |$LN3@InitI2CWit|
+
+; 138  :                 I2C_WRITE_FW(hGPIO_I2C, g_value[i]);
+
+  000c4	e7941106	 ldr         r1, [r4, +r6, lsl #2]
+  000c8	eb000000	 bl          I2C_WRITE_FW
+  000cc		 |$LN2@InitI2CWit|
+
+; 139  : 
+; 140  :             LcdStall(100); 
+
+  000cc	e3a00064	 mov         r0, #0x64
+  000d0	eb000000	 bl          LcdStall
+
+; 141  :             I2C_ACKnowledge_FW(hGPIO_I2C);
+
+  000d4	e1a00005	 mov         r0, r5
+  000d8	eb000000	 bl          I2C_ACKnowledge_FW
+
+; 142  :             LcdStall(200);
+
+  000dc	e3a000c8	 mov         r0, #0xC8
+  000e0	eb000000	 bl          LcdStall
+  000e4	e5973000	 ldr         r3, [r7]
+  000e8	e2866001	 add         r6, r6, #1
+  000ec	e1560003	 cmp         r6, r3
+  000f0	daffffed	 ble         |$LL6@InitI2CWit|
+  000f4		 |$LN4@InitI2CWit|
+
+; 143  :         }
+; 144  :         LcdStall(250);
+
+  000f4	e3a000fa	 mov         r0, #0xFA
+  000f8	eb000000	 bl          LcdStall
+
+; 145  :         OALLog(L"C:¡Vindicates that the row is a command to read and compare one or more bytes of data.\r\n");
+
+  000fc	e59f0028	 ldr         r0, [pc, #0x28]
+  00100	eb000000	 bl          NKDbgPrintfW
+  00104	e5942000	 ldr         r2, [r4]
+  00108		 |$LN7@InitI2CWit|
+  00108	e3a03c02	 mov         r3, #2, 24
+
+; 146  :     }
+; 147  :     
+; 148  :     if( 0x21A == (*(g_value+0))){       //Equal "Wait command"
+
+  0010c	e383301a	 orr         r3, r3, #0x1A
+  00110	e1520003	 cmp         r2, r3
+
+; 149  :         waitCMD = g_value[1];
+; 150  :         LcdStall(waitCMD*2000);   //Because 1us at oscilloscpoe are 0.8us(x1.25), So => value*1.25*ms        
+
+  00114	05943004	 ldreq       r3, [r4, #4]
+  00118	03a02e7d	 moveq       r2, #0x7D, 28
+  0011c	00000293	 muleq       r0, r3, r2
+  00120	0b000000	 bleq        LcdStall
+
+; 151  :         //OALLog(L"WaitCMD:%d\r\n",waitCMD);
+; 152  :     }
+; 153  : }
+
+  00124	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
+  00128	e12fff1e	 bx          lr
+  0012c		 |$LN23@InitI2CWit|
+  0012c		 |$LN24@InitI2CWit|
+  0012c	00000000	 DCD         |??_C@_1LA@DHIHFKAL@?$AAC?$AA?3?5?$BD?$AAi?$AAn?$AAd?$AAi?$AAc?$AAa?$AAt?$AAe?$AAs?$AA?5?$AAt?$AAh?$AAa?$AAt?$AA?5?$AAt?$AAh?$AAe?$AA?5?$AAr?$AAo?$AAw?$AA?5?$AAi?$AAs?$AA?5?$AAa?$AA?5?$AAc@|
+  00130		 |$LN25@InitI2CWit|
+  00130	00000000	 DCD         |g_total|
+  00134		 |$LN26@InitI2CWit|
+  00134	00000000	 DCD         |g_value|
+  00138		 |$M47003|
 
 			 ENDP  ; |InitI2CWithBQ27510FW|
 
 	EXPORT	|__$ArrayPad$| [ DATA ]
 	EXPORT	|UpdatingGaugeFW|
-	EXPORT	|??_C@_1BK@GKDGOAOM@?$AAR?$AAE?$AAA?$AAD?$AA?$DN?$AA?$DO?$AA?$CF?$AAc?$AA?$HM?$AA?$CF?$AAd?$AA?5?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1FO@BKJKLBCH@?$AAS?$AAU?$AAC?$AAC?$AAE?$AAS?$AAS?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC@| [ DATA ] ; `string'
+	EXPORT	|??_C@_15JNBOKNOG@?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1M@OLEMGGOE@?$AA?$CF?$AA0?$AA2?$AAX?$AA?5?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CG@HLIGJHI@?$AAI?$AAt?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BC@NCNMBLBG@?$AAt?$AAe?$AAs?$AAt?$AA?4?$AAt?$AAx?$AAt?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1GC@GBHIDOHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC?$AA?5?$AAd@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DK@JOLFNFNF@?$AAU?$AAp?$AAd?$AAa?$AAt?$AAi?$AAn?$AAg?$AA?5?$AAF?$AAu?$AAe?$AAl?$AA?5?$AAG?$AAa?$AAu?$AAg?$AAe?$AA?5?$AAF?$AAi?$AAr?$AAm?$AAw?$AAa?$AAr?$AAe?$AA?$AA@| [ DATA ] ; `string'
 	IMPORT	|GPIOClose|
 	IMPORT	|BLSDCardReadData|
 	IMPORT	|BLSDCardDownload|
-	IMPORT	|GPIOSetMode|
 	IMPORT	|GPIOOpen|
 	IMPORT	|OALBLMenuHeader|
 	IMPORT	|__GSHandlerCheck|
@@ -498,28 +740,25 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46958| DCD	|$LN25@UpdatingGa|
-	DCD	0xc0005f02
+|$T47040| DCD	|$LN41@UpdatingGa|
+	DCD	0xc0008402
 
   00000			 AREA	 |.xdata|, DATA
-|$T46954| DCD	0xffffffdc
+|$T47036| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BK@GKDGOAOM@?$AAR?$AAE?$AAA?$AAD?$AA?$DN?$AA?$DO?$AA?$CF?$AAc?$AA?$HM?$AA?$CF?$AAd?$AA?5?$AA?$AA@| DCB "R"
-	DCB	0x0, "E", 0x0, "A", 0x0, "D", 0x0, "=", 0x0, ">", 0x0, "%"
-	DCB	0x0, "c", 0x0, "|", 0x0, "%", 0x0, "d", 0x0, " ", 0x0, 0x0
+|??_C@_15JNBOKNOG@?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1M@OLEMGGOE@?$AA?$CF?$AA0?$AA2?$AAX?$AA?5?$AA?$AA@| DCB "%", 0x0, "0"
+	DCB	0x0, "2", 0x0, "X", 0x0, " ", 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CG@HLIGJHI@?$AAI?$AAt?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| DCB "I"
+	DCB	0x0, "t", 0x0, " ", 0x0, "i", 0x0, "s", 0x0, " ", 0x0, "n"
+	DCB	0x0, "o", 0x0, "t", 0x0, " ", 0x0, "r", 0x0, "a", 0x0, "n"
+	DCB	0x0, "g", 0x0, "e", 0x0, ".", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0
 	DCB	0x0					; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1FO@BKJKLBCH@?$AAS?$AAU?$AAC?$AAC?$AAE?$AAS?$AAS?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC@| DCB "S"
-	DCB	0x0, "U", 0x0, "C", 0x0, "C", 0x0, "E", 0x0, "S", 0x0, "S"
-	DCB	0x0, ":", 0x0, " ", 0x0, "B", 0x0, "Q", 0x0, "2", 0x0, "7"
-	DCB	0x0, "5", 0x0, "1", 0x0, "0", 0x0, "_", 0x0, "i", 0x0, "n"
-	DCB	0x0, "i", 0x0, "t", 0x0, " ", 0x0, "-", 0x0, " ", 0x0, "O"
-	DCB	0x0, "p", 0x0, "e", 0x0, "n", 0x0, " ", 0x0, "I", 0x0, "2"
-	DCB	0x0, "C", 0x0, " ", 0x0, "d", 0x0, "e", 0x0, "v", 0x0, "i"
-	DCB	0x0, "c", 0x0, "e", 0x0, " ", 0x0, "O", 0x0, "K", 0x0, "!"
-	DCB	0x0, "!", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1BC@NCNMBLBG@?$AAt?$AAe?$AAs?$AAt?$AA?4?$AAt?$AAx?$AAt?$AA?$AA@| DCB "t"
@@ -550,241 +789,340 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T46954|
+  00004	00000000	 DCD         |$T47036|
 
   00008		 |UpdatingGaugeFW| PROC
 
-; 127  : {
+; 157  : {
 
-  00008		 |$LN25@UpdatingGa|
-  00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
+  00008		 |$LN41@UpdatingGa|
+  00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd014	 sub         sp, sp, #0x14
-  00010		 |$M46955|
-  00010	e59f3168	 ldr         r3, [pc, #0x168]
+  00010		 |$M47037|
+  00010	e59f31fc	 ldr         r3, [pc, #0x1FC]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3010	 str         r3, [sp, #0x10]
 
-; 128  :     ULONG rc = (ULONG) BL_ERROR;
-; 129  :     char ch;
-; 130  :     char str[10];
-; 131  :     int i = 0;
-; 132  :     int j;
-; 133  :     HANDLE hGPIO_I2C;
-; 134  :     
-; 135  :     UNREFERENCED_PARAMETER(pMenu);
-; 136  :     OALBLMenuHeader(L"Updating Fuel Gauge Firmware");
+; 158  :     ULONG rc = (ULONG) BL_ERROR;
+; 159  :     char ch;
+; 160  :     char str[10];
+; 161  :     int  size = 0, j, count = 0;
+; 162  :     int  temp, byte = 0;
+; 163  :     HANDLE hGPIO_I2C;
+; 164  :     
+; 165  :     OALBLMenuHeader(L"Updating Fuel Gauge Firmware");
 
-  0001c	e59f0158	 ldr         r0, [pc, #0x158]
+  0001c	e59f01ec	 ldr         r0, [pc, #0x1EC]
   00020	e3a04000	 mov         r4, #0
-  00024	eb000000	 bl          OALBLMenuHeader
+  00024	e3a05000	 mov         r5, #0
+  00028	e3a07000	 mov         r7, #0
+  0002c	eb000000	 bl          OALBLMenuHeader
 
-; 137  : 
-; 138  :     if((hGPIO_I2C = GPIOOpen()) == NULL) 
+; 166  :     UNREFERENCED_PARAMETER(pMenu);
+; 167  :     
+; 168  :     if((hGPIO_I2C = GPIOOpen()) == NULL) 
 
-  00028	eb000000	 bl          GPIOOpen
-  0002c	e1b06000	 movs        r6, r0
-  00030	1a000002	 bne         |$LN15@UpdatingGa|
+  00030	eb000000	 bl          GPIOOpen
+  00034	e1b08000	 movs        r8, r0
+  00038	1a000002	 bne         |$LN28@UpdatingGa|
 
-; 139  : 	{
-; 140  :         RETAILMSG(1,(L"ERROR: BQ27510_init - Open I2C device Failed!!\r\n"));
+; 169  : 	{
+; 170  :         RETAILMSG(1,(L"ERROR: BQ27510_init - Open I2C device Failed!!\r\n"));
 
-  00034	e59f013c	 ldr         r0, [pc, #0x13C]
-  00038	eb000000	 bl          NKDbgPrintfW
+  0003c	e59f01c8	 ldr         r0, [pc, #0x1C8]
+  00040	eb000000	 bl          NKDbgPrintfW
 
-; 141  :         goto I2COpenFailed;
+; 171  :         goto I2COpenFailed;
 
-  0003c	ea000044	 b           |$I2COpenFailed$46827|
-  00040		 |$LN15@UpdatingGa|
+  00044	ea000065	 b           |$I2COpenFailed$46844|
+  00048		 |$LN28@UpdatingGa|
 
-; 142  : 	}else{
-; 143  :         RETAILMSG(1,(L"SUCCESS: BQ27510_init - Open I2C device OK!!\r\n"));
-
-  00040	e59f012c	 ldr         r0, [pc, #0x12C]
-  00044	eb000000	 bl          NKDbgPrintfW
-
-; 144  : 	}
-; 145  : 	
-; 146  :     GPIOClrBit(hGPIO_I2C,  184);  
+; 172  : 	}
+; 173  : 	
+; 174  :     GPIOClrBit(hGPIO_I2C,  184);  
 
   00048	e3a010b8	 mov         r1, #0xB8
-  0004c	e1a00006	 mov         r0, r6
+  0004c	e1a00008	 mov         r0, r8
   00050	eb000000	 bl          GPIOClrBit
 
-; 147  :     GPIOSetMode(hGPIO_I2C, 184, GPIO_DIR_OUTPUT);   //I2C3_CLK, Ray 140128
+; 175  :     GPIOSetMode(hGPIO_I2C, 184, GPIO_DIR_OUTPUT);   //I2C3_CLK, Ray 
 
   00054	e3a02000	 mov         r2, #0
   00058	e3a010b8	 mov         r1, #0xB8
-  0005c	e1a00006	 mov         r0, r6
+  0005c	e1a00008	 mov         r0, r8
   00060	eb000000	 bl          GPIOSetMode
 
-; 148  :     GPIOClrBit(hGPIO_I2C,  185);
+; 176  :     GPIOClrBit(hGPIO_I2C,  185);
 
   00064	e3a010b9	 mov         r1, #0xB9
-  00068	e1a00006	 mov         r0, r6
+  00068	e1a00008	 mov         r0, r8
   0006c	eb000000	 bl          GPIOClrBit
 
-; 149  :     GPIOSetMode(hGPIO_I2C, 185, GPIO_DIR_OUTPUT);   //I2C3_SDA, Ray 140128
+; 177  :     GPIOSetMode(hGPIO_I2C, 185, GPIO_DIR_OUTPUT);   //I2C3_SDA, Ray
 
   00070	e3a02000	 mov         r2, #0
   00074	e3a010b9	 mov         r1, #0xB9
-  00078	e1a00006	 mov         r0, r6
+  00078	e1a00008	 mov         r0, r8
   0007c	eb000000	 bl          GPIOSetMode
 
-; 150  :          
-; 151  :     rc = BLSDCardDownload(L"test.txt");
+; 178  :          
+; 179  :     rc = BLSDCardDownload(L"test.txt");
 
-  00080	e59f00e8	 ldr         r0, [pc, #0xE8]
+  00080	e59f0180	 ldr         r0, [pc, #0x180]
   00084	eb000000	 bl          BLSDCardDownload
 
-; 152  : 
-; 153  :     while( BLSDCardReadData(sizeof(char), (UCHAR *)&ch) )
+; 180  :     //rc = BLSDCardDownload(L"BQ275xFW.txt");
+; 181  : 
+; 182  :     while( BLSDCardReadData(sizeof(char), (UCHAR *)&ch) )
 
   00088	e28d1000	 add         r1, sp, #0
   0008c	e3a00001	 mov         r0, #1
   00090	eb000000	 bl          BLSDCardReadData
   00094	e3500000	 cmp         r0, #0
-  00098	0a00002b	 beq         |$LN22@UpdatingGa|
-  0009c	e59f80c8	 ldr         r8, [pc, #0xC8]
-  000a0	e28d9004	 add         r9, sp, #4
-  000a4	e28da004	 add         r10, sp, #4
-  000a8		 |$LL13@UpdatingGa|
+  00098	0a00004c	 beq         |$LN38@UpdatingGa|
+  0009c	e59fa158	 ldr         r10, [pc, #0x158]
+  000a0	e59fb15c	 ldr         r11, [pc, #0x15C]
+  000a4	e1dd90d4	 ldrsb       r9, [sp, #4]
+  000a8	e28d3004	 add         r3, sp, #4
+  000ac		 |$LL27@UpdatingGa|
 
-; 154  :     {
-; 155  :         if( (ch==0x20) || (ch==0x0D) || (ch==0x0A) )    //Space, Carriage Return, Line Feed
+; 183  :     {
+; 184  :         if( (ch==0x20) || (ch==0x0D) || (ch==0x0A) )    //Space, Carriage Return, Line Feed
 
-  000a8	e1dd30d0	 ldrsb       r3, [sp]
-  000ac	e3530020	 cmp         r3, #0x20
-  000b0	0a00000a	 beq         |$LN10@UpdatingGa|
-  000b4	e353000d	 cmp         r3, #0xD
-  000b8	0a000008	 beq         |$LN10@UpdatingGa|
-  000bc	e353000a	 cmp         r3, #0xA
-  000c0	0a000006	 beq         |$LN10@UpdatingGa|
+  000ac	e1dd20d0	 ldrsb       r2, [sp]
+  000b0	e3520020	 cmp         r2, #0x20
+  000b4	0a00000b	 beq         |$LN24@UpdatingGa|
+  000b8	e352000d	 cmp         r2, #0xD
+  000bc	0a000009	 beq         |$LN24@UpdatingGa|
+  000c0	e352000a	 cmp         r2, #0xA
+  000c4	0a000007	 beq         |$LN24@UpdatingGa|
 
-; 176  :             }
-; 177  :         }else{
-; 178  :             //OALLog(L"--Entry else\r\n");
-; 179  :             if((ch>'z')||(ch<'0')){
+; 233  :             }             
+; 234  :         }else{
+; 235  :             if((ch>'z')||(ch<'0')){
 
-  000c4	e353007a	 cmp         r3, #0x7A
-  000c8	ca00001f	 bgt         |$LN22@UpdatingGa|
-  000cc	e3530030	 cmp         r3, #0x30
-  000d0	ba00001d	 blt         |$LN22@UpdatingGa|
+  000c8	e352007a	 cmp         r2, #0x7A
+  000cc	ca00003f	 bgt         |$LN38@UpdatingGa|
+  000d0	e3520030	 cmp         r2, #0x30
+  000d4	ba00003d	 blt         |$LN38@UpdatingGa|
 
-; 180  :                 break;
-; 181  :             }
-; 182  :             str[i++] = ch;      //i = W¡B:¡B1¡B6¡B0¡B0¡B0¡B3
+; 236  :                 break;
+; 237  :             }
+; 238  :             str[size++] = ch;      //i = (W¡B:), (1¡B6), (0¡B0), (0¡B3)
 
-  000d4	e7c43009	 strb        r3, [r4, +r9]
-  000d8	e2844001	 add         r4, r4, #1
-  000dc	ea000015	 b           |$LN9@UpdatingGa|
-  000e0		 |$LN10@UpdatingGa|
+  000d8	e7c42003	 strb        r2, [r4, +r3]
+  000dc	e1dd90d4	 ldrsb       r9, [sp, #4]
+  000e0	e2844001	 add         r4, r4, #1
+  000e4	ea000033	 b           |$LN7@UpdatingGa|
+  000e8		 |$LN24@UpdatingGa|
 
-; 156  :         {
-; 157  :             //OALLog(L"--Entry if\r\n");
-; 158  :             if(i >0)
+; 185  :         {
+; 186  :             if(size >0)
 
-  000e0	e3540000	 cmp         r4, #0
-  000e4	da000013	 ble         |$LN9@UpdatingGa|
+  000e8	e3540000	 cmp         r4, #0
+  000ec	da000019	 ble         |$LN23@UpdatingGa|
 
-; 159  :             {
-; 160  :                 for(j=0; j<i; j++){
+; 187  :             {            
+; 188  :                 switch(size)
 
-  000e8	e3a05000	 mov         r5, #0
-  000ec	e1a07008	 mov         r7, r8
-  000f0		 |$LL8@UpdatingGa|
+  000f0	e3540001	 cmp         r4, #1
+  000f4	0a000013	 beq         |$LN20@UpdatingGa|
+  000f8	e3540002	 cmp         r4, #2
+  000fc	0a000003	 beq         |$LN17@UpdatingGa|
 
-; 161  :                     g_convertNum[j] = str[j];
+; 215  :                     default:
+; 216  :                         OALLog(L"It is not range.\r\n");
 
-  000f0	e19530da	 ldrsb       r3, [r5, +r10]
-
-; 162  :                     OALLog(L"READ=>%c|%d ",str[j], g_convertNum[j]);
-
-  000f4	e59f006c	 ldr         r0, [pc, #0x6C]
-  000f8	e1a02003	 mov         r2, r3
-  000fc	e1a01003	 mov         r1, r3
-  00100	e4873004	 str         r3, [r7], #4
+  00100	e59f00f8	 ldr         r0, [pc, #0xF8]
   00104	eb000000	 bl          NKDbgPrintfW
-  00108	e2855001	 add         r5, r5, #1
-  0010c	e1550004	 cmp         r5, r4
+  00108	e1dd20d0	 ldrsb       r2, [sp]
+  0010c	ea000010	 b           |$LN18@UpdatingGa|
+  00110		 |$LN17@UpdatingGa|
 
-; 163  :                     size = i;
+; 197  :                         break;   
+; 198  :                     case 2:
+; 199  :                         for(j=0; j<size; j++)
 
-  00110	e5884028	 str         r4, [r8, #0x28]
-  00114	bafffff5	 blt         |$LL8@UpdatingGa|
-  00118	e1dd30d0	 ldrsb       r3, [sp]
+  00110	e3a03000	 mov         r3, #0
+  00114	e28da004	 add         r10, sp, #4
+  00118		 |$LL16@UpdatingGa|
 
-; 164  :                 }
-; 165  :                 
-; 166  :                 if((ch==0x0D) || (ch==0x20)){
+; 200  :                         {    
+; 201  :                             temp = (int)str[j];
 
-  0011c	e353000d	 cmp         r3, #0xD
-  00120	0a000001	 beq         |$LN4@UpdatingGa|
-  00124	e3530020	 cmp         r3, #0x20
-  00128	1a000001	 bne         |$LN5@UpdatingGa|
-  0012c		 |$LN4@UpdatingGa|
+  00118	e19310da	 ldrsb       r1, [r3, +r10]
 
-; 167  :                     InitI2CWithBQ27510FW(hGPIO_I2C);
+; 202  :                             
+; 203  :                             if(temp >= 65)
 
-  0012c	e1a00006	 mov         r0, r6
-  00130	eb000000	 bl          InitI2CWithBQ27510FW
-  00134		 |$LN5@UpdatingGa|
+  0011c	e3510041	 cmp         r1, #0x41
 
-; 168  :                 }
-; 169  : 
-; 170  :                 /*if(ch==0x0D)
-; 171  :                     OALLog(L"\r\n");
-; 172  :                 else if(ch==0x20)
-; 173  :                     OALLog(L" ");*/
-; 174  :                 
-; 175  :                 i=0;
+; 204  :                                 temp-=55;
 
-  00134	e3a04000	 mov         r4, #0
-  00138		 |$LN9@UpdatingGa|
+  00120	a2411037	 subge       r1, r1, #0x37
 
-; 152  : 
-; 153  :     while( BLSDCardReadData(sizeof(char), (UCHAR *)&ch) )
+; 205  :                             else
+; 206  :                                 temp-=48;                               
 
-  00138	e28d1000	 add         r1, sp, #0
-  0013c	e3a00001	 mov         r0, #1
-  00140	eb000000	 bl          BLSDCardReadData
-  00144	e3500000	 cmp         r0, #0
-  00148	1affffd6	 bne         |$LL13@UpdatingGa|
-  0014c		 |$LN22@UpdatingGa|
+  00124	b2411030	 sublt       r1, r1, #0x30
 
-; 183  :         }
-; 184  :     }
-; 185  :     
-; 186  :     GPIOClose(hGPIO_I2C);
+; 207  :                    
+; 208  :                             if(j==0){
 
-  0014c	e1a00006	 mov         r0, r6
-  00150	eb000000	 bl          GPIOClose
-  00154		 |$I2COpenFailed$46827|
-  00154	e59d0010	 ldr         r0, [sp, #0x10]
-  00158	eb000000	 bl          __security_check_cookie
+  00128	e3530000	 cmp         r3, #0
 
-; 187  : I2COpenFailed:
-; 188  :     return;  
-; 189  : }   
+; 209  :                                 byte = temp<<4;
 
-  0015c	e28dd014	 add         sp, sp, #0x14
-  00160	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
-  00164	e12fff1e	 bx          lr
-  00168		 |$LN26@UpdatingGa|
-  00168		 |$LN27@UpdatingGa|
-  00168	00000000	 DCD         |??_C@_1BK@GKDGOAOM@?$AAR?$AAE?$AAA?$AAD?$AA?$DN?$AA?$DO?$AA?$CF?$AAc?$AA?$HM?$AA?$CF?$AAd?$AA?5?$AA?$AA@|
-  0016c		 |$LN28@UpdatingGa|
-  0016c	00000000	 DCD         |g_convertNum|
-  00170		 |$LN29@UpdatingGa|
-  00170	00000000	 DCD         |??_C@_1BC@NCNMBLBG@?$AAt?$AAe?$AAs?$AAt?$AA?4?$AAt?$AAx?$AAt?$AA?$AA@|
-  00174		 |$LN30@UpdatingGa|
-  00174	00000000	 DCD         |??_C@_1FO@BKJKLBCH@?$AAS?$AAU?$AAC?$AAC?$AAE?$AAS?$AAS?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC@|
-  00178		 |$LN31@UpdatingGa|
-  00178	00000000	 DCD         |??_C@_1GC@GBHIDOHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC?$AA?5?$AAd@|
-  0017c		 |$LN32@UpdatingGa|
-  0017c	00000000	 DCD         |??_C@_1DK@JOLFNFNF@?$AAU?$AAp?$AAd?$AAa?$AAt?$AAi?$AAn?$AAg?$AA?5?$AAF?$AAu?$AAe?$AAl?$AA?5?$AAG?$AAa?$AAu?$AAg?$AAe?$AA?5?$AAF?$AAi?$AAr?$AAm?$AAw?$AAa?$AAr?$AAe?$AA?$AA@|
-  00180		 |$LN33@UpdatingGa|
-  00180	00000000	 DCD         |__security_cookie|
-  00184		 |$M46956|
+  0012c	01a07201	 moveq       r7, r1, lsl #4
+  00130	e2833001	 add         r3, r3, #1
+
+; 210  :                             }else{
+; 211  :                                 byte |= temp;
+
+  00134	11817007	 orrne       r7, r1, r7
+  00138	e3530002	 cmp         r3, #2
+  0013c	bafffff5	 blt         |$LL16@UpdatingGa|
+
+; 212  :                             }
+; 213  :                          }
+; 214  :                          break;
+
+  00140	e59fa0b4	 ldr         r10, [pc, #0xB4]
+  00144	ea000002	 b           |$LN18@UpdatingGa|
+  00148		 |$LN20@UpdatingGa|
+
+; 189  :                 {
+; 190  :                     case 1:
+; 191  :                         byte = (int)(*(str+0));
+; 192  :                         
+; 193  :                         if(byte >= 65)
+
+  00148	e3590041	 cmp         r9, #0x41
+
+; 194  :                             byte-=55;
+
+  0014c	a2497037	 subge       r7, r9, #0x37
+
+; 195  :                         else
+; 196  :                             byte-=48;  
+
+  00150	b2497030	 sublt       r7, r9, #0x30
+  00154		 |$LN18@UpdatingGa|
+
+; 217  :                  }
+; 218  :                 size=0;
+
+  00154	e3a04000	 mov         r4, #0
+  00158		 |$LN23@UpdatingGa|
+
+; 219  :             }
+; 220  :                 
+; 221  :             if( ch!=0x0A){
+
+  00158	e352000a	 cmp         r2, #0xA
+
+; 222  :                 g_value[count] = byte;
+
+  0015c	178b7105	 strne       r7, [r11, +r5, lsl #2]
+
+; 223  :                 g_total = count++;
+
+  00160	11a03005	 movne       r3, r5
+  00164	158a5000	 strne       r5, [r10]
+  00168	059a3000	 ldreq       r3, [r10]
+  0016c	12855001	 addne       r5, r5, #1
+
+; 224  :             }
+; 225  : 
+; 226  :             if( ch==0x0A){
+
+  00170	e352000a	 cmp         r2, #0xA
+  00174	1a00000f	 bne         |$LN7@UpdatingGa|
+
+; 227  :                 for(count=0; count<=g_total; count++){
+
+  00178	e3a06000	 mov         r6, #0
+  0017c	e3530000	 cmp         r3, #0
+  00180	4a000007	 bmi         |$LN4@UpdatingGa|
+  00184	e1a0500b	 mov         r5, r11
+  00188		 |$LL6@UpdatingGa|
+
+; 228  :                     OALLog(L"%02X ",g_value[count]);
+
+  00188	e4951004	 ldr         r1, [r5], #4
+  0018c	e59f0064	 ldr         r0, [pc, #0x64]
+  00190	eb000000	 bl          NKDbgPrintfW
+  00194	e59a3000	 ldr         r3, [r10]
+  00198	e2866001	 add         r6, r6, #1
+  0019c	e1560003	 cmp         r6, r3
+  001a0	dafffff8	 ble         |$LL6@UpdatingGa|
+  001a4		 |$LN4@UpdatingGa|
+
+; 229  :                 }
+; 230  :                 OALLog(L"\r\n");
+
+  001a4	e59f0048	 ldr         r0, [pc, #0x48]
+  001a8	eb000000	 bl          NKDbgPrintfW
+
+; 231  :                 InitI2CWithBQ27510FW(hGPIO_I2C);
+
+  001ac	e1a00008	 mov         r0, r8
+  001b0	eb000000	 bl          InitI2CWithBQ27510FW
+
+; 232  :                 count = 0;
+
+  001b4	e3a05000	 mov         r5, #0
+  001b8		 |$LN7@UpdatingGa|
+  001b8	e28d1000	 add         r1, sp, #0
+  001bc	e3a00001	 mov         r0, #1
+  001c0	eb000000	 bl          BLSDCardReadData
+  001c4	e3500000	 cmp         r0, #0
+  001c8	e28d3004	 add         r3, sp, #4
+  001cc	1affffb6	 bne         |$LL27@UpdatingGa|
+  001d0		 |$LN38@UpdatingGa|
+
+; 239  :         }
+; 240  :     }
+; 241  :     I2C_STOP_FW(hGPIO_I2C);
+
+  001d0	e1a00008	 mov         r0, r8
+  001d4	eb000000	 bl          I2C_STOP_FW
+
+; 242  :     GPIOClose(hGPIO_I2C);
+
+  001d8	e1a00008	 mov         r0, r8
+  001dc	eb000000	 bl          GPIOClose
+  001e0		 |$I2COpenFailed$46844|
+  001e0	e59d0010	 ldr         r0, [sp, #0x10]
+  001e4	eb000000	 bl          __security_check_cookie
+
+; 243  : I2COpenFailed:
+; 244  :     return;  
+; 245  : }   
+
+  001e8	e28dd014	 add         sp, sp, #0x14
+  001ec	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  001f0	e12fff1e	 bx          lr
+  001f4		 |$LN42@UpdatingGa|
+  001f4		 |$LN43@UpdatingGa|
+  001f4	00000000	 DCD         |??_C@_15JNBOKNOG@?$AA?$AN?$AA?6?$AA?$AA@|
+  001f8		 |$LN44@UpdatingGa|
+  001f8	00000000	 DCD         |??_C@_1M@OLEMGGOE@?$AA?$CF?$AA0?$AA2?$AAX?$AA?5?$AA?$AA@|
+  001fc		 |$LN45@UpdatingGa|
+  001fc	00000000	 DCD         |g_total|
+  00200		 |$LN46@UpdatingGa|
+  00200	00000000	 DCD         |??_C@_1CG@HLIGJHI@?$AAI?$AAt?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
+  00204		 |$LN47@UpdatingGa|
+  00204	00000000	 DCD         |g_value|
+  00208		 |$LN48@UpdatingGa|
+  00208	00000000	 DCD         |??_C@_1BC@NCNMBLBG@?$AAt?$AAe?$AAs?$AAt?$AA?4?$AAt?$AAx?$AAt?$AA?$AA@|
+  0020c		 |$LN49@UpdatingGa|
+  0020c	00000000	 DCD         |??_C@_1GC@GBHIDOHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC?$AA?5?$AAd@|
+  00210		 |$LN50@UpdatingGa|
+  00210	00000000	 DCD         |??_C@_1DK@JOLFNFNF@?$AAU?$AAp?$AAd?$AAa?$AAt?$AAi?$AAn?$AAg?$AA?5?$AAF?$AAu?$AAe?$AAl?$AA?5?$AAG?$AAa?$AAu?$AAg?$AAe?$AA?5?$AAF?$AAi?$AAr?$AAm?$AAw?$AAa?$AAr?$AAe?$AA?$AA@|
+  00214		 |$LN51@UpdatingGa|
+  00214	00000000	 DCD         |__security_cookie|
+  00218		 |$M47038|
 
 			 ENDP  ; |UpdatingGaugeFW|
 

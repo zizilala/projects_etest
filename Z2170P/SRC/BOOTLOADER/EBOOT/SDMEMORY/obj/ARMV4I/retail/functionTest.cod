@@ -2446,7 +2446,7 @@
   0005c	eb000000	 bl          GPIOSetMode
 
 ; 811  :     
-; 812  :     InitI2CWithBQ27510(hGPIO_I2C);
+; 812  :     InitI2CWithBQ27510(hGPIO_I2C);                               
 
   00060	e1a00004	 mov         r0, r4
   00064	eb000000	 bl          InitI2CWithBQ27510
