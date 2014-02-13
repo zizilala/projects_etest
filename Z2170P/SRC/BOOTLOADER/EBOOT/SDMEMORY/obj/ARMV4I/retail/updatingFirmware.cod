@@ -656,9 +656,9 @@
   000dc	e1a00004	 mov         r0, r4
   000e0	eb000000	 bl          I2C_ACKnowledge_FW
 
-; 148  :             LcdStall(200);
+; 148  :             LcdStall(180);
 
-  000e4	e3a000c8	 mov         r0, #0xC8
+  000e4	e3a000b4	 mov         r0, #0xB4
   000e8	eb000000	 bl          LcdStall
   000ec	e5973000	 ldr         r3, [r7]
   000f0	e2866001	 add         r6, r6, #1

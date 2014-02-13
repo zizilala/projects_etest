@@ -8,6 +8,8 @@
 	DCB	"-defaultlib:OLDNAMES "
 
 	EXPORT	|??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1BE@FABONDOI@?$AAA?$AAu?$AAt?$AAo?$AA?5?$AAS?$AAc?$AAa?$AAn?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DI@GCPLOKAO@?$AAR?$AAA?$AAM?$AA?5?$AAA?$AAc?$AAc?$AAe?$AAs?$AAs?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$CI?$AAC?$AAo?$AAm?$AAp?$AAl?$AAe?$AAt?$AAe?$AAl?$AAy?$AA?$CJ?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BA@ECNEDNKA@?$AAB?$AAu?$AAr?$AAn?$AA?9?$AAI?$AAn?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CE@POLGPPDB@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAf?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AAa?$AAl?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1CC@DJCNJJMD@?$AAB?$AAa?$AAr?$AAc?$AAo?$AAd?$AAe?$AA?5?$AAS?$AAc?$AAa?$AAn?$AAn?$AAi?$AAn?$AAg?$AA?$AA@| [ DATA ] ; `string'
@@ -21,9 +23,9 @@
 	EXPORT	|??_C@_1CE@NDBHKBD@?$AAA?$AAl?$AAl?$AA?5?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|stall_1Sec| [ DATA ]
 	EXPORT	|sleep1Sec| [ DATA ]
+	EXPORT	|pUartRegs| [ DATA ]
 	EXPORT	|g_menu2170PTest| [ DATA ]
 	EXPORT	|g_menuZ2000Test| [ DATA ]
-	EXPORT	|pUartRegs| [ DATA ]
 
   00000			 AREA	 |.data|, DATA
 	 COMMON	|gKeypadMatrix|, 0x8
@@ -38,6 +40,19 @@
 	DCB	0x0, "x", 0x0, "i", 0x0, "t", 0x0, " ", 0x0, "a", 0x0, "n"
 	DCB	0x0, "d", 0x0, " ", 0x0, "C", 0x0, "o", 0x0, "n", 0x0, "t"
 	DCB	0x0, "i", 0x0, "n", 0x0, "u", 0x0, "e", 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1BE@FABONDOI@?$AAA?$AAu?$AAt?$AAo?$AA?5?$AAS?$AAc?$AAa?$AAn?$AA?$AA@| DCB "A"
+	DCB	0x0, "u", 0x0, "t", 0x0, "o", 0x0, " ", 0x0, "S", 0x0, "c"
+	DCB	0x0, "a", 0x0, "n", 0x0, 0x0, 0x0	; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DI@GCPLOKAO@?$AAR?$AAA?$AAM?$AA?5?$AAA?$AAc?$AAc?$AAe?$AAs?$AAs?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$CI?$AAC?$AAo?$AAm?$AAp?$AAl?$AAe?$AAt?$AAe?$AAl?$AAy?$AA?$CJ?$AA?$AA@| DCB "R"
+	DCB	0x0, "A", 0x0, "M", 0x0, " ", 0x0, "A", 0x0, "c", 0x0, "c"
+	DCB	0x0, "e", 0x0, "s", 0x0, "s", 0x0, " ", 0x0, "T", 0x0, "e"
+	DCB	0x0, "s", 0x0, "t", 0x0, "(", 0x0, "C", 0x0, "o", 0x0, "m"
+	DCB	0x0, "p", 0x0, "l", 0x0, "e", 0x0, "t", 0x0, "e", 0x0, "l"
+	DCB	0x0, "y", 0x0, ")", 0x0, 0x0, 0x0	; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1BA@ECNEDNKA@?$AAB?$AAu?$AAr?$AAn?$AA?9?$AAI?$AAn?$AA?$AA@| DCB "B"
@@ -185,6 +200,20 @@
 	DCD	0x0
 	DCD	0x0
 	DCD	0x0
+	DCW	0x63
+	%	2
+	DCD	|??_C@_1DI@GCPLOKAO@?$AAR?$AAA?$AAM?$AA?5?$AAA?$AAc?$AAc?$AAe?$AAs?$AAs?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$CI?$AAC?$AAo?$AAm?$AAp?$AAl?$AAe?$AAt?$AAe?$AAl?$AAy?$AA?$CJ?$AA?$AA@|
+	DCD	|RAMAccessTest|
+	DCD	0x0
+	DCD	0x0
+	DCD	0x0
+	DCW	0x64
+	%	2
+	DCD	|??_C@_1BE@FABONDOI@?$AAA?$AAu?$AAt?$AAo?$AA?5?$AAS?$AAc?$AAa?$AAn?$AA?$AA@|
+	DCD	|AutoScanFunc|
+	DCD	0x0
+	DCD	0x0
+	DCD	0x0
 	DCW	0x30
 	%	2
 	DCD	|??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@|
@@ -298,7 +327,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\functiontest.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48093| DCD	|$LN5@DisplayTes|
+|$T48206| DCD	|$LN5@DisplayTes|
 	DCD	0x40000b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -312,33 +341,33 @@
 
   00000		 |DisplayTest_Z2170P| PROC
 
-; 205  : {
+; 215  : {
 
   00000		 |$LN5@DisplayTes|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48090|
+  00004		 |$M48203|
 
-; 206  :     BLShowLogo();
+; 216  :     BLShowLogo();
 
   00004	eb000000	 bl          BLShowLogo
 
-; 207  :     OALBLMenuHeader(L"Display Test");
+; 217  :     OALBLMenuHeader(L"Display Test");
 
   00008	e59f0018	 ldr         r0, [pc, #0x18]
   0000c	eb000000	 bl          OALBLMenuHeader
 
-; 208  : 	UNREFERENCED_PARAMETER(pMenu);
-; 209  :     OALLog(L"\r\n Running...\r\n");
+; 218  : 	UNREFERENCED_PARAMETER(pMenu);
+; 219  :     OALLog(L"\r\n Running...\r\n");
 
   00010	e59f000c	 ldr         r0, [pc, #0xC]
   00014	eb000000	 bl          NKDbgPrintfW
 
-; 210  : 	//DisplayShow(BSP_Z2170P);
-; 211  : 	DisplayShow();
+; 220  : 	//DisplayShow(BSP_Z2170P);
+; 221  : 	DisplayShow();
 
   00018	eb000000	 bl          DisplayShow
 
-; 212  : }
+; 222  : }
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
@@ -347,7 +376,7 @@
   00024	00000000	 DCD         |??_C@_1CA@IPGENFE@?$AA?$AN?$AA?6?$AA?5?$AAR?$AAu?$AAn?$AAn?$AAi?$AAn?$AAg?$AA?4?$AA?4?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
   00028		 |$LN8@DisplayTes|
   00028	00000000	 DCD         |??_C@_1BK@FJOPBKKD@?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  0002c		 |$M48091|
+  0002c		 |$M48204|
 
 			 ENDP  ; |DisplayTest_Z2170P|
 
@@ -360,7 +389,7 @@
 	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48108| DCD	|$LN12@SetBacklig|
+|$T48221| DCD	|$LN12@SetBacklig|
 	DCD	0x40004702
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -378,17 +407,17 @@
 
   00000		 |SetBacklight| PROC
 
-; 226  : {
+; 236  : {
 
   00000		 |$LN12@SetBacklig|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
   00004	e24dd02c	 sub         sp, sp, #0x2C
-  00008		 |$M48105|
+  00008		 |$M48218|
 
-; 227  :     HANDLE hGPIO;
-; 228  :     //WCHAR key;
-; 229  :     int i, value, k, scale = 0;    
-; 230  :     int AAT3123Code[11] = { 1, 4 , 7, 10, 13, 16, 19, 22, 25, 28, 32};
+; 237  :     HANDLE hGPIO;
+; 238  :     //WCHAR key;
+; 239  :     int i, value, k, scale = 0;    
+; 240  :     int AAT3123Code[11] = { 1, 4 , 7, 10, 13, 16, 19, 22, 25, 28, 32};
 
   00008	e3a07019	 mov         r7, #0x19
   0000c	e3a03001	 mov         r3, #1
@@ -414,39 +443,39 @@
   0005c	e58d8024	 str         r8, [sp, #0x24]
   00060	e58d9028	 str         r9, [sp, #0x28]
 
-; 231  :                           //0  10  20  30 40  50  60  70  80  90  100
-; 232  :    
-; 233  :     hGPIO = GPIOOpen();
+; 241  :                           //0  10  20  30 40  50  60  70  80  90  100
+; 242  :    
+; 243  :     hGPIO = GPIOOpen();
 
   00064	eb000000	 bl          GPIOOpen
 
-; 234  : 
-; 235  :     GPIOClrBit(hGPIO, BK_SET_GPIO);
+; 244  : 
+; 245  :     GPIOClrBit(hGPIO, BK_SET_GPIO);
 
   00068	e3a0103d	 mov         r1, #0x3D
   0006c	e1a05000	 mov         r5, r0
   00070	eb000000	 bl          GPIOClrBit
 
-; 236  :     LcdStall(stall_1Sec); 
+; 246  :     LcdStall(stall_1Sec); 
 
   00074	e59f809c	 ldr         r8, [pc, #0x9C]
   00078	e5980000	 ldr         r0, [r8]
   0007c	eb000000	 bl          LcdStall
 
-; 237  :             
-; 238  :     for(i=1, k=0; i<=32; i++)
+; 247  :             
+; 248  :     for(i=1, k=0; i<=32; i++)
 
   00080	e3a04001	 mov         r4, #1
   00084	e28d6000	 add         r6, sp, #0
   00088		 |$LL5@SetBacklig|
 
-; 239  :     {
-; 240  :         if(i == (value = AAT3123Code[k]))
+; 249  :     {
+; 250  :         if(i == (value = AAT3123Code[k]))
 
   00088	e5963000	 ldr         r3, [r6]
 
-; 241  :         {
-; 242  :             GPIOClrBit(hGPIO, BK_SET_GPIO);
+; 251  :         {
+; 252  :             GPIOClrBit(hGPIO, BK_SET_GPIO);
 
   0008c	e3a0103d	 mov         r1, #0x3D
   00090	e1a00005	 mov         r0, r5
@@ -454,57 +483,57 @@
   00098	1a00000d	 bne         |$LN2@SetBacklig|
   0009c	eb000000	 bl          GPIOClrBit
 
-; 243  :             LcdStall(1);
+; 253  :             LcdStall(1);
 
   000a0	e3a00001	 mov         r0, #1
   000a4	eb000000	 bl          LcdStall
 
-; 244  :             GPIOSetBit(hGPIO, BK_SET_GPIO);
+; 254  :             GPIOSetBit(hGPIO, BK_SET_GPIO);
 
   000a8	e3a0103d	 mov         r1, #0x3D
   000ac	e1a00005	 mov         r0, r5
   000b0	eb000000	 bl          GPIOSetBit
 
-; 245  :             LcdStall(stall_1Sec);
+; 255  :             LcdStall(stall_1Sec);
 
   000b4	e5980000	 ldr         r0, [r8]
   000b8	eb000000	 bl          LcdStall
 
-; 246  :             OALLog(L"\r !Plus after brightness scale at %d %%\r\n",scale);
+; 256  :             OALLog(L"\r !Plus after brightness scale at %d %%\r\n",scale);
 
   000bc	e59f0050	 ldr         r0, [pc, #0x50]
   000c0	e1a01007	 mov         r1, r7
   000c4	eb000000	 bl          NKDbgPrintfW
 
-; 247  :             scale+=10;
+; 257  :             scale+=10;
 
   000c8	e287700a	 add         r7, r7, #0xA
 
-; 248  :             k++;
+; 258  :             k++;
 
   000cc	e2866004	 add         r6, r6, #4
 
-; 249  :         }else{
+; 259  :         }else{
 
   000d0	ea000007	 b           |$LN4@SetBacklig|
   000d4		 |$LN2@SetBacklig|
 
-; 250  :             GPIOClrBit(hGPIO, BK_SET_GPIO);
+; 260  :             GPIOClrBit(hGPIO, BK_SET_GPIO);
 
   000d4	eb000000	 bl          GPIOClrBit
 
-; 251  :             LcdStall(1);
+; 261  :             LcdStall(1);
 
   000d8	e3a00001	 mov         r0, #1
   000dc	eb000000	 bl          LcdStall
 
-; 252  :             GPIOSetBit(hGPIO, BK_SET_GPIO);
+; 262  :             GPIOSetBit(hGPIO, BK_SET_GPIO);
 
   000e0	e3a0103d	 mov         r1, #0x3D
   000e4	e1a00005	 mov         r0, r5
   000e8	eb000000	 bl          GPIOSetBit
 
-; 253  :             LcdStall(1);
+; 263  :             LcdStall(1);
 
   000ec	e3a00001	 mov         r0, #1
   000f0	eb000000	 bl          LcdStall
@@ -513,71 +542,71 @@
   000f8	e3540020	 cmp         r4, #0x20
   000fc	daffffe1	 ble         |$LL5@SetBacklig|
 
-; 254  :         }
-; 255  :     }   
-; 256  :     /*for (i=0; i<BK_EXIT; i++)
-; 257  :     {
-; 258  :         OALLog(L" [%d] %s\r\n", i+1, lcmBacklight[i].bkName);
-; 259  : 	}
-; 260  :     OALLog(L" [0] Exit and Continue\r\n");*/
-; 261  : 
-; 262  :     //OALLog(L"\r\n Selection : ");
-; 263  : 
-; 264  :     /*do{ 
-; 265  :         key = OALBLMenuReadKey(TRUE);
-; 266  :     }while(key < L'0' || key > L'0' + i);
-; 267  :     // Show selection
-; 268  : 	OALLog(L"%c\r\n", key);*/
-; 269  : 	
-; 270  :     /*switch(key)
-; 271  :     {
-; 272  :          case L'1':
-; 273  :              GPIOClrBit(hGPIO, BK_SET_GPIO);
-; 274  :              LcdStall(stall_1Sec); 
-; 275  :             
-; 276  :              for(i=1, k=0; i<=32; i++)
-; 277  :              {
-; 278  :                 if(i == (value = AAT3123Code[k]))
-; 279  :                 {
-; 280  :                     GPIOClrBit(hGPIO, BK_SET_GPIO);
-; 281  :                     LcdStall(1);
-; 282  :                     GPIOSetBit(hGPIO, BK_SET_GPIO);
-; 283  :                     LcdStall(stall_1Sec);
-; 284  :                     OALLog(L"\r !Plus after brightness scale at %d %%\r\n",scale);
-; 285  :                     scale+=10;
-; 286  :                     k++;
-; 287  :                 }else{
-; 288  :                     GPIOClrBit(hGPIO, BK_SET_GPIO);
-; 289  :                     LcdStall(1);
-; 290  :                     GPIOSetBit(hGPIO, BK_SET_GPIO);
+; 264  :         }
+; 265  :     }   
+; 266  :     /*for (i=0; i<BK_EXIT; i++)
+; 267  :     {
+; 268  :         OALLog(L" [%d] %s\r\n", i+1, lcmBacklight[i].bkName);
+; 269  : 	}
+; 270  :     OALLog(L" [0] Exit and Continue\r\n");*/
+; 271  : 
+; 272  :     //OALLog(L"\r\n Selection : ");
+; 273  : 
+; 274  :     /*do{ 
+; 275  :         key = OALBLMenuReadKey(TRUE);
+; 276  :     }while(key < L'0' || key > L'0' + i);
+; 277  :     // Show selection
+; 278  : 	OALLog(L"%c\r\n", key);*/
+; 279  : 	
+; 280  :     /*switch(key)
+; 281  :     {
+; 282  :          case L'1':
+; 283  :              GPIOClrBit(hGPIO, BK_SET_GPIO);
+; 284  :              LcdStall(stall_1Sec); 
+; 285  :             
+; 286  :              for(i=1, k=0; i<=32; i++)
+; 287  :              {
+; 288  :                 if(i == (value = AAT3123Code[k]))
+; 289  :                 {
+; 290  :                     GPIOClrBit(hGPIO, BK_SET_GPIO);
 ; 291  :                     LcdStall(1);
-; 292  :                 }
-; 293  :             }
-; 294  :             break;
-; 295  :          case L'2':
-; 296  :              for(i=1; i<=22; i++)
-; 297  :              {
-; 298  :                  GPIOClrBit(hGPIO, BK_SET_GPIO);
-; 299  :                  LcdStall(1);
-; 300  :                  GPIOSetBit(hGPIO, BK_SET_GPIO);
-; 301  :                  LcdStall(1);
-; 302  :              }
-; 303  :              OALLog(L"\r !Now Backlight ON,default scale at 70%%\r\n");
-; 304  :              break;
-; 305  :          case L'3':
-; 306  :              GPIOClrBit(hGPIO, BK_SET_GPIO);
-; 307  :              LcdStall(1);
-; 308  :              OALLog(L"\r !Now Backlight OFF\r\n");
-; 309  :              break;
-; 310  :     }*/
-; 311  :     GPIOClose(hGPIO);
+; 292  :                     GPIOSetBit(hGPIO, BK_SET_GPIO);
+; 293  :                     LcdStall(stall_1Sec);
+; 294  :                     OALLog(L"\r !Plus after brightness scale at %d %%\r\n",scale);
+; 295  :                     scale+=10;
+; 296  :                     k++;
+; 297  :                 }else{
+; 298  :                     GPIOClrBit(hGPIO, BK_SET_GPIO);
+; 299  :                     LcdStall(1);
+; 300  :                     GPIOSetBit(hGPIO, BK_SET_GPIO);
+; 301  :                     LcdStall(1);
+; 302  :                 }
+; 303  :             }
+; 304  :             break;
+; 305  :          case L'2':
+; 306  :              for(i=1; i<=22; i++)
+; 307  :              {
+; 308  :                  GPIOClrBit(hGPIO, BK_SET_GPIO);
+; 309  :                  LcdStall(1);
+; 310  :                  GPIOSetBit(hGPIO, BK_SET_GPIO);
+; 311  :                  LcdStall(1);
+; 312  :              }
+; 313  :              OALLog(L"\r !Now Backlight ON,default scale at 70%%\r\n");
+; 314  :              break;
+; 315  :          case L'3':
+; 316  :              GPIOClrBit(hGPIO, BK_SET_GPIO);
+; 317  :              LcdStall(1);
+; 318  :              OALLog(L"\r !Now Backlight OFF\r\n");
+; 319  :              break;
+; 320  :     }*/
+; 321  :     GPIOClose(hGPIO);
 
   00100	e1a00005	 mov         r0, r5
   00104	eb000000	 bl          GPIOClose
 
-; 312  :     
-; 313  :     //if (key == L'0') return;    
-; 314  : }
+; 322  :     
+; 323  :     //if (key == L'0') return;    
+; 324  : }
 
   00108	e28dd02c	 add         sp, sp, #0x2C
   0010c	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
@@ -587,7 +616,7 @@
   00114	00000000	 DCD         |??_C@_1FE@PFEMMGFN@?$AA?$AN?$AA?5?$AA?$CB?$AAP?$AAl?$AAu?$AAs?$AA?5?$AAa?$AAf?$AAt?$AAe?$AAr?$AA?5?$AAb?$AAr?$AAi?$AAg?$AAh?$AAt?$AAn?$AAe?$AAs?$AAs?$AA?5?$AAs?$AAc?$AAa?$AAl?$AAe?$AA?5?$AAa@|
   00118		 |$LN15@SetBacklig|
   00118	00000000	 DCD         |stall_1Sec|
-  0011c		 |$M48106|
+  0011c		 |$M48219|
 
 			 ENDP  ; |SetBacklight|
 
@@ -601,7 +630,7 @@
 	EXPORT	|??_C@_1FM@GKBCNJJJ@?$AA?$AN?$AA?6?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48122| DCD	|$LN12@DRAMTest_Z|
+|$T48235| DCD	|$LN12@DRAMTest_Z|
 	DCD	0x40003d01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -667,51 +696,51 @@
 
   00000		 |DRAMTest_Z2170P| PROC
 
-; 331  : {
+; 341  : {
 
   00000		 |$LN12@DRAMTest_Z|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M48119|
+  00004		 |$M48232|
 
-; 332  :     ULONG  startAddress = IMAGE_SHARE_ARGS_CA;
-; 333  :     ULONG  endAddress = startAddress|(256 *1024 *1024); //endAddress = startAddress + size(256MB) 
-; 334  :     ULONG   test1_Address = (startAddress|0x0000FFFF);      //
-; 335  :     //ULONG   test2_Address = (startAddress|0x0FFFFF00);
-; 336  :     //ULONG   ebootAddress = IMAGE_EBOOT_CODE_CA ;
-; 337  :     ULONG   i, testAddress =  0xFFFFFFFF;
-; 338  :     BYTE    value, temp, pattern = 0x1A; 
-; 339  :     //ULONG   percentRange;
-; 340  :     ULONG   percent;        
-; 341  :      
-; 342  : 	UNREFERENCED_PARAMETER(pMenu);
-; 343  : 	OALBLMenuHeader(L"DRAM Test");
+; 342  :     ULONG  startAddress = IMAGE_SHARE_ARGS_CA;
+; 343  :     ULONG  endAddress = startAddress|(256 *1024 *1024-1); //endAddress = startAddress + size(256MB) 
+; 344  :     ULONG   test1_Address = (startAddress|0x0000FFFF);      //
+; 345  :     //ULONG   test2_Address = (startAddress|0x0FFFFF00);
+; 346  :     //ULONG   ebootAddress = IMAGE_EBOOT_CODE_CA ;
+; 347  :     ULONG   i, testAddress =  0xFFFFFFFF;
+; 348  :     BYTE    value, temp, pattern = 0x1A; 
+; 349  :     //ULONG   percentRange;
+; 350  :     ULONG   percent;        
+; 351  :      
+; 352  : 	UNREFERENCED_PARAMETER(pMenu);
+; 353  : 	OALBLMenuHeader(L"DRAM Test");
 
   00004	e59f00e4	 ldr         r0, [pc, #0xE4]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 344  : 
-; 345  : 	//percentRange = (endAddress - startAddress)/100;
-; 346  :     OALLog(L"\r\n !Start Address: 0X%08X", (startAddress&testAddress));
+; 354  : 
+; 355  : 	//percentRange = (endAddress - startAddress)/100;
+; 356  :     OALLog(L"\r\n !Start Address: 0X%08X", (startAddress&testAddress));
 
   0000c	e59f00d8	 ldr         r0, [pc, #0xD8]
   00010	e3a01102	 mov         r1, #2, 2
   00014	eb000000	 bl          NKDbgPrintfW
 
-; 347  :     OALLog(L"\r\n !Test1 Address: 0X%08X", (test1_Address&testAddress));
+; 357  :     OALLog(L"\r\n !Test1 Address: 0X%08X", (test1_Address&testAddress));
 
   00018	e59f00c8	 ldr         r0, [pc, #0xC8]
   0001c	e3e0347f	 mvn         r3, #0x7F, 8
   00020	e22318ff	 eor         r1, r3, #0xFF, 16
   00024	eb000000	 bl          NKDbgPrintfW
 
-; 348  :     //OALLog(L"\r\n !Test2 Address: 0X%08X", (test2_Address&test));
-; 349  :     OALLog(L"\r\n !End   Address: 0X%08X", (endAddress&testAddress));
+; 358  :     //OALLog(L"\r\n !Test2 Address: 0X%08X", (test2_Address&test));
+; 359  :     OALLog(L"\r\n !End   Address: 0X%08X", (endAddress&testAddress));
 
   00028	e59f00b4	 ldr         r0, [pc, #0xB4]
-  0002c	e3a01209	 mov         r1, #9, 4
+  0002c	e3e01207	 mvn         r1, #7, 4
   00030	eb000000	 bl          NKDbgPrintfW
 
-; 350  :     OALLog(L"\r\n------------------------------------------\n");
+; 360  :     OALLog(L"\r\n------------------------------------------\n");
 
   00034	e59f00a4	 ldr         r0, [pc, #0xA4]
   00038	eb000000	 bl          NKDbgPrintfW
@@ -725,82 +754,82 @@
   00058	e3a0901a	 mov         r9, #0x1A
   0005c		 |$LL5@DRAMTest_Z|
 
-; 351  :   
-; 352  : 	/*for(i=0, percent=0; i<(test1_Address - startAddress); i++)
-; 353  : 	{
-; 354  :         temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
-; 355  :         *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(1A) 
-; 356  :         value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
-; 357  :         *(volatile BYTE *)(startAddress + i) = temp;        //store data
-; 358  : 
-; 359  :         if(value != pattern)                                //check value(in address value) equal pattern
-; 360  :         {
-; 361  :             OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
-; 362  :         }else{
-; 363  :             percent++;
-; 364  :             OALLog(L"\r\n Decoding Memoey percent: %d >>>  Address: 0X%X",percent, startAddress+i);   
-; 365  :             //OALLog(L"\r\n Address: 0X%X", startAddress+i);
-; 366  :         }
-; 367  : 
-; 368  :         if( (percent%10) == 0){
-; 369  :             OALLog(L"\r\n-----------------------------------\n");
-; 370  :             LcdStall(stall_1Sec); 
-; 371  :         }
-; 372  : 	}
-; 373  :     OALLog(L"\r\n");
-; 374  :     LcdStall(stall_1Sec*3);*/
-; 375  : 
-; 376  :     //OALLog(L"\r\n");
-; 377  :     for(i=0, percent=1; i<(test1_Address - startAddress); i++, percent++)
-; 378  : 	{
-; 379  :         temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
+; 361  :   
+; 362  : 	/*for(i=0, percent=0; i<(test1_Address - startAddress); i++)
+; 363  : 	{
+; 364  :         temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
+; 365  :         *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(1A) 
+; 366  :         value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
+; 367  :         *(volatile BYTE *)(startAddress + i) = temp;        //store data
+; 368  : 
+; 369  :         if(value != pattern)                                //check value(in address value) equal pattern
+; 370  :         {
+; 371  :             OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
+; 372  :         }else{
+; 373  :             percent++;
+; 374  :             OALLog(L"\r\n Decoding Memoey percent: %d >>>  Address: 0X%X",percent, startAddress+i);   
+; 375  :             //OALLog(L"\r\n Address: 0X%X", startAddress+i);
+; 376  :         }
+; 377  : 
+; 378  :         if( (percent%10) == 0){
+; 379  :             OALLog(L"\r\n-----------------------------------\n");
+; 380  :             LcdStall(stall_1Sec); 
+; 381  :         }
+; 382  : 	}
+; 383  :     OALLog(L"\r\n");
+; 384  :     LcdStall(stall_1Sec*3);*/
+; 385  : 
+; 386  :     //OALLog(L"\r\n");
+; 387  :     for(i=0, percent=1; i<(test1_Address - startAddress); i++, percent++)
+; 388  : 	{
+; 389  :         temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
 
   0005c	e5d42000	 ldrb        r2, [r4]
 
-; 380  :         *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(1A) 
+; 390  :         *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(1A) 
 
   00060	e5c49000	 strb        r9, [r4]
 
-; 381  :         value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
+; 391  :         value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
 
   00064	e5d43000	 ldrb        r3, [r4]
 
-; 382  :         *(volatile BYTE *)(startAddress + i) = temp;        //store data
+; 392  :         *(volatile BYTE *)(startAddress + i) = temp;        //store data
 
   00068	e5c42000	 strb        r2, [r4]
 
-; 383  :         
-; 384  :         if(value != pattern)                                //check value(in address value) equal pattern
+; 393  :         
+; 394  :         if(value != pattern)                                //check value(in address value) equal pattern
 
   0006c	e353001a	 cmp         r3, #0x1A
 
-; 385  :         {
-; 386  :             OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
+; 395  :         {
+; 396  :             OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
 
   00070	159f005c	 ldrne       r0, [pc, #0x5C]
   00074	11a01004	 movne       r1, r4
   00078	1b000000	 blne        NKDbgPrintfW
 
-; 387  :         }/*else{
-; 388  :             OALLog(L"*");
-; 389  :             //percent++;
-; 390  :             //OALLog(L"\r\n Decoding Memoey percent: %d >>>  Address: 0X%X",percent, test2_Address+i);   
-; 391  :             //OALLog(L"\r\n Address: 0X%X", startAddress+i);
-; 392  :         }*/
-; 393  : 
-; 394  :         if( (percent%1024) == 0){   //scan 1kB show tip 
+; 397  :         }/*else{
+; 398  :             OALLog(L"*");
+; 399  :             //percent++;
+; 400  :             //OALLog(L"\r\n Decoding Memoey percent: %d >>>  Address: 0X%X",percent, test2_Address+i);   
+; 401  :             //OALLog(L"\r\n Address: 0X%X", startAddress+i);
+; 402  :         }*/
+; 403  : 
+; 404  :         if( (percent%1024) == 0){   //scan 1kB show tip 
 
   0007c	e2843106	 add         r3, r4, #6, 2
   00080	e1130006	 tst         r3, r6
   00084	1a000006	 bne         |$LN4@DRAMTest_Z|
 
-; 395  :             OALLog(L"\rScanned size: %dk\r\n",percent/1024);
+; 405  :             OALLog(L"\rScanned size: %dk\r\n",percent/1024);
 
   00088	e59f0040	 ldr         r0, [pc, #0x40]
   0008c	e1a01523	 mov         r1, r3, lsr #10
   00090	eb000000	 bl          NKDbgPrintfW
 
-; 396  :             LcdStall(stall_1Sec/1000); 
+; 406  :             LcdStall(stall_1Sec/1000); 
 
   00094	e5971000	 ldr         r1, [r7]
   00098	e0832891	 umull       r2, r3, r1, r8
@@ -811,45 +840,45 @@
   000a8	e2555001	 subs        r5, r5, #1
   000ac	1affffea	 bne         |$LL5@DRAMTest_Z|
 
-; 397  :         }
-; 398  : 	}
-; 399  : 	OALLog(L"\r\n");
+; 407  :         }
+; 408  : 	}
+; 409  : 	OALLog(L"\r\n");
 
   000b0	e59f0014	 ldr         r0, [pc, #0x14]
   000b4	eb000000	 bl          NKDbgPrintfW
 
-; 400  :     OALLog(L"\rTested ok!! \r\n");
+; 410  :     OALLog(L"\rTested ok!! \r\n");
 
   000b8	e59f0008	 ldr         r0, [pc, #8]
   000bc	eb000000	 bl          NKDbgPrintfW
 
-; 401  : 
-; 402  :     //LcdStall(stall_1Sec*3); 
-; 403  :     
-; 404  : 	/*for(i=0, Round=1; i<0xFF; i++)                         //Testing eboot, Ray  131113
-; 405  :     {
-; 406  :         if(i==65)
-; 407  :         {
-; 408  :             temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
-; 409  :             *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(1A) 
-; 410  :             value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
-; 411  :             *(volatile BYTE *)(startAddress + i) = temp;        //store data   
-; 412  :             if(value != pattern)                                //check value(in address value) equal pattern
-; 413  :             {
-; 414  :                 OALLog(L"\r\n Error Address: 0X%X", (ebootAddress+i));
-; 415  :             }
-; 416  :         }
-; 417  : 
-; 418  :         OALLog(L"\r\n Eboot Address: 0x%08x, Value = 0x%08x", (ebootAddress+i),*(volatile BYTE *)(ebootAddress+i));
-; 419  :         
-; 420  :         if((Round%16)== 0)
-; 421  :         {
-; 422  :             OALLog(L"\r\n Round %d",Round);
-; 423  :             OALLog(L"\r\n---------------------\n"); 
-; 424  :             Round++;
-; 425  :         }
-; 426  :     }*/
-; 427  : }
+; 411  : 
+; 412  :     //LcdStall(stall_1Sec*3); 
+; 413  :     
+; 414  : 	/*for(i=0, Round=1; i<0xFF; i++)                         //Testing eboot, Ray  131113
+; 415  :     {
+; 416  :         if(i==65)
+; 417  :         {
+; 418  :             temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
+; 419  :             *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(1A) 
+; 420  :             value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
+; 421  :             *(volatile BYTE *)(startAddress + i) = temp;        //store data   
+; 422  :             if(value != pattern)                                //check value(in address value) equal pattern
+; 423  :             {
+; 424  :                 OALLog(L"\r\n Error Address: 0X%X", (ebootAddress+i));
+; 425  :             }
+; 426  :         }
+; 427  : 
+; 428  :         OALLog(L"\r\n Eboot Address: 0x%08x, Value = 0x%08x", (ebootAddress+i),*(volatile BYTE *)(ebootAddress+i));
+; 429  :         
+; 430  :         if((Round%16)== 0)
+; 431  :         {
+; 432  :             OALLog(L"\r\n Round %d",Round);
+; 433  :             OALLog(L"\r\n---------------------\n"); 
+; 434  :             Round++;
+; 435  :         }
+; 436  :     }*/
+; 437  : }
 
   000c0	e8bd43f0	 ldmia       sp!, {r4 - r9, lr}
   000c4	e12fff1e	 bx          lr
@@ -876,7 +905,7 @@
   000ec	00000000	 DCD         |??_C@_1DE@LFDKHCLM@?$AA?$AN?$AA?6?$AA?5?$AA?$CB?$AAS?$AAt?$AAa?$AAr?$AAt?$AA?5?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA0?$AAX?$AA?$CF?$AA0?$AA8?$AAX?$AA?$AA@|
   000f0		 |$LN24@DRAMTest_Z|
   000f0	00000000	 DCD         |??_C@_1BE@DFLOJDLG@?$AAD?$AAR?$AAA?$AAM?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  000f4		 |$M48120|
+  000f4		 |$M48233|
 
 			 ENDP  ; |DRAMTest_Z2170P|
 
@@ -885,7 +914,7 @@
 	IMPORT	|LcdSleep|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48142| DCD	|$LN5@KeypadBkTe|
+|$T48255| DCD	|$LN5@KeypadBkTe|
 	DCD	0x40002801
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -911,97 +940,97 @@
 
   00000		 |KeypadBkTest_Z2170P| PROC
 
-; 433  : {
+; 443  : {
 
   00000		 |$LN5@KeypadBkTe|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48139|
+  00004		 |$M48252|
 
-; 434  : 	DWORD delay = 1000;
-; 435  : 	HANDLE hGPIO;
-; 436  : 	UNREFERENCED_PARAMETER(pMenu);
-; 437  : 	OALBLMenuHeader(L"Keypad Backlight Test");
+; 444  : 	DWORD delay = 1000;
+; 445  : 	HANDLE hGPIO;
+; 446  : 	UNREFERENCED_PARAMETER(pMenu);
+; 447  : 	OALBLMenuHeader(L"Keypad Backlight Test");
 
   00004	e59f0090	 ldr         r0, [pc, #0x90]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 438  : 
-; 439  :     hGPIO = GPIOOpen();
+; 448  : 
+; 449  :     hGPIO = GPIOOpen();
 
   0000c	eb000000	 bl          GPIOOpen
 
-; 440  :        
-; 441  :     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);
+; 450  :        
+; 451  :     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);
 
   00010	e3a0109b	 mov         r1, #0x9B
   00014	e1a04000	 mov         r4, r0
   00018	eb000000	 bl          GPIOSetBit
 
-; 442  :     LcdStall(100);
+; 452  :     LcdStall(100);
 
   0001c	e3a00064	 mov         r0, #0x64
   00020	eb000000	 bl          LcdStall
 
-; 443  :     GPIOClrBit(hGPIO, KP_LED_SET_GPIO);         //Low-active
+; 453  :     GPIOClrBit(hGPIO, KP_LED_SET_GPIO);         //Low-active
 
   00024	e3a0109b	 mov         r1, #0x9B
   00028	e1a00004	 mov         r0, r4
   0002c	eb000000	 bl          GPIOClrBit
 
-; 444  :     OALLog(L"\r !Now Keypad LED first flash \r\n");
+; 454  :     OALLog(L"\r !Now Keypad LED first flash \r\n");
 
   00030	e59f0060	 ldr         r0, [pc, #0x60]
   00034	eb000000	 bl          NKDbgPrintfW
 
-; 445  :     LcdSleep(delay*2);
+; 455  :     LcdSleep(delay*2);
 
   00038	e3a00e7d	 mov         r0, #0x7D, 28
   0003c	eb000000	 bl          LcdSleep
 
-; 446  :   
-; 447  :     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);
+; 456  :   
+; 457  :     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);
 
   00040	e3a0109b	 mov         r1, #0x9B
   00044	e1a00004	 mov         r0, r4
   00048	eb000000	 bl          GPIOSetBit
 
-; 448  :     LcdStall(stall_1Sec);
+; 458  :     LcdStall(stall_1Sec);
 
   0004c	e59f3040	 ldr         r3, [pc, #0x40]
   00050	e5930000	 ldr         r0, [r3]
   00054	eb000000	 bl          LcdStall
 
-; 449  :     GPIOClrBit(hGPIO, KP_LED_SET_GPIO);
+; 459  :     GPIOClrBit(hGPIO, KP_LED_SET_GPIO);
 
   00058	e3a0109b	 mov         r1, #0x9B
   0005c	e1a00004	 mov         r0, r4
   00060	eb000000	 bl          GPIOClrBit
 
-; 450  :     OALLog(L"\r !Now Keypad LED twice flash \r\n");
+; 460  :     OALLog(L"\r !Now Keypad LED twice flash \r\n");
 
   00064	e59f0024	 ldr         r0, [pc, #0x24]
   00068	eb000000	 bl          NKDbgPrintfW
 
-; 451  :     LcdSleep(delay*2);
+; 461  :     LcdSleep(delay*2);
 
   0006c	e3a00e7d	 mov         r0, #0x7D, 28
   00070	eb000000	 bl          LcdSleep
 
-; 452  : 
-; 453  :     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);         //Keypad LED liht Close 
+; 462  : 
+; 463  :     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);         //Keypad LED liht Close 
 
   00074	e3a0109b	 mov         r1, #0x9B
   00078	e1a00004	 mov         r0, r4
   0007c	eb000000	 bl          GPIOSetBit
 
-; 454  : 
-; 455  :     GPIOClose(hGPIO);
+; 464  : 
+; 465  :     GPIOClose(hGPIO);
 
   00080	e1a00004	 mov         r0, r4
   00084	eb000000	 bl          GPIOClose
 
-; 456  : 
-; 457  : }
+; 466  : 
+; 467  : }
 
   00088	e8bd4010	 ldmia       sp!, {r4, lr}
   0008c	e12fff1e	 bx          lr
@@ -1014,7 +1043,7 @@
   00098	00000000	 DCD         |??_C@_1EC@NLKOKMKL@?$AA?$AN?$AA?5?$AA?$CB?$AAN?$AAo?$AAw?$AA?5?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAL?$AAE?$AAD?$AA?5?$AAf?$AAi?$AAr?$AAs?$AAt?$AA?5?$AAf?$AAl?$AAa?$AAs?$AAh?$AA?5?$AA?$AN?$AA?6@|
   0009c		 |$LN10@KeypadBkTe|
   0009c	00000000	 DCD         |??_C@_1CM@GFKLDENM@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  000a0		 |$M48140|
+  000a0		 |$M48253|
 
 			 ENDP  ; |KeypadBkTest_Z2170P|
 
@@ -1023,7 +1052,7 @@
 	IMPORT	|tsc2046Test|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48154| DCD	|$LN5@TouchPanel|
+|$T48267| DCD	|$LN5@TouchPanel|
 	DCD	0x40000d01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1046,34 +1075,34 @@
 
   00000		 |TouchPanelTest_Z2170P| PROC
 
-; 463  : {
+; 473  : {
 
   00000		 |$LN5@TouchPanel|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48151|
+  00004		 |$M48264|
 
-; 464  :     UNREFERENCED_PARAMETER(pMenu);
-; 465  :     OALBLMenuHeader(L"Touch Panel Test");
+; 474  :     UNREFERENCED_PARAMETER(pMenu);
+; 475  :     OALBLMenuHeader(L"Touch Panel Test");
 
   00004	e59f0024	 ldr         r0, [pc, #0x24]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 466  :     
-; 467  :     OALLog(L"\r Touch Panel Running...\r\n");  
+; 476  :     
+; 477  :     OALLog(L"\r Touch Panel Running...\r\n");  
 
   0000c	e59f0018	 ldr         r0, [pc, #0x18]
   00010	eb000000	 bl          NKDbgPrintfW
 
-; 468  :     tsc2046Test();
+; 478  :     tsc2046Test();
 
   00014	eb000000	 bl          tsc2046Test
 
-; 469  :     OALLog(L"\r Touch Panel End...\r\n");  
+; 479  :     OALLog(L"\r Touch Panel End...\r\n");  
 
   00018	e59f0008	 ldr         r0, [pc, #8]
   0001c	eb000000	 bl          NKDbgPrintfW
 
-; 470  : }
+; 480  : }
 
   00020	e49de004	 ldr         lr, [sp], #4
   00024	e12fff1e	 bx          lr
@@ -1084,14 +1113,14 @@
   0002c	00000000	 DCD         |??_C@_1DG@MPNEEBCD@?$AA?$AN?$AA?5?$AAT?$AAo?$AAu?$AAc?$AAh?$AA?5?$AAP?$AAa?$AAn?$AAe?$AAl?$AA?5?$AAR?$AAu?$AAn?$AAn?$AAi?$AAn?$AAg?$AA?4?$AA?4?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
   00030		 |$LN9@TouchPanel|
   00030	00000000	 DCD         |??_C@_1CC@BNGFPPEB@?$AAT?$AAo?$AAu?$AAc?$AAh?$AA?5?$AAP?$AAa?$AAn?$AAe?$AAl?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  00034		 |$M48152|
+  00034		 |$M48265|
 
 			 ENDP  ; |TouchPanelTest_Z2170P|
 
 	EXPORT	|I2C_Clk|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48166| DCD	|$LN5@I2C_Clk|
+|$T48279| DCD	|$LN5@I2C_Clk|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -1099,35 +1128,35 @@
 
   00000		 |I2C_Clk| PROC
 
-; 478  : {
+; 488  : {
 
   00000		 |$LN5@I2C_Clk|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48163|
+  00004		 |$M48276|
   00004	e1a04000	 mov         r4, r0
 
-; 479  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);  
+; 489  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);  
 
   00008	e3a010b8	 mov         r1, #0xB8
   0000c	eb000000	 bl          GPIOSetBit
 
-; 480  :     LcdStall(50);
+; 490  :     LcdStall(50);
 
   00010	e3a00032	 mov         r0, #0x32
   00014	eb000000	 bl          LcdStall
 
-; 481  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO); 
+; 491  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO); 
 
   00018	e3a010b8	 mov         r1, #0xB8
   0001c	e1a00004	 mov         r0, r4
   00020	eb000000	 bl          GPIOClrBit
 
-; 482  :     //LcdStall(50);
-; 483  : }
+; 492  :     //LcdStall(50);
+; 493  : }
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
-  0002c		 |$M48164|
+  0002c		 |$M48277|
 
 			 ENDP  ; |I2C_Clk|
 
@@ -1136,7 +1165,7 @@
 	IMPORT	|GPIOSetMode|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48174| DCD	|$LN5@I2C_ACKnow|
+|$T48287| DCD	|$LN5@I2C_ACKnow|
 	DCD	0x40001c01
 ; Function compile flags: /Ogspy
 
@@ -1144,82 +1173,82 @@
 
   00000		 |I2C_ACKnowledge| PROC
 
-; 488  : {
+; 498  : {
 
   00000		 |$LN5@I2C_ACKnow|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48171|
+  00004		 |$M48284|
   00004	e1a04000	 mov         r4, r0
 
-; 489  : 
-; 490  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+; 499  : 
+; 500  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
 
   00008	e3a02001	 mov         r2, #1
   0000c	e3a010b9	 mov         r1, #0xB9
   00010	eb000000	 bl          GPIOSetMode
 
-; 491  :     LcdStall(50);
+; 501  :     LcdStall(50);
 
   00014	e3a00032	 mov         r0, #0x32
   00018	eb000000	 bl          LcdStall
 
-; 492  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
+; 502  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
 
   0001c	e3a010b8	 mov         r1, #0xB8
   00020	e1a00004	 mov         r0, r4
   00024	eb000000	 bl          GPIOSetBit
 
-; 493  :     LcdStall(50); 
+; 503  :     LcdStall(50); 
 
   00028	e3a00032	 mov         r0, #0x32
   0002c	eb000000	 bl          LcdStall
 
-; 494  :     GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+; 504  :     GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
 
   00030	e3a010b9	 mov         r1, #0xB9
   00034	e1a00004	 mov         r0, r4
   00038	eb000000	 bl          GPIOGetBit
 
-; 495  :     LcdStall(50);
+; 505  :     LcdStall(50);
 
   0003c	e3a00032	 mov         r0, #0x32
   00040	eb000000	 bl          LcdStall
 
-; 496  : 
-; 497  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
+; 506  : 
+; 507  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
 
   00044	e3a02000	 mov         r2, #0
   00048	e3a010b9	 mov         r1, #0xB9
   0004c	e1a00004	 mov         r0, r4
   00050	eb000000	 bl          GPIOSetMode
 
-; 498  :     //LcdStall(50);
-; 499  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
+; 508  :     //LcdStall(50);
+; 509  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
 
   00054	e3a010b8	 mov         r1, #0xB8
   00058	e1a00004	 mov         r0, r4
   0005c	eb000000	 bl          GPIOClrBit
 
-; 500  :     LcdStall(50);   
+; 510  :     LcdStall(50);   
 
   00060	e3a00032	 mov         r0, #0x32
   00064	eb000000	 bl          LcdStall
 
-; 501  :     //Doesnot Needs SDA Line falling time!!
-; 502  :     /*GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
-; 503  :     LcdStall(50);*/
-; 504  : }
+; 511  :     //Doesnot Needs SDA Line falling time!!
+; 512  :     /*GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+; 513  :     LcdStall(50);*/
+; 514  : }
 
   00068	e8bd4010	 ldmia       sp!, {r4, lr}
   0006c	e12fff1e	 bx          lr
-  00070		 |$M48172|
+  00070		 |$M48285|
 
 			 ENDP  ; |I2C_ACKnowledge|
 
 	EXPORT	|I2C_ACKnowledge_READ|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48182| DCD	|$LN5@I2C_ACKnow@2|
+|$T48295| DCD	|$LN5@I2C_ACKnow@2|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -1227,63 +1256,63 @@
 
   00000		 |I2C_ACKnowledge_READ| PROC
 
-; 509  : {       
+; 519  : {       
 
   00000		 |$LN5@I2C_ACKnow@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48179|
+  00004		 |$M48292|
   00004	e1a04000	 mov         r4, r0
 
-; 510  : 
-; 511  :     //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
-; 512  :     //LcdStall(50);
-; 513  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
+; 520  : 
+; 521  :     //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+; 522  :     //LcdStall(50);
+; 523  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
 
   00008	e3a010b8	 mov         r1, #0xB8
   0000c	eb000000	 bl          GPIOSetBit
 
-; 514  :     LcdStall(50); 
+; 524  :     LcdStall(50); 
 
   00010	e3a00032	 mov         r0, #0x32
   00014	eb000000	 bl          LcdStall
 
-; 515  :     GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+; 525  :     GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
 
   00018	e3a010b9	 mov         r1, #0xB9
   0001c	e1a00004	 mov         r0, r4
   00020	eb000000	 bl          GPIOGetBit
 
-; 516  :     LcdStall(50);
+; 526  :     LcdStall(50);
 
   00024	e3a00032	 mov         r0, #0x32
   00028	eb000000	 bl          LcdStall
 
-; 517  :     
-; 518  :     //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
-; 519  :     //LcdStall(50);
-; 520  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
+; 527  :     
+; 528  :     //GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT); 
+; 529  :     //LcdStall(50);
+; 530  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
 
   0002c	e3a010b8	 mov         r1, #0xB8
   00030	e1a00004	 mov         r0, r4
   00034	eb000000	 bl          GPIOClrBit
 
-; 521  :     LcdStall(50);         
+; 531  :     LcdStall(50);         
 
   00038	e3a00032	 mov         r0, #0x32
   0003c	eb000000	 bl          LcdStall
 
-; 522  : }
+; 532  : }
 
   00040	e8bd4010	 ldmia       sp!, {r4, lr}
   00044	e12fff1e	 bx          lr
-  00048		 |$M48180|
+  00048		 |$M48293|
 
 			 ENDP  ; |I2C_ACKnowledge_READ|
 
 	EXPORT	|I2C_Clk_READ|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48193| DCD	|$LN5@I2C_Clk_RE|
+|$T48306| DCD	|$LN5@I2C_Clk_RE|
 	DCD	0x40001401
 ; Function compile flags: /Ogspy
 
@@ -1291,64 +1320,64 @@
 
   00000		 |I2C_Clk_READ| PROC
 
-; 527  : {
+; 537  : {
 
   00000		 |$LN5@I2C_Clk_RE|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M48190|
+  00004		 |$M48303|
   00004	e1a05000	 mov         r5, r0
 
-; 528  :     DWORD data=0;
-; 529  :     
-; 530  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
+; 538  :     DWORD data=0;
+; 539  :     
+; 540  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);
 
   00008	e3a010b8	 mov         r1, #0xB8
   0000c	eb000000	 bl          GPIOSetBit
 
-; 531  :     LcdStall(50);
+; 541  :     LcdStall(50);
 
   00010	e3a00032	 mov         r0, #0x32
   00014	eb000000	 bl          LcdStall
 
-; 532  :     data = GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+; 542  :     data = GPIOGetBit(hGPIO_I2C, I2C3_SDA_GPIO); 
 
   00018	e3a010b9	 mov         r1, #0xB9
   0001c	e1a00005	 mov         r0, r5
   00020	eb000000	 bl          GPIOGetBit
   00024	e1a04000	 mov         r4, r0
 
-; 533  :     LcdStall(10);
+; 543  :     LcdStall(10);
 
   00028	e3a0000a	 mov         r0, #0xA
   0002c	eb000000	 bl          LcdStall
 
-; 534  :     
-; 535  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
+; 544  :     
+; 545  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   
 
   00030	e3a010b8	 mov         r1, #0xB8
   00034	e1a00005	 mov         r0, r5
   00038	eb000000	 bl          GPIOClrBit
 
-; 536  :     LcdStall(50); 
+; 546  :     LcdStall(50); 
 
   0003c	e3a00032	 mov         r0, #0x32
   00040	eb000000	 bl          LcdStall
 
-; 537  :     
-; 538  :     return (int)data;
-; 539  : }
+; 547  :     
+; 548  :     return (int)data;
+; 549  : }
 
   00044	e1a00004	 mov         r0, r4
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M48191|
+  00050		 |$M48304|
 
 			 ENDP  ; |I2C_Clk_READ|
 
 	EXPORT	|I2C_READ|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48207| DCD	|$LN10@I2C_READ|
+|$T48320| DCD	|$LN10@I2C_READ|
 	DCD	0x40001b01
 ; Function compile flags: /Ogspy
 
@@ -1356,81 +1385,81 @@
 
   00000		 |I2C_READ| PROC
 
-; 544  : {
+; 554  : {
 
   00000		 |$LN10@I2C_READ|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M48204|
+  00004		 |$M48317|
   00004	e1a05000	 mov         r5, r0
 
-; 545  :     int i, rx, value;
-; 546  :     
-; 547  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
+; 555  :     int i, rx, value;
+; 556  :     
+; 557  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_INPUT);      //Get slave a ACK value for SDA line  
 
   00008	e3a02001	 mov         r2, #1
   0000c	e3a010b9	 mov         r1, #0xB9
   00010	eb000000	 bl          GPIOSetMode
 
-; 548  :     LcdStall(50);
+; 558  :     LcdStall(50);
 
   00014	e3a00032	 mov         r0, #0x32
   00018	eb000000	 bl          LcdStall
 
-; 549  :     for(i=7, value=0; i>=0; i--)
+; 559  :     for(i=7, value=0; i>=0; i--)
 
   0001c	e3a04007	 mov         r4, #7
   00020	e3a06000	 mov         r6, #0
   00024		 |$LL3@I2C_READ|
 
-; 550  :     {
-; 551  :         rx = I2C_Clk_READ(hGPIO_I2C); 
+; 560  :     {
+; 561  :         rx = I2C_Clk_READ(hGPIO_I2C); 
 
   00024	e1a00005	 mov         r0, r5
   00028	eb000000	 bl          I2C_Clk_READ
 
-; 552  :         value += (rx<<i);
+; 562  :         value += (rx<<i);
 
   0002c	e0866410	 add         r6, r6, r0, lsl r4
   00030	e2544001	 subs        r4, r4, #1
   00034	5afffffa	 bpl         |$LL3@I2C_READ|
 
-; 553  :     }
-; 554  :     
-; 555  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);      
+; 563  :     }
+; 564  :     
+; 565  :     GPIOSetMode(hGPIO_I2C, I2C3_SDA_GPIO, GPIO_DIR_OUTPUT);      
 
   00038	e3a02000	 mov         r2, #0
   0003c	e3a010b9	 mov         r1, #0xB9
   00040	e1a00005	 mov         r0, r5
   00044	eb000000	 bl          GPIOSetMode
 
-; 556  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);    
+; 566  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);    
 
   00048	e3a010b8	 mov         r1, #0xB8
   0004c	e1a00005	 mov         r0, r5
   00050	eb000000	 bl          GPIOClrBit
 
-; 557  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+; 567  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
 
   00054	e3a010b9	 mov         r1, #0xB9
   00058	e1a00005	 mov         r0, r5
   0005c	eb000000	 bl          GPIOClrBit
 
-; 558  :     //LcdStall(50); 
-; 559  :     
-; 560  :     return value;
-; 561  : }
+; 568  :     //LcdStall(50); 
+; 569  :     
+; 570  :     return value;
+; 571  : }
 
   00060	e1a00006	 mov         r0, r6
   00064	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00068	e12fff1e	 bx          lr
-  0006c		 |$M48205|
+  0006c		 |$M48318|
 
 			 ENDP  ; |I2C_READ|
 
 	EXPORT	|I2C_WRITE|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48226| DCD	|$LN17@I2C_WRITE|
+|$T48339| DCD	|$LN17@I2C_WRITE|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -1438,51 +1467,51 @@
 
   00000		 |I2C_WRITE| PROC
 
-; 566  : {
+; 576  : {
 
   00000		 |$LN17@I2C_WRITE|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48223|
+  00004		 |$M48336|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
-; 567  :     int i;
-; 568  :     for(i=7; i>=0; i--)
+; 577  :     int i;
+; 578  :     for(i=7; i>=0; i--)
 
   0000c	e3a04007	 mov         r4, #7
   00010	e3a07001	 mov         r7, #1
   00014		 |$LL5@I2C_WRITE|
 
-; 569  :     {
-; 570  :         if( CMD&(1<<i) ){
+; 579  :     {
+; 580  :         if( CMD&(1<<i) ){
 
   00014	e1160417	 tst         r6, r7, lsl r4
 
-; 571  :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
+; 581  :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
 
   00018	e3a010b9	 mov         r1, #0xB9
   0001c	e1a00005	 mov         r0, r5
   00020	0a000001	 beq         |$LN2@I2C_WRITE|
   00024	eb000000	 bl          GPIOSetBit
 
-; 572  :             LcdStall(50);
-; 573  :             I2C_Clk(hGPIO_I2C);
-; 574  :         }else{
+; 582  :             LcdStall(50);
+; 583  :             I2C_Clk(hGPIO_I2C);
+; 584  :         }else{
 
   00028	ea000000	 b           |$LN14@I2C_WRITE|
   0002c		 |$LN2@I2C_WRITE|
 
-; 575  :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
+; 585  :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
 
   0002c	eb000000	 bl          GPIOClrBit
   00030		 |$LN14@I2C_WRITE|
 
-; 576  :             LcdStall(50);
+; 586  :             LcdStall(50);
 
   00030	e3a00032	 mov         r0, #0x32
   00034	eb000000	 bl          LcdStall
 
-; 577  :             I2C_Clk(hGPIO_I2C);
+; 587  :             I2C_Clk(hGPIO_I2C);
 
   00038	e3a010b8	 mov         r1, #0xB8
   0003c	e1a00005	 mov         r0, r5
@@ -1495,20 +1524,20 @@
   00058	e2544001	 subs        r4, r4, #1
   0005c	5affffec	 bpl         |$LL5@I2C_WRITE|
 
-; 578  :         }
-; 579  :     }           
-; 580  : }
+; 588  :         }
+; 589  :     }           
+; 590  : }
 
   00060	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M48224|
+  00068		 |$M48337|
 
 			 ENDP  ; |I2C_WRITE|
 
 	EXPORT	|I2C_setSlaveAddress_READ|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48245| DCD	|$LN17@I2C_setSla|
+|$T48358| DCD	|$LN17@I2C_setSla|
 	DCD	0x40001f01
 ; Function compile flags: /Ogspy
 
@@ -1516,51 +1545,51 @@
 
   00000		 |I2C_setSlaveAddress_READ| PROC
 
-; 585  : {    
+; 595  : {    
 
   00000		 |$LN17@I2C_setSla|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48242|
+  00004		 |$M48355|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
-; 586  :     int i; 
-; 587  :     for(i=7; i >=0; i--)
+; 596  :     int i; 
+; 597  :     for(i=7; i >=0; i--)
 
   0000c	e3a04007	 mov         r4, #7
   00010	e3a07001	 mov         r7, #1
   00014		 |$LL5@I2C_setSla|
 
-; 588  :     {         
-; 589  :         if( addr&(1<<i) ){
+; 598  :     {         
+; 599  :         if( addr&(1<<i) ){
 
   00014	e1160417	 tst         r6, r7, lsl r4
 
-; 590  :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
+; 600  :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
 
   00018	e3a010b9	 mov         r1, #0xB9
   0001c	e1a00005	 mov         r0, r5
   00020	0a000001	 beq         |$LN2@I2C_setSla|
   00024	eb000000	 bl          GPIOSetBit
 
-; 591  :             LcdStall(50);
-; 592  :             I2C_Clk(hGPIO_I2C);
-; 593  :         }else{
+; 601  :             LcdStall(50);
+; 602  :             I2C_Clk(hGPIO_I2C);
+; 603  :         }else{
 
   00028	ea000000	 b           |$LN14@I2C_setSla|
   0002c		 |$LN2@I2C_setSla|
 
-; 594  :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
+; 604  :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
 
   0002c	eb000000	 bl          GPIOClrBit
   00030		 |$LN14@I2C_setSla|
 
-; 595  :             LcdStall(50);
+; 605  :             LcdStall(50);
 
   00030	e3a00032	 mov         r0, #0x32
   00034	eb000000	 bl          LcdStall
 
-; 596  :             I2C_Clk(hGPIO_I2C);
+; 606  :             I2C_Clk(hGPIO_I2C);
 
   00038	e3a010b8	 mov         r1, #0xB8
   0003c	e1a00005	 mov         r0, r5
@@ -1573,31 +1602,31 @@
   00058	e2544001	 subs        r4, r4, #1
   0005c	5affffec	 bpl         |$LL5@I2C_setSla|
 
-; 597  :         }
-; 598  :     }
-; 599  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
+; 607  :         }
+; 608  :     }
+; 609  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO); 
 
   00060	e3a010b9	 mov         r1, #0xB9
   00064	e1a00005	 mov         r0, r5
   00068	eb000000	 bl          GPIOClrBit
 
-; 600  :     LcdStall(50);
+; 610  :     LcdStall(50);
 
   0006c	e3a00032	 mov         r0, #0x32
   00070	eb000000	 bl          LcdStall
 
-; 601  : }
+; 611  : }
 
   00074	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00078	e12fff1e	 bx          lr
-  0007c		 |$M48243|
+  0007c		 |$M48356|
 
 			 ENDP  ; |I2C_setSlaveAddress_READ|
 
 	EXPORT	|I2C_setSlaveAddress|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48264| DCD	|$LN17@I2C_setSla@2|
+|$T48377| DCD	|$LN17@I2C_setSla@2|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -1605,51 +1634,51 @@
 
   00000		 |I2C_setSlaveAddress| PROC
 
-; 606  : {    
+; 616  : {    
 
   00000		 |$LN17@I2C_setSla@2|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M48261|
+  00004		 |$M48374|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
-; 607  :     int i;  
-; 608  :     for(i=7; i >=0; i--)
+; 617  :     int i;  
+; 618  :     for(i=7; i >=0; i--)
 
   0000c	e3a04007	 mov         r4, #7
   00010	e3a07001	 mov         r7, #1
   00014		 |$LL5@I2C_setSla@2|
 
-; 609  :     {         
-; 610  :         if( addr&(1<<i) ){
+; 619  :     {         
+; 620  :         if( addr&(1<<i) ){
 
   00014	e1160417	 tst         r6, r7, lsl r4
 
-; 611  :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
+; 621  :             GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);  
 
   00018	e3a010b9	 mov         r1, #0xB9
   0001c	e1a00005	 mov         r0, r5
   00020	0a000001	 beq         |$LN2@I2C_setSla@2|
   00024	eb000000	 bl          GPIOSetBit
 
-; 612  :             LcdStall(50);
-; 613  :             I2C_Clk(hGPIO_I2C);
-; 614  :         }else{
+; 622  :             LcdStall(50);
+; 623  :             I2C_Clk(hGPIO_I2C);
+; 624  :         }else{
 
   00028	ea000000	 b           |$LN14@I2C_setSla@2|
   0002c		 |$LN2@I2C_setSla@2|
 
-; 615  :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
+; 625  :             GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   
 
   0002c	eb000000	 bl          GPIOClrBit
   00030		 |$LN14@I2C_setSla@2|
 
-; 616  :             LcdStall(50);
+; 626  :             LcdStall(50);
 
   00030	e3a00032	 mov         r0, #0x32
   00034	eb000000	 bl          LcdStall
 
-; 617  :             I2C_Clk(hGPIO_I2C);
+; 627  :             I2C_Clk(hGPIO_I2C);
 
   00038	e3a010b8	 mov         r1, #0xB8
   0003c	e1a00005	 mov         r0, r5
@@ -1662,20 +1691,20 @@
   00058	e2544001	 subs        r4, r4, #1
   0005c	5affffec	 bpl         |$LL5@I2C_setSla@2|
 
-; 618  :         }
-; 619  :     }  
-; 620  : }
+; 628  :         }
+; 629  :     }  
+; 630  : }
 
   00060	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M48262|
+  00068		 |$M48375|
 
 			 ENDP  ; |I2C_setSlaveAddress|
 
 	EXPORT	|I2C_START|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48272| DCD	|$LN5@I2C_START|
+|$T48385| DCD	|$LN5@I2C_START|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -1683,69 +1712,69 @@
 
   00000		 |I2C_START| PROC
 
-; 625  : {
+; 635  : {
 
   00000		 |$LN5@I2C_START|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48269|
+  00004		 |$M48382|
   00004	e1a04000	 mov         r4, r0
 
-; 626  :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S1, SDA = High
+; 636  :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S1, SDA = High
 
   00008	e3a010b9	 mov         r1, #0xB9
   0000c	eb000000	 bl          GPIOSetBit
 
-; 627  :     LcdStall(100);                          
+; 637  :     LcdStall(100);                          
 
   00010	e3a00064	 mov         r0, #0x64
   00014	eb000000	 bl          LcdStall
 
-; 628  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S2, SCL = High ; kept high   
+; 638  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S2, SCL = High ; kept high   
 
   00018	e3a010b8	 mov         r1, #0xB8
   0001c	e1a00004	 mov         r0, r4
   00020	eb000000	 bl          GPIOSetBit
 
-; 629  :     LcdStall(100);
+; 639  :     LcdStall(100);
 
   00024	e3a00064	 mov         r0, #0x64
   00028	eb000000	 bl          LcdStall
 
-; 630  :     
-; 631  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S3, When SDA changes High -> Low , start bit generating
+; 640  :     
+; 641  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S3, When SDA changes High -> Low , start bit generating
 
   0002c	e3a010b9	 mov         r1, #0xB9
   00030	e1a00004	 mov         r0, r4
   00034	eb000000	 bl          GPIOClrBit
 
-; 632  :     LcdStall(50);                           
+; 642  :     LcdStall(50);                           
 
   00038	e3a00032	 mov         r0, #0x32
   0003c	eb000000	 bl          LcdStall
 
-; 633  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S4, SCL = Low 
+; 643  :     GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);   //S4, SCL = Low 
 
   00040	e3a010b8	 mov         r1, #0xB8
   00044	e1a00004	 mov         r0, r4
   00048	eb000000	 bl          GPIOClrBit
 
-; 634  :     LcdStall(50);                          
+; 644  :     LcdStall(50);                          
 
   0004c	e3a00032	 mov         r0, #0x32
   00050	eb000000	 bl          LcdStall
 
-; 635  : }
+; 645  : }
 
   00054	e8bd4010	 ldmia       sp!, {r4, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M48270|
+  0005c		 |$M48383|
 
 			 ENDP  ; |I2C_START|
 
 	EXPORT	|I2C_STOP|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48280| DCD	|$LN5@I2C_STOP|
+|$T48393| DCD	|$LN5@I2C_STOP|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -1753,58 +1782,58 @@
 
   00000		 |I2C_STOP| PROC
 
-; 640  : {   
+; 650  : {   
 
   00000		 |$LN5@I2C_STOP|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48277|
+  00004		 |$M48390|
   00004	e1a04000	 mov         r4, r0
 
-; 641  :     //GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);
-; 642  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P1
+; 651  :     //GPIOClrBit(hGPIO_I2C, I2C3_SCL_GPIO);
+; 652  :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P1
 
   00008	e3a010b9	 mov         r1, #0xB9
   0000c	eb000000	 bl          GPIOClrBit
 
-; 643  :     LcdStall(50);
+; 653  :     LcdStall(50);
 
   00010	e3a00032	 mov         r0, #0x32
   00014	eb000000	 bl          LcdStall
 
-; 644  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //P2
+; 654  :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);   //P2
 
   00018	e3a010b8	 mov         r1, #0xB8
   0001c	e1a00004	 mov         r0, r4
   00020	eb000000	 bl          GPIOSetBit
 
-; 645  :     LcdStall(50);
+; 655  :     LcdStall(50);
 
   00024	e3a00032	 mov         r0, #0x32
   00028	eb000000	 bl          LcdStall
 
-; 646  :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P3
+; 656  :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P3
 
   0002c	e3a010b9	 mov         r1, #0xB9
   00030	e1a00004	 mov         r0, r4
   00034	eb000000	 bl          GPIOSetBit
 
-; 647  :     LcdStall(50);    
+; 657  :     LcdStall(50);    
 
   00038	e3a00032	 mov         r0, #0x32
   0003c	eb000000	 bl          LcdStall
 
-; 648  : }
+; 658  : }
 
   00040	e8bd4010	 ldmia       sp!, {r4, lr}
   00044	e12fff1e	 bx          lr
-  00048		 |$M48278|
+  00048		 |$M48391|
 
 			 ENDP  ; |I2C_STOP|
 
 	EXPORT	|gaugeInformation|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48299| DCD	|$LN13@gaugeInfor|
+|$T48412| DCD	|$LN13@gaugeInfor|
 	DCD	0x40004a02
 ; Function compile flags: /Ogspy
 
@@ -1812,162 +1841,162 @@
 
   00000		 |gaugeInformation| PROC
 
-; 653  : {
+; 663  : {
 
   00000		 |$LN13@gaugeInfor|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd040	 sub         sp, sp, #0x40
-  00008		 |$M48296|
+  00008		 |$M48409|
   00008	e1a04001	 mov         r4, r1
   0000c	e1a06000	 mov         r6, r0
   00010	e3a03a03	 mov         r3, #3, 20
 
-; 654  :     int LSB = 0, MSB = 0; 
-; 655  :     int i, temp, sum, a[16];
-; 656  : 
-; 657  :     LcdStall(12500);
+; 664  :     int LSB = 0, MSB = 0; 
+; 665  :     int i, temp, sum, a[16];
+; 666  : 
+; 667  :     LcdStall(12500);
 
   00014	e38300d4	 orr         r0, r3, #0xD4
   00018	eb000000	 bl          LcdStall
 
-; 658  :     //*************************
-; 659  :     I2C_START(hGPIO_I2C);  
+; 668  :     //*************************
+; 669  :     I2C_START(hGPIO_I2C);  
 
   0001c	e1a00006	 mov         r0, r6
   00020	eb000000	 bl          I2C_START
 
-; 660  :     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
+; 670  :     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
 
   00024	e3a010aa	 mov         r1, #0xAA
   00028	e1a00006	 mov         r0, r6
   0002c	eb000000	 bl          I2C_setSlaveAddress
 
-; 661  :     LcdStall(100);    
+; 671  :     LcdStall(100);    
 
   00030	e3a00064	 mov         r0, #0x64
   00034	eb000000	 bl          LcdStall
 
-; 662  :     I2C_ACKnowledge(hGPIO_I2C);
+; 672  :     I2C_ACKnowledge(hGPIO_I2C);
 
   00038	e1a00006	 mov         r0, r6
   0003c	eb000000	 bl          I2C_ACKnowledge
 
-; 663  :     
-; 664  :     I2C_WRITE(hGPIO_I2C,  stdCMD);              //CMD[7:0]
+; 673  :     
+; 674  :     I2C_WRITE(hGPIO_I2C,  stdCMD);              //CMD[7:0]
 
   00040	e1a01004	 mov         r1, r4
   00044	e1a00006	 mov         r0, r6
   00048	eb000000	 bl          I2C_WRITE
 
-; 665  :     //I2C_WRITE(hGPIO_I2C, bq27500CMD_VOLT_LSB);
-; 666  :     LcdStall(300);                                          //100 200 500-ok 50, Maybe trouble        
+; 675  :     //I2C_WRITE(hGPIO_I2C, bq27500CMD_VOLT_LSB);
+; 676  :     LcdStall(300);                                          //100 200 500-ok 50, Maybe trouble        
 
   0004c	e3a00f4b	 mov         r0, #0x4B, 30
   00050	eb000000	 bl          LcdStall
 
-; 667  :     I2C_ACKnowledge(hGPIO_I2C);
+; 677  :     I2C_ACKnowledge(hGPIO_I2C);
 
   00054	e1a00006	 mov         r0, r6
   00058	eb000000	 bl          I2C_ACKnowledge
 
-; 668  :     //*************************
-; 669  :      
-; 670  :     //Sr
-; 671  :     LcdStall(1000); 
+; 678  :     //*************************
+; 679  :      
+; 680  :     //Sr
+; 681  :     LcdStall(1000); 
 
   0005c	e3a00ffa	 mov         r0, #0xFA, 30
   00060	eb000000	 bl          LcdStall
 
-; 672  : 
-; 673  :     //*************************    
-; 674  :     I2C_START(hGPIO_I2C);
+; 682  : 
+; 683  :     //*************************    
+; 684  :     I2C_START(hGPIO_I2C);
 
   00064	e1a00006	 mov         r0, r6
   00068	eb000000	 bl          I2C_START
 
-; 675  :     I2C_setSlaveAddress_READ(hGPIO_I2C, BQ27510_ADDRESS_READ);
+; 685  :     I2C_setSlaveAddress_READ(hGPIO_I2C, BQ27510_ADDRESS_READ);
 
   0006c	e3a010ab	 mov         r1, #0xAB
   00070	e1a00006	 mov         r0, r6
   00074	eb000000	 bl          I2C_setSlaveAddress_READ
 
-; 676  :     LcdStall(300);  
+; 686  :     LcdStall(300);  
 
   00078	e3a00f4b	 mov         r0, #0x4B, 30
   0007c	eb000000	 bl          LcdStall
 
-; 677  :     I2C_ACKnowledge(hGPIO_I2C);
+; 687  :     I2C_ACKnowledge(hGPIO_I2C);
 
   00080	e1a00006	 mov         r0, r6
   00084	eb000000	 bl          I2C_ACKnowledge
 
-; 678  : 
-; 679  :     //prepare get Data LSB
-; 680  :     LcdStall(300); 
+; 688  : 
+; 689  :     //prepare get Data LSB
+; 690  :     LcdStall(300); 
 
   00088	e3a00f4b	 mov         r0, #0x4B, 30
   0008c	eb000000	 bl          LcdStall
 
-; 681  :     LSB  = I2C_READ(hGPIO_I2C);
+; 691  :     LSB  = I2C_READ(hGPIO_I2C);
 
   00090	e1a00006	 mov         r0, r6
   00094	eb000000	 bl          I2C_READ
   00098	e1a05000	 mov         r5, r0
 
-; 682  :     LcdStall(300);
+; 692  :     LcdStall(300);
 
   0009c	e3a00f4b	 mov         r0, #0x4B, 30
   000a0	eb000000	 bl          LcdStall
 
-; 683  :     I2C_ACKnowledge_READ(hGPIO_I2C);
+; 693  :     I2C_ACKnowledge_READ(hGPIO_I2C);
 
   000a4	e1a00006	 mov         r0, r6
   000a8	eb000000	 bl          I2C_ACKnowledge_READ
 
-; 684  : 
-; 685  :     //prepare get Data MSB
-; 686  :     LcdStall(1000); 
+; 694  : 
+; 695  :     //prepare get Data MSB
+; 696  :     LcdStall(1000); 
 
   000ac	e3a00ffa	 mov         r0, #0xFA, 30
   000b0	eb000000	 bl          LcdStall
 
-; 687  :     MSB = I2C_READ(hGPIO_I2C);
+; 697  :     MSB = I2C_READ(hGPIO_I2C);
 
   000b4	e1a00006	 mov         r0, r6
   000b8	eb000000	 bl          I2C_READ
   000bc	e1a04000	 mov         r4, r0
 
-; 688  :     LcdStall(300);
+; 698  :     LcdStall(300);
 
   000c0	e3a00f4b	 mov         r0, #0x4B, 30
   000c4	eb000000	 bl          LcdStall
 
-; 689  :     I2C_ACKnowledge_READ(hGPIO_I2C);
+; 699  :     I2C_ACKnowledge_READ(hGPIO_I2C);
 
   000c8	e1a00006	 mov         r0, r6
   000cc	eb000000	 bl          I2C_ACKnowledge_READ
 
-; 690  :     LcdStall(500);
+; 700  :     LcdStall(500);
 
   000d0	e3a00f7d	 mov         r0, #0x7D, 30
   000d4	eb000000	 bl          LcdStall
 
-; 691  :     I2C_STOP(hGPIO_I2C);
+; 701  :     I2C_STOP(hGPIO_I2C);
 
   000d8	e1a00006	 mov         r0, r6
   000dc	eb000000	 bl          I2C_STOP
 
-; 692  :     //*************************
-; 693  :     
-; 694  :     //RETAILMSG(1, (L" ~Value = 0x%02x 0x%02x \r\n",MSB ,LSB));
-; 695  : 
-; 696  :     temp = (MSB<<8);
-; 697  :     temp |= LSB;
+; 702  :     //*************************
+; 703  :     
+; 704  :     //RETAILMSG(1, (L" ~Value = 0x%02x 0x%02x \r\n",MSB ,LSB));
+; 705  : 
+; 706  :     temp = (MSB<<8);
+; 707  :     temp |= LSB;
 
   000e0	e185e404	 orr         lr, r5, r4, lsl #8
 
-; 698  : 
-; 699  :     for(i=0, sum=0; i<16; i++){
+; 708  : 
+; 709  :     for(i=0, sum=0; i<16; i++){
 
   000e4	e3a04001	 mov         r4, #1
   000e8	e3a05001	 mov         r5, #1
@@ -1976,37 +2005,37 @@
   000f4	e28d1000	 add         r1, sp, #0
   000f8		 |$LL5@gaugeInfor|
 
-; 700  : 		if(i<8)
+; 710  : 		if(i<8)
 
   000f8	e3530008	 cmp         r3, #8
 
-; 701  : 			a[i] = temp & (1<<i);
+; 711  : 			a[i] = temp & (1<<i);
 
   000fc	b00e2314	 andlt       r2, lr, r4, lsl r3
 
-; 702  : 		else
-; 703  : 			a[i] = temp & (1<<i);
+; 712  : 		else
+; 713  : 			a[i] = temp & (1<<i);
 
   00100	a00e2315	 andge       r2, lr, r5, lsl r3
   00104	e2833001	 add         r3, r3, #1
   00108	e5812000	 str         r2, [r1]
 
-; 704  : 			
-; 705  : 		sum += a[i];
+; 714  : 			
+; 715  : 		sum += a[i];
 
   0010c	e2811004	 add         r1, r1, #4
   00110	e3530010	 cmp         r3, #0x10
   00114	e0800002	 add         r0, r0, r2
   00118	bafffff6	 blt         |$LL5@gaugeInfor|
 
-; 706  : 	}
-; 707  :     return sum;
-; 708  : }
+; 716  : 	}
+; 717  :     return sum;
+; 718  : }
 
   0011c	e28dd040	 add         sp, sp, #0x40
   00120	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   00124	e12fff1e	 bx          lr
-  00128		 |$M48297|
+  00128		 |$M48410|
 
 			 ENDP  ; |gaugeInformation|
 
@@ -2016,7 +2045,7 @@
 	EXPORT	|??_C@_1DK@NOEMNDJB@?$AA?5?$AA?$HO?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAV?$AAo?$AAl?$AAt?$AAa?$AAg?$AAe?$AAs?$AA?5?$AA?$DN?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48311| DCD	|$LN5@InitI2CWit|
+|$T48424| DCD	|$LN5@InitI2CWit|
 	DCD	0x40007d01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2051,248 +2080,248 @@
 
   00000		 |InitI2CWithBQ27510| PROC
 
-; 713  : {
+; 723  : {
 
   00000		 |$LN5@InitI2CWit|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M48308|
+  00004		 |$M48421|
   00004	e1a08000	 mov         r8, r0
 
-; 714  :     bq_dataram data;
-; 715  :     int LSB = 0, MSB = 0; 
-; 716  :     //int i, temp, sum, a[16];
-; 717  :     
-; 718  :     //*************************
-; 719  :     I2C_START(hGPIO_I2C);  
+; 724  :     bq_dataram data;
+; 725  :     int LSB = 0, MSB = 0; 
+; 726  :     //int i, temp, sum, a[16];
+; 727  :     
+; 728  :     //*************************
+; 729  :     I2C_START(hGPIO_I2C);  
 
   00008	eb000000	 bl          I2C_START
 
-; 720  :     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
+; 730  :     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
 
   0000c	e3a010aa	 mov         r1, #0xAA
   00010	e1a00008	 mov         r0, r8
   00014	eb000000	 bl          I2C_setSlaveAddress
 
-; 721  :     LcdStall(100);    
+; 731  :     LcdStall(100);    
 
   00018	e3a00064	 mov         r0, #0x64
   0001c	eb000000	 bl          LcdStall
 
-; 722  :     I2C_ACKnowledge(hGPIO_I2C);
+; 732  :     I2C_ACKnowledge(hGPIO_I2C);
 
   00020	e1a00008	 mov         r0, r8
   00024	eb000000	 bl          I2C_ACKnowledge
 
-; 723  :     
-; 724  :     I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
+; 733  :     
+; 734  :     I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
 
   00028	e3a01000	 mov         r1, #0
   0002c	e1a00008	 mov         r0, r8
   00030	eb000000	 bl          I2C_WRITE
 
-; 725  :     LcdStall(300);                                          
+; 735  :     LcdStall(300);                                          
 
   00034	e3a00f4b	 mov         r0, #0x4B, 30
   00038	eb000000	 bl          LcdStall
 
-; 726  :     I2C_ACKnowledge(hGPIO_I2C);
+; 736  :     I2C_ACKnowledge(hGPIO_I2C);
 
   0003c	e1a00008	 mov         r0, r8
   00040	eb000000	 bl          I2C_ACKnowledge
 
-; 727  : 
-; 728  :     I2C_WRITE(hGPIO_I2C,  0x01);          
+; 737  : 
+; 738  :     I2C_WRITE(hGPIO_I2C,  0x01);          
 
   00044	e3a01001	 mov         r1, #1
   00048	e1a00008	 mov         r0, r8
   0004c	eb000000	 bl          I2C_WRITE
 
-; 729  :     LcdStall(300);                                                  
+; 739  :     LcdStall(300);                                                  
 
   00050	e3a00f4b	 mov         r0, #0x4B, 30
   00054	eb000000	 bl          LcdStall
 
-; 730  :     I2C_ACKnowledge(hGPIO_I2C);
+; 740  :     I2C_ACKnowledge(hGPIO_I2C);
 
   00058	e1a00008	 mov         r0, r8
   0005c	eb000000	 bl          I2C_ACKnowledge
 
-; 731  : 
-; 732  :     I2C_WRITE(hGPIO_I2C,  0x00);          
+; 741  : 
+; 742  :     I2C_WRITE(hGPIO_I2C,  0x00);          
 
   00060	e3a01000	 mov         r1, #0
   00064	e1a00008	 mov         r0, r8
   00068	eb000000	 bl          I2C_WRITE
 
-; 733  :     LcdStall(300);                                                  
+; 743  :     LcdStall(300);                                                  
 
   0006c	e3a00f4b	 mov         r0, #0x4B, 30
   00070	eb000000	 bl          LcdStall
 
-; 734  :     I2C_ACKnowledge(hGPIO_I2C);
+; 744  :     I2C_ACKnowledge(hGPIO_I2C);
 
   00074	e1a00008	 mov         r0, r8
   00078	eb000000	 bl          I2C_ACKnowledge
 
-; 735  :     I2C_STOP(hGPIO_I2C);
+; 745  :     I2C_STOP(hGPIO_I2C);
 
   0007c	e1a00008	 mov         r0, r8
   00080	eb000000	 bl          I2C_STOP
 
-; 736  :     //*************************
-; 737  :     
-; 738  :     LcdStall(1000); 
+; 746  :     //*************************
+; 747  :     
+; 748  :     LcdStall(1000); 
 
   00084	e3a00ffa	 mov         r0, #0xFA, 30
   00088	eb000000	 bl          LcdStall
 
-; 739  :     //*************************    
-; 740  :     I2C_START(hGPIO_I2C);                                    //Sr 
+; 749  :     //*************************    
+; 750  :     I2C_START(hGPIO_I2C);                                    //Sr 
 
   0008c	e1a00008	 mov         r0, r8
   00090	eb000000	 bl          I2C_START
 
-; 741  :     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
+; 751  :     I2C_setSlaveAddress(hGPIO_I2C, BQ27510_ADDRESS_WRITE);   //ADDR[7:1] + R/W[0] 
 
   00094	e3a010aa	 mov         r1, #0xAA
   00098	e1a00008	 mov         r0, r8
   0009c	eb000000	 bl          I2C_setSlaveAddress
 
-; 742  :     LcdStall(100);    
+; 752  :     LcdStall(100);    
 
   000a0	e3a00064	 mov         r0, #0x64
   000a4	eb000000	 bl          LcdStall
 
-; 743  :     I2C_ACKnowledge(hGPIO_I2C);
+; 753  :     I2C_ACKnowledge(hGPIO_I2C);
 
   000a8	e1a00008	 mov         r0, r8
   000ac	eb000000	 bl          I2C_ACKnowledge
 
-; 744  :     
-; 745  :     I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
+; 754  :     
+; 755  :     I2C_WRITE(hGPIO_I2C,  bq27500CMD_CNTL_LSB);              //CMD[7:0] 
 
   000b0	e3a01000	 mov         r1, #0
   000b4	e1a00008	 mov         r0, r8
   000b8	eb000000	 bl          I2C_WRITE
 
-; 746  :     LcdStall(300);                                         
+; 756  :     LcdStall(300);                                         
 
   000bc	e3a00f4b	 mov         r0, #0x4B, 30
   000c0	eb000000	 bl          LcdStall
 
-; 747  :     I2C_ACKnowledge(hGPIO_I2C);
+; 757  :     I2C_ACKnowledge(hGPIO_I2C);
 
   000c4	e1a00008	 mov         r0, r8
   000c8	eb000000	 bl          I2C_ACKnowledge
 
-; 748  : 
-; 749  :     I2C_START(hGPIO_I2C);
+; 758  : 
+; 759  :     I2C_START(hGPIO_I2C);
 
   000cc	e1a00008	 mov         r0, r8
   000d0	eb000000	 bl          I2C_START
 
-; 750  :     I2C_setSlaveAddress_READ(hGPIO_I2C, BQ27510_ADDRESS_READ);
+; 760  :     I2C_setSlaveAddress_READ(hGPIO_I2C, BQ27510_ADDRESS_READ);
 
   000d4	e3a010ab	 mov         r1, #0xAB
   000d8	e1a00008	 mov         r0, r8
   000dc	eb000000	 bl          I2C_setSlaveAddress_READ
 
-; 751  :     LcdStall(300);  
+; 761  :     LcdStall(300);  
 
   000e0	e3a00f4b	 mov         r0, #0x4B, 30
   000e4	eb000000	 bl          LcdStall
 
-; 752  :     I2C_ACKnowledge(hGPIO_I2C);
+; 762  :     I2C_ACKnowledge(hGPIO_I2C);
 
   000e8	e1a00008	 mov         r0, r8
   000ec	eb000000	 bl          I2C_ACKnowledge
 
-; 753  : 
-; 754  :     //prepare get Data LSB
-; 755  :     LcdStall(300); 
+; 763  : 
+; 764  :     //prepare get Data LSB
+; 765  :     LcdStall(300); 
 
   000f0	e3a00f4b	 mov         r0, #0x4B, 30
   000f4	eb000000	 bl          LcdStall
 
-; 756  :     LSB  = I2C_READ(hGPIO_I2C);
+; 766  :     LSB  = I2C_READ(hGPIO_I2C);
 
   000f8	e1a00008	 mov         r0, r8
   000fc	eb000000	 bl          I2C_READ
   00100	e1a07000	 mov         r7, r0
 
-; 757  :     LcdStall(300);
+; 767  :     LcdStall(300);
 
   00104	e3a00f4b	 mov         r0, #0x4B, 30
   00108	eb000000	 bl          LcdStall
 
-; 758  :     I2C_ACKnowledge_READ(hGPIO_I2C);
+; 768  :     I2C_ACKnowledge_READ(hGPIO_I2C);
 
   0010c	e1a00008	 mov         r0, r8
   00110	eb000000	 bl          I2C_ACKnowledge_READ
 
-; 759  : 
-; 760  :     //prepare get Data MSB
-; 761  :     LcdStall(1000); 
+; 769  : 
+; 770  :     //prepare get Data MSB
+; 771  :     LcdStall(1000); 
 
   00114	e3a00ffa	 mov         r0, #0xFA, 30
   00118	eb000000	 bl          LcdStall
 
-; 762  :     MSB = I2C_READ(hGPIO_I2C);
+; 772  :     MSB = I2C_READ(hGPIO_I2C);
 
   0011c	e1a00008	 mov         r0, r8
   00120	eb000000	 bl          I2C_READ
   00124	e1a06000	 mov         r6, r0
 
-; 763  :     LcdStall(300);
+; 773  :     LcdStall(300);
 
   00128	e3a00f4b	 mov         r0, #0x4B, 30
   0012c	eb000000	 bl          LcdStall
 
-; 764  :     I2C_ACKnowledge_READ(hGPIO_I2C);
+; 774  :     I2C_ACKnowledge_READ(hGPIO_I2C);
 
   00130	e1a00008	 mov         r0, r8
   00134	eb000000	 bl          I2C_ACKnowledge_READ
 
-; 765  :     LcdStall(500);
+; 775  :     LcdStall(500);
 
   00138	e3a00f7d	 mov         r0, #0x7D, 30
   0013c	eb000000	 bl          LcdStall
 
-; 766  :     I2C_STOP(hGPIO_I2C);
+; 776  :     I2C_STOP(hGPIO_I2C);
 
   00140	e1a00008	 mov         r0, r8
   00144	eb000000	 bl          I2C_STOP
 
-; 767  :     //*************************
-; 768  :     
-; 769  :     
-; 770  :     I2C_START(hGPIO_I2C);
+; 777  :     //*************************
+; 778  :     
+; 779  :     
+; 780  :     I2C_START(hGPIO_I2C);
 
   00148	e1a00008	 mov         r0, r8
   0014c	eb000000	 bl          I2C_START
 
-; 771  :     I2C_STOP(hGPIO_I2C);
+; 781  :     I2C_STOP(hGPIO_I2C);
 
   00150	e1a00008	 mov         r0, r8
   00154	eb000000	 bl          I2C_STOP
 
-; 772  :     gaugeInformation(hGPIO_I2C,  0x00);                 //This opreating means clean register
+; 782  :     gaugeInformation(hGPIO_I2C,  0x00);                 //This opreating means clean register
 
   00158	e3a01000	 mov         r1, #0
   0015c	e1a00008	 mov         r0, r8
   00160	eb000000	 bl          gaugeInformation
 
-; 773  :     data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
+; 783  :     data.Temp =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_TEMP_LSB);
 
   00164	e3a01006	 mov         r1, #6
   00168	e1a00008	 mov         r0, r8
   0016c	eb000000	 bl          gaugeInformation
   00170	e1a03000	 mov         r3, r0
 
-; 774  :     /*I2C_START(hGPIO_I2C);
-; 775  :     I2C_STOP(hGPIO_I2C);
-; 776  :     gaugeInformation(hGPIO_I2C,  0x00);*/
-; 777  :     data.Voltage =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_VOLT_LSB);
+; 784  :     /*I2C_START(hGPIO_I2C);
+; 785  :     I2C_STOP(hGPIO_I2C);
+; 786  :     gaugeInformation(hGPIO_I2C,  0x00);*/
+; 787  :     data.Voltage =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_VOLT_LSB);
 
   00174	e1a04803	 mov         r4, r3, lsl #16
   00178	e1a00008	 mov         r0, r8
@@ -2301,24 +2330,24 @@
   00184	eb000000	 bl          gaugeInformation
   00188	e1a05000	 mov         r5, r0
 
-; 778  :     gaugeInformation(hGPIO_I2C,  0x00);        
+; 788  :     gaugeInformation(hGPIO_I2C,  0x00);        
 
   0018c	e1a00008	 mov         r0, r8
   00190	e3a01000	 mov         r1, #0
   00194	eb000000	 bl          gaugeInformation
 
-; 779  :     //data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
-; 780  :     //gaugeInformation(hGPIO_I2C,  0x00);
-; 781  :     
-; 782  :     
-; 783  :     OALLog(L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB);
+; 789  :     //data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
+; 790  :     //gaugeInformation(hGPIO_I2C,  0x00);
+; 791  :     
+; 792  :     
+; 793  :     OALLog(L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB);
 
   00198	e59f0050	 ldr         r0, [pc, #0x50]
   0019c	e1a02007	 mov         r2, r7
   001a0	e1a01006	 mov         r1, r6
   001a4	eb000000	 bl          NKDbgPrintfW
 
-; 784  :     OALLog(L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273);
+; 794  :     OALLog(L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273);
 
   001a8	e59f303c	 ldr         r3, [pc, #0x3C]
   001ac	e3a02c01	 mov         r2, #1, 24
@@ -2330,15 +2359,15 @@
   001c4	e0431002	 sub         r1, r3, r2
   001c8	eb000000	 bl          NKDbgPrintfW
 
-; 785  :     OALLog(L" ~Battery Voltages = %d mV\r\n",data.Voltage);
+; 795  :     OALLog(L" ~Battery Voltages = %d mV\r\n",data.Voltage);
 
   001cc	e1a01805	 mov         r1, r5, lsl #16
   001d0	e59f000c	 ldr         r0, [pc, #0xC]
   001d4	e1a01841	 mov         r1, r1, asr #16
   001d8	eb000000	 bl          NKDbgPrintfW
 
-; 786  :     //OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
-; 787  : }
+; 796  :     //OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
+; 797  : }
 
   001dc	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   001e0	e12fff1e	 bx          lr
@@ -2351,14 +2380,14 @@
   001ec	66666667	 DCD         0x66666667
   001f0		 |$LN10@InitI2CWit|
   001f0	00000000	 DCD         |??_C@_1FA@JMHKMEFE@?$AA?5?$AA?$HO?$AAR?$AAe?$AAp?$AAo?$AAr?$AAt?$AAs?$AA?5?$AAt?$AAh?$AAe?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAt?$AAy?$AAp?$AAe?$AA?3?$AA0?$AAx?$AA?$CF?$AA0?$AA2?$AAX@|
-  001f4		 |$M48309|
+  001f4		 |$M48422|
 
 			 ENDP  ; |InitI2CWithBQ27510|
 
 	EXPORT	|??_C@_1GC@GBHIDOHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC?$AA?5?$AAd@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48324| DCD	|$LN6@BatteryTes|
+|$T48437| DCD	|$LN6@BatteryTes|
 	DCD	0x40002001
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2378,88 +2407,88 @@
 
   00000		 |BatteryTest_Z2170P| PROC
 
-; 792  : {
+; 802  : {
 
   00000		 |$LN6@BatteryTes|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48321|
+  00004		 |$M48434|
 
-; 793  :     HANDLE hGPIO_I2C;
-; 794  :     
-; 795  :     UNREFERENCED_PARAMETER(pMenu);
-; 796  :     OALBLMenuHeader(L"Battery Test");
+; 803  :     HANDLE hGPIO_I2C;
+; 804  :     
+; 805  :     UNREFERENCED_PARAMETER(pMenu);
+; 806  :     OALBLMenuHeader(L"Battery Test");
 
   00004	e59f0070	 ldr         r0, [pc, #0x70]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 797  :     
-; 798  :     if((hGPIO_I2C = GPIOOpen()) == NULL) 
+; 807  :     
+; 808  :     if((hGPIO_I2C = GPIOOpen()) == NULL) 
 
   0000c	eb000000	 bl          GPIOOpen
   00010	e1b04000	 movs        r4, r0
   00014	1a000003	 bne         |$LN1@BatteryTes|
 
-; 799  : 	{
-; 800  :         RETAILMSG(1,(L"ERROR: BQ27510_init - Open I2C device Failed!!\r\n"));
+; 809  : 	{
+; 810  :         RETAILMSG(1,(L"ERROR: BQ27510_init - Open I2C device Failed!!\r\n"));
 
   00018	e59f0058	 ldr         r0, [pc, #0x58]
   0001c	eb000000	 bl          NKDbgPrintfW
 
-; 814  : I2COpenFalse: 
-; 815  :     return;    
-; 816  : }
+; 824  : I2COpenFalse: 
+; 825  :     return;    
+; 826  : }
 
   00020	e8bd4010	 ldmia       sp!, {r4, lr}
   00024	e12fff1e	 bx          lr
   00028		 |$LN1@BatteryTes|
 
-; 801  :         goto I2COpenFalse;
-; 802  : 	}/*else{
-; 803  :         RETAILMSG(1,(L"SUCCESS: BQ27510_init - Open I2C device OK!!\r\n"));
-; 804  : 	}*/
-; 805  :     //OALLog(L"\r\n >>>Set hGPIO_I2C:%X \r\n",hGPIO_I2C);  
-; 806  :     
-; 807  :     GPIOClrBit(hGPIO_I2C,  184);  
+; 811  :         goto I2COpenFalse;
+; 812  : 	}/*else{
+; 813  :         RETAILMSG(1,(L"SUCCESS: BQ27510_init - Open I2C device OK!!\r\n"));
+; 814  : 	}*/
+; 815  :     //OALLog(L"\r\n >>>Set hGPIO_I2C:%X \r\n",hGPIO_I2C);  
+; 816  :     
+; 817  :     GPIOClrBit(hGPIO_I2C,  184);  
 
   00028	e3a010b8	 mov         r1, #0xB8
   0002c	e1a00004	 mov         r0, r4
   00030	eb000000	 bl          GPIOClrBit
 
-; 808  :     GPIOSetMode(hGPIO_I2C, 184, GPIO_DIR_OUTPUT);   //I2C3_CLK, Ray 131129 
+; 818  :     GPIOSetMode(hGPIO_I2C, 184, GPIO_DIR_OUTPUT);   //I2C3_CLK, Ray 131129 
 
   00034	e3a02000	 mov         r2, #0
   00038	e3a010b8	 mov         r1, #0xB8
   0003c	e1a00004	 mov         r0, r4
   00040	eb000000	 bl          GPIOSetMode
 
-; 809  :     GPIOClrBit(hGPIO_I2C,  185);
+; 819  :     GPIOClrBit(hGPIO_I2C,  185);
 
   00044	e3a010b9	 mov         r1, #0xB9
   00048	e1a00004	 mov         r0, r4
   0004c	eb000000	 bl          GPIOClrBit
 
-; 810  :     GPIOSetMode(hGPIO_I2C, 185, GPIO_DIR_OUTPUT);   //I2C3_SDA, Ray 131129 
+; 820  :     GPIOSetMode(hGPIO_I2C, 185, GPIO_DIR_OUTPUT);   //I2C3_SDA, Ray 131129 
 
   00050	e3a02000	 mov         r2, #0
   00054	e3a010b9	 mov         r1, #0xB9
   00058	e1a00004	 mov         r0, r4
   0005c	eb000000	 bl          GPIOSetMode
 
-; 811  :     
-; 812  :     InitI2CWithBQ27510(hGPIO_I2C);                               
+; 821  :     
+; 822  :     InitI2CWithBQ27510(hGPIO_I2C);                               
 
   00060	e1a00004	 mov         r0, r4
   00064	eb000000	 bl          InitI2CWithBQ27510
 
-; 813  :     GPIOClose(hGPIO_I2C);
+; 823  :     GPIOClose(hGPIO_I2C);
 
   00068	e1a00004	 mov         r0, r4
   0006c	eb000000	 bl          GPIOClose
-  00070		 |$I2COpenFalse$47655|
+  00070		 |$I2COpenFalse$47669|
 
-; 814  : I2COpenFalse: 
-; 815  :     return;    
-; 816  : }
+; 824  : I2COpenFalse: 
+; 825  :     return;    
+; 826  : }
 
   00070	e8bd4010	 ldmia       sp!, {r4, lr}
   00074	e12fff1e	 bx          lr
@@ -2468,14 +2497,14 @@
   00078	00000000	 DCD         |??_C@_1GC@GBHIDOHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAB?$AAQ?$AA2?$AA7?$AA5?$AA1?$AA0?$AA_?$AAi?$AAn?$AAi?$AAt?$AA?5?$AA?9?$AA?5?$AAO?$AAp?$AAe?$AAn?$AA?5?$AAI?$AA2?$AAC?$AA?5?$AAd@|
   0007c		 |$LN9@BatteryTes|
   0007c	00000000	 DCD         |??_C@_1BK@KIOELMDE@?$AAB?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  00080		 |$M48322|
+  00080		 |$M48435|
 
 			 ENDP  ; |BatteryTest_Z2170P|
 
 	EXPORT	|??_C@_1CG@CDBIFFDJ@?$AAL?$AAE?$AAD?$AA?5?$AAI?$AAn?$AAd?$AAi?$AAc?$AAa?$AAt?$AAo?$AAr?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48335| DCD	|$LN5@LEDTest_Z2|
+|$T48448| DCD	|$LN5@LEDTest_Z2|
 	DCD	0x40003b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -2490,143 +2519,143 @@
 
   00000		 |LEDTest_Z2170P| PROC
 
-; 823  : {
+; 833  : {
 
   00000		 |$LN5@LEDTest_Z2|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M48332|
+  00004		 |$M48445|
 
-; 824  :     DWORD stall_1mSec = 1000;
-; 825  : //    int i;
-; 826  : 	HANDLE hGPIO;
-; 827  : 	UNREFERENCED_PARAMETER(pMenu);
-; 828  : 	
-; 829  : 	OALBLMenuHeader(L"LED Indicator Test");
+; 834  :     DWORD stall_1mSec = 1000;
+; 835  : //    int i;
+; 836  : 	HANDLE hGPIO;
+; 837  : 	UNREFERENCED_PARAMETER(pMenu);
+; 838  : 	
+; 839  : 	OALBLMenuHeader(L"LED Indicator Test");
 
   00004	e59f00dc	 ldr         r0, [pc, #0xDC]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 830  :     hGPIO = GPIOOpen();
+; 840  :     hGPIO = GPIOOpen();
 
   0000c	eb000000	 bl          GPIOOpen
 
-; 831  :     
-; 832  :     //for(i=0; i<2; i++){       
-; 833  :         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);  
+; 841  :     
+; 842  :     //for(i=0; i<2; i++){       
+; 843  :         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);  
 
   00010	e3a0108c	 mov         r1, #0x8C
   00014	e1a05000	 mov         r5, r0
   00018	eb000000	 bl          GPIOClrBit
 
-; 834  :         LcdStall(stall_1mSec);
+; 844  :         LcdStall(stall_1mSec);
 
   0001c	e3a00ffa	 mov         r0, #0xFA, 30
   00020	eb000000	 bl          LcdStall
 
-; 835  :         GPIOSetBit(hGPIO, RED_LED_SET_GPIO);
+; 845  :         GPIOSetBit(hGPIO, RED_LED_SET_GPIO);
 
   00024	e3a0108c	 mov         r1, #0x8C
   00028	e1a00005	 mov         r0, r5
   0002c	eb000000	 bl          GPIOSetBit
 
-; 836  :         LcdStall(stall_1Sec);
+; 846  :         LcdStall(stall_1Sec);
 
   00030	e59f40ac	 ldr         r4, [pc, #0xAC]
   00034	e5940000	 ldr         r0, [r4]
   00038	eb000000	 bl          LcdStall
 
-; 837  :         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
+; 847  :         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
 
   0003c	e3a0108c	 mov         r1, #0x8C
   00040	e1a00005	 mov         r0, r5
   00044	eb000000	 bl          GPIOClrBit
 
-; 838  :         LcdStall(stall_1Sec);
+; 848  :         LcdStall(stall_1Sec);
 
   00048	e5940000	 ldr         r0, [r4]
   0004c	eb000000	 bl          LcdStall
 
-; 839  : 
-; 840  :         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
+; 849  : 
+; 850  :         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
 
   00050	e3a010a0	 mov         r1, #0xA0
   00054	e1a00005	 mov         r0, r5
   00058	eb000000	 bl          GPIOClrBit
 
-; 841  :         LcdStall(stall_1mSec);
+; 851  :         LcdStall(stall_1mSec);
 
   0005c	e3a00ffa	 mov         r0, #0xFA, 30
   00060	eb000000	 bl          LcdStall
 
-; 842  :         GPIOSetBit(hGPIO, BARCODE_LED_SET_GPIO);
+; 852  :         GPIOSetBit(hGPIO, BARCODE_LED_SET_GPIO);
 
   00064	e3a010a0	 mov         r1, #0xA0
   00068	e1a00005	 mov         r0, r5
   0006c	eb000000	 bl          GPIOSetBit
 
-; 843  :         LcdStall(stall_1Sec);
+; 853  :         LcdStall(stall_1Sec);
 
   00070	e5940000	 ldr         r0, [r4]
   00074	eb000000	 bl          LcdStall
 
-; 844  :         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
+; 854  :         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
 
   00078	e3a010a0	 mov         r1, #0xA0
   0007c	e1a00005	 mov         r0, r5
   00080	eb000000	 bl          GPIOClrBit
 
-; 845  :         LcdStall(stall_1Sec);
+; 855  :         LcdStall(stall_1Sec);
 
   00084	e5940000	 ldr         r0, [r4]
   00088	eb000000	 bl          LcdStall
 
-; 846  : 
-; 847  :         GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);  
+; 856  : 
+; 857  :         GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);  
 
   0008c	e3a01022	 mov         r1, #0x22
   00090	e1a00005	 mov         r0, r5
   00094	eb000000	 bl          GPIOClrBit
 
-; 848  :         LcdStall(stall_1mSec);
+; 858  :         LcdStall(stall_1mSec);
 
   00098	e3a00ffa	 mov         r0, #0xFA, 30
   0009c	eb000000	 bl          LcdStall
 
-; 849  :         GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
+; 859  :         GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
 
   000a0	e3a01022	 mov         r1, #0x22
   000a4	e1a00005	 mov         r0, r5
   000a8	eb000000	 bl          GPIOSetBit
 
-; 850  :         LcdStall(stall_1Sec);
+; 860  :         LcdStall(stall_1Sec);
 
   000ac	e5940000	 ldr         r0, [r4]
   000b0	eb000000	 bl          LcdStall
 
-; 851  :         GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
+; 861  :         GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
 
   000b4	e3a01022	 mov         r1, #0x22
   000b8	e1a00005	 mov         r0, r5
   000bc	eb000000	 bl          GPIOClrBit
 
-; 852  :         LcdStall(stall_1Sec);
+; 862  :         LcdStall(stall_1Sec);
 
   000c0	e5940000	 ldr         r0, [r4]
   000c4	eb000000	 bl          LcdStall
 
-; 853  :     //}
-; 854  :     OALLog(L"\rTested ok!! \r\n");
+; 863  :     //}
+; 864  :     OALLog(L"\rTested ok!! \r\n");
 
   000c8	e59f0010	 ldr         r0, [pc, #0x10]
   000cc	eb000000	 bl          NKDbgPrintfW
 
-; 855  :     GPIOClose(hGPIO);
+; 865  :     GPIOClose(hGPIO);
 
   000d0	e1a00005	 mov         r0, r5
   000d4	eb000000	 bl          GPIOClose
 
-; 856  :     
-; 857  : }
+; 866  :     
+; 867  : }
 
   000d8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   000dc	e12fff1e	 bx          lr
@@ -2637,14 +2666,14 @@
   000e4	00000000	 DCD         |stall_1Sec|
   000e8		 |$LN9@LEDTest_Z2|
   000e8	00000000	 DCD         |??_C@_1CG@CDBIFFDJ@?$AAL?$AAE?$AAD?$AA?5?$AAI?$AAn?$AAd?$AAi?$AAc?$AAa?$AAt?$AAo?$AAr?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  000ec		 |$M48333|
+  000ec		 |$M48446|
 
 			 ENDP  ; |LEDTest_Z2170P|
 
 	EXPORT	|BCRSetRTS|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48349| DCD	|$LN7@BCRSetRTS|
+|$T48462| DCD	|$LN7@BCRSetRTS|
 	DCD	0x40000a00
 ; Function compile flags: /Ogspy
 
@@ -2652,46 +2681,46 @@
 
   00000		 |BCRSetRTS| PROC
 
-; 866  : {
+; 874  : {
 
   00000		 |$LN7@BCRSetRTS|
-  00000		 |$M48346|
+  00000		 |$M48459|
   00000	e3500000	 cmp         r0, #0
 
-; 867  :     UINT bData = INREG8(&pUartRegs->MCR);
+; 875  :     UINT bData = INREG8(&pUartRegs->MCR);
 
   00004	e59f3018	 ldr         r3, [pc, #0x18]
   00008	e5932000	 ldr         r2, [r3]
   0000c	e5d23010	 ldrb        r3, [r2, #0x10]
 
-; 868  : 
-; 869  :     if(bSet)
-; 870  :         bData |= UART_MCR_RTS;
+; 876  : 
+; 877  :     if(bSet)
+; 878  :         bData |= UART_MCR_RTS;
 
   00010	13833002	 orrne       r3, r3, #2
 
-; 873  : 
-; 874  :     OUTREG8(&pUartRegs->MCR, bData);      
+; 881  : 
+; 882  :     OUTREG8(&pUartRegs->MCR, bData);      
 
   00014	15c23010	 strneb      r3, [r2, #0x10]
 
-; 871  :     else
-; 872  :         bData &= ~UART_MCR_RTS;     //
+; 879  :     else
+; 880  :         bData &= ~UART_MCR_RTS;     //
 
   00018	03c33002	 biceq       r3, r3, #2
 
-; 873  : 
-; 874  :     OUTREG8(&pUartRegs->MCR, bData);      
+; 881  : 
+; 882  :     OUTREG8(&pUartRegs->MCR, bData);      
 
   0001c	05c23010	 streqb      r3, [r2, #0x10]
 
-; 875  : }
+; 883  : }
 
   00020	e12fff1e	 bx          lr
   00024		 |$LN8@BCRSetRTS|
   00024		 |$LN9@BCRSetRTS|
   00024	00000000	 DCD         |pUartRegs|
-  00028		 |$M48347|
+  00028		 |$M48460|
 
 			 ENDP  ; |BCRSetRTS|
 
@@ -2709,11 +2738,11 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48390| DCD	|$LN30@BarcodeTes|
+|$T48503| DCD	|$LN30@BarcodeTes|
 	DCD	0xc0008502
 
   00000			 AREA	 |.xdata|, DATA
-|$T48386| DCD	0xffffffdc
+|$T48499| DCD	0xffffffdc
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1BE@NKOCEIML@?$AAC?$AAa?$AAn?$AAc?$AAe?$AAl?$AA?5?$AA?$AN?$AA?6?$AA?$AA@| DCB "C"
@@ -2743,67 +2772,68 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T48386|
+  00004	00000000	 DCD         |$T48499|
 
   00008		 |BarcodeTest_Z2170P| PROC
 
-; 879  : {
+; 887  : {
 
   00008		 |$LN30@BarcodeTes|
   00008	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   0000c	e24dd068	 sub         sp, sp, #0x68
-  00010		 |$M48387|
+  00010		 |$M48500|
   00010	e59f3200	 ldr         r3, [pc, #0x200]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3064	 str         r3, [sp, #0x64]
 
-; 880  :     HANDLE  hGPIO;
-; 881  :     UINT8   status, ch, running = 1;
-; 882  :     int     count = 30, inNum = 0;
-; 883  :     //int     i = 0;
-; 884  :     WCHAR   key;
-; 885  :     WCHAR   scan[50];
-; 886  :        
-; 887  : 	UNREFERENCED_PARAMETER(pMenu);	
-; 888  : 	OALBLMenuHeader(L"Barcode Test");
+; 888  :     HANDLE  hGPIO;
+; 889  :     UINT8   status, ch, running = 1;
+; 890  :     int     count = 30, inNum = 0;
+; 891  :     //int     i = 0;
+; 892  :     WCHAR   key;
+; 893  :     WCHAR   scan[50];
+; 894  :        
+; 895  : 	OALBLMenuHeader(L"Barcode Test");
 
   0001c	e59f01f0	 ldr         r0, [pc, #0x1F0]
   00020	e3a0401e	 mov         r4, #0x1E
   00024	e3a06000	 mov         r6, #0
   00028	eb000000	 bl          OALBLMenuHeader
 
-; 889  :     hGPIO = GPIOOpen();
+; 896  : 	UNREFERENCED_PARAMETER(pMenu);	
+; 897  : 	
+; 898  :     hGPIO = GPIOOpen();
 
   0002c	eb000000	 bl          GPIOOpen
 
-; 890  :     GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);   
+; 899  :     GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);   
 
   00030	e3a02000	 mov         r2, #0
   00034	e3a01026	 mov         r1, #0x26
   00038	e1a05000	 mov         r5, r0
   0003c	eb000000	 bl          GPIOSetMode
 
-; 891  :     GPIOSetMode(hGPIO, BCR_ENG_TRIG, GPIO_DIR_OUTPUT);
+; 900  :     GPIOSetMode(hGPIO, BCR_ENG_TRIG, GPIO_DIR_OUTPUT);
 
   00040	e3a02000	 mov         r2, #0
   00044	e3a01024	 mov         r1, #0x24
   00048	e1a00005	 mov         r0, r5
   0004c	eb000000	 bl          GPIOSetMode
 
-; 892  :     
-; 893  :     GPIOSetBit(hGPIO, BCR_ENG_PWEN);                    //Power ON
+; 901  :     
+; 902  :     GPIOSetBit(hGPIO, BCR_ENG_PWEN);                    //Power ON
 
   00050	e3a01026	 mov         r1, #0x26
   00054	e1a00005	 mov         r0, r5
   00058	eb000000	 bl          GPIOSetBit
 
-; 894  :     EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE); 
+; 903  :     EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE); 
 
   0005c	e3a01001	 mov         r1, #1
   00060	e3a0000a	 mov         r0, #0xA
   00064	eb000000	 bl          EnableDeviceClocks
 
-; 895  :     pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
+; 904  :     pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
 
   00068	e3a0000a	 mov         r0, #0xA
   0006c	eb000000	 bl          GetAddressByDevice
@@ -2811,10 +2841,10 @@
   00074	eb000000	 bl          OALPAtoVA
   00078	e59f8190	 ldr         r8, [pc, #0x190]
 
-; 896  :        
-; 897  :     
-; 898  :     // reset uart
-; 899  : 	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
+; 905  :        
+; 906  :     
+; 907  :     // reset uart
+; 908  : 	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
 
   0007c	e3a03002	 mov         r3, #2
   00080	e5880000	 str         r0, [r8]
@@ -2822,59 +2852,59 @@
   00088	e5982000	 ldr         r2, [r8]
   0008c		 |$LL9@BarcodeTes|
 
-; 900  :     while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0)
+; 909  :     while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0)
 
   0008c	e5d23058	 ldrb        r3, [r2, #0x58]
   00090	e3130001	 tst         r3, #1
   00094	0afffffc	 beq         |$LL9@BarcodeTes|
 
-; 901  :         ;
-; 902  : 
-; 903  :     // Set baud rate
-; 904  :     OUTREG8(&pUartRegs->LCR, UART_LCR_DLAB);    //Line control register, DIV_EN
+; 910  :         ;
+; 911  : 
+; 912  :     // Set baud rate
+; 913  :     OUTREG8(&pUartRegs->LCR, UART_LCR_DLAB);    //Line control register, DIV_EN
 
   00098	e3a03080	 mov         r3, #0x80
   0009c	e5c2300c	 strb        r3, [r2, #0xC]
 
-; 905  :     OUTREG8(&pUartRegs->DLL, 0x38);             //9.6kbps
+; 914  :     OUTREG8(&pUartRegs->DLL, 0x38);             //9.6kbps
 
   000a0	e5983000	 ldr         r3, [r8]
   000a4	e3a02038	 mov         r2, #0x38
 
-; 906  :     OUTREG8(&pUartRegs->DLH, 0x01);
+; 915  :     OUTREG8(&pUartRegs->DLH, 0x01);
 
   000a8	e3a0e001	 mov         lr, #1
   000ac	e5c32000	 strb        r2, [r3]
   000b0	e5983000	 ldr         r3, [r8]
 
-; 907  :     OUTREG8(&pUartRegs->LCR, 0x00);
+; 916  :     OUTREG8(&pUartRegs->LCR, 0x00);
 
   000b4	e3a0a000	 mov         r10, #0
 
-; 908  : 
-; 909  :     // 8 bit, 1 stop bit, no parity
-; 910  :     OUTREG8(&pUartRegs->LCR, 0x03);             
+; 917  : 
+; 918  :     // 8 bit, 1 stop bit, no parity
+; 919  :     OUTREG8(&pUartRegs->LCR, 0x03);             
 
   000b8	e3a02003	 mov         r2, #3
   000bc	e5c3e004	 strb        lr, [r3, #4]
   000c0	e5983000	 ldr         r3, [r8]
 
-; 911  :     // Enable FIFO
-; 912  :     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN);
-; 913  :     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN|UART_FCR_RX_FIFO_CLEAR|UART_FCR_TX_FIFO_CLEAR);
+; 920  :     // Enable FIFO
+; 921  :     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN);
+; 922  :     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN|UART_FCR_RX_FIFO_CLEAR|UART_FCR_TX_FIFO_CLEAR);
 
   000c4	e3a01007	 mov         r1, #7
 
-; 914  :     // Pool
-; 915  :     OUTREG8(&pUartRegs->IER, 0);
-; 916  :     // Set DTR/RTS signals
-; 917  :     OUTREG8(&pUartRegs->MCR, 0); //UART_MCR_DTR|UART_MCR_RTS);
-; 918  :     // Configuration complete so select UART 16x mode
-; 919  : 	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
-; 920  :     BCRSetRTS(TRUE);
-; 921  :     //OALLog(L"\r Scan Mode key '5', if Cancel '0'.\r\n");
-; 922  :     
-; 923  :     OALLog(L"\r The Cancel key are '0'.\r\n");
+; 923  :     // Pool
+; 924  :     OUTREG8(&pUartRegs->IER, 0);
+; 925  :     // Set DTR/RTS signals
+; 926  :     OUTREG8(&pUartRegs->MCR, 0); //UART_MCR_DTR|UART_MCR_RTS);
+; 927  :     // Configuration complete so select UART 16x mode
+; 928  : 	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
+; 929  :     BCRSetRTS(TRUE);
+; 930  :     //OALLog(L"\r Scan Mode key '5', if Cancel '0'.\r\n");
+; 931  :     
+; 932  :     OALLog(L"\r The Cancel key are '0'.\r\n");
 
   000c8	e59f013c	 ldr         r0, [pc, #0x13C]
   000cc	e5c3a00c	 strb        r10, [r3, #0xC]
@@ -2898,26 +2928,26 @@
   00114	e28d9000	 add         r9, sp, #0
   00118		 |$LL7@BarcodeTes|
 
-; 924  :     while(running)
-; 925  :     {
-; 926  : 		//if(key == L'5')             // SCAN KEY
-; 927  : 		//{
-; 928  : 		    LcdSleep(500);
+; 933  :     while(running)
+; 934  :     {
+; 935  : 		//if(key == L'5')             // SCAN KEY
+; 936  : 		//{
+; 937  : 		    LcdSleep(500);
 
   00118	e3a00f7d	 mov         r0, #0x7D, 30
   0011c	eb000000	 bl          LcdSleep
 
-; 929  : 			GPIOClrBit(hGPIO, BCR_ENG_TRIG);
+; 938  : 			GPIOClrBit(hGPIO, BCR_ENG_TRIG);
 
   00120	e3a01024	 mov         r1, #0x24
   00124	e1a00005	 mov         r0, r5
   00128	eb000000	 bl          GPIOClrBit
 
-; 930  : 			BCRSetRTS(FALSE);
+; 939  : 			BCRSetRTS(FALSE);
 
   0012c	e5982000	 ldr         r2, [r8]
 
-; 931  : 			LcdSleep(500);
+; 940  : 			LcdSleep(500);
 
   00130	e3a00f7d	 mov         r0, #0x7D, 30
   00134	e5d23010	 ldrb        r3, [r2, #0x10]
@@ -2925,33 +2955,33 @@
   0013c	e5c23010	 strb        r3, [r2, #0x10]
   00140	eb000000	 bl          LcdSleep
 
-; 932  : 			
-; 933  : 			while( count-- )
+; 941  : 			
+; 942  : 			while( count-- )
 
   00144	e3540000	 cmp         r4, #0
   00148	0a00000b	 beq         |$LN25@BarcodeTes|
 
-; 924  :     while(running)
-; 925  :     {
-; 926  : 		//if(key == L'5')             // SCAN KEY
-; 927  : 		//{
-; 928  : 		    LcdSleep(500);
+; 933  :     while(running)
+; 934  :     {
+; 935  : 		//if(key == L'5')             // SCAN KEY
+; 936  : 		//{
+; 937  : 		    LcdSleep(500);
 
   0014c	e0897086	 add         r7, r9, r6, lsl #1
   00150		 |$LL5@BarcodeTes|
 
-; 934  : 			{
-; 935  : 				status = INREG8(&pUartRegs->LSR);
+; 943  : 			{
+; 944  : 				status = INREG8(&pUartRegs->LSR);
 
   00150	e5982000	 ldr         r2, [r8]
 
-; 936  : 				if ((status & UART_LSR_RX_FIFO_E) != 0)
-; 937  : 				{
-; 938  : 					ch = INREG8(&pUartRegs->RHR);
-; 939  : 					scan[inNum++] = ch;
-; 940  : 					//OALLog(L" %c\r\n",ch);
-; 941  : 				}
-; 942  : 				LcdSleep(100);
+; 945  : 				if ((status & UART_LSR_RX_FIFO_E) != 0)
+; 946  : 				{
+; 947  : 					ch = INREG8(&pUartRegs->RHR);
+; 948  : 					scan[inNum++] = ch;
+; 949  : 					//OALLog(L" %c\r\n",ch);
+; 950  : 				}
+; 951  : 				LcdSleep(100);
 
   00154	e3a00064	 mov         r0, #0x64
   00158	e2444001	 sub         r4, r4, #1
@@ -2965,61 +2995,61 @@
   00178	1afffff4	 bne         |$LL5@BarcodeTes|
   0017c		 |$LN25@BarcodeTes|
 
-; 943  : 			}
-; 944  : 			
-; 945  : 			GPIOSetBit(hGPIO, BCR_ENG_TRIG);
+; 952  : 			}
+; 953  : 			
+; 954  : 			GPIOSetBit(hGPIO, BCR_ENG_TRIG);
 
   0017c	e3a01024	 mov         r1, #0x24
   00180	e1a00005	 mov         r0, r5
   00184	e2444001	 sub         r4, r4, #1
   00188	eb000000	 bl          GPIOSetBit
 
-; 946  : 			if( inNum > 0 )
+; 955  : 			if( inNum > 0 )
 
   0018c	e3560000	 cmp         r6, #0
   00190	ca00000b	 bgt         |$LN23@BarcodeTes|
 
-; 955  : 				break;
-; 956  : 			}
-; 957  : 			
-; 958  : 			key = OALBLMenuReadKey(TRUE);
+; 964  : 				break;
+; 965  : 			}
+; 966  : 			
+; 967  : 			key = OALBLMenuReadKey(TRUE);
 
   00194	e3a00001	 mov         r0, #1
   00198	eb000000	 bl          OALBLMenuReadKey
   0019c	e1a03800	 mov         r3, r0, lsl #16
   001a0	e1a03823	 mov         r3, r3, lsr #16
 
-; 959  : 			if(key == L'0')             // ESC KEY
+; 968  : 			if(key == L'0')             // ESC KEY
 
   001a4	e3530030	 cmp         r3, #0x30
   001a8	0a000002	 beq         |$LN24@BarcodeTes|
 
-; 962  : 			    break;
-; 963  : 		    }
-; 964  : 		//}
-; 965  : 		LcdSleep(150);
+; 971  : 			    break;
+; 972  : 		    }
+; 973  : 		//}
+; 974  : 		LcdSleep(150);
 
   001ac	e3a00096	 mov         r0, #0x96
   001b0	eb000000	 bl          LcdSleep
   001b4	eaffffd7	 b           |$LL7@BarcodeTes|
   001b8		 |$LN24@BarcodeTes|
 
-; 960  : 		    {
-; 961  : 			    OALLog(L"Cancel \r\n");
+; 969  : 		    {
+; 970  : 			    OALLog(L"Cancel \r\n");
 
   001b8	e59f0048	 ldr         r0, [pc, #0x48]
   001bc	eb000000	 bl          NKDbgPrintfW
   001c0	ea000005	 b           |$LN6@BarcodeTes|
   001c4		 |$LN23@BarcodeTes|
 
-; 947  : 			{
-; 948  : 				/*while(scan[i] != L'\0'){
-; 949  : 				    OALLog(L"%c ",scan[i]);
-; 950  : 				    i++;
-; 951  : 				}
-; 952  : 				OALLog(L"\r\n");*/
-; 953  : 				scan[inNum] = '\0';
-; 954  : 				OALLog(L"->%s\r\n",scan);
+; 956  : 			{
+; 957  : 				/*while(scan[i] != L'\0'){
+; 958  : 				    OALLog(L"%c ",scan[i]);
+; 959  : 				    i++;
+; 960  : 				}
+; 961  : 				OALLog(L"\r\n");*/
+; 962  : 				scan[inNum] = '\0';
+; 963  : 				OALLog(L"->%s\r\n",scan);
 
   001c4	e59f0038	 ldr         r0, [pc, #0x38]
   001c8	e28d3000	 add         r3, sp, #0
@@ -3028,26 +3058,26 @@
   001d4	e1c3a0b0	 strh        r10, [r3]
   001d8	eb000000	 bl          NKDbgPrintfW
 
-; 960  : 		    {
-; 961  : 			    OALLog(L"Cancel \r\n");
+; 969  : 		    {
+; 970  : 			    OALLog(L"Cancel \r\n");
 
   001dc		 |$LN6@BarcodeTes|
 
-; 966  : 	}
-; 967  : 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
+; 975  : 	}
+; 976  : 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
 
   001dc	e3a01026	 mov         r1, #0x26
   001e0	e1a00005	 mov         r0, r5
   001e4	eb000000	 bl          GPIOClrBit
 
-; 968  : 	GPIOClose(hGPIO);
+; 977  : 	GPIOClose(hGPIO);
 
   001e8	e1a00005	 mov         r0, r5
   001ec	eb000000	 bl          GPIOClose
   001f0	e59d0064	 ldr         r0, [sp, #0x64]
   001f4	eb000000	 bl          __security_check_cookie
 
-; 969  : }
+; 978  : }
 
   001f8	e28dd068	 add         sp, sp, #0x68
   001fc	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
@@ -3065,7 +3095,7 @@
   00214	00000000	 DCD         |??_C@_1BK@DAODNELG@?$AAB?$AAa?$AAr?$AAc?$AAo?$AAd?$AAe?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
   00218		 |$LN37@BarcodeTes|
   00218	00000000	 DCD         |__security_cookie|
-  0021c		 |$M48388|
+  0021c		 |$M48501|
 
 			 ENDP  ; |BarcodeTest_Z2170P|
 
@@ -3073,7 +3103,7 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48410| DCD	|$LN12@clear|
+|$T48523| DCD	|$LN12@clear|
 	DCD	0x40001302
 ; Function compile flags: /Ogspy
 
@@ -3081,15 +3111,15 @@
 
   00000		 |clear| PROC
 
-; 1012 : {
+; 1021 : {
 
   00000		 |$LN12@clear|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004	e24dd068	 sub         sp, sp, #0x68
-  00008		 |$M48407|
+  00008		 |$M48520|
 
-; 1013 :     int i;
-; 1014 :     int keyClear[KEYPAD_SIZE] = {0};
+; 1022 :     int i;
+; 1023 :     int keyClear[KEYPAD_SIZE] = {0};
 
   00008	e3a03000	 mov         r3, #0
   0000c	e3a02064	 mov         r2, #0x64
@@ -3098,9 +3128,9 @@
   00018	e58d3000	 str         r3, [sp]
   0001c	eb000000	 bl          memset
 
-; 1015 :     
-; 1016 :     for(i=0; i<KEYPAD_SIZE; i++)
-; 1017 :         keyStatus[i] = keyClear[i];
+; 1024 :     
+; 1025 :     for(i=0; i<KEYPAD_SIZE; i++)
+; 1026 :         keyStatus[i] = keyClear[i];
 
   00020	e59f2020	 ldr         r2, [pc, #0x20]
   00024	e28d1000	 add         r1, sp, #0
@@ -3111,7 +3141,7 @@
   00034	e1520000	 cmp         r2, r0
   00038	1afffffb	 bne         |$LN8@clear|
 
-; 1018 : }
+; 1027 : }
 
   0003c	e28dd068	 add         sp, sp, #0x68
   00040	e49de004	 ldr         lr, [sp], #4
@@ -3119,14 +3149,14 @@
   00048		 |$LN13@clear|
   00048		 |$LN14@clear|
   00048	00000000	 DCD         |keyStatus|
-  0004c		 |$M48408|
+  0004c		 |$M48521|
 
 			 ENDP  ; |clear|
 
 	EXPORT	|KeypadMatrixStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48423| DCD	|$LN7@KeypadMatr|
+|$T48536| DCD	|$LN7@KeypadMatr|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -3134,40 +3164,40 @@
 
   00000		 |KeypadMatrixStatus| PROC
 
-; 1022 : {
+; 1031 : {
 
   00000		 |$LN7@KeypadMatr|
-  00000		 |$M48420|
+  00000		 |$M48533|
 
-; 1023 :     //UINT8   matrix[8];
-; 1024 :     int  temp=0;
-; 1025 :     BOOL event = FALSE;
-; 1026 :     
-; 1027 :     temp = gKeypadMatrix[row] & (1<<col);
-; 1028 :  
-; 1029 :     if(temp)
+; 1032 :     //UINT8   matrix[8];
+; 1033 :     int  temp=0;
+; 1034 :     BOOL event = FALSE;
+; 1035 :     
+; 1036 :     temp = gKeypadMatrix[row] & (1<<col);
+; 1037 :  
+; 1038 :     if(temp)
 
   00000	e59f3014	 ldr         r3, [pc, #0x14]
   00004	e3a02001	 mov         r2, #1
   00008	e7d03003	 ldrb        r3, [r0, +r3]
   0000c	e1130112	 tst         r3, r2, lsl r1
 
-; 1030 :         return event = TRUE;
+; 1039 :         return event = TRUE;
 
   00010	13a00001	 movne       r0, #1
 
-; 1031 :     else
-; 1032 :         return event;
+; 1040 :     else
+; 1041 :         return event;
 
   00014	03a00000	 moveq       r0, #0
 
-; 1033 : }
+; 1042 : }
 
   00018	e12fff1e	 bx          lr
   0001c		 |$LN8@KeypadMatr|
   0001c		 |$LN9@KeypadMatr|
   0001c	00000000	 DCD         |gKeypadMatrix|
-  00020		 |$M48421|
+  00020		 |$M48534|
 
 			 ENDP  ; |KeypadMatrixStatus|
 
@@ -3206,7 +3236,7 @@
 	IMPORT	|ghTwl|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48710| DCD	|$LN230@KeypadFunc|
+|$T48823| DCD	|$LN230@KeypadFunc|
 	DCD	0x40011d02
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -3387,31 +3417,31 @@
 
   00000		 |KeypadFuncMatrix| PROC
 
-; 1037 : {
+; 1046 : {
 
   00000		 |$LN230@KeypadFunc|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd068	 sub         sp, sp, #0x68
-  00008		 |$M48707|
+  00008		 |$M48820|
 
-; 1038 :     ULONG   ik, ix, row, column;
-; 1039 :     USHORT  state=0;
-; 1040 :     int     k, entry, keyAction = 0; 
-; 1041 :     BOOL    EXIT = FALSE;
-; 1042 :     static int count = 26;
-; 1043 :     
-; 1044 :     /*static int  ENTL=0, SCAN=0, ENTR=0, ESC=0, BS=0, L=0,
-; 1045 :                 U=0, D=0, R=0, ONE=0, TWO=0, THREE=0, 
-; 1046 :                 FOUR=0, FIVE=0, SIX=0, SEVEN=0, NINE=0, ZERO=0,
-; 1047 :                 DOT=0, PLUS=0, F1=0, F2=0, F4=0, SP=0, FN=0, TAB=0;*/
-; 1048 :     
-; 1049 :     //BOOL    ENTL=FALSE, SCAN=FALSE, ENTR=FALSE, ESC=FALSE;
-; 1050 :                  
-; 1051 :     //printing matrix array, Ray
-; 1052 :     //for(;;){                   
-; 1053 :         //for(ik=0; ik<3; ik++)
-; 1054 :         //{
-; 1055 :         TWLReadRegs(ghTwl, TWL_LOGADDR_FULL_CODE_7_0, gKeypadMatrix, sizeof(gKeypadMatrix));  //it is function read value, Ray 140103   
+; 1047 :     ULONG   ik, ix, row, column;
+; 1048 :     USHORT  state=0;
+; 1049 :     int     k, entry, keyAction = 0; 
+; 1050 :     BOOL    EXIT = FALSE;
+; 1051 :     static int count = 26;
+; 1052 :     
+; 1053 :     /*static int  ENTL=0, SCAN=0, ENTR=0, ESC=0, BS=0, L=0,
+; 1054 :                 U=0, D=0, R=0, ONE=0, TWO=0, THREE=0, 
+; 1055 :                 FOUR=0, FIVE=0, SIX=0, SEVEN=0, NINE=0, ZERO=0,
+; 1056 :                 DOT=0, PLUS=0, F1=0, F2=0, F4=0, SP=0, FN=0, TAB=0;*/
+; 1057 :     
+; 1058 :     //BOOL    ENTL=FALSE, SCAN=FALSE, ENTR=FALSE, ESC=FALSE;
+; 1059 :                  
+; 1060 :     //printing matrix array, Ray
+; 1061 :     //for(;;){                   
+; 1062 :         //for(ik=0; ik<3; ik++)
+; 1063 :         //{
+; 1064 :         TWLReadRegs(ghTwl, TWL_LOGADDR_FULL_CODE_7_0, gKeypadMatrix, sizeof(gKeypadMatrix));  //it is function read value, Ray 140103   
 
   00008	e59f3460	 ldr         r3, [pc, #0x460]
   0000c	e59f5458	 ldr         r5, [pc, #0x458]
@@ -3423,175 +3453,175 @@
   00024	e3a04000	 mov         r4, #0
   00028	eb000000	 bl          TWLReadRegs
 
-; 1056 :         //OALLog(L" %d\r\n",sizeof(gKeypadMatrix));         //8
-; 1057 :         
-; 1058 :         /*OALLog(L" HotKeyFunction: matrix  ");
-; 1059 :             for(ix=0; ix<8; ix++)
-; 1060 :                  OALLog(L"[%d]", matrix[ix]);
-; 1061 :             OALLog(L"\r\n");      
-; 1062 :         }*/
-; 1063 :         for(row=0, ik=0; row<8; row++)
+; 1065 :         //OALLog(L" %d\r\n",sizeof(gKeypadMatrix));         //8
+; 1066 :         
+; 1067 :         /*OALLog(L" HotKeyFunction: matrix  ");
+; 1068 :             for(ix=0; ix<8; ix++)
+; 1069 :                  OALLog(L"[%d]", matrix[ix]);
+; 1070 :             OALLog(L"\r\n");      
+; 1071 :         }*/
+; 1072 :         for(row=0, ik=0; row<8; row++)
 
   0002c	e3a02000	 mov         r2, #0
   00030	e3a00001	 mov         r0, #1
   00034		 |$LL69@KeypadFunc|
 
-; 1064 :         {
-; 1065 :             // Get matrix state 
-; 1066 :             ix = row;
-; 1067 :             state = gKeypadMatrix[ix] & 0xFF;     
+; 1073 :         {
+; 1074 :             // Get matrix state 
+; 1075 :             ix = row;
+; 1076 :             state = gKeypadMatrix[ix] & 0xFF;     
 
   00034	e7d21005	 ldrb        r1, [r2, +r5]
 
-; 1068 :             //OALLog(L"1%d\n",state);
-; 1069 :             // If no-key is pressed continue with new rows
-; 1070 :             if(state == 0)
+; 1077 :             //OALLog(L"1%d\n",state);
+; 1078 :             // If no-key is pressed continue with new rows
+; 1079 :             if(state == 0)
 
   00038	e3510000	 cmp         r1, #0
   0003c	0a000005	 beq         |$LN68@KeypadFunc|
 
-; 1071 :             {
-; 1072 :                 ik += 8;
-; 1073 :                 continue;           //if state event desnot 
-; 1074 :             }
-; 1075 :             
-; 1076 :             for(column=0; column<8; column++, ik++)
+; 1080 :             {
+; 1081 :                 ik += 8;
+; 1082 :                 continue;           //if state event desnot 
+; 1083 :             }
+; 1084 :             
+; 1085 :             for(column=0; column<8; column++, ik++)
 
   00040	e3a03000	 mov         r3, #0
   00044		 |$LL65@KeypadFunc|
 
-; 1077 :             {
-; 1078 :                 if((state & (1<<column)) !=0 ){
+; 1086 :             {
+; 1087 :                 if((state & (1<<column)) !=0 ){
 
   00044	e1110310	 tst         r1, r0, lsl r3
   00048	e2833001	 add         r3, r3, #1
 
-; 1079 :                     //RETAILMSG(TRUE, (L" HotKeyFunction: [%d,%d]\r\n",row ,column));
-; 1080 :                     keyAction = 1;          //has values active
+; 1088 :                     //RETAILMSG(TRUE, (L" HotKeyFunction: [%d,%d]\r\n",row ,column));
+; 1089 :                     keyAction = 1;          //has values active
 
   0004c	13a04001	 movne       r4, #1
   00050	e3530008	 cmp         r3, #8
   00054	3afffffa	 bcc         |$LL65@KeypadFunc|
   00058		 |$LN68@KeypadFunc|
 
-; 1056 :         //OALLog(L" %d\r\n",sizeof(gKeypadMatrix));         //8
-; 1057 :         
-; 1058 :         /*OALLog(L" HotKeyFunction: matrix  ");
-; 1059 :             for(ix=0; ix<8; ix++)
-; 1060 :                  OALLog(L"[%d]", matrix[ix]);
-; 1061 :             OALLog(L"\r\n");      
-; 1062 :         }*/
-; 1063 :         for(row=0, ik=0; row<8; row++)
+; 1065 :         //OALLog(L" %d\r\n",sizeof(gKeypadMatrix));         //8
+; 1066 :         
+; 1067 :         /*OALLog(L" HotKeyFunction: matrix  ");
+; 1068 :             for(ix=0; ix<8; ix++)
+; 1069 :                  OALLog(L"[%d]", matrix[ix]);
+; 1070 :             OALLog(L"\r\n");      
+; 1071 :         }*/
+; 1072 :         for(row=0, ik=0; row<8; row++)
 
   00058	e2822001	 add         r2, r2, #1
   0005c	e3520008	 cmp         r2, #8
   00060	3afffff3	 bcc         |$LL69@KeypadFunc|
 
-; 1081 :                     //OALLog(L"2%d\n",state);
-; 1082 :                 }
-; 1083 :             }
-; 1084 :         }
-; 1085 :     //}   
-; 1086 :      
-; 1087 :     if(keyAction){
+; 1090 :                     //OALLog(L"2%d\n",state);
+; 1091 :                 }
+; 1092 :             }
+; 1093 :         }
+; 1094 :     //}   
+; 1095 :      
+; 1096 :     if(keyAction){
 
   00064	e3540000	 cmp         r4, #0
   00068	0a0000dc	 beq         |$LN1@KeypadFunc|
 
-; 1088 :         //OALLog(L"keyAction:%d\n",keyAction);
-; 1089 :         OALLog(L"\r");
+; 1097 :         //OALLog(L"keyAction:%d\n",keyAction);
+; 1098 :         OALLog(L"\r");
 
   0006c	e59f03f4	 ldr         r0, [pc, #0x3F4]
   00070	eb000000	 bl          NKDbgPrintfW
   00074	e5d53000	 ldrb        r3, [r5]
 
-; 1090 :         if( KeypadMatrixStatus(0, 5)){
+; 1099 :         if( KeypadMatrixStatus(0, 5)){
 
   00078	e59f43e4	 ldr         r4, [pc, #0x3E4]
   0007c	e3130020	 tst         r3, #0x20
   00080	0a000004	 beq         |$LN60@KeypadFunc|
 
-; 1091 :             OALLog(L"[ENTL]         ");
+; 1100 :             OALLog(L"[ENTL]         ");
 
   00084	e59f03d4	 ldr         r0, [pc, #0x3D4]
   00088	eb000000	 bl          NKDbgPrintfW
 
-; 1092 :             keyStatus[0]=1;
+; 1101 :             keyStatus[0]=1;
 
   0008c	e3a03001	 mov         r3, #1
   00090	e5843000	 str         r3, [r4]
   00094	ea0000ba	 b           |$LN5@KeypadFunc|
   00098		 |$LN60@KeypadFunc|
 
-; 1093 :             //count = count++;
-; 1094 :             //ENTL = 1;
-; 1095 :         }else if( KeypadMatrixStatus(0, 4)){    //trouble
+; 1102 :             //count = count++;
+; 1103 :             //ENTL = 1;
+; 1104 :         }else if( KeypadMatrixStatus(0, 4)){    //trouble
 
   00098	e3130010	 tst         r3, #0x10
   0009c	0a000004	 beq         |$LN58@KeypadFunc|
 
-; 1096 :             OALLog(L"[SCAN]         ");
+; 1105 :             OALLog(L"[SCAN]         ");
 
   000a0	e59f03b4	 ldr         r0, [pc, #0x3B4]
   000a4	eb000000	 bl          NKDbgPrintfW
 
-; 1097 :             keyStatus[1]=1;
+; 1106 :             keyStatus[1]=1;
 
   000a8	e3a03001	 mov         r3, #1
   000ac	e5843004	 str         r3, [r4, #4]
   000b0	ea0000b3	 b           |$LN5@KeypadFunc|
   000b4		 |$LN58@KeypadFunc|
 
-; 1098 :             //count = count-1;
-; 1099 :             //SCAN = 1;
-; 1100 :         }else if( KeypadMatrixStatus(0, 2)){
+; 1107 :             //count = count-1;
+; 1108 :             //SCAN = 1;
+; 1109 :         }else if( KeypadMatrixStatus(0, 2)){
 
   000b4	e3130004	 tst         r3, #4
   000b8	0a000004	 beq         |$LN56@KeypadFunc|
 
-; 1101 :             OALLog(L"[ENTR]         ");
+; 1110 :             OALLog(L"[ENTR]         ");
 
   000bc	e59f0394	 ldr         r0, [pc, #0x394]
   000c0	eb000000	 bl          NKDbgPrintfW
 
-; 1102 :             keyStatus[2]=1;
+; 1111 :             keyStatus[2]=1;
 
   000c4	e3a03001	 mov         r3, #1
   000c8	e5843008	 str         r3, [r4, #8]
   000cc	ea0000ac	 b           |$LN5@KeypadFunc|
   000d0		 |$LN56@KeypadFunc|
 
-; 1103 :             //count = count-1;
-; 1104 :             //ENTR = 1;
-; 1105 :         }else if( KeypadMatrixStatus(0, 1)){
+; 1112 :             //count = count-1;
+; 1113 :             //ENTR = 1;
+; 1114 :         }else if( KeypadMatrixStatus(0, 1)){
 
   000d0	e3130002	 tst         r3, #2
   000d4	0a000004	 beq         |$LN54@KeypadFunc|
 
-; 1106 :             OALLog(L"[ESC]  ");
+; 1115 :             OALLog(L"[ESC]  ");
 
   000d8	e59f0374	 ldr         r0, [pc, #0x374]
   000dc	eb000000	 bl          NKDbgPrintfW
 
-; 1107 :             keyStatus[3]=1;
+; 1116 :             keyStatus[3]=1;
 
   000e0	e3a03001	 mov         r3, #1
   000e4	e584300c	 str         r3, [r4, #0xC]
   000e8	ea0000a5	 b           |$LN5@KeypadFunc|
   000ec		 |$LN54@KeypadFunc|
 
-; 1108 :            //ESC = 1;
-; 1109 :         }else if( KeypadMatrixStatus(0, 3)){
+; 1117 :            //ESC = 1;
+; 1118 :         }else if( KeypadMatrixStatus(0, 3)){
 
   000ec	e3130008	 tst         r3, #8
   000f0	0a000004	 beq         |$LN52@KeypadFunc|
 
-; 1110 :             OALLog(L"[BS]           ");
+; 1119 :             OALLog(L"[BS]           ");
 
   000f4	e59f0354	 ldr         r0, [pc, #0x354]
   000f8	eb000000	 bl          NKDbgPrintfW
 
-; 1111 :             keyStatus[4]=1;
+; 1120 :             keyStatus[4]=1;
 
   000fc	e3a03001	 mov         r3, #1
   00100	e5843010	 str         r3, [r4, #0x10]
@@ -3599,72 +3629,72 @@
   00108		 |$LN52@KeypadFunc|
   00108	e5d53001	 ldrb        r3, [r5, #1]
 
-; 1112 :             //BS = 1;
-; 1113 :         }else if( KeypadMatrixStatus(1, 5)){
+; 1121 :             //BS = 1;
+; 1122 :         }else if( KeypadMatrixStatus(1, 5)){
 
   0010c	e3130020	 tst         r3, #0x20
   00110	0a000004	 beq         |$LN50@KeypadFunc|
 
-; 1114 :             OALLog(L"[L]   ");
+; 1123 :             OALLog(L"[L]   ");
 
   00114	e59f0330	 ldr         r0, [pc, #0x330]
   00118	eb000000	 bl          NKDbgPrintfW
 
-; 1115 :             keyStatus[5]=1;
+; 1124 :             keyStatus[5]=1;
 
   0011c	e3a03001	 mov         r3, #1
   00120	e5843014	 str         r3, [r4, #0x14]
   00124	ea000096	 b           |$LN5@KeypadFunc|
   00128		 |$LN50@KeypadFunc|
 
-; 1116 :             //L = 1;
-; 1117 :         }else if( KeypadMatrixStatus(1, 4)){
+; 1125 :             //L = 1;
+; 1126 :         }else if( KeypadMatrixStatus(1, 4)){
 
   00128	e3130010	 tst         r3, #0x10
   0012c	0a000004	 beq         |$LN48@KeypadFunc|
 
-; 1118 :             OALLog(L"[UP]           ");
+; 1127 :             OALLog(L"[UP]           ");
 
   00130	e59f0310	 ldr         r0, [pc, #0x310]
   00134	eb000000	 bl          NKDbgPrintfW
 
-; 1119 :             keyStatus[6]=1;
+; 1128 :             keyStatus[6]=1;
 
   00138	e3a03001	 mov         r3, #1
   0013c	e5843018	 str         r3, [r4, #0x18]
   00140	ea00008f	 b           |$LN5@KeypadFunc|
   00144		 |$LN48@KeypadFunc|
 
-; 1120 :             //U = 1;
-; 1121 :         }else if( KeypadMatrixStatus(1, 0)){
+; 1129 :             //U = 1;
+; 1130 :         }else if( KeypadMatrixStatus(1, 0)){
 
   00144	e3130001	 tst         r3, #1
   00148	0a000004	 beq         |$LN46@KeypadFunc|
 
-; 1122 :             OALLog(L"[DOWN]         ");
+; 1131 :             OALLog(L"[DOWN]         ");
 
   0014c	e59f02f0	 ldr         r0, [pc, #0x2F0]
   00150	eb000000	 bl          NKDbgPrintfW
 
-; 1123 :             keyStatus[7]=1;
+; 1132 :             keyStatus[7]=1;
 
   00154	e3a03001	 mov         r3, #1
   00158	e584301c	 str         r3, [r4, #0x1C]
   0015c	ea000088	 b           |$LN5@KeypadFunc|
   00160		 |$LN46@KeypadFunc|
 
-; 1124 :             //D = 1;
-; 1125 :         }else if( KeypadMatrixStatus(1, 2)){
+; 1133 :             //D = 1;
+; 1134 :         }else if( KeypadMatrixStatus(1, 2)){
 
   00160	e3130004	 tst         r3, #4
   00164	0a000004	 beq         |$LN44@KeypadFunc|
 
-; 1126 :             OALLog(L"[R]          ");
+; 1135 :             OALLog(L"[R]          ");
 
   00168	e59f02d0	 ldr         r0, [pc, #0x2D0]
   0016c	eb000000	 bl          NKDbgPrintfW
 
-; 1127 :             keyStatus[8]=1;
+; 1136 :             keyStatus[8]=1;
 
   00170	e3a03001	 mov         r3, #1
   00174	e5843020	 str         r3, [r4, #0x20]
@@ -3672,108 +3702,108 @@
   0017c		 |$LN44@KeypadFunc|
   0017c	e5d52002	 ldrb        r2, [r5, #2]
 
-; 1128 :             //R = 1;
-; 1129 :         }else if( KeypadMatrixStatus(2, 5)){
+; 1137 :             //R = 1;
+; 1138 :         }else if( KeypadMatrixStatus(2, 5)){
 
   00180	e3120020	 tst         r2, #0x20
   00184	0a000004	 beq         |$LN42@KeypadFunc|
 
-; 1130 :             OALLog(L"[1]          ");
+; 1139 :             OALLog(L"[1]          ");
 
   00188	e59f02ac	 ldr         r0, [pc, #0x2AC]
   0018c	eb000000	 bl          NKDbgPrintfW
 
-; 1131 :             keyStatus[9]=1;
+; 1140 :             keyStatus[9]=1;
 
   00190	e3a03001	 mov         r3, #1
   00194	e5843024	 str         r3, [r4, #0x24]
   00198	ea000079	 b           |$LN5@KeypadFunc|
   0019c		 |$LN42@KeypadFunc|
 
-; 1132 :             //ONE = 1;
-; 1133 :         }else if( KeypadMatrixStatus(1, 1)){
+; 1141 :             //ONE = 1;
+; 1142 :         }else if( KeypadMatrixStatus(1, 1)){
 
   0019c	e3130002	 tst         r3, #2
   001a0	0a000004	 beq         |$LN40@KeypadFunc|
 
-; 1134 :             OALLog(L"[2]          ");
+; 1143 :             OALLog(L"[2]          ");
 
   001a4	e59f028c	 ldr         r0, [pc, #0x28C]
   001a8	eb000000	 bl          NKDbgPrintfW
 
-; 1135 :             keyStatus[10]=1;
+; 1144 :             keyStatus[10]=1;
 
   001ac	e3a03001	 mov         r3, #1
   001b0	e5843028	 str         r3, [r4, #0x28]
   001b4	ea000072	 b           |$LN5@KeypadFunc|
   001b8		 |$LN40@KeypadFunc|
 
-; 1136 :             //TWO = 1;
-; 1137 :         }else if( KeypadMatrixStatus(1, 3)){
+; 1145 :             //TWO = 1;
+; 1146 :         }else if( KeypadMatrixStatus(1, 3)){
 
   001b8	e3130008	 tst         r3, #8
   001bc	0a000004	 beq         |$LN38@KeypadFunc|
 
-; 1138 :             OALLog(L"[3]          ");
+; 1147 :             OALLog(L"[3]          ");
 
   001c0	e59f026c	 ldr         r0, [pc, #0x26C]
   001c4	eb000000	 bl          NKDbgPrintfW
 
-; 1139 :             keyStatus[11]=1;
+; 1148 :             keyStatus[11]=1;
 
   001c8	e3a03001	 mov         r3, #1
   001cc	e584302c	 str         r3, [r4, #0x2C]
   001d0	ea00006b	 b           |$LN5@KeypadFunc|
   001d4		 |$LN38@KeypadFunc|
 
-; 1140 :             //THREE = 1;
-; 1141 :         }else if( KeypadMatrixStatus(2, 1)){
+; 1149 :             //THREE = 1;
+; 1150 :         }else if( KeypadMatrixStatus(2, 1)){
 
   001d4	e3120002	 tst         r2, #2
   001d8	0a000004	 beq         |$LN36@KeypadFunc|
 
-; 1142 :             OALLog(L"[4]          ");
+; 1151 :             OALLog(L"[4]          ");
 
   001dc	e59f024c	 ldr         r0, [pc, #0x24C]
   001e0	eb000000	 bl          NKDbgPrintfW
 
-; 1143 :             keyStatus[12]=1;
+; 1152 :             keyStatus[12]=1;
 
   001e4	e3a03001	 mov         r3, #1
   001e8	e5843030	 str         r3, [r4, #0x30]
   001ec	ea000064	 b           |$LN5@KeypadFunc|
   001f0		 |$LN36@KeypadFunc|
 
-; 1144 :             //FOUR = 1;
-; 1145 :         }else if( KeypadMatrixStatus(2, 4)){
+; 1153 :             //FOUR = 1;
+; 1154 :         }else if( KeypadMatrixStatus(2, 4)){
 
   001f0	e3120010	 tst         r2, #0x10
   001f4	0a000004	 beq         |$LN34@KeypadFunc|
 
-; 1146 :             OALLog(L"[5]          ");
+; 1155 :             OALLog(L"[5]          ");
 
   001f8	e59f022c	 ldr         r0, [pc, #0x22C]
   001fc	eb000000	 bl          NKDbgPrintfW
 
-; 1147 :             keyStatus[13]=1;
+; 1156 :             keyStatus[13]=1;
 
   00200	e3a03001	 mov         r3, #1
   00204	e5843034	 str         r3, [r4, #0x34]
   00208	ea00005d	 b           |$LN5@KeypadFunc|
   0020c		 |$LN34@KeypadFunc|
 
-; 1148 :             //FIVE = 1;
-; 1149 :         }else if( KeypadMatrixStatus(2, 3)){
+; 1157 :             //FIVE = 1;
+; 1158 :         }else if( KeypadMatrixStatus(2, 3)){
 
   0020c	e3120008	 tst         r2, #8
   00210	0a000004	 beq         |$LN32@KeypadFunc|
 
-; 1150 :             OALLog(L"[6]          ");
+; 1159 :             OALLog(L"[6]          ");
 
   00214	e59f020c	 ldr         r0, [pc, #0x20C]
   00218	eb000000	 bl          NKDbgPrintfW
 
-; 1151 :             keyStatus[14]=1;
+; 1160 :             keyStatus[14]=1;
 
   0021c	e3a03001	 mov         r3, #1
   00220	e5843038	 str         r3, [r4, #0x38]
@@ -3781,82 +3811,82 @@
   00228		 |$LN32@KeypadFunc|
   00228	e5d53003	 ldrb        r3, [r5, #3]
 
-; 1152 :             //SIX = 1;
-; 1153 :         }else if( KeypadMatrixStatus(3, 5)){
+; 1161 :             //SIX = 1;
+; 1162 :         }else if( KeypadMatrixStatus(3, 5)){
 
   0022c	e3130020	 tst         r3, #0x20
   00230	0a000004	 beq         |$LN30@KeypadFunc|
 
-; 1154 :             OALLog(L"[7]          ");
+; 1163 :             OALLog(L"[7]          ");
 
   00234	e59f01e8	 ldr         r0, [pc, #0x1E8]
   00238	eb000000	 bl          NKDbgPrintfW
 
-; 1155 :             keyStatus[15]=1;
+; 1164 :             keyStatus[15]=1;
 
   0023c	e3a03001	 mov         r3, #1
   00240	e584303c	 str         r3, [r4, #0x3C]
   00244	ea00004e	 b           |$LN5@KeypadFunc|
   00248		 |$LN30@KeypadFunc|
 
-; 1156 :             //SEVEN = 1;
-; 1157 :         }else if( KeypadMatrixStatus(2, 0))
+; 1165 :             //SEVEN = 1;
+; 1166 :         }else if( KeypadMatrixStatus(2, 0))
 
   00248	e3120001	 tst         r2, #1
 
-; 1158 :             OALLog(L"\r[8]          ");
+; 1167 :             OALLog(L"\r[8]          ");
 
   0024c	159f01cc	 ldrne       r0, [pc, #0x1CC]
   00250	1a00004a	 bne         |$LN227@KeypadFunc|
 
-; 1159 :             //EIGHT = 1
-; 1160 :         else if( KeypadMatrixStatus(2, 2)){
+; 1168 :             //EIGHT = 1
+; 1169 :         else if( KeypadMatrixStatus(2, 2)){
 
   00254	e3120004	 tst         r2, #4
   00258	0a000004	 beq         |$LN26@KeypadFunc|
 
-; 1161 :             OALLog(L"[9]   ");
+; 1170 :             OALLog(L"[9]   ");
 
   0025c	e59f01b8	 ldr         r0, [pc, #0x1B8]
   00260	eb000000	 bl          NKDbgPrintfW
 
-; 1162 :             keyStatus[16]=1;
+; 1171 :             keyStatus[16]=1;
 
   00264	e3a03001	 mov         r3, #1
   00268	e5843040	 str         r3, [r4, #0x40]
   0026c	ea000044	 b           |$LN5@KeypadFunc|
   00270		 |$LN26@KeypadFunc|
 
-; 1163 :             //NINE = 1;
-; 1164 :         }else if( KeypadMatrixStatus(3, 4)){
+; 1172 :             //NINE = 1;
+; 1173 :         }else if( KeypadMatrixStatus(3, 4)){
 
   00270	e3130010	 tst         r3, #0x10
   00274	0a000004	 beq         |$LN24@KeypadFunc|
 
-; 1165 :             OALLog(L"[0]          ");
+; 1174 :             OALLog(L"[0]          ");
 
   00278	e59f0198	 ldr         r0, [pc, #0x198]
   0027c	eb000000	 bl          NKDbgPrintfW
 
-; 1166 :             keyStatus[17]=1;
+; 1175 :             keyStatus[17]=1;
 
   00280	e3a03001	 mov         r3, #1
   00284	e5843044	 str         r3, [r4, #0x44]
   00288	ea00003d	 b           |$LN5@KeypadFunc|
   0028c		 |$LN24@KeypadFunc|
 
-; 1167 :             //ZERO = 1;
-; 1168 :         }else if( KeypadMatrixStatus(3, 1)){
+; 1176 :             //ZERO = 1;
+; 1177 :         }else if( KeypadMatrixStatus(3, 1)){
 
   0028c	e3130002	 tst         r3, #2
   00290	0a000004	 beq         |$LN22@KeypadFunc|
 
-; 1169 :             OALLog(L"[.]          ");
+; 1178 :             OALLog(L"[.]          ");
 
   00294	e59f0178	 ldr         r0, [pc, #0x178]
   00298	eb000000	 bl          NKDbgPrintfW
 
-; 1170 :             keyStatus[18]=1;
+; 1179 :             keyStatus[18]=1;
 
   0029c	e3a03001	 mov         r3, #1
   002a0	e5843048	 str         r3, [r4, #0x48]
@@ -3864,177 +3894,177 @@
   002a8		 |$LN22@KeypadFunc|
   002a8	e5d52004	 ldrb        r2, [r5, #4]
 
-; 1171 :             //DOT = 1;
-; 1172 :         }else if( KeypadMatrixStatus(4, 1)){
+; 1180 :             //DOT = 1;
+; 1181 :         }else if( KeypadMatrixStatus(4, 1)){
 
   002ac	e3120002	 tst         r2, #2
   002b0	0a000004	 beq         |$LN20@KeypadFunc|
 
-; 1173 :             OALLog(L"[+-*/]");
+; 1182 :             OALLog(L"[+-*/]");
 
   002b4	e59f0154	 ldr         r0, [pc, #0x154]
   002b8	eb000000	 bl          NKDbgPrintfW
 
-; 1174 :             keyStatus[19]=1;
+; 1183 :             keyStatus[19]=1;
 
   002bc	e3a03001	 mov         r3, #1
   002c0	e584304c	 str         r3, [r4, #0x4C]
   002c4	ea00002e	 b           |$LN5@KeypadFunc|
   002c8		 |$LN20@KeypadFunc|
 
-; 1175 :             //PLUS = 1;
-; 1176 :         }else if( KeypadMatrixStatus(3, 3)){
+; 1184 :             //PLUS = 1;
+; 1185 :         }else if( KeypadMatrixStatus(3, 3)){
 
   002c8	e3130008	 tst         r3, #8
   002cc	0a000004	 beq         |$LN18@KeypadFunc|
 
-; 1177 :             OALLog(L"[F1]          ");
+; 1186 :             OALLog(L"[F1]          ");
 
   002d0	e59f0134	 ldr         r0, [pc, #0x134]
   002d4	eb000000	 bl          NKDbgPrintfW
 
-; 1178 :             keyStatus[20]=1;
+; 1187 :             keyStatus[20]=1;
 
   002d8	e3a03001	 mov         r3, #1
   002dc	e5843050	 str         r3, [r4, #0x50]
   002e0	ea000027	 b           |$LN5@KeypadFunc|
   002e4		 |$LN18@KeypadFunc|
 
-; 1179 :             //F1 = 1;
-; 1180 :         }else if( KeypadMatrixStatus(4, 3)){
+; 1188 :             //F1 = 1;
+; 1189 :         }else if( KeypadMatrixStatus(4, 3)){
 
   002e4	e3120008	 tst         r2, #8
   002e8	0a000004	 beq         |$LN16@KeypadFunc|
 
-; 1181 :             OALLog(L"[F2]          ");
+; 1190 :             OALLog(L"[F2]          ");
 
   002ec	e59f0114	 ldr         r0, [pc, #0x114]
   002f0	eb000000	 bl          NKDbgPrintfW
 
-; 1182 :             keyStatus[21]=1;
+; 1191 :             keyStatus[21]=1;
 
   002f4	e3a03001	 mov         r3, #1
   002f8	e5843054	 str         r3, [r4, #0x54]
   002fc	ea000020	 b           |$LN5@KeypadFunc|
   00300		 |$LN16@KeypadFunc|
 
-; 1183 :             //F2 = 1;
-; 1184 :         }else if( KeypadMatrixStatus(3, 0)){
+; 1192 :             //F2 = 1;
+; 1193 :         }else if( KeypadMatrixStatus(3, 0)){
 
   00300	e3130001	 tst         r3, #1
 
-; 1185 :             OALLog(L"[F3]          ");
+; 1194 :             OALLog(L"[F3]          ");
 
   00304	159f00f8	 ldrne       r0, [pc, #0xF8]
   00308	1a00001c	 bne         |$LN227@KeypadFunc|
 
-; 1186 :             //F3 = 1;
-; 1187 :         }else if( KeypadMatrixStatus(3, 2)){
+; 1195 :             //F3 = 1;
+; 1196 :         }else if( KeypadMatrixStatus(3, 2)){
 
   0030c	e3130004	 tst         r3, #4
   00310	0a000004	 beq         |$LN12@KeypadFunc|
 
-; 1188 :             OALLog(L"[F4]          ");
+; 1197 :             OALLog(L"[F4]          ");
 
   00314	e59f00e4	 ldr         r0, [pc, #0xE4]
   00318	eb000000	 bl          NKDbgPrintfW
 
-; 1189 :             keyStatus[22]=1;
+; 1198 :             keyStatus[22]=1;
 
   0031c	e3a03001	 mov         r3, #1
   00320	e5843058	 str         r3, [r4, #0x58]
   00324	ea000016	 b           |$LN5@KeypadFunc|
   00328		 |$LN12@KeypadFunc|
 
-; 1190 :             //F4 = 1;
-; 1191 :         }else if( KeypadMatrixStatus(4, 2)){
+; 1199 :             //F4 = 1;
+; 1200 :         }else if( KeypadMatrixStatus(4, 2)){
 
   00328	e3120004	 tst         r2, #4
   0032c	0a000004	 beq         |$LN10@KeypadFunc|
 
-; 1192 :             OALLog(L"[SP]          ");
+; 1201 :             OALLog(L"[SP]          ");
 
   00330	e59f00c4	 ldr         r0, [pc, #0xC4]
   00334	eb000000	 bl          NKDbgPrintfW
 
-; 1193 :             keyStatus[23]=1;
+; 1202 :             keyStatus[23]=1;
 
   00338	e3a03001	 mov         r3, #1
   0033c	e584305c	 str         r3, [r4, #0x5C]
   00340	ea00000f	 b           |$LN5@KeypadFunc|
   00344		 |$LN10@KeypadFunc|
 
-; 1194 :             //SP = 1;
-; 1195 :         }else if( KeypadMatrixStatus(4, 4)){
+; 1203 :             //SP = 1;
+; 1204 :         }else if( KeypadMatrixStatus(4, 4)){
 
   00344	e3120010	 tst         r2, #0x10
   00348	0a000004	 beq         |$LN8@KeypadFunc|
 
-; 1196 :             OALLog(L"[FN]            ");
+; 1205 :             OALLog(L"[FN]            ");
 
   0034c	e59f00a4	 ldr         r0, [pc, #0xA4]
   00350	eb000000	 bl          NKDbgPrintfW
 
-; 1197 :             keyStatus[24]=1;
+; 1206 :             keyStatus[24]=1;
 
   00354	e3a03001	 mov         r3, #1
   00358	e5843060	 str         r3, [r4, #0x60]
   0035c	ea000008	 b           |$LN5@KeypadFunc|
   00360		 |$LN8@KeypadFunc|
 
-; 1198 :             //FN = 1;
-; 1199 :         }else if( KeypadMatrixStatus(4, 5)){    //KeypadMatrixStatus(4, 5)
+; 1207 :             //FN = 1;
+; 1208 :         }else if( KeypadMatrixStatus(4, 5)){    //KeypadMatrixStatus(4, 5)
 
   00360	e3120020	 tst         r2, #0x20
   00364	0a000004	 beq         |$LN6@KeypadFunc|
 
-; 1200 :             OALLog(L"[TAB]          ");
+; 1209 :             OALLog(L"[TAB]          ");
 
   00368	e59f0084	 ldr         r0, [pc, #0x84]
   0036c	eb000000	 bl          NKDbgPrintfW
 
-; 1201 :             keyStatus[25]=1;
+; 1210 :             keyStatus[25]=1;
 
   00370	e3a03001	 mov         r3, #1
   00374	e5843064	 str         r3, [r4, #0x64]
 
-; 1202 :             //TAB = 1;
-; 1203 :         }else{
+; 1211 :             //TAB = 1;
+; 1212 :         }else{
 
   00378	ea000001	 b           |$LN5@KeypadFunc|
   0037c		 |$LN6@KeypadFunc|
 
-; 1204 :             OALLog(L"Doesnt range. ");
+; 1213 :             OALLog(L"Doesnt range. ");
 
   0037c	e59f006c	 ldr         r0, [pc, #0x6C]
   00380		 |$LN227@KeypadFunc|
   00380	eb000000	 bl          NKDbgPrintfW
   00384		 |$LN5@KeypadFunc|
 
-; 1205 :         }
-; 1206 :       
-; 1207 :         for(k=0, entry=1; k<KEYPAD_SIZE; k++){
+; 1214 :         }
+; 1215 :       
+; 1216 :         for(k=0, entry=1; k<KEYPAD_SIZE; k++){
 
   00384	e3a02001	 mov         r2, #1
   00388	e1a01004	 mov         r1, r4
   0038c	e3a0001a	 mov         r0, #0x1A
   00390		 |$LL4@KeypadFunc|
 
-; 1208 :             entry &= keyStatus[k];         
+; 1217 :             entry &= keyStatus[k];         
 
   00390	e4913004	 ldr         r3, [r1], #4
   00394	e2500001	 subs        r0, r0, #1
   00398	e0022003	 and         r2, r2, r3
   0039c	1afffffb	 bne         |$LL4@KeypadFunc|
 
-; 1209 :         }
-; 1210 : 
-; 1211 :         if(entry){
+; 1218 :         }
+; 1219 : 
+; 1220 :         if(entry){
 
   003a0	e3520000	 cmp         r2, #0
   003a4	0a00000d	 beq         |$LN1@KeypadFunc|
 
-; 1212 :             clear();
+; 1221 :             clear();
 
   003a8	e3a03000	 mov         r3, #0
   003ac	e3a02064	 mov         r2, #0x64
@@ -4050,30 +4080,30 @@
   003d0	e1540001	 cmp         r4, r1
   003d4	1afffffb	 bne         |$LN225@KeypadFunc|
 
-; 1213 :             return EXIT = TRUE;
+; 1222 :             return EXIT = TRUE;
 
   003d8	e3a00001	 mov         r0, #1
   003dc	ea000000	 b           |$LN70@KeypadFunc|
   003e0		 |$LN1@KeypadFunc|
 
-; 1214 :         }      
-; 1215 :     }
-; 1216 : 
-; 1217 :     /*count--;
-; 1218 :     if(count == 0)
-; 1219 :         count = 26;*/
-; 1220 : 
-; 1221 :     /*OALLog(L"%d\n",keyStatus[0]);
-; 1222 :     OALLog(L"%d\n",*(keyStatus+1));
-; 1223 :     OALLog(L"%d\n",*(keyStatus+2));
-; 1224 :     OALLog(L"%d\n",*(keyStatus+3));*/
-; 1225 :       
-; 1226 :     return EXIT;
+; 1223 :         }      
+; 1224 :     }
+; 1225 : 
+; 1226 :     /*count--;
+; 1227 :     if(count == 0)
+; 1228 :         count = 26;*/
+; 1229 : 
+; 1230 :     /*OALLog(L"%d\n",keyStatus[0]);
+; 1231 :     OALLog(L"%d\n",*(keyStatus+1));
+; 1232 :     OALLog(L"%d\n",*(keyStatus+2));
+; 1233 :     OALLog(L"%d\n",*(keyStatus+3));*/
+; 1234 :       
+; 1235 :     return EXIT;
 
   003e0	e3a00000	 mov         r0, #0
   003e4		 |$LN70@KeypadFunc|
 
-; 1227 : }
+; 1236 : }
 
   003e4	e28dd068	 add         sp, sp, #0x68
   003e8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
@@ -4145,7 +4175,7 @@
   0046c	00000000	 DCD         |gKeypadMatrix|
   00470		 |$LN264@KeypadFunc|
   00470	00000000	 DCD         |ghTwl|
-  00474		 |$M48708|
+  00474		 |$M48821|
 
 			 ENDP  ; |KeypadFuncMatrix|
 
@@ -4165,7 +4195,7 @@
 	EXPORT	|??_C@_1CO@EGBJCCJE@?$AA?$AN?$AA?5?$AA?$FL?$AAL?$AA?$FN?$AA?5?$AA?$FL?$AAU?$AAP?$AA?$FN?$AA?$FL?$AAD?$AAO?$AAW?$AAN?$AA?$FN?$AA?5?$AA?$FL?$AAR?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48780| DCD	|$LN33@KeypadFunc@2|
+|$T48893| DCD	|$LN33@KeypadFunc@2|
 	DCD	0x40005a01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4259,62 +4289,62 @@
 
   00000		 |KeypadFunc_Z2170P| PROC
 
-; 1231 : {
+; 1240 : {
 
   00000		 |$LN33@KeypadFunc@2|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M48777|
+  00004		 |$M48890|
 
-; 1232 :     int     num;
-; 1233 :     //BOOL    LOOP = TRUE;
-; 1234 :     //WCHAR   key;
-; 1235 :     BOOL    EXIT;
-; 1236 :     
-; 1237 :     UNREFERENCED_PARAMETER(pMenu);
-; 1238 : 	OALBLMenuHeader(L"Keypad Functional Test");
+; 1241 :     int     num;
+; 1242 :     //BOOL    LOOP = TRUE;
+; 1243 :     //WCHAR   key;
+; 1244 :     BOOL    EXIT;
+; 1245 :     
+; 1246 :     UNREFERENCED_PARAMETER(pMenu);
+; 1247 : 	OALBLMenuHeader(L"Keypad Functional Test");
 
   00004	e59f0158	 ldr         r0, [pc, #0x158]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 1239 : 	//OALLog(L"!!!!!!hTwl: %X....\r\n", ghTwl);
-; 1240 :     
-; 1241 : 	//printing keypad 
-; 1242 : 	OALLog(L"\r [ENT] [SCAN] [ENT]\r\n");
+; 1248 : 	//OALLog(L"!!!!!!hTwl: %X....\r\n", ghTwl);
+; 1249 :     
+; 1250 : 	//printing keypad 
+; 1251 : 	OALLog(L"\r [ENT] [SCAN] [ENT]\r\n");
 
   0000c	e59f014c	 ldr         r0, [pc, #0x14C]
   00010	eb000000	 bl          NKDbgPrintfW
 
-; 1243 : 	OALLog(L"\r [ESC]         [BS]\r\n");
+; 1252 : 	OALLog(L"\r [ESC]         [BS]\r\n");
 
   00014	e59f0140	 ldr         r0, [pc, #0x140]
   00018	eb000000	 bl          NKDbgPrintfW
 
-; 1244 : 	OALLog(L"\r [L] [UP][DOWN] [R]\r\n");
+; 1253 : 	OALLog(L"\r [L] [UP][DOWN] [R]\r\n");
 
   0001c	e59f0134	 ldr         r0, [pc, #0x134]
   00020	eb000000	 bl          NKDbgPrintfW
 
-; 1245 : 		
-; 1246 : 	for(num=1; num<10; num++){
+; 1254 : 		
+; 1255 : 	for(num=1; num<10; num++){
 
   00024	e59f5128	 ldr         r5, [pc, #0x128]
   00028	e3a04001	 mov         r4, #1
   0002c		 |$LL12@KeypadFunc@2|
 
-; 1247 :         OALLog(L"   [%d]",num);
+; 1256 :         OALLog(L"   [%d]",num);
 
   0002c	e59f011c	 ldr         r0, [pc, #0x11C]
   00030	e1a01004	 mov         r1, r4
   00034	eb000000	 bl          NKDbgPrintfW
 
-; 1248 :         if((num%3) == 0)
+; 1257 :         if((num%3) == 0)
 
   00038	e0c32594	 smull       r2, r3, r4, r5
   0003c	e0833fa3	 add         r3, r3, r3, lsr #31
   00040	e0833083	 add         r3, r3, r3, lsl #1
   00044	e0543003	 subs        r3, r4, r3
 
-; 1249 :             OALLog(L"\r\n");
+; 1258 :             OALLog(L"\r\n");
 
   00048	059f00e4	 ldreq       r0, [pc, #0xE4]
   0004c	0b000000	 bleq        NKDbgPrintfW
@@ -4322,35 +4352,35 @@
   00054	e354000a	 cmp         r4, #0xA
   00058	bafffff3	 blt         |$LL12@KeypadFunc@2|
 
-; 1250 :     }
-; 1251 : 	OALLog(L"\r [ . ] [ 0 ] [+-*/]\r\n");
+; 1259 :     }
+; 1260 : 	OALLog(L"\r [ . ] [ 0 ] [+-*/]\r\n");
 
   0005c	e59f00e8	 ldr         r0, [pc, #0xE8]
   00060	eb000000	 bl          NKDbgPrintfW
 
-; 1252 : 	OALLog(L" "); 
+; 1261 : 	OALLog(L" "); 
 
   00064	e59f00dc	 ldr         r0, [pc, #0xDC]
   00068	eb000000	 bl          NKDbgPrintfW
 
-; 1253 : 	for(num=1; num<5; num++){
+; 1262 : 	for(num=1; num<5; num++){
 
   0006c	e3a04001	 mov         r4, #1
   00070		 |$LL8@KeypadFunc@2|
 
-; 1254 :         OALLog(L"[F%d]",num);
+; 1263 :         OALLog(L"[F%d]",num);
 
   00070	e59f00cc	 ldr         r0, [pc, #0xCC]
   00074	e1a01004	 mov         r1, r4
   00078	eb000000	 bl          NKDbgPrintfW
 
-; 1255 :         if((num%2) == 0)
+; 1264 :         if((num%2) == 0)
 
   0007c	e0843fa4	 add         r3, r4, r4, lsr #31
   00080	e1a030c3	 mov         r3, r3, asr #1
   00084	e0543083	 subs        r3, r4, r3, lsl #1
 
-; 1256 :             OALLog(L"  ");
+; 1265 :             OALLog(L"  ");
 
   00088	059f00b0	 ldreq       r0, [pc, #0xB0]
   0008c	0b000000	 bleq        NKDbgPrintfW
@@ -4358,23 +4388,23 @@
   00094	e3540005	 cmp         r4, #5
   00098	bafffff4	 blt         |$LL8@KeypadFunc@2|
 
-; 1257 :     }
-; 1258 : 	OALLog(L"\n");   
+; 1266 :     }
+; 1267 : 	OALLog(L"\n");   
 
   0009c	e59f0098	 ldr         r0, [pc, #0x98]
   000a0	eb000000	 bl          NKDbgPrintfW
 
-; 1259 :     OALLog(L"\r [PWR][TAB][FN][SP] \r\n");
+; 1268 :     OALLog(L"\r [PWR][TAB][FN][SP] \r\n");
 
   000a4	e59f008c	 ldr         r0, [pc, #0x8C]
   000a8	eb000000	 bl          NKDbgPrintfW
 
-; 1260 : 	OALLog(L"\r\n");
+; 1269 : 	OALLog(L"\r\n");
 
   000ac	e59f0080	 ldr         r0, [pc, #0x80]
   000b0	eb000000	 bl          NKDbgPrintfW
 
-; 1261 :     OALLog(L"\r Press any key the keypad testing, [ESC]+[BS] are cancel>>>\r\n");
+; 1270 :     OALLog(L"\r Press any key the keypad testing, [ESC]+[BS] are cancel>>>\r\n");
 
   000b4	e59f0074	 ldr         r0, [pc, #0x74]
   000b8	eb000000	 bl          NKDbgPrintfW
@@ -4382,31 +4412,31 @@
   000c0	e59f6060	 ldr         r6, [pc, #0x60]
   000c4		 |$LL4@KeypadFunc@2|
 
-; 1262 :     
-; 1263 : 	//while(){
-; 1264 :     do{
-; 1265 : 	    EXIT = KeypadFuncMatrix();
+; 1271 :     
+; 1272 : 	//while(){
+; 1273 :     do{
+; 1274 : 	    EXIT = KeypadFuncMatrix();
 
   000c4	eb000000	 bl          KeypadFuncMatrix
 
-; 1266 :         LcdStall(stall_1Sec/2); 
+; 1275 :         LcdStall(stall_1Sec/2); 
 
   000c8	e5963000	 ldr         r3, [r6]
   000cc	e1a04000	 mov         r4, r0
   000d0	e1a000a3	 mov         r0, r3, lsr #1
   000d4	eb000000	 bl          LcdStall
 
-; 1267 :         if(EXIT){
+; 1276 :         if(EXIT){
 
   000d8	e3540000	 cmp         r4, #0
   000dc	1a00000b	 bne         |$LN26@KeypadFunc@2|
   000e0	e5d53000	 ldrb        r3, [r5]
 
-; 1269 :             return;
-; 1270 : 	    }	    
-; 1271 : 	    /*if( (key = OALBLMenuReadKey(TRUE)) == L'0')
-; 1272 :             goto BREAK;*/
-; 1273 :     }while((KeypadMatrixStatus(0, 1) & KeypadMatrixStatus(0, 3)) != TRUE);//??
+; 1278 :             return;
+; 1279 : 	    }	    
+; 1280 : 	    /*if( (key = OALBLMenuReadKey(TRUE)) == L'0')
+; 1281 :             goto BREAK;*/
+; 1282 :     }while((KeypadMatrixStatus(0, 1) & KeypadMatrixStatus(0, 3)) != TRUE);//??
 
   000e4	e3130002	 tst         r3, #2
   000e8	13a02001	 movne       r2, #1
@@ -4418,23 +4448,23 @@
   00100	e3530001	 cmp         r3, #1
   00104	1affffee	 bne         |$LL4@KeypadFunc@2|
 
-; 1274 :     //}
-; 1275 : //BREAK:
-; 1276 : 
-; 1277 :     OALLog(L"\r Test Break!! \r\n");
+; 1283 :     //}
+; 1284 : //BREAK:
+; 1285 : 
+; 1286 :     OALLog(L"\r Test Break!! \r\n");
 
   00108	e59f0014	 ldr         r0, [pc, #0x14]
   0010c	ea000000	 b           |$LN30@KeypadFunc@2|
   00110		 |$LN26@KeypadFunc@2|
 
-; 1268 :             OALLog(L"\r Tested ok!! \r\n");
+; 1277 :             OALLog(L"\r Tested ok!! \r\n");
 
   00110	e59f0008	 ldr         r0, [pc, #8]
   00114		 |$LN30@KeypadFunc@2|
   00114	eb000000	 bl          NKDbgPrintfW
 
-; 1278 :     return;
-; 1279 : }
+; 1287 :     return;
+; 1288 : }
 
   00118	e8bd4070	 ldmia       sp!, {r4 - r6, lr}
   0011c	e12fff1e	 bx          lr
@@ -4475,15 +4505,576 @@
   00160	00000000	 DCD         |??_C@_1CO@IOKPGCGC@?$AA?$AN?$AA?5?$AA?$FL?$AAE?$AAN?$AAT?$AA?$FN?$AA?5?$AA?$FL?$AAS?$AAC?$AAA?$AAN?$AA?$FN?$AA?5?$AA?$FL?$AAE?$AAN?$AAT?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@|
   00164		 |$LN52@KeypadFunc@2|
   00164	00000000	 DCD         |??_C@_1CO@IJDKLNIK@?$AAK?$AAe?$AAy?$AAp?$AAa?$AAd?$AA?5?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AAa?$AAl?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  00168		 |$M48778|
+  00168		 |$M48891|
 
 			 ENDP  ; |KeypadFunc_Z2170P|
+
+	EXPORT	|??_C@_1DG@KJOADFOF@?$AA?$AN?$AAT?$AAe?$AAs?$AAt?$AA?5?$AAp?$AAa?$AAt?$AAt?$AAe?$AAr?$AAn?$AA?3?$AA0?$AAx?$AA5?$AA5?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?5?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1DG@JPEIONMB@?$AA?$AN?$AAT?$AAe?$AAs?$AAt?$AA?5?$AAp?$AAa?$AAt?$AAt?$AAe?$AAr?$AAn?$AA?3?$AA0?$AAx?$AAA?$AAA?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?5?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1GK@MEMFMCKN@?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9@| [ DATA ] ; `string'
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48933| DCD	|$LN25@RAMAccessT|
+	DCD	0x40005b01
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DG@KJOADFOF@?$AA?$AN?$AAT?$AAe?$AAs?$AAt?$AA?5?$AAp?$AAa?$AAt?$AAt?$AAe?$AAr?$AAn?$AA?3?$AA0?$AAx?$AA5?$AA5?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?5?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
+	DCB	0x0, "T", 0x0, "e", 0x0, "s", 0x0, "t", 0x0, " ", 0x0, "p"
+	DCB	0x0, "a", 0x0, "t", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, "n"
+	DCB	0x0, ":", 0x0, "0", 0x0, "x", 0x0, "5", 0x0, "5", 0x0, " "
+	DCB	0x0, "o", 0x0, "k", 0x0, "!", 0x0, "!", 0x0, " ", 0x0, 0xd
+	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1DG@JPEIONMB@?$AA?$AN?$AAT?$AAe?$AAs?$AAt?$AA?5?$AAp?$AAa?$AAt?$AAt?$AAe?$AAr?$AAn?$AA?3?$AA0?$AAx?$AAA?$AAA?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?5?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
+	DCB	0x0, "T", 0x0, "e", 0x0, "s", 0x0, "t", 0x0, " ", 0x0, "p"
+	DCB	0x0, "a", 0x0, "t", 0x0, "t", 0x0, "e", 0x0, "r", 0x0, "n"
+	DCB	0x0, ":", 0x0, "0", 0x0, "x", 0x0, "A", 0x0, "A", 0x0, " "
+	DCB	0x0, "o", 0x0, "k", 0x0, "!", 0x0, "!", 0x0, " ", 0x0, 0xd
+	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1GK@MEMFMCKN@?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9@| DCB "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-", 0x0, "-"
+	DCB	0x0, "-", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |RAMAccessTest| PROC
+
+; 1335 : {
+
+  00000		 |$LN25@RAMAccessT|
+  00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
+  00004		 |$M48930|
+
+; 1336 :     ULONG  startAddress = IMAGE_SHARE_ARGS_CA;
+; 1337 :     ULONG  endAddress = startAddress|(256 *1024 *1024-1); //endAddress = startAddress + size(256MB) 
+; 1338 :     ULONG  i, checkAddress =  0xFFFFFFFF;
+; 1339 :     BYTE   value, temp, pattern = 0xAA, pattern2 = 0x55;
+; 1340 :     BOOL   DOING = TRUE;
+; 1341 :     ULONG  percent;        
+; 1342 :      
+; 1343 : 	UNREFERENCED_PARAMETER(pMenu);
+; 1344 : 	OALBLMenuHeader(L"RAM Access Test(Completely)");
+
+  00004	e59f015c	 ldr         r0, [pc, #0x15C]
+  00008	eb000000	 bl          OALBLMenuHeader
+
+; 1345 : 
+; 1346 :     OALLog(L"\r\n !Start Address: 0X%08X", startAddress&checkAddress );
+
+  0000c	e59f0150	 ldr         r0, [pc, #0x150]
+  00010	e3a01102	 mov         r1, #2, 2
+  00014	eb000000	 bl          NKDbgPrintfW
+
+; 1347 :     OALLog(L"\r\n !End   Address: 0X%08X", endAddress&checkAddress );
+
+  00018	e59f0140	 ldr         r0, [pc, #0x140]
+  0001c	e3e01207	 mvn         r1, #7, 4
+  00020	eb000000	 bl          NKDbgPrintfW
+
+; 1348 :     OALLog(L"\r\n------------------------------------------\n");
+
+  00024	e59f0130	 ldr         r0, [pc, #0x130]
+  00028	eb000000	 bl          NKDbgPrintfW
+  0002c	e59f6124	 ldr         r6, [pc, #0x124]
+  00030	e59f711c	 ldr         r7, [pc, #0x11C]
+  00034	e3a080aa	 mov         r8, #0xAA
+  00038	e3a0aa19	 mov         r10, #0x19, 20
+  0003c	e3a09055	 mov         r9, #0x55
+  00040	e3a0ba19	 mov         r11, #0x19, 20
+  00044		 |$LL12@RAMAccessT|
+
+; 1349 :   
+; 1350 :     while(DOING){
+; 1351 :         for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
+
+  00044	e3a05000	 mov         r5, #0
+  00048	e3a04102	 mov         r4, #2, 2
+  0004c		 |$LL10@RAMAccessT|
+
+; 1352 : 	    {
+; 1353 :             temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
+
+  0004c	e5d42000	 ldrb        r2, [r4]
+
+; 1354 :             *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(if is AA) 
+
+  00050	e5c48000	 strb        r8, [r4]
+
+; 1355 :             value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == AA, setup value
+
+  00054	e5d43000	 ldrb        r3, [r4]
+
+; 1356 :             *(volatile BYTE *)(startAddress + i) = temp;        //store data
+
+  00058	e5c42000	 strb        r2, [r4]
+
+; 1357 :         
+; 1358 :             if(value != pattern)                                //check value(in address value) equal pattern
+
+  0005c	e35300aa	 cmp         r3, #0xAA
+  00060	1a00000c	 bne         |$LN18@RAMAccessT|
+  00064	e2840106	 add         r0, r4, #6, 2
+
+; 1361 :                 break;
+; 1362 :             }
+; 1363 : 
+; 1364 :             if( (percent%(1024*100)) == 0){   //scan 100kB show tip 
+
+  00068	e0831790	 umull       r1, r3, r0, r7
+  0006c	e1a037a3	 mov         r3, r3, lsr #15
+  00070	e0020a93	 mul         r2, r3, r10
+  00074	e0503002	 subs        r3, r0, r2
+
+; 1365 :                 OALLog(L"\rScanned size: %dk\r\n", percent/1024); 
+
+  00078	01a01520	 moveq       r1, r0, lsr #10
+  0007c	059f00c8	 ldreq       r0, [pc, #0xC8]
+  00080	0b000000	 bleq        NKDbgPrintfW
+  00084	e2844001	 add         r4, r4, #1
+  00088	e3740217	 cmn         r4, #0x17, 4
+  0008c	e2855001	 add         r5, r5, #1
+  00090	3affffed	 bcc         |$LL10@RAMAccessT|
+
+; 1378 :         
+; 1379 :             if(value != pattern2)                                //check value(in address value) equal pattern
+
+  00094	ea000002	 b           |$LN8@RAMAccessT|
+  00098		 |$LN18@RAMAccessT|
+
+; 1359 :             {
+; 1360 :                 OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
+
+  00098	e59f00a8	 ldr         r0, [pc, #0xA8]
+  0009c	e2851102	 add         r1, r5, #2, 2
+  000a0	eb000000	 bl          NKDbgPrintfW
+  000a4		 |$LN8@RAMAccessT|
+
+; 1366 :             }
+; 1367 :         }
+; 1368 :         OALLog(L"\rTest pattern:0xAA ok!! \r\n");
+
+  000a4	e59f00a4	 ldr         r0, [pc, #0xA4]
+  000a8	eb000000	 bl          NKDbgPrintfW
+
+; 1369 :         OALLog(L"--------------------------------------------------\r\n");
+
+  000ac	e59f008c	 ldr         r0, [pc, #0x8C]
+  000b0	eb000000	 bl          NKDbgPrintfW
+
+; 1370 :         LcdStall(stall_1Sec*3);
+
+  000b4	e5963000	 ldr         r3, [r6]
+  000b8	e0830083	 add         r0, r3, r3, lsl #1
+  000bc	eb000000	 bl          LcdStall
+
+; 1371 :         
+; 1372 :         for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
+
+  000c0	e3a05000	 mov         r5, #0
+  000c4	e3a04102	 mov         r4, #2, 2
+  000c8		 |$LL5@RAMAccessT|
+
+; 1373 : 	    {
+; 1374 :             temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
+
+  000c8	e5d42000	 ldrb        r2, [r4]
+
+; 1375 :             *(volatile BYTE *)(startAddress + i) = pattern2;     //write pattern ;pattern write into address(if is AA) 
+
+  000cc	e5c49000	 strb        r9, [r4]
+
+; 1376 :             value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
+
+  000d0	e5d43000	 ldrb        r3, [r4]
+
+; 1377 :             *(volatile BYTE *)(startAddress + i) = temp;        //store data
+
+  000d4	e5c42000	 strb        r2, [r4]
+
+; 1378 :         
+; 1379 :             if(value != pattern2)                                //check value(in address value) equal pattern
+
+  000d8	e3530055	 cmp         r3, #0x55
+  000dc	1a00000c	 bne         |$LN19@RAMAccessT|
+  000e0	e2840106	 add         r0, r4, #6, 2
+
+; 1382 :                 break;
+; 1383 :             }
+; 1384 : 
+; 1385 :             if( (percent%(1024*100)) == 0){   //scan 100kB show tip 
+
+  000e4	e0831790	 umull       r1, r3, r0, r7
+  000e8	e1a037a3	 mov         r3, r3, lsr #15
+  000ec	e0020b93	 mul         r2, r3, r11
+  000f0	e0503002	 subs        r3, r0, r2
+
+; 1386 :                 OALLog(L"\rScanned size: %dk\r\n", percent/1024);
+
+  000f4	01a01520	 moveq       r1, r0, lsr #10
+  000f8	059f004c	 ldreq       r0, [pc, #0x4C]
+  000fc	0b000000	 bleq        NKDbgPrintfW
+  00100	e2844001	 add         r4, r4, #1
+  00104	e3740217	 cmn         r4, #0x17, 4
+  00108	e2855001	 add         r5, r5, #1
+  0010c	3affffed	 bcc         |$LL5@RAMAccessT|
+
+; 1378 :         
+; 1379 :             if(value != pattern2)                                //check value(in address value) equal pattern
+
+  00110	ea000002	 b           |$LN3@RAMAccessT|
+  00114		 |$LN19@RAMAccessT|
+
+; 1380 :             {
+; 1381 :                 OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
+
+  00114	e59f002c	 ldr         r0, [pc, #0x2C]
+  00118	e2851102	 add         r1, r5, #2, 2
+  0011c	eb000000	 bl          NKDbgPrintfW
+  00120		 |$LN3@RAMAccessT|
+
+; 1387 :             }         
+; 1388 :         }
+; 1389 :         OALLog(L"\rTest pattern:0x55 ok!! \r\n");
+
+  00120	e59f001c	 ldr         r0, [pc, #0x1C]
+  00124	eb000000	 bl          NKDbgPrintfW
+
+; 1390 :         OALLog(L"--------------------------------------------------\r\n");
+
+  00128	e59f0010	 ldr         r0, [pc, #0x10]
+  0012c	eb000000	 bl          NKDbgPrintfW
+
+; 1391 :         LcdStall(stall_1Sec*3);
+
+  00130	e5963000	 ldr         r3, [r6]
+  00134	e0830083	 add         r0, r3, r3, lsl #1
+  00138	eb000000	 bl          LcdStall
+  0013c	eaffffc0	 b           |$LL12@RAMAccessT|
+  00140		 |$LN26@RAMAccessT|
+  00140		 |$LN27@RAMAccessT|
+  00140	00000000	 DCD         |??_C@_1GK@MEMFMCKN@?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9@|
+  00144		 |$LN28@RAMAccessT|
+  00144	00000000	 DCD         |??_C@_1DG@KJOADFOF@?$AA?$AN?$AAT?$AAe?$AAs?$AAt?$AA?5?$AAp?$AAa?$AAt?$AAt?$AAe?$AAr?$AAn?$AA?3?$AA0?$AAx?$AA5?$AA5?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?5?$AA?$AN?$AA?6?$AA?$AA@|
+  00148		 |$LN29@RAMAccessT|
+  00148	00000000	 DCD         |??_C@_1CO@GBEKHDOH@?$AA?$AN?$AA?6?$AA?5?$AAE?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA0?$AAX?$AA?$CF?$AAX?$AA?$AA@|
+  0014c		 |$LN30@RAMAccessT|
+  0014c	00000000	 DCD         |??_C@_1CK@KEBMPBOA@?$AA?$AN?$AAS?$AAc?$AAa?$AAn?$AAn?$AAe?$AAd?$AA?5?$AAs?$AAi?$AAz?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AAk?$AA?$AN?$AA?6?$AA?$AA@|
+  00150		 |$LN31@RAMAccessT|
+  00150	00000000	 DCD         |??_C@_1DG@JPEIONMB@?$AA?$AN?$AAT?$AAe?$AAs?$AAt?$AA?5?$AAp?$AAa?$AAt?$AAt?$AAe?$AAr?$AAn?$AA?3?$AA0?$AAx?$AAA?$AAA?$AA?5?$AAo?$AAk?$AA?$CB?$AA?$CB?$AA?5?$AA?$AN?$AA?6?$AA?$AA@|
+  00154		 |$LN32@RAMAccessT|
+  00154	51eb851f	 DCD         0x51eb851f
+  00158		 |$LN33@RAMAccessT|
+  00158	00000000	 DCD         |stall_1Sec|
+  0015c		 |$LN34@RAMAccessT|
+  0015c	00000000	 DCD         |??_C@_1FM@GKBCNJJJ@?$AA?$AN?$AA?6?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9?$AA?9@|
+  00160		 |$LN35@RAMAccessT|
+  00160	00000000	 DCD         |??_C@_1DE@FOMMJKGJ@?$AA?$AN?$AA?6?$AA?5?$AA?$CB?$AAE?$AAn?$AAd?$AA?5?$AA?5?$AA?5?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA0?$AAX?$AA?$CF?$AA0?$AA8?$AAX?$AA?$AA@|
+  00164		 |$LN36@RAMAccessT|
+  00164	00000000	 DCD         |??_C@_1DE@LFDKHCLM@?$AA?$AN?$AA?6?$AA?5?$AA?$CB?$AAS?$AAt?$AAa?$AAr?$AAt?$AA?5?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AA0?$AAX?$AA?$CF?$AA0?$AA8?$AAX?$AA?$AA@|
+  00168		 |$LN37@RAMAccessT|
+  00168	00000000	 DCD         |??_C@_1DI@GCPLOKAO@?$AAR?$AAA?$AAM?$AA?5?$AAA?$AAc?$AAc?$AAe?$AAs?$AAs?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$CI?$AAC?$AAo?$AAm?$AAp?$AAl?$AAe?$AAt?$AAe?$AAl?$AAy?$AA?$CJ?$AA?$AA@|
+  0016c		 |$M48931|
+
+			 ENDP  ; |RAMAccessTest|
+
+	EXPORT	|??_C@_1CO@BNJJDOGE@?$AA?$AN?$AAD?$AAo?$AAe?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAa?$AAn?$AAy?$AA?5?$AAs?$AAc?$AAa?$AAn?$AA?5?$AA?$CB?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_1CI@EDLOHMLH@?$AA?$AN?$AAS?$AAc?$AAa?$AAn?$AA?5?$AA?$CF?$AAd?$AA?5?$AAt?$AAi?$AAm?$AAe?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+
+  00000			 AREA	 |.pdata|, PDATA
+|$T48979| DCD	|$LN30@AutoScanFu|
+	DCD	0x40006d02
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CO@BNJJDOGE@?$AA?$AN?$AAD?$AAo?$AAe?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAa?$AAn?$AAy?$AA?5?$AAs?$AAc?$AAa?$AAn?$AA?5?$AA?$CB?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
+	DCB	0x0, "D", 0x0, "o", 0x0, "e", 0x0, "s", 0x0, " ", 0x0, "n"
+	DCB	0x0, "o", 0x0, "t", 0x0, " ", 0x0, "a", 0x0, "n", 0x0, "y"
+	DCB	0x0, " ", 0x0, "s", 0x0, "c", 0x0, "a", 0x0, "n", 0x0, " "
+	DCB	0x0, "!", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_1CI@EDLOHMLH@?$AA?$AN?$AAS?$AAc?$AAa?$AAn?$AA?5?$AA?$CF?$AAd?$AA?5?$AAt?$AAi?$AAm?$AAe?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@| DCB 0xd
+	DCB	0x0, "S", 0x0, "c", 0x0, "a", 0x0, "n", 0x0, " ", 0x0, "%"
+	DCB	0x0, "d", 0x0, " ", 0x0, "t", 0x0, "i", 0x0, "m", 0x0, "e"
+	DCB	0x0, ":", 0x0, " ", 0x0, "%", 0x0, "s", 0x0, 0xd, 0x0, 0xa
+	DCB	0x0, 0x0, 0x0				; `string'
+; Function compile flags: /Ogspy
+
+  00000			 AREA	 |.text|, CODE, ARM
+
+  00000		 |AutoScanFunc| PROC
+
+; 1400 : {
+
+  00000		 |$LN30@AutoScanFu|
+  00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
+  00004	e24dd064	 sub         sp, sp, #0x64
+  00008		 |$M48976|
+
+; 1401 : 	HANDLE  hGPIO;
+; 1402 :     UINT8   status, ch, DOING = 1;
+; 1403 :     int     count, inNum, data = 1;
+; 1404 :     //int     i = 0;
+; 1405 :     //WCHAR   key;
+; 1406 :     WCHAR   scan[50];
+; 1407 :        	
+; 1408 : 	OALBLMenuHeader(L"Auto Scan");
+
+  00008	e59f01a0	 ldr         r0, [pc, #0x1A0]
+  0000c	e3a08001	 mov         r8, #1
+  00010	eb000000	 bl          OALBLMenuHeader
+
+; 1409 : 	UNREFERENCED_PARAMETER(pMenu);	
+; 1410 : 	
+; 1411 :     hGPIO = GPIOOpen();
+
+  00014	eb000000	 bl          GPIOOpen
+
+; 1412 :     GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);   
+
+  00018	e3a02000	 mov         r2, #0
+  0001c	e3a01026	 mov         r1, #0x26
+  00020	e1a06000	 mov         r6, r0
+  00024	eb000000	 bl          GPIOSetMode
+
+; 1413 :     GPIOSetMode(hGPIO, BCR_ENG_TRIG, GPIO_DIR_OUTPUT);
+
+  00028	e3a02000	 mov         r2, #0
+  0002c	e3a01024	 mov         r1, #0x24
+  00030	e1a00006	 mov         r0, r6
+  00034	eb000000	 bl          GPIOSetMode
+
+; 1414 :     
+; 1415 :     GPIOSetBit(hGPIO, BCR_ENG_PWEN);                    //Power ON
+
+  00038	e3a01026	 mov         r1, #0x26
+  0003c	e1a00006	 mov         r0, r6
+  00040	eb000000	 bl          GPIOSetBit
+
+; 1416 :     EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE); 
+
+  00044	e3a01001	 mov         r1, #1
+  00048	e3a0000a	 mov         r0, #0xA
+  0004c	eb000000	 bl          EnableDeviceClocks
+
+; 1417 :     pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
+
+  00050	e3a0000a	 mov         r0, #0xA
+  00054	eb000000	 bl          GetAddressByDevice
+  00058	e3a01000	 mov         r1, #0
+  0005c	eb000000	 bl          OALPAtoVA
+  00060	e59f7144	 ldr         r7, [pc, #0x144]
+
+; 1418 :         
+; 1419 :     // reset uart
+; 1420 : 	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
+
+  00064	e3a03002	 mov         r3, #2
+  00068	e5870000	 str         r0, [r7]
+  0006c	e5c03054	 strb        r3, [r0, #0x54]
+  00070	e5972000	 ldr         r2, [r7]
+  00074		 |$LL10@AutoScanFu|
+
+; 1421 :     while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0)
+
+  00074	e5d23058	 ldrb        r3, [r2, #0x58]
+  00078	e3130001	 tst         r3, #1
+  0007c	0afffffc	 beq         |$LL10@AutoScanFu|
+
+; 1422 :         ;
+; 1423 : 
+; 1424 :     // Set baud rate
+; 1425 :     OUTREG8(&pUartRegs->LCR, UART_LCR_DLAB);    //Line control register, DIV_EN
+
+  00080	e3a03080	 mov         r3, #0x80
+  00084	e5c2300c	 strb        r3, [r2, #0xC]
+
+; 1426 :     OUTREG8(&pUartRegs->DLL, 0x38);             //9.6kbps
+
+  00088	e5973000	 ldr         r3, [r7]
+  0008c	e3a02038	 mov         r2, #0x38
+
+; 1427 :     OUTREG8(&pUartRegs->DLH, 0x01);
+
+  00090	e3a00001	 mov         r0, #1
+  00094	e5c32000	 strb        r2, [r3]
+  00098	e5973000	 ldr         r3, [r7]
+
+; 1428 :     OUTREG8(&pUartRegs->LCR, 0x00);
+
+  0009c	e3a0b000	 mov         r11, #0
+
+; 1429 : 
+; 1430 :     // 8 bit, 1 stop bit, no parity
+; 1431 :     OUTREG8(&pUartRegs->LCR, 0x03);             
+
+  000a0	e3a02003	 mov         r2, #3
+  000a4	e5c30004	 strb        r0, [r3, #4]
+  000a8	e5973000	 ldr         r3, [r7]
+
+; 1432 :     // Enable FIFO
+; 1433 :     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN);
+; 1434 :     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN|UART_FCR_RX_FIFO_CLEAR|UART_FCR_TX_FIFO_CLEAR);
+
+  000ac	e3a01007	 mov         r1, #7
+
+; 1435 :     // Pool
+; 1436 :     OUTREG8(&pUartRegs->IER, 0);
+; 1437 :     // Set DTR/RTS signals
+; 1438 :     OUTREG8(&pUartRegs->MCR, 0); //UART_MCR_DTR|UART_MCR_RTS);
+; 1439 :     // Configuration complete so select UART 16x mode
+; 1440 : 	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
+; 1441 :     BCRSetRTS(TRUE);
+
+  000b0	e28da000	 add         r10, sp, #0
+  000b4	e5c3b00c	 strb        r11, [r3, #0xC]
+  000b8	e5973000	 ldr         r3, [r7]
+  000bc	e5c3200c	 strb        r2, [r3, #0xC]
+  000c0	e5973000	 ldr         r3, [r7]
+  000c4	e5c30008	 strb        r0, [r3, #8]
+  000c8	e5973000	 ldr         r3, [r7]
+  000cc	e5c31008	 strb        r1, [r3, #8]
+  000d0	e5973000	 ldr         r3, [r7]
+  000d4	e5c3b004	 strb        r11, [r3, #4]
+  000d8	e5973000	 ldr         r3, [r7]
+  000dc	e5c3b010	 strb        r11, [r3, #0x10]
+  000e0	e5973000	 ldr         r3, [r7]
+  000e4	e5c3b020	 strb        r11, [r3, #0x20]
+  000e8	e5972000	 ldr         r2, [r7]
+  000ec	e5d23010	 ldrb        r3, [r2, #0x10]
+  000f0	e3833002	 orr         r3, r3, #2
+  000f4	e5c23010	 strb        r3, [r2, #0x10]
+  000f8		 |$LL8@AutoScanFu|
+
+; 1442 :     
+; 1443 :     while(DOING)
+; 1444 :     {
+; 1445 :         inNum = 0;
+; 1446 :         count = 30;
+; 1447 :         LcdSleep(500);
+
+  000f8	e3a00f7d	 mov         r0, #0x7D, 30
+  000fc	e3a04000	 mov         r4, #0
+  00100	e3a0501e	 mov         r5, #0x1E
+  00104	eb000000	 bl          LcdSleep
+
+; 1448 : 		GPIOClrBit(hGPIO, BCR_ENG_TRIG);
+
+  00108	e3a01024	 mov         r1, #0x24
+  0010c	e1a00006	 mov         r0, r6
+  00110	eb000000	 bl          GPIOClrBit
+
+; 1449 : 		BCRSetRTS(FALSE);
+
+  00114	e5972000	 ldr         r2, [r7]
+
+; 1450 : 		LcdSleep(500);
+
+  00118	e3a00f7d	 mov         r0, #0x7D, 30
+  0011c	e5d23010	 ldrb        r3, [r2, #0x10]
+  00120	e20330fd	 and         r3, r3, #0xFD
+  00124	e5c23010	 strb        r3, [r2, #0x10]
+  00128	eb000000	 bl          LcdSleep
+  0012c	e28d9000	 add         r9, sp, #0
+  00130		 |$LL6@AutoScanFu|
+
+; 1451 : 		
+; 1452 : 		//OALLog(L"count %d\r\n",count);	
+; 1453 : 		while( count-- )
+; 1454 : 		{
+; 1455 : 		    status = INREG8(&pUartRegs->LSR);
+
+  00130	e5972000	 ldr         r2, [r7]
+
+; 1456 : 		    if ((status & UART_LSR_RX_FIFO_E) != 0)
+; 1457 : 			{
+; 1458 : 			    ch = INREG8(&pUartRegs->RHR);
+; 1459 : 			    scan[inNum++] = ch;
+; 1460 : 				//OALLog(L" %c\r\n",ch);
+; 1461 : 			}
+; 1462 : 			LcdSleep(100);
+
+  00134	e3a00064	 mov         r0, #0x64
+  00138	e2455001	 sub         r5, r5, #1
+  0013c	e5d23014	 ldrb        r3, [r2, #0x14]
+  00140	e3130001	 tst         r3, #1
+  00144	15d23000	 ldrneb      r3, [r2]
+  00148	12844001	 addne       r4, r4, #1
+  0014c	10c930b2	 strneh      r3, [r9], #2
+  00150	eb000000	 bl          LcdSleep
+  00154	e3550000	 cmp         r5, #0
+  00158	1afffff4	 bne         |$LL6@AutoScanFu|
+
+; 1463 : 			//OALLog(L"count %d\r\n",count);	
+; 1464 : 	    }
+; 1465 : 			
+; 1466 : 		GPIOSetBit(hGPIO, BCR_ENG_TRIG);
+
+  0015c	e3a01024	 mov         r1, #0x24
+  00160	e1a00006	 mov         r0, r6
+  00164	eb000000	 bl          GPIOSetBit
+
+; 1467 : 		if( inNum > 0 )
+
+  00168	e3540000	 cmp         r4, #0
+  0016c	da000007	 ble         |$LN27@AutoScanFu|
+
+; 1468 : 		{
+; 1469 : 		    scan[inNum] = '\0';
+; 1470 : 			OALLog(L"\rScan %d time: %s\r\n",data++, scan);
+
+  00170	e59f0030	 ldr         r0, [pc, #0x30]
+  00174	e08a3084	 add         r3, r10, r4, lsl #1
+  00178	e28d2000	 add         r2, sp, #0
+  0017c	e1a01008	 mov         r1, r8
+  00180	e1c3b0b0	 strh        r11, [r3]
+  00184	eb000000	 bl          NKDbgPrintfW
+  00188	e2888001	 add         r8, r8, #1
+  0018c	ea000001	 b           |$LN1@AutoScanFu|
+  00190		 |$LN27@AutoScanFu|
+
+; 1471 : 			//break;
+; 1472 : 		}else if(inNum == 0){
+; 1473 :             OALLog(L"\rDoes not any scan !\r\n");
+
+  00190	059f000c	 ldreq       r0, [pc, #0xC]
+  00194	0b000000	 bleq        NKDbgPrintfW
+  00198		 |$LN1@AutoScanFu|
+
+; 1474 : 		}			
+; 1475 : 		LcdSleep(300);
+
+  00198	e3a00f4b	 mov         r0, #0x4B, 30
+  0019c	eb000000	 bl          LcdSleep
+  001a0	eaffffd4	 b           |$LL8@AutoScanFu|
+  001a4		 |$LN31@AutoScanFu|
+  001a4		 |$LN32@AutoScanFu|
+  001a4	00000000	 DCD         |??_C@_1CO@BNJJDOGE@?$AA?$AN?$AAD?$AAo?$AAe?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAa?$AAn?$AAy?$AA?5?$AAs?$AAc?$AAa?$AAn?$AA?5?$AA?$CB?$AA?$AN?$AA?6?$AA?$AA@|
+  001a8		 |$LN33@AutoScanFu|
+  001a8	00000000	 DCD         |??_C@_1CI@EDLOHMLH@?$AA?$AN?$AAS?$AAc?$AAa?$AAn?$AA?5?$AA?$CF?$AAd?$AA?5?$AAt?$AAi?$AAm?$AAe?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
+  001ac		 |$LN34@AutoScanFu|
+  001ac	00000000	 DCD         |pUartRegs|
+  001b0		 |$LN35@AutoScanFu|
+  001b0	00000000	 DCD         |??_C@_1BE@FABONDOI@?$AAA?$AAu?$AAt?$AAo?$AA?5?$AAS?$AAc?$AAa?$AAn?$AA?$AA@|
+  001b4		 |$M48977|
+
+			 ENDP  ; |AutoScanFunc|
 
 	EXPORT	|??_C@_1EA@NHFEEJFC@?$AA?$AN?$AA?6?$AA?5?$AA?$DO?$AA?$DO?$AA?$DO?$AAA?$AAl?$AAl?$AA?5?$AAf?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AAt?$AAe?$AAs?$AAt?$AAi?$AAn?$AAg?$AA?4?$AA?4?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1DO@BGFONFOF@?$AA?$AN?$AA?6?$AA?5?$AA?$DO?$AA?$DO?$AA?$DO?$AAA?$AAl?$AAl?$AA?5?$AAf?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AAt?$AAe?$AAs?$AAt?$AAe?$AAd?$AA?4?$AA?4?$AA?4?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48806| DCD	|$LN5@AllFunctio|
+|$T48991| DCD	|$LN5@AllFunctio|
 	DCD	0x40000c01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4509,44 +5100,44 @@
 
   00000		 |AllFunctionTest_Z2000| PROC
 
-; 1317 : {
+; 1485 : {
 
   00000		 |$LN5@AllFunctio|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48803|
+  00004		 |$M48988|
 
-; 1318 :     //OAL_BLMENU_ITEM *ptr = NULL;
-; 1319 : 	//ALL Test
-; 1320 : 	UNREFERENCED_PARAMETER(pMenu);
-; 1321 : 	OALBLMenuHeader(L"All Function Test");
+; 1486 :     //OAL_BLMENU_ITEM *ptr = NULL;
+; 1487 : 	//ALL Test
+; 1488 : 	UNREFERENCED_PARAMETER(pMenu);
+; 1489 : 	OALBLMenuHeader(L"All Function Test");
 
   00004	e59f0020	 ldr         r0, [pc, #0x20]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 1322 :     
-; 1323 :     OALLog(L"\r\n >>>All function testing...\r\n");    
+; 1490 :     
+; 1491 :     OALLog(L"\r\n >>>All function testing...\r\n");    
 
   0000c	e59f0014	 ldr         r0, [pc, #0x14]
   00010	eb000000	 bl          NKDbgPrintfW
 
-; 1324 : 
-; 1325 : 	/*DisplayTest_Z2170P(ptr);
-; 1326 : 	LcdStall(stall_1Sec*3);                         //2
-; 1327 :   
-; 1328 : 	BkTest_Z2170P(ptr);
-; 1329 : 	LcdStall(stall_1Sec*3);                         //3
-; 1330 :          
-; 1331 : 	DRAMTest_Z2170P(ptr);                                  
-; 1332 : 	LcdStall(stall_1Sec*3);                         //4 
-; 1333 : 	   
-; 1334 : 	KeypadBkTest_Z2170P(ptr);                              
-; 1335 : 	LcdStall(stall_1Sec*3);                         //5 */
-; 1336 : 	OALLog(L"\r\n >>>All function tested...\r\n");
+; 1492 : 
+; 1493 : 	/*DisplayTest_Z2170P(ptr);
+; 1494 : 	LcdStall(stall_1Sec*3);                         //2
+; 1495 :   
+; 1496 : 	BkTest_Z2170P(ptr);
+; 1497 : 	LcdStall(stall_1Sec*3);                         //3
+; 1498 :          
+; 1499 : 	DRAMTest_Z2170P(ptr);                                  
+; 1500 : 	LcdStall(stall_1Sec*3);                         //4 
+; 1501 : 	   
+; 1502 : 	KeypadBkTest_Z2170P(ptr);                              
+; 1503 : 	LcdStall(stall_1Sec*3);                         //5 */
+; 1504 : 	OALLog(L"\r\n >>>All function tested...\r\n");
 
   00014	e59f0008	 ldr         r0, [pc, #8]
   00018	eb000000	 bl          NKDbgPrintfW
 
-; 1337 : }
+; 1505 : }
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
@@ -4557,13 +5148,13 @@
   00028	00000000	 DCD         |??_C@_1EA@NHFEEJFC@?$AA?$AN?$AA?6?$AA?5?$AA?$DO?$AA?$DO?$AA?$DO?$AAA?$AAl?$AAl?$AA?5?$AAf?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AAt?$AAe?$AAs?$AAt?$AAi?$AAn?$AAg?$AA?4?$AA?4?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
   0002c		 |$LN9@AllFunctio|
   0002c	00000000	 DCD         |??_C@_1CE@NDBHKBD@?$AAA?$AAl?$AAl?$AA?5?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  00030		 |$M48804|
+  00030		 |$M48989|
 
 			 ENDP  ; |AllFunctionTest_Z2000|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48817| DCD	|$LN5@DisplayTes@2|
+|$T49002| DCD	|$LN5@DisplayTes@2|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -4571,33 +5162,33 @@
 
   00000		 |DisplayTest_Z2000| PROC
 
-; 1343 : {
+; 1511 : {
 
   00000		 |$LN5@DisplayTes@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48814|
+  00004		 |$M48999|
 
-; 1344 :     BLShowLogo();
+; 1512 :     BLShowLogo();
 
   00004	eb000000	 bl          BLShowLogo
 
-; 1345 :     OALBLMenuHeader(L"Display Test");
+; 1513 :     OALBLMenuHeader(L"Display Test");
 
   00008	e59f0018	 ldr         r0, [pc, #0x18]
   0000c	eb000000	 bl          OALBLMenuHeader
 
-; 1346 : 	UNREFERENCED_PARAMETER(pMenu);
-; 1347 :     OALLog(L"\r\n Running...\r\n");
+; 1514 : 	UNREFERENCED_PARAMETER(pMenu);
+; 1515 :     OALLog(L"\r\n Running...\r\n");
 
   00010	e59f000c	 ldr         r0, [pc, #0xC]
   00014	eb000000	 bl          NKDbgPrintfW
 
-; 1348 : 	//DisplayShow(BSP_Z2000);
-; 1349 : 	DisplayShow();
+; 1516 : 	//DisplayShow(BSP_Z2000);
+; 1517 : 	DisplayShow();
 
   00018	eb000000	 bl          DisplayShow
 
-; 1350 : }
+; 1518 : }
 
   0001c	e49de004	 ldr         lr, [sp], #4
   00020	e12fff1e	 bx          lr
@@ -4606,13 +5197,13 @@
   00024	00000000	 DCD         |??_C@_1CA@IPGENFE@?$AA?$AN?$AA?6?$AA?5?$AAR?$AAu?$AAn?$AAn?$AAi?$AAn?$AAg?$AA?4?$AA?4?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
   00028		 |$LN8@DisplayTes@2|
   00028	00000000	 DCD         |??_C@_1BK@FJOPBKKD@?$AAD?$AAi?$AAs?$AAp?$AAl?$AAa?$AAy?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  0002c		 |$M48815|
+  0002c		 |$M49000|
 
 			 ENDP  ; |DisplayTest_Z2000|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48827| DCD	|$LN5@BkTest_Z21|
+|$T49012| DCD	|$LN5@BkTest_Z21|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -4620,37 +5211,37 @@
 
   00000		 |BkTest_Z2170P| PROC
 
-; 218  : {
+; 228  : {
 
   00000		 |$LN5@BkTest_Z21|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M48824|
+  00004		 |$M49009|
 
-; 219  : 	OALBLMenuHeader(L"LCM Backlight Test");
+; 229  : 	OALBLMenuHeader(L"LCM Backlight Test");
 
   00004	e59f000c	 ldr         r0, [pc, #0xC]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 220  : 	UNREFERENCED_PARAMETER(pMenu);
-; 221  :     SetBacklight();
+; 230  : 	UNREFERENCED_PARAMETER(pMenu);
+; 231  :     SetBacklight();
 
   0000c	eb000000	 bl          SetBacklight
 
-; 222  : }
+; 232  : }
 
   00010	e49de004	 ldr         lr, [sp], #4
   00014	e12fff1e	 bx          lr
   00018		 |$LN6@BkTest_Z21|
   00018		 |$LN7@BkTest_Z21|
   00018	00000000	 DCD         |??_C@_1CG@MFOPBHMC@?$AAL?$AAC?$AAM?$AA?5?$AAB?$AAa?$AAc?$AAk?$AAl?$AAi?$AAg?$AAh?$AAt?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  0001c		 |$M48825|
+  0001c		 |$M49010|
 
 			 ENDP  ; |BkTest_Z2170P|
 
 	EXPORT	|??_C@_1BK@HOMLCKFD@?$AAB?$AAu?$AAr?$AAn?$AA?9?$AAI?$AAn?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48843| DCD	|$LN12@BurnIn_Z21|
+|$T49028| DCD	|$LN12@BurnIn_Z21|
 	DCD	0x40002301
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -4664,26 +5255,26 @@
 
   00000		 |BurnIn_Z2170P| PROC
 
-; 1285 : {
+; 1294 : {
 
   00000		 |$LN12@BurnIn_Z21|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48840|
+  00004		 |$M49025|
 
-; 1286 :     OAL_BLMENU_ITEM *ptr = NULL;
-; 1287 :     
-; 1288 :     UNREFERENCED_PARAMETER(pMenu);
-; 1289 : 	OALBLMenuHeader(L"Burn-In Test");
+; 1295 :     OAL_BLMENU_ITEM *ptr = NULL;
+; 1296 :     
+; 1297 :     UNREFERENCED_PARAMETER(pMenu);
+; 1298 : 	OALBLMenuHeader(L"Burn-In Test");
 
   00004	e59f007c	 ldr         r0, [pc, #0x7C]
   00008	eb000000	 bl          OALBLMenuHeader
   0000c	e59f4070	 ldr         r4, [pc, #0x70]
   00010		 |$LL2@BurnIn_Z21|
 
-; 1290 : 	
-; 1291 : 	for(;;){
-; 1292 : 	    //OALLog(L"\r\n >>>Display Testing...\r\n");
-; 1293 : 	    DisplayTest_Z2170P(ptr);
+; 1299 : 	
+; 1300 : 	for(;;){
+; 1301 : 	    //OALLog(L"\r\n >>>Display Testing...\r\n");
+; 1302 : 	    DisplayTest_Z2170P(ptr);
 
   00010	eb000000	 bl          BLShowLogo
   00014	e59f0064	 ldr         r0, [pc, #0x64]
@@ -4692,60 +5283,60 @@
   00020	eb000000	 bl          NKDbgPrintfW
   00024	eb000000	 bl          DisplayShow
 
-; 1294 :         LcdStall(stall_1Sec*1); 
+; 1303 :         LcdStall(stall_1Sec*1); 
 
   00028	e5940000	 ldr         r0, [r4]
   0002c	eb000000	 bl          LcdStall
 
-; 1295 : 
-; 1296 :         //OALLog(L"\r\n >>>LCM Backlight Testing...\r\n");
-; 1297 : 	    BkTest_Z2170P(ptr);
+; 1304 : 
+; 1305 :         //OALLog(L"\r\n >>>LCM Backlight Testing...\r\n");
+; 1306 : 	    BkTest_Z2170P(ptr);
 
   00030	e59f0040	 ldr         r0, [pc, #0x40]
   00034	eb000000	 bl          OALBLMenuHeader
   00038	eb000000	 bl          SetBacklight
 
-; 1298 :         LcdStall(stall_1Sec*1); 
+; 1307 :         LcdStall(stall_1Sec*1); 
 
   0003c	e5940000	 ldr         r0, [r4]
   00040	eb000000	 bl          LcdStall
 
-; 1299 : 
-; 1300 :         //OALLog(L"\r\n >>>DRAM Testing...\r\n");
-; 1301 :         DRAMTest_Z2170P(ptr);
+; 1308 : 
+; 1309 :         //OALLog(L"\r\n >>>DRAM Testing...\r\n");
+; 1310 :         DRAMTest_Z2170P(ptr);
 
   00044	e3a00000	 mov         r0, #0
   00048	eb000000	 bl          DRAMTest_Z2170P
 
-; 1302 :         LcdStall(stall_1Sec*1); 
+; 1311 :         LcdStall(stall_1Sec*1); 
 
   0004c	e5940000	 ldr         r0, [r4]
   00050	eb000000	 bl          LcdStall
 
-; 1303 : 
-; 1304 :         //OALLog(L"\r\n >>>Keypad Backlight Testing...\r\n");
-; 1305 :         KeypadBkTest_Z2170P(ptr);
+; 1312 : 
+; 1313 :         //OALLog(L"\r\n >>>Keypad Backlight Testing...\r\n");
+; 1314 :         KeypadBkTest_Z2170P(ptr);
 
   00054	e3a00000	 mov         r0, #0
   00058	eb000000	 bl          KeypadBkTest_Z2170P
 
-; 1306 :         LcdStall(stall_1Sec*1); 
+; 1315 :         LcdStall(stall_1Sec*1); 
 
   0005c	e5940000	 ldr         r0, [r4]
   00060	eb000000	 bl          LcdStall
 
-; 1307 : 
-; 1308 :         LEDTest_Z2170P(ptr); 
+; 1316 : 
+; 1317 :         LEDTest_Z2170P(ptr); 
 
   00064	e3a00000	 mov         r0, #0
   00068	eb000000	 bl          LEDTest_Z2170P
 
-; 1309 :         LcdStall(stall_1Sec*1);
+; 1318 :         LcdStall(stall_1Sec*1);
 
   0006c	e5940000	 ldr         r0, [r4]
   00070	eb000000	 bl          LcdStall
 
-; 1310 : 	}
+; 1319 : 	}
 
   00074	eaffffe5	 b           |$LL2@BurnIn_Z21|
   00078		 |$LN13@BurnIn_Z21|
@@ -4759,13 +5350,13 @@
   00084	00000000	 DCD         |stall_1Sec|
   00088		 |$LN18@BurnIn_Z21|
   00088	00000000	 DCD         |??_C@_1BK@HOMLCKFD@?$AAB?$AAu?$AAr?$AAn?$AA?9?$AAI?$AAn?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  0008c		 |$M48841|
+  0008c		 |$M49026|
 
 			 ENDP  ; |BurnIn_Z2170P|
 
 
   00000			 AREA	 |.pdata|, PDATA
-|$T48862| DCD	|$LN9@AllFunctio@2|
+|$T49047| DCD	|$LN9@AllFunctio@2|
 	DCD	0x40004301
 ; Function compile flags: /Ogspy
 
@@ -4773,28 +5364,28 @@
 
   00000		 |AllFunctionTest_Z2170P| PROC
 
-; 157  : {
+; 167  : {
 
   00000		 |$LN9@AllFunctio@2|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M48859|
+  00004		 |$M49044|
 
-; 158  :     OAL_BLMENU_ITEM *ptr = NULL;
-; 159  : 	//ALL Test
-; 160  : 	UNREFERENCED_PARAMETER(pMenu);
-; 161  : 	OALBLMenuHeader(L"All Function Test");
+; 168  :     OAL_BLMENU_ITEM *ptr = NULL;
+; 169  : 	//ALL Test
+; 170  : 	UNREFERENCED_PARAMETER(pMenu);
+; 171  : 	OALBLMenuHeader(L"All Function Test");
 
   00004	e59f00fc	 ldr         r0, [pc, #0xFC]
   00008	eb000000	 bl          OALBLMenuHeader
 
-; 162  :     
-; 163  :     OALLog(L"\r\n >>>All function testing...\r\n");    
+; 172  :     
+; 173  :     OALLog(L"\r\n >>>All function testing...\r\n");    
 
   0000c	e59f00f0	 ldr         r0, [pc, #0xF0]
   00010	eb000000	 bl          NKDbgPrintfW
 
-; 164  : 
-; 165  : 	DisplayTest_Z2170P(ptr);
+; 174  : 
+; 175  : 	DisplayTest_Z2170P(ptr);
 
   00014	eb000000	 bl          BLShowLogo
   00018	e59f00e0	 ldr         r0, [pc, #0xE0]
@@ -4803,123 +5394,123 @@
   00024	eb000000	 bl          NKDbgPrintfW
   00028	eb000000	 bl          DisplayShow
 
-; 166  : 	LcdStall(stall_1Sec*2);                     //2
+; 176  : 	LcdStall(stall_1Sec*2);                     //2
 
   0002c	e59f40c4	 ldr         r4, [pc, #0xC4]
   00030	e5943000	 ldr         r3, [r4]
   00034	e1a00083	 mov         r0, r3, lsl #1
   00038	eb000000	 bl          LcdStall
 
-; 167  :   
-; 168  : 	BkTest_Z2170P(ptr);
+; 177  :   
+; 178  : 	BkTest_Z2170P(ptr);
 
   0003c	e59f00b0	 ldr         r0, [pc, #0xB0]
   00040	eb000000	 bl          OALBLMenuHeader
   00044	eb000000	 bl          SetBacklight
 
-; 169  : 	LcdStall(stall_1Sec*2);                     //3
+; 179  : 	LcdStall(stall_1Sec*2);                     //3
 
   00048	e5943000	 ldr         r3, [r4]
   0004c	e1a00083	 mov         r0, r3, lsl #1
   00050	eb000000	 bl          LcdStall
 
-; 170  :          
-; 171  : 	DRAMTest_Z2170P(ptr);                                  
+; 180  :          
+; 181  : 	DRAMTest_Z2170P(ptr);                                  
 
   00054	e3a00000	 mov         r0, #0
   00058	eb000000	 bl          DRAMTest_Z2170P
 
-; 172  : 	LcdStall(stall_1Sec*2);                     //4 
+; 182  : 	LcdStall(stall_1Sec*2);                     //4 
 
   0005c	e5943000	 ldr         r3, [r4]
   00060	e1a00083	 mov         r0, r3, lsl #1
   00064	eb000000	 bl          LcdStall
 
-; 173  : 	   
-; 174  : 	KeypadBkTest_Z2170P(ptr);                              
+; 183  : 	   
+; 184  : 	KeypadBkTest_Z2170P(ptr);                              
 
   00068	e3a00000	 mov         r0, #0
   0006c	eb000000	 bl          KeypadBkTest_Z2170P
 
-; 175  : 	LcdStall(stall_1Sec*2);                     //5 
+; 185  : 	LcdStall(stall_1Sec*2);                     //5 
 
   00070	e5943000	 ldr         r3, [r4]
   00074	e1a00083	 mov         r0, r3, lsl #1
   00078	eb000000	 bl          LcdStall
 
-; 176  : 
-; 177  : 	TouchPanelTest_Z2170P(ptr);                 //6 
+; 186  : 
+; 187  : 	TouchPanelTest_Z2170P(ptr);                 //6 
 
   0007c	e3a00000	 mov         r0, #0
   00080	eb000000	 bl          TouchPanelTest_Z2170P
 
-; 178  :     LcdStall(stall_1Sec*2);
+; 188  :     LcdStall(stall_1Sec*2);
 
   00084	e5943000	 ldr         r3, [r4]
   00088	e1a00083	 mov         r0, r3, lsl #1
   0008c	eb000000	 bl          LcdStall
 
-; 179  :     
-; 180  :     BatteryTest_Z2170P(ptr);                    //7 
+; 189  :     
+; 190  :     BatteryTest_Z2170P(ptr);                    //7 
 
   00090	e3a00000	 mov         r0, #0
   00094	eb000000	 bl          BatteryTest_Z2170P
 
-; 181  :     LcdStall(stall_1Sec*2);
+; 191  :     LcdStall(stall_1Sec*2);
 
   00098	e5943000	 ldr         r3, [r4]
   0009c	e1a00083	 mov         r0, r3, lsl #1
   000a0	eb000000	 bl          LcdStall
 
-; 182  :     
-; 183  :     LEDTest_Z2170P(ptr);                        //8
+; 192  :     
+; 193  :     LEDTest_Z2170P(ptr);                        //8
 
   000a4	e3a00000	 mov         r0, #0
   000a8	eb000000	 bl          LEDTest_Z2170P
 
-; 184  :     LcdStall(stall_1Sec*2);
+; 194  :     LcdStall(stall_1Sec*2);
 
   000ac	e5943000	 ldr         r3, [r4]
   000b0	e1a00083	 mov         r0, r3, lsl #1
   000b4	eb000000	 bl          LcdStall
 
-; 185  :     
-; 186  :     BarcodeTest_Z2170P(ptr);                    //9 
+; 195  :     
+; 196  :     BarcodeTest_Z2170P(ptr);                    //9 
 
   000b8	e3a00000	 mov         r0, #0
   000bc	eb000000	 bl          BarcodeTest_Z2170P
 
-; 187  :     LcdStall(stall_1Sec*2);
+; 197  :     LcdStall(stall_1Sec*2);
 
   000c0	e5943000	 ldr         r3, [r4]
   000c4	e1a00083	 mov         r0, r3, lsl #1
   000c8	eb000000	 bl          LcdStall
 
-; 188  :     
-; 189  :     /*AudioAndMIC_Z2170P(ptr);                  //
-; 190  :     LcdStall(stall_1Sec*2);*/
-; 191  :     
-; 192  :     KeypadFunc_Z2170P(ptr);                     //a
+; 198  :     
+; 199  :     /*AudioAndMIC_Z2170P(ptr);                  //
+; 200  :     LcdStall(stall_1Sec*2);*/
+; 201  :     
+; 202  :     KeypadFunc_Z2170P(ptr);                     //a
 
   000cc	e3a00000	 mov         r0, #0
   000d0	eb000000	 bl          KeypadFunc_Z2170P
 
-; 193  :     LcdStall(stall_1Sec*2);
+; 203  :     LcdStall(stall_1Sec*2);
 
   000d4	e5943000	 ldr         r3, [r4]
   000d8	e1a00083	 mov         r0, r3, lsl #1
   000dc	eb000000	 bl          LcdStall
 
-; 194  :     
-; 195  :     /*BurnIn_Z2170P(ptr);                       //b
-; 196  :     LcdStall(stall_1Sec*2);*/
-; 197  : 	
-; 198  : 	OALLog(L"\r\n >>>All function tested...\r\n");
+; 204  :     
+; 205  :     /*BurnIn_Z2170P(ptr);                       //b
+; 206  :     LcdStall(stall_1Sec*2);*/
+; 207  : 	
+; 208  : 	OALLog(L"\r\n >>>All function tested...\r\n");
 
   000e0	e59f0008	 ldr         r0, [pc, #8]
   000e4	eb000000	 bl          NKDbgPrintfW
 
-; 199  : }
+; 209  : }
 
   000e8	e8bd4010	 ldmia       sp!, {r4, lr}
   000ec	e12fff1e	 bx          lr
@@ -4938,7 +5529,7 @@
   00104	00000000	 DCD         |??_C@_1EA@NHFEEJFC@?$AA?$AN?$AA?6?$AA?5?$AA?$DO?$AA?$DO?$AA?$DO?$AAA?$AAl?$AAl?$AA?5?$AAf?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AAt?$AAe?$AAs?$AAt?$AAi?$AAn?$AAg?$AA?4?$AA?4?$AA?4?$AA?$AN?$AA?6?$AA?$AA@|
   00108		 |$LN17@AllFunctio@2|
   00108	00000000	 DCD         |??_C@_1CE@NDBHKBD@?$AAA?$AAl?$AAl?$AA?5?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?5?$AAT?$AAe?$AAs?$AAt?$AA?$AA@|
-  0010c		 |$M48860|
+  0010c		 |$M49045|
 
 			 ENDP  ; |AllFunctionTest_Z2170P|
 

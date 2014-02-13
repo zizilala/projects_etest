@@ -13,7 +13,7 @@
 #include "twl.h"                //Use TWLReadRegs(), Ray 140102
 
 //------------------------------------------------------------------------------
-//  Defination
+//  Preprocessor Defination
 //
 //#define BSP_Z2170P      2170 
 //#define BSP_Z2000       2000 
@@ -37,7 +37,7 @@
 #define KEYPAD_SIZE             26
 
 //------------------------------------------------------------------------------
-//  Prototype
+//  Function Prototype
 //
 static VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
 static VOID DisplayTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
@@ -52,7 +52,9 @@ static VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
 static VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);   
 static VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu); 
 static VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu); 
-static VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu); 
+static VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu);
+static VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu);
+static VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu);
 
 BOOL DisplayShow(void);
 VOID SetBacklight(void);
@@ -70,6 +72,8 @@ UINT8  gKeypadMatrix[8];
 
 DWORD stall_1Sec = 1000000;      //Lcd Stall
 DWORD sleep1Sec = 1000;         //Lcd Sleep 
+
+OMAP_UART_REGS *pUartRegs = NULL;
 
 //------------------------------------------------------------------------------
 //
@@ -122,10 +126,16 @@ OAL_BLMENU_ITEM g_menu2170PTest[] = {
     },*/{
         L'a', L"Keypad functional", KeypadFunc_Z2170P,
         NULL, NULL, NULL
-    },{
+    }, {
         L'b', L"Burn-In", BurnIn_Z2170P,
         NULL, NULL, NULL
-    },{
+    },  {
+        L'c', L"RAM Access Test(Completely)", RAMAccessTest,
+        NULL, NULL, 0
+    }, {
+        L'd', L"Auto Scan", AutoScanFunc,
+        NULL, NULL, 0
+    }, {
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, NULL
     },  {
@@ -150,7 +160,7 @@ OAL_BLMENU_ITEM g_menuZ2000Test[] ={
     }
 };
 
-//------------------------------------------------------------------------------
+//==============================================================================
 //  Running Z2170P...
 //
 VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
@@ -330,7 +340,7 @@ VOID SetBacklight()
 VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
     ULONG  startAddress = IMAGE_SHARE_ARGS_CA;
-    ULONG  endAddress = startAddress|(256 *1024 *1024); //endAddress = startAddress + size(256MB) 
+    ULONG  endAddress = startAddress|(256 *1024 *1024-1); //endAddress = startAddress + size(256MB) 
     ULONG   test1_Address = (startAddress|0x0000FFFF);      //
     //ULONG   test2_Address = (startAddress|0x0FFFFF00);
     //ULONG   ebootAddress = IMAGE_EBOOT_CODE_CA ;
@@ -859,8 +869,6 @@ VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 //------------------------------------------------------------------------------
 //  Barcode, Ray 131224
 //
-OMAP_UART_REGS *pUartRegs = NULL;
-//
 //
 VOID BCRSetRTS(BOOL bSet)
 {
@@ -884,8 +892,9 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     WCHAR   key;
     WCHAR   scan[50];
        
-	UNREFERENCED_PARAMETER(pMenu);	
 	OALBLMenuHeader(L"Barcode Test");
+	UNREFERENCED_PARAMETER(pMenu);	
+	
     hGPIO = GPIOOpen();
     GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);   
     GPIOSetMode(hGPIO, BCR_ENG_TRIG, GPIO_DIR_OUTPUT);
@@ -1311,6 +1320,165 @@ VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu)
 }
 
 //==============================================================================
+//  Check DRAM all addressing ~ end addressing, Ray 140212
+//  This a function vs DRAMTest_Z2170P between diference,that testing for detail. 
+//  
+//  CS0-SDRAM ranges at 0x8000_0000 ~ 0x9fff_ffff (512MByts), 
+//  but in "oalAddressTable" memory allocation SIZE 256MB and
+//  start addressing at 0x8000_0000, so... 
+//
+//     0x8FFF_FFFF - 0x8000_0000
+//   = 0x0FFF_FFFF(28bit)
+//   = 256MBtyes
+//
+VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
+{
+    ULONG  startAddress = IMAGE_SHARE_ARGS_CA;
+    ULONG  endAddress = startAddress|(256 *1024 *1024-1); //endAddress = startAddress + size(256MB) 
+    ULONG  i, checkAddress =  0xFFFFFFFF;
+    BYTE   value, temp, pattern = 0xAA, pattern2 = 0x55;
+    BOOL   DOING = TRUE;
+    ULONG  percent;        
+     
+	UNREFERENCED_PARAMETER(pMenu);
+	OALBLMenuHeader(L"RAM Access Test(Completely)");
+
+    OALLog(L"\r\n !Start Address: 0X%08X", startAddress&checkAddress );
+    OALLog(L"\r\n !End   Address: 0X%08X", endAddress&checkAddress );
+    OALLog(L"\r\n------------------------------------------\n");
+  
+    while(DOING){
+        for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
+	    {
+            temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
+            *(volatile BYTE *)(startAddress + i) = pattern;     //write pattern ;pattern write into address(if is AA) 
+            value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == AA, setup value
+            *(volatile BYTE *)(startAddress + i) = temp;        //store data
+        
+            if(value != pattern)                                //check value(in address value) equal pattern
+            {
+                OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
+                break;
+            }
+
+            if( (percent%(1024*100)) == 0){   //scan 100kB show tip 
+                OALLog(L"\rScanned size: %dk\r\n", percent/1024); 
+            }
+        }
+        OALLog(L"\rTest pattern:0xAA ok!! \r\n");
+        OALLog(L"--------------------------------------------------\r\n");
+        LcdStall(stall_1Sec*3);
+        
+        for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
+	    {
+            temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
+            *(volatile BYTE *)(startAddress + i) = pattern2;     //write pattern ;pattern write into address(if is AA) 
+            value = *(volatile BYTE *)(startAddress + i);       //read pattern  ;value == 1A, setup value
+            *(volatile BYTE *)(startAddress + i) = temp;        //store data
+        
+            if(value != pattern2)                                //check value(in address value) equal pattern
+            {
+                OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
+                break;
+            }
+
+            if( (percent%(1024*100)) == 0){   //scan 100kB show tip 
+                OALLog(L"\rScanned size: %dk\r\n", percent/1024);
+            }         
+        }
+        OALLog(L"\rTest pattern:0x55 ok!! \r\n");
+        OALLog(L"--------------------------------------------------\r\n");
+        LcdStall(stall_1Sec*3);
+    }   
+}
+
+//==============================================================================
+//  This is function are barcode the auto scanning, Ray 140212
+//
+//
+VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
+{
+	HANDLE  hGPIO;
+    UINT8   status, ch, DOING = 1;
+    int     count, inNum, data = 1;
+    //int     i = 0;
+    //WCHAR   key;
+    WCHAR   scan[50];
+       	
+	OALBLMenuHeader(L"Auto Scan");
+	UNREFERENCED_PARAMETER(pMenu);	
+	
+    hGPIO = GPIOOpen();
+    GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);   
+    GPIOSetMode(hGPIO, BCR_ENG_TRIG, GPIO_DIR_OUTPUT);
+    
+    GPIOSetBit(hGPIO, BCR_ENG_PWEN);                    //Power ON
+    EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE); 
+    pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
+        
+    // reset uart
+	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
+    while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0)
+        ;
+
+    // Set baud rate
+    OUTREG8(&pUartRegs->LCR, UART_LCR_DLAB);    //Line control register, DIV_EN
+    OUTREG8(&pUartRegs->DLL, 0x38);             //9.6kbps
+    OUTREG8(&pUartRegs->DLH, 0x01);
+    OUTREG8(&pUartRegs->LCR, 0x00);
+
+    // 8 bit, 1 stop bit, no parity
+    OUTREG8(&pUartRegs->LCR, 0x03);             
+    // Enable FIFO
+    OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN);
+    OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN|UART_FCR_RX_FIFO_CLEAR|UART_FCR_TX_FIFO_CLEAR);
+    // Pool
+    OUTREG8(&pUartRegs->IER, 0);
+    // Set DTR/RTS signals
+    OUTREG8(&pUartRegs->MCR, 0); //UART_MCR_DTR|UART_MCR_RTS);
+    // Configuration complete so select UART 16x mode
+	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
+    BCRSetRTS(TRUE);
+    
+    while(DOING)
+    {
+        inNum = 0;
+        count = 30;
+        LcdSleep(500);
+		GPIOClrBit(hGPIO, BCR_ENG_TRIG);
+		BCRSetRTS(FALSE);
+		LcdSleep(500);
+		
+		//OALLog(L"count %d\r\n",count);	
+		while( count-- )
+		{
+		    status = INREG8(&pUartRegs->LSR);
+		    if ((status & UART_LSR_RX_FIFO_E) != 0)
+			{
+			    ch = INREG8(&pUartRegs->RHR);
+			    scan[inNum++] = ch;
+				//OALLog(L" %c\r\n",ch);
+			}
+			LcdSleep(100);
+			//OALLog(L"count %d\r\n",count);	
+	    }
+			
+		GPIOSetBit(hGPIO, BCR_ENG_TRIG);
+		if( inNum > 0 )
+		{
+		    scan[inNum] = '\0';
+			OALLog(L"\rScan %d time: %s\r\n",data++, scan);
+			//break;
+		}else if(inNum == 0){
+            OALLog(L"\rDoes not any scan !\r\n");
+		}			
+		LcdSleep(300);
+	}
+	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
+	GPIOClose(hGPIO);
+}
+
+//==============================================================================
 //  Running Z2000...
 //
 VOID AllFunctionTest_Z2000(OAL_BLMENU_ITEM *pMenu)
@@ -1348,4 +1516,9 @@ VOID DisplayTest_Z2000(OAL_BLMENU_ITEM *pMenu)
 	//DisplayShow(BSP_Z2000);
 	DisplayShow();
 }
+
+
+
+
+
 

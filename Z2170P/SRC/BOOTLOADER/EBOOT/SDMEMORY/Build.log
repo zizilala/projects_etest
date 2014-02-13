@@ -146,7 +146,7 @@ BUILD: [01:0000000143:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000144:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
 BUILD: [01:0000000145:INFO  ] 	set LIB=C:\WINCE600\sdk\CE\lib
 BUILD: [01:0000000146:PROGC ] Linking C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe
-BUILD: [01:0000000147:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm78D.tmp
+BUILD: [01:0000000147:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm8C.tmp
 BUILD: [01:0000000148:INFO  ] Microsoft (R) Incremental Linker Version 8.00.50727.42
 BUILD: [01:0000000149:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000150:INFO  ] 
@@ -1280,29 +1280,29 @@ BUILD: [01:0000001277:INFO  ] Windows CE ROM Image Builder v4.0.000 Copyright (c
 BUILD: [01:0000001278:INFO  ] Built: Jul 25 2006 16:36:51
 BUILD: [01:0000001279:INFO  ] 
 BUILD: [01:0000001280:INFO  ] Copying C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe to C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\nk.exe for debugger
-BUILD: [01:0000001281:INFO  ] Found pTOC at 00006828
+BUILD: [01:0000001281:INFO  ] Found pTOC at 000069a8
 BUILD: [01:0000001282:INFO  ] No imports for nk.exe
 BUILD: [01:0000001283:INFO  ] Processing ETEST
 BUILD: [01:0000001284:INFO  ] 
 BUILD: [01:0000001285:INFO  ] Writing C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ETEST.bin
-BUILD: [01:0000001286:INFO  ] Table of contents  80030e80  00000020  (        32)
+BUILD: [01:0000001286:INFO  ] Table of contents  80031328  00000020  (        32)
 BUILD: [01:0000001287:INFO  ] Writing ROM signature and TOC pointer at 80002040
-BUILD: [01:0000001288:INFO  ] Kernel data copy section  80030ea0  00000010  (        16)
-BUILD: [01:0000001289:INFO  ] ROM Header                80030e2c  00000054  (        84)
+BUILD: [01:0000001288:INFO  ] Kernel data copy section  80031348  00000010  (        16)
+BUILD: [01:0000001289:INFO  ] ROM Header                800312d4  00000054  (        84)
 BUILD: [01:0000001290:INFO  ] First DLL Address:       4001c001
 BUILD: [01:0000001291:INFO  ] Last DLL Address:        4001c001
 BUILD: [01:0000001292:INFO  ] Physical Start Address:  80002000
-BUILD: [01:0000001293:INFO  ] Physical End Address:    80033144
+BUILD: [01:0000001293:INFO  ] Physical End Address:    80034174
 BUILD: [01:0000001294:INFO  ] Start RAM:               87e80000
 BUILD: [01:0000001295:INFO  ] Start of free RAM:       87ec4000
 BUILD: [01:0000001296:INFO  ] End of RAM:              87ed0000
 BUILD: [01:0000001297:INFO  ] Number of Modules:       1
 BUILD: [01:0000001298:INFO  ] Number of Copy Sections: 1
-BUILD: [01:0000001299:INFO  ] Copy Section Offset:     80030ea0
+BUILD: [01:0000001299:INFO  ] Copy Section Offset:     80031348
 BUILD: [01:0000001300:INFO  ] FileSys 4K Chunks/Mbyte: 128 <2Mbyte  128 2-4Mbyte  0 4-6Mbyte  0 >6Mbyte
 BUILD: [01:0000001301:INFO  ] CPU Type:                    01c2h
 BUILD: [01:0000001302:INFO  ] Miscellaneous Flags:         0002h
-BUILD: [01:0000001303:INFO  ] Total ROM size:          00031144 (    201028)
+BUILD: [01:0000001303:INFO  ] Total ROM size:          00032174 (    205172)
 BUILD: [01:0000001304:INFO  ] Starting ip:             80003000
 BUILD: [01:0000001305:INFO  ] Raw files size:          00000000
 BUILD: [01:0000001306:INFO  ] Compressed files size:   00000000
@@ -1311,10 +1311,10 @@ BUILD: [01:0000001308:INFO  ] Writing rom file...
 BUILD: [01:0000001309:INFO  ] Start 80002000 Len 00000004
 BUILD: [01:0000001310:INFO  ] Start 80002040 Len 00000008
 BUILD: [01:0000001311:INFO  ] Start 80002048 Len 00000004
-BUILD: [01:0000001312:INFO  ] Start 80003000 Len 0002de2c
-BUILD: [01:0000001313:INFO  ] Start 80030e2c Len 00000054
-BUILD: [01:0000001314:INFO  ] Start 80030e80 Len 00000030
-BUILD: [01:0000001315:INFO  ] Start 80031000 Len 00002144
+BUILD: [01:0000001312:INFO  ] Start 80003000 Len 0002e2d4
+BUILD: [01:0000001313:INFO  ] Start 800312d4 Len 00000054
+BUILD: [01:0000001314:INFO  ] Start 80031328 Len 00000030
+BUILD: [01:0000001315:INFO  ] Start 80032000 Len 00002174
 BUILD: [01:0000001316:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ETEST.nb0
 BUILD: [01:0000001317:INFO  ] Done!
 BUILD: [01:0000001318:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\etest.bin C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
@@ -1346,5 +1346,5 @@ BUILD: [00:0000001343:PROGC ]
 BUILD: [00:0000001344:PROGC ] Total                     14         6       0
 BUILD: [00:0000001345:PROGC ] 
 BUILD: [00:0000001346:PROGC ] 6 Warnings,  0 Errors
-BUILD: [00:0000001347:PROGC ] GetSystemTimes (seconds): Idle: 10    Kernel: 15    User: 7    
-BUILD: [00:0000001348:PROGC ] Elapsed  time  (seconds): 11   
+BUILD: [00:0000001347:PROGC ] GetSystemTimes (seconds): Idle: 76    Kernel: 94    User: 9    
+BUILD: [00:0000001348:PROGC ] Elapsed  time  (seconds): 51   

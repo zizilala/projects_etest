@@ -145,7 +145,7 @@ VOID InitI2CWithBQ27510FW(HANDLE hGPIO_I2C)
 
             LcdStall(100); 
             I2C_ACKnowledge_FW(hGPIO_I2C);
-            LcdStall(200);
+            LcdStall(180);
         }
         //LcdStall(250);
         I2C_STOP_FW(hGPIO_I2C);

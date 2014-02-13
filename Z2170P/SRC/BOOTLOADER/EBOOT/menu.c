@@ -216,7 +216,7 @@ static OAL_MENU_ITEM_TEST g_menuBoardTest[] ={
     }, {
         L'3', L"Updating Fuel Gauge Firmware", UpdatingGaugeFW,
         NULL, NULL, 0
-    }, /*{
+    },/*{
         L'0', L"Exit and Continue", NULL,
         NULL, NULL, 0
     },*/ {
@@ -227,7 +227,7 @@ static OAL_MENU_ITEM_TEST g_menuBoardTest[] ={
 
 static OAL_BLMENU_ITEM g_menuBoard = {
     0, NULL, OALBLMenuShow,
-    L"Zebex for e-test V0.0.1", g_menuBoardTest, NULL
+    L"Zebex for e-test V0.0.2", g_menuBoardTest, NULL
 };
 
 #define DEFINE_LOGO g_menuBoardTest->pParam3    //DEFINE_LOGO are has Value 
