@@ -164,7 +164,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\hotkey.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47334| DCD	|$LN5@HotKeyInit|
+|$T47337| DCD	|$LN5@HotKeyInit|
 	DCD	0x40001402
 ; Function compile flags: /Ogspy
 
@@ -172,22 +172,22 @@
 
   00000		 |HotKeyInit| PROC
 
-; 46   : {
+; 44   : {
 
   00000		 |$LN5@HotKeyInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47331|
+  00008		 |$M47334|
   00008	e1a04000	 mov         r4, r0
   0000c	e3a05802	 mov         r5, #2, 16
 
-; 47   : 	UINT8 regval;
-; 48   : 	
-; 49   : 	regval = TWL_KBD_CTRL_KBD_ON | TWL_KBD_CTRL_NRESET | TWL_KBD_CTRL_NSOFT_MODE;
+; 45   : 	UINT8 regval;
+; 46   : 	
+; 47   : 	regval = TWL_KBD_CTRL_KBD_ON | TWL_KBD_CTRL_NRESET | TWL_KBD_CTRL_NSOFT_MODE;
 
   00010	e3a0e043	 mov         lr, #0x43
 
-; 50   :     TWLWriteRegs(hTwl, TWL_KEYP_CTRL_REG, &regval, sizeof(regval));
+; 48   :     TWLWriteRegs(hTwl, TWL_KEYP_CTRL_REG, &regval, sizeof(regval));
 
   00014	e38510d2	 orr         r1, r5, #0xD2
   00018	e3a03001	 mov         r3, #1
@@ -195,12 +195,12 @@
   00020	e5cde000	 strb        lr, [sp]
   00024	eb000000	 bl          TWLWriteRegs
 
-; 51   : 	regval = 0x07 << 5;                        // Prescaler timer value
+; 49   : 	regval = 0x07 << 5;                        // Prescaler timer value
 
   00028	e3a030e0	 mov         r3, #0xE0
   0002c	e5cd3000	 strb        r3, [sp]
 
-; 52   :     TWLWriteRegs(hTwl, TWL_LK_PTV_REG, &regval, sizeof(regval));
+; 50   :     TWLWriteRegs(hTwl, TWL_LK_PTV_REG, &regval, sizeof(regval));
 
   00030	e3a03001	 mov         r3, #1
   00034	e28d2000	 add         r2, sp, #0
@@ -208,19 +208,19 @@
   0003c	e1a00004	 mov         r0, r4
   00040	eb000000	 bl          TWLWriteRegs
 
-; 53   : }
+; 51   : }
 
   00044	e28dd004	 add         sp, sp, #4
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M47332|
+  00050		 |$M47335|
 
 			 ENDP  ; |HotKeyInit|
 
 	EXPORT	|matrixStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47345| DCD	|$LN7@matrixStat|
+|$T47348| DCD	|$LN7@matrixStat|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -228,39 +228,39 @@
 
   00000		 |matrixStatus| PROC
 
-; 58   : {
+; 56   : {
 
   00000		 |$LN7@matrixStat|
-  00000		 |$M47342|
+  00000		 |$M47345|
 
-; 59   :     int temp;
-; 60   :     BOOL event = FALSE;
-; 61   :     
-; 62   :     temp = gMatrix[row] & shiftLeft(col);
-; 63   :  
-; 64   :     if(temp)
+; 57   :     int temp;
+; 58   :     BOOL event = FALSE;
+; 59   :     
+; 60   :     temp = gMatrix[row] & shiftLeft(col);
+; 61   :  
+; 62   :     if(temp)
 
   00000	e59f3014	 ldr         r3, [pc, #0x14]
   00004	e3a02001	 mov         r2, #1
   00008	e7d03003	 ldrb        r3, [r0, +r3]
   0000c	e1130112	 tst         r3, r2, lsl r1
 
-; 65   :         return event = TRUE;
+; 63   :         return event = TRUE;
 
   00010	13a00001	 movne       r0, #1
 
-; 66   :     else
-; 67   :         return event;
+; 64   :     else
+; 65   :         return event;
 
   00014	03a00000	 moveq       r0, #0
 
-; 68   : }
+; 66   : }
 
   00018	e12fff1e	 bx          lr
   0001c		 |$LN8@matrixStat|
   0001c		 |$LN9@matrixStat|
   0001c	00000000	 DCD         |gMatrix|
-  00020		 |$M47343|
+  00020		 |$M47346|
 
 			 ENDP  ; |matrixStatus|
 
@@ -271,7 +271,7 @@
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47426| DCD	|$LN63@HotKeyFunc|
+|$T47429| DCD	|$LN63@HotKeyFunc|
 	DCD	0x40003701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -287,33 +287,33 @@
 
   00000		 |HotKeyFunction| PROC
 
-; 72   : {
+; 70   : {
 
   00000		 |$LN63@HotKeyFunc|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M47423|
+  00004		 |$M47426|
 
-; 73   : 	//UINT8 matrix[8];
-; 74   : 	ULONG ik, ix, row, column;
-; 75   : 	//ULONG i;
-; 76   :     USHORT state;
-; 77   :     BOOL keyPressed = FALSE;
-; 78   :     //WCHAR key; 
-; 79   :     
-; 80   :        
-; 81   :     //Ray 131104
-; 82   :     /*for(i=0; i<Hotkey_EXIT; i++)
-; 83   :     {
-; 84   : 		OALLog(L" [%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
-; 85   : 	}
-; 86   : 	OALLog(L" [0] Exit and Continue\r\n");
+; 71   : 	//UINT8 matrix[8];
+; 72   : 	ULONG ik, ix, row, column;
+; 73   : 	//ULONG i;
+; 74   :     USHORT state;
+; 75   :     BOOL keyPressed = FALSE;
+; 76   :     //WCHAR key; 
+; 77   :     
+; 78   :        
+; 79   :     //Ray 131104
+; 80   :     /*for(i=0; i<Hotkey_EXIT; i++)
+; 81   :     {
+; 82   : 		OALLog(L" [%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
+; 83   : 	}
+; 84   : 	OALLog(L" [0] Exit and Continue\r\n");
+; 85   : 	
+; 86   : 	OALLog(L"\r>>> Now entry cold-reset... \r\n");*/
 ; 87   : 	
-; 88   : 	OALLog(L"\r>>> Now entry cold-reset... \r\n");*/
-; 89   : 	
-; 90   :     //printing matrix array, Ray
-; 91   : 	/*for( ik=0 ; ik<3 ; ik++ )
-; 92   : 	{*/
-; 93   :     TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));    
+; 88   :     //printing matrix array, Ray
+; 89   : 	/*for( ik=0 ; ik<3 ; ik++ )
+; 90   : 	{*/
+; 91   :     TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));    
 
   00004	e59f60cc	 ldr         r6, [pc, #0xCC]
   00008	e3a010db	 mov         r1, #0xDB
@@ -322,51 +322,51 @@
   00014	e24118fe	 sub         r1, r1, #0xFE, 16
   00018	eb000000	 bl          TWLReadRegs
 
-; 94   : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
-; 95   : 	    
-; 96   : 		OALLog(L" HotKeyFunction: matrix  ");
-; 97   : 		for( ix=0 ; ix <8 ; ix++ )
-; 98   : 			OALLog(L" [%d]",gMatrix[ix]);
-; 99   : 		OALLog(L"\r\n");
-; 100  : 	}*/
-; 101  : 	
-; 102  : 	for(row = 0, ik = 0; row < 8; row++)
+; 92   : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+; 93   : 	    
+; 94   : 		OALLog(L" HotKeyFunction: matrix  ");
+; 95   : 		for( ix=0 ; ix <8 ; ix++ )
+; 96   : 			OALLog(L" [%d]",gMatrix[ix]);
+; 97   : 		OALLog(L"\r\n");
+; 98   : 	}*/
+; 99   : 	
+; 100  : 	for(row = 0, ik = 0; row < 8; row++)
 
   0001c	e3a05000	 mov         r5, #0
   00020	e3a08001	 mov         r8, #1
   00024		 |$LL18@HotKeyFunc|
 
-; 103  : 	{
-; 104  :         // Get matrix state        
-; 105  :         ix = row;
-; 106  :         state = gMatrix[ix] & 0xFF;     
+; 101  : 	{
+; 102  :         // Get matrix state        
+; 103  :         ix = row;
+; 104  :         state = gMatrix[ix] & 0xFF;     
 
   00024	e7d57006	 ldrb        r7, [r5, +r6]
 
-; 107  : 
-; 108  :         // If no-key is pressed continue with new rows
-; 109  :         if (state == 0) 
+; 105  : 
+; 106  :         // If no-key is pressed continue with new rows
+; 107  :         if (state == 0) 
 
   00028	e3570000	 cmp         r7, #0
   0002c	0a000008	 beq         |$LN17@HotKeyFunc|
 
-; 110  : 		{
-; 111  :             ik += 8;
-; 112  :             continue;               //if state event desnot 
-; 113  : 		}
-; 114  :         
-; 115  :         for (column = 0; column < 8; column++, ik++)
+; 108  : 		{
+; 109  :             ik += 8;
+; 110  :             continue;               //if state event desnot 
+; 111  : 		}
+; 112  :         
+; 113  :         for (column = 0; column < 8; column++, ik++)
 
   00030	e3a04000	 mov         r4, #0
   00034		 |$LL14@HotKeyFunc|
 
-; 116  : 		{
-; 117  :             if ((state & (1 << column)) != 0)
+; 114  : 		{
+; 115  :             if ((state & (1 << column)) != 0)
 
   00034	e1170418	 tst         r7, r8, lsl r4
 
-; 118  : 			{
-; 119  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
+; 116  : 			{
+; 117  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
 
   00038	159f0094	 ldrne       r0, [pc, #0x94]
   0003c	11a02004	 movne       r2, r4
@@ -377,76 +377,76 @@
   00050	3afffff7	 bcc         |$LL14@HotKeyFunc|
   00054		 |$LN17@HotKeyFunc|
 
-; 94   : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
-; 95   : 	    
-; 96   : 		OALLog(L" HotKeyFunction: matrix  ");
-; 97   : 		for( ix=0 ; ix <8 ; ix++ )
-; 98   : 			OALLog(L" [%d]",gMatrix[ix]);
-; 99   : 		OALLog(L"\r\n");
-; 100  : 	}*/
-; 101  : 	
-; 102  : 	for(row = 0, ik = 0; row < 8; row++)
+; 92   : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+; 93   : 	    
+; 94   : 		OALLog(L" HotKeyFunction: matrix  ");
+; 95   : 		for( ix=0 ; ix <8 ; ix++ )
+; 96   : 			OALLog(L" [%d]",gMatrix[ix]);
+; 97   : 		OALLog(L"\r\n");
+; 98   : 	}*/
+; 99   : 	
+; 100  : 	for(row = 0, ik = 0; row < 8; row++)
 
   00054	e2855001	 add         r5, r5, #1
   00058	e3550008	 cmp         r5, #8
   0005c	3afffff0	 bcc         |$LL18@HotKeyFunc|
   00060	e5d62004	 ldrb        r2, [r6, #4]
 
-; 120  : 			}
-; 121  : 		}
-; 122  : 	}
-; 123  :    
-; 124  :     //Ray 131106
-; 125  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               	//F1 + F2
+; 118  : 			}
+; 119  : 		}
+; 120  : 	}
+; 121  :    
+; 122  :     //Ray 131106
+; 123  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               	//F1 + F2
 
   00064	e3120004	 tst         r2, #4
   00068	13120008	 tstne       r2, #8
 
-; 126  :         keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
+; 124  :         keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
 
   0006c	159f305c	 ldrne       r3, [pc, #0x5C]
   00070	15930020	 ldrne       r0, [r3, #0x20]
   00074	1a000012	 bne         |$LN60@HotKeyFunc|
   00078	e5d61003	 ldrb        r1, [r6, #3]
 
-; 127  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         	//F1 + F4
+; 125  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         	//F1 + F4
 
   0007c	e20130ff	 and         r3, r1, #0xFF
   00080	e2133002	 ands        r3, r3, #2
   00084	13110004	 tstne       r1, #4
 
-; 128  :         keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
+; 126  :         keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
 
   00088	159f3040	 ldrne       r3, [pc, #0x40]
   0008c	15930030	 ldrne       r0, [r3, #0x30]
   00090	1a00000b	 bne         |$LN60@HotKeyFunc|
 
-; 129  :     }else if( matrixStatus(3, 2)){                              	//F1   
+; 127  :     }else if( matrixStatus(3, 2)){                              	//F1   
 
   00094	e3110004	 tst         r1, #4
 
-; 130  :         keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
+; 128  :         keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
 
   00098	159f3030	 ldrne       r3, [pc, #0x30]
   0009c	15930000	 ldrne       r0, [r3]
   000a0	1a000007	 bne         |$LN60@HotKeyFunc|
 
-; 131  :     }else if( matrixStatus(4, 3)){                              	//F2
+; 129  :     }else if( matrixStatus(4, 3)){                              	//F2
 
   000a4	e3120008	 tst         r2, #8
 
-; 132  :         keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
+; 130  :         keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
 
   000a8	159f3020	 ldrne       r3, [pc, #0x20]
   000ac	15930008	 ldrne       r0, [r3, #8]
   000b0	1a000003	 bne         |$LN60@HotKeyFunc|
 
-; 133  :     }else if( matrixStatus(3, 1)){                              	//F4
+; 131  :     }else if( matrixStatus(3, 1)){                              	//F4
 
   000b4	e3530000	 cmp         r3, #0
   000b8	0a000002	 beq         |$LN2@HotKeyFunc|
 
-; 134  :         keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
+; 132  :         keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
 
   000bc	e59f300c	 ldr         r3, [pc, #0xC]
   000c0	e5930018	 ldr         r0, [r3, #0x18]
@@ -454,14 +454,14 @@
   000c4	eb000000	 bl          FillASCIIMode
   000c8		 |$LN2@HotKeyFunc|
 
-; 135  :     }
-; 136  :         
-; 137  :     /*do{   
-; 138  :         key = OALBLMenuReadKey(TRUE);
-; 139  : 	}while(key != L'0');*/
-; 140  : 
-; 141  : 	if (/*key == L'0' || */keyPressed == TRUE) return;
-; 142  : }
+; 133  :     }
+; 134  :         
+; 135  :     /*do{   
+; 136  :         key = OALBLMenuReadKey(TRUE);
+; 137  : 	}while(key != L'0');*/
+; 138  : 
+; 139  : 	if (/*key == L'0' || */keyPressed == TRUE) return;
+; 140  : }
 
   000c8	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   000cc	e12fff1e	 bx          lr
@@ -472,14 +472,14 @@
   000d4	00000000	 DCD         |??_C@_1DE@MDALDBDK@?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?0?$AA?$CF?$AAd?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@|
   000d8		 |$LN67@HotKeyFunc|
   000d8	00000000	 DCD         |gMatrix|
-  000dc		 |$M47424|
+  000dc		 |$M47427|
 
 			 ENDP  ; |HotKeyFunction|
 
 	EXPORT	|HotKeyColdReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47438| DCD	|$LN5@HotKeyCold|
+|$T47441| DCD	|$LN5@HotKeyCold|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -487,22 +487,22 @@
 
   00000		 |HotKeyColdReset| PROC
 
-; 146  : {
+; 144  : {
 
   00000		 |$LN5@HotKeyCold|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47435|
+  00004		 |$M47438|
 
-; 147  :    HotKeyFunction(hTwl);
+; 145  :    HotKeyFunction(hTwl);
 
   00004	eb000000	 bl          HotKeyFunction
 
-; 148  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
-; 149  : }
+; 146  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
+; 147  : }
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47436|
+  00010		 |$M47439|
 
 			 ENDP  ; |HotKeyColdReset|
 

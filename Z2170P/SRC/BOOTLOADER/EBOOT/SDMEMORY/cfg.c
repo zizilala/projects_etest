@@ -20,14 +20,8 @@
 #include <bsp_logo.h>
 #include "lcd.h"
 
-
-
 //------------------------------------------------------------------------------
-
-BOOL
-BLReadBootCfg(
-    BOOT_CFG *pBootCfg
-    )
+BOOL BLReadBootCfg(BOOT_CFG *pBootCfg)
 {
     BOOL rc = FALSE;
 #ifndef BSP_NO_NAND_IN_SDBOOT
@@ -338,15 +332,16 @@ cleanUp:
 BOOL BLShowLogo()
 {
 	//  Show the bootloader splashscreen if present on the SDCard
-	//if (!ShowSDLogo())
+	if (!ShowSDLogo())
 	{
 		ShowLogo((UINT32)-1, 0);
 	}
 
     return TRUE;
 }
+
 //-----------------------------------------------------------------------------
-//Ray 131106
+//  Ray 131106
 BOOL DisplayShow(/*int board*/)
 {
     ShowTest((UINT32)-1, 0/*, board*/);
@@ -354,19 +349,20 @@ BOOL DisplayShow(/*int board*/)
 }
 
 //-----------------------------------------------------------------------------
-//Ray 131119
+//  Ray 131119
 VOID tsc2046Test()
 {
-    detect_TSC2046();
+    detect_TSC2046();               //function prototype in the bsp_logo.h
     return;
 }
 
 //-----------------------------------------------------------------------------
-//Ray 140122
-/*VOID UpdatingGauge(OAL_BLMENU_ITEM *pMenu)
+//  Ray 140213
+VOID BLShowMenu()
 {   
-    UpdatingGaugeFW(pMenu);
-    UNREFERENCED_PARAMETER(pMenu);
-}*/
-//-----------------------------------------------------------------------------
+    ShowMenuSelect();
+    return;
+}
 
+//-----------------------------------------------------------------------------
+//  File ending

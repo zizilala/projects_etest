@@ -106,7 +106,7 @@ BOOL   BLReadBootCfg(BOOT_CFG *pBootCfg);
 BOOL   BLWriteBootCfg(BOOT_CFG *pBootCfg);
 BOOL   BLReserveBootBlocks();
 BOOL   BLConfigureFlashPartitions(BOOL bForceEnable);
-BOOL   BLShowLogo();
+BOOL   BLShowLogo();            
 UINT32 BLEthDownload(BOOT_CFG *pBootCfg, OAL_KITL_DEVICE *pBootDevices);
 BOOL   BLEthReadData(ULONG size, UCHAR *pData);
 VOID   BLEthConfig(BSP_ARGS *pArgs);
@@ -119,6 +119,7 @@ BOOL   BLSDCardReadEbootData(WCHAR *filename, BYTE *pData, DWORD size);
 //UINT32 BLVAtoPA(UINT32 address);
 
 BOOL   SDCardUpdatingFW(WCHAR *filename, UCHAR *pData, DWORD size);    //Ray 140122, Read SD card update firmware 
+VOID   BLShowMenu();                    //Ray 140213
 
 UINT32 OALStringToUINT32(LPCWSTR psz);
 

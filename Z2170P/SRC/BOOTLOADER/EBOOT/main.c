@@ -66,7 +66,6 @@ UCHAR g_ecctype;
 //
 EBOOT_CONTEXT g_eboot;
 
-
 //------------------------------------------------------------------------------
 // External Variables
 extern DEVICE_IFC_GPIO Omap_Gpio;
@@ -148,7 +147,7 @@ BOOL OEMPlatformInit()
             END_OF_PAD_ARRAY
     };
 		
-    OALLocalAllocInit(allocationPool,sizeof(allocationPool));
+    OALLocalAllocInit(allocationPool, sizeof(allocationPool));
 
     // Get processor and companion chip versions
 	g_CPUFamily = CPU_FAMILY_OMAP35XX;
@@ -467,8 +466,10 @@ ULONG OEMPreDownload()
     //BLReserveBootBlocks(); // brian
 #endif
 	
-	BLShowLogo(); // Ray 13115
+	BLShowLogo();               // Ray 13115
 	
+    BLShowMenu();               //At screen show menu,invoke function go to cfg.c; function prototype in the eboot.h
+
     // Read saved configration      //Bootstrap message(LCD init after), Ray
     if (BLReadBootCfg(&g_bootCfg) &&
         (g_bootCfg.signature == BOOT_CFG_SIGNATURE) && (g_bootCfg.version == BOOT_CFG_VERSION))
@@ -991,7 +992,6 @@ UINT8* OEMMapMemAddr(DWORD image, DWORD address)
     default:
         OALMSG(OAL_ERROR, (L"ERROR: OEMMapMemAddr: " L"Invalid download type %d\r\n", g_eboot.type
         ));
-
     }
 
     //OALMSGS(1, (L"-OEMMapMemAddr(pAddress = 0x%08x)\r\n", pAddress));

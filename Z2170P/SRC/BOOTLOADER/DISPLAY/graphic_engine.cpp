@@ -21,7 +21,7 @@ static UINT g_nWidth	= 0;
 static UINT g_nColMax	= 0;
 static UINT g_nRowMax	= 0;
 static PUCHAR	g_nBpp;
-static DWORD g_wFontColor = 0x008000;
+static DWORD g_wFontColor = 0x080000;
 static DWORD g_wBkColor   = 0x000000;
 
 static volatile DWORD *g_dwFrameBuffer = NULL;
@@ -643,7 +643,6 @@ VOID FillASCII(INT Row, INT Col, BYTE c)
 			bit = (unsigned char)ttbit;
             bit &= asciiFont[c][i];
 			offset = g_nWidth * offh + offw;
-            
             if (!bit) {							//Non-zero is Running
         	  	mem[ p + offset ] = g_wBkColor;
                 p--;

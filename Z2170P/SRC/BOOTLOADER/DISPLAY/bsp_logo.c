@@ -11,12 +11,13 @@
 *
 ================================================================================
 */
+
 //
 //  File:  bsp_logo.c
 //
 //------------------------------------------------------------------------------
 //
-// includes
+//  includes
 //
 #include "bsp.h"
 #include "bsp_logo.h"
@@ -32,7 +33,7 @@
 
 //------------------------------------------------------------------------------
 //
-// prototypes
+//  prototypes
 //
 void reset_display_controller( void );
 void disable_dss( void );
@@ -46,7 +47,7 @@ UINT32 disable_lcd_power(void);
 UINT32 disable_lcd_backlight(void);
 void LcdStall(DWORD dwMicroseconds);
 void LcdSleep(DWORD dwMilliseconds);
-BOOL FillASCII(BYTE showCharMode[][15]);    //Ray 131105
+BOOL FillASCII(BYTE showCharMode[][20]);    //Ray 131105
 BOOL BLShowLogo(void);
 VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 //BOOL KeypadMatrixStatus(int row, int col);
@@ -112,8 +113,8 @@ DWORD   g_d3Sec = 3000000;
 static DWORD g_nHeight = 0;
 static DWORD g_nWidth = 0;
 static DWORD g_nBpp;
-static DWORD g_wFontColor = 0x00000000; //??_RR_GG_BB
-static DWORD g_wBkColor   = 0xffffffff; //??
+static DWORD g_wFontColor = 0x00000000;      //??_RR_GG_BB
+static DWORD g_wBkColor   = 0xffffffff;      //??
 static volatile DWORD *g_dwFrameBuffer = NULL;
 
 //-----------------------------------------------------------------------------
@@ -650,66 +651,80 @@ BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight, PUCHAR nBpp, DWORD dwFrameB
 	return TRUE;
 }
 //
-BOOL FillASCII(BYTE showCharMode[][15])
+int g_printMode;
+
+BOOL FillASCII(BYTE showCharMode[][20])
 {
     volatile DWORD *mem = g_dwFrameBuffer;
     //static DWORD nWidth	= 360;  
-    static DWORD nWidth	= 180;
-    int printMode = 0;
-	int printN = 15;
+    static DWORD nWidth	= 180;    
+    
 	//BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
 	UINT16 tempbit, i, j;// k;
     int p = 8;
-    unsigned long offset;
+    unsigned long offset=0;
     int offh = 0, offw = 0;
     unsigned char bit;
 	BYTE c = 0; 
-	static int cur_col  = 13;
-	static int cur_row  = 7;        //shift a row place equal a pixel, Ray 131003  
+	static int cur_col  = 1;
+	static int cur_row  = 1;               //shift a row place equal a pixel, Ray 131003  
 	BYTE n = 0;
 	int shiftPalce = 8;	
     BOOL drawEnd = FALSE;
-
-	offw =  FONT_WIDTH * cur_row ;  			// offw = 8
-	
-	while(n < printN)
-	{
-		c = showCharMode[printMode][n];
-		//c = showChar[n];
+    UNREFERENCED_PARAMETER(mem);
+    
+    offw =  FONT_WIDTH * cur_row ;  			// offw 
+	    
+	//while(n < printN)
+	do{       
+		c = showCharMode[g_printMode][n];
+		OALLog(L"~g_printMode: %d!!\r\n",g_printMode);
 		for (i=0; i<16; i++) 
 		{
-        	offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
-     
+            
+            offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
+                
         	for (j=0; j<8; j++) 
         	{
-            	tempbit = 1 << j; 
-            	bit = (unsigned char)tempbit;
-            	bit &= asciiFont[c][i];                 //do array location & bit 
-                offset = nWidth * offh + offw;
-                if (bit) {							//Non-zero is Running
+        	    tempbit = 1 << j; 
+            	bit = (unsigned char)tempbit; 
+            	bit &= asciiFont[c][i];                 //do array location & bit  
+
+                if(g_printMode == 0)
+                    offset = nWidth * offh + offw;
+                else{
+                    offset = nWidth * offh + offw;
+                    offset +=500;
+                }
+                OALLog(L"~bit: %d\r\n", bit);
+                
+                if (bit) {							
         	  		mem[ p + offset ] = g_wFontColor;
                 	p--;
+                	OALLog(L"if\r\n");
             	}else {
                 	mem[ p + offset ] = g_wBkColor;
                 	p--;
+                	OALLog(L"else\r\n");
             	}
             	
             	if(p == 0){
                 	p = 8;
-            	}
+            	} 
         	}
     	}
-		offw += shiftPalce;
-		n++;
+        offw += shiftPalce;
+		n++; 
 		drawEnd = TRUE;
-	}
+	}while(c != '\0');
 	
 	return drawEnd;
 }
+
 //Ray 131105
 BOOL FillASCIIMode(DWORD mode)
 {                           
-   char showChar[][15] = { "Updates",	     //F1       ,Ray 131106
+   char showChar[][20] = { "Updates",	     //F1       ,Ray 131106
                                "F2",             //F2
                                "Reserved",        //F3
                                "F4",             //F4    
@@ -718,11 +733,9 @@ BOOL FillASCIIMode(DWORD mode)
                                "F1+F4",
                                "F2+F3",
                                "F2+F4",
-                               "F3+F4"};
-                                    
-                               
-   BYTE showCharToDec[1][15];                       //Ray 131105
-   int i=0, SIZE = 15;
+                               "F3+F4"};                             
+   BYTE showCharToDec[1][20];                       //Ray 131105
+   int i=0, SIZE = 20;
    char c;
    //BYTE asciiToHexa; 
    
@@ -731,14 +744,60 @@ BOOL FillASCIIMode(DWORD mode)
         c = showChar[mode][i];
         showCharToDec[0][i] = (BYTE)c;
         i++;
-    }while(c == '\0' || i < SIZE);
-
-    if(FillASCII((showCharToDec+0))){        //entry drawing, Ray 131105
+    }while(c != '\0' || i < SIZE);
+    
+    g_printMode = 0;
+    if( FillASCII((showCharToDec+0)) ){        //entry drawing, Ray 131105
         return TRUE;
     }else{
         return FALSE;
     }
 }
+
+//-----------------------------------------------------------------------------
+//1. Z2000 Device
+//2. Z2170P Device
+VOID ShowMenuSelect()
+{
+    char    showChar[][20] = { "1.Z2000 Device",
+                               "2.Z2107 Device",
+                               "3.Z2107 Device~"};                         
+    short   mode, i=0, size,  sizeDivTwenty; 
+    char    c;
+    BYTE    charConvertDec[20][20];
+    BOOL    status;
+    size = sizeof(showChar);        //sizeof(showChar) => x*20 , but only need mode 
+    sizeDivTwenty = size /20;       //So that divide by 20. 
+    
+    for(mode=0; mode<sizeDivTwenty; mode++)
+    {    
+        do{
+            c = showChar[mode][i];  
+            charConvertDec[mode][i] = (BYTE)c;
+            i++;
+            //OALLog(L"~i: %d, c: %c\r\n",i,c);
+        }while(c != '\0');
+        
+        /*g_printMode = mode;
+        OALLog(L"~g_printMode: %d\r\n",g_printMode);
+        status = FillASCII(charConvertDec);
+        OALLog(L"~status: %d\r\n",status);
+        if(status == FALSE)
+            OALLog(L"Mode has been error: %d", mode);*/
+    }
+
+    for(i=0; i<sizeDivTwenty; i++){
+        g_printMode = i;
+        OALLog(L"~g_printMode: %d, i:%d!!\r\n",g_printMode, i);
+        status = FillASCII(charConvertDec);
+        OALLog(L"~status: %d\r\n",status);
+        if(status == FALSE)
+            OALLog(L"Mode has been error: %d", mode); 
+    }
+    
+    return;
+}
+
 //-----------------------------------------------------------------------------
 HANDLE hGpio = NULL;
 
@@ -993,6 +1052,7 @@ void LCD_Initial_Code(void)
 	LcdSleep(30);
 	WMLCDCOMD(0x2C); //send DDRAM set
 }
+
 //-----------------------------------------------------------------------------
 void ClearDisplayBuffer()
 {
@@ -1004,6 +1064,7 @@ void ClearDisplayBuffer()
 	for( i=0 ; i<len ; i++ )
 		*((DWORD *)framebufferPA + i) = 0x0;
 }
+
 //-----------------------------------------------------------------------------
 static void FlipFrameBuffer(PUCHAR fb, DWORD h, DWORD lineSize,PUCHAR temporaryBuffer)
 {
@@ -1023,6 +1084,7 @@ static void FlipFrameBuffer(PUCHAR fb, DWORD h, DWORD lineSize,PUCHAR temporaryB
         bottom -= lineSize;
     }
 }
+
 //------------------------------------------------------------------------------
 //
 //  Function:  ShowLogo

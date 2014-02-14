@@ -863,7 +863,6 @@ VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     //}
     OALLog(L"\rTested ok!! \r\n");
     GPIOClose(hGPIO);
-    
 }
 
 //------------------------------------------------------------------------------
