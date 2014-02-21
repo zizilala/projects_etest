@@ -26,19 +26,19 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset);
 
 //------------------------------------------------------------------------------
 //
-//VOID ShowTest(UINT32 flashAddr, UINT32 offset);               //Ray 131106
-VOID ShowTest(UINT32 flashAddr, UINT32 offset/*,int board*/);   //Ray 131115
-//VOID Initial_lcd_TSC2046(void);                               //Ray 131119
-VOID detect_TSC2046(void);                                      //Ray 131126
-VOID ShowMenuSelect(void);                                          //Ray 140213
-
+//VOID ShowTest(UINT32 flashAddr, UINT32 offset);               //Ray   131106
+VOID ShowTest(UINT32 flashAddr, UINT32 offset/*,int board*/);   //Ray   131115
+//VOID Initial_lcd_TSC2046(void);                               //Ray   131119
+VOID detect_TSC2046(void);                                      //Ray   131126
+VOID ShowMenuSelect(void);                                      //Ray   140213
+VOID ShowYellow(UINT32 , UINT32 );                              //Ray   140218
 //------------------------------------------------------------------------------
 //
 //  Function:  ShowSDLogo
 //
 //   This function is called to display the splaschreen bitmap from the SDCard
 //
-BOOL ShowSDLogo();
+BOOL ShowSDLogo(void);
 
 //------------------------------------------------------------------------------
 //

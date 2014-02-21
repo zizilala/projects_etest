@@ -33,7 +33,7 @@
 
 //------------------------------------------------------------------------------
 //
-//  prototypes
+//  Function prototypes
 //
 void reset_display_controller( void );
 void disable_dss( void );
@@ -52,11 +52,9 @@ BOOL BLShowLogo(void);
 VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 //BOOL KeypadMatrixStatus(int row, int col);
 
-
-
 //------------------------------------------------------------------------------
 //
-// defines
+// definition
 //
 /*#ifdef BSP_Z2000
 	#define LOGO_WIDTH			320	//480    // Logo bitmap image is RGB24 VGA Portrait bitmap
@@ -65,18 +63,17 @@ VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 	#define LOGO_WIDTH			240 // Logo bitmap image is RGB24 VGA Portrait bitmap
 	#define LOGO_HEIGHT			320	
 #endif*/
-//static int g_board;    //Ray 131115
+//static int g_board;               //Ray 131115
 //#define DEFINE_LOGO g_board 
 
-#if DEFINE_LOGO == 2000
+/*#if DEFINE_LOGO == 2000
 	#define LOGO_WIDTH			320	    // Logo bitmap image is RGB24 VGA Portrait bitmap
     #define LOGO_HEIGHT			240	
 #else
     #define LOGO_WIDTH			240     // 
 	#define LOGO_HEIGHT			320	
-#endif
+#endif*/
 
-#define BYTES_PER_PIXEL			3
 #define DELAY_COUNT				100 
 #define LOGO_GFX_ATTRIBUTES		(DISPC_GFX_ATTR_GFXENABLE | DISPC_GFX_ATTR_GFXFORMAT(DISPC_PIXELFORMAT_RGB24))           // RGB24 packed, enabled
 
@@ -92,23 +89,55 @@ VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 #define SPI_CS0_PIN     174         //mcspi1_cs0
 #define SPI_CLK_PIN     171         //mcspi1_clk
 #define SPI_DOUT_PIN    172         //mcspi1_simo
+
 //Ray 131119
 #define TSC2046_CS      161         //mcbsp1_fsx      
 #define TSC2046_DCLK    156         //mcbsp1_clkr       
 #define TSC2046_DIN     158         //mcbsp1_dx  
 #define TSC2046_DOUT    159         //mcbsp1_dr 
 
+//For display show string, Ray 140217
+#define	LOGO_WIDTH			    240 //row 
+#define LOGO_HEIGHT			    320 //col
+#define BYTES_PER_PIXEL			3
+#define	FONT_WIDTH			    8   //x
+#define FONT_HEIGHT			    16  //y
+
+//************************ COLOR Table*****************************************
+#define RED_COLOR			0
+#define GREEN_COLOR			1
+#define	BLUE_COLOR			2
+#define WHITE_COLOR			3
+#define BLACK_COLOR			4
+#define YELLOW_COLOR		5
+#define PURPLE_COLOR		6
+#define CYAN_COLOR			7
+#define GRAY_COLOR			8
+#define TRANSPARENT_COLOR	9 
+
+const	BYTE colorTable[12][3]= {	
+		{0x00, 0x00, 0xff},		//R
+		{0x00, 0xff, 0x00},		//G
+		{0xff, 0x00, 0x00},		//B
+		{0xff, 0xff, 0xff},		//W
+		{0x00, 0x00, 0x00},		//B
+		{0x00, 0xff, 0xff},		//Y
+		{0x00, 0x00, 0xff},		//P
+		{0xff, 0xff, 0x00},		//C
+		{0x80, 0x80, 0x80},		//G
+		{0x00, 0x00, 0x00}		
+};
+//************************ COLOR Table*****************************************
+
+//-----------------------------------------------------------------------------
+//
+//  Global variable
+//
 DWORD   g_dwLogoPosX;
 DWORD   g_dwLogoPosY;
-
 DWORD   g_dwLogoWidth;
 DWORD   g_dwLogoHeight;
 DWORD   g_d3Sec = 3000000;
-
-//-----------------------------------------------------------------------------
-//Ray 131025
-#define FONT_HEIGHT		16
-#define FONT_WIDTH		8
 
 static DWORD g_nHeight = 0;
 static DWORD g_nWidth = 0;
@@ -116,6 +145,7 @@ static DWORD g_nBpp;
 static DWORD g_wFontColor = 0x00000000;      //??_RR_GG_BB
 static DWORD g_wBkColor   = 0xffffffff;      //??
 static volatile DWORD *g_dwFrameBuffer = NULL;
+static volatile PUCHAR gg_dwFrameBuffer = NULL;
 
 //-----------------------------------------------------------------------------
 
@@ -638,74 +668,71 @@ const BYTE asciiFont[][16] = {
 //************************ ASCII Table ****************************************
 
 //-----------------------------------------------------------------------------
-BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight, PUCHAR nBpp, DWORD dwFrameBuffer)
+BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight, PUCHAR nBpp, PUCHAR dwFrameBuffer)
 {
 		
 	g_nHeight = nHeight;
 	g_nWidth  = nWidth;	
 	g_nBpp = (DWORD)nBpp; 
     g_dwFrameBuffer = (volatile DWORD *) dwFrameBuffer;
-	
+	gg_dwFrameBuffer = (PUCHAR) dwFrameBuffer;
 	//FillASCII();
-	
+	//OALLog(L"~~Addressing %#X\r\n",gg_dwFrameBuffer);
 	return TRUE;
 }
 //
 int g_printMode;
-
-BOOL FillASCII(BYTE showCharMode[][20])
+//  before
+/*BOOL FillASCII(BYTE showCharMode[][20])
 {
-    volatile DWORD *mem = g_dwFrameBuffer;
-    //static DWORD nWidth	= 360;  
+    volatile DWORD *mem = g_dwFrameBuffer; 
     static DWORD nWidth	= 180;    
-    
-	//BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
-	UINT16 tempbit, i, j;// k;
+	UINT16 tempbit, i, j;
     int p = 8;
     unsigned long offset=0;
     int offh = 0, offw = 0;
     unsigned char bit;
 	BYTE c = 0; 
-	static int cur_col  = 1;
-	static int cur_row  = 1;               //shift a row place equal a pixel, Ray 131003  
+	int cur_col  = 1;
+	int cur_row  = 1;               //shift a row place equal a pixel, Ray 131003  
+    int row =1,col=1
 	BYTE n = 0;
 	int shiftPalce = 8;	
     BOOL drawEnd = FALSE;
     UNREFERENCED_PARAMETER(mem);
     
-    offw =  FONT_WIDTH * cur_row ;  			// offw 
-	    
+    //offw =  FONT_WIDTH * cur_row;  			// offw 
+    offw = 	FONT_WIDTH * col * BYTES_PER_PIXEL;
 	//while(n < printN)
 	do{       
 		c = showCharMode[g_printMode][n];
-		OALLog(L"~g_printMode: %d!!\r\n",g_printMode);
+		OALLog(L"~~g_printMode: %d\r\n",g_printMode);
 		for (i=0; i<16; i++) 
-		{
-            
-            offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
-                
+		{  
+            //offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
+            offh = FONT_HEIGHT * row + i;    
         	for (j=0; j<8; j++) 
         	{
         	    tempbit = 1 << j; 
             	bit = (unsigned char)tempbit; 
             	bit &= asciiFont[c][i];                 //do array location & bit  
-
+                //offset = nWidth * offh + offw;
+                //offset = (LOGO_WIDTH  * offh) * BYTES_PER_PIXEL + offw;
                 if(g_printMode == 0)
-                    offset = nWidth * offh + offw;
-                else{
-                    offset = nWidth * offh + offw;
-                    offset +=500;
+                    offset = nWidth * offh + offw; 
+                else if(g_printMode == 1){
+                    offset = (nWidth) * offh + offw;                    
                 }
-                OALLog(L"~bit: %d\r\n", bit);
+                //OALLog(L"~bit: %d\r\n", bit);
                 
-                if (bit) {							
+                if (bit){							
         	  		mem[ p + offset ] = g_wFontColor;
                 	p--;
-                	OALLog(L"if\r\n");
-            	}else {
+                	//OALLog(L"if\r\n");
+            	}else{
                 	mem[ p + offset ] = g_wBkColor;
                 	p--;
-                	OALLog(L"else\r\n");
+                	//OALLog(L"else\r\n");
             	}
             	
             	if(p == 0){
@@ -717,9 +744,95 @@ BOOL FillASCII(BYTE showCharMode[][20])
 		n++; 
 		drawEnd = TRUE;
 	}while(c != '\0');
+
+	return drawEnd;
+}*/
+
+/*BOOL FillASCII(BYTE showCharMode[][20])
+{
+    volatile DWORD *mem = g_dwFrameBuffer;
+    //static DWORD nWidth	= 360;  
+    static DWORD nWidth	= 180;    
+    //int fc=BLACK_COLOR, bc=TRANSPARENT_COLOR;
+	//BYTE showChar[] ={45,80,66,69,74,79,72,15,15,15};	//Loading...
+	UINT16 tempbit, i, j;// k;
+    int p = 8;
+    unsigned long offset=0;
+    int offh = 0, offw = 0;
+    unsigned char bit;
+	BYTE c = 0; 
+	static int cur_col  = 1;
+	static int cur_row  = 2;               //shift a row place equal a pixel, Ray 131003  
+    //int col =1;
+    //int row =1;
+	BYTE n = 0;
+	int shiftPalce = 8;	
+    BOOL drawEnd = FALSE;
+    UNREFERENCED_PARAMETER(mem);
+    
+    offw =  FONT_WIDTH * cur_row * BYTES_PER_PIXEL;  			// offw 
+	//offw = 	FONT_WIDTH * col * BYTES_PER_PIXEL;    //8*1*3   
+	//while(n < printN)
+	do{       
+		c = showCharMode[g_printMode][n];
+		OALLog(L"~g_printMode: %d!!\r\n",g_printMode);
+		for (i=0; i<16; i++) 
+		{
+            
+            offh =  FONT_HEIGHT * cur_col + i;     //offh =  16+0, 16+1.....
+            //offh = FONT_HEIGHT * row + i;    
+        	for (j=0; j<8; j++) 
+        	{
+        	    tempbit = 1 << j; 
+            	bit = (unsigned char)tempbit; 
+            	bit &= asciiFont[c][i];                 //do array location & bit  
+
+                /*if(g_printMode == 0)
+                    offset = nWidth * offh + offw;
+                else{
+                    offset = nWidth * offh + offw;
+                    offset +=500;
+                }
+                OALLog(L"~bit: %d\r\n", bit);*/
+                /*if (bit) {							
+        	  		mem[ p + offset ] = g_wFontColor;
+                	p--;
+                	//OALLog(L"if\r\n");
+            	}else {
+                	mem[ p + offset ] = g_wBkColor;
+                	p--;
+                	//OALLog(L"else\r\n");
+            	}
+                /*if (!bit) {
+                    if(bc != TRANSPARENT_COLOR){
+                        offset += p; 
+            	  		mem[offset++] = colorTable[bc][0];		//Blue	
+    					mem[offset++] = colorTable[bc][1];		//Green
+    					mem[offset]   = colorTable[bc][2];		//Red
+                    	p--;
+                	    //OALLog(L"if\r\n");
+                	}
+            	}else {
+            	    offset += p;
+                	mem[offset++] = colorTable[fc][0];			
+					mem[offset++] = colorTable[fc][1];		
+					mem[offset]   = colorTable[fc][2];	
+                	p--;
+                	//OALLog(L"else\r\n");
+            	}*/
+            	
+            	/*if(p == 0){
+                	p = 8;
+            	} 
+        	}
+    	}
+        offw += shiftPalce;
+		n++; 
+		drawEnd = TRUE;
+	}while(c != '\0');
 	
 	return drawEnd;
-}
+}*/
 
 //Ray 131105
 BOOL FillASCIIMode(DWORD mode)
@@ -747,55 +860,135 @@ BOOL FillASCIIMode(DWORD mode)
     }while(c != '\0' || i < SIZE);
     
     g_printMode = 0;
-    if( FillASCII((showCharToDec+0)) ){        //entry drawing, Ray 131105
+    /*if( FillASCII((showCharToDec+0)) ){        //entry drawing, Ray 131105
         return TRUE;
-    }else{
+    }else{*/
         return FALSE;
-    }
+    //}
 }
 
-//-----------------------------------------------------------------------------
 //1. Z2000 Device
 //2. Z2170P Device
-VOID ShowMenuSelect()
+/*VOID ShowMenuSelect()
 {
     char    showChar[][20] = { "1.Z2000 Device",
-                               "2.Z2107 Device",
-                               "3.Z2107 Device~"};                         
-    short   mode, i=0, size,  sizeDivTwenty; 
+                               "2.Z2107 Device"
+                              };                         
+    short   mode, i, size,  sizeDivTwenty; 
     char    c;
     BYTE    charConvertDec[20][20];
     BOOL    status;
     size = sizeof(showChar);        //sizeof(showChar) => x*20 , but only need mode 
     sizeDivTwenty = size /20;       //So that divide by 20. 
     
-    for(mode=0; mode<sizeDivTwenty; mode++)
+    for(mode=0, i=0; mode<sizeDivTwenty; mode++)
     {    
         do{
             c = showChar[mode][i];  
             charConvertDec[mode][i] = (BYTE)c;
             i++;
-            //OALLog(L"~i: %d, c: %c\r\n",i,c);
+            //OALLog(L"~i:%d, c:%c\t",i,c);
         }while(c != '\0');
-        
-        /*g_printMode = mode;
-        OALLog(L"~g_printMode: %d\r\n",g_printMode);
+        //OALLog(L"\r\n");
+        //OALLog(L"~sizeDivTwenty: %d\r\n", sizeDivTwenty); 
+        g_printMode = mode;
+        //OALLog(L"~g_printMode: %d\r\n",g_printMode);
         status = FillASCII(charConvertDec);
         OALLog(L"~status: %d\r\n",status);
         if(status == FALSE)
-            OALLog(L"Mode has been error: %d", mode);*/
+            OALLog(L"Mode has been error: %d", mode);
+        mode++;
     }
-
-    for(i=0; i<sizeDivTwenty; i++){
-        g_printMode = i;
-        OALLog(L"~g_printMode: %d, i:%d!!\r\n",g_printMode, i);
-        status = FillASCII(charConvertDec);
-        OALLog(L"~status: %d\r\n",status);
-        if(status == FALSE)
-            OALLog(L"Mode has been error: %d", mode); 
-    }
-    
     return;
+}*/
+
+//-----------------------------------------------------------------------------
+int g_Mode;
+
+void fillASCII(int row, int col, int fc, int bc, BYTE c)
+{ 
+	volatile PUCHAR mem = gg_dwFrameBuffer;
+	int i, j;
+	unsigned long offset;
+	int offh, offw;
+	unsigned char bit;
+	//OALLog(L"~~fillASCII\r\n");
+
+	offw = 	FONT_WIDTH * col * BYTES_PER_PIXEL;    //8* At y of located *3	
+	for(i=0; i<16; i++)
+	{
+		offh = FONT_HEIGHT * row + i;
+		for(j=0; j<8; j++)
+		{
+				bit = (unsigned char)(0x80 >> j);   //j=0; 1000_0000, j=1; 0100_0000, ... 
+				bit &= asciiFont[c][i];
+				offset = (LOGO_WIDTH * offh +j) * BYTES_PER_PIXEL + offw;
+				
+				if(!bit)
+				{	//back_color
+					if(bc != TRANSPARENT_COLOR)
+					{
+						mem[offset++] = colorTable[bc][0];		//Blue	
+						mem[offset++] = colorTable[bc][1];		//Green
+						mem[offset++] = colorTable[bc][2];		//Red
+					}
+				}else{		//font_color
+						mem[offset++] = colorTable[fc][0];			
+						mem[offset++] = colorTable[fc][1];		
+						mem[offset++]  = colorTable[fc][2];				
+				}	
+		}
+	}
+		
+}
+					
+VOID printString(int row, int col, int fc, int bc, char showCharMode[][30])//x, y, font_color, back_color, drawing string
+{
+    char *s;
+    int i=0;                            
+    //OALLog(L"~~printfString\r\n");
+
+    s = *(showCharMode+g_Mode)+i;       //pointer const get 2D array(showCharMode) addresses, Ray 140218    
+    //RETAILMSG(TRUE,(L"%d. ",g_Mode));                                    //Let i=0 to pointer array start address   
+    while(*s != '\0')
+	{
+        fillASCII(row, col, fc, bc, *s);
+	    if( ++col > LOGO_WIDTH/FONT_WIDTH )
+             break;
+        //RETAILMSG(TRUE,(L"%s ", *s));
+		s++;
+	}
+	//OALLog(L"\r\n");
+}
+
+VOID ShowMenuSelect()
+{
+    char   showChar[][30] = { "[1] All Function Test",
+                              "[2] Display Test",
+                              "[3] LCM Backlight Test", 
+                              "[4] RAM Access Test(quickly)", 
+                              "[5] Keypad Backlight Test", 
+                              "[6] Touch Panel Test", 
+                              "[7] Battery Test", 
+                              "[8] LED Indicator", 
+                              "[9] Barcode Scanning", 
+                              "[F1] Keypad functional", 
+                              "[F2] Burn-In", 
+                              "[F3] RAM Access Test(ALL)",
+                              "[F4] Auto Scan"
+                            };
+
+    int mode, size, sizeDivTwenty; 
+    size = sizeof(showChar);        //sizeof(showChar) => [x]*[20] , but only need mode 
+    sizeDivTwenty = size /30;       //So that divide by 20. 
+    
+    //OALLog(L"~~ShowMenuSelect\r\n");
+    
+    for(mode=0; mode<sizeDivTwenty; mode++){
+        g_Mode = mode;
+        printString(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showChar);// ROW = 320/16(Max char=20 => x axis), COL = 240/8(Max char = 30=> y axis)          
+    }
+    return ;
 }
 
 //-----------------------------------------------------------------------------
@@ -1112,6 +1305,7 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
     LcdPdd_GetMemory( NULL, &framebufferPA );
     framebuffer = (DWORD) OALPAtoUA(framebufferPA);
     pChar = (PUCHAR)framebuffer;
+    //OALLog(L"~~Addressing %#X\r\n",framebuffer);
     
     if (flashAddr != -1)
     {
@@ -1154,8 +1348,20 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
         g_dwLogoPosY   = 0;
         g_dwLogoWidth  = dwLcdWidth;
         g_dwLogoHeight = dwLcdHeight;
+
+        for (y= 0; y < dwLcdHeight; y++)            //Ray   140218
+        {
+            for( x = 0; x < dwLcdWidth; x++ )
+            {
+                *pChar++ = 0x00;    //  Blue
+                *pChar++ = 0x00;    //  Green
+                *pChar++ = 0x00;    //  Red
+
+            }
+
+        }
         
-        for (y= 0; y < dwLcdHeight; y++)
+        /*for (y= 0; y < dwLcdHeight; y++)
         {
             for( x = 0; x < dwLcdWidth; x++ )
             {
@@ -1190,9 +1396,10 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
                     }
                 }
             }
-        }
+        }*/
     }
-	
+    //OALLog(L"~~Addressing2 %#X\r\n",framebuffer);
+	InitGraphicsEngine(LOGO_WIDTH, LOGO_HEIGHT, pChar, (PUCHAR)framebuffer);
     //  Fire up the LCD
     lcd_config(framebufferPA);       
 }
@@ -1223,9 +1430,10 @@ BOOL ShowSDLogo()
 	LcdPdd_GetMemory( NULL, &framebufferPA );
 	//OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer = 0x%x\r\n",framebufferPA));
     framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    
 	//OALMSG(OAL_INFO, (L"ShowSDLogo: framebuffer OALPAtoUA = 0x%x\r\n",framebuffer));
 	pChar = (PUCHAR)framebuffer;     //Ray 131028
-	
+	//OALLog(L"~~Addressing %#X\r\n",framebuffer);
 	// Compute the size
 	dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
 	OALMSG(OAL_INFO, (L"ShowSDLogo: BYTES_PER_PIXEL = %d\r\n",BYTES_PER_PIXEL));
@@ -1268,7 +1476,8 @@ BOOL ShowSDLogo()
 
     //Initial graphics engine and draw ASCII function, Ray 131025
     //Check them size is right dwLcdWidth, dwLcdHeight?, Ray 131028
-	InitGraphicsEngine(LOGO_WIDTH, LOGO_HEIGHT, pChar, framebuffer);
+    //OALLog(L"~~Addressing2 %#X\r\n",framebuffer);
+	//InitGraphicsEngine(LOGO_WIDTH, LOGO_HEIGHT, pChar, (PUCHAR)framebuffer);
 
     //  Fire up the LCD
     lcd_config(framebufferPA);
@@ -1694,6 +1903,82 @@ VOID ShowTest(UINT32 flashAddr, UINT32 offset/*, int board*/)
     LcdStall(g_d3Sec);
     
     ShowTestGreen((UINT32)-1, 0);
+}
+
+//------------------------------------------------------------------------------
+//
+//  Function:  ShowYellow
+//
+VOID ShowYellow(UINT32 flashAddr, UINT32 offset)
+{
+    HANDLE  hFlash = NULL;
+    DWORD	framebuffer;
+    DWORD	framebufferPA;
+    PUCHAR  pChar;
+    ULONG   x, y;
+    WORD	wSignature = 0;
+    DWORD   dwOffset = 0;
+    DWORD   dwLcdWidth, dwLcdHeight;
+    DWORD   dwLength;
+    
+    //  Get the LCD width and height
+    LcdPdd_LCD_GetMode( NULL, &dwLcdWidth, &dwLcdHeight, NULL );
+	
+    dwLength = BYTES_PER_PIXEL * LOGO_WIDTH * LOGO_HEIGHT;
+
+    //  Get the video memory
+    LcdPdd_GetMemory( NULL, &framebufferPA );   //Get memory display buffer size, Ray 131107
+    framebuffer = (DWORD) OALPAtoUA(framebufferPA);
+    pChar = (PUCHAR)framebuffer;
+    
+    if (flashAddr != -1)
+    {
+        // Open flash storage
+        hFlash = OALFlashStoreOpen(flashAddr);
+        if( hFlash != NULL )
+        {
+            //  The LOGO reserved NAND flash region contains the BMP file
+            OALFlashStoreBufferedRead( hFlash, offset, (UCHAR*) &wSignature, sizeof(wSignature), FALSE );
+
+            //  Check for 'BM' signature
+            if( wSignature == 0x4D42 )  
+            {
+                //  Read the offset to the pixel data
+                OALFlashStoreBufferedRead( hFlash, offset + 10, (UCHAR*) &dwOffset, sizeof(dwOffset), FALSE );
+
+                //  Read the pixel data with the given offset
+                OALFlashStoreBufferedRead( hFlash, offset + dwOffset, pChar, dwLength, FALSE );
+            }
+           
+            //  Close store
+            OALFlashStoreClose(hFlash);
+        
+            //  Compute position and size of logo image 
+            g_dwLogoPosX   = (dwLcdWidth - LOGO_WIDTH)/2;
+            g_dwLogoPosY   = (dwLcdHeight - LOGO_HEIGHT)/2;
+            g_dwLogoWidth  = LOGO_WIDTH;
+            g_dwLogoHeight = LOGO_HEIGHT;
+            
+            //As BMP are stored upside down, we need to flip the frame buffer's content
+            FlipFrameBuffer((PUCHAR)framebuffer,LOGO_HEIGHT,LOGO_WIDTH*BYTES_PER_PIXEL,(PUCHAR)framebuffer + dwLength);
+        }
+    }
+
+    //  Adjust color bars to LCD size
+    g_dwLogoPosX   = 0;
+    g_dwLogoPosY   = 0;
+    g_dwLogoWidth  = dwLcdWidth;
+    g_dwLogoHeight = dwLcdHeight;
+
+    for (y= 0; y < dwLcdHeight; y++)
+    {
+        for( x = 0; x < dwLcdWidth; x++ )
+        {   //it's color yellow
+            *pChar++ = 0x00;    //  Blue    
+            *pChar++ = 0xFF;    //  Green   
+            *pChar++ = 0xFF;    //  Red     
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -2358,20 +2643,21 @@ USHORT read_y(HANDLE n_hGPIO_2046, int yCMD)
 VOID detect_TSC2046(void)
 {
     USHORT xData = 0x0000, yData = 0x0000;
-    WCHAR key;
+    //WCHAR key;
     int locate=0;
-    //BOOL DONE = FALSE;
+    BOOL DOING = TRUE;
     BOOL uLeft=FALSE, uRight=FALSE, lLeft=FALSE, lRight=FALSE, center=FALSE;
     HANDLE n_hGPIO_2046 = g_hGPIO_2046; 
       
-    OALLog(L"\r Continue with any key, 0 are Exit!!\r\n");
+    //OALLog(L"\r Continue with any key, 0 are Exit!!\r\n");
     SetDrawCalibration(0);
     
-    if((key = OALBLMenuReadKey(TRUE)) == L'0')
-            goto ExitCalibration;
+    /*if((key = OALBLMenuReadKey(TRUE)) == L'0')
+            goto ExitCalibration;*/
     
     OALLog(L"\r Start Calibration...\r\n");
-    while(key != L'0'){
+    while(DOING){
+    //while(key != L'0'){
     //do{
         xData = read_x(n_hGPIO_2046, 0x94);           //1001_0100
         LcdStall(20);                                   
@@ -2395,7 +2681,7 @@ VOID detect_TSC2046(void)
         }
      
         if(uLeft && uRight && center && lLeft && lRight){
-            OALLog(L"\r ~~~Calibration OK!!\r\n");
+            //OALLog(L"\r ~~~Calibration OK!!\r\n");
             LcdSleep(500);
             //DONE = TRUE;
             GPIOClose(n_hGPIO_2046);    
@@ -2417,7 +2703,7 @@ VOID detect_TSC2046(void)
     }
     //}while((key = OALBLMenuReadKey(TRUE)) == L'0');
     
-ExitCalibration:
+//ExitCalibration:
         GPIOClose(n_hGPIO_2046);
         ShowLogo((UINT32)-1, 0);
         return;

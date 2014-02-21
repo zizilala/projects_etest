@@ -39,26 +39,27 @@
 //------------------------------------------------------------------------------
 //  Function Prototype
 //
-static VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID DisplayTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID BkTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID KeypadBkTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID AllFunctionTest_Z2000(OAL_BLMENU_ITEM *pMenu);
-static VOID DisplayTest_Z2000(OAL_BLMENU_ITEM *pMenu);
-static VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);   
-static VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu); 
-static VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu); 
-static VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu);
-static VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu);
-static VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu);
+VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID DisplayTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID BkTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID KeypadBkTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID AllFunctionTest_Z2000(OAL_BLMENU_ITEM *pMenu);
+VOID DisplayTest_Z2000(OAL_BLMENU_ITEM *pMenu);
+VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);   
+VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu); 
+VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu); 
+VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu);
+VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu);
+VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu);
 
 BOOL DisplayShow(void);
 VOID SetBacklight(void);
 VOID tsc2046Test(void);
+VOID DisplayShowBackground(void);       //Ray   140218
 
 //VOID SetKeypadBacklight(void);
 VOID LcdStall(DWORD);
@@ -219,6 +220,7 @@ VOID DisplayTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r\n Running...\r\n");
 	//DisplayShow(BSP_Z2170P);
 	DisplayShow();
+	OALLog(L"\rTested ok!! \r\n");
 }
 
 //------------------------------------------------------------------------------
@@ -228,7 +230,10 @@ VOID BkTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
 	OALBLMenuHeader(L"LCM Backlight Test");
 	UNREFERENCED_PARAMETER(pMenu);
+	DisplayShowBackground();
     SetBacklight();
+    BLShowLogo();
+    OALLog(L"\rTested ok!! \r\n");
 }
 //
 //
@@ -463,7 +468,7 @@ VOID KeypadBkTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);         //Keypad LED liht Close 
 
     GPIOClose(hGPIO);
-
+    OALLog(L"\rTested ok!! \r\n");
 }
 
 //------------------------------------------------------------------------------
@@ -476,7 +481,7 @@ VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     
     OALLog(L"\r Touch Panel Running...\r\n");  
     tsc2046Test();
-    OALLog(L"\r Touch Panel End...\r\n");  
+    OALLog(L"\rTested ok!! \r\n"); 
 }
 
 //------------------------------------------------------------------------------
@@ -888,7 +893,7 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     UINT8   status, ch, running = 1;
     int     count = 30, inNum = 0;
     //int     i = 0;
-    WCHAR   key;
+    //WCHAR   key;
     WCHAR   scan[50];
        
 	OALBLMenuHeader(L"Barcode Test");
@@ -928,7 +933,7 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     BCRSetRTS(TRUE);
     //OALLog(L"\r Scan Mode key '5', if Cancel '0'.\r\n");
     
-    OALLog(L"\r The Cancel key are '0'.\r\n");
+    //OALLog(L"\r The Cancel key are '0'.\r\n");
     while(running)
     {
 		//if(key == L'5')             // SCAN KEY
@@ -960,17 +965,21 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 				OALLog(L"\r\n");*/
 				scan[inNum] = '\0';
 				OALLog(L"->%s\r\n",scan);
+				LcdSleep(150);
+				break;
+			}else{
+                OALLog(L"\rDid not any scan !\r\n");
 				break;
 			}
 			
-			key = OALBLMenuReadKey(TRUE);
+			/*key = OALBLMenuReadKey(TRUE);
 			if(key == L'0')             // ESC KEY
 		    {
 			    OALLog(L"Cancel \r\n");
 			    break;
-		    }
+		    }*/
 		//}
-		LcdSleep(150);
+		//LcdSleep(150);
 	}
 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
 	GPIOClose(hGPIO);
@@ -1342,10 +1351,11 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
 	UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"RAM Access Test(Completely)");
 
-    OALLog(L"\r\n !Start Address: 0X%08X", startAddress&checkAddress );
-    OALLog(L"\r\n !End   Address: 0X%08X", endAddress&checkAddress );
-    OALLog(L"\r\n------------------------------------------\n");
-  
+    OALLog(L"\r\n Start Address: 0X%08X", startAddress&checkAddress );
+    OALLog(L"\r\n End   Address: 0X%08X", endAddress&checkAddress );
+    OALLog(L"\r\n scan 100kB tip \".\""); 
+    OALLog(L"\r\n------------------------------------------\r\n");
+    
     while(DOING){
         for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
 	    {
@@ -1361,11 +1371,12 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
             }
 
             if( (percent%(1024*100)) == 0){   //scan 100kB show tip 
-                OALLog(L"\rScanned size: %dk\r\n", percent/1024); 
+                //OALLog(L"\rScanned size: %dk\r\n", percent/1024); 
+                OALLog(L"."); 
             }
         }
-        OALLog(L"\rTest pattern:0xAA ok!! \r\n");
-        OALLog(L"--------------------------------------------------\r\n");
+        OALLog(L"\r\nTest pattern:0xAA ok!! \r\n");
+        //OALLog(L"--------------------------------------------------\r\n");
         LcdStall(stall_1Sec*3);
         
         for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
@@ -1382,11 +1393,12 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
             }
 
             if( (percent%(1024*100)) == 0){   //scan 100kB show tip 
-                OALLog(L"\rScanned size: %dk\r\n", percent/1024);
+                //OALLog(L"\rScanned size: %dk\r\n", percent/1024);
+                OALLog(L"."); 
             }         
         }
-        OALLog(L"\rTest pattern:0x55 ok!! \r\n");
-        OALLog(L"--------------------------------------------------\r\n");
+        OALLog(L"\r\nTest pattern:0x55 ok!! \r\n");
+        //OALLog(L"--------------------------------------------------\r\n");
         LcdStall(stall_1Sec*3);
     }   
 }
@@ -1469,7 +1481,7 @@ VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 			OALLog(L"\rScan %d time: %s\r\n",data++, scan);
 			//break;
 		}else if(inNum == 0){
-            OALLog(L"\rDoes not any scan !\r\n");
+            OALLog(L"\rDid not any scan !\r\n");
 		}			
 		LcdSleep(300);
 	}
@@ -1515,9 +1527,3 @@ VOID DisplayTest_Z2000(OAL_BLMENU_ITEM *pMenu)
 	//DisplayShow(BSP_Z2000);
 	DisplayShow();
 }
-
-
-
-
-
-

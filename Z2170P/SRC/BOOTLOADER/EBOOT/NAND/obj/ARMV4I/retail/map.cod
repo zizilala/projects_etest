@@ -8,6 +8,10 @@
 	DCB	"-defaultlib:OLDNAMES "
 
 
+  00000			 AREA	 |.data|, DATA
+	 COMMON	|ghTwl|, 0x4
+
+
   00000			 AREA	 |.rdata|, DATA, READONLY
 |EdbgVendorIds| DCW 0x0
 	DCW	0x0

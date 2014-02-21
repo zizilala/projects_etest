@@ -332,7 +332,7 @@ cleanUp:
 BOOL BLShowLogo()
 {
 	//  Show the bootloader splashscreen if present on the SDCard
-	if (!ShowSDLogo())
+	//if (!ShowSDLogo())           //Ray 140218
 	{
 		ShowLogo((UINT32)-1, 0);
 	}
@@ -365,4 +365,12 @@ VOID BLShowMenu()
 }
 
 //-----------------------------------------------------------------------------
+//  Ray 140218
+//
+VOID DisplayShowBackground()
+{
+    ShowYellow((UINT32)-1, 0/*, board*/);
+    return;
+}
+
 //  File ending

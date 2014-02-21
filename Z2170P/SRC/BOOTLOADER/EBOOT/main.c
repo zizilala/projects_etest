@@ -99,7 +99,7 @@ extern void HotKeyColdReset(HANDLE ghTwl);           //Ray 131030
 //------------------------------------------------------------------------------
 //Global Variable
 
-HANDLE ghTwl;   //declare variable the "ghTwl", it is give external variable "ghTwl"(at functonTest.c),  Ray 140102
+   //declare variable the "ghTwl", it is give external variable "ghTwl"(at functonTest.c),  Ray 140102
 //------------------------------------------------------------------------------
 //  Local Functions
 
@@ -202,7 +202,7 @@ BOOL OEMPlatformInit()
 
     GPIOInit();
     // Note that T2 accesses must occur after I2C initialization
-    hTwl = TWLOpen();
+    hTwl  = TWLOpen();
     hGPIO = GPIOOpen(); 
    
     //if( omap_mcspi_init() )
@@ -468,7 +468,7 @@ ULONG OEMPreDownload()
 	
 	BLShowLogo();               // Ray 13115
 	
-    BLShowMenu();               //At screen show menu,invoke function go to cfg.c; function prototype in the eboot.h
+    //BLShowMenu();               //At screen show menu,invoke function go to cfg.c; function prototype in the eboot.h
 
     // Read saved configration      //Bootstrap message(LCD init after), Ray
     if (BLReadBootCfg(&g_bootCfg) &&
@@ -592,9 +592,10 @@ ULONG OEMPreDownload()
     //bForceBootMenu = FALSE;   //e-test comment, Ray
     bForceBootMenu = TRUE; 
 retryBootMenu:
-	// Call configuration menu
+	// Call configuration men
     BLMenu(bForceBootMenu);
     
+   
     // Update ARGS structure if necessary
     if ((pArgs->header.signature != OAL_ARGS_SIGNATURE) ||
         (pArgs->header.oalVersion != OAL_ARGS_VERSION) || 

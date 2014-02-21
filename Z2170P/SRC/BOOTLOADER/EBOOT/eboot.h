@@ -40,6 +40,7 @@
 #include "boot_args.h"
 #include "args.h"
 
+HANDLE ghTwl;           //Ray 140218
 
 //------------------------------------------------------------------------------
 
@@ -120,6 +121,7 @@ BOOL   BLSDCardReadEbootData(WCHAR *filename, BYTE *pData, DWORD size);
 
 BOOL   SDCardUpdatingFW(WCHAR *filename, UCHAR *pData, DWORD size);    //Ray 140122, Read SD card update firmware 
 VOID   BLShowMenu();                    //Ray 140213
+VOID   HotkeyMenuSelect(HANDLE);        //Ray 140218
 
 UINT32 OALStringToUINT32(LPCWSTR psz);
 

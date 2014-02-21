@@ -9,13 +9,36 @@
 #define SIZE 8                      //Ray 131104 
 #define shiftLeft(col) (1<<col)     //Ray 131104 
 //-----------------------------------------------------------------------------
-//
-BOOL FillASCIIMode(int);            //Ray 131104 
+//  Function prototype
+//  
+
+BOOL FillASCIIMode(int);            //Ray 131104
+extern VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID DisplayTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID BkTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID KeypadBkTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID AllFunctionTest_Z2000(OAL_BLMENU_ITEM *pMenu);
+extern VOID DisplayTest_Z2000(OAL_BLMENU_ITEM *pMenu);
+extern VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID BatteryTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu);   
+extern VOID AudioAndMIC_Z2170P(OAL_BLMENU_ITEM *pMenu); 
+extern VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu); 
+extern VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu);
+extern VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu);
+extern VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu);
+
+VOID LcdStall(DWORD);
+VOID LcdSleep(DWORD);
+
 
 //-----------------------------------------------------------------------------
 //  Global variable 
 //
 UINT8 gMatrix[SIZE];                //Ray 131104 
+DWORD g_d1Sec = 1000000;
 
 //-----------------------------------------------------------------------------
 //
@@ -148,6 +171,78 @@ void HotKeyColdReset(HANDLE hTwl)
 
 
 //-----------------------------------------------------------------------------
-//add
+//  Ray 140218
+//
+VOID MenuSelectFunction(HANDLE hTwl)
+{
+    ULONG ik, ix, row, column;
+    USHORT state;
+    //BOOL keyPressed = FALSE;
+    OAL_BLMENU_ITEM *pMenu = NULL;
+    for(;;)
+    {
+        BLShowMenu(); 
+        TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));  
+        
+        
+        for(row = 0, ik = 0; row < 8; row++)
+    	{
+            // Get matrix state        
+            ix = row;
+            state = gMatrix[ix] & 0xFF;     
+
+            // If no-key is pressed continue with new rows
+            if (state == 0) 
+    		{
+                ik += 8;
+                continue;               //if state event desnot 
+    		}
+            
+            for (column = 0; column < 8; column++, ik++)
+    		{
+                if ((state & (1 << column)) != 0)
+    			{
+                    //RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
+    			}
+    		}
+    	}
+        
+        if(matrixStatus(2, 5) ){            //press number 1
+            AllFunctionTest_Z2170P(pMenu);
+        }else if(matrixStatus(1, 1) ){      //press number 2
+            DisplayTest_Z2170P(pMenu);
+        }else if(matrixStatus(1, 3) ){      //press number 3
+            BkTest_Z2170P(pMenu);
+        }else if(matrixStatus(2, 1) ){      //press number 4  
+            DRAMTest_Z2170P(pMenu);
+        }else if(matrixStatus(2, 4) ){      //press number 5
+            KeypadBkTest_Z2170P(pMenu);
+        }else if(matrixStatus(2, 3) ){      //press number 6
+            TouchPanelTest_Z2170P(pMenu);
+        }else if(matrixStatus(3, 5) ){      //press number 7
+            BatteryTest_Z2170P(pMenu);
+        }else if(matrixStatus(2, 0) ){      //press number 8
+            LEDTest_Z2170P(pMenu);
+        }else if(matrixStatus(2, 2) ){      //press number 9
+            BarcodeTest_Z2170P(pMenu);
+        }else if(matrixStatus(3, 3) ){      //press number F1
+            KeypadFunc_Z2170P(pMenu);
+        }else if(matrixStatus(4, 3) ){      //press number F2
+            BurnIn_Z2170P(pMenu);
+        }else if(matrixStatus(3, 0) ){      //press number F3
+            RAMAccessTest(pMenu);
+            //break;
+        }else if(matrixStatus(3, 2) ){      //press number F4
+            AutoScanFunc(pMenu);
+            //break;
+        }
+        LcdSleep(500);
+   }
+}
+
+VOID HotkeyMenuSelect(HANDLE hTwl)
+{
+	MenuSelectFunction(hTwl);	
+}
 
 
