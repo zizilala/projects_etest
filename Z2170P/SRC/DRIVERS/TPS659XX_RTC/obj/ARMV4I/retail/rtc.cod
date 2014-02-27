@@ -250,24 +250,24 @@
 
   00000		 |?RTC_Deinit@@YAHK@Z| PROC		; RTC_Deinit
 
-; 312  : {
+; 308  : {
 
   00000		 |$LN14@RTC_Deinit|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M40066|
   00004	e1b04000	 movs        r4, r0
 
-; 313  :     BOOL rc = FALSE;
+; 309  :     BOOL rc = FALSE;
 
   00008	e3a00000	 mov         r0, #0
 
-; 314  :     Device_t *pDevice = (Device_t*)context;
-; 315  : 
-; 316  : 
-; 317  :     DEBUGMSG(ZONE_FUNCTION, (L"+RTC_Deinit(0x%08x)\r\n", context));
-; 318  : 
-; 319  :     // Check if we get correct context
-; 320  :     if ((pDevice == NULL) || (pDevice->cookie != RTC_DEVICE_COOKIE))
+; 310  :     Device_t *pDevice = (Device_t*)context;
+; 311  : 
+; 312  : 
+; 313  :     DEBUGMSG(ZONE_FUNCTION, (L"+RTC_Deinit(0x%08x)\r\n", context));
+; 314  : 
+; 315  :     // Check if we get correct context
+; 316  :     if ((pDevice == NULL) || (pDevice->cookie != RTC_DEVICE_COOKIE))
 
   0000c	0a000025	 beq         |$cleanUp$39889|
   00010	e5942000	 ldr         r2, [r4]
@@ -275,18 +275,18 @@
   00018	e1520003	 cmp         r2, r3
   0001c	1a000021	 bne         |$cleanUp$39889|
 
-; 321  :         {
-; 322  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: RTC_Deinit: "
-; 323  :             L"Incorrect context paramer\r\n"
-; 324  :             ));
-; 325  :         goto cleanUp;
-; 326  :         }
-; 327  : 
-; 328  :     // Signal stop to threads
-; 329  :     pDevice->threadsExit = TRUE;
-; 330  : 
-; 331  :     // Close interrupt thread
-; 332  :     if (pDevice->hIntrThread != NULL)
+; 317  :         {
+; 318  :         DEBUGMSG (ZONE_ERROR, (L"ERROR: RTC_Deinit: "
+; 319  :             L"Incorrect context paramer\r\n"
+; 320  :             ));
+; 321  :         goto cleanUp;
+; 322  :         }
+; 323  : 
+; 324  :     // Signal stop to threads
+; 325  :     pDevice->threadsExit = TRUE;
+; 326  : 
+; 327  :     // Close interrupt thread
+; 328  :     if (pDevice->hIntrThread != NULL)
 
   00020	e5943014	 ldr         r3, [r4, #0x14]
   00024	e3a02001	 mov         r2, #1
@@ -294,97 +294,97 @@
   0002c	e3530000	 cmp         r3, #0
   00030	0a000007	 beq         |$LN4@RTC_Deinit|
 
-; 333  :         {
-; 334  :         // Set event to wake it
-; 335  :         SetEvent(pDevice->hIntrEvent);
+; 329  :         {
+; 330  :         // Set event to wake it
+; 331  :         SetEvent(pDevice->hIntrEvent);
 
   00034	e5940010	 ldr         r0, [r4, #0x10]
   00038	e3a01003	 mov         r1, #3
   0003c	eb000000	 bl          EventModify
 
-; 336  :         // Wait until thread exits
-; 337  :         WaitForSingleObject(pDevice->hIntrThread, INFINITE);
+; 332  :         // Wait until thread exits
+; 333  :         WaitForSingleObject(pDevice->hIntrThread, INFINITE);
 
   00040	e5940014	 ldr         r0, [r4, #0x14]
   00044	e3e01000	 mvn         r1, #0
   00048	eb000000	 bl          WaitForSingleObject
 
-; 338  :         // Close handle
-; 339  :         CloseHandle(pDevice->hIntrThread);
+; 334  :         // Close handle
+; 335  :         CloseHandle(pDevice->hIntrThread);
 
   0004c	e5940014	 ldr         r0, [r4, #0x14]
   00050	eb000000	 bl          CloseHandle
   00054		 |$LN4@RTC_Deinit|
 
-; 340  :         }
-; 341  : 
-; 342  :     // Close TWL driver
-; 343  :     if (pDevice->hTWL != NULL)
+; 336  :         }
+; 337  : 
+; 338  :     // Close TWL driver
+; 339  :     if (pDevice->hTWL != NULL)
 
   00054	e594300c	 ldr         r3, [r4, #0xC]
   00058	e3530000	 cmp         r3, #0
   0005c	0a00000a	 beq         |$LN3@RTC_Deinit|
 
-; 344  :         {
-; 345  :         TWLInterruptMask(pDevice->hTWL, TWL_INTR_RTC_IT, TRUE);
+; 340  :         {
+; 341  :         TWLInterruptMask(pDevice->hTWL, TWL_INTR_RTC_IT, TRUE);
 
   00060	e59f1048	 ldr         r1, [pc, #0x48]
   00064	e3a02001	 mov         r2, #1
   00068	e1a00003	 mov         r0, r3
   0006c	eb000000	 bl          TWLInterruptMask
 
-; 346  :         if (pDevice->hIntrEvent != NULL)
+; 342  :         if (pDevice->hIntrEvent != NULL)
 
   00070	e5943010	 ldr         r3, [r4, #0x10]
   00074	e3530000	 cmp         r3, #0
 
-; 347  :             {
-; 348  :             TWLInterruptDisable(pDevice->hTWL, TWL_INTR_RTC_IT);
+; 343  :             {
+; 344  :             TWLInterruptDisable(pDevice->hTWL, TWL_INTR_RTC_IT);
 
   00078	1594000c	 ldrne       r0, [r4, #0xC]
   0007c	159f102c	 ldrne       r1, [pc, #0x2C]
   00080	1b000000	 blne        TWLInterruptDisable
 
-; 349  :             }
-; 350  :         TWLClose(pDevice->hTWL);
+; 345  :             }
+; 346  :         TWLClose(pDevice->hTWL);
 
   00084	e594000c	 ldr         r0, [r4, #0xC]
   00088	eb000000	 bl          TWLClose
   0008c		 |$LN3@RTC_Deinit|
 
-; 351  :         }
-; 352  : 
-; 353  :     if (pDevice->hIntrEvent != NULL)
+; 347  :         }
+; 348  : 
+; 349  :     if (pDevice->hIntrEvent != NULL)
 
   0008c	e5943010	 ldr         r3, [r4, #0x10]
   00090	e3530000	 cmp         r3, #0
 
-; 354  :         {
-; 355  :         CloseHandle(pDevice->hIntrEvent);
+; 350  :         {
+; 351  :         CloseHandle(pDevice->hIntrEvent);
 
   00094	11a00003	 movne       r0, r3
   00098	1b000000	 blne        CloseHandle
 
-; 356  :         }
-; 357  : 
-; 358  :     // Free device structure
-; 359  :     LocalFree(pDevice);
+; 352  :         }
+; 353  : 
+; 354  :     // Free device structure
+; 355  :     LocalFree(pDevice);
 
   0009c	e1a00004	 mov         r0, r4
   000a0	eb000000	 bl          LocalFree
 
-; 360  : 
-; 361  :     // Done
-; 362  :     rc = TRUE;
+; 356  : 
+; 357  :     // Done
+; 358  :     rc = TRUE;
 
   000a4	e3a00001	 mov         r0, #1
   000a8		 |$cleanUp$39889|
 
-; 363  : 
-; 364  : cleanUp:
-; 365  :     DEBUGMSG(ZONE_FUNCTION, (L"-TWL_Deinit(rc = %d)\r\n", rc));
-; 366  :     return rc;
-; 367  : }
+; 359  : 
+; 360  : cleanUp:
+; 361  :     DEBUGMSG(ZONE_FUNCTION, (L"-TWL_Deinit(rc = %d)\r\n", rc));
+; 362  :     return rc;
+; 363  : }
 
   000a8	e8bd4010	 ldmia       sp!, {r4, lr}
   000ac	e12fff1e	 bx          lr
@@ -408,17 +408,17 @@
 
   00000		 |?RTC_Open@@YAKKKK@Z| PROC		; RTC_Open
 
-; 381  : {
+; 377  : {
 
   00000		 |$LN5@RTC_Open|
   00000		 |$M40079|
 
-; 382  : 	UNREFERENCED_PARAMETER(context);
-; 383  : 	UNREFERENCED_PARAMETER(accessCode);
-; 384  : 	UNREFERENCED_PARAMETER(shareMode);
-; 385  : 
-; 386  :     return context;
-; 387  : }
+; 378  : 	UNREFERENCED_PARAMETER(context);
+; 379  : 	UNREFERENCED_PARAMETER(accessCode);
+; 380  : 	UNREFERENCED_PARAMETER(shareMode);
+; 381  : 
+; 382  :     return context;
+; 383  : }
 
   00000	e12fff1e	 bx          lr
   00004		 |$M40080|
@@ -436,18 +436,18 @@
 
   00000		 |?RTC_Close@@YAHK@Z| PROC		; RTC_Close
 
-; 399  : {
+; 395  : {
 
   00000		 |$LN5@RTC_Close|
   00000		 |$M40088|
 
-; 400  : 	UNREFERENCED_PARAMETER(context);
-; 401  : 
-; 402  :     return TRUE;
+; 396  : 	UNREFERENCED_PARAMETER(context);
+; 397  : 
+; 398  :     return TRUE;
 
   00000	e3a00001	 mov         r0, #1
 
-; 403  : }
+; 399  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M40089|
@@ -547,7 +547,7 @@
 
   00008		 |?RTC_IOControl@@YAHKKPAEK0KPAK@Z| PROC ; RTC_IOControl
 
-; 421  : {
+; 417  : {
 
   00008		 |$LN64@RTC_IOCont|
   00008	e1a0c00d	 mov         r12, sp
@@ -557,23 +557,23 @@
   00018		 |$LN62@RTC_IOCont|
   00018	e1b07000	 movs        r7, r0
 
-; 422  :     BOOL rc = FALSE;
+; 418  :     BOOL rc = FALSE;
 
   0001c	e3a04000	 mov         r4, #0
   00020	e50b4024	 str         r4, [r11, #-0x24]
 
-; 423  :     Device_t *pDevice = (Device_t*)context;
-; 424  : 
-; 425  : 	UNREFERENCED_PARAMETER(inSize);
-; 426  : 	UNREFERENCED_PARAMETER(pInBuffer);
-; 427  : 
-; 428  :     DEBUGMSG(ZONE_FUNCTION, (
-; 429  :         L"+RTC_IOControl(0x%08x, 0x%08x, 0x%08x, %d, 0x%08x, %d, 0x%08x)\r\n",
-; 430  :         context, code, pInBuffer, inSize, pOutBuffer, outSize, pOutSize
-; 431  :         ));
-; 432  :         
-; 433  :     // Check if we get correct context
-; 434  :     if ((pDevice == NULL) || (pDevice->cookie != RTC_DEVICE_COOKIE))
+; 419  :     Device_t *pDevice = (Device_t*)context;
+; 420  : 
+; 421  : 	UNREFERENCED_PARAMETER(inSize);
+; 422  : 	UNREFERENCED_PARAMETER(pInBuffer);
+; 423  : 
+; 424  :     DEBUGMSG(ZONE_FUNCTION, (
+; 425  :         L"+RTC_IOControl(0x%08x, 0x%08x, 0x%08x, %d, 0x%08x, %d, 0x%08x)\r\n",
+; 426  :         context, code, pInBuffer, inSize, pOutBuffer, outSize, pOutSize
+; 427  :         ));
+; 428  :         
+; 429  :     // Check if we get correct context
+; 430  :     if ((pDevice == NULL) || (pDevice->cookie != RTC_DEVICE_COOKIE))
 
   00024	0a000066	 beq         |$LN17@RTC_IOCont|
   00028	e5972000	 ldr         r2, [r7]
@@ -582,10 +582,10 @@
   00034	1a000062	 bne         |$LN17@RTC_IOCont|
   00038	e3a03832	 mov         r3, #0x32, 16
 
-; 439  :         goto cleanUp;
-; 440  :         }
-; 441  :     
-; 442  :     switch (code)
+; 435  :         goto cleanUp;
+; 436  :         }
+; 437  :     
+; 438  :     switch (code)
 
   0003c	e3833a01	 orr         r3, r3, #1, 20
   00040	e1510003	 cmp         r1, r3
@@ -597,15 +597,15 @@
   00058	e1510003	 cmp         r1, r3
   0005c	1a00005d	 bne         |$cleanUp$39920|
 
-; 464  :                         }
-; 465  :                 }
-; 466  :             break;
-; 467  : 
-; 468  : 
-; 469  :         // requests a change from one device power state to another
-; 470  :         case IOCTL_POWER_SET: 
-; 471  :             DEBUGMSG(ZONE_INFO,(L"RTC: Received IOCTL_POWER_SET\r\n"));
-; 472  :             if (pOutBuffer && outSize >= sizeof(CEDEVICE_POWER_STATE)) 
+; 460  :                         }
+; 461  :                 }
+; 462  :             break;
+; 463  : 
+; 464  : 
+; 465  :         // requests a change from one device power state to another
+; 466  :         case IOCTL_POWER_SET: 
+; 467  :             DEBUGMSG(ZONE_INFO,(L"RTC: Received IOCTL_POWER_SET\r\n"));
+; 468  :             if (pOutBuffer && outSize >= sizeof(CEDEVICE_POWER_STATE)) 
 
   00060	e59b6000	 ldr         r6, [r11]
   00064	e3560000	 cmp         r6, #0
@@ -615,63 +615,63 @@
   00074	3a000057	 bcc         |$cleanUp$39920|
   00078		 |$LN45@RTC_IOCont|
 
-; 473  :                 {
-; 474  :                 __try 
-; 475  :                     {
-; 476  :                     CEDEVICE_POWER_STATE ReqDx = *(PCEDEVICE_POWER_STATE)pOutBuffer;
+; 469  :                 {
+; 470  :                 __try 
+; 471  :                     {
+; 472  :                     CEDEVICE_POWER_STATE ReqDx = *(PCEDEVICE_POWER_STATE)pOutBuffer;
 
   00078	e5963000	 ldr         r3, [r6]
   0007c	e1b05003	 movs        r5, r3
 
-; 477  :                     //handle only supported states
-; 478  :                     if((ReqDx == D0) || (ReqDx == D4))
+; 473  :                     //handle only supported states
+; 474  :                     if((ReqDx == D0) || (ReqDx == D4))
 
   00080	0a000001	 beq         |$LN6@RTC_IOCont|
   00084	e3550004	 cmp         r5, #4
   00088	1a000011	 bne         |$LN46@RTC_IOCont|
   0008c		 |$LN6@RTC_IOCont|
 
-; 479  :                     {
-; 480  :                     if (SetPowerState(pDevice, ReqDx))
+; 475  :                     {
+; 476  :                     if (SetPowerState(pDevice, ReqDx))
 
   0008c	e1a01005	 mov         r1, r5
   00090	e1a00007	 mov         r0, r7
   00094	eb000000	 bl          |?SetPowerState@@YAHPAUDevice_t@@W4_CEDEVICE_POWER_STATE@@@Z|
   00098	e3500000	 cmp         r0, #0
 
-; 481  :                         {   
-; 482  :                         *(PCEDEVICE_POWER_STATE)pOutBuffer = pDevice->powerState;
+; 477  :                         {   
+; 478  :                         *(PCEDEVICE_POWER_STATE)pOutBuffer = pDevice->powerState;
 
   0009c	15973020	 ldrne       r3, [r7, #0x20]
 
-; 483  :                         *pOutSize = sizeof(CEDEVICE_POWER_STATE);
+; 479  :                         *pOutSize = sizeof(CEDEVICE_POWER_STATE);
 
   000a0	159b2008	 ldrne       r2, [r11, #8]
   000a4	13a01004	 movne       r1, #4
   000a8	15863000	 strne       r3, [r6]
   000ac	15821000	 strne       r1, [r2]
 
-; 484  :  
-; 485  :                         rc = TRUE;
+; 480  :  
+; 481  :                         rc = TRUE;
 
   000b0	13a04001	 movne       r4, #1
   000b4	150b4024	 strne       r4, [r11, #-0x24]
 
-; 479  :                     {
-; 480  :                     if (SetPowerState(pDevice, ReqDx))
+; 475  :                     {
+; 476  :                     if (SetPowerState(pDevice, ReqDx))
 
   000b8	1a000005	 bne         |$LN46@RTC_IOCont|
 
-; 486  :                         DEBUGMSG(ZONE_INFO, (L"RTC: "
-; 487  :                             L"IOCTL_POWER_SET to D%u \r\n",
-; 488  :                             pDevice->powerState
-; 489  :                             ));
-; 490  :                         }
-; 491  :                     else 
-; 492  :                         {
-; 493  :                         RETAILMSG(ZONE_ERROR, (L"RTC: "
-; 494  :                             L"Invalid state request D%u \r\n", ReqDx
-; 495  :                             ));
+; 482  :                         DEBUGMSG(ZONE_INFO, (L"RTC: "
+; 483  :                             L"IOCTL_POWER_SET to D%u \r\n",
+; 484  :                             pDevice->powerState
+; 485  :                             ));
+; 486  :                         }
+; 487  :                     else 
+; 488  :                         {
+; 489  :                         RETAILMSG(ZONE_ERROR, (L"RTC: "
+; 490  :                             L"Invalid state request D%u \r\n", ReqDx
+; 491  :                             ));
 
   000bc	e59f314c	 ldr         r3, [pc, #0x14C]
   000c0	e5933440	 ldr         r3, [r3, #0x440]
@@ -681,15 +681,15 @@
   000d0	1b000000	 blne        NKDbgPrintfW
   000d4		 |$LN46@RTC_IOCont|
 
-; 496  :                         }
-; 497  :                     }
-; 498  :                }
+; 492  :                         }
+; 493  :                     }
+; 494  :                }
 
   000d4	ea00003f	 b           |$cleanUp$39920|
   000d8		 |$LN42@RTC_IOCont|
 
-; 500  :                {
-; 501  :                     RETAILMSG(ZONE_ERROR, (L"Exception in ioctl\r\n"));
+; 496  :                {
+; 497  :                     RETAILMSG(ZONE_ERROR, (L"Exception in ioctl\r\n"));
 
   000d8	e59f3130	 ldr         r3, [pc, #0x130]
   000dc	e5933440	 ldr         r3, [r3, #0x440]
@@ -700,13 +700,13 @@
   000f0	ea000038	 b           |$cleanUp$39920|
   000f4		 |$LN3@RTC_IOCont|
 
-; 502  :                }
-; 503  :             }
-; 504  :             break;
-; 505  : 
-; 506  :         // gets the current device power state
-; 507  :         case IOCTL_POWER_GET: 
-; 508  :             RETAILMSG(ZONE_INFO, (L"RTC: Received IOCTL_POWER_GET\r\n"));
+; 498  :                }
+; 499  :             }
+; 500  :             break;
+; 501  : 
+; 502  :         // gets the current device power state
+; 503  :         case IOCTL_POWER_GET: 
+; 504  :             RETAILMSG(ZONE_INFO, (L"RTC: Received IOCTL_POWER_GET\r\n"));
 
   000f4	e59f3114	 ldr         r3, [pc, #0x114]
   000f8	e5933440	 ldr         r3, [r3, #0x440]
@@ -714,7 +714,7 @@
   00100	159f0114	 ldrne       r0, [pc, #0x114]
   00104	1b000000	 blne        NKDbgPrintfW
 
-; 509  :             if (pOutBuffer != NULL && outSize >= sizeof(CEDEVICE_POWER_STATE)) 
+; 505  :             if (pOutBuffer != NULL && outSize >= sizeof(CEDEVICE_POWER_STATE)) 
 
   00108	e59b2000	 ldr         r2, [r11]
   0010c	e3520000	 cmp         r2, #0
@@ -724,33 +724,33 @@
   0011c	3a00002d	 bcc         |$cleanUp$39920|
   00120		 |$LN52@RTC_IOCont|
 
-; 510  :                 {
-; 511  :                 __try 
-; 512  :                     {
-; 513  :                     *(PCEDEVICE_POWER_STATE)pOutBuffer = pDevice->powerState;
+; 506  :                 {
+; 507  :                 __try 
+; 508  :                     {
+; 509  :                     *(PCEDEVICE_POWER_STATE)pOutBuffer = pDevice->powerState;
 
   00120	e5973020	 ldr         r3, [r7, #0x20]
   00124	e5823000	 str         r3, [r2]
 
-; 514  :  
-; 515  :                     rc = TRUE;
+; 510  :  
+; 511  :                     rc = TRUE;
 
   00128	e3a04001	 mov         r4, #1
   0012c	e50b4024	 str         r4, [r11, #-0x24]
   00130		 |$LN53@RTC_IOCont|
 
-; 516  : 
-; 517  :                     DEBUGMSG(ZONE_INFO, (L"RTC: "
-; 518  :                             L"IOCTL_POWER_GET to D%u \r\n",
-; 519  :                             pDevice->powerState
-; 520  :                             ));
-; 521  :                     }
+; 512  : 
+; 513  :                     DEBUGMSG(ZONE_INFO, (L"RTC: "
+; 514  :                             L"IOCTL_POWER_GET to D%u \r\n",
+; 515  :                             pDevice->powerState
+; 516  :                             ));
+; 517  :                     }
 
   00130	ea000028	 b           |$cleanUp$39920|
   00134		 |$LN49@RTC_IOCont|
 
-; 523  :                     {
-; 524  :                     RETAILMSG(ZONE_ERROR, (L"Exception in ioctl\r\n"));
+; 519  :                     {
+; 520  :                     RETAILMSG(ZONE_ERROR, (L"Exception in ioctl\r\n"));
 
   00134	e59f30d4	 ldr         r3, [pc, #0xD4]
   00138	e5933440	 ldr         r3, [r3, #0x440]
@@ -761,11 +761,11 @@
   0014c	ea000021	 b           |$cleanUp$39920|
   00150		 |$LN13@RTC_IOCont|
 
-; 443  :         {
-; 444  :         case IOCTL_POWER_CAPABILITIES: 
-; 445  :             DEBUGMSG(ZONE_INFO, (L"RTC: Received IOCTL_POWER_CAPABILITIES\r\n"));
-; 446  :             if (pOutBuffer && outSize >= sizeof (POWER_CAPABILITIES) && 
-; 447  :                 pOutSize) 
+; 439  :         {
+; 440  :         case IOCTL_POWER_CAPABILITIES: 
+; 441  :             DEBUGMSG(ZONE_INFO, (L"RTC: Received IOCTL_POWER_CAPABILITIES\r\n"));
+; 442  :             if (pOutBuffer && outSize >= sizeof (POWER_CAPABILITIES) && 
+; 443  :                 pOutSize) 
 
   00150	e59b5000	 ldr         r5, [r11]
   00154	e3550000	 cmp         r5, #0
@@ -778,44 +778,44 @@
   00170	0a000018	 beq         |$cleanUp$39920|
   00174		 |$LN38@RTC_IOCont|
 
-; 448  :                 {
-; 449  :                     __try 
-; 450  :                         {
-; 451  :                         PPOWER_CAPABILITIES PowerCaps;
-; 452  :                         PowerCaps = (PPOWER_CAPABILITIES)pOutBuffer;
-; 453  :          
-; 454  :                         // Only supports D0 (permanently on) and D4(off).         
-; 455  :                         memset(PowerCaps, 0, sizeof(*PowerCaps));
+; 444  :                 {
+; 445  :                     __try 
+; 446  :                         {
+; 447  :                         PPOWER_CAPABILITIES PowerCaps;
+; 448  :                         PowerCaps = (PPOWER_CAPABILITIES)pOutBuffer;
+; 449  :          
+; 450  :                         // Only supports D0 (permanently on) and D4(off).         
+; 451  :                         memset(PowerCaps, 0, sizeof(*PowerCaps));
 
   00174	e3a02030	 mov         r2, #0x30
   00178	e3a01000	 mov         r1, #0
   0017c	e1a00005	 mov         r0, r5
   00180	eb000000	 bl          memset
 
-; 456  :                         PowerCaps->DeviceDx = DX_MASK(D0) | DX_MASK(D4);
+; 452  :                         PowerCaps->DeviceDx = DX_MASK(D0) | DX_MASK(D4);
 
   00184	e3a03011	 mov         r3, #0x11
   00188	e5c53000	 strb        r3, [r5]
 
-; 457  :                         *pOutSize = sizeof(*PowerCaps);
+; 453  :                         *pOutSize = sizeof(*PowerCaps);
 
   0018c	e3a03030	 mov         r3, #0x30
   00190	e5863000	 str         r3, [r6]
 
-; 458  :                         
-; 459  :                         rc = TRUE;
+; 454  :                         
+; 455  :                         rc = TRUE;
 
   00194	e3a04001	 mov         r4, #1
   00198	e50b4024	 str         r4, [r11, #-0x24]
   0019c		 |$LN39@RTC_IOCont|
 
-; 460  :                         }
+; 456  :                         }
 
   0019c	ea00000d	 b           |$cleanUp$39920|
   001a0		 |$LN35@RTC_IOCont|
 
-; 462  :                         {
-; 463  :                         RETAILMSG(ZONE_ERROR, (L"exception in ioctl\r\n"));
+; 458  :                         {
+; 459  :                         RETAILMSG(ZONE_ERROR, (L"exception in ioctl\r\n"));
 
   001a0	e59f3068	 ldr         r3, [pc, #0x68]
   001a4	e5933440	 ldr         r3, [r3, #0x440]
@@ -826,23 +826,23 @@
   001b8	ea000006	 b           |$cleanUp$39920|
   001bc		 |$LN61@RTC_IOCont|
 
-; 525  :                     }
-; 526  :                 }     
-; 527  :             break;
-; 528  :         }
-; 529  : 
-; 530  : cleanUp:
-; 531  :     DEBUGMSG(ZONE_FUNCTION, (L"-RTC_IOControl(rc = %d)\r\n", rc));
-; 532  :     return rc;
+; 521  :                     }
+; 522  :                 }     
+; 523  :             break;
+; 524  :         }
+; 525  : 
+; 526  : cleanUp:
+; 527  :     DEBUGMSG(ZONE_FUNCTION, (L"-RTC_IOControl(rc = %d)\r\n", rc));
+; 528  :     return rc;
 
   001bc	e51b4020	 ldr         r4, [r11, #-0x20]
   001c0	ea000004	 b           |$cleanUp$39920|
   001c4		 |$LN17@RTC_IOCont|
 
-; 435  :         {
-; 436  :         RETAILMSG(ZONE_ERROR, (L"ERROR: RTC_IOControl: "
-; 437  :             L"Incorrect context parameter\r\n"
-; 438  :             ));
+; 431  :         {
+; 432  :         RETAILMSG(ZONE_ERROR, (L"ERROR: RTC_IOControl: "
+; 433  :             L"Incorrect context parameter\r\n"
+; 434  :             ));
 
   001c4	e59f3044	 ldr         r3, [pc, #0x44]
   001c8	e5933440	 ldr         r3, [r3, #0x440]
@@ -851,7 +851,7 @@
   001d4	1b000000	 blne        NKDbgPrintfW
   001d8		 |$cleanUp$39920|
 
-; 533  : }
+; 529  : }
 
   001d8	e1a00004	 mov         r0, r4
   001dc	e24bd01c	 sub         sp, r11, #0x1C
@@ -863,7 +863,7 @@
   001e8		 |$LN34@RTC_IOCont|
   001e8		 |$LN63@RTC_IOCont|
 
-; 461  :                     __except(EXCEPTION_EXECUTE_HANDLER) 
+; 457  :                     __except(EXCEPTION_EXECUTE_HANDLER) 
 
   001e8	e52de004	 str         lr, [sp, #-4]!
   001ec		 |$LN37@RTC_IOCont|
@@ -875,7 +875,7 @@
   001f4		 |$LN48@RTC_IOCont|
   001f4		 |$LN65@RTC_IOCont|
 
-; 522  :                 __except(EXCEPTION_EXECUTE_HANDLER) 
+; 518  :                 __except(EXCEPTION_EXECUTE_HANDLER) 
 
   001f4	e52de004	 str         lr, [sp, #-4]!
   001f8		 |$LN51@RTC_IOCont|
@@ -887,7 +887,7 @@
   00200		 |$LN41@RTC_IOCont|
   00200		 |$LN66@RTC_IOCont|
 
-; 499  :                 __except(EXCEPTION_EXECUTE_HANDLER) 
+; 495  :                 __except(EXCEPTION_EXECUTE_HANDLER) 
 
   00200	e52de004	 str         lr, [sp, #-4]!
   00204		 |$LN44@RTC_IOCont|
@@ -928,7 +928,7 @@
 
   00000		 |?RTC_IntrThread@@YAKPAX@Z| PROC	; RTC_IntrThread
 
-; 545  : {
+; 538  : {
 
   00000		 |$LN14@RTC_IntrTh|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
@@ -936,13 +936,13 @@
   00008		 |$M40190|
   00008	e1a04000	 mov         r4, r0
 
-; 546  :     Device_t *pDevice = (Device_t*)pContext;
-; 547  :     DWORD timeout = INFINITE;
-; 548  :     UINT8 status;
-; 549  :     UINT8 clrStatus = 0;
-; 550  : 
-; 551  :     // Loop until we are not stopped...
-; 552  :     while (!pDevice->threadsExit)
+; 539  :     Device_t *pDevice = (Device_t*)pContext;
+; 540  :     DWORD timeout = INFINITE;
+; 541  :     UINT8 status;
+; 542  :     UINT8 clrStatus = 0;
+; 543  : 
+; 544  :     // Loop until we are not stopped...
+; 545  :     while (!pDevice->threadsExit)
 
   0000c	e5943018	 ldr         r3, [r4, #0x18]
   00010	e3a02000	 mov         r2, #0
@@ -957,24 +957,24 @@
   00034	e3a0a040	 mov         r10, #0x40
   00038		 |$LL5@RTC_IntrTh|
 
-; 553  :         {
-; 554  :         // Wait for event
-; 555  :         WaitForSingleObject(pDevice->hIntrEvent, timeout);
+; 546  :         {
+; 547  :         // Wait for event
+; 548  :         WaitForSingleObject(pDevice->hIntrEvent, timeout);
 
   00038	e5940010	 ldr         r0, [r4, #0x10]
   0003c	e3e01000	 mvn         r1, #0
   00040	eb000000	 bl          WaitForSingleObject
 
-; 556  :         if (pDevice->threadsExit) break;
+; 549  :         if (pDevice->threadsExit) break;
 
   00044	e5943018	 ldr         r3, [r4, #0x18]
   00048	e3530000	 cmp         r3, #0
   0004c	1a00002f	 bne         |$LN11@RTC_IntrTh|
 
-; 557  : 
-; 558  :         // Get status
-; 559  :         status = 0;
-; 560  :         TWLReadRegs(pDevice->hTWL, TWL_RTC_STATUS_REG, &status, sizeof(status));
+; 550  : 
+; 551  :         // Get status
+; 552  :         status = 0;
+; 553  :         TWLReadRegs(pDevice->hTWL, TWL_RTC_STATUS_REG, &status, sizeof(status));
 
   00050	e594000c	 ldr         r0, [r4, #0xC]
   00054	e3a03001	 mov         r3, #1
@@ -983,13 +983,13 @@
   00060	e5cd8008	 strb        r8, [sp, #8]
   00064	eb000000	 bl          TWLReadRegs
 
-; 561  : 
-; 562  :         DEBUGMSG(ZONE_INT_THREAD, (L"RTC: interrupt: status=%02X\r\n", status));
-; 563  : 
-; 564  : 
-; 565  :         // Disable the RTC interrupts (this also clears the periodic timer interrupt status)
-; 566  :         clrStatus = 0;
-; 567  :         TWLWriteRegs(pDevice->hTWL, TWL_RTC_INTERRUPTS_REG, &clrStatus, sizeof(clrStatus));
+; 554  : 
+; 555  :         DEBUGMSG(ZONE_INT_THREAD, (L"RTC: interrupt: status=%02X\r\n", status));
+; 556  : 
+; 557  : 
+; 558  :         // Disable the RTC interrupts (this also clears the periodic timer interrupt status)
+; 559  :         clrStatus = 0;
+; 560  :         TWLWriteRegs(pDevice->hTWL, TWL_RTC_INTERRUPTS_REG, &clrStatus, sizeof(clrStatus));
 
   00068	e594000c	 ldr         r0, [r4, #0xC]
   0006c	e3a03001	 mov         r3, #1
@@ -998,11 +998,11 @@
   00078	e5cd9009	 strb        r9, [sp, #9]
   0007c	eb000000	 bl          TWLWriteRegs
 
-; 568  : 
-; 569  : 
-; 570  :         // Clear alarm status (regardless if set or not)
-; 571  :         clrStatus = TWL_RTC_STATUS_ALARM;
-; 572  :         TWLWriteRegs(pDevice->hTWL, TWL_RTC_STATUS_REG, &clrStatus, sizeof(clrStatus));
+; 561  : 
+; 562  : 
+; 563  :         // Clear alarm status (regardless if set or not)
+; 564  :         clrStatus = TWL_RTC_STATUS_ALARM;
+; 565  :         TWLWriteRegs(pDevice->hTWL, TWL_RTC_STATUS_REG, &clrStatus, sizeof(clrStatus));
 
   00080	e594000c	 ldr         r0, [r4, #0xC]
   00084	e3a03001	 mov         r3, #1
@@ -1011,20 +1011,20 @@
   00090	e5cda009	 strb        r10, [sp, #9]
   00094	eb000000	 bl          TWLWriteRegs
 
-; 573  : 
-; 574  :         
-; 575  :         // Is interrupt caused by alarm?
-; 576  :         if ((status & TWL_RTC_STATUS_ALARM) != 0)
+; 566  : 
+; 567  :         
+; 568  :         // Is interrupt caused by alarm?
+; 569  :         if ((status & TWL_RTC_STATUS_ALARM) != 0)
 
   00098	e5dd3008	 ldrb        r3, [sp, #8]
   0009c	e3130040	 tst         r3, #0x40
   000a0	0a000007	 beq         |$LN2@RTC_IntrTh|
 
-; 577  :             {
-; 578  :             DEBUGMSG(ZONE_ALARM, (L"RTC: alarm interrupt\r\n"));
-; 579  : 
-; 580  :             // Simply tell kernel, that ALARM event interrupt occured
-; 581  :             KernelIoControl(IOCTL_HAL_RTC_ALARM, NULL, 0, NULL, 0, NULL);
+; 570  :             {
+; 571  :             DEBUGMSG(ZONE_ALARM, (L"RTC: alarm interrupt\r\n"));
+; 572  : 
+; 573  :             // Simply tell kernel, that ALARM event interrupt occured
+; 574  :             KernelIoControl(IOCTL_HAL_RTC_ALARM, NULL, 0, NULL, 0, NULL);
 
   000a4	e59f0074	 ldr         r0, [pc, #0x74]
   000a8	e3a03000	 mov         r3, #0
@@ -1036,19 +1036,19 @@
   000c0	e5dd3008	 ldrb        r3, [sp, #8]
   000c4		 |$LN2@RTC_IntrTh|
 
-; 582  :             }
-; 583  : 
-; 584  :         
-; 585  :         //  Is interrupt caused by time update?
-; 586  :         if ((status & TWM_RTC_STATUS_TIME_EVENT) != 0)
+; 575  :             }
+; 576  : 
+; 577  :         
+; 578  :         //  Is interrupt caused by time update?
+; 579  :         if ((status & TWM_RTC_STATUS_TIME_EVENT) != 0)
 
   000c4	e313003c	 tst         r3, #0x3C
 
-; 587  :             {
-; 588  :             DEBUGMSG(ZONE_ALARM, (L"RTC: time event interrupt\r\n"));
-; 589  : 
-; 590  :             // Simply tell kernel, that TIME event interrupt occured
-; 591  :             KernelIoControl(IOCTL_HAL_RTC_TIME, NULL, 0, NULL, 0, NULL);
+; 580  :             {
+; 581  :             DEBUGMSG(ZONE_ALARM, (L"RTC: time event interrupt\r\n"));
+; 582  : 
+; 583  :             // Simply tell kernel, that TIME event interrupt occured
+; 584  :             KernelIoControl(IOCTL_HAL_RTC_TIME, NULL, 0, NULL, 0, NULL);
 
   000c8	13a03000	 movne       r3, #0
   000cc	13a02000	 movne       r2, #0
@@ -1058,15 +1058,15 @@
   000dc	158d5000	 strne       r5, [sp]
   000e0	1b000000	 blne        KernelIoControl
 
-; 592  :             }
-; 593  : 
-; 594  : 
-; 595  :         // Re-enable the RTC interrupts
-; 596  :         status = TWL_RTC_INTERRUPTS_IT_ALARM | TWL_RTC_INTERRUPTS_IT_TIMER | (UINT8)pDevice->syncPeriod;
+; 585  :             }
+; 586  : 
+; 587  : 
+; 588  :         // Re-enable the RTC interrupts
+; 589  :         status = TWL_RTC_INTERRUPTS_IT_ALARM | TWL_RTC_INTERRUPTS_IT_TIMER | (UINT8)pDevice->syncPeriod;
 
   000e4	e5942008	 ldr         r2, [r4, #8]
 
-; 597  :         TWLWriteRegs(pDevice->hTWL, TWL_RTC_INTERRUPTS_REG, &status, sizeof(status));
+; 590  :         TWLWriteRegs(pDevice->hTWL, TWL_RTC_INTERRUPTS_REG, &status, sizeof(status));
 
   000e8	e594000c	 ldr         r0, [r4, #0xC]
   000ec	e3a03001	 mov         r3, #1
@@ -1080,13 +1080,13 @@
   0010c	0affffc9	 beq         |$LL5@RTC_IntrTh|
   00110		 |$LN11@RTC_IntrTh|
 
-; 598  :         }
-; 599  : 
-; 600  :     return ERROR_SUCCESS;
+; 591  :         }
+; 592  : 
+; 593  :     return ERROR_SUCCESS;
 
   00110	e3a00000	 mov         r0, #0
 
-; 601  : }
+; 594  : }
 
   00114	e28dd00c	 add         sp, sp, #0xC
   00118	e8bd47f0	 ldmia       sp!, {r4 - r10, lr}
@@ -1111,40 +1111,40 @@
 
   00000		 |DllMain| PROC
 
-; 616  : {
+; 609  : {
 
   00000		 |$LN8@DllMain|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M40203|
   00004	e1a04000	 mov         r4, r0
 
-; 617  : 	UNREFERENCED_PARAMETER(pReserved);
-; 618  : 
-; 619  :     switch (reason)
+; 610  : 	UNREFERENCED_PARAMETER(pReserved);
+; 611  : 
+; 612  :     switch (reason)
 
   00008	e3510001	 cmp         r1, #1
   0000c	1a000003	 bne         |$LN2@DllMain|
 
-; 620  :         {
-; 621  :         case DLL_PROCESS_ATTACH:
-; 622  :             RETAILREGISTERZONES((HMODULE)hDLL);
+; 613  :         {
+; 614  :         case DLL_PROCESS_ATTACH:
+; 615  :             RETAILREGISTERZONES((HMODULE)hDLL);
 
   00010	e59f1014	 ldr         r1, [pc, #0x14]
   00014	eb000000	 bl          RegisterDbgZones
 
-; 623  :             DisableThreadLibraryCalls((HMODULE)hDLL);
+; 616  :             DisableThreadLibraryCalls((HMODULE)hDLL);
 
   00018	e1a00004	 mov         r0, r4
   0001c	eb000000	 bl          DisableThreadLibraryCalls
   00020		 |$LN2@DllMain|
 
-; 624  :             break;
-; 625  :         }
-; 626  :     return TRUE;
+; 617  :             break;
+; 618  :         }
+; 619  :     return TRUE;
 
   00020	e3a00001	 mov         r0, #1
 
-; 627  : }
+; 620  : }
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
@@ -1176,7 +1176,7 @@
 
   00000		 |?RTC_Init@@YAKPBGPBX@Z| PROC		; RTC_Init
 
-; 189  : {
+; 185  : {
 
   00000		 |$LN21@RTC_Init|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
@@ -1184,17 +1184,17 @@
   00008		 |$M40219|
   00008	e1a06000	 mov         r6, r0
 
-; 190  :     DWORD rc = (DWORD)NULL;
-; 191  :     Device_t *pDevice = NULL;
-; 192  : 
-; 193  : 	UNREFERENCED_PARAMETER(pBusContext);
+; 186  :     DWORD rc = (DWORD)NULL;
+; 187  :     Device_t *pDevice = NULL;
+; 188  : 
+; 189  : 	UNREFERENCED_PARAMETER(pBusContext);
+; 190  : 
+; 191  :     DEBUGMSG(ZONE_FUNCTION, (
+; 192  :         L"+RTC_Init(%s, 0x%08x)\r\n", szContext, pBusContext
+; 193  :         ));
 ; 194  : 
-; 195  :     DEBUGMSG(ZONE_FUNCTION, (
-; 196  :         L"+RTC_Init(%s, 0x%08x)\r\n", szContext, pBusContext
-; 197  :         ));
-; 198  : 
-; 199  :     // Create device structure
-; 200  :     pDevice = (Device_t *)LocalAlloc(LPTR, sizeof(Device_t));
+; 195  :     // Create device structure
+; 196  :     pDevice = (Device_t *)LocalAlloc(LPTR, sizeof(Device_t));
 
   0000c	e3a01024	 mov         r1, #0x24
   00010	e3a00040	 mov         r0, #0x40
@@ -1202,28 +1202,28 @@
   00018	eb000000	 bl          LocalAlloc
   0001c	e1b04000	 movs        r4, r0
 
-; 201  :     if (pDevice == NULL)
+; 197  :     if (pDevice == NULL)
 
   00020	0a00003a	 beq         |$LN18@RTC_Init|
 
-; 202  :         {
-; 203  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
-; 204  :             L"Failed allocate TWL controller structure\r\n"
-; 205  :             ));
-; 206  :         goto cleanUp;
-; 207  :         }
-; 208  : 
-; 209  :     // Set cookie
-; 210  :     pDevice->cookie = RTC_DEVICE_COOKIE;
+; 198  :         {
+; 199  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
+; 200  :             L"Failed allocate TWL controller structure\r\n"
+; 201  :             ));
+; 202  :         goto cleanUp;
+; 203  :         }
+; 204  : 
+; 205  :     // Set cookie
+; 206  :     pDevice->cookie = RTC_DEVICE_COOKIE;
 
   00024	e59f2108	 ldr         r2, [pc, #0x108]
 
-; 211  :     pDevice->powerState = D4;
-; 212  : 
-; 213  :     // Read device parameters
-; 214  :     if (GetDeviceRegistryParams(
-; 215  :             szContext, pDevice, dimof(s_deviceRegParams), s_deviceRegParams
-; 216  :             ) != ERROR_SUCCESS)
+; 207  :     pDevice->powerState = D4;
+; 208  : 
+; 209  :     // Read device parameters
+; 210  :     if (GetDeviceRegistryParams(
+; 211  :             szContext, pDevice, dimof(s_deviceRegParams), s_deviceRegParams
+; 212  :             ) != ERROR_SUCCESS)
 
   00028	e59f3100	 ldr         r3, [pc, #0x100]
   0002c	e3a0e004	 mov         lr, #4
@@ -1236,34 +1236,34 @@
   00048	e3500000	 cmp         r0, #0
   0004c	1a00002f	 bne         |$LN18@RTC_Init|
 
-; 217  :         {
-; 218  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
-; 219  :             L"Failed read TWL driver registry parameters\r\n"
-; 220  :             ));
-; 221  :         goto cleanUp;
-; 222  :         }
-; 223  : 
-; 224  :     // Open parent bus
-; 225  :     pDevice->hTWL = TWLOpen();
+; 213  :         {
+; 214  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
+; 215  :             L"Failed read TWL driver registry parameters\r\n"
+; 216  :             ));
+; 217  :         goto cleanUp;
+; 218  :         }
+; 219  : 
+; 220  :     // Open parent bus
+; 221  :     pDevice->hTWL = TWLOpen();
 
   00050	eb000000	 bl          TWLOpen
   00054	e3500000	 cmp         r0, #0
   00058	e584000c	 str         r0, [r4, #0xC]
 
-; 226  :     if (pDevice->hTWL == NULL)
+; 222  :     if (pDevice->hTWL == NULL)
 
   0005c	0a00002b	 beq         |$LN18@RTC_Init|
 
-; 227  :         {
-; 228  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
-; 229  :             L"Failed open TWL bus driver\r\n"
-; 230  :             ));
-; 231  :         goto cleanUp;
-; 232  :         }
-; 233  : 
-; 234  : 
-; 235  :     // Create interrupt event
-; 236  :     pDevice->hIntrEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+; 223  :         {
+; 224  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
+; 225  :             L"Failed open TWL bus driver\r\n"
+; 226  :             ));
+; 227  :         goto cleanUp;
+; 228  :         }
+; 229  : 
+; 230  : 
+; 231  :     // Create interrupt event
+; 232  :     pDevice->hIntrEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 
   00060	e3a03000	 mov         r3, #0
   00064	e3a02000	 mov         r2, #0
@@ -1273,19 +1273,19 @@
   00074	e1b02000	 movs        r2, r0
   00078	e5842010	 str         r2, [r4, #0x10]
 
-; 237  :     if (pDevice->hIntrEvent == NULL)
+; 233  :     if (pDevice->hIntrEvent == NULL)
 
   0007c	0a000023	 beq         |$LN18@RTC_Init|
 
-; 238  :         {
-; 239  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
-; 240  :             L"Failed create interrupt event\r\n"
-; 241  :             ));
-; 242  :         goto cleanUp;
-; 243  :         }
-; 244  : 
-; 245  :     // Associate event with TWL RTC interrupt
-; 246  :     if (!TWLInterruptInitialize(pDevice->hTWL, TWL_INTR_RTC_IT, pDevice->hIntrEvent))
+; 234  :         {
+; 235  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
+; 236  :             L"Failed create interrupt event\r\n"
+; 237  :             ));
+; 238  :         goto cleanUp;
+; 239  :         }
+; 240  : 
+; 241  :     // Associate event with TWL RTC interrupt
+; 242  :     if (!TWLInterruptInitialize(pDevice->hTWL, TWL_INTR_RTC_IT, pDevice->hIntrEvent))
 
   00080	e594000c	 ldr         r0, [r4, #0xC]
   00084	e59f10a0	 ldr         r1, [pc, #0xA0]
@@ -1293,48 +1293,48 @@
   0008c	e3500000	 cmp         r0, #0
   00090	0a00001e	 beq         |$LN18@RTC_Init|
 
-; 247  :         {
-; 248  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
-; 249  :             L"Failed associate event with TWL RTC interrupt\r\n"
-; 250  :             ));
-; 251  :         goto cleanUp;
-; 252  :         }
-; 253  :   
-; 254  :     // Enable RTC event
-; 255  :     if (!TWLInterruptMask(pDevice->hTWL, TWL_INTR_RTC_IT, FALSE))
+; 243  :         {
+; 244  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
+; 245  :             L"Failed associate event with TWL RTC interrupt\r\n"
+; 246  :             ));
+; 247  :         goto cleanUp;
+; 248  :         }
+; 249  :   
+; 250  :     // Enable RTC event
+; 251  :     if (!TWLInterruptMask(pDevice->hTWL, TWL_INTR_RTC_IT, FALSE))
 
   00094	e594000c	 ldr         r0, [r4, #0xC]
   00098	e59f108c	 ldr         r1, [pc, #0x8C]
   0009c	e3a02000	 mov         r2, #0
   000a0	eb000000	 bl          TWLInterruptMask
 
-; 256  :         {
-; 257  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
-; 258  :             L"Failed associate event with TWL fake interrupt\r\n"
-; 259  :             ));
-; 260  :         }
-; 261  : 
-; 262  :     // Enable alarm wakeup
-; 263  :     if (pDevice->enableWake)
+; 252  :         {
+; 253  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
+; 254  :             L"Failed associate event with TWL fake interrupt\r\n"
+; 255  :             ));
+; 256  :         }
+; 257  : 
+; 258  :     // Enable alarm wakeup
+; 259  :     if (pDevice->enableWake)
 
   000a4	e594301c	 ldr         r3, [r4, #0x1C]
   000a8	e3530000	 cmp         r3, #0
 
-; 264  :         {
-; 265  :         TWLWakeEnable(pDevice->hTWL, TWL_INTR_RTC_IT, TRUE);
+; 260  :         {
+; 261  :         TWLWakeEnable(pDevice->hTWL, TWL_INTR_RTC_IT, TRUE);
 
   000ac	1594000c	 ldrne       r0, [r4, #0xC]
   000b0	159f1074	 ldrne       r1, [pc, #0x74]
   000b4	13a02001	 movne       r2, #1
   000b8	1b000000	 blne        TWLWakeEnable
 
-; 266  :         }
-; 267  : 
-; 268  :     // Start interrupt service thread
-; 269  :     pDevice->threadsExit = FALSE;
-; 270  :     pDevice->hIntrThread = CreateThread(
-; 271  :         NULL, 0, RTC_IntrThread, pDevice, 0,NULL
-; 272  :         );
+; 262  :         }
+; 263  : 
+; 264  :     // Start interrupt service thread
+; 265  :     pDevice->threadsExit = FALSE;
+; 266  :     pDevice->hIntrThread = CreateThread(
+; 267  :         NULL, 0, RTC_IntrThread, pDevice, 0,NULL
+; 268  :         );
 
   000bc	e59f2064	 ldr         r2, [pc, #0x64]
   000c0	e3a0e000	 mov         lr, #0
@@ -1348,53 +1348,53 @@
   000e0	e3500000	 cmp         r0, #0
   000e4	e5840014	 str         r0, [r4, #0x14]
 
-; 273  :     if (!pDevice->hIntrThread)
+; 269  :     if (!pDevice->hIntrThread)
 
   000e8	0a000008	 beq         |$LN18@RTC_Init|
 
-; 274  :         {
-; 275  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
-; 276  :             L"Failed create interrupt thread\r\n"
-; 277  :             ));
-; 278  :         goto cleanUp;
-; 279  :         }
-; 280  : 
-; 281  :     // Set thread priority
-; 282  :     CeSetThreadPriority(pDevice->hIntrThread, pDevice->priority256);
+; 270  :         {
+; 271  :         DEBUGMSG(ZONE_ERROR, (L"ERROR: RTC_Init: "
+; 272  :             L"Failed create interrupt thread\r\n"
+; 273  :             ));
+; 274  :         goto cleanUp;
+; 275  :         }
+; 276  : 
+; 277  :     // Set thread priority
+; 278  :     CeSetThreadPriority(pDevice->hIntrThread, pDevice->priority256);
 
   000ec	e5941004	 ldr         r1, [r4, #4]
   000f0	eb000000	 bl          CeSetThreadPriority
 
-; 283  : 
-; 284  :     // update power state
-; 285  :     SetPowerState(pDevice, D0);
+; 279  : 
+; 280  :     // update power state
+; 281  :     SetPowerState(pDevice, D0);
 
   000f4	e3a01000	 mov         r1, #0
   000f8	e1a00004	 mov         r0, r4
   000fc	eb000000	 bl          |?SetPowerState@@YAHPAUDevice_t@@W4_CEDEVICE_POWER_STATE@@@Z|
 
-; 286  : 
-; 287  : 	{
-; 288  : 		HANDLE hGPIO = GPIOOpen();
+; 282  : 
+; 283  : 	{
+; 284  : 		HANDLE hGPIO = GPIOOpen();
 
   00100	eb000000	 bl          GPIOOpen
 
-; 289  : 		//GPIOSetBit(hGPIO,TPS659XX_MSECURE_GPIO);
-; 290  : 		GPIOClose(hGPIO);
+; 285  : 		//GPIOSetBit(hGPIO,TPS659XX_MSECURE_GPIO);
+; 286  : 		GPIOClose(hGPIO);
 
   00104	eb000000	 bl          GPIOClose
 
-; 291  : 	}
-; 292  : 
-; 293  :     // Return non-null value
-; 294  :     rc = (DWORD)pDevice;
+; 287  : 	}
+; 288  : 
+; 289  :     // Return non-null value
+; 290  :     rc = (DWORD)pDevice;
 
   00108	e1a05004	 mov         r5, r4
   0010c		 |$cleanUp$39854|
 
-; 295  :     
-; 296  : cleanUp:
-; 297  :     if (rc == 0) RTC_Deinit((DWORD)pDevice);
+; 291  :     
+; 292  : cleanUp:
+; 293  :     if (rc == 0) RTC_Deinit((DWORD)pDevice);
 
   0010c	ea000001	 b           |$LN1@RTC_Init|
   00110		 |$LN18@RTC_Init|
@@ -1402,9 +1402,9 @@
   00114	eb000000	 bl          |?RTC_Deinit@@YAHK@Z|
   00118		 |$LN1@RTC_Init|
 
-; 298  :     DEBUGMSG(ZONE_FUNCTION, (L"-RTC_Init(rc = %d\r\n", rc));
-; 299  :     return rc;
-; 300  : }
+; 294  :     DEBUGMSG(ZONE_FUNCTION, (L"-RTC_Init(rc = %d\r\n", rc));
+; 295  :     return rc;
+; 296  : }
 
   00118	e1a00005	 mov         r0, r5
   0011c	e28dd008	 add         sp, sp, #8

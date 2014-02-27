@@ -488,7 +488,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\menu.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47103| DCD	|$LN6@BLMenu|
+|$T47147| DCD	|$LN6@BLMenu|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -500,7 +500,7 @@
 
   00000		 |$LN6@BLMenu|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47100|
+  00004		 |$M47144|
 
 ; 323  :     //UINT32 time, delay = 6;
 ; 324  :     //WCHAR key = 0;
@@ -560,7 +560,7 @@
   00034	00000000	 DCD         |g_menuBoard|
   00038		 |$LN9@BLMenu|
   00038	00000000	 DCD         |ghTwl|
-  0003c		 |$M47101|
+  0003c		 |$M47145|
 
 			 ENDP  ; |BLMenu|
 
@@ -582,7 +582,7 @@
 	IMPORT	|g_bootCfg|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47120| DCD	|$LN12@ShowSettin|
+|$T47164| DCD	|$LN12@ShowSettin|
 	DCD	0x40003f01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -657,7 +657,7 @@
 
   00000		 |$LN12@ShowSettin|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47117|
+  00004		 |$M47161|
 
 ; 364  :     OPP_MODE_MENU * pOppMenu = oppModeMenu35x;
 ; 365  :     UNREFERENCED_PARAMETER(pMenu);
@@ -796,7 +796,7 @@
   000f4	00000000	 DCD         |oppModeMenu35x|
   000f8		 |$LN28@ShowSettin|
   000f8	00000000	 DCD         |g_CPUFamily|
-  000fc		 |$M47118|
+  000fc		 |$M47162|
 
 			 ENDP  ; |ShowSettings|
 
@@ -805,7 +805,7 @@
 	IMPORT	|OALBLMenuReadLine|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47143| DCD	|$LN6@SetDeviceI|
+|$T47187| DCD	|$LN6@SetDeviceI|
 	DCD	0x40000f01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -830,7 +830,7 @@
 
   00000		 |$LN6@SetDeviceI|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47140|
+  00004		 |$M47184|
 
 ; 528  :     //WCHAR  szInputLine[16];
 ; 529  :     UNREFERENCED_PARAMETER(pMenu);
@@ -854,7 +854,7 @@
   0001c	e3a0100f	 mov         r1, #0xF
   00020	e2840038	 add         r0, r4, #0x38
   00024	eb000000	 bl          OALBLMenuReadLine
-  00028		 |$cleanUp$46955|
+  00028		 |$cleanUp$46999|
 
 ; 536  : 	{
 ; 537  :         goto cleanUp;
@@ -876,7 +876,7 @@
   00034	00000000	 DCD         |??_C@_1CI@CKGGDGOD@?$AA?5?$AAC?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAS?$AA?1?$AAN?$AA?3?$AA?5?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
   00038		 |$LN10@SetDeviceI|
   00038	00000000	 DCD         |g_bootCfg|
-  0003c		 |$M47141|
+  0003c		 |$M47185|
 
 			 ENDP  ; |SetDeviceID|
 
@@ -888,7 +888,7 @@
 	IMPORT	|OALBLMenuReadKey|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47157| DCD	|$LN13@SetRetailM|
+|$T47201| DCD	|$LN13@SetRetailM|
 	DCD	0x40002201
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -941,7 +941,7 @@
 
   00000		 |$LN13@SetRetailM|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
-  00004		 |$M47154|
+  00004		 |$M47198|
 
 ; 551  :     WCHAR key;
 ; 552  : 
@@ -1031,7 +1031,7 @@
   00080	00000000	 DCD         |??_C@_1EK@NMKAIECH@?$AA?5?$AAD?$AAi?$AAs?$AAa?$AAb?$AAl?$AAe?$AA?5?$AAO?$AAA?$AAL?$AA?5?$AAR?$AAe?$AAt?$AAa?$AAi?$AAl?$AA?5?$AAM?$AAe?$AAs?$AAs?$AAa?$AAg?$AAe?$AAs?$AA?5?$AA?$FL?$AAy?$AA?1@|
   00084		 |$LN20@SetRetailM|
   00084	00000000	 DCD         |g_bootCfg|
-  00088		 |$M47155|
+  00088		 |$M47199|
 
 			 ENDP  ; |SetRetailMsgMode|
 
@@ -1041,7 +1041,7 @@
 	IMPORT	|OALBLMenuHeader|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47179| DCD	|$LN17@SetOPPmode|
+|$T47223| DCD	|$LN17@SetOPPmode|
 	DCD	0x40003501
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1074,7 +1074,7 @@
 
   00000		 |$LN17@SetOPPmode|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47176|
+  00004		 |$M47220|
 
 ; 615  :     WCHAR key;
 ; 616  :     UINT32 i;
@@ -1199,7 +1199,7 @@
   000cc	00000000	 DCD         |oppModeMenu35x|
   000d0		 |$LN26@SetOPPmode|
   000d0	00000000	 DCD         |??_C@_1CA@MOPOGELI@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AAO?$AAP?$AAP?$AA?5?$AAM?$AAo?$AAd?$AAe?$AA?$AA@|
-  000d4		 |$M47177|
+  000d4		 |$M47221|
 
 			 ENDP  ; |SetOPPmode|
 
@@ -1209,7 +1209,7 @@
 	IMPORT	|BLWriteBootCfg|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47197| DCD	|$LN9@SaveSettin|
+|$T47241| DCD	|$LN9@SaveSettin|
 	DCD	0x40001b01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1250,7 +1250,7 @@
 
   00000		 |$LN9@SaveSettin|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47194|
+  00004		 |$M47238|
 
 ; 662  :     WCHAR key;
 ; 663  :     UNREFERENCED_PARAMETER(pMenu);
@@ -1282,7 +1282,7 @@
   00028	e3540079	 cmp         r4, #0x79
   0002c	0a000001	 beq         |$LN3@SaveSettin|
   00030	e3540059	 cmp         r4, #0x59
-  00034	1a000005	 bne         |$cleanUp$46994|
+  00034	1a000005	 bne         |$cleanUp$47038|
   00038		 |$LN3@SaveSettin|
 
 ; 673  : 
@@ -1301,7 +1301,7 @@
 
   00048	059f0008	 ldreq       r0, [pc, #8]
   0004c	eb000000	 bl          NKDbgPrintfW
-  00050		 |$cleanUp$46994|
+  00050		 |$cleanUp$47038|
 
 ; 678  :     }
 ; 679  : 
@@ -1322,14 +1322,14 @@
   00064	00000000	 DCD         |??_C@_19DIEGALPP@?$AA?$CF?$AAc?$AA?$AN?$AA?6?$AA?$AA@|
   00068		 |$LN15@SaveSettin|
   00068	00000000	 DCD         |??_C@_1FG@NGGODBPB@?$AA?5?$AAD?$AAo?$AA?5?$AAy?$AAo?$AAu?$AA?5?$AAw?$AAa?$AAn?$AAt?$AA?5?$AAs?$AAa?$AAv?$AAe?$AA?5?$AAc?$AAu?$AAr?$AAr?$AAe?$AAn?$AAt?$AA?5?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn@|
-  0006c		 |$M47195|
+  0006c		 |$M47239|
 
 			 ENDP  ; |SaveSettings|
 
 	EXPORT	|OALStringToUINT32|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47218| DCD	|$LN13@OALStringT|
+|$T47262| DCD	|$LN13@OALStringT|
 	DCD	0x40001000
 ; Function compile flags: /Ogspy
 
@@ -1340,7 +1340,7 @@
 ; 687  : {
 
   00000		 |$LN13@OALStringT|
-  00000		 |$M47215|
+  00000		 |$M47259|
   00000	e1b01000	 movs        r1, r0
 
 ; 688  :     UINT32 i = 0;
@@ -1386,7 +1386,7 @@
 ; 702  : }
 
   0003c	e12fff1e	 bx          lr
-  00040		 |$M47216|
+  00040		 |$M47260|
 
 			 ENDP  ; |OALStringToUINT32|
 

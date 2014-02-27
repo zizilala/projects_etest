@@ -84,7 +84,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\updatingfirmware.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46949| DCD	|$LN5@I2C_Clk_FW|
+|$T46991| DCD	|$LN5@I2C_Clk_FW|
 	DCD	0x40000b01
 ; Function compile flags: /Ogspy
 
@@ -96,7 +96,7 @@
 
   00000		 |$LN5@I2C_Clk_FW|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46946|
+  00004		 |$M46988|
   00004	e1a04000	 mov         r4, r0
 
 ; 17   :     GPIOSetBit(hGPIO_I2C, I2C3_SCL_GPIO);  
@@ -120,7 +120,7 @@
 
   00024	e8bd4010	 ldmia       sp!, {r4, lr}
   00028	e12fff1e	 bx          lr
-  0002c		 |$M46947|
+  0002c		 |$M46989|
 
 			 ENDP  ; |I2C_Clk_FW|
 
@@ -129,7 +129,7 @@
 	IMPORT	|GPIOSetMode|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46957| DCD	|$LN5@I2C_ACKnow|
+|$T46999| DCD	|$LN5@I2C_ACKnow|
 	DCD	0x40001e01
 ; Function compile flags: /Ogspy
 
@@ -141,7 +141,7 @@
 
   00000		 |$LN5@I2C_ACKnow|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46954|
+  00004		 |$M46996|
   00004	e1a04000	 mov         r4, r0
 
 ; 26   :     //GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);
@@ -209,14 +209,14 @@
 
   00070	e8bd4010	 ldmia       sp!, {r4, lr}
   00074	e12fff1e	 bx          lr
-  00078		 |$M46955|
+  00078		 |$M46997|
 
 			 ENDP  ; |I2C_ACKnowledge_FW|
 
 	EXPORT	|I2C_WRITE_FW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46976| DCD	|$LN17@I2C_WRITE_|
+|$T47018| DCD	|$LN17@I2C_WRITE_|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -228,7 +228,7 @@
 
   00000		 |$LN17@I2C_WRITE_|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46973|
+  00004		 |$M47015|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -287,14 +287,14 @@
 
   00060	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M46974|
+  00068		 |$M47016|
 
 			 ENDP  ; |I2C_WRITE_FW|
 
 	EXPORT	|I2C_setSlaveAddress_FW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46995| DCD	|$LN17@I2C_setSla|
+|$T47037| DCD	|$LN17@I2C_setSla|
 	DCD	0x40001a01
 ; Function compile flags: /Ogspy
 
@@ -306,7 +306,7 @@
 
   00000		 |$LN17@I2C_setSla|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M46992|
+  00004		 |$M47034|
   00004	e1a06001	 mov         r6, r1
   00008	e1a05000	 mov         r5, r0
 
@@ -365,14 +365,14 @@
 
   00060	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
   00064	e12fff1e	 bx          lr
-  00068		 |$M46993|
+  00068		 |$M47035|
 
 			 ENDP  ; |I2C_setSlaveAddress_FW|
 
 	EXPORT	|I2C_START_FW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47003| DCD	|$LN5@I2C_START_|
+|$T47045| DCD	|$LN5@I2C_START_|
 	DCD	0x40001701
 ; Function compile flags: /Ogspy
 
@@ -384,7 +384,7 @@
 
   00000		 |$LN5@I2C_START_|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47000|
+  00004		 |$M47042|
   00004	e1a04000	 mov         r4, r0
 
 ; 82   :     GPIOSetBit(hGPIO_I2C, I2C3_SDA_GPIO);   //S1, SDA = High
@@ -435,14 +435,14 @@
 
   00054	e8bd4010	 ldmia       sp!, {r4, lr}
   00058	e12fff1e	 bx          lr
-  0005c		 |$M47001|
+  0005c		 |$M47043|
 
 			 ENDP  ; |I2C_START_FW|
 
 	EXPORT	|I2C_STOP_FW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47011| DCD	|$LN5@I2C_STOP_F|
+|$T47053| DCD	|$LN5@I2C_STOP_F|
 	DCD	0x40001201
 ; Function compile flags: /Ogspy
 
@@ -454,7 +454,7 @@
 
   00000		 |$LN5@I2C_STOP_F|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47008|
+  00004		 |$M47050|
   00004	e1a04000	 mov         r4, r0
 
 ; 96   :     GPIOClrBit(hGPIO_I2C, I2C3_SDA_GPIO);   //P1
@@ -493,14 +493,14 @@
 
   00040	e8bd4010	 ldmia       sp!, {r4, lr}
   00044	e12fff1e	 bx          lr
-  00048		 |$M47009|
+  00048		 |$M47051|
 
 			 ENDP  ; |I2C_STOP_FW|
 
 	EXPORT	|InitI2CWithBQ27510FW|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47025| DCD	|$LN22@InitI2CWit|
+|$T47067| DCD	|$LN22@InitI2CWit|
 	DCD	0x40004f01
 ; Function compile flags: /Ogspy
 
@@ -512,7 +512,7 @@
 
   00000		 |$LN22@InitI2CWit|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47022|
+  00004		 |$M47064|
   00004	e1a04000	 mov         r4, r0
 
 ; 110  :     int i, waitCMD;
@@ -714,7 +714,7 @@
   00134	00000000	 DCD         |g_total|
   00138		 |$LN25@InitI2CWit|
   00138	00000000	 DCD         |g_value|
-  0013c		 |$M47023|
+  0013c		 |$M47065|
 
 			 ENDP  ; |InitI2CWithBQ27510FW|
 
@@ -737,11 +737,11 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47063| DCD	|$LN60@UpdatingGa|
+|$T47105| DCD	|$LN60@UpdatingGa|
 	DCD	0xc000a502
 
   00000			 AREA	 |.xdata|, DATA
-|$T47059| DCD	0xffffffd8
+|$T47101| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DC@HKGEDAHN@?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AA?5?$AAt?$AAh?$AAe?$AA?5?$AAf?$AAi?$AAr?$AAm?$AAw?$AAa?$AAr?$AAe?$AA?5?$AAO?$AAK?$AA?$CB?$AA?$CB?$AA?$AA@| DCB "U"
@@ -796,7 +796,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47059|
+  00004	00000000	 DCD         |$T47101|
 
   00008		 |UpdatingGaugeFW| PROC
 
@@ -805,7 +805,7 @@
   00008		 |$LN60@UpdatingGa|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24dd014	 sub         sp, sp, #0x14
-  00010		 |$M47060|
+  00010		 |$M47102|
   00010	e59f3280	 ldr         r3, [pc, #0x280]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3010	 str         r3, [sp, #0x10]
@@ -845,7 +845,7 @@
 
 ; 183  :         goto I2COpenFailed;
 
-  0004c	ea000084	 b           |$I2COpenFailed$46848|
+  0004c	ea000084	 b           |$I2COpenFailed$46890|
   00050		 |$LN45@UpdatingGa|
 
 ; 184  : 	}
@@ -1215,7 +1215,7 @@
 
   0025c	e1a00007	 mov         r0, r7
   00260	eb000000	 bl          GPIOClose
-  00264		 |$I2COpenFailed$46848|
+  00264		 |$I2COpenFailed$46890|
   00264	e59d0010	 ldr         r0, [sp, #0x10]
   00268	eb000000	 bl          __security_check_cookie
 
@@ -1245,7 +1245,7 @@
   00294	00000000	 DCD         |??_C@_1DK@JOLFNFNF@?$AAU?$AAp?$AAd?$AAa?$AAt?$AAi?$AAn?$AAg?$AA?5?$AAF?$AAu?$AAe?$AAl?$AA?5?$AAG?$AAa?$AAu?$AAg?$AAe?$AA?5?$AAF?$AAi?$AAr?$AAm?$AAw?$AAa?$AAr?$AAe?$AA?$AA@|
   00298		 |$LN70@UpdatingGa|
   00298	00000000	 DCD         |__security_cookie|
-  0029c		 |$M47061|
+  0029c		 |$M47103|
 
 			 ENDP  ; |UpdatingGaugeFW|
 

@@ -204,14 +204,12 @@ WriteBaseOffset(
 //  Input buffer contains SYSTEMTIME structure with default time value.
 //
 //
-BOOL
-OALIoCtlHalInitRTC(
-    UINT32 code, 
-    VOID *pInBuffer, 
-    UINT32 inSize, 
-    VOID *pOutBuffer, 
-    UINT32 outSize, 
-    UINT32 *pOutSize
+BOOL OALIoCtlHalInitRTC( UINT32 code, 
+						 VOID *pInBuffer, 
+						 UINT32 inSize, 
+						 VOID *pOutBuffer, 
+						 UINT32 outSize, 
+						 UINT32 *pOutSize
     )
 {
     BOOL            rc = FALSE;

@@ -32,9 +32,7 @@ typedef struct {
 //  Functions: TWLxxx
 //
 
-HANDLE 
-TWLOpen(
-    )
+HANDLE TWLOpen()
 {
     HANDLE hDevice;
     DEVICE_CONTEXT_TWL *pContext = NULL;

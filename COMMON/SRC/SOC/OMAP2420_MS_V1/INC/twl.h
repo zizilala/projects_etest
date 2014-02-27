@@ -167,14 +167,11 @@ TWLClose(
     LocalFree(pContext);
 }
 
-__inline
-BOOL
-TWLReadRegs(
-    HANDLE hContext, 
-    DWORD address,
-    VOID *pBuffer,
-    DWORD size
-    )
+__inline BOOL TWLReadRegs(  HANDLE hContext, 
+                            DWORD address,
+                            VOID *pBuffer,
+                            DWORD size
+                          )
 {
     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
     return pContext->ifc.pfnReadRegs(

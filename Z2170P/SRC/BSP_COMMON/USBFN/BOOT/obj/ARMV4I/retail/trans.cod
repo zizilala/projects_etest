@@ -81,7 +81,7 @@
 
   00000		 |TWLWriteByteReg| PROC
 
-; 57   : {
+; 51   : {
 
   00000		 |$LN5@TWLWriteBy|
   00000	e1a0c00d	 mov         r12, sp
@@ -89,13 +89,13 @@
   00008	e92d5000	 stmdb       sp!, {r12, lr}
   0000c		 |$M47534|
 
-; 58   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
+; 52   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 
   0000c	e3a03001	 mov         r3, #1
   00010	e28d2010	 add         r2, sp, #0x10
   00014	eb000000	 bl          TWLWriteRegs
 
-; 59   : }
+; 53   : }
 
   00018	e89d6000	 ldmia       sp, {sp, lr}
   0001c	e12fff1e	 bx          lr
@@ -114,18 +114,18 @@
 
   00000		 |TWLReadByteReg| PROC
 
-; 67   : {
+; 59   : {
 
   00000		 |$LN5@TWLReadByt|
   00000	e52de004	 str         lr, [sp, #-4]!
   00004		 |$M47546|
 
-; 68   :     return TWLReadRegs(hTWL,address,data,sizeof(*data));
+; 60   :     return TWLReadRegs(hTWL,address,data,sizeof(*data));
 
   00004	e3a03001	 mov         r3, #1
   00008	eb000000	 bl          TWLReadRegs
 
-; 69   : }
+; 61   : }
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr

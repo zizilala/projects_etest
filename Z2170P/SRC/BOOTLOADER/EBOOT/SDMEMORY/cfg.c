@@ -367,9 +367,9 @@ VOID BLShowMenu()
 //-----------------------------------------------------------------------------
 //  Ray 140218
 //
-VOID DisplayShowBackground()
+VOID DisplayShowBackground(UCHAR backColor)
 {
-    ShowYellow((UINT32)-1, 0/*, board*/);
+    ShowColor((UINT32)-1, 0, backColor);
     return;
 }
 

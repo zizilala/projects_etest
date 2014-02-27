@@ -81,7 +81,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\eth.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46828| DCD	|$LN5@BLEthDownl|
+|$T46872| DCD	|$LN5@BLEthDownl|
 	DCD	0x40000200
 ; Function compile flags: /Ogspy
 
@@ -92,7 +92,7 @@
 ; 54   : {
 
   00000		 |$LN5@BLEthDownl|
-  00000		 |$M46825|
+  00000		 |$M46869|
 
 ; 55   : 	UNREFERENCED_PARAMETER(pConfig);
 ; 56   : 	UNREFERENCED_PARAMETER(pBootDevices);
@@ -104,7 +104,7 @@
 ; 59   : }
 
   00004	e12fff1e	 bx          lr
-  00008		 |$M46826|
+  00008		 |$M46870|
 
 			 ENDP  ; |BLEthDownload|
 
@@ -116,7 +116,7 @@
 |g_ethState| %	0x10010
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46837| DCD	|$LN6@BLEthConfi|
+|$T46881| DCD	|$LN6@BLEthConfi|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -128,7 +128,7 @@
 
   00000		 |$LN6@BLEthConfi|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M46834|
+  00004		 |$M46878|
   00004	e1a04000	 mov         r4, r0
 
 ; 74   :     EDBG_OS_CONFIG_DATA *pConfig;
@@ -166,14 +166,14 @@
   00038		 |$LN7@BLEthConfi|
   00038		 |$LN8@BLEthConfi|
   00038	00000000	 DCD         |g_ethState|
-  0003c		 |$M46835|
+  0003c		 |$M46879|
 
 			 ENDP  ; |BLEthConfig|
 
 	EXPORT	|OEMEthGetFrame|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46852| DCD	|$LN7@OEMEthGetF|
+|$T46896| DCD	|$LN7@OEMEthGetF|
 	DCD	0x40000e01
 ; Function compile flags: /Ogspy
 
@@ -185,7 +185,7 @@
 
   00000		 |$LN7@OEMEthGetF|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46849|
+  00004		 |$M46893|
 
 ; 100  :     return g_ethState.pDriver->pfnGetFrame(pData, pLength) > 0;
 
@@ -213,14 +213,14 @@
   00034		 |$LN8@OEMEthGetF|
   00034		 |$LN9@OEMEthGetF|
   00034	00000000	 DCD         |g_ethState|
-  00038		 |$M46850|
+  00038		 |$M46894|
 
 			 ENDP  ; |OEMEthGetFrame|
 
 	EXPORT	|OEMEthSendFrame|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46867| DCD	|$LN7@OEMEthSend|
+|$T46911| DCD	|$LN7@OEMEthSend|
 	DCD	0x40000e01
 ; Function compile flags: /Ogspy
 
@@ -232,7 +232,7 @@
 
   00000		 |$LN7@OEMEthSend|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46864|
+  00004		 |$M46908|
 
 ; 115  :     return g_ethState.pDriver->pfnSendFrame(pData, length) == 0;
 
@@ -260,7 +260,7 @@
   00034		 |$LN8@OEMEthSend|
   00034		 |$LN9@OEMEthSend|
   00034	00000000	 DCD         |g_ethState|
-  00038		 |$M46865|
+  00038		 |$M46909|
 
 			 ENDP  ; |OEMEthSendFrame|
 
@@ -269,7 +269,7 @@
 	IMPORT	|g_eboot|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T46880| DCD	|$LN5@BLEthReadD|
+|$T46924| DCD	|$LN5@BLEthReadD|
 	DCD	0x40000a01
 ; Function compile flags: /Ogspy
 
@@ -281,7 +281,7 @@
 
   00000		 |$LN5@BLEthReadD|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M46877|
+  00004		 |$M46921|
   00004	e1a0e001	 mov         lr, r1
   00008	e1a02000	 mov         r2, r0
 
@@ -305,7 +305,7 @@
   00024		 |$LN6@BLEthReadD|
   00024		 |$LN7@BLEthReadD|
   00024	00000000	 DCD         |g_eboot|
-  00028		 |$M46878|
+  00028		 |$M46922|
 
 			 ENDP  ; |BLEthReadData|
 

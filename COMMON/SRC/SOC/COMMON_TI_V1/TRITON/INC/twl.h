@@ -32,38 +32,30 @@ extern "C" {
 //  Functions: TWLxxx
 //
 
-BOOL
-TWLReadRegs(
-    HANDLE hContext, 
-    DWORD address,
-    VOID *pBuffer,
-    DWORD size
-    );
+BOOL TWLReadRegs( HANDLE hContext, 
+                  DWORD address,
+                  VOID *pBuffer,
+                  DWORD size 
+                  );
     
-BOOL 
-TWLWriteRegs(
-    HANDLE hContext, 
-    DWORD address,
-    const VOID *pBuffer,
-    DWORD size
-    );
+BOOL TWLWriteRegs( HANDLE hContext, 
+                   DWORD address,
+                   const VOID *pBuffer,
+                   DWORD size
+                   );
 
-static __inline BOOL
-TWLWriteByteReg(
-    void* hTWL,
-    DWORD address,
-    BYTE data
-    )
+static __inline BOOL TWLWriteByteReg( void* hTWL,
+                                      DWORD address,
+                                      BYTE data
+                                      )
 {
     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 }
 
-static __inline BOOL
-TWLReadByteReg(
-    void* hTWL,
-    DWORD address,
-    BYTE* data
-    )
+static __inline BOOL TWLReadByteReg( void* hTWL,
+                                     DWORD address,
+                                     BYTE* data
+                                    )
 {
     return TWLReadRegs(hTWL,address,data,sizeof(*data));
 }

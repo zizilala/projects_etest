@@ -33,9 +33,6 @@
 #include "omap_cpuver.h"
 //#include "sdk_spi.h"
 
-#define EN_VIO_1V8_Z2170P   137
-#define EN_DC_3V3           23
-
 UINT16 DefaultMacAddress[] = DEFAULT_MAC_ADDRESS;
 
 //------------------------------------------------------------------------------
@@ -68,8 +65,10 @@ EBOOT_CONTEXT g_eboot;
 
 //------------------------------------------------------------------------------
 // External Variables
+//
 extern DEVICE_IFC_GPIO Omap_Gpio;
 extern DEVICE_IFC_GPIO Tps659xx_Gpio;
+
 //------------------------------------------------------------------------------
 //
 //  Global: g_CPUFamily
@@ -79,17 +78,20 @@ extern DEVICE_IFC_GPIO Tps659xx_Gpio;
 volatile UINT32 g_CPUFamily = 0;
 
 //------------------------------------------------------------------------------
-// External Functions
-
-VOID Launch(UINT32 address);
-VOID JumpTo(UINT32 address);
-VOID OEMDeinitDebugSerial();
+// Invoke Extenal Functions
+//
+VOID   Launch(UINT32 address);
+VOID   JumpTo(UINT32 address);
+VOID   OEMDeinitDebugSerial();
 extern BOOL EnableDeviceClocks(UINT devId, BOOL bEnable);
 extern BOOL WriteFlashNK(UINT32 address, UINT32 size);
 //extern void HotKeyFunction(HANDLE hTwl);          //Ray 131030
 extern void HotKeyInit(HANDLE hTwl);
 extern BOOL omap_mcspi_init();
 extern void ClearDisplayBuffer();
+extern VOID ADCRTCInit(void);                                //Ray   140226
+
+
 //------------------------------------------------------------------------------
 //Prototypes Functionality 
 
@@ -98,8 +100,7 @@ extern void HotKeyColdReset(HANDLE ghTwl);           //Ray 131030
 
 //------------------------------------------------------------------------------
 //Global Variable
-
-   //declare variable the "ghTwl", it is give external variable "ghTwl"(at functonTest.c),  Ray 140102
+//declare variable the "ghTwl", it is give external variable "ghTwl"(at functonTest.c),  Ray 140102
 //------------------------------------------------------------------------------
 //  Local Functions
 
@@ -202,8 +203,8 @@ BOOL OEMPlatformInit()
 
     GPIOInit();
     // Note that T2 accesses must occur after I2C initialization
-    hTwl  = TWLOpen();
-    hGPIO = GPIOOpen(); 
+    hTwl  = TWLOpen();      // difference between TWLOpen and GPIOOpen??
+    hGPIO = GPIOOpen();     //
    
     //if( omap_mcspi_init() )
     //	OALLog(L"omap_mcspi_init: success!!!\r\n");
@@ -220,29 +221,33 @@ BOOL OEMPlatformInit()
 	GPIOSetMode(hGPIO, 16,GPIO_DIR_OUTPUT);
 	//GPIOSetBit(hGPIO,15);     // test 
     
-    GPIOClrBit(hGPIO, 155);                 
-    GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);           // Keypad_LED, Ray 131112 
+    GPIOClrBit(hGPIO, 155); // Keypad_LED, Ray 131112                
+    GPIOSetMode(hGPIO, 155, GPIO_DIR_OUTPUT);
     
-    GPIOClrBit(hGPIO, 34);                  
-    GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);            // GREEN_LED, Ray 131227 
-    GPIOClrBit(hGPIO, 140);                 
-    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);           // RED_LED, Ray 131227
-    GPIOClrBit(hGPIO, 160);                 
-    GPIOSetMode(hGPIO, 160, GPIO_DIR_OUTPUT);           // BARCODE_LED, Ray 131227 
-
-    GPIOClrBit(hGPIO, EN_DC_3V3);               
-    GPIOSetMode(hGPIO, EN_DC_3V3, GPIO_DIR_OUTPUT);           // Drive power 3.3, Ray 140109      
-    GPIOClrBit(hGPIO,  EN_VIO_1V8_Z2170P);               
-    GPIOSetMode(hGPIO, EN_VIO_1V8_Z2170P, GPIO_DIR_OUTPUT);      // Drive power 1.8, Ray 140109
+    GPIOClrBit(hGPIO, 34);  // GREEN_LED, Ray 131227                   
+    GPIOSetMode(hGPIO, 34, GPIO_DIR_OUTPUT);  
+    
+    GPIOClrBit(hGPIO, 140); // RED_LED, Ray 131227                 
+    GPIOSetMode(hGPIO, 140, GPIO_DIR_OUTPUT);   
+    
+    GPIOClrBit(hGPIO, 160); // BARCODE_LED, Ray 131227                 
+    GPIOSetMode(hGPIO, 160, GPIO_DIR_OUTPUT);   
+    
+    GPIOClrBit(hGPIO,  EN_VIO_1V8_Z2170P);  // Drive power 1.8, Ray 140109               
+    GPIOSetMode(hGPIO, EN_VIO_1V8_Z2170P, GPIO_DIR_OUTPUT); 
+    GPIOClrBit(hGPIO, EN_DC_3V3);   // Drive power 3.3, Ray 140109             
+    GPIOSetMode(hGPIO, EN_DC_3V3, GPIO_DIR_OUTPUT);               
+    GPIOSetBit(hGPIO, EN_VIO_1V8_Z2170P);
+    GPIOSetBit(hGPIO, EN_DC_3V3 );
         
     GPIOSetMode(hGPIO, ENG_SET1_GPIO, GPIO_DIR_OUTPUT);  //barcode, Ray 131225     
     GPIOSetBit(hGPIO, ENG_SET1_GPIO);
     GPIOSetMode(hGPIO, ENG_SET2_GPIO, GPIO_DIR_OUTPUT);       
     GPIOSetBit(hGPIO, ENG_SET2_GPIO);
 
-    GPIOSetBit(hGPIO, EN_VIO_1V8_Z2170P);
-    GPIOSetBit(hGPIO, EN_DC_3V3 );
-    
+    GPIOClrBit(hGPIO, EN_SB_CHARGE);                    // RTC, Ray 140224     
+    GPIOSetMode(hGPIO, EN_SB_CHARGE, GPIO_DIR_OUTPUT);
+
     GPIOSetBit(hGPIO, 155);                             // Keypad_LED are Low-active;So use GPIOSetBit() let light close, Ray 131112                          
     
     //OALLog(L"Initial Barcode\r\n");
@@ -253,8 +258,9 @@ BOOL OEMPlatformInit()
     GPIOSetMode(hGPIO, 185, GPIO_DIR_OUTPUT);*/
     //OALLog(L"\r\n >>>Set hGPIO: %x \r\n",hGPIO); 
     
-	HotKeyInit(hTwl);                       //HotKey Initial ,Ray
-    ghTwl = hTwl;                           //assign give "ghTwl"           
+	HotKeyInit(hTwl);                               //HotKey Initial ,Ray
+	ADCRTCInit();
+    ghTwl = hTwl;                                   //assign give "ghTwl"           
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
 
     //Bootstrap message(3), Ray
@@ -300,6 +306,8 @@ BOOL OEMPlatformInit()
 	//HotKeyFunction(hTwl);   // Function Locate is right? would to changes it.      
 	//GPIOClrBit(hGPIO,15); // test high puls 20ms
     // Done
+
+    GPIOClose(hGPIO);
     return TRUE;
 }
 

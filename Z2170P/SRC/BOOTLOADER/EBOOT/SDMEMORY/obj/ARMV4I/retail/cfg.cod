@@ -94,11 +94,11 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\sdmemory\cfg.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47054| DCD	|$LN23@BLReadBoot|
+|$T47097| DCD	|$LN23@BLReadBoot|
 	DCD	0xc0006303
 
   00000			 AREA	 |.xdata|, DATA
-|$T47050| DCD	0xffffffe4
+|$T47093| DCD	0xffffffe4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HE@BDJAOKHO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAR?$AAe?$AAa?$AAd?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa?$AAs@| DCB "E"
@@ -150,7 +150,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47050|
+  00004	00000000	 DCD         |$T47093|
 
   00008		 |BLReadBootCfg| PROC
 
@@ -160,7 +160,7 @@
   00008	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   0000c	e59fc17c	 ldr         r12, [pc, #0x17C]
   00010	e08dd00c	 add         sp, sp, r12
-  00014		 |$M47051|
+  00014		 |$M47094|
   00014	e1a07000	 mov         r7, r0
   00018	e59f316c	 ldr         r3, [pc, #0x16C]
   0001c	e5933000	 ldr         r3, [r3]
@@ -229,13 +229,13 @@
   00078	e59f30f8	 ldr         r3, [pc, #0xF8]
   0007c	e5933440	 ldr         r3, [r3, #0x440]
   00080	e3130001	 tst         r3, #1
-  00084	0a000030	 beq         |$cleanUp$46855|
+  00084	0a000030	 beq         |$cleanUp$46896|
   00088	e59f00f0	 ldr         r0, [pc, #0xF0]
   0008c	eb000000	 bl          NKDbgPrintfW
 
 ; 51   :         goto cleanUp;
 
-  00090	ea00002d	 b           |$cleanUp$46855|
+  00090	ea00002d	 b           |$cleanUp$46896|
   00094		 |$LN7@BLReadBoot|
 
 ; 52   :         }
@@ -256,14 +256,14 @@
   000a0	e59f30d0	 ldr         r3, [pc, #0xD0]
   000a4	e5933440	 ldr         r3, [r3, #0x440]
   000a8	e3130001	 tst         r3, #1
-  000ac	0a000026	 beq         |$cleanUp$46855|
+  000ac	0a000026	 beq         |$cleanUp$46896|
   000b0	e59f00c4	 ldr         r0, [pc, #0xC4]
   000b4	e3a02b02	 mov         r2, #2, 22
   000b8	eb000000	 bl          NKDbgPrintfW
 
 ; 61   :         goto cleanUp;
 
-  000bc	ea000022	 b           |$cleanUp$46855|
+  000bc	ea000022	 b           |$cleanUp$46896|
   000c0		 |$LN6@BLReadBoot|
 
 ; 62   :         }
@@ -342,14 +342,14 @@
   00118	e59f3058	 ldr         r3, [pc, #0x58]
   0011c	e5933440	 ldr         r3, [r3, #0x440]
   00120	e3130001	 tst         r3, #1
-  00124	0a000008	 beq         |$cleanUp$46855|
+  00124	0a000008	 beq         |$cleanUp$46896|
   00128	e59f0044	 ldr         r0, [pc, #0x44]
   0012c	e2441001	 sub         r1, r4, #1
   00130	eb000000	 bl          NKDbgPrintfW
 
 ; 96   :             goto cleanUp;
 
-  00134	ea000004	 b           |$cleanUp$46855|
+  00134	ea000004	 b           |$cleanUp$46896|
   00138		 |$LN2@BLReadBoot|
 
 ; 97   :     }
@@ -367,7 +367,7 @@
 ; 103  :     rc = TRUE;
 
   00148	e3a06001	 mov         r6, #1
-  0014c		 |$cleanUp$46855|
+  0014c		 |$cleanUp$46896|
 
 ; 104  : 
 ; 105  : cleanUp:
@@ -410,7 +410,7 @@
   0018c	00000000	 DCD         |__security_cookie|
   00190		 |$LN32@BLReadBoot|
   00190	fffff464	 DCD         0xfffff464
-  00194		 |$M47052|
+  00194		 |$M47095|
 
 			 ENDP  ; |BLReadBootCfg|
 
@@ -425,11 +425,11 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47112| DCD	|$LN40@BLWriteBoo|
+|$T47155| DCD	|$LN40@BLWriteBoo|
 	DCD	0xc000a502
 
   00000			 AREA	 |.xdata|, DATA
-|$T47108| DCD	0xffffffd8
+|$T47151| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1HI@NMGONLPH@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAW?$AAr?$AAi?$AAt?$AAe?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa@| DCB "E"
@@ -490,7 +490,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47108|
+  00004	00000000	 DCD         |$T47151|
 
   00008		 |BLWriteBootCfg| PROC
 
@@ -499,7 +499,7 @@
   00008		 |$LN40@BLWriteBoo|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24ddfe7	 sub         sp, sp, #0xE7, 30
-  00010		 |$M47109|
+  00010		 |$M47152|
   00010	e1a0a000	 mov         r10, r0
   00014	e59f327c	 ldr         r3, [pc, #0x27C]
   00018	e5933000	 ldr         r3, [r3]
@@ -568,13 +568,13 @@
   00074	e59f3200	 ldr         r3, [pc, #0x200]
   00078	e5933440	 ldr         r3, [r3, #0x440]
   0007c	e3130001	 tst         r3, #1
-  00080	0a00006c	 beq         |$cleanUp$46892|
+  00080	0a00006c	 beq         |$cleanUp$46933|
   00084	e59f0200	 ldr         r0, [pc, #0x200]
   00088	eb000000	 bl          NKDbgPrintfW
 
 ; 141  :         goto cleanUp;
 
-  0008c	ea000069	 b           |$cleanUp$46892|
+  0008c	ea000069	 b           |$cleanUp$46933|
   00090		 |$LN13@BLWriteBoo|
 
 ; 142  : 	}
@@ -594,14 +594,14 @@
   0009c	e59f31d8	 ldr         r3, [pc, #0x1D8]
   000a0	e5933440	 ldr         r3, [r3, #0x440]
   000a4	e3130001	 tst         r3, #1
-  000a8	0a000062	 beq         |$cleanUp$46892|
+  000a8	0a000062	 beq         |$cleanUp$46933|
   000ac	e59f01d4	 ldr         r0, [pc, #0x1D4]
   000b0	e3a02b02	 mov         r2, #2, 22
   000b4	eb000000	 bl          NKDbgPrintfW
 
 ; 150  :         goto cleanUp;
 
-  000b8	ea00005e	 b           |$cleanUp$46892|
+  000b8	ea00005e	 b           |$cleanUp$46933|
   000bc		 |$LN12@BLWriteBoo|
 
 ; 151  : 	}
@@ -731,11 +731,11 @@
   00180	e59f30f4	 ldr         r3, [pc, #0xF4]
   00184	e5933440	 ldr         r3, [r3, #0x440]
   00188	e3130001	 tst         r3, #1
-  0018c	0a000029	 beq         |$cleanUp$46892|
+  0018c	0a000029	 beq         |$cleanUp$46933|
   00190	e59f00ec	 ldr         r0, [pc, #0xEC]
   00194	e1a01006	 mov         r1, r6
   00198	eb000000	 bl          NKDbgPrintfW
-  0019c	ea000025	 b           |$cleanUp$46892|
+  0019c	ea000025	 b           |$cleanUp$46933|
   001a0		 |$LN32@BLWriteBoo|
 
 ; 184  :         {
@@ -744,14 +744,14 @@
   001a0	e59f30d4	 ldr         r3, [pc, #0xD4]
   001a4	e5933440	 ldr         r3, [r3, #0x440]
   001a8	e3130001	 tst         r3, #1
-  001ac	0a000021	 beq         |$cleanUp$46892|
+  001ac	0a000021	 beq         |$cleanUp$46933|
   001b0	e59f00c8	 ldr         r0, [pc, #0xC8]
   001b4	e1a01005	 mov         r1, r5
   001b8	eb000000	 bl          NKDbgPrintfW
 
 ; 186  :             goto cleanUp;
 
-  001bc	ea00001d	 b           |$cleanUp$46892|
+  001bc	ea00001d	 b           |$cleanUp$46933|
   001c0		 |$LN5@BLWriteBoo|
 
 ; 200  :         goto cleanUp;
@@ -829,7 +829,7 @@
 ; 230  :     rc = TRUE;
 
   00234	e3a08001	 mov         r8, #1
-  00238		 |$cleanUp$46892|
+  00238		 |$cleanUp$46933|
 
 ; 231  : 
 ; 232  : cleanUp:
@@ -863,11 +863,11 @@
   00258	e59f301c	 ldr         r3, [pc, #0x1C]
   0025c	e5933440	 ldr         r3, [r3, #0x440]
   00260	e3130001	 tst         r3, #1
-  00264	0afffff3	 beq         |$cleanUp$46892|
+  00264	0afffff3	 beq         |$cleanUp$46933|
   00268	e59f0008	 ldr         r0, [pc, #8]
   0026c	e1a01004	 mov         r1, r4
   00270	eb000000	 bl          NKDbgPrintfW
-  00274	eaffffef	 b           |$cleanUp$46892|
+  00274	eaffffef	 b           |$cleanUp$46933|
   00278		 |$LN41@BLWriteBoo|
   00278		 |$LN42@BLWriteBoo|
   00278	00000000	 DCD         |??_C@_1HI@NMGONLPH@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAE?$AAB?$AAO?$AAO?$AAT?$AA?$CB?$AAB?$AAL?$AAW?$AAr?$AAi?$AAt?$AAe?$AAB?$AAo?$AAo?$AAt?$AAC?$AAf?$AAg?$AA?3?$AA?5?$AAF?$AAl?$AAa@|
@@ -887,7 +887,7 @@
   00294	00000000	 DCD         |g_ulFlashBase|
   00298		 |$LN50@BLWriteBoo|
   00298	00000000	 DCD         |__security_cookie|
-  0029c		 |$M47110|
+  0029c		 |$M47153|
 
 			 ENDP  ; |BLWriteBootCfg|
 
@@ -907,11 +907,11 @@
 	IMPORT	|__rt_udiv|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47150| DCD	|$LN23@BLReserveB|
+|$T47193| DCD	|$LN23@BLReserveB|
 	DCD	0xc0006f02
 
   00000			 AREA	 |.xdata|, DATA
-|$T47146| DCD	0xffffffec
+|$T47189| DCD	0xffffffec
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1FG@GECOJCBP@?$AA?5?$AAO?$AAo?$AAp?$AAs?$AA?0?$AA?5?$AAc?$AAa?$AAn?$AA?8?$AAt?$AA?5?$AAm?$AAa?$AAr?$AAk?$AA?5?$AAb?$AAl?$AAo?$AAc?$AAk?$AA?5?$AA?$CF?$AAd?$AA?5?$AA?9?$AA?5?$AAa?$AAs?$AA?5@| DCB " "
@@ -1004,7 +1004,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47146|
+  00004	00000000	 DCD         |$T47189|
 
   00008		 |BLReserveBootBlocks| PROC
 
@@ -1013,7 +1013,7 @@
   00008		 |$LN23@BLReserveB|
   00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   0000c	e24ddfe5	 sub         sp, sp, #0xE5, 30
-  00010		 |$M47147|
+  00010		 |$M47190|
   00010	e59f31a8	 ldr         r3, [pc, #0x1A8]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3390	 str         r3, [sp, #0x390]
@@ -1085,13 +1085,13 @@
 
   00080	e5943440	 ldr         r3, [r4, #0x440]
   00084	e3130001	 tst         r3, #1
-  00088	0a000036	 beq         |$cleanUp$46941|
+  00088	0a000036	 beq         |$cleanUp$46982|
   0008c	e59f0118	 ldr         r0, [pc, #0x118]
   00090	eb000000	 bl          NKDbgPrintfW
 
 ; 268  :         goto cleanUp;
 
-  00094	ea000033	 b           |$cleanUp$46941|
+  00094	ea000033	 b           |$cleanUp$46982|
   00098		 |$LN7@BLReserveB|
 
 ; 269  : 	}
@@ -1237,7 +1237,7 @@
 ; 316  :     rc = TRUE;
 
   00164	e3a05001	 mov         r5, #1
-  00168		 |$cleanUp$46941|
+  00168		 |$cleanUp$46982|
 
 ; 317  : 	//OALMSG(OAL_ERROR, (L"BLReserveBootBlocks: end!\r\n"));
 ; 318  :     //OALLog(L"\r\n");
@@ -1297,7 +1297,7 @@
   001bc	00000000	 DCD         |dpCurSettings|
   001c0		 |$LN39@BLReserveB|
   001c0	00000000	 DCD         |__security_cookie|
-  001c4		 |$M47148|
+  001c4		 |$M47191|
 
 			 ENDP  ; |BLReserveBootBlocks|
 
@@ -1305,7 +1305,7 @@
 	IMPORT	|ShowLogo|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47176| DCD	|$LN5@BLShowLogo|
+|$T47219| DCD	|$LN5@BLShowLogo|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -1317,7 +1317,7 @@
 
   00000		 |$LN5@BLShowLogo|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47173|
+  00004		 |$M47216|
 
 ; 334  : 	//  Show the bootloader splashscreen if present on the SDCard
 ; 335  : 	//if (!ShowSDLogo())           //Ray 140218
@@ -1338,7 +1338,7 @@
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
-  0001c		 |$M47174|
+  0001c		 |$M47217|
 
 			 ENDP  ; |BLShowLogo|
 
@@ -1346,7 +1346,7 @@
 	IMPORT	|ShowTest|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47185| DCD	|$LN5@DisplaySho|
+|$T47228| DCD	|$LN5@DisplaySho|
 	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
@@ -1358,7 +1358,7 @@
 
   00000		 |$LN5@DisplaySho|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47182|
+  00004		 |$M47225|
 
 ; 347  :     ShowTest((UINT32)-1, 0/*, board*/);
 
@@ -1374,7 +1374,7 @@
 
   00014	e49de004	 ldr         lr, [sp], #4
   00018	e12fff1e	 bx          lr
-  0001c		 |$M47183|
+  0001c		 |$M47226|
 
 			 ENDP  ; |DisplayShow|
 
@@ -1382,7 +1382,7 @@
 	IMPORT	|detect_TSC2046|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47192| DCD	|$LN5@tsc2046Tes|
+|$T47235| DCD	|$LN5@tsc2046Tes|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -1394,7 +1394,7 @@
 
   00000		 |$LN5@tsc2046Tes|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47189|
+  00004		 |$M47232|
 
 ; 355  :     detect_TSC2046();               //function prototype in the bsp_logo.h
 
@@ -1405,7 +1405,7 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47190|
+  00010		 |$M47233|
 
 			 ENDP  ; |tsc2046Test|
 
@@ -1413,7 +1413,7 @@
 	IMPORT	|ShowMenuSelect|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47199| DCD	|$LN5@BLShowMenu|
+|$T47242| DCD	|$LN5@BLShowMenu|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -1425,7 +1425,7 @@
 
   00000		 |$LN5@BLShowMenu|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47196|
+  00004		 |$M47239|
 
 ; 363  :     ShowMenuSelect();
 
@@ -1436,16 +1436,16 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47197|
+  00010		 |$M47240|
 
 			 ENDP  ; |BLShowMenu|
 
 	EXPORT	|DisplayShowBackground|
-	IMPORT	|ShowYellow|
+	IMPORT	|ShowColor|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47206| DCD	|$LN5@DisplaySho@2|
-	DCD	0x40000601
+|$T47250| DCD	|$LN5@DisplaySho@2|
+	DCD	0x40000701
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -1456,20 +1456,21 @@
 
   00000		 |$LN5@DisplaySho@2|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47203|
+  00004		 |$M47247|
+  00004	e1a02000	 mov         r2, r0
 
-; 372  :     ShowYellow((UINT32)-1, 0/*, board*/);
+; 372  :     ShowColor((UINT32)-1, 0, backColor);
 
-  00004	e3a01000	 mov         r1, #0
-  00008	e3e00000	 mvn         r0, #0
-  0000c	eb000000	 bl          ShowYellow
+  00008	e3a01000	 mov         r1, #0
+  0000c	e3e00000	 mvn         r0, #0
+  00010	eb000000	 bl          ShowColor
 
 ; 373  :     return;
 ; 374  : }
 
-  00010	e49de004	 ldr         lr, [sp], #4
-  00014	e12fff1e	 bx          lr
-  00018		 |$M47204|
+  00014	e49de004	 ldr         lr, [sp], #4
+  00018	e12fff1e	 bx          lr
+  0001c		 |$M47248|
 
 			 ENDP  ; |DisplayShowBackground|
 

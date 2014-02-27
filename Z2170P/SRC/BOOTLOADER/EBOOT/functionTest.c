@@ -10,7 +10,7 @@
 #include "oal_clock.h"          //
 //#include "tps659xx_audio.h"
 #include "tps659xx_internals.h"
-#include "twl.h"                //Use TWLReadRegs(), Ray 140102
+#include "twl.h"                        //Use TWLReadRegs() and so on, Ray 140102
 
 //------------------------------------------------------------------------------
 //  Preprocessor Defination
@@ -55,15 +55,18 @@ VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu);
 VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu);
 VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu);
 VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu);
+VOID RTCFunc(OAL_BLMENU_ITEM *pMenu);
 
+// Invoke Extenal Functions
 BOOL DisplayShow(void);
 VOID SetBacklight(void);
 VOID tsc2046Test(void);
-VOID DisplayShowBackground(void);       //Ray   140218
+VOID DisplayShowBackground(UCHAR backColor);        //Ray   140218
+VOID ReadBBVoltage(void);
+VOID ReadRTC(void);
 
 //VOID SetKeypadBacklight(void);
-VOID LcdStall(DWORD);
-VOID LcdSleep(DWORD);
+
 
 //------------------------------------------------------------------------------
 //  Global variable
@@ -230,9 +233,11 @@ VOID BkTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
 	OALBLMenuHeader(L"LCM Backlight Test");
 	UNREFERENCED_PARAMETER(pMenu);
-	DisplayShowBackground();
+	
+	DisplayShowBackground(0xFF);
     SetBacklight();
     BLShowLogo();
+    
     OALLog(L"\rTested ok!! \r\n");
 }
 //
@@ -1327,7 +1332,7 @@ VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	}
 }
 
-//==============================================================================
+//------------------------------------------------------------------------------
 //  Check DRAM all addressing ~ end addressing, Ray 140212
 //  This a function vs DRAMTest_Z2170P between diference,that testing for detail. 
 //  
@@ -1403,7 +1408,7 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
     }   
 }
 
-//==============================================================================
+//------------------------------------------------------------------------------
 //  This is function are barcode the auto scanning, Ray 140212
 //
 //
@@ -1487,6 +1492,47 @@ VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 	}
 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
 	GPIOClose(hGPIO);
+}
+
+//------------------------------------------------------------------------------
+//  This is function are measure secondary battery, Ray 140212
+//
+//
+VOID SecondaryBATFunc(OAL_BLMENU_ITEM *pMenu)
+{
+    UNREFERENCED_PARAMETER(pMenu);
+
+    ReadBBVoltage();
+}
+
+//------------------------------------------------------------------------------
+//  This is function are apply on RTC, Ray 140212
+//
+//
+VOID RTCFunc(OAL_BLMENU_ITEM *pMenu)
+{
+    char showChar[][30] = { "RTC Testing."};
+
+    /*HANDLE hTwl 
+    HANDLE hGPIO;
+    UCHAR  status;   
+
+    hGPIO = GPIOopen();
+    hTwl = TWLOpen();*/
+    
+    OALLog(L"\r\n Running...\r\n"); 
+    UNREFERENCED_PARAMETER(pMenu);  
+
+    //GPIOSetBit(hGPIO, EN_SB_CHARGE);             // Backup battery charge
+    //TWLReadByteReg(void * hTWL,DWORD address,BYTE * data)
+    DisplayShowBackground(0xFF);
+    
+    //printString(6, 9, RED_COLOR, GREEN_COLOR, showChar);   //y, x
+    //BLShowMenu();   
+    ReadRTC();
+    LcdStall(stall_1Sec*5);
+    DisplayShowBackground(0x00);
+     
 }
 
 //==============================================================================

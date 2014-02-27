@@ -19,6 +19,7 @@
 	EXPORT	|??_C@_15MNBOIHAH@?$AAF?$AA2?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|??_C@_1BG@GJMFNPPP@?$AAF?$AA1?$AA?5?$AAU?$AAp?$AAd?$AAa?$AAt?$AAe?$AAs?$AA?$AA@| [ DATA ] ; `string'
 	EXPORT	|g_d1Sec| [ DATA ]
+	EXPORT	|pMenu| [ DATA ]
 	EXPORT	|hotkeyColdReset| [ DATA ]
 
   00000			 AREA	 |.data|, DATA
@@ -26,6 +27,9 @@
 
 	 COMMON	|gMatrix|, 0x8
 
+
+  00000			 AREA	 |.bss|, NOINIT
+|pMenu|	%	0x4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1CE@DFLFAFMD@?$AAE?$AAx?$AAi?$AAt?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAC?$AAo?$AAn?$AAt?$AAi?$AAn?$AAu?$AAe?$AA?$AA@| DCB "E"
@@ -171,7 +175,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\hotkey.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47453| DCD	|$LN5@HotKeyInit|
+|$T47501| DCD	|$LN5@HotKeyInit|
 	DCD	0x40001402
 ; Function compile flags: /Ogspy
 
@@ -179,22 +183,22 @@
 
   00000		 |HotKeyInit| PROC
 
-; 67   : {
+; 75   : {
 
   00000		 |$LN5@HotKeyInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47450|
+  00008		 |$M47498|
   00008	e1a04000	 mov         r4, r0
   0000c	e3a05802	 mov         r5, #2, 16
 
-; 68   : 	UINT8 regval;
-; 69   : 	
-; 70   : 	regval = TWL_KBD_CTRL_KBD_ON | TWL_KBD_CTRL_NRESET | TWL_KBD_CTRL_NSOFT_MODE;
+; 76   : 	UINT8 regval;
+; 77   : 	
+; 78   : 	regval = TWL_KBD_CTRL_KBD_ON | TWL_KBD_CTRL_NRESET | TWL_KBD_CTRL_NSOFT_MODE;
 
   00010	e3a0e043	 mov         lr, #0x43
 
-; 71   :     TWLWriteRegs(hTwl, TWL_KEYP_CTRL_REG, &regval, sizeof(regval));
+; 79   :     TWLWriteRegs(hTwl, TWL_KEYP_CTRL_REG, &regval, sizeof(regval));
 
   00014	e38510d2	 orr         r1, r5, #0xD2
   00018	e3a03001	 mov         r3, #1
@@ -202,12 +206,12 @@
   00020	e5cde000	 strb        lr, [sp]
   00024	eb000000	 bl          TWLWriteRegs
 
-; 72   : 	regval = 0x07 << 5;                        // Prescaler timer value
+; 80   : 	regval = 0x07 << 5;                        // Prescaler timer value
 
   00028	e3a030e0	 mov         r3, #0xE0
   0002c	e5cd3000	 strb        r3, [sp]
 
-; 73   :     TWLWriteRegs(hTwl, TWL_LK_PTV_REG, &regval, sizeof(regval));
+; 81   :     TWLWriteRegs(hTwl, TWL_LK_PTV_REG, &regval, sizeof(regval));
 
   00030	e3a03001	 mov         r3, #1
   00034	e28d2000	 add         r2, sp, #0
@@ -215,19 +219,19 @@
   0003c	e1a00004	 mov         r0, r4
   00040	eb000000	 bl          TWLWriteRegs
 
-; 74   : }
+; 82   : }
 
   00044	e28dd004	 add         sp, sp, #4
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M47451|
+  00050		 |$M47499|
 
 			 ENDP  ; |HotKeyInit|
 
 	EXPORT	|matrixStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47464| DCD	|$LN7@matrixStat|
+|$T47512| DCD	|$LN7@matrixStat|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -235,39 +239,39 @@
 
   00000		 |matrixStatus| PROC
 
-; 79   : {
+; 88   : {
 
   00000		 |$LN7@matrixStat|
-  00000		 |$M47461|
+  00000		 |$M47509|
 
-; 80   :     int temp;
-; 81   :     BOOL event = FALSE;
-; 82   :     
-; 83   :     temp = gMatrix[row] & shiftLeft(col);
-; 84   :  
-; 85   :     if(temp)
+; 89   :     int temp;
+; 90   :     BOOL event = FALSE;
+; 91   :     
+; 92   :     temp = gMatrix[row] & shiftLeft(col);
+; 93   :  
+; 94   :     if(temp)
 
   00000	e59f3014	 ldr         r3, [pc, #0x14]
   00004	e3a02001	 mov         r2, #1
   00008	e7d03003	 ldrb        r3, [r0, +r3]
   0000c	e1130112	 tst         r3, r2, lsl r1
 
-; 86   :         return event = TRUE;
+; 95   :         return event = TRUE;
 
   00010	13a00001	 movne       r0, #1
 
-; 87   :     else
-; 88   :         return event;
+; 96   :     else
+; 97   :         return event;
 
   00014	03a00000	 moveq       r0, #0
 
-; 89   : }
+; 98   : }
 
   00018	e12fff1e	 bx          lr
   0001c		 |$LN8@matrixStat|
   0001c		 |$LN9@matrixStat|
   0001c	00000000	 DCD         |gMatrix|
-  00020		 |$M47462|
+  00020		 |$M47510|
 
 			 ENDP  ; |matrixStatus|
 
@@ -278,7 +282,7 @@
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47545| DCD	|$LN63@HotKeyFunc|
+|$T47593| DCD	|$LN63@HotKeyFunc|
 	DCD	0x40003701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -294,33 +298,33 @@
 
   00000		 |HotKeyFunction| PROC
 
-; 93   : {
+; 102  : {
 
   00000		 |$LN63@HotKeyFunc|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M47542|
+  00004		 |$M47590|
 
-; 94   : 	//UINT8 matrix[8];
-; 95   : 	ULONG ik, ix, row, column;
-; 96   : 	//ULONG i;
-; 97   :     USHORT state;
-; 98   :     BOOL keyPressed = FALSE;
-; 99   :     //WCHAR key; 
-; 100  :     
-; 101  :        
-; 102  :     //Ray 131104
-; 103  :     /*for(i=0; i<Hotkey_EXIT; i++)
-; 104  :     {
-; 105  : 		OALLog(L" [%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
-; 106  : 	}
-; 107  : 	OALLog(L" [0] Exit and Continue\r\n");
-; 108  : 	
-; 109  : 	OALLog(L"\r>>> Now entry cold-reset... \r\n");*/
-; 110  : 	
-; 111  :     //printing matrix array, Ray
-; 112  : 	/*for( ik=0 ; ik<3 ; ik++ )
-; 113  : 	{*/
-; 114  :     TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));    
+; 103  : 	//UINT8 matrix[8];
+; 104  : 	ULONG ik, ix, row, column;
+; 105  : 	//ULONG i;
+; 106  :     USHORT state;
+; 107  :     BOOL keyPressed = FALSE;
+; 108  :     //WCHAR key; 
+; 109  :     
+; 110  :        
+; 111  :     //Ray 131104
+; 112  :     /*for(i=0; i<Hotkey_EXIT; i++)
+; 113  :     {
+; 114  : 		OALLog(L" [%d] %s\r\n", i+1, hotkeyColdReset[i].keyName);
+; 115  : 	}
+; 116  : 	OALLog(L" [0] Exit and Continue\r\n");
+; 117  : 	
+; 118  : 	OALLog(L"\r>>> Now entry cold-reset... \r\n");*/
+; 119  : 	
+; 120  :     //printing matrix array, Ray
+; 121  : 	/*for( ik=0 ; ik<3 ; ik++ )
+; 122  : 	{*/
+; 123  :     TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));    
 
   00004	e59f60cc	 ldr         r6, [pc, #0xCC]
   00008	e3a010db	 mov         r1, #0xDB
@@ -329,51 +333,51 @@
   00014	e24118fe	 sub         r1, r1, #0xFE, 16
   00018	eb000000	 bl          TWLReadRegs
 
-; 115  : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
-; 116  : 	    
-; 117  : 		OALLog(L" HotKeyFunction: matrix  ");
-; 118  : 		for( ix=0 ; ix <8 ; ix++ )
-; 119  : 			OALLog(L" [%d]",gMatrix[ix]);
-; 120  : 		OALLog(L"\r\n");
-; 121  : 	}*/
-; 122  : 	
-; 123  : 	for(row = 0, ik = 0; row < 8; row++)
+; 124  : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+; 125  : 	    
+; 126  : 		OALLog(L" HotKeyFunction: matrix  ");
+; 127  : 		for( ix=0 ; ix <8 ; ix++ )
+; 128  : 			OALLog(L" [%d]",gMatrix[ix]);
+; 129  : 		OALLog(L"\r\n");
+; 130  : 	}*/
+; 131  : 	
+; 132  : 	for(row = 0, ik = 0; row < 8; row++)
 
   0001c	e3a05000	 mov         r5, #0
   00020	e3a08001	 mov         r8, #1
   00024		 |$LL18@HotKeyFunc|
 
-; 124  : 	{
-; 125  :         // Get matrix state        
-; 126  :         ix = row;
-; 127  :         state = gMatrix[ix] & 0xFF;     
+; 133  : 	{
+; 134  :         // Get matrix state        
+; 135  :         ix = row;
+; 136  :         state = gMatrix[ix] & 0xFF;     
 
   00024	e7d57006	 ldrb        r7, [r5, +r6]
 
-; 128  : 
-; 129  :         // If no-key is pressed continue with new rows
-; 130  :         if (state == 0) 
+; 137  : 
+; 138  :         // If no-key is pressed continue with new rows
+; 139  :         if (state == 0) 
 
   00028	e3570000	 cmp         r7, #0
   0002c	0a000008	 beq         |$LN17@HotKeyFunc|
 
-; 131  : 		{
-; 132  :             ik += 8;
-; 133  :             continue;               //if state event desnot 
-; 134  : 		}
-; 135  :         
-; 136  :         for (column = 0; column < 8; column++, ik++)
+; 140  : 		{
+; 141  :             ik += 8;
+; 142  :             continue;               //if state event desnot 
+; 143  : 		}
+; 144  :         
+; 145  :         for (column = 0; column < 8; column++, ik++)
 
   00030	e3a04000	 mov         r4, #0
   00034		 |$LL14@HotKeyFunc|
 
-; 137  : 		{
-; 138  :             if ((state & (1 << column)) != 0)
+; 146  : 		{
+; 147  :             if ((state & (1 << column)) != 0)
 
   00034	e1170418	 tst         r7, r8, lsl r4
 
-; 139  : 			{
-; 140  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
+; 148  : 			{
+; 149  :                 RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
 
   00038	159f0094	 ldrne       r0, [pc, #0x94]
   0003c	11a02004	 movne       r2, r4
@@ -384,76 +388,76 @@
   00050	3afffff7	 bcc         |$LL14@HotKeyFunc|
   00054		 |$LN17@HotKeyFunc|
 
-; 115  : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
-; 116  : 	    
-; 117  : 		OALLog(L" HotKeyFunction: matrix  ");
-; 118  : 		for( ix=0 ; ix <8 ; ix++ )
-; 119  : 			OALLog(L" [%d]",gMatrix[ix]);
-; 120  : 		OALLog(L"\r\n");
-; 121  : 	}*/
-; 122  : 	
-; 123  : 	for(row = 0, ik = 0; row < 8; row++)
+; 124  : 	/*//OALLog(L"******hTwl: %X....\r\n", hTwl);    //address-4, Ray
+; 125  : 	    
+; 126  : 		OALLog(L" HotKeyFunction: matrix  ");
+; 127  : 		for( ix=0 ; ix <8 ; ix++ )
+; 128  : 			OALLog(L" [%d]",gMatrix[ix]);
+; 129  : 		OALLog(L"\r\n");
+; 130  : 	}*/
+; 131  : 	
+; 132  : 	for(row = 0, ik = 0; row < 8; row++)
 
   00054	e2855001	 add         r5, r5, #1
   00058	e3550008	 cmp         r5, #8
   0005c	3afffff0	 bcc         |$LL18@HotKeyFunc|
   00060	e5d62004	 ldrb        r2, [r6, #4]
 
-; 141  : 			}
-; 142  : 		}
-; 143  : 	}
-; 144  :    
-; 145  :     //Ray 131106
-; 146  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               	//F1 + F2
+; 150  : 			}
+; 151  : 		}
+; 152  : 	}
+; 153  :    
+; 154  :     //Ray 131106
+; 155  :     if(matrixStatus(4, 2) && matrixStatus(4, 3)){               	//F1 + F2
 
   00064	e3120004	 tst         r2, #4
   00068	13120008	 tstne       r2, #8
 
-; 147  :         keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
+; 156  :         keyPressed = FillASCIIMode(hotkeyColdReset[4].keyActive);    
 
   0006c	159f305c	 ldrne       r3, [pc, #0x5C]
   00070	15930020	 ldrne       r0, [r3, #0x20]
   00074	1a000012	 bne         |$LN60@HotKeyFunc|
   00078	e5d61003	 ldrb        r1, [r6, #3]
 
-; 148  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         	//F1 + F4
+; 157  :     }else if(matrixStatus(3, 1) && matrixStatus(3, 2)){         	//F1 + F4
 
   0007c	e20130ff	 and         r3, r1, #0xFF
   00080	e2133002	 ands        r3, r3, #2
   00084	13110004	 tstne       r1, #4
 
-; 149  :         keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
+; 158  :         keyPressed = FillASCIIMode(hotkeyColdReset[6].keyActive);              
 
   00088	159f3040	 ldrne       r3, [pc, #0x40]
   0008c	15930030	 ldrne       r0, [r3, #0x30]
   00090	1a00000b	 bne         |$LN60@HotKeyFunc|
 
-; 150  :     }else if( matrixStatus(3, 2)){                              	//F1   
+; 159  :     }else if( matrixStatus(3, 2)){                              	//F1   
 
   00094	e3110004	 tst         r1, #4
 
-; 151  :         keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
+; 160  :         keyPressed = FillASCIIMode(hotkeyColdReset[0].keyActive);     
 
   00098	159f3030	 ldrne       r3, [pc, #0x30]
   0009c	15930000	 ldrne       r0, [r3]
   000a0	1a000007	 bne         |$LN60@HotKeyFunc|
 
-; 152  :     }else if( matrixStatus(4, 3)){                              	//F2
+; 161  :     }else if( matrixStatus(4, 3)){                              	//F2
 
   000a4	e3120008	 tst         r2, #8
 
-; 153  :         keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
+; 162  :         keyPressed = FillASCIIMode(hotkeyColdReset[1].keyActive);       
 
   000a8	159f3020	 ldrne       r3, [pc, #0x20]
   000ac	15930008	 ldrne       r0, [r3, #8]
   000b0	1a000003	 bne         |$LN60@HotKeyFunc|
 
-; 154  :     }else if( matrixStatus(3, 1)){                              	//F4
+; 163  :     }else if( matrixStatus(3, 1)){                              	//F4
 
   000b4	e3530000	 cmp         r3, #0
   000b8	0a000002	 beq         |$LN2@HotKeyFunc|
 
-; 155  :         keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
+; 164  :         keyPressed = FillASCIIMode(hotkeyColdReset[3].keyActive);       
 
   000bc	e59f300c	 ldr         r3, [pc, #0xC]
   000c0	e5930018	 ldr         r0, [r3, #0x18]
@@ -461,14 +465,14 @@
   000c4	eb000000	 bl          FillASCIIMode
   000c8		 |$LN2@HotKeyFunc|
 
-; 156  :     }
-; 157  :         
-; 158  :     /*do{   
-; 159  :         key = OALBLMenuReadKey(TRUE);
-; 160  : 	}while(key != L'0');*/
-; 161  : 
-; 162  : 	if (/*key == L'0' || */keyPressed == TRUE) return;
-; 163  : }
+; 165  :     }
+; 166  :         
+; 167  :     /*do{   
+; 168  :         key = OALBLMenuReadKey(TRUE);
+; 169  : 	}while(key != L'0');*/
+; 170  : 
+; 171  : 	if (/*key == L'0' || */keyPressed == TRUE) return;
+; 172  : }
 
   000c8	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
   000cc	e12fff1e	 bx          lr
@@ -479,14 +483,14 @@
   000d4	00000000	 DCD         |??_C@_1DE@MDALDBDK@?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?0?$AA?$CF?$AAd?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@|
   000d8		 |$LN67@HotKeyFunc|
   000d8	00000000	 DCD         |gMatrix|
-  000dc		 |$M47543|
+  000dc		 |$M47591|
 
 			 ENDP  ; |HotKeyFunction|
 
 	EXPORT	|HotKeyColdReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47557| DCD	|$LN5@HotKeyCold|
+|$T47605| DCD	|$LN5@HotKeyCold|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -494,283 +498,354 @@
 
   00000		 |HotKeyColdReset| PROC
 
-; 167  : {
+; 176  : {
 
   00000		 |$LN5@HotKeyCold|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47554|
+  00004		 |$M47602|
 
-; 168  :    HotKeyFunction(hTwl);
+; 177  :    HotKeyFunction(hTwl);
 
   00004	eb000000	 bl          HotKeyFunction
 
-; 169  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
-; 170  : }
+; 178  :    //OALLog(L"******hTwl: %X....\r\n", hTwl);       //address-3, Ray
+; 179  : }
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47555|
+  00010		 |$M47603|
 
 			 ENDP  ; |HotKeyColdReset|
 
 	EXPORT	|MenuSelectFunction|
-	IMPORT	|LcdSleep|
-	IMPORT	|AutoScanFunc|
-	IMPORT	|RAMAccessTest|
-	IMPORT	|BurnIn_Z2170P|
-	IMPORT	|KeypadFunc_Z2170P|
-	IMPORT	|BarcodeTest_Z2170P|
-	IMPORT	|LEDTest_Z2170P|
-	IMPORT	|BatteryTest_Z2170P|
-	IMPORT	|TouchPanelTest_Z2170P|
-	IMPORT	|KeypadBkTest_Z2170P|
-	IMPORT	|DRAMTest_Z2170P|
-	IMPORT	|BkTest_Z2170P|
 	IMPORT	|DisplayTest_Z2170P|
+	IMPORT	|BkTest_Z2170P|
+	IMPORT	|DRAMTest_Z2170P|
+	IMPORT	|KeypadBkTest_Z2170P|
+	IMPORT	|TouchPanelTest_Z2170P|
+	IMPORT	|BatteryTest_Z2170P|
+	IMPORT	|LEDTest_Z2170P|
+	IMPORT	|BarcodeTest_Z2170P|
+	IMPORT	|KeypadFunc_Z2170P|
+	IMPORT	|BurnIn_Z2170P|
+	IMPORT	|RAMAccessTest|
+	IMPORT	|AutoScanFunc|
+	IMPORT	|RTCFunc|
+	IMPORT	|LcdSleep|
 	IMPORT	|AllFunctionTest_Z2170P|
 	IMPORT	|BLShowMenu|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47687| DCD	|$LN110@MenuSelect|
-	DCD	0x40005101
+|$T47774| DCD	|$LN144@MenuSelect|
+	DCD	0x40006c01
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
   00000		 |MenuSelectFunction| PROC
 
-; 177  : {
+; 185  : {
 
-  00000		 |$LN110@MenuSelect|
-  00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M47684|
-  00004	e1a05000	 mov         r5, r0
-  00008	e59f4130	 ldr         r4, [pc, #0x130]
-  0000c	e3a060db	 mov         r6, #0xDB
-  00010		 |$LL35@MenuSelect|
+  00000		 |$LN144@MenuSelect|
+  00000	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
+  00004		 |$M47771|
+  00004	e1a09000	 mov         r9, r0
+  00008	e59f419c	 ldr         r4, [pc, #0x19C]
+  0000c	e59f8194	 ldr         r8, [pc, #0x194]
+  00010	e3a0b0db	 mov         r11, #0xDB
+  00014	e3a0a001	 mov         r10, #1
+  00018		 |$SHOW_MENU$47414|
 
-; 178  :     ULONG ik, ix, row, column;
-; 179  :     USHORT state;
-; 180  :     //BOOL keyPressed = FALSE;
-; 181  :     OAL_BLMENU_ITEM *pMenu = NULL;
-; 182  :     for(;;)
-; 183  :     {
-; 184  :         BLShowMenu(); 
+; 186  :     ULONG ik, ix, row, column;
+; 187  :     USHORT state;
+; 188  :     //BOOL keyPressed = FALSE;
+; 189  : SHOW_MENU:
+; 190  :     BLShowMenu(); 
 
-  00010	eb000000	 bl          BLShowMenu
+  00018	eb000000	 bl          BLShowMenu
+  0001c		 |$LL37@MenuSelect|
 
-; 185  :         TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));  
+; 191  :     for(;;)
+; 192  :     {
+; 193  :         TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));  
 
-  00014	e3a03008	 mov         r3, #8
-  00018	e1a02004	 mov         r2, r4
-  0001c	e24618fe	 sub         r1, r6, #0xFE, 16
-  00020	e1a00005	 mov         r0, r5
-  00024	eb000000	 bl          TWLReadRegs
-  00028	e5d43002	 ldrb        r3, [r4, #2]
+  0001c	e3a03008	 mov         r3, #8
+  00020	e1a02008	 mov         r2, r8
+  00024	e24b18fe	 sub         r1, r11, #0xFE, 16
+  00028	e1a00009	 mov         r0, r9
+  0002c	eb000000	 bl          TWLReadRegs
 
-; 186  :         
-; 187  :         
-; 188  :         for(row = 0, ik = 0; row < 8; row++)
-; 189  :     	{
-; 190  :             // Get matrix state        
-; 191  :             ix = row;
-; 192  :             state = gMatrix[ix] & 0xFF;     
-; 193  : 
-; 194  :             // If no-key is pressed continue with new rows
-; 195  :             if (state == 0) 
-; 196  :     		{
-; 197  :                 ik += 8;
-; 198  :                 continue;               //if state event desnot 
-; 199  :     		}
-; 200  :             
-; 201  :             for (column = 0; column < 8; column++, ik++)
-; 202  :     		{
-; 203  :                 if ((state & (1 << column)) != 0)
-; 204  :     			{
-; 205  :                     //RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
-; 206  :     			}
-; 207  :     		}
-; 208  :     	}
-; 209  :         
-; 210  :         if(matrixStatus(2, 5) ){            //press number 1
+; 194  :                 
+; 195  :         for(row = 0, ik = 0; row < 8; row++)
 
-  0002c	e3130020	 tst         r3, #0x20
-  00030	0a000002	 beq         |$LN25@MenuSelect|
+  00030	e3a06000	 mov         r6, #0
+  00034		 |$LL35@MenuSelect|
 
-; 211  :             AllFunctionTest_Z2170P(pMenu);
+; 196  :     	{
+; 197  :             // Get matrix state        
+; 198  :             ix = row;
+; 199  :             state = gMatrix[ix] & 0xFF;     
 
-  00034	e3a00000	 mov         r0, #0
-  00038	eb000000	 bl          AllFunctionTest_Z2170P
-  0003c	ea00003c	 b           |$LN1@MenuSelect|
-  00040		 |$LN25@MenuSelect|
-  00040	e5d42001	 ldrb        r2, [r4, #1]
+  00034	e7d67008	 ldrb        r7, [r6, +r8]
 
-; 212  :         }else if(matrixStatus(1, 1) ){      //press number 2
+; 200  : 
+; 201  :             // If no-key is pressed continue with new rows
+; 202  :             if (state == 0) 
 
-  00044	e3120002	 tst         r2, #2
-  00048	0a000002	 beq         |$LN23@MenuSelect|
+  00038	e3570000	 cmp         r7, #0
+  0003c	0a000008	 beq         |$LN34@MenuSelect|
 
-; 213  :             DisplayTest_Z2170P(pMenu);
+; 203  :     		{
+; 204  :                 ik += 8;
+; 205  :                 continue;               //if state event desnot 
+; 206  :     		}
+; 207  :             
+; 208  :             for (column = 0; column < 8; column++, ik++)
 
-  0004c	e3a00000	 mov         r0, #0
-  00050	eb000000	 bl          DisplayTest_Z2170P
-  00054	ea000036	 b           |$LN1@MenuSelect|
-  00058		 |$LN23@MenuSelect|
+  00040	e3a05000	 mov         r5, #0
+  00044		 |$LL31@MenuSelect|
 
-; 214  :         }else if(matrixStatus(1, 3) ){      //press number 3
+; 209  :     		{
+; 210  :                 if ((state & (1 << column)) != 0)
 
-  00058	e3120008	 tst         r2, #8
-  0005c	0a000002	 beq         |$LN21@MenuSelect|
+  00044	e117051a	 tst         r7, r10, lsl r5
 
-; 215  :             BkTest_Z2170P(pMenu);
+; 211  :     			{
+; 212  :                     RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
 
-  00060	e3a00000	 mov         r0, #0
-  00064	eb000000	 bl          BkTest_Z2170P
-  00068	ea000031	 b           |$LN1@MenuSelect|
-  0006c		 |$LN21@MenuSelect|
+  00048	159f0154	 ldrne       r0, [pc, #0x154]
+  0004c	11a02005	 movne       r2, r5
+  00050	11a01006	 movne       r1, r6
+  00054	1b000000	 blne        NKDbgPrintfW
+  00058	e2855001	 add         r5, r5, #1
+  0005c	e3550008	 cmp         r5, #8
+  00060	3afffff7	 bcc         |$LL31@MenuSelect|
+  00064		 |$LN34@MenuSelect|
 
-; 216  :         }else if(matrixStatus(2, 1) ){      //press number 4  
+; 194  :                 
+; 195  :         for(row = 0, ik = 0; row < 8; row++)
 
-  0006c	e3130002	 tst         r3, #2
-  00070	0a000002	 beq         |$LN19@MenuSelect|
+  00064	e2866001	 add         r6, r6, #1
+  00068	e3560008	 cmp         r6, #8
+  0006c	3afffff0	 bcc         |$LL35@MenuSelect|
+  00070	e5d83002	 ldrb        r3, [r8, #2]
 
-; 217  :             DRAMTest_Z2170P(pMenu);
+; 213  :     			}
+; 214  :     		}
+; 215  :     	}
+; 216  :         
+; 217  :         if(matrixStatus(2, 5) ){            //press number 1
 
-  00074	e3a00000	 mov         r0, #0
-  00078	eb000000	 bl          DRAMTest_Z2170P
-  0007c	ea00002c	 b           |$LN1@MenuSelect|
-  00080		 |$LN19@MenuSelect|
+  00074	e3130020	 tst         r3, #0x20
+  00078	0a000002	 beq         |$LN27@MenuSelect|
 
-; 218  :         }else if(matrixStatus(2, 4) ){      //press number 5
+; 218  :             AllFunctionTest_Z2170P(pMenu);
 
-  00080	e3130010	 tst         r3, #0x10
-  00084	0a000002	 beq         |$LN17@MenuSelect|
+  0007c	e5940000	 ldr         r0, [r4]
+  00080	eb000000	 bl          AllFunctionTest_Z2170P
+  00084	ea00001c	 b           |$LN92@MenuSelect|
+  00088		 |$LN27@MenuSelect|
+  00088	e5d82001	 ldrb        r2, [r8, #1]
 
-; 219  :             KeypadBkTest_Z2170P(pMenu);
+; 219  :         }else if(matrixStatus(1, 1) ){      //press number 2
 
-  00088	e3a00000	 mov         r0, #0
-  0008c	eb000000	 bl          KeypadBkTest_Z2170P
-  00090	ea000027	 b           |$LN1@MenuSelect|
-  00094		 |$LN17@MenuSelect|
+  0008c	e3120002	 tst         r2, #2
+  00090	1a000040	 bne         |$LN113@MenuSelect|
 
-; 220  :         }else if(matrixStatus(2, 3) ){      //press number 6
+; 221  :             goto SHOW_MENU; 
+; 222  :         }else if(matrixStatus(1, 3) ){      //press number 3
 
-  00094	e3130008	 tst         r3, #8
-  00098	0a000002	 beq         |$LN15@MenuSelect|
+  00094	e3120008	 tst         r2, #8
+  00098	1a00003b	 bne         |$LN114@MenuSelect|
 
-; 221  :             TouchPanelTest_Z2170P(pMenu);
+; 224  :             goto SHOW_MENU; 
+; 225  :         }else if(matrixStatus(2, 1) ){      //press number 4  
 
-  0009c	e3a00000	 mov         r0, #0
-  000a0	eb000000	 bl          TouchPanelTest_Z2170P
-  000a4	ea000022	 b           |$LN1@MenuSelect|
-  000a8		 |$LN15@MenuSelect|
-  000a8	e5d42003	 ldrb        r2, [r4, #3]
+  0009c	e3130002	 tst         r3, #2
+  000a0	1a000036	 bne         |$LN115@MenuSelect|
 
-; 222  :         }else if(matrixStatus(3, 5) ){      //press number 7
+; 227  :             goto SHOW_MENU; 
+; 228  :         }else if(matrixStatus(2, 4) ){      //press number 5
 
-  000ac	e3120020	 tst         r2, #0x20
-  000b0	0a000002	 beq         |$LN13@MenuSelect|
+  000a4	e3130010	 tst         r3, #0x10
+  000a8	1a000031	 bne         |$LN116@MenuSelect|
 
-; 223  :             BatteryTest_Z2170P(pMenu);
+; 230  :             goto SHOW_MENU; 
+; 231  :         }else if(matrixStatus(2, 3) ){      //press number 6
 
-  000b4	e3a00000	 mov         r0, #0
-  000b8	eb000000	 bl          BatteryTest_Z2170P
-  000bc	ea00001c	 b           |$LN1@MenuSelect|
-  000c0		 |$LN13@MenuSelect|
+  000ac	e3130008	 tst         r3, #8
+  000b0	1a00002c	 bne         |$LN117@MenuSelect|
+  000b4	e5d82003	 ldrb        r2, [r8, #3]
 
-; 224  :         }else if(matrixStatus(2, 0) ){      //press number 8
+; 233  :             goto SHOW_MENU; 
+; 234  :         }else if(matrixStatus(3, 5) ){      //press number 7
+
+  000b8	e3120020	 tst         r2, #0x20
+  000bc	1a000026	 bne         |$LN118@MenuSelect|
+
+; 236  :             goto SHOW_MENU; 
+; 237  :         }else if(matrixStatus(2, 0) ){      //press number 8
 
   000c0	e3130001	 tst         r3, #1
-  000c4	0a000002	 beq         |$LN11@MenuSelect|
+  000c4	1a000021	 bne         |$LN119@MenuSelect|
 
-; 225  :             LEDTest_Z2170P(pMenu);
+; 239  :             goto SHOW_MENU; 
+; 240  :         }else if(matrixStatus(2, 2) ){      //press number 9
 
-  000c8	e3a00000	 mov         r0, #0
-  000cc	eb000000	 bl          LEDTest_Z2170P
-  000d0	ea000017	 b           |$LN1@MenuSelect|
-  000d4		 |$LN11@MenuSelect|
+  000c8	e3130004	 tst         r3, #4
+  000cc	1a00001c	 bne         |$LN120@MenuSelect|
 
-; 226  :         }else if(matrixStatus(2, 2) ){      //press number 9
+; 242  :             goto SHOW_MENU; 
+; 243  :         }else if(matrixStatus(3, 3) ){      //press F1
 
-  000d4	e3130004	 tst         r3, #4
-  000d8	0a000002	 beq         |$LN9@MenuSelect|
+  000d0	e3120008	 tst         r2, #8
+  000d4	1a000017	 bne         |$LN121@MenuSelect|
+  000d8	e5d83004	 ldrb        r3, [r8, #4]
 
-; 227  :             BarcodeTest_Z2170P(pMenu);
+; 245  :             goto SHOW_MENU; 
+; 246  :         }else if(matrixStatus(4, 3) ){      //press F2
 
-  000dc	e3a00000	 mov         r0, #0
-  000e0	eb000000	 bl          BarcodeTest_Z2170P
-  000e4	ea000012	 b           |$LN1@MenuSelect|
-  000e8		 |$LN9@MenuSelect|
+  000dc	e3130008	 tst         r3, #8
+  000e0	1a000011	 bne         |$LN122@MenuSelect|
 
-; 228  :         }else if(matrixStatus(3, 3) ){      //press number F1
+; 248  :             goto SHOW_MENU; 
+; 249  :         }else if(matrixStatus(3, 0) ){      //press F3
 
-  000e8	e3120008	 tst         r2, #8
-  000ec	0a000002	 beq         |$LN7@MenuSelect|
+  000e4	e3120001	 tst         r2, #1
+  000e8	1a00000c	 bne         |$LN123@MenuSelect|
 
-; 229  :             KeypadFunc_Z2170P(pMenu);
+; 251  :             //break;
+; 252  :             goto SHOW_MENU; 
+; 253  :         }else if(matrixStatus(3, 2) ){      //press F4
 
-  000f0	e3a00000	 mov         r0, #0
-  000f4	eb000000	 bl          KeypadFunc_Z2170P
-  000f8	ea00000d	 b           |$LN1@MenuSelect|
-  000fc		 |$LN7@MenuSelect|
+  000ec	e3120004	 tst         r2, #4
+  000f0	1a000007	 bne         |$LN124@MenuSelect|
 
-; 230  :         }else if(matrixStatus(4, 3) ){      //press number F2
+; 255  :             //break;
+; 256  :             goto SHOW_MENU; 
+; 257  :         }else if(matrixStatus(4, 2) ){      //press SP
 
-  000fc	e5d43004	 ldrb        r3, [r4, #4]
-  00100	e3130008	 tst         r3, #8
-  00104	0a000002	 beq         |$LN5@MenuSelect|
+  000f4	e3130004	 tst         r3, #4
+  000f8	1a000002	 bne         |$LN125@MenuSelect|
+  000fc		 |$LN92@MenuSelect|
 
-; 231  :             BurnIn_Z2170P(pMenu);
+; 259  :             goto SHOW_MENU; 
+; 260  :         }                                   //press SP
+; 261  :         LcdSleep(500);
 
-  00108	e3a00000	 mov         r0, #0
-  0010c	eb000000	 bl          BurnIn_Z2170P
-  00110	ea000007	 b           |$LN1@MenuSelect|
-  00114		 |$LN5@MenuSelect|
+  000fc	e3a00f7d	 mov         r0, #0x7D, 30
+  00100	eb000000	 bl          LcdSleep
 
-; 232  :         }else if(matrixStatus(3, 0) ){      //press number F3
+; 262  :                
+; 263  :    }
 
-  00114	e3120001	 tst         r2, #1
-  00118	0a000002	 beq         |$LN3@MenuSelect|
+  00104	eaffffc4	 b           |$LL37@MenuSelect|
+  00108		 |$LN125@MenuSelect|
 
-; 233  :             RAMAccessTest(pMenu);
+; 258  :             RTCFunc(pMenu);
 
-  0011c	e3a00000	 mov         r0, #0
-  00120	eb000000	 bl          RAMAccessTest
-  00124	ea000002	 b           |$LN1@MenuSelect|
-  00128		 |$LN3@MenuSelect|
+  00108	e5940000	 ldr         r0, [r4]
+  0010c	eb000000	 bl          RTCFunc
+  00110	eaffffc0	 b           |$SHOW_MENU$47414|
+  00114		 |$LN124@MenuSelect|
 
-; 234  :             //break;
-; 235  :         }else if(matrixStatus(3, 2) ){      //press number F4
+; 254  :             AutoScanFunc(pMenu);
 
-  00128	e3120004	 tst         r2, #4
+  00114	e5940000	 ldr         r0, [r4]
+  00118	eb000000	 bl          AutoScanFunc
+  0011c	eaffffbd	 b           |$SHOW_MENU$47414|
+  00120		 |$LN123@MenuSelect|
 
-; 236  :             AutoScanFunc(pMenu);
+; 250  :             RAMAccessTest(pMenu);
 
-  0012c	13a00000	 movne       r0, #0
-  00130	1b000000	 blne        AutoScanFunc
-  00134		 |$LN1@MenuSelect|
+  00120	e5940000	 ldr         r0, [r4]
+  00124	eb000000	 bl          RAMAccessTest
+  00128	eaffffba	 b           |$SHOW_MENU$47414|
+  0012c		 |$LN122@MenuSelect|
 
-; 237  :             //break;
-; 238  :         }
-; 239  :         LcdSleep(500);
+; 247  :             BurnIn_Z2170P(pMenu);
 
-  00134	e3a00f7d	 mov         r0, #0x7D, 30
-  00138	eb000000	 bl          LcdSleep
+  0012c	e5940000	 ldr         r0, [r4]
+  00130	eb000000	 bl          BurnIn_Z2170P
+  00134	eaffffb7	 b           |$SHOW_MENU$47414|
+  00138		 |$LN121@MenuSelect|
 
-; 240  :    }
+; 244  :             KeypadFunc_Z2170P(pMenu);
 
-  0013c	eaffffb3	 b           |$LL35@MenuSelect|
-  00140		 |$LN111@MenuSelect|
-  00140		 |$LN112@MenuSelect|
-  00140	00000000	 DCD         |gMatrix|
-  00144		 |$M47685|
+  00138	e5940000	 ldr         r0, [r4]
+  0013c	eb000000	 bl          KeypadFunc_Z2170P
+  00140	eaffffb4	 b           |$SHOW_MENU$47414|
+  00144		 |$LN120@MenuSelect|
+
+; 241  :             BarcodeTest_Z2170P(pMenu);
+
+  00144	e5940000	 ldr         r0, [r4]
+  00148	eb000000	 bl          BarcodeTest_Z2170P
+  0014c	eaffffb1	 b           |$SHOW_MENU$47414|
+  00150		 |$LN119@MenuSelect|
+
+; 238  :             LEDTest_Z2170P(pMenu);
+
+  00150	e5940000	 ldr         r0, [r4]
+  00154	eb000000	 bl          LEDTest_Z2170P
+  00158	eaffffae	 b           |$SHOW_MENU$47414|
+  0015c		 |$LN118@MenuSelect|
+
+; 235  :             BatteryTest_Z2170P(pMenu);
+
+  0015c	e5940000	 ldr         r0, [r4]
+  00160	eb000000	 bl          BatteryTest_Z2170P
+  00164	eaffffab	 b           |$SHOW_MENU$47414|
+  00168		 |$LN117@MenuSelect|
+
+; 232  :             TouchPanelTest_Z2170P(pMenu);
+
+  00168	e5940000	 ldr         r0, [r4]
+  0016c	eb000000	 bl          TouchPanelTest_Z2170P
+  00170	eaffffa8	 b           |$SHOW_MENU$47414|
+  00174		 |$LN116@MenuSelect|
+
+; 229  :             KeypadBkTest_Z2170P(pMenu);
+
+  00174	e5940000	 ldr         r0, [r4]
+  00178	eb000000	 bl          KeypadBkTest_Z2170P
+  0017c	eaffffa5	 b           |$SHOW_MENU$47414|
+  00180		 |$LN115@MenuSelect|
+
+; 226  :             DRAMTest_Z2170P(pMenu);
+
+  00180	e5940000	 ldr         r0, [r4]
+  00184	eb000000	 bl          DRAMTest_Z2170P
+  00188	eaffffa2	 b           |$SHOW_MENU$47414|
+  0018c		 |$LN114@MenuSelect|
+
+; 223  :             BkTest_Z2170P(pMenu);
+
+  0018c	e5940000	 ldr         r0, [r4]
+  00190	eb000000	 bl          BkTest_Z2170P
+  00194	eaffff9f	 b           |$SHOW_MENU$47414|
+  00198		 |$LN113@MenuSelect|
+
+; 220  :             DisplayTest_Z2170P(pMenu);
+
+  00198	e5940000	 ldr         r0, [r4]
+  0019c	eb000000	 bl          DisplayTest_Z2170P
+  001a0	eaffff9c	 b           |$SHOW_MENU$47414|
+  001a4		 |$LN145@MenuSelect|
+  001a4		 |$LN146@MenuSelect|
+  001a4	00000000	 DCD         |??_C@_1DE@MDALDBDK@?$AAH?$AAo?$AAt?$AAK?$AAe?$AAy?$AAF?$AAu?$AAn?$AAc?$AAt?$AAi?$AAo?$AAn?$AA?3?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?0?$AA?$CF?$AAd?$AA?$FN?$AA?$AN?$AA?6?$AA?$AA@|
+  001a8		 |$LN147@MenuSelect|
+  001a8	00000000	 DCD         |gMatrix|
+  001ac		 |$LN148@MenuSelect|
+  001ac	00000000	 DCD         |pMenu|
+  001b0		 |$M47772|
 
 			 ENDP  ; |MenuSelectFunction|
 
 	EXPORT	|HotkeyMenuSelect|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47699| DCD	|$LN7@HotkeyMenu|
+|$T47788| DCD	|$LN7@HotkeyMenu|
 	DCD	0x40000201
 ; Function compile flags: /Ogspy
 
@@ -778,18 +853,20 @@
 
   00000		 |HotkeyMenuSelect| PROC
 
-; 244  : {
+; 267  : {
 
   00000		 |$LN7@HotkeyMenu|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47696|
+  00004		 |$M47785|
 
-; 245  : 	MenuSelectFunction(hTwl);	
+; 268  : 	
+; 269  : 	UNREFERENCED_PARAMETER(hTwl);
+; 270  : 	MenuSelectFunction(hTwl);
 
   00004	eb000000	 bl          MenuSelectFunction
   00008		 |$LN8@HotkeyMenu|
   00008		 |$LN4@HotkeyMenu|
-  00008		 |$M47697|
+  00008		 |$M47786|
 
 			 ENDP  ; |HotkeyMenuSelect|
 

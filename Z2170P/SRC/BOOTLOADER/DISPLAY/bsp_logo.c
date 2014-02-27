@@ -47,7 +47,7 @@ UINT32 disable_lcd_power(void);
 UINT32 disable_lcd_backlight(void);
 void LcdStall(DWORD dwMicroseconds);
 void LcdSleep(DWORD dwMilliseconds);
-BOOL FillASCII(BYTE showCharMode[][20]);    //Ray 131105
+//BOOL FillASCII(BYTE showCharMode[][20]);    //Ray 131105
 BOOL BLShowLogo(void);
 VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 //BOOL KeypadMatrixStatus(int row, int col);
@@ -104,7 +104,7 @@ VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 #define FONT_HEIGHT			    16  //y
 
 //************************ COLOR Table*****************************************
-#define RED_COLOR			0
+/*#define RED_COLOR			0
 #define GREEN_COLOR			1
 #define	BLUE_COLOR			2
 #define WHITE_COLOR			3
@@ -113,7 +113,7 @@ VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 #define PURPLE_COLOR		6
 #define CYAN_COLOR			7
 #define GRAY_COLOR			8
-#define TRANSPARENT_COLOR	9 
+#define TRANSPARENT_COLOR	9*/ 
 
 const	BYTE colorTable[12][3]= {	
 		{0x00, 0x00, 0xff},		//R
@@ -903,16 +903,16 @@ BOOL FillASCIIMode(DWORD mode)
 }*/
 
 //-----------------------------------------------------------------------------
-int g_Mode;
+//int g_Mode;
 
-void fillASCII(int row, int col, int fc, int bc, BYTE c)
+void fillASCII(int row, int col, int fc, int bc,BYTE c)
 { 
 	volatile PUCHAR mem = gg_dwFrameBuffer;
 	int i, j;
 	unsigned long offset;
 	int offh, offw;
 	unsigned char bit;
-	//OALLog(L"~~fillASCII\r\n");
+	//OALLog(L"Entry fillASCII\r\n");
 
 	offw = 	FONT_WIDTH * col * BYTES_PER_PIXEL;    //8* At y of located *3	
 	for(i=0; i<16; i++)
@@ -941,16 +941,35 @@ void fillASCII(int row, int col, int fc, int bc, BYTE c)
 	}
 		
 }
-					
-VOID printString(int row, int col, int fc, int bc, char showCharMode[][30])//x, y, font_color, back_color, drawing string
+
+VOID printStringMode(int row, int col, int fc, int bc, char showCharMode[][30], int mode)//y, x, font_color, back_color, drawing string
 {
     char *s;
     int i=0;                            
-    //OALLog(L"~~printfString\r\n");
+    
+    s = *(showCharMode+mode)+i;   
+    //OALLog(L"Entry printString\r\n");
+ 
+    while(*s)
+	{
+        fillASCII(row, col, fc, bc, *s);
+	    if( ++col > LOGO_WIDTH/FONT_WIDTH )
+             break;
+		s++;
+	}
+}
 
+					
+/*VOID printString(int row, int col, int fc, int bc, char showCharMode[][30])//y, x, font_color, back_color, drawing string
+{
+    char *s;
+    int i=0;                            
+    
     s = *(showCharMode+g_Mode)+i;       //pointer const get 2D array(showCharMode) addresses, Ray 140218    
+  
     //RETAILMSG(TRUE,(L"%d. ",g_Mode));                                    //Let i=0 to pointer array start address   
-    while(*s != '\0')
+    //while(*s != '\0')
+    while(*s)
 	{
         fillASCII(row, col, fc, bc, *s);
 	    if( ++col > LOGO_WIDTH/FONT_WIDTH )
@@ -959,23 +978,24 @@ VOID printString(int row, int col, int fc, int bc, char showCharMode[][30])//x, 
 		s++;
 	}
 	//OALLog(L"\r\n");
-}
+}*/
 
 VOID ShowMenuSelect()
 {
-    char   showChar[][30] = { "[1] All Function Test",
-                              "[2] Display Test",
-                              "[3] LCM Backlight Test", 
-                              "[4] RAM Access Test(quickly)", 
-                              "[5] Keypad Backlight Test", 
-                              "[6] Touch Panel Test", 
-                              "[7] Battery Test", 
-                              "[8] LED Indicator", 
-                              "[9] Barcode Scanning", 
-                              "[F1] Keypad functional", 
-                              "[F2] Burn-In", 
-                              "[F3] RAM Access Test(ALL)",
-                              "[F4] Auto Scan"
+    char   showChar[][30] = {   "[1] All Function Test",
+                                "[2] Display Test",
+                                "[3] LCM Backlight Test", 
+                                "[4] RAM Access Test(quickly)", 
+                                "[5] Keypad Backlight Test", 
+                                "[6] Touch Panel Test", 
+                                "[7] Battery Test", 
+                                "[8] LED Indicator", 
+                                "[9] Barcode Scanning", 
+                                "[F1] Keypad functional", 
+                                "[F2] Burn-In", 
+                                "[F3] RAM Access Test(ALL)",
+                                "[F4] Auto Scan",
+                                "[SP] RTC "
                             };
 
     int mode, size, sizeDivTwenty; 
@@ -985,9 +1005,11 @@ VOID ShowMenuSelect()
     //OALLog(L"~~ShowMenuSelect\r\n");
     
     for(mode=0; mode<sizeDivTwenty; mode++){
-        g_Mode = mode;
-        printString(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showChar);// ROW = 320/16(Max char=20 => x axis), COL = 240/8(Max char = 30=> y axis)          
+        //g_Mode = mode;
+        //printString(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showChar);// 320/16(ROW, Max char=20 => y axis), 240/8(COL, Max char = 30=> x axis)          
+        printStringMode(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showChar, mode);
     }
+    //g_Mode = 0; 
     return ;
 }
 
@@ -1907,9 +1929,9 @@ VOID ShowTest(UINT32 flashAddr, UINT32 offset/*, int board*/)
 
 //------------------------------------------------------------------------------
 //
-//  Function:  ShowYellow
+//  Function:  ShowColor
 //
-VOID ShowYellow(UINT32 flashAddr, UINT32 offset)
+VOID ShowColor(UINT32 flashAddr, UINT32 offset, UCHAR backColor)
 {
     HANDLE  hFlash = NULL;
     DWORD	framebuffer;
@@ -1973,10 +1995,10 @@ VOID ShowYellow(UINT32 flashAddr, UINT32 offset)
     for (y= 0; y < dwLcdHeight; y++)
     {
         for( x = 0; x < dwLcdWidth; x++ )
-        {   //it's color yellow
-            *pChar++ = 0x00;    //  Blue    
-            *pChar++ = 0xFF;    //  Green   
-            *pChar++ = 0xFF;    //  Red     
+        {   //setup color 
+            *pChar++ = backColor;    //  Blue    
+            *pChar++ = backColor;    //  Green   
+            *pChar++ = backColor;    //  Red     
         }
     }
 }

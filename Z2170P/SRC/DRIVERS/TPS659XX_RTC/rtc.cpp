@@ -181,11 +181,7 @@ SetPowerState(
 //
 //  Called by device manager to initialize device.
 //
-DWORD
-RTC_Init(
-    LPCWSTR szContext, 
-    LPCVOID pBusContext
-    )
+DWORD RTC_Init(LPCWSTR szContext, LPCVOID pBusContext)
 {
     DWORD rc = (DWORD)NULL;
     Device_t *pDevice = NULL;
@@ -538,10 +534,7 @@ cleanUp:
 //
 //  This function acts as the IST for the RTC.
 //
-DWORD
-RTC_IntrThread(
-    VOID *pContext
-    )
+DWORD RTC_IntrThread(VOID *pContext)
 {
     Device_t *pDevice = (Device_t*)pContext;
     DWORD timeout = INFINITE;
