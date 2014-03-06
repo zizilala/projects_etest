@@ -41,7 +41,6 @@
 #include "args.h"
 
 //------------------------------------------------------------------------------
-
 #define EBOOT_VERSION_MAJOR         1
 #define EBOOT_VERSION_MINOR         0
 
@@ -66,9 +65,7 @@ typedef struct {
     CEDEVICE_POWER_STATE powerState;
 } Device_for_ADCRTC;
 
-
 //------------------------------------------------------------------------------
-
 #define DOWNLOAD_TYPE_UNKNOWN       0
 #define DOWNLOAD_TYPE_RAM           1
 #define DOWNLOAD_TYPE_BINDIO        2
@@ -81,7 +78,6 @@ typedef struct {
 #define DOWNLOAD_TYPE_EXT			9
 
 //------------------------------------------------------------------------------
-
 #define LOGO_NB0_FILE				"logo.nb0"
 #define LOGO_NB0_FILE_LEN           8
 
@@ -103,14 +99,12 @@ typedef struct {
 #define TRANSPARENT_COLOR	9 
 //************************ COLOR Table*****************************************
 
-
 //------------------------------------------------------------------------------
 //  Global variable
 //
-HANDLE ghTwl;           //Ray 140218
+HANDLE  ghTwl;           //Ray 140218
 
 //------------------------------------------------------------------------------
-
 typedef struct {
     OAL_KITL_TYPE bootDeviceType;
     UINT32 type;
@@ -124,20 +118,16 @@ typedef struct {
 } EBOOT_CONTEXT;
 
 //------------------------------------------------------------------------------
-
 extern BOOT_CFG g_bootCfg;
 extern EBOOT_CONTEXT g_eboot;
 extern OAL_KITL_DEVICE g_bootDevices[];
 extern OAL_KITL_DEVICE g_kitlDevices[];
-
 extern UINT32   g_ulFlashBase;
 
 //------------------------------------------------------------------------------
-
 VOID OEMMultiBinNotify(MultiBINInfo *pInfo);
 
 //------------------------------------------------------------------------------
-
 VOID   BLMenu(BOOL bForced);    
 BOOL   BLReadBootCfg(BOOT_CFG *pBootCfg);
 BOOL   BLWriteBootCfg(BOOT_CFG *pBootCfg);
@@ -160,9 +150,10 @@ VOID   BLShowMenu();                    //Ray 140213
 VOID   HotkeyMenuSelect(HANDLE);        //Ray 140218
 
 UINT32 OALStringToUINT32(LPCWSTR psz);
-VOID   printString(int row, int col, int fc, int bc, char showCharMode[][30]);    //Ray, 140224
-VOID   ShowColor(UINT32, UINT32, UCHAR backColor);                          //140225
-VOID   printStringMode(int row, int col, int fc, int bc, char showCharMode[][30], int mode);
+VOID   printString(int row, int col, int fc, int bc, char showCharMode[][30]);      //Ray, 140224
+VOID   ShowColor(UINT32, UINT32, UCHAR backColor);                                  //Ray, 140225
+VOID   printStringMode(int row, int col, int fc, int bc,char showCharMode[][30], int mode);    //Ray, 140227
+VOID   printInt(int Row, int Col,int fc, int bc, int value);                        //Ray, 140304                             
 
 VOID LcdStall(DWORD);
 VOID LcdSleep(DWORD);

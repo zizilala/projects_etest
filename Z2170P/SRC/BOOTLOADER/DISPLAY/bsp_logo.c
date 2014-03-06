@@ -51,6 +51,7 @@ void LcdSleep(DWORD dwMilliseconds);
 BOOL BLShowLogo(void);
 VOID Initial_lcd_TSC2046(void);                 //Ray 131119
 //BOOL KeypadMatrixStatus(int row, int col);
+VOID ShowColor(UINT32, UINT32, UCHAR);          //Ray 140304
 
 //------------------------------------------------------------------------------
 //
@@ -133,12 +134,16 @@ const	BYTE colorTable[12][3]= {
 //
 //  Global variable
 //
+char   gTestPass[][30] = { "Test pass!!"};
+DWORD  gd1Sec  = 1000000;
+DWORD  gd3Sec  = 3000000;
+
 DWORD   g_dwLogoPosX;
 DWORD   g_dwLogoPosY;
 DWORD   g_dwLogoWidth;
 DWORD   g_dwLogoHeight;
-DWORD   g_d3Sec = 3000000;
 
+//
 static DWORD g_nHeight = 0;
 static DWORD g_nWidth = 0;
 static DWORD g_nBpp;
@@ -671,10 +676,10 @@ const BYTE asciiFont[][16] = {
 BOOL InitGraphicsEngine(DWORD nWidth, DWORD nHeight, PUCHAR nBpp, PUCHAR dwFrameBuffer)
 {
 		
-	g_nHeight = nHeight;
-	g_nWidth  = nWidth;	
-	g_nBpp = (DWORD)nBpp; 
-    g_dwFrameBuffer = (volatile DWORD *) dwFrameBuffer;
+	g_nHeight   = nHeight;
+	g_nWidth    = nWidth;	
+	g_nBpp      = (DWORD)nBpp; 
+    g_dwFrameBuffer  = (volatile DWORD *) dwFrameBuffer;
 	gg_dwFrameBuffer = (PUCHAR) dwFrameBuffer;
 	//FillASCII();
 	//OALLog(L"~~Addressing %#X\r\n",gg_dwFrameBuffer);
@@ -838,15 +843,15 @@ int g_printMode;
 BOOL FillASCIIMode(DWORD mode)
 {                           
    char showChar[][20] = { "Updates",	     //F1       ,Ray 131106
-                               "F2",             //F2
-                               "Reserved",        //F3
-                               "F4",             //F4    
-                               "F1+F2",          //F1+F2
-                               "F1+F3",
-                               "F1+F4",
-                               "F2+F3",
-                               "F2+F4",
-                               "F3+F4"};                             
+                            "F2",             //F2
+                            "Reserved",        //F3
+                            "F4",             //F4    
+                            "F1+F2",          //F1+F2
+                            "F1+F3",
+                            "F1+F4",
+                            "F2+F3",
+                            "F2+F4",
+                            "F3+F4"};                             
    BYTE showCharToDec[1][20];                       //Ray 131105
    int i=0, SIZE = 20;
    char c;
@@ -935,21 +940,21 @@ void fillASCII(int row, int col, int fc, int bc,BYTE c)
 				}else{		//font_color
 						mem[offset++] = colorTable[fc][0];			
 						mem[offset++] = colorTable[fc][1];		
-						mem[offset++]  = colorTable[fc][2];				
+						mem[offset++] = colorTable[fc][2];				
 				}	
 		}
 	}
 		
 }
-
-VOID printStringMode(int row, int col, int fc, int bc, char showCharMode[][30], int mode)//y, x, font_color, back_color, drawing string
+//-----------------------------------------------------------------------------
+VOID printStringMode(int row, int col, int fc, int bc,char showCharMode[][30], int mode)//y, x, font_color, back_color, drawing string
 {
     char *s;
     int i=0;                            
     
     s = *(showCharMode+mode)+i;   
     //OALLog(L"Entry printString\r\n");
- 
+    
     while(*s)
 	{
         fillASCII(row, col, fc, bc, *s);
@@ -959,7 +964,7 @@ VOID printStringMode(int row, int col, int fc, int bc, char showCharMode[][30], 
 	}
 }
 
-					
+//-----------------------------------------------------------------------------					
 /*VOID printString(int row, int col, int fc, int bc, char showCharMode[][30])//y, x, font_color, back_color, drawing string
 {
     char *s;
@@ -980,34 +985,65 @@ VOID printStringMode(int row, int col, int fc, int bc, char showCharMode[][30], 
 	//OALLog(L"\r\n");
 }*/
 
+//-----------------------------------------------------------------------------					
+VOID printInt(int Row, int Col,int fc, int bc, int value)   // Origin 0,0
+{
+    char cINT;
+    int temp, index = -1;
+
+    if(value == 0)
+        fillASCII(Row, Col, fc, bc, '0');       //value = 0
+    else{
+        if(value < 0)
+        {
+            fillASCII(Row, Col, fc, bc, '-');   //value < 0
+            value *= (-1);
+			Col++;
+        }
+        temp = value;
+        while(temp)
+        {
+            temp /=10;
+            index++;
+        }
+        while(value)
+        {
+            cINT = (char)(value%10)+'0';
+            value /= 10;
+            fillASCII(Row, Col+index, fc, bc, cINT);
+            index--;
+        }
+    }
+}
+//-----------------------------------------------------------------------------
 VOID ShowMenuSelect()
 {
-    char   showChar[][30] = {   "[1] All Function Test",
-                                "[2] Display Test",
-                                "[3] LCM Backlight Test", 
-                                "[4] RAM Access Test(quickly)", 
-                                "[5] Keypad Backlight Test", 
-                                "[6] Touch Panel Test", 
-                                "[7] Battery Test", 
-                                "[8] LED Indicator", 
-                                "[9] Barcode Scanning", 
-                                "[F1] Keypad functional", 
-                                "[F2] Burn-In", 
-                                "[F3] RAM Access Test(ALL)",
-                                "[F4] Auto Scan",
-                                "[SP] RTC "
-                            };
-
+    char   showMenuSelect[][30] = {   "[1] All Function Test",
+                                      "[2] Display Test",
+                                      "[3] LCM Brightness Test", 
+                                      "[4] RAM Access Test(quickly)", 
+                                      "[5] Keypad Backlight Test", 
+                                      "[6] Touch Panel Test", 
+                                      "[7] Battery Test", 
+                                      "[8] LED Indicator", 
+                                      "[9] Barcode Scanning", 
+                                      "[F1] Keypad functional", 
+                                      "[F2] Burn-In", 
+                                      "[F3] RAM Access Test(ALL)",
+                                      "[F4] Auto Scanning(SCAN key)",
+                                      "[SP] Backup Battery Value",
+                                      "[SF] RTC Status"
+                                    };
     int mode, size, sizeDivTwenty; 
-    size = sizeof(showChar);        //sizeof(showChar) => [x]*[20] , but only need mode 
-    sizeDivTwenty = size /30;       //So that divide by 20. 
+    size = sizeof(showMenuSelect);        //sizeof(showChar) => [x]*[30] , but only need mode 
+    sizeDivTwenty = size /30;       //So that divide by 30. 
     
     //OALLog(L"~~ShowMenuSelect\r\n");
     
     for(mode=0; mode<sizeDivTwenty; mode++){
         //g_Mode = mode;
         //printString(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showChar);// 320/16(ROW, Max char=20 => y axis), 240/8(COL, Max char = 30=> x axis)          
-        printStringMode(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showChar, mode);
+        printStringMode(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showMenuSelect, mode);
     }
     //g_Mode = 0; 
     return ;
@@ -1374,10 +1410,10 @@ VOID ShowLogo(UINT32 flashAddr, UINT32 offset)
         for (y= 0; y < dwLcdHeight; y++)            //Ray   140218
         {
             for( x = 0; x < dwLcdWidth; x++ )
-            {
-                *pChar++ = 0x00;    //  Blue
-                *pChar++ = 0x00;    //  Green
-                *pChar++ = 0x00;    //  Red
+            {   //White 0xff
+                *pChar++ = 0xff;    //  Blue
+                *pChar++ = 0xff;    //  Green
+                *pChar++ = 0xff;    //  Red
 
             }
 
@@ -1584,9 +1620,13 @@ VOID ShowTestWhite(UINT32 flashAddr, UINT32 offset)
             *pChar++ = 0xFF;    //  Red
         }
     }
-    LcdStall(g_d3Sec);
+    LcdStall(gd1Sec*2);
     OALLog(L"\r Display tested end...\r\n");
-
+    //
+    ShowColor((UINT32)-1, 0, 0xff);
+	printStringMode(9, 9, RED_COLOR, GREEN_COLOR, gTestPass, 0);
+	LcdStall(gd3Sec);
+	
     ShowLogo((UINT32)-1, 0);
     //ShowSDLogo();
 }
@@ -1668,7 +1708,7 @@ VOID ShowTestBlack(UINT32 flashAddr, UINT32 offset)
             *pChar++ = 0x00;    //  Red
         }
     }
-    LcdStall(g_d3Sec);
+    LcdStall(gd1Sec*2);
     
     ShowTestWhite((UINT32)-1, 0);
 }
@@ -1750,7 +1790,7 @@ VOID ShowTestBlue(UINT32 flashAddr, UINT32 offset)
             *pChar++ = 0x00;    //  Red
         }
     }
-    LcdStall(g_d3Sec);
+    LcdStall(gd1Sec*2);
     
     ShowTestBlack((UINT32)-1, 0);
 }
@@ -1832,7 +1872,7 @@ VOID ShowTestGreen(UINT32 flashAddr, UINT32 offset)
             *pChar++ = 0x00;    //  Red
         }
     }
-    LcdStall(g_d3Sec);
+    LcdStall(gd1Sec*2);
     
     ShowTestBlue((UINT32)-1, 0);
 }
@@ -1922,7 +1962,7 @@ VOID ShowTest(UINT32 flashAddr, UINT32 offset/*, int board*/)
             }*/
         }
     }
-    LcdStall(g_d3Sec);
+    LcdStall(gd1Sec*2);
     
     ShowTestGreen((UINT32)-1, 0);
 }

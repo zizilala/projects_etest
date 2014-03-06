@@ -55,6 +55,7 @@ VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu);
 VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu);
 VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu);
 VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu);
+VOID SecondaryBATFunc(OAL_BLMENU_ITEM *pMenu);
 VOID RTCFunc(OAL_BLMENU_ITEM *pMenu);
 
 // Invoke Extenal Functions
@@ -62,8 +63,9 @@ BOOL DisplayShow(void);
 VOID SetBacklight(void);
 VOID tsc2046Test(void);
 VOID DisplayShowBackground(UCHAR backColor);        //Ray   140218
-VOID ReadBBVoltage(void);
+VOID ReadBBATVoltage(void);
 VOID ReadRTC(void);
+
 
 //VOID SetKeypadBacklight(void);
 
@@ -71,12 +73,12 @@ VOID ReadRTC(void);
 //------------------------------------------------------------------------------
 //  Global variable
 //
-extern HANDLE ghTwl;
-UINT8  gKeypadMatrix[8];
-
-DWORD stall_1Sec = 1000000;      //Lcd Stall
-DWORD sleep1Sec = 1000;         //Lcd Sleep 
-
+extern  HANDLE ghTwl;
+extern char   gTestPass[][30];  
+extern DWORD  gd1Sec;
+extern DWORD  gd3Sec;
+UINT8   gKeypadMatrix[8];
+DWORD   sleep1Sec = 1000;         //Lcd Sleep 
 OMAP_UART_REGS *pUartRegs = NULL;
 
 //------------------------------------------------------------------------------
@@ -177,39 +179,44 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r\n >>>All function testing...\r\n");    
 
 	DisplayTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*2);                     //2
+	LcdStall(gd1Sec*2);                         //2
   
 	BkTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*2);                     //3
+	LcdStall(gd1Sec*2);                         //3
          
 	DRAMTest_Z2170P(ptr);                                  
-	LcdStall(stall_1Sec*2);                     //4 
+	LcdStall(gd1Sec*2);                         //4 
 	   
 	KeypadBkTest_Z2170P(ptr);                              
-	LcdStall(stall_1Sec*2);                     //5 
+	LcdStall(gd1Sec*2);                         //5 
 
 	TouchPanelTest_Z2170P(ptr);                 //6 
-    LcdStall(stall_1Sec*2);
+    LcdStall(gd1Sec*2);
     
     BatteryTest_Z2170P(ptr);                    //7 
-    LcdStall(stall_1Sec*2);
+    LcdStall(gd1Sec*2);
     
     LEDTest_Z2170P(ptr);                        //8
-    LcdStall(stall_1Sec*2);
+    LcdStall(gd1Sec*2);
     
     BarcodeTest_Z2170P(ptr);                    //9 
-    LcdStall(stall_1Sec*2);
+    LcdStall(gd1Sec*2);
     
     /*AudioAndMIC_Z2170P(ptr);                  //
-    LcdStall(stall_1Sec*2);*/
+    LcdStall(gd1Sec*2);*/
     
-    KeypadFunc_Z2170P(ptr);                     //a
-    LcdStall(stall_1Sec*2);
+    /*KeypadFunc_Z2170P(ptr);                   //a
+    LcdStall(gd1Sec*2);*/
     
     /*BurnIn_Z2170P(ptr);                       //b
-    LcdStall(stall_1Sec*2);*/
-	
-	OALLog(L"\r\n >>>All function tested...\r\n");
+    LcdStall(gd1Sec*2);*/
+
+    SecondaryBATFunc(ptr);
+    LcdStall(gd1Sec*2);
+    
+    RTCFunc(ptr);
+	LcdStall(gd1Sec*2);
+
 }
 
 //------------------------------------------------------------------------------
@@ -217,12 +224,12 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 //
 VOID DisplayTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
-    BLShowLogo();
+    //BLShowLogo();
     OALBLMenuHeader(L"Display Test");
 	UNREFERENCED_PARAMETER(pMenu);
     OALLog(L"\r\n Running...\r\n");
-	//DisplayShow(BSP_Z2170P);
 	DisplayShow();
+	
 	OALLog(L"\rTested ok!! \r\n");
 }
 
@@ -231,14 +238,18 @@ VOID DisplayTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 //
 VOID BkTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 {
-	OALBLMenuHeader(L"LCM Backlight Test");
+    OALBLMenuHeader(L"LCM Backlight Test");
 	UNREFERENCED_PARAMETER(pMenu);
 	
 	DisplayShowBackground(0xFF);
     SetBacklight();
-    BLShowLogo();
-    
+    //BLShowLogo();
+    //
+    DisplayShowBackground(0xFF);
+    printStringMode(9, 9, RED_COLOR, GREEN_COLOR, gTestPass, 0);
+	LcdStall(gd1Sec*2);
     OALLog(L"\rTested ok!! \r\n");
+    DisplayShowBackground(0xFF);
 }
 //
 //
@@ -253,7 +264,7 @@ VOID SetBacklight()
     hGPIO = GPIOOpen();
 
     GPIOClrBit(hGPIO, BK_SET_GPIO);
-    LcdStall(stall_1Sec); 
+    LcdStall(gd1Sec); 
             
     for(i=1, k=0; i<=32; i++)
     {
@@ -262,7 +273,10 @@ VOID SetBacklight()
             GPIOClrBit(hGPIO, BK_SET_GPIO);
             LcdStall(1);
             GPIOSetBit(hGPIO, BK_SET_GPIO);
-            LcdStall(stall_1Sec);
+            //
+            DisplayShowBackground(0xFF);
+            printInt(9, 14, BLUE_COLOR, TRANSPARENT_COLOR, scale);
+            LcdStall(gd1Sec);
             OALLog(L"\r !Plus after brightness scale at %d %%\r\n",scale);
             scale+=10;
             k++;
@@ -273,64 +287,7 @@ VOID SetBacklight()
             LcdStall(1);
         }
     }   
-    /*for (i=0; i<BK_EXIT; i++)
-    {
-        OALLog(L" [%d] %s\r\n", i+1, lcmBacklight[i].bkName);
-	}
-    OALLog(L" [0] Exit and Continue\r\n");*/
-
-    //OALLog(L"\r\n Selection : ");
-
-    /*do{ 
-        key = OALBLMenuReadKey(TRUE);
-    }while(key < L'0' || key > L'0' + i);
-    // Show selection
-	OALLog(L"%c\r\n", key);*/
-	
-    /*switch(key)
-    {
-         case L'1':
-             GPIOClrBit(hGPIO, BK_SET_GPIO);
-             LcdStall(stall_1Sec); 
-            
-             for(i=1, k=0; i<=32; i++)
-             {
-                if(i == (value = AAT3123Code[k]))
-                {
-                    GPIOClrBit(hGPIO, BK_SET_GPIO);
-                    LcdStall(1);
-                    GPIOSetBit(hGPIO, BK_SET_GPIO);
-                    LcdStall(stall_1Sec);
-                    OALLog(L"\r !Plus after brightness scale at %d %%\r\n",scale);
-                    scale+=10;
-                    k++;
-                }else{
-                    GPIOClrBit(hGPIO, BK_SET_GPIO);
-                    LcdStall(1);
-                    GPIOSetBit(hGPIO, BK_SET_GPIO);
-                    LcdStall(1);
-                }
-            }
-            break;
-         case L'2':
-             for(i=1; i<=22; i++)
-             {
-                 GPIOClrBit(hGPIO, BK_SET_GPIO);
-                 LcdStall(1);
-                 GPIOSetBit(hGPIO, BK_SET_GPIO);
-                 LcdStall(1);
-             }
-             OALLog(L"\r !Now Backlight ON,default scale at 70%%\r\n");
-             break;
-         case L'3':
-             GPIOClrBit(hGPIO, BK_SET_GPIO);
-             LcdStall(1);
-             OALLog(L"\r !Now Backlight OFF\r\n");
-             break;
-    }*/
-    GPIOClose(hGPIO);
-    
-    //if (key == L'0') return;    
+    GPIOClose(hGPIO);  
 }
 
 //------------------------------------------------------------------------------
@@ -355,10 +312,14 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     //ULONG   test2_Address = (startAddress|0x0FFFFF00);
     //ULONG   ebootAddress = IMAGE_EBOOT_CODE_CA ;
     ULONG   i, testAddress =  0xFFFFFFFF;
-    BYTE    value, temp, pattern = 0x1A; 
+    BYTE    value, temp, y=0, pattern = 0x1A; 
     //ULONG   percentRange;
-    ULONG   percent;        
-     
+    ULONG   percent, tip;        
+    char    result[][30] = { "Scanning size per 1KB tip:",
+                             "*",
+                             "Failure"
+                           };
+    
 	UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"DRAM Test");
 
@@ -368,7 +329,9 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     //OALLog(L"\r\n !Test2 Address: 0X%08X", (test2_Address&test));
     OALLog(L"\r\n !End   Address: 0X%08X", (endAddress&testAddress));
     OALLog(L"\r\n------------------------------------------\n");
-  
+    //
+    DisplayShowBackground(0xFF);
+    printStringMode(y, 0, RED_COLOR, TRANSPARENT_COLOR, result, 0);
 	/*for(i=0, percent=0; i<(test1_Address - startAddress); i++)
 	{
         temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
@@ -387,11 +350,11 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 
         if( (percent%10) == 0){
             OALLog(L"\r\n-----------------------------------\n");
-            LcdStall(stall_1Sec); 
+            LcdStall(gd1Sec); 
         }
 	}
     OALLog(L"\r\n");
-    LcdStall(stall_1Sec*3);*/
+    LcdStall(gd1Sec*3);*/
 
     //OALLog(L"\r\n");
     for(i=0, percent=1; i<(test1_Address - startAddress); i++, percent++)
@@ -404,6 +367,9 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
         if(value != pattern)                                //check value(in address value) equal pattern
         {
             OALLog(L"\r\n Error Address: 0X%X", startAddress+i);
+            DisplayShowBackground(0xFF);
+            printStringMode(0, 0, RED_COLOR, GREEN_COLOR, result,2);
+            LcdStall(gd1Sec/1000);
         }/*else{
             OALLog(L"*");
             //percent++;
@@ -413,14 +379,31 @@ VOID DRAMTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 
         if( (percent%1024) == 0){   //scan 1kB show tip 
             OALLog(L"\rScanned size: %dk\r\n",percent/1024);
-            LcdStall(stall_1Sec/1000); 
+            //
+            tip = (percent/1024-1);
+
+            if((tip%30) == 0) ++y;
+            LcdStall(gd1Sec/2);
+            printStringMode(y, 0+tip, RED_COLOR, TRANSPARENT_COLOR, result, 1);
+            /*else
+                printStringMode(y+1, 0+tip, RED_COLOR, TRANSPARENT_COLOR, result, 1);*/ 
         }
+
+        /*if(i == ((test1_Address - startAddress)-1)){   //scan 1kB show tip 
+            result[i][30] = "Scanned size: 64KB...";
+            DisplayShowBackground(0xFF);
+            printStringMode(19, 1, RED_COLOR, GREEN_COLOR, result, i);
+            LcdStall(gd1Sec/1000); 
+        }*/
 	}
 	OALLog(L"\r\n");
     OALLog(L"\rTested ok!! \r\n");
-
-    //LcdStall(stall_1Sec*3); 
     
+    //
+    DisplayShowBackground(0xFF);
+    printStringMode(9, 9, RED_COLOR, GREEN_COLOR, gTestPass, 0);
+    LcdStall(gd1Sec*2);
+    DisplayShowBackground(0xFF);
 	/*for(i=0, Round=1; i<0xFF; i++)                         //Testing eboot, Ray  131113
     {
         if(i==65)
@@ -465,7 +448,7 @@ VOID KeypadBkTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     LcdSleep(delay*2);
   
     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);
-    LcdStall(stall_1Sec);
+    LcdStall(gd1Sec);
     GPIOClrBit(hGPIO, KP_LED_SET_GPIO);
     OALLog(L"\r !Now Keypad LED twice flash \r\n");
     LcdSleep(delay*2);
@@ -473,6 +456,10 @@ VOID KeypadBkTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     GPIOSetBit(hGPIO, KP_LED_SET_GPIO);         //Keypad LED liht Close 
 
     GPIOClose(hGPIO);
+    DisplayShowBackground(0xFF);
+    printStringMode(9, 9, RED_COLOR, GREEN_COLOR, gTestPass, 0);
+    LcdStall(gd1Sec*2);
+    DisplayShowBackground(0xFF);
     OALLog(L"\rTested ok!! \r\n");
 }
 
@@ -486,6 +473,10 @@ VOID TouchPanelTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     
     OALLog(L"\r Touch Panel Running...\r\n");  
     tsc2046Test();
+    DisplayShowBackground(0xFF);
+    printStringMode(9, 9, RED_COLOR, GREEN_COLOR, gTestPass, 0);
+    LcdStall(gd1Sec*2);
+    DisplayShowBackground(0xFF);
     OALLog(L"\rTested ok!! \r\n"); 
 }
 
@@ -732,7 +723,13 @@ int gaugeInformation(HANDLE hGPIO_I2C,int stdCMD)
 VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
 {
     bq_dataram data;
-    int LSB = 0, MSB = 0; 
+    int  LSB = 0, MSB = 0;
+    int  row = 1, col = 3;
+    char unit[10][30] = {"Battery Voltages: ",
+                         "Battery Temp: ",
+                         "C",
+                         "mV"
+                         };
     //int i, temp, sum, a[16];
     
     //*************************
@@ -798,12 +795,24 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     gaugeInformation(hGPIO_I2C,  0x00);        
     //data.NomAvailCap =(short) gaugeInformation(hGPIO_I2C,  bq27500CMD_NAC_LSB);
     //gaugeInformation(hGPIO_I2C,  0x00);
-    
+
+    DisplayShowBackground(0xFF);
+    printStringMode(row, col, BLUE_COLOR, TRANSPARENT_COLOR, unit, 0); 
+    printInt(row, col+=18, RED_COLOR, TRANSPARENT_COLOR,  ((int)data.Voltage) );
+    printStringMode(row, col+=5, BLUE_COLOR, TRANSPARENT_COLOR, unit, 3);
+    //
+    col = 3;
+    printStringMode(++row, col, BLUE_COLOR, TRANSPARENT_COLOR, unit, 1);
+    printInt(row, col+=14, RED_COLOR, TRANSPARENT_COLOR,  ((int)(data.Temp/10-273)) );
+    printStringMode(row, col+=3, BLUE_COLOR, TRANSPARENT_COLOR, unit, 2);
+    LcdStall(gd1Sec*3);  
+    DisplayShowBackground(0xFF);  
     
     OALLog(L" ~Reports the device type:0x%02X%02X \r\n",MSB ,LSB);
     OALLog(L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273);
     OALLog(L" ~Battery Voltages = %d mV\r\n",data.Voltage);
     //OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
+      
 }
 //
 //
@@ -849,30 +858,35 @@ VOID LEDTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	OALBLMenuHeader(L"LED Indicator Test");
     hGPIO = GPIOOpen();
     
-    //for(i=0; i<2; i++){       
+    //for(i=0; i<2; i++){
+        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);  
+        LcdStall(stall_1mSec);
+        GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
+        LcdStall(gd1Sec);
+        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
+        LcdStall(gd1Sec);
+        
         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);  
         LcdStall(stall_1mSec);
         GPIOSetBit(hGPIO, RED_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
+        LcdStall(gd1Sec);
         GPIOClrBit(hGPIO, RED_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
+        LcdStall(gd1Sec);
 
         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
         LcdStall(stall_1mSec);
         GPIOSetBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
+        LcdStall(gd1Sec);
         GPIOClrBit(hGPIO, BARCODE_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
-
-        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);  
-        LcdStall(stall_1mSec);
-        GPIOSetBit(hGPIO, GREEN_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
-        GPIOClrBit(hGPIO, GREEN_LED_SET_GPIO);
-        LcdStall(stall_1Sec);
+        LcdStall(gd1Sec);
     //}
-    OALLog(L"\rTested ok!! \r\n");
+    DisplayShowBackground(0xFF);
+    printStringMode(9, 9, RED_COLOR, GREEN_COLOR, gTestPass, 0);
+    LcdStall(gd1Sec*2);
+    DisplayShowBackground(0xFF);
     GPIOClose(hGPIO);
+    
+    OALLog(L"\rTested ok!! \r\n");    
 }
 
 //------------------------------------------------------------------------------
@@ -897,22 +911,22 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     HANDLE  hGPIO;
     UINT8   status, ch, running = 1;
     int     count = 30, inNum = 0;
-    //int     i = 0;
+//    int     i = 0;
     //WCHAR   key;
-    WCHAR   scan[50];
-       
+    //WCHAR   scan[50];
+    char      scan[10][30] = {"Did not any scan !"};
+    
 	OALBLMenuHeader(L"Barcode Test");
 	UNREFERENCED_PARAMETER(pMenu);	
 	
     hGPIO = GPIOOpen();
-    GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);   
+    GPIOSetMode(hGPIO, BCR_ENG_PWEN, GPIO_DIR_OUTPUT);         
     GPIOSetMode(hGPIO, BCR_ENG_TRIG, GPIO_DIR_OUTPUT);
     
     GPIOSetBit(hGPIO, BCR_ENG_PWEN);                    //Power ON
     EnableDeviceClocks(OMAP_DEVICE_UART1, TRUE); 
     pUartRegs = OALPAtoUA(GetAddressByDevice(OMAP_DEVICE_UART1));
-       
-    
+           
     // reset uart
 	OUTREG8(&pUartRegs->SYSC, UART_SYSC_RST);
     while ((INREG8(&pUartRegs->SYSS) & UART_SYSS_RST_DONE) == 0)
@@ -925,14 +939,18 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     OUTREG8(&pUartRegs->LCR, 0x00);
 
     // 8 bit, 1 stop bit, no parity
-    OUTREG8(&pUartRegs->LCR, 0x03);             
+    OUTREG8(&pUartRegs->LCR, 0x03);     
+    
     // Enable FIFO
     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN);
     OUTREG8(&pUartRegs->FCR, UART_FCR_FIFO_EN|UART_FCR_RX_FIFO_CLEAR|UART_FCR_TX_FIFO_CLEAR);
+
     // Pool
     OUTREG8(&pUartRegs->IER, 0);
+
     // Set DTR/RTS signals
     OUTREG8(&pUartRegs->MCR, 0); //UART_MCR_DTR|UART_MCR_RTS);
+
     // Configuration complete so select UART 16x mode
 	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
     BCRSetRTS(TRUE);
@@ -943,23 +961,25 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     {
 		//if(key == L'5')             // SCAN KEY
 		//{
+		    //start after barcode engine ON
 		    LcdSleep(500);
 			GPIOClrBit(hGPIO, BCR_ENG_TRIG);
 			BCRSetRTS(FALSE);
 			LcdSleep(500);
-			
+            
 			while( count-- )
 			{
 				status = INREG8(&pUartRegs->LSR);
 				if ((status & UART_LSR_RX_FIFO_E) != 0)
 				{
 					ch = INREG8(&pUartRegs->RHR);
-					scan[inNum++] = ch;
+					scan[1][inNum++] = ch;
 					//OALLog(L" %c\r\n",ch);
 				}
 				LcdSleep(100);
 			}
-			
+			//
+			DisplayShowBackground(0xFF);
 			GPIOSetBit(hGPIO, BCR_ENG_TRIG);
 			if( inNum > 0 )
 			{
@@ -968,11 +988,19 @@ VOID BarcodeTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
 				    i++;
 				}
 				OALLog(L"\r\n");*/
-				scan[inNum] = '\0';
-				OALLog(L"->%s\r\n",scan);
+				scan[1][inNum] = '\0';
+				//
+                printStringMode(1, 12, BLUE_COLOR, TRANSPARENT_COLOR, scan, 1);
+                LcdStall(gd1Sec*3);
+                DisplayShowBackground(0xFF);
+                //
+                OALLog(L"->%s\r\n",scan[1]);
 				LcdSleep(150);
 				break;
 			}else{
+			    printStringMode(1, 6, BLUE_COLOR, TRANSPARENT_COLOR, scan, 0);
+			    LcdStall(gd1Sec*3);
+                DisplayShowBackground(0xFF);
                 OALLog(L"\rDid not any scan !\r\n");
 				break;
 			}
@@ -1059,9 +1087,19 @@ BOOL KeypadFuncMatrix()
 {
     ULONG   ik, ix, row, column;
     USHORT  state=0;
-    int     k, entry, keyAction = 0; 
+    int     k, entry, keyAction = 0, rowPlace=2, colPlace=2; 
     BOOL    EXIT = FALSE;
     static int count = 26;
+    char    presskey[][30] = { "[ENTR]","[SCAN]","[ENTL]",
+                               "[ESC]","[BS]",
+                               "[L]","[UP]","[DOWN]","[R]",
+                               "[1]","[2]","[3]",
+                               "[4]","[5]","[6]",
+                               "[7]","[8]","[9]",
+                               "[ . ]","[ 0 ]","[+-*/]",
+                               "[F1]","[F2]","[F3]","[F4]",
+                               "[TAB]","[FN]","[SP]"
+                               };
     
     /*static int  ENTL=0, SCAN=0, ENTR=0, ESC=0, BS=0, L=0,
                 U=0, D=0, R=0, ONE=0, TWO=0, THREE=0, 
@@ -1112,116 +1150,144 @@ BOOL KeypadFuncMatrix()
         if( KeypadMatrixStatus(0, 5)){
             OALLog(L"[ENTL]         ");
             keyStatus[0]=1;
+            printStringMode(rowPlace, colPlace, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 0);
             //count = count++;
             //ENTL = 1;
         }else if( KeypadMatrixStatus(0, 4)){    //trouble
             OALLog(L"[SCAN]         ");
             keyStatus[1]=1;
+            printStringMode(rowPlace, colPlace+7, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 1);
             //count = count-1;
             //SCAN = 1;
         }else if( KeypadMatrixStatus(0, 2)){
             OALLog(L"[ENTR]         ");
             keyStatus[2]=1;
+            printStringMode(rowPlace, colPlace+14, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 2);
             //count = count-1;
             //ENTR = 1;
         }else if( KeypadMatrixStatus(0, 1)){
             OALLog(L"[ESC]  ");
             keyStatus[3]=1;
+            printStringMode(rowPlace+1, colPlace, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 3);
            //ESC = 1;
         }else if( KeypadMatrixStatus(0, 3)){
             OALLog(L"[BS]           ");
             keyStatus[4]=1;
+            printStringMode(rowPlace+1, colPlace+16, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 4);
             //BS = 1;
         }else if( KeypadMatrixStatus(1, 5)){
             OALLog(L"[L]   ");
             keyStatus[5]=1;
+            printStringMode(rowPlace+2, colPlace, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 5);
             //L = 1;
         }else if( KeypadMatrixStatus(1, 4)){
             OALLog(L"[UP]           ");
             keyStatus[6]=1;
+            printStringMode(rowPlace+2, colPlace+5, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 6);
             //U = 1;
         }else if( KeypadMatrixStatus(1, 0)){
             OALLog(L"[DOWN]         ");
             keyStatus[7]=1;
+            printStringMode(rowPlace+2, colPlace+10, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 7);
             //D = 1;
         }else if( KeypadMatrixStatus(1, 2)){
             OALLog(L"[R]          ");
             keyStatus[8]=1;
+            printStringMode(rowPlace+2, colPlace+17, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 8);
             //R = 1;
         }else if( KeypadMatrixStatus(2, 5)){
             OALLog(L"[1]          ");
             keyStatus[9]=1;
+            printStringMode(rowPlace+3, colPlace+2, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 9);
             //ONE = 1;
         }else if( KeypadMatrixStatus(1, 1)){
             OALLog(L"[2]          ");
             keyStatus[10]=1;
+            printStringMode(rowPlace+3, colPlace+8, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 10);
             //TWO = 1;
         }else if( KeypadMatrixStatus(1, 3)){
             OALLog(L"[3]          ");
             keyStatus[11]=1;
+            printStringMode(rowPlace+3, colPlace+15, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 11);
             //THREE = 1;
         }else if( KeypadMatrixStatus(2, 1)){
             OALLog(L"[4]          ");
             keyStatus[12]=1;
+            printStringMode(rowPlace+4, colPlace+2, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 12);
             //FOUR = 1;
         }else if( KeypadMatrixStatus(2, 4)){
             OALLog(L"[5]          ");
             keyStatus[13]=1;
+            printStringMode(rowPlace+4, colPlace+8, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 13);
             //FIVE = 1;
         }else if( KeypadMatrixStatus(2, 3)){
             OALLog(L"[6]          ");
             keyStatus[14]=1;
+            printStringMode(rowPlace+4, colPlace+15, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 14);
             //SIX = 1;
         }else if( KeypadMatrixStatus(3, 5)){
             OALLog(L"[7]          ");
             keyStatus[15]=1;
+            printStringMode(rowPlace+5, colPlace+2, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 15);
             //SEVEN = 1;
-        }else if( KeypadMatrixStatus(2, 0))
+        }else if( KeypadMatrixStatus(2, 0)){
             OALLog(L"\r[8]          ");
+            printStringMode(rowPlace+5, colPlace+8, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 16);
             //EIGHT = 1
-        else if( KeypadMatrixStatus(2, 2)){
+        }else if( KeypadMatrixStatus(2, 2)){
             OALLog(L"[9]   ");
             keyStatus[16]=1;
+            printStringMode(rowPlace+5, colPlace+15, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 17);
             //NINE = 1;
         }else if( KeypadMatrixStatus(3, 4)){
             OALLog(L"[0]          ");
             keyStatus[17]=1;
+            printStringMode(rowPlace+6, colPlace+7, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 19);
             //ZERO = 1;
         }else if( KeypadMatrixStatus(3, 1)){
             OALLog(L"[.]          ");
             keyStatus[18]=1;
+            printStringMode(rowPlace+6, colPlace, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 18);
             //DOT = 1;
         }else if( KeypadMatrixStatus(4, 1)){
             OALLog(L"[+-*/]");
             keyStatus[19]=1;
+            printStringMode(rowPlace+6, colPlace+15, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 20);
             //PLUS = 1;
         }else if( KeypadMatrixStatus(3, 3)){
             OALLog(L"[F1]          ");
             keyStatus[20]=1;
+            printStringMode(rowPlace+7, colPlace, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 21);
             //F1 = 1;
         }else if( KeypadMatrixStatus(4, 3)){
             OALLog(L"[F2]          ");
             keyStatus[21]=1;
+            printStringMode(rowPlace+7, colPlace+5, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 22);
             //F2 = 1;
         }else if( KeypadMatrixStatus(3, 0)){
             OALLog(L"[F3]          ");
+            printStringMode(rowPlace+7, colPlace+12, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 23);
             //F3 = 1;
         }else if( KeypadMatrixStatus(3, 2)){
             OALLog(L"[F4]          ");
             keyStatus[22]=1;
+            printStringMode(rowPlace+7, colPlace+16, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 24);
             //F4 = 1;
         }else if( KeypadMatrixStatus(4, 2)){
             OALLog(L"[SP]          ");
             keyStatus[23]=1;
+            printStringMode(rowPlace+8, colPlace+16, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 27);
             //SP = 1;
         }else if( KeypadMatrixStatus(4, 4)){
             OALLog(L"[FN]            ");
             keyStatus[24]=1;
+            printStringMode(rowPlace+8, colPlace+9, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 26);
             //FN = 1;
         }else if( KeypadMatrixStatus(4, 5)){    //KeypadMatrixStatus(4, 5)
             OALLog(L"[TAB]          ");
             keyStatus[25]=1;
             //TAB = 1;
+            printStringMode(rowPlace+8, colPlace+2, BLUE_COLOR, TRANSPARENT_COLOR, presskey, 25);
         }else{
             OALLog(L"Doesnt range. ");
         }
@@ -1232,6 +1298,7 @@ BOOL KeypadFuncMatrix()
 
         if(entry){
             clear();
+            LcdStall(gd1Sec);
             return EXIT = TRUE;
         }      
     }
@@ -1255,6 +1322,10 @@ VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu)
     //BOOL    LOOP = TRUE;
     //WCHAR   key;
     BOOL    EXIT;
+    char    message[10][30] =  {"You can press any key start,",
+                                "[ESC]+[BS] are cancel>>",
+                                ">>Test Break!!"
+                               };
     
     UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"Keypad Functional Test");
@@ -1281,21 +1352,30 @@ VOID KeypadFunc_Z2170P(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r [PWR][TAB][FN][SP] \r\n");
 	OALLog(L"\r\n");
     OALLog(L"\r Press any key the keypad testing, [ESC]+[BS] are cancel>>>\r\n");
-    
+    DisplayShowBackground(0xFF);
+    printStringMode(0, 1, RED_COLOR, TRANSPARENT_COLOR, message, 0);
+    printStringMode(1, 1, RED_COLOR, TRANSPARENT_COLOR, message, 1);
+    LcdStall(gd1Sec);
 	//while(){
     do{
 	    EXIT = KeypadFuncMatrix();
-        LcdStall(stall_1Sec/2); 
+        LcdStall(gd1Sec/2); 
         if(EXIT){
+            DisplayShowBackground(0xFF);
+            printStringMode(9, 9, RED_COLOR, GREEN_COLOR, gTestPass, 0);
+	        LcdStall(gd1Sec*2);
             OALLog(L"\r Tested ok!! \r\n");
+            DisplayShowBackground(0xFF);
             return;
 	    }	    
 	    /*if( (key = OALBLMenuReadKey(TRUE)) == L'0')
             goto BREAK;*/
-    }while((KeypadMatrixStatus(0, 1) & KeypadMatrixStatus(0, 3)) != TRUE);//??
+    }while((KeypadMatrixStatus(0, 1) & KeypadMatrixStatus(0, 3)) != TRUE);  //Breaking
     //}
 //BREAK:
-
+    printStringMode(17, 1, RED_COLOR, TRANSPARENT_COLOR, message, 2);
+    LcdStall(gd1Sec*3);
+    DisplayShowBackground(0xFF);
     OALLog(L"\r Test Break!! \r\n");
     return;
 }
@@ -1313,22 +1393,22 @@ VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu)
 	for(;;){
 	    //OALLog(L"\r\n >>>Display Testing...\r\n");
 	    DisplayTest_Z2170P(ptr);
-        LcdStall(stall_1Sec*1); 
+        LcdStall(gd1Sec*1); 
 
         //OALLog(L"\r\n >>>LCM Backlight Testing...\r\n");
 	    BkTest_Z2170P(ptr);
-        LcdStall(stall_1Sec*1); 
+        LcdStall(gd1Sec*1); 
 
         //OALLog(L"\r\n >>>DRAM Testing...\r\n");
         DRAMTest_Z2170P(ptr);
-        LcdStall(stall_1Sec*1); 
+        LcdStall(gd1Sec*1); 
 
         //OALLog(L"\r\n >>>Keypad Backlight Testing...\r\n");
         KeypadBkTest_Z2170P(ptr);
-        LcdStall(stall_1Sec*1); 
+        LcdStall(gd1Sec*1); 
 
         LEDTest_Z2170P(ptr); 
-        LcdStall(stall_1Sec*1);
+        LcdStall(gd1Sec*1);
 	}
 }
 
@@ -1351,7 +1431,11 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
     ULONG  i, checkAddress =  0xFFFFFFFF;
     BYTE   value, temp, pattern = 0xAA, pattern2 = 0x55;
     BOOL   DOING = TRUE;
-    ULONG  percent;        
+    ULONG  percent;
+    int    row=0, col = 1;
+    char   scan[10][30] = { "Test pattern:0xAA ok!!",
+                            "Test pattern:0x55 ok!!" 
+                            };
      
 	UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"RAM Access Test(Completely)");
@@ -1362,6 +1446,12 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r\n------------------------------------------\r\n");
     
     while(DOING){
+        if((row%20)==0)                 //Ray   140305
+        {
+            DisplayShowBackground(0xFF);    
+            row=0;
+		}
+		
         for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
 	    {
             temp = *(volatile BYTE *)(startAddress + i);        //read data     ;temp(0x8000_0000) to get a address 
@@ -1381,8 +1471,9 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
             }
         }
         OALLog(L"\r\nTest pattern:0xAA ok!! \r\n");
+        printStringMode(row++, col, BLUE_COLOR, TRANSPARENT_COLOR, scan, 0);
         //OALLog(L"--------------------------------------------------\r\n");
-        LcdStall(stall_1Sec*3);
+        LcdStall(1000);
         
         for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
 	    {
@@ -1403,9 +1494,12 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
             }         
         }
         OALLog(L"\r\nTest pattern:0x55 ok!! \r\n");
+        printStringMode(row++, col, BLUE_COLOR, TRANSPARENT_COLOR, scan, 1);
         //OALLog(L"--------------------------------------------------\r\n");
-        LcdStall(stall_1Sec*3);
-    }   
+        LcdStall(1000);
+    }  
+
+    
 }
 
 //------------------------------------------------------------------------------
@@ -1416,10 +1510,13 @@ VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 {
 	HANDLE  hGPIO;
     UINT8   status, ch, DOING = 1;
-    int     count, inNum, data = 1;
+    int     count, inNum, value = 1,
+            row = 0, col = 3;
     //int     i = 0;
     //WCHAR   key;
-    WCHAR   scan[50];
+    //WCHAR   scan[50];
+    char      scan[10][30] = {"Did not any scan !",
+                              "\0" };
        	
 	OALBLMenuHeader(L"Auto Scan");
 	UNREFERENCED_PARAMETER(pMenu);	
@@ -1472,22 +1569,37 @@ VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 		    if ((status & UART_LSR_RX_FIFO_E) != 0)
 			{
 			    ch = INREG8(&pUartRegs->RHR);
-			    scan[inNum++] = ch;
+			    scan[1][inNum++] = ch;
 				//OALLog(L" %c\r\n",ch);
 			}
 			LcdSleep(100);
 			//OALLog(L"count %d\r\n",count);	
 	    }
-			
+        //
+        if((row%20)==0)                 //Ray   140305
+        {
+            DisplayShowBackground(0xFF);    
+            row=0;
+		}   
 		GPIOSetBit(hGPIO, BCR_ENG_TRIG);
+		
 		if( inNum > 0 )
 		{
-		    scan[inNum] = '\0';
-			OALLog(L"\rScan %d time: %s\r\n",data++, scan);
+		    scan[1][inNum] = '\0';
+		    printInt(row, 1, RED_COLOR, TRANSPARENT_COLOR, value); 
+		    printStringMode(row++, col, BLUE_COLOR, TRANSPARENT_COLOR, scan, 1);
+			LcdStall(250000);
+			OALLog(L"\rScan %d time: %s\r\n", value, scan[1]);
 			//break;
 		}else if(inNum == 0){
+		    printInt(row, 1, RED_COLOR, TRANSPARENT_COLOR, value);
+		    printStringMode(row++, col, BLUE_COLOR, TRANSPARENT_COLOR, scan, 0);
+			LcdStall(250000);
             OALLog(L"\rDid not any scan !\r\n");
-		}			
+		}
+	    value+=1;
+	    if(value == 10) col=4;
+	        
 		LcdSleep(300);
 	}
 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
@@ -1501,8 +1613,9 @@ VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 VOID SecondaryBATFunc(OAL_BLMENU_ITEM *pMenu)
 {
     UNREFERENCED_PARAMETER(pMenu);
+    ReadBBATVoltage();                //Backup battery
 
-    ReadBBVoltage();
+    //Check value 
 }
 
 //------------------------------------------------------------------------------
@@ -1511,26 +1624,13 @@ VOID SecondaryBATFunc(OAL_BLMENU_ITEM *pMenu)
 //
 VOID RTCFunc(OAL_BLMENU_ITEM *pMenu)
 {
-    char showChar[][30] = { "RTC Testing."};
-
-    /*HANDLE hTwl 
-    HANDLE hGPIO;
-    UCHAR  status;   
-
-    hGPIO = GPIOopen();
-    hTwl = TWLOpen();*/
     
     OALLog(L"\r\n Running...\r\n"); 
     UNREFERENCED_PARAMETER(pMenu);  
 
-    //GPIOSetBit(hGPIO, EN_SB_CHARGE);             // Backup battery charge
-    //TWLReadByteReg(void * hTWL,DWORD address,BYTE * data)
-    DisplayShowBackground(0xFF);
-    
-    //printString(6, 9, RED_COLOR, GREEN_COLOR, showChar);   //y, x
-    //BLShowMenu();   
+    DisplayShowBackground(0xFF); 
     ReadRTC();
-    LcdStall(stall_1Sec*5);
+    LcdStall(gd1Sec*3);
     DisplayShowBackground(0x00);
      
 }
@@ -1548,16 +1648,16 @@ VOID AllFunctionTest_Z2000(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r\n >>>All function testing...\r\n");    
 
 	/*DisplayTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*3);                         //2
+	LcdStall(gd1Sec*3);                         //2
   
 	BkTest_Z2170P(ptr);
-	LcdStall(stall_1Sec*3);                         //3
+	LcdStall(gd1Sec*3);                         //3
          
 	DRAMTest_Z2170P(ptr);                                  
-	LcdStall(stall_1Sec*3);                         //4 
+	LcdStall(gd1Sec*3);                         //4 
 	   
 	KeypadBkTest_Z2170P(ptr);                              
-	LcdStall(stall_1Sec*3);                         //5 */
+	LcdStall(gd1Sec*3);                         //5 */
 	OALLog(L"\r\n >>>All function tested...\r\n");
 }
 

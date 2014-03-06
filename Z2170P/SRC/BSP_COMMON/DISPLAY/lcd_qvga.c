@@ -395,7 +395,7 @@ BOOL LcdPdd_LCD_GetMode(
     DWORD   *pHeight,
     DWORD   *pPixelClock)
 {
-	RETAILMSG(1,(L"\n\r*** LcdPdd_LCD_GetMode ***\n\r"));     //e-test comment, Ray
+	//RETAILMSG(1,(L"\n\r*** LcdPdd_LCD_GetMode ***\n\r"));     //e-test comment, Ray
     LcdPdd_LCD_InitResolution();        
     
     //  Return default LCD parameters

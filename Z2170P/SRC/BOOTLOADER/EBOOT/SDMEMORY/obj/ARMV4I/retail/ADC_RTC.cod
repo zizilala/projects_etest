@@ -7,14 +7,14 @@
 	DCB	"-defaultlib:LIBCMT "
 	DCB	"-defaultlib:OLDNAMES "
 
-	EXPORT	|stall_1Sec| [ DATA ]
+	EXPORT	|stall1Sec| [ DATA ]
 
   00000			 AREA	 |.data|, DATA
 	 COMMON	|ghGPIO|, 0x4
 
 	 COMMON	|ghTwl|, 0x4
 
-|stall_1Sec| DCD 0xf4240
+|stall1Sec| DCD	0xf4240
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |EdbgVendorIds| DCW 0x0
@@ -81,7 +81,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47331| DCD	|$LN5@TWLWriteBy|
+|$T47355| DCD	|$LN5@TWLWriteBy|
 	DCD	0x40000803
 ; Function compile flags: /Ogspy
 
@@ -95,7 +95,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5000	 stmdb       sp!, {r12, lr}
-  0000c		 |$M47328|
+  0000c		 |$M47352|
 
 ; 52   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 
@@ -107,14 +107,14 @@
 
   00018	e89d6000	 ldmia       sp, {sp, lr}
   0001c	e12fff1e	 bx          lr
-  00020		 |$M47329|
+  00020		 |$M47353|
 
 			 ENDP  ; |TWLWriteByteReg|
 
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47343| DCD	|$LN5@TWLReadByt|
+|$T47367| DCD	|$LN5@TWLReadByt|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -126,7 +126,7 @@
 
   00000		 |$LN5@TWLReadByt|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47340|
+  00004		 |$M47364|
 
 ; 60   :     return TWLReadRegs(hTWL,address,data,sizeof(*data));
 
@@ -137,7 +137,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M47341|
+  00014		 |$M47365|
 
 			 ENDP  ; |TWLReadByteReg|
 
@@ -146,7 +146,7 @@
 	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47360| DCD	|$LN9@ADCRTCInit|
+|$T47384| DCD	|$LN9@ADCRTCInit|
 	DCD	0x40002e02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\adc_rtc.c
@@ -155,36 +155,37 @@
 
   00000		 |ADCRTCInit| PROC
 
-; 25   : {   
+; 26   : {   
 
   00000		 |$LN9@ADCRTCInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47357|
+  00008		 |$M47381|
 
-; 26   :     UCHAR   status;   
-; 27   :     UINT16  channels = 0x4;  // ADCIN2
+; 27   :     UCHAR   status;   
+; 28   :     UINT16  channels = 0x4;  // ADCIN2
 
   00008	e3a03004	 mov         r3, #4
   0000c	e1cd30b6	 strh        r3, [sp, #6]
 
-; 28   :  
-; 29   :     ghGPIO = GPIOOpen();
+; 29   :  
+; 30   :     ghGPIO = GPIOOpen();
 
   00010	eb000000	 bl          GPIOOpen
   00014	e59f2098	 ldr         r2, [pc, #0x98]
   00018	e1a03000	 mov         r3, r0
 
-; 30   :     //UNREFERENCED_PARAMETER(pMenu);  
-; 31   :     
-; 32   :     // Backup battery & ADC initial
-; 33   :     GPIOSetBit(ghGPIO, EN_SB_CHARGE);             // Backup battery charge 
+; 31   :     //UNREFERENCED_PARAMETER(pMenu);  
+; 32   :     
+; 33   :     // Backup battery & ADC initial
+; 34   :     GPIOSetBit(ghGPIO, EN_SB_CHARGE);              // Backup battery charge enable 
 
   0001c	e3a0108b	 mov         r1, #0x8B
   00020	e5823000	 str         r3, [r2]
   00024	eb000000	 bl          GPIOSetBit
 
-; 34   :     TWLReadByteReg(ghTwl, TWL_GPBR1, &status);  //
+; 35   : 
+; 36   :     TWLReadByteReg(ghTwl, TWL_GPBR1, &status);  
 
   00028	e59f4080	 ldr         r4, [pc, #0x80]
   0002c	e3a05801	 mov         r5, #1, 16
@@ -194,11 +195,11 @@
   0003c	e3851091	 orr         r1, r5, #0x91
   00040	eb000000	 bl          TWLReadRegs
 
-; 35   :     status |= 0x90;                             // MADC_HFCLK_EN & DEFAULT_MADC_CLK_EN
+; 37   :     status |= 0x90;                             // MADC_HFCLK_EN & DEFAULT_MADC_CLK_EN
 
   00044	e5dd3000	 ldrb        r3, [sp]
 
-; 36   :     TWLWriteRegs(ghTwl, TWL_GPBR1, &status, 1);
+; 38   :     TWLWriteRegs(ghTwl, TWL_GPBR1, &status, 1);
 
   00048	e5940000	 ldr         r0, [r4]
   0004c	e28d2000	 add         r2, sp, #0
@@ -208,7 +209,7 @@
   0005c	e3851091	 orr         r1, r5, #0x91
   00060	eb000000	 bl          TWLWriteRegs
 
-; 37   :     TWLWriteRegs(ghTwl, TWL_SW1AVERAGE_LSB, &channels, 2);
+; 39   :     TWLWriteRegs(ghTwl, TWL_SW1AVERAGE_LSB, &channels, 2);
 
   00064	e5940000	 ldr         r0, [r4]
   00068	e3a03802	 mov         r3, #2, 16
@@ -217,10 +218,10 @@
   00074	e28d2006	 add         r2, sp, #6
   00078	eb000000	 bl          TWLWriteRegs
 
-; 38   :     
-; 39   :     // RTC initial
-; 40   :     status = ((1 << 4)|(1 << 2)|(2 << 0)); 		// (1<<4)enable BBCharge, 01:3V ,10:500uA(01:150uA)  
-; 41   :     TWLWriteByteReg(ghTwl, TWL_BB_CFG, status);	
+; 40   :     
+; 41   :     // RTC initial
+; 42   :     status = ((1 << 4)|(1 << 2)|(2 << 0)); 	    //BKBAT Charge Enable, 01:3V ,10:500uA(01:150uA)	  
+; 43   :     TWLWriteByteReg(ghTwl, TWL_BB_CFG, status);	
 
   0007c	e5940000	 ldr         r0, [r4]
   00080	e3a03803	 mov         r3, #3, 16
@@ -233,8 +234,7 @@
   0009c	e5cd4004	 strb        r4, [sp, #4]
   000a0	eb000000	 bl          TWLWriteRegs
 
-; 42   :     
-; 43   : }
+; 44   : }
 
   000a4	e28dd008	 add         sp, sp, #8
   000a8	e8bd4030	 ldmia       sp!, {r4, r5, lr}
@@ -244,247 +244,331 @@
   000b0	00000000	 DCD         |ghTwl|
   000b4		 |$LN12@ADCRTCInit|
   000b4	00000000	 DCD         |ghGPIO|
-  000b8		 |$M47358|
+  000b8		 |$M47382|
 
 			 ENDP  ; |ADCRTCInit|
 
-	EXPORT	|ReadBBVoltage|
-	EXPORT	|??_C@_1BO@ECHFOKMI@?$AAV?$AAa?$AAl?$AAu?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|__$ArrayPad$| [ DATA ]
+	EXPORT	|ReadBBATVoltage|
+	EXPORT	|??_C@_1DM@LLBIOLLE@?$AAB?$AAa?$AAc?$AAk?$AAu?$AAp?$AA?5?$AAb?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAV?$AAa?$AAl?$AAu?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_02KMFAIEEM@mV?$AA@| [ DATA ]	; `string'
+	IMPORT	|gd1Sec|
 	IMPORT	|NKDbgPrintfW|
+	IMPORT	|printStringMode|
+	IMPORT	|printInt|
+	IMPORT	|DisplayShowBackground|
 	IMPORT	|LcdSleep|
 	IMPORT	|LcdStall|
 	IMPORT	|GPIOClrBit|
+	IMPORT	|__GSHandlerCheck|
+	IMPORT	|__security_cookie|
+	IMPORT	|memset|
+	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47376| DCD	|$LN13@ReadBBVolt|
-	DCD	0x40005c02
+|$T47405| DCD	|$LN13@ReadBBATVo|
+	DCD	0xc0008502
+
+  00000			 AREA	 |.xdata|, DATA
+|$T47401| DCD	0xffffffe4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BO@ECHFOKMI@?$AAV?$AAa?$AAl?$AAu?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@| DCB "V"
-	DCB	0x0, "a", 0x0, "l", 0x0, "u", 0x0, "e", 0x0, ":", 0x0, " "
-	DCB	0x0, "%", 0x0, "d", 0x0, " ", 0x0, "m", 0x0, "V", 0x0, 0xd
-	DCB	0x0, 0xa, 0x0, 0x0, 0x0			; `string'
+|??_C@_1DM@LLBIOLLE@?$AAB?$AAa?$AAc?$AAk?$AAu?$AAp?$AA?5?$AAb?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAV?$AAa?$AAl?$AAu?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@| DCB "B"
+	DCB	0x0, "a", 0x0, "c", 0x0, "k", 0x0, "u", 0x0, "p", 0x0, " "
+	DCB	0x0, "b", 0x0, "a", 0x0, "t", 0x0, "t", 0x0, "e", 0x0, "r"
+	DCB	0x0, "y", 0x0, " ", 0x0, "V", 0x0, "a", 0x0, "l", 0x0, "u"
+	DCB	0x0, "e", 0x0, ":", 0x0, " ", 0x0, "%", 0x0, "d", 0x0, " "
+	DCB	0x0, "m", 0x0, "V", 0x0, 0xd, 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
+
+  00000			 AREA	 |.rdata|, DATA, READONLY
+|??_C@_02KMFAIEEM@mV?$AA@| DCB "mV", 0x0		; `string'
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
 
-  00000		 |ReadBBVoltage| PROC
+  00000	00000000	 DCD         |__GSHandlerCheck|
+  00004	00000000	 DCD         |$T47401|
 
-; 47   : {
+  00008		 |ReadBBATVoltage| PROC
 
-  00000		 |$LN13@ReadBBVolt|
-  00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47373|
+; 48   : {
 
-; 48   :     UCHAR   status;
-; 49   :     UINT16  channels = 0x4;  // ADCIN2
-; 50   :     UINT8   counter = 0;
-; 51   :     UINT16  ADCValue;
-; 52   : 
-; 53   :     
-; 54   :     //UNREFERENCED_PARAMETER(pMenu);
-; 55   :     GPIOClrBit(ghGPIO, EN_SB_CHARGE);      //Cutoff Main battery
+  00008		 |$LN13@ReadBBATVo|
+  00008	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
+  0000c	e24dd034	 sub         sp, sp, #0x34
+  00010		 |$M47402|
+  00010	e59f3200	 ldr         r3, [pc, #0x200]
+  00014	e5933000	 ldr         r3, [r3]
+  00018	e58d3030	 str         r3, [sp, #0x30]
 
-  00008	e59f615c	 ldr         r6, [pc, #0x15C]
-  0000c	e3a03004	 mov         r3, #4
-  00010	e3a0108b	 mov         r1, #0x8B
-  00014	e5960000	 ldr         r0, [r6]
-  00018	e1cd30b4	 strh        r3, [sp, #4]
-  0001c	e3a04000	 mov         r4, #0
-  00020	eb000000	 bl          GPIOClrBit
+; 49   :     UCHAR   status;
+; 50   :     UINT16  channels = 0x4;  // ADCIN2
+; 51   :     UINT8   counter = 0;
+; 52   :     UINT16  ADCValue;
+; 53   :     char    unit[1][30] = {"mV"};
 
-; 56   :     LcdStall(stall_1Sec*2);
+  0001c	e59f11f0	 ldr         r1, [pc, #0x1F0]
+  00020	e3a0e004	 mov         lr, #4
+  00024	e3a0201b	 mov         r2, #0x1B
+  00028	e5d10002	 ldrb        r0, [r1, #2]
+  0002c	e1d130b0	 ldrh        r3, [r1]
+  00030	e3a01000	 mov         r1, #0
+  00034	e5cd0012	 strb        r0, [sp, #0x12]
+  00038	e28d0013	 add         r0, sp, #0x13
+  0003c	e1cd31b0	 strh        r3, [sp, #0x10]
+  00040	e1cde0bc	 strh        lr, [sp, #0xC]
+  00044	e3a04000	 mov         r4, #0
+  00048	eb000000	 bl          memset
 
-  00024	e59f313c	 ldr         r3, [pc, #0x13C]
-  00028	e5933000	 ldr         r3, [r3]
-  0002c	e1a00083	 mov         r0, r3, lsl #1
-  00030	eb000000	 bl          LcdStall
+; 54   : 
+; 55   :     //UNREFERENCED_PARAMETER(pMenu);
+; 56   :     GPIOClrBit(ghGPIO, EN_SB_CHARGE);           //Cutoff Main battery
 
-; 57   :     
-; 58   :     //power on MADC
-; 59   :     status = 0x01; // MADC ON
-; 60   : 	TWLWriteRegs(ghTwl, TWL_CTRL1, &status, 1);
+  0004c	e59f61bc	 ldr         r6, [pc, #0x1BC]
+  00050	e3a0108b	 mov         r1, #0x8B
+  00054	e5960000	 ldr         r0, [r6]
+  00058	eb000000	 bl          GPIOClrBit
 
-  00034	e59f5128	 ldr         r5, [pc, #0x128]
-  00038	e3a0e001	 mov         lr, #1
-  0003c	e3a03001	 mov         r3, #1
-  00040	e5950000	 ldr         r0, [r5]
-  00044	e28d2000	 add         r2, sp, #0
-  00048	e3a01802	 mov         r1, #2, 16
-  0004c	e5cde000	 strb        lr, [sp]
-  00050	eb000000	 bl          TWLWriteRegs
+; 57   :     LcdStall(stall1Sec*3);
 
-; 61   : 
-; 62   : 	// select the channels
-; 63   : 	TWLWriteRegs(ghTwl, TWL_SW1SELECT_LSB, &channels, 2);   //Using Asynchronous Conversion by SW1
+  0005c	e59f71a8	 ldr         r7, [pc, #0x1A8]
+  00060	e5973000	 ldr         r3, [r7]
+  00064	e0830083	 add         r0, r3, r3, lsl #1
+  00068	eb000000	 bl          LcdStall
 
-  00054	e5950000	 ldr         r0, [r5]
-  00058	e3a07802	 mov         r7, #2, 16
-  0005c	e3871006	 orr         r1, r7, #6
-  00060	e3a03002	 mov         r3, #2
-  00064	e28d2004	 add         r2, sp, #4
-  00068	eb000000	 bl          TWLWriteRegs
+; 58   :        
+; 59   :     //power on MADC
+; 60   :     status = 0x01; // MADC ON
+; 61   : 	TWLWriteRegs(ghTwl, TWL_CTRL1, &status, 1);
 
-; 64   : 
-; 65   : 	//start conversion	
-; 66   :     status = (1<<5);            // TWL_MADC_CTRL_SW_TOGGLE;
-; 67   : 	TWLWriteRegs(ghTwl, TWL_CTRL_SW1, &status, 1);
-
-  0006c	e5950000	 ldr         r0, [r5]
-  00070	e3a0e020	 mov         lr, #0x20
+  0006c	e59f5194	 ldr         r5, [pc, #0x194]
+  00070	e3a0e001	 mov         lr, #1
   00074	e3a03001	 mov         r3, #1
-  00078	e28d2000	 add         r2, sp, #0
-  0007c	e3871012	 orr         r1, r7, #0x12
-  00080	e5cde000	 strb        lr, [sp]
-  00084	eb000000	 bl          TWLWriteRegs
+  00078	e5950000	 ldr         r0, [r5]
+  0007c	e28d2008	 add         r2, sp, #8
+  00080	e3a01802	 mov         r1, #2, 16
+  00084	e5cde008	 strb        lr, [sp, #8]
+  00088	eb000000	 bl          TWLWriteRegs
 
-; 68   : 
-; 69   :     // waits for conversion complete
-; 70   :     status = 0;
+; 62   : 
+; 63   : 	// select the channels
+; 64   : 	TWLWriteRegs(ghTwl, TWL_SW1SELECT_LSB, &channels, 2);   //Using Asynchronous Conversion by SW1
 
-  00088	e3a03000	 mov         r3, #0
-  0008c	e5cd3000	 strb        r3, [sp]
-  00090		 |$LL4@ReadBBVolt|
+  0008c	e5950000	 ldr         r0, [r5]
+  00090	e3a08802	 mov         r8, #2, 16
+  00094	e3881006	 orr         r1, r8, #6
+  00098	e3a03002	 mov         r3, #2
+  0009c	e28d200c	 add         r2, sp, #0xC
+  000a0	eb000000	 bl          TWLWriteRegs
 
-; 71   :     while(counter++ < 0xFF)
-; 72   :     {
-; 73   :         TWLReadRegs(ghTwl, TWL_CTRL_SW1, &status, 1);
+; 65   : 
+; 66   : 	//start conversion	
+; 67   :     status = (1<<5);            // TWL_MADC_CTRL_SW_TOGGLE;
+; 68   : 	TWLWriteRegs(ghTwl, TWL_CTRL_SW1, &status, 1);
 
-  00090	e5950000	 ldr         r0, [r5]
-  00094	e284e001	 add         lr, r4, #1
-  00098	e3a03001	 mov         r3, #1
-  0009c	e28d2000	 add         r2, sp, #0
-  000a0	e3871012	 orr         r1, r7, #0x12
-  000a4	e20e40ff	 and         r4, lr, #0xFF
-  000a8	eb000000	 bl          TWLReadRegs
+  000a4	e5950000	 ldr         r0, [r5]
+  000a8	e3a0e020	 mov         lr, #0x20
+  000ac	e3a03001	 mov         r3, #1
+  000b0	e28d2008	 add         r2, sp, #8
+  000b4	e3881012	 orr         r1, r8, #0x12
+  000b8	e5cde008	 strb        lr, [sp, #8]
+  000bc	eb000000	 bl          TWLWriteRegs
 
-; 74   :         if(status & 0x02)
+; 69   : 
+; 70   :     // waits for conversion complete
+; 71   :     status = 0;
 
-  000ac	e5dd3000	 ldrb        r3, [sp]
-  000b0	e3130002	 tst         r3, #2
-  000b4	1a000003	 bne         |$LN8@ReadBBVolt|
+  000c0	e3a03000	 mov         r3, #0
+  000c4	e5cd3008	 strb        r3, [sp, #8]
+  000c8		 |$LL4@ReadBBATVo|
 
-; 75   :         {
-; 76   :             break;
-; 77   :         }
-; 78   :         LcdSleep(10);
-
-  000b8	e3a0000a	 mov         r0, #0xA
-  000bc	eb000000	 bl          LcdSleep
-  000c0	e35400ff	 cmp         r4, #0xFF
-  000c4	3afffff1	 bcc         |$LL4@ReadBBVolt|
-  000c8		 |$LN8@ReadBBVolt|
-
-; 79   :     }
-; 80   : 	TWLReadRegs(ghTwl, TWL_GPCH2_LSB, &ADCValue, sizeof(ADCValue));
+; 72   :     while(counter++ < 0xFF)
+; 73   :     {
+; 74   :         TWLReadRegs(ghTwl, TWL_CTRL_SW1, &status, 1);
 
   000c8	e5950000	 ldr         r0, [r5]
-  000cc	e3a03802	 mov         r3, #2, 16
-  000d0	e383103b	 orr         r1, r3, #0x3B
-  000d4	e3a03002	 mov         r3, #2
-  000d8	e28d2002	 add         r2, sp, #2
-  000dc	eb000000	 bl          TWLReadRegs
+  000cc	e284e001	 add         lr, r4, #1
+  000d0	e3a03001	 mov         r3, #1
+  000d4	e28d2008	 add         r2, sp, #8
+  000d8	e3881012	 orr         r1, r8, #0x12
+  000dc	e20e40ff	 and         r4, lr, #0xFF
+  000e0	eb000000	 bl          TWLReadRegs
 
-; 81   : 
-; 82   : 	ADCValue = (ADCValue >> 6) * 5000 / 0x3ff;      //UINT16 acquire 10bit, 2.5V*2 = 5000mV, 1024 
+; 75   :         if(status & 0x02)
 
-  000e0	e1dd30b2	 ldrh        r3, [sp, #2]
-  000e4	e3a02c13	 mov         r2, #0x13, 24
-  000e8	e382e088	 orr         lr, r2, #0x88
-  000ec	e1a01323	 mov         r1, r3, lsr #6
-  000f0	e59f3068	 ldr         r3, [pc, #0x68]
-  000f4	e0000e91	 mul         r0, r1, lr
-  000f8	e0c32390	 smull       r2, r3, r0, r3
-  000fc	e0233e91	 mla         r3, r1, lr, r3
-  00100	e1a034c3	 mov         r3, r3, asr #9
-  00104	e0833fa3	 add         r3, r3, r3, lsr #31
-  00108	e1a01803	 mov         r1, r3, lsl #16
-  0010c	e1a01821	 mov         r1, r1, lsr #16
-  00110	e1cd10b2	 strh        r1, [sp, #2]
+  000e4	e5dd3008	 ldrb        r3, [sp, #8]
+  000e8	e3130002	 tst         r3, #2
+  000ec	1a000003	 bne         |$LN8@ReadBBATVo|
 
-; 83   : 
-; 84   :     if(ADCValue < 4000)
+; 76   :         {
+; 77   :             break;
+; 78   :         }
+; 79   :         LcdSleep(10);
 
-  00114	e3510efa	 cmp         r1, #0xFA, 28
-  00118	2a000003	 bcs         |$LN1@ReadBBVolt|
+  000f0	e3a0000a	 mov         r0, #0xA
+  000f4	eb000000	 bl          LcdSleep
+  000f8	e35400ff	 cmp         r4, #0xFF
+  000fc	3afffff1	 bcc         |$LL4@ReadBBATVo|
+  00100		 |$LN8@ReadBBATVo|
 
-; 85   :         GPIOSetBit(ghGPIO, EN_SB_CHARGE); 
+; 80   :     }
+; 81   : 	TWLReadRegs(ghTwl, TWL_GPCH2_LSB, &ADCValue, sizeof(ADCValue));     //ADIN2
 
-  0011c	e5960000	 ldr         r0, [r6]
-  00120	e3a0108b	 mov         r1, #0x8B
-  00124	eb000000	 bl          GPIOSetBit
-  00128	e1dd10b2	 ldrh        r1, [sp, #2]
-  0012c		 |$LN1@ReadBBVolt|
+  00100	e5950000	 ldr         r0, [r5]
+  00104	e3a03802	 mov         r3, #2, 16
+  00108	e383103b	 orr         r1, r3, #0x3B
+  0010c	e3a03002	 mov         r3, #2
+  00110	e28d200a	 add         r2, sp, #0xA
+  00114	eb000000	 bl          TWLReadRegs
 
-; 86   :     
-; 87   : 	OALLog(L"Value: %d mV\r\n", ADCValue);
+; 82   : 
+; 83   :     /*//First, read backup battery charged for ADCValue, Ray 140303 
+; 84   : 	ADCValue = (ADCValue >> 6) * 5000 / 0x3ff;      //UINT16 acquire 10bit, 2.5V*2 = 5000mV, 1024 
+; 85   :     OALLog(L"Backup battery charged value: %d mV\r\n", ADCValue);    
+; 86   : 
+; 87   :     //Second, EN_SB_CHARGE pins OFF, Ray 140303 
+; 88   :     GPIOClrBit(ghGPIO, EN_SB_CHARGE);           //Cutoff Main battery
+; 89   :     LcdStall(stall1Sec*3);  */ 
+; 90   : 
+; 91   :     /*ADCValue = 0;                               //Clear value
+; 92   :     TWLReadRegs(ghTwl, TWL_GPCH2_LSB, &ADCValue, sizeof(ADCValue));     //ADIN2*/
+; 93   :     ADCValue = (ADCValue >> 6) * 5000 / 0x3ff;
 
-  0012c	e59f0028	 ldr         r0, [pc, #0x28]
-  00130	eb000000	 bl          NKDbgPrintfW
+  00118	e1dd30ba	 ldrh        r3, [sp, #0xA]
+  0011c	e3a02c13	 mov         r2, #0x13, 24
+  00120	e3824088	 orr         r4, r2, #0x88
+  00124	e1a01323	 mov         r1, r3, lsr #6
+  00128	e59f30d4	 ldr         r3, [pc, #0xD4]
+  0012c	e00e0491	 mul         lr, r1, r4
 
-; 88   :         
-; 89   : 	// power off MADC
-; 90   : 	status = 0x00; // MADCON
-; 91   : 	TWLWriteRegs(ghTwl, TWL_CTRL1, &status, 1);
+; 94   : 
+; 95   :     DisplayShowBackground(0xFF);
 
-  00134	e5950000	 ldr         r0, [r5]
-  00138	e3a0e000	 mov         lr, #0
-  0013c	e3a03001	 mov         r3, #1
-  00140	e28d2000	 add         r2, sp, #0
-  00144	e3a01802	 mov         r1, #2, 16
-  00148	e5cde000	 strb        lr, [sp]
-  0014c	eb000000	 bl          TWLWriteRegs
+  00130	e3a000ff	 mov         r0, #0xFF
+  00134	e0c3239e	 smull       r2, r3, lr, r3
+  00138	e0233491	 mla         r3, r1, r4, r3
+  0013c	e1a034c3	 mov         r3, r3, asr #9
+  00140	e0833fa3	 add         r3, r3, r3, lsr #31
+  00144	e1cd30ba	 strh        r3, [sp, #0xA]
+  00148	eb000000	 bl          DisplayShowBackground
 
-; 92   : }
+; 96   :     printInt(1, 11, BLUE_COLOR, TRANSPARENT_COLOR, (int)ADCValue);
 
-  00150	e28dd008	 add         sp, sp, #8
-  00154	e8bd40f0	 ldmia       sp!, {r4 - r7, lr}
-  00158	e12fff1e	 bx          lr
-  0015c		 |$LN14@ReadBBVolt|
-  0015c		 |$LN15@ReadBBVolt|
-  0015c	00000000	 DCD         |??_C@_1BO@ECHFOKMI@?$AAV?$AAa?$AAl?$AAu?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@|
-  00160		 |$LN16@ReadBBVolt|
-  00160	80200803	 DCD         0x80200803
-  00164		 |$LN17@ReadBBVolt|
-  00164	00000000	 DCD         |ghTwl|
-  00168		 |$LN18@ReadBBVolt|
-  00168	00000000	 DCD         |stall_1Sec|
-  0016c		 |$LN19@ReadBBVolt|
-  0016c	00000000	 DCD         |ghGPIO|
-  00170		 |$M47374|
+  0014c	e1dd10ba	 ldrh        r1, [sp, #0xA]
+  00150	e3a03009	 mov         r3, #9
+  00154	e3a02002	 mov         r2, #2
+  00158	e58d1000	 str         r1, [sp]
+  0015c	e3a0100b	 mov         r1, #0xB
+  00160	e3a00001	 mov         r0, #1
+  00164	eb000000	 bl          printInt
 
-			 ENDP  ; |ReadBBVoltage|
+; 97   :     printStringMode(1, 16, BLUE_COLOR, TRANSPARENT_COLOR, unit, 0);
+
+  00168	e3a02000	 mov         r2, #0
+  0016c	e28d3010	 add         r3, sp, #0x10
+  00170	e58d2004	 str         r2, [sp, #4]
+  00174	e58d3000	 str         r3, [sp]
+  00178	e3a03009	 mov         r3, #9
+  0017c	e3a02002	 mov         r2, #2
+  00180	e3a01010	 mov         r1, #0x10
+  00184	e3a00001	 mov         r0, #1
+  00188	eb000000	 bl          printStringMode
+
+; 98   :     OALLog(L"Backup battery Value: %d mV\r\n", ADCValue);
+
+  0018c	e1dd10ba	 ldrh        r1, [sp, #0xA]
+  00190	e59f0068	 ldr         r0, [pc, #0x68]
+  00194	eb000000	 bl          NKDbgPrintfW
+
+; 99   :     LcdStall(gd1Sec*2);  
+
+  00198	e59f305c	 ldr         r3, [pc, #0x5C]
+  0019c	e5933000	 ldr         r3, [r3]
+  001a0	e1a00083	 mov         r0, r3, lsl #1
+  001a4	eb000000	 bl          LcdStall
+
+; 100  :     DisplayShowBackground(0xFF);
+
+  001a8	e3a000ff	 mov         r0, #0xFF
+  001ac	eb000000	 bl          DisplayShowBackground
+
+; 101  :     
+; 102  :     if(ADCValue < 4000)
+
+  001b0	e1dd30ba	 ldrh        r3, [sp, #0xA]
+  001b4	e3530efa	 cmp         r3, #0xFA, 28
+
+; 103  :         GPIOSetBit(ghGPIO, EN_SB_CHARGE); 
+
+  001b8	35960000	 ldrcc       r0, [r6]
+  001bc	33a0108b	 movcc       r1, #0x8B
+  001c0	3b000000	 blcc        GPIOSetBit
+
+; 104  :         
+; 105  :     LcdStall(stall1Sec);    
+
+  001c4	e5970000	 ldr         r0, [r7]
+  001c8	eb000000	 bl          LcdStall
+
+; 106  : 	// power off MADC
+; 107  : 	status = 0x00; // MADCON
+; 108  : 	TWLWriteRegs(ghTwl, TWL_CTRL1, &status, 1);
+
+  001cc	e5950000	 ldr         r0, [r5]
+  001d0	e3a0e000	 mov         lr, #0
+  001d4	e3a03001	 mov         r3, #1
+  001d8	e28d2008	 add         r2, sp, #8
+  001dc	e3a01802	 mov         r1, #2, 16
+  001e0	e5cde008	 strb        lr, [sp, #8]
+  001e4	eb000000	 bl          TWLWriteRegs
+  001e8	e59d0030	 ldr         r0, [sp, #0x30]
+  001ec	eb000000	 bl          __security_check_cookie
+
+; 109  : 
+; 110  :     return; 
+; 111  : }
+
+  001f0	e28dd034	 add         sp, sp, #0x34
+  001f4	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
+  001f8	e12fff1e	 bx          lr
+  001fc		 |$LN14@ReadBBATVo|
+  001fc		 |$LN15@ReadBBATVo|
+  001fc	00000000	 DCD         |gd1Sec|
+  00200		 |$LN16@ReadBBATVo|
+  00200	00000000	 DCD         |??_C@_1DM@LLBIOLLE@?$AAB?$AAa?$AAc?$AAk?$AAu?$AAp?$AA?5?$AAb?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAV?$AAa?$AAl?$AAu?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@|
+  00204		 |$LN17@ReadBBATVo|
+  00204	80200803	 DCD         0x80200803
+  00208		 |$LN18@ReadBBATVo|
+  00208	00000000	 DCD         |ghTwl|
+  0020c		 |$LN19@ReadBBATVo|
+  0020c	00000000	 DCD         |stall1Sec|
+  00210		 |$LN20@ReadBBATVo|
+  00210	00000000	 DCD         |ghGPIO|
+  00214		 |$LN21@ReadBBATVo|
+  00214	00000000	 DCD         |??_C@_02KMFAIEEM@mV?$AA@|
+  00218		 |$LN22@ReadBBATVo|
+  00218	00000000	 DCD         |__security_cookie|
+  0021c		 |$M47403|
+
+			 ENDP  ; |ReadBBATVoltage|
 
 	EXPORT	|__$ArrayPad$| [ DATA ]
 	EXPORT	|ReadRTC|
-	EXPORT	|??_C@_1M@OMJPBPEL@?$AA?$HO?$AA?$HO?$AA?$CF?$AAd?$AA?6?$AA?$AA@| [ DATA ] ; `string'
-	EXPORT	|??_C@_1BM@HDDBMJFA@?$AAi?$AA?$CF?$AAd?$AA?0?$AA?5?$AAs?$AAt?$AAr?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?6?$AA?$AA@| [ DATA ] ; `string'
+	EXPORT	|??_C@_04GIBEOBFM@RTC?3?$AA@| [ DATA ]	; `string'
 	EXPORT	|??_C@_1EK@BMADCGGJ@?$AAR?$AAT?$AAC?$AA?3?$AA?5?$AA?$CF?$AA0?$AA4?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0@| [ DATA ] ; `string'
 	IMPORT	|TWLOpen|
 	IMPORT	|GPIOClose|
-	IMPORT	|printStringMode|
-	IMPORT	|__GSHandlerCheck|
-	IMPORT	|__security_cookie|
-	IMPORT	|__security_check_cookie|
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47433| DCD	|$LN27@ReadRTC|
-	DCD	0xc0008702
+|$T47463| DCD	|$LN30@ReadRTC|
+	DCD	0xc000be02
 
   00000			 AREA	 |.xdata|, DATA
-|$T47429| DCD	0xffffffd8
+|$T47459| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1M@OMJPBPEL@?$AA?$HO?$AA?$HO?$AA?$CF?$AAd?$AA?6?$AA?$AA@| DCB "~", 0x0
-	DCB	"~", 0x0, "%", 0x0, "d", 0x0, 0xa, 0x0, 0x0, 0x0 ; `string'
-
-  00000			 AREA	 |.rdata|, DATA, READONLY
-|??_C@_1BM@HDDBMJFA@?$AAi?$AA?$CF?$AAd?$AA?0?$AA?5?$AAs?$AAt?$AAr?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?6?$AA?$AA@| DCB "i"
-	DCB	0x0, "%", 0x0, "d", 0x0, ",", 0x0, " ", 0x0, "s", 0x0, "t"
-	DCB	0x0, "r", 0x0, ":", 0x0, " ", 0x0, "%", 0x0, "d", 0x0, 0xa
-	DCB	0x0, 0x0, 0x0				; `string'
+|??_C@_04GIBEOBFM@RTC?3?$AA@| DCB "RTC:", 0x0		; `string'
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1EK@BMADCGGJ@?$AAR?$AAT?$AAC?$AA?3?$AA?5?$AA?$CF?$AA0?$AA4?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0@| DCB "R"
@@ -501,239 +585,312 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47429|
+  00004	00000000	 DCD         |$T47459|
 
   00008		 |ReadRTC| PROC
 
-; 96   : {
+; 115  : {
 
-  00008		 |$LN27@ReadRTC|
+  00008		 |$LN30@ReadRTC|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
-  0000c	e24ddf53	 sub         sp, sp, #0x53, 30
-  00010		 |$M47430|
-  00010	e59f3208	 ldr         r3, [pc, #0x208]
+  0000c	e24ddf55	 sub         sp, sp, #0x55, 30
+  00010		 |$M47460|
+  00010	e59f32e4	 ldr         r3, [pc, #0x2E4]
   00014	e5933000	 ldr         r3, [r3]
-  00018	e58d3148	 str         r3, [sp, #0x148]
+  00018	e58d3150	 str         r3, [sp, #0x150]
 
-; 97   :     UCHAR status;
-; 98   : 	UCHAR bcdTime[6];
-; 99   :     char  showChar[10][30];
-; 100  :     int   i,x;
-; 101  :     char *str;
-; 102  :     
-; 103  : 	//UNREFERENCED_PARAMETER(pMenu);
-; 104  : 
-; 105  : 	TWLReadByteReg(ghTwl, TWL_RTC_CTRL_REG, &status);
+; 116  :     UCHAR  status;
+; 117  : 	UCHAR  bcdTime[SIZE];
+; 118  :     int    i, col=4, row=2;
+; 119  :     char   ReadBcdTime[10][30] = {  "/",
 
-  0001c	e59fb1f8	 ldr         r11, [pc, #0x1F8]
-  00020	e3a04803	 mov         r4, #3, 16
-  00024	e3a03001	 mov         r3, #1
-  00028	e59b0000	 ldr         r0, [r11]
-  0002c	e28d200c	 add         r2, sp, #0xC
-  00030	e3841029	 orr         r1, r4, #0x29
-  00034	eb000000	 bl          TWLReadRegs
+  0001c	e3a0302f	 mov         r3, #0x2F
+  00020	e3a0201c	 mov         r2, #0x1C
+  00024	e3a01000	 mov         r1, #0
+  00028	e28d0026	 add         r0, sp, #0x26
+  0002c	e1cd32b4	 strh        r3, [sp, #0x24]
+  00030	eb000000	 bl          memset
 
-; 106  : 	status |= TWL_RTC_CTRL_RUN | TWL_RTC_CTRL_GET_TIME; //RTC is running, TC register values are stored in latches
+; 120  :                                     ":",
 
-  00038	e5dd300c	 ldrb        r3, [sp, #0xC]
+  00034	e3a0303a	 mov         r3, #0x3A
+  00038	e3a0201c	 mov         r2, #0x1C
+  0003c	e3a01000	 mov         r1, #0
+  00040	e28d0044	 add         r0, sp, #0x44
+  00044	e1cd34b2	 strh        r3, [sp, #0x42]
+  00048	eb000000	 bl          memset
 
-; 107  : 	TWLWriteByteReg(ghTwl, TWL_RTC_CTRL_REG, status);
+; 121  :                                     "RTC:"
+; 122  :                                  };  
 
-  0003c	e59b0000	 ldr         r0, [r11]
-  00040	e28d2010	 add         r2, sp, #0x10
-  00044	e3833041	 orr         r3, r3, #0x41
-  00048	e5cd300c	 strb        r3, [sp, #0xC]
-  0004c	e5cd3010	 strb        r3, [sp, #0x10]
-  00050	e3a03001	 mov         r3, #1
-  00054	e3841029	 orr         r1, r4, #0x29
-  00058	eb000000	 bl          TWLWriteRegs
+  0004c	e59f02a4	 ldr         r0, [pc, #0x2A4]
+  00050	e3a02019	 mov         r2, #0x19
+  00054	e3a01000	 mov         r1, #0
+  00058	e5903000	 ldr         r3, [r0]
+  0005c	e5d0e004	 ldrb        lr, [r0, #4]
+  00060	e28d0065	 add         r0, sp, #0x65
+  00064	e58d3060	 str         r3, [sp, #0x60]
+  00068	e5cde064	 strb        lr, [sp, #0x64]
+  0006c	eb000000	 bl          memset
+  00070	e3a020d2	 mov         r2, #0xD2
+  00074	e3a01000	 mov         r1, #0
+  00078	e28d007e	 add         r0, sp, #0x7E
+  0007c	eb000000	 bl          memset
 
-; 108  : 
-; 109  : 	
-; 110  :     TWLReadByteReg(ghTwl, TWL_YEARS_REG,    &bcdTime[5]);
+; 123  :     
+; 124  : 	//UNREFERENCED_PARAMETER(pMenu);
+; 125  : 	TWLReadByteReg(ghTwl, TWL_RTC_CTRL_REG, &status);
 
-  0005c	e59b0000	 ldr         r0, [r11]
-  00060	e3a04803	 mov         r4, #3, 16
-  00064	e3841021	 orr         r1, r4, #0x21
-  00068	e3a03001	 mov         r3, #1
-  0006c	e28d2019	 add         r2, sp, #0x19
-  00070	eb000000	 bl          TWLReadRegs
-
-; 111  :     TWLReadByteReg(ghTwl, TWL_MONTHS_REG,   &bcdTime[4]);
-
-  00074	e59b0000	 ldr         r0, [r11]
-  00078	e3a03001	 mov         r3, #1
-  0007c	e28d2018	 add         r2, sp, #0x18
-  00080	e3841020	 orr         r1, r4, #0x20
-  00084	eb000000	 bl          TWLReadRegs
-
-; 112  :     TWLReadByteReg(ghTwl, TWL_DAYS_REG,     &bcdTime[3]);
-
-  00088	e59b0000	 ldr         r0, [r11]
-  0008c	e3a03001	 mov         r3, #1
-  00090	e28d2017	 add         r2, sp, #0x17
-  00094	e384101f	 orr         r1, r4, #0x1F
+  00080	e59f4264	 ldr         r4, [pc, #0x264]
+  00084	e3a05803	 mov         r5, #3, 16
+  00088	e3a03001	 mov         r3, #1
+  0008c	e5940000	 ldr         r0, [r4]
+  00090	e28d200c	 add         r2, sp, #0xC
+  00094	e3851029	 orr         r1, r5, #0x29
   00098	eb000000	 bl          TWLReadRegs
 
-; 113  :     TWLReadByteReg(ghTwl, TWL_HOURS_REG,    &bcdTime[2]);
+; 126  : 	status |= TWL_RTC_CTRL_RUN | TWL_RTC_CTRL_GET_TIME;     //RTC is running, TC register values are stored in latches, Ray
 
-  0009c	e59b0000	 ldr         r0, [r11]
-  000a0	e3a03001	 mov         r3, #1
-  000a4	e28d2016	 add         r2, sp, #0x16
-  000a8	e384101e	 orr         r1, r4, #0x1E
-  000ac	eb000000	 bl          TWLReadRegs
+  0009c	e5dd300c	 ldrb        r3, [sp, #0xC]
 
-; 114  :     TWLReadByteReg(ghTwl, TWL_MINUTES_REG,  &bcdTime[1]);
+; 127  : 	TWLWriteByteReg(ghTwl, TWL_RTC_CTRL_REG, status);
 
-  000b0	e59b0000	 ldr         r0, [r11]
+  000a0	e5940000	 ldr         r0, [r4]
+  000a4	e28d2010	 add         r2, sp, #0x10
+  000a8	e3833041	 orr         r3, r3, #0x41
+  000ac	e5cd300c	 strb        r3, [sp, #0xC]
+  000b0	e5cd3010	 strb        r3, [sp, #0x10]
   000b4	e3a03001	 mov         r3, #1
-  000b8	e28d2015	 add         r2, sp, #0x15
-  000bc	e384101d	 orr         r1, r4, #0x1D
-  000c0	eb000000	 bl          TWLReadRegs
+  000b8	e3851029	 orr         r1, r5, #0x29
+  000bc	eb000000	 bl          TWLWriteRegs
 
-; 115  :     TWLReadByteReg(ghTwl, TWL_SECONDS_REG,  &bcdTime[0]);
+; 128  : 
+; 129  :     TWLReadByteReg(ghTwl, TWL_YEARS_REG,    &bcdTime[5]);
 
-  000c4	e59b0000	 ldr         r0, [r11]
-  000c8	e3a03001	 mov         r3, #1
-  000cc	e28d2014	 add         r2, sp, #0x14
-  000d0	e384101c	 orr         r1, r4, #0x1C
+  000c0	e5940000	 ldr         r0, [r4]
+  000c4	e3a05803	 mov         r5, #3, 16
+  000c8	e3851021	 orr         r1, r5, #0x21
+  000cc	e3a03001	 mov         r3, #1
+  000d0	e28d2021	 add         r2, sp, #0x21
   000d4	eb000000	 bl          TWLReadRegs
 
-; 116  : 
-; 117  :     OALLog(L"RTC: %04d-%02d-%02d %02d:%02d:%02d\r\n" , 
-; 118  :             BCD2BIN(bcdTime[5]) + RTC_BASE_YEAR_MIN,
-; 119  : 			BCD2BIN(bcdTime[4]), BCD2BIN(bcdTime[3]) , BCD2BIN(bcdTime[2]),
-; 120  : 			BCD2BIN(bcdTime[1]), BCD2BIN(bcdTime[0]));
+; 130  :     TWLReadByteReg(ghTwl, TWL_MONTHS_REG,   &bcdTime[4]);
 
-  000d8	e5dde015	 ldrb        lr, [sp, #0x15]
-  000dc	e5dd0014	 ldrb        r0, [sp, #0x14]
-  000e0	e5dd7016	 ldrb        r7, [sp, #0x16]
-  000e4	e5dd8017	 ldrb        r8, [sp, #0x17]
-  000e8	e5dd9018	 ldrb        r9, [sp, #0x18]
-  000ec	e1a0222e	 mov         r2, lr, lsr #4
-  000f0	e1a03220	 mov         r3, r0, lsr #4
-  000f4	e1a01227	 mov         r1, r7, lsr #4
-  000f8	e0825102	 add         r5, r2, r2, lsl #2
-  000fc	e0834103	 add         r4, r3, r3, lsl #2
-  00100	e0816101	 add         r6, r1, r1, lsl #2
-  00104	e20e200f	 and         r2, lr, #0xF
-  00108	e200300f	 and         r3, r0, #0xF
-  0010c	e207100f	 and         r1, r7, #0xF
-  00110	e1a0e229	 mov         lr, r9, lsr #4
-  00114	e1a00228	 mov         r0, r8, lsr #4
-  00118	e0825085	 add         r5, r2, r5, lsl #1
-  0011c	e0834084	 add         r4, r3, r4, lsl #1
-  00120	e0816086	 add         r6, r1, r6, lsl #1
-  00124	e08e110e	 add         r1, lr, lr, lsl #2
-  00128	e209200f	 and         r2, r9, #0xF
-  0012c	e5dda019	 ldrb        r10, [sp, #0x19]
-  00130	e0800100	 add         r0, r0, r0, lsl #2
-  00134	e208300f	 and         r3, r8, #0xF
-  00138	e0822081	 add         r2, r2, r1, lsl #1
-  0013c	e58d4008	 str         r4, [sp, #8]
-  00140	e58d5004	 str         r5, [sp, #4]
-  00144	e58d6000	 str         r6, [sp]
-  00148	e0833080	 add         r3, r3, r0, lsl #1
-  0014c	e1a0122a	 mov         r1, r10, lsr #4
-  00150	e28110c8	 add         r1, r1, #0xC8
-  00154	e59f00bc	 ldr         r0, [pc, #0xBC]
-  00158	e081e101	 add         lr, r1, r1, lsl #2
-  0015c	e20a100f	 and         r1, r10, #0xF
-  00160	e081108e	 add         r1, r1, lr, lsl #1
-  00164	eb000000	 bl          NKDbgPrintfW
+  000d8	e5940000	 ldr         r0, [r4]
+  000dc	e3a03001	 mov         r3, #1
+  000e0	e28d2020	 add         r2, sp, #0x20
+  000e4	e3851020	 orr         r1, r5, #0x20
+  000e8	eb000000	 bl          TWLReadRegs
 
-; 121  : 
-; 122  :    for(i=0,x=3; i<=5; i++, x+2)
+; 131  :     TWLReadByteReg(ghTwl, TWL_DAYS_REG,     &bcdTime[3]);
 
-  00168	e3a04000	 mov         r4, #0
-  0016c	e28d6014	 add         r6, sp, #0x14
-  00170	e28d701c	 add         r7, sp, #0x1C
-  00174	e28d801c	 add         r8, sp, #0x1C
-  00178		 |$LL4@ReadRTC|
+  000ec	e5940000	 ldr         r0, [r4]
+  000f0	e3a03001	 mov         r3, #1
+  000f4	e28d201f	 add         r2, sp, #0x1F
+  000f8	e385101f	 orr         r1, r5, #0x1F
+  000fc	eb000000	 bl          TWLReadRegs
 
-; 123  :    {
-; 124  :       str = (char *)BCD2BIN(bcdTime[i]);
+; 132  :     TWLReadByteReg(ghTwl, TWL_HOURS_REG,    &bcdTime[2]);
 
-  00178	e7d4e006	 ldrb        lr, [r4, +r6]
+  00100	e5940000	 ldr         r0, [r4]
+  00104	e3a03001	 mov         r3, #1
+  00108	e28d201e	 add         r2, sp, #0x1E
+  0010c	e385101e	 orr         r1, r5, #0x1E
+  00110	eb000000	 bl          TWLReadRegs
 
-; 125  :       OALLog(L"i%d, str: %d\n", i, str);
+; 133  :     TWLReadByteReg(ghTwl, TWL_MINUTES_REG,  &bcdTime[1]);
 
-  0017c	e59f0090	 ldr         r0, [pc, #0x90]
-  00180	e1a01004	 mov         r1, r4
-  00184	e1a0322e	 mov         r3, lr, lsr #4
-  00188	e0832103	 add         r2, r3, r3, lsl #2
-  0018c	e20e300f	 and         r3, lr, #0xF
-  00190	e0835082	 add         r5, r3, r2, lsl #1
-  00194	e1a02005	 mov         r2, r5
-  00198	eb000000	 bl          NKDbgPrintfW
+  00114	e5940000	 ldr         r0, [r4]
+  00118	e3a03001	 mov         r3, #1
+  0011c	e28d201d	 add         r2, sp, #0x1D
+  00120	e385101d	 orr         r1, r5, #0x1D
+  00124	eb000000	 bl          TWLReadRegs
 
-; 126  :       if(i == 4){
+; 134  :     TWLReadByteReg(ghTwl, TWL_SECONDS_REG,  &bcdTime[0]);
 
-  0019c	e3540004	 cmp         r4, #4
+  00128	e5940000	 ldr         r0, [r4]
+  0012c	e3a03001	 mov         r3, #1
+  00130	e28d201c	 add         r2, sp, #0x1C
+  00134	e385101c	 orr         r1, r5, #0x1C
+  00138	eb000000	 bl          TWLReadRegs
 
-; 127  :        showChar[i][0] = *str;
+; 135  : 
+; 136  :     OALLog(L"RTC: %04d-%02d-%02d %02d:%02d:%02d\r\n" , 
+; 137  :             BCD2BIN(bcdTime[5]) + RTC_BASE_YEAR_MIN,
+; 138  : 			BCD2BIN(bcdTime[4]), BCD2BIN(bcdTime[3]) , BCD2BIN(bcdTime[2]),
+; 139  : 			BCD2BIN(bcdTime[1]), BCD2BIN(bcdTime[0]));
 
-  001a0	01d530d0	 ldreqsb     r3, [r5]
+  0013c	e5dde01f	 ldrb        lr, [sp, #0x1F]
+  00140	e5dd501c	 ldrb        r5, [sp, #0x1C]
+  00144	e5dd601d	 ldrb        r6, [sp, #0x1D]
+  00148	e5dd701e	 ldrb        r7, [sp, #0x1E]
+  0014c	e5dd3021	 ldrb        r3, [sp, #0x21]
+  00150	e1a02225	 mov         r2, r5, lsr #4
+  00154	e5dd4020	 ldrb        r4, [sp, #0x20]
+  00158	e1a03223	 mov         r3, r3, lsr #4
+  0015c	e28330c8	 add         r3, r3, #0xC8
+  00160	e0839103	 add         r9, r3, r3, lsl #2
+  00164	e5dd301f	 ldrb        r3, [sp, #0x1F]
+  00168	e0822102	 add         r2, r2, r2, lsl #2
+  0016c	e205b00f	 and         r11, r5, #0xF
+  00170	e1a01226	 mov         r1, r6, lsr #4
+  00174	e206500f	 and         r5, r6, #0xF
+  00178	e203600f	 and         r6, r3, #0xF
+  0017c	e5dd3020	 ldrb        r3, [sp, #0x20]
+  00180	e58d2014	 str         r2, [sp, #0x14]
+  00184	e0812101	 add         r2, r1, r1, lsl #2
+  00188	e1a04224	 mov         r4, r4, lsr #4
+  0018c	e58d2018	 str         r2, [sp, #0x18]
+  00190	e1a00227	 mov         r0, r7, lsr #4
+  00194	e207100f	 and         r1, r7, #0xF
+  00198	e203200f	 and         r2, r3, #0xF
+  0019c	e5dd3021	 ldrb        r3, [sp, #0x21]
+  001a0	e1a0e22e	 mov         lr, lr, lsr #4
+  001a4	e0847104	 add         r7, r4, r4, lsl #2
+  001a8	e59d4018	 ldr         r4, [sp, #0x18]
+  001ac	e08e810e	 add         r8, lr, lr, lsl #2
+  001b0	e59de014	 ldr         lr, [sp, #0x14]
+  001b4	e080a100	 add         r10, r0, r0, lsl #2
+  001b8	e59f0134	 ldr         r0, [pc, #0x134]
+  001bc	e203300f	 and         r3, r3, #0xF
+  001c0	e0854084	 add         r4, r5, r4, lsl #1
+  001c4	e081508a	 add         r5, r1, r10, lsl #1
+  001c8	e0831089	 add         r1, r3, r9, lsl #1
+  001cc	e08be08e	 add         lr, r11, lr, lsl #1
+  001d0	e0863088	 add         r3, r6, r8, lsl #1
+  001d4	e0822087	 add         r2, r2, r7, lsl #1
+  001d8	e58de008	 str         lr, [sp, #8]
+  001dc	e58d4004	 str         r4, [sp, #4]
+  001e0	e58d5000	 str         r5, [sp]
+  001e4	eb000000	 bl          NKDbgPrintfW
 
-; 128  :       }
-; 129  :        OALLog(L"~~%d\n", showChar[i][0]);
+; 140  : 
+; 141  :    
+; 142  :    //print at screen
+; 143  :    printStringMode(row, col, BLUE_COLOR, TRANSPARENT_COLOR, ReadBcdTime, 2); 
 
-  001a4	e59f0064	 ldr         r0, [pc, #0x64]
-  001a8	05cd3094	 streqb      r3, [sp, #0x94]
-  001ac	e0643204	 rsb         r3, r4, r4, lsl #4
-  001b0	e0873083	 add         r3, r7, r3, lsl #1
-  001b4	e1d310d0	 ldrsb       r1, [r3]
-  001b8	eb000000	 bl          NKDbgPrintfW
+  001e8	e3a02002	 mov         r2, #2
+  001ec	e28d3024	 add         r3, sp, #0x24
+  001f0	e58d2004	 str         r2, [sp, #4]
+  001f4	e58d3000	 str         r3, [sp]
+  001f8	e3a03009	 mov         r3, #9
+  001fc	e3a02002	 mov         r2, #2
+  00200	e3a01004	 mov         r1, #4
+  00204	e3a00002	 mov         r0, #2
+  00208	eb000000	 bl          printStringMode
 
-; 130  :         //else
-; 131  : 	    //showChar[i][0] = BCD2BIN(bcdTime[i]);
-; 132  :        printStringMode(8, x, RED_COLOR, GREEN_COLOR, showChar, i);
+; 144  :    col +=5;
 
-  001bc	e3a03001	 mov         r3, #1
-  001c0	e3a02000	 mov         r2, #0
-  001c4	e3a01003	 mov         r1, #3
-  001c8	e3a00008	 mov         r0, #8
-  001cc	e58d4004	 str         r4, [sp, #4]
-  001d0	e58d8000	 str         r8, [sp]
-  001d4	eb000000	 bl          printStringMode
-  001d8	e2844001	 add         r4, r4, #1
-  001dc	e3540005	 cmp         r4, #5
-  001e0	daffffe4	 ble         |$LL4@ReadRTC|
+  0020c	e3a04009	 mov         r4, #9
 
-; 133  :    }    
-; 134  : 
-; 135  :    GPIOClose(ghGPIO);
+; 145  :    for(i=5; i>=0; i--)
 
-  001e4	e59f3020	 ldr         r3, [pc, #0x20]
-  001e8	e5930000	 ldr         r0, [r3]
-  001ec	eb000000	 bl          GPIOClose
+  00210	e3a05005	 mov         r5, #5
+  00214	e28d801c	 add         r8, sp, #0x1C
+  00218	e3a09000	 mov         r9, #0
+  0021c	e28d6024	 add         r6, sp, #0x24
+  00220	e3a0a001	 mov         r10, #1
+  00224	e28d7024	 add         r7, sp, #0x24
+  00228		 |$LL7@ReadRTC|
 
-; 136  :    TWLOpen(ghTwl);
+; 146  :    {    
+; 147  :         printInt(row, col, BLUE_COLOR, TRANSPARENT_COLOR,  (0xFF&(int)BCD2BIN(bcdTime[i])) );
 
-  001f0	e59b0000	 ldr         r0, [r11]
-  001f4	eb000000	 bl          TWLOpen
-  001f8	e59d0148	 ldr         r0, [sp, #0x148]
-  001fc	eb000000	 bl          __security_check_cookie
+  00228	e7d5e008	 ldrb        lr, [r5, +r8]
+  0022c	e3a03009	 mov         r3, #9
+  00230	e3a02002	 mov         r2, #2
+  00234	e1a0122e	 mov         r1, lr, lsr #4
+  00238	e0810101	 add         r0, r1, r1, lsl #2
+  0023c	e20e100f	 and         r1, lr, #0xF
+  00240	e0811080	 add         r1, r1, r0, lsl #1
+  00244	e20110ff	 and         r1, r1, #0xFF
+  00248	e58d1000	 str         r1, [sp]
+  0024c	e1a01004	 mov         r1, r4
+  00250	e3a00002	 mov         r0, #2
+  00254	eb000000	 bl          printInt
 
-; 137  : }    
+; 148  :         if(i > 3){
 
-  00200	e28ddf53	 add         sp, sp, #0x53, 30
-  00204	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
-  00208	e12fff1e	 bx          lr
-  0020c		 |$LN28@ReadRTC|
-  0020c		 |$LN29@ReadRTC|
-  0020c	00000000	 DCD         |ghGPIO|
-  00210		 |$LN30@ReadRTC|
-  00210	00000000	 DCD         |??_C@_1M@OMJPBPEL@?$AA?$HO?$AA?$HO?$AA?$CF?$AAd?$AA?6?$AA?$AA@|
-  00214		 |$LN31@ReadRTC|
-  00214	00000000	 DCD         |??_C@_1BM@HDDBMJFA@?$AAi?$AA?$CF?$AAd?$AA?0?$AA?5?$AAs?$AAt?$AAr?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?6?$AA?$AA@|
-  00218		 |$LN32@ReadRTC|
-  00218	00000000	 DCD         |??_C@_1EK@BMADCGGJ@?$AAR?$AAT?$AAC?$AA?3?$AA?5?$AA?$CF?$AA0?$AA4?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0@|
-  0021c		 |$LN33@ReadRTC|
-  0021c	00000000	 DCD         |ghTwl|
-  00220		 |$LN34@ReadRTC|
-  00220	00000000	 DCD         |__security_cookie|
-  00224		 |$M47431|
+  00258	e3550003	 cmp         r5, #3
+  0025c	da000008	 ble         |$LN4@ReadRTC|
+
+; 149  :             printStringMode(row, col+=2, BLUE_COLOR, TRANSPARENT_COLOR, ReadBcdTime, 0); 
+
+  00260	e2844002	 add         r4, r4, #2
+  00264	e1a01004	 mov         r1, r4
+  00268	e3a03009	 mov         r3, #9
+  0026c	e3a02002	 mov         r2, #2
+  00270	e3a00002	 mov         r0, #2
+  00274	e58d9004	 str         r9, [sp, #4]
+  00278	e58d6000	 str         r6, [sp]
+  0027c	eb000000	 bl          printStringMode
+  00280	ea000009	 b           |$LN2@ReadRTC|
+  00284		 |$LN4@ReadRTC|
+
+; 150  :         }else if(i <3 && i > 0){
+
+  00284	e2453001	 sub         r3, r5, #1
+  00288	e3530001	 cmp         r3, #1
+
+; 151  :             printStringMode(row, col+=2, BLUE_COLOR, TRANSPARENT_COLOR, ReadBcdTime, 1); 
+
+  0028c	92844002	 addls       r4, r4, #2
+  00290	91a01004	 movls       r1, r4
+  00294	93a03009	 movls       r3, #9
+  00298	93a02002	 movls       r2, #2
+  0029c	93a00002	 movls       r0, #2
+  002a0	958da004	 strls       r10, [sp, #4]
+  002a4	958d7000	 strls       r7, [sp]
+  002a8	9b000000	 blls        printStringMode
+  002ac		 |$LN2@ReadRTC|
+
+; 152  :         }
+; 153  : 
+; 154  :         if(i == 3) col++;
+
+  002ac	e3550003	 cmp         r5, #3
+  002b0	02844001	 addeq       r4, r4, #1
+
+; 155  : 
+; 156  :         col+=1;    
+
+  002b4	e2844001	 add         r4, r4, #1
+  002b8	e2555001	 subs        r5, r5, #1
+  002bc	5affffd9	 bpl         |$LL7@ReadRTC|
+
+; 157  :     }
+; 158  : 
+; 159  :    GPIOClose(ghGPIO);
+
+  002c0	e59f3028	 ldr         r3, [pc, #0x28]
+  002c4	e5930000	 ldr         r0, [r3]
+  002c8	eb000000	 bl          GPIOClose
+
+; 160  :    TWLOpen(ghTwl);
+
+  002cc	e59f3018	 ldr         r3, [pc, #0x18]
+  002d0	e5930000	 ldr         r0, [r3]
+  002d4	eb000000	 bl          TWLOpen
+  002d8	e59d0150	 ldr         r0, [sp, #0x150]
+  002dc	eb000000	 bl          __security_check_cookie
+
+; 161  : }    
+
+  002e0	e28ddf55	 add         sp, sp, #0x55, 30
+  002e4	e8bd4ff0	 ldmia       sp!, {r4 - r11, lr}
+  002e8	e12fff1e	 bx          lr
+  002ec		 |$LN31@ReadRTC|
+  002ec		 |$LN32@ReadRTC|
+  002ec	00000000	 DCD         |ghTwl|
+  002f0		 |$LN33@ReadRTC|
+  002f0	00000000	 DCD         |ghGPIO|
+  002f4		 |$LN34@ReadRTC|
+  002f4	00000000	 DCD         |??_C@_1EK@BMADCGGJ@?$AAR?$AAT?$AAC?$AA?3?$AA?5?$AA?$CF?$AA0?$AA4?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?9?$AA?$CF?$AA0?$AA2?$AAd?$AA?5?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0?$AA2?$AAd?$AA?3?$AA?$CF?$AA0@|
+  002f8		 |$LN35@ReadRTC|
+  002f8	00000000	 DCD         |??_C@_04GIBEOBFM@RTC?3?$AA@|
+  002fc		 |$LN36@ReadRTC|
+  002fc	00000000	 DCD         |__security_cookie|
+  00300		 |$M47461|
 
 			 ENDP  ; |ReadRTC|
 

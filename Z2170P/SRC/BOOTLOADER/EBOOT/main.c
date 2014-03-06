@@ -89,8 +89,7 @@ extern BOOL WriteFlashNK(UINT32 address, UINT32 size);
 extern void HotKeyInit(HANDLE hTwl);
 extern BOOL omap_mcspi_init();
 extern void ClearDisplayBuffer();
-extern VOID ADCRTCInit(void);                                //Ray   140226
-
+extern VOID ADCRTCInit(void);                       //Ray   140226
 
 //------------------------------------------------------------------------------
 //Prototypes Functionality 
@@ -259,7 +258,6 @@ BOOL OEMPlatformInit()
     //OALLog(L"\r\n >>>Set hGPIO: %x \r\n",hGPIO); 
     
 	HotKeyInit(hTwl);                               //HotKey Initial ,Ray
-	ADCRTCInit();
     ghTwl = hTwl;                                   //assign give "ghTwl"           
     //OALLog(L"******hTwl: %X....\r\n", hTwl);      //address-1, Ray
 
@@ -474,7 +472,7 @@ ULONG OEMPreDownload()
     //BLReserveBootBlocks(); // brian
 #endif
 	
-	BLShowLogo();               // Ray 13115
+	BLShowLogo();                   // Ray 13115
 	
     //BLShowMenu();               //At screen show menu,invoke function go to cfg.c; function prototype in the eboot.h
 
@@ -598,9 +596,10 @@ ULONG OEMPreDownload()
     // Don't force the boot menu, use default action unless user breaks
     // into menu
     //bForceBootMenu = FALSE;   //e-test comment, Ray
-    bForceBootMenu = TRUE; 
+    bForceBootMenu = TRUE;
+    ADCRTCInit();               //Ray 140303
 retryBootMenu:
-	// Call configuration men
+	// Call configuration menu
     BLMenu(bForceBootMenu);
     
    

@@ -210,7 +210,7 @@ BOOL OALIoCtlHalInitRTC( UINT32 code,
 						 VOID *pOutBuffer, 
 						 UINT32 outSize, 
 						 UINT32 *pOutSize
-    )
+                        )
 {
     BOOL            rc = FALSE;
     SYSTEMTIME      *pGivenTime = (LPSYSTEMTIME) pInBuffer;
@@ -292,10 +292,10 @@ BOOL OALIoCtlHalInitRTC( UINT32 code,
         bcdTime[0] = BIN2BCD(pGivenTime->wSecond);
 
         //  Initialize RTC with given values
-        TWLWriteByteReg(s_rtc.hTWL, TWL_YEARS_REG, bcdTime[5]);
+        TWLWriteByteReg(s_rtc.hTWL, TWL_YEARS_REG,  bcdTime[5]);
         TWLWriteByteReg(s_rtc.hTWL, TWL_MONTHS_REG, bcdTime[4]);
-        TWLWriteByteReg(s_rtc.hTWL, TWL_DAYS_REG, bcdTime[3]);
-        TWLWriteByteReg(s_rtc.hTWL, TWL_HOURS_REG, bcdTime[2]);
+        TWLWriteByteReg(s_rtc.hTWL, TWL_DAYS_REG,   bcdTime[3]);
+        TWLWriteByteReg(s_rtc.hTWL, TWL_HOURS_REG,  bcdTime[2]);
         TWLWriteByteReg(s_rtc.hTWL, TWL_MINUTES_REG, bcdTime[1]);
         TWLWriteByteReg(s_rtc.hTWL, TWL_SECONDS_REG, bcdTime[0]);
 

@@ -146,7 +146,7 @@ void HotKeyFunction(HANDLE hTwl)
 		{
             if ((state & (1 << column)) != 0)
 			{
-                RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
+                //RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
 			}
 		}
 	}
@@ -183,8 +183,8 @@ void HotKeyColdReset(HANDLE hTwl)
 //
 VOID MenuSelectFunction(HANDLE hTwl)
 {
-    ULONG ik, ix, row, column;
-    USHORT state;
+    //ULONG ik, ix, row, column;
+    //USHORT state;
     //BOOL keyPressed = FALSE;
 SHOW_MENU:
     BLShowMenu(); 
@@ -192,7 +192,7 @@ SHOW_MENU:
     {
         TWLReadRegs(hTwl, TWL_LOGADDR_FULL_CODE_7_0, gMatrix, sizeof(gMatrix));  
                 
-        for(row = 0, ik = 0; row < 8; row++)
+        /*for(row = 0, ik = 0; row < 8; row++)
     	{
             // Get matrix state        
             ix = row;
@@ -212,7 +212,7 @@ SHOW_MENU:
                     RETAILMSG(TRUE, (L"HotKeyFunction: [%d,%d]\r\n",row ,column));
     			}
     		}
-    	}
+    	}*/
         
         if(matrixStatus(2, 5) ){            //press number 1
             AllFunctionTest_Z2170P(pMenu);
@@ -250,16 +250,18 @@ SHOW_MENU:
             RAMAccessTest(pMenu);
             //break;
             goto SHOW_MENU; 
-        }else if(matrixStatus(3, 2) ){      //press F4
+        }else if((matrixStatus(3, 2))||(matrixStatus(0, 4))){   //press Scan or F4
             AutoScanFunc(pMenu);
             //break;
             goto SHOW_MENU; 
         }else if(matrixStatus(4, 2) ){      //press SP
+            SecondaryBATFunc(pMenu);
+            goto SHOW_MENU; 
+        }else if(matrixStatus(4, 4) ){      //press SF
             RTCFunc(pMenu);
             goto SHOW_MENU; 
-        }                                   //press SP
-        LcdSleep(500);
-               
+        }                                   
+        LcdSleep(500);              
    }
 }
 
