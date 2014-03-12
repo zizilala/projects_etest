@@ -66,14 +66,12 @@ VOID DisplayShowBackground(UCHAR backColor);        //Ray   140218
 VOID ReadBBATVoltage(void);
 VOID ReadRTC(void);
 
-
 //VOID SetKeypadBacklight(void);
-
 
 //------------------------------------------------------------------------------
 //  Global variable
 //
-extern  HANDLE ghTwl;
+extern HANDLE ghTwl;
 extern char   gTestPass[][30];  
 extern DWORD  gd1Sec;
 extern DWORD  gd3Sec;
@@ -205,16 +203,16 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     /*AudioAndMIC_Z2170P(ptr);                  //
     LcdStall(gd1Sec*2);*/
     
-    /*KeypadFunc_Z2170P(ptr);                   //a
-    LcdStall(gd1Sec*2);*/
-    
-    /*BurnIn_Z2170P(ptr);                       //b
-    LcdStall(gd1Sec*2);*/
-
-    SecondaryBATFunc(ptr);
+    KeypadFunc_Z2170P(ptr);                      //F1
     LcdStall(gd1Sec*2);
     
-    RTCFunc(ptr);
+    /*BurnIn_Z2170P(ptr);                       //
+    LcdStall(gd1Sec*2);*/
+
+    SecondaryBATFunc(ptr);                      //SP
+    LcdStall(gd1Sec*2);
+    
+    RTCFunc(ptr);                               //SF
 	LcdStall(gd1Sec*2);
 
 }
@@ -812,7 +810,6 @@ VOID InitI2CWithBQ27510(HANDLE hGPIO_I2C)
     OALLog(L" ~Battery Temperature = %d C\r\n",(data.Temp/10)-273);
     OALLog(L" ~Battery Voltages = %d mV\r\n",data.Voltage);
     //OALLog(L" ~Battery Nominal Available Capacity = %d mAh\r\n",data.NomAvailCap);
-      
 }
 //
 //
@@ -1390,26 +1387,38 @@ VOID BurnIn_Z2170P(OAL_BLMENU_ITEM *pMenu)
     UNREFERENCED_PARAMETER(pMenu);
 	OALBLMenuHeader(L"Burn-In Test");
 	
-	for(;;){
+	do{
 	    //OALLog(L"\r\n >>>Display Testing...\r\n");
-	    DisplayTest_Z2170P(ptr);
+	    DisplayTest_Z2170P(ptr);                    //2
         LcdStall(gd1Sec*1); 
 
         //OALLog(L"\r\n >>>LCM Backlight Testing...\r\n");
-	    BkTest_Z2170P(ptr);
+	    BkTest_Z2170P(ptr);                         //3
         LcdStall(gd1Sec*1); 
 
         //OALLog(L"\r\n >>>DRAM Testing...\r\n");
-        DRAMTest_Z2170P(ptr);
+        DRAMTest_Z2170P(ptr);                       //4
         LcdStall(gd1Sec*1); 
 
         //OALLog(L"\r\n >>>Keypad Backlight Testing...\r\n");
-        KeypadBkTest_Z2170P(ptr);
+        KeypadBkTest_Z2170P(ptr);                   //5
         LcdStall(gd1Sec*1); 
 
-        LEDTest_Z2170P(ptr); 
+        BatteryTest_Z2170P(ptr);                    //7 
         LcdStall(gd1Sec*1);
-	}
+        
+        LEDTest_Z2170P(ptr);                        //8
+        LcdStall(gd1Sec*1);
+
+        BarcodeTest_Z2170P(ptr);                    //9 
+        LcdStall(gd1Sec*1);
+
+        SecondaryBATFunc(ptr);                      //SP
+        LcdStall(gd1Sec*1);
+    
+        RTCFunc(ptr);                               //SF
+        LcdStall(gd1Sec*1);
+	}while((KeypadMatrixStatus(0, 1) & KeypadMatrixStatus(0, 3)) != TRUE);
 }
 
 //------------------------------------------------------------------------------
@@ -1430,7 +1439,7 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
     ULONG  endAddress = startAddress|(256 *1024 *1024-1); //endAddress = startAddress + size(256MB) 
     ULONG  i, checkAddress =  0xFFFFFFFF;
     BYTE   value, temp, pattern = 0xAA, pattern2 = 0x55;
-    BOOL   DOING = TRUE;
+    //BOOL   DOING = TRUE;
     ULONG  percent;
     int    row=0, col = 1;
     char   scan[10][30] = { "Test pattern:0xAA ok!!",
@@ -1445,7 +1454,9 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
     OALLog(L"\r\n scan 100kB tip \".\""); 
     OALLog(L"\r\n------------------------------------------\r\n");
     
-    while(DOING){
+    //while(DOING){
+    do{
+        TWLReadRegs(ghTwl, TWL_LOGADDR_FULL_CODE_7_0, gKeypadMatrix, sizeof(gKeypadMatrix));    //cancel
         if((row%20)==0)                 //Ray   140305
         {
             DisplayShowBackground(0xFF);    
@@ -1473,7 +1484,7 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
         OALLog(L"\r\nTest pattern:0xAA ok!! \r\n");
         printStringMode(row++, col, BLUE_COLOR, TRANSPARENT_COLOR, scan, 0);
         //OALLog(L"--------------------------------------------------\r\n");
-        LcdStall(1000);
+        LcdStall(1);
         
         for(i=0, percent=1; i<(endAddress - startAddress); i++, percent++)
 	    {
@@ -1496,10 +1507,9 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
         OALLog(L"\r\nTest pattern:0x55 ok!! \r\n");
         printStringMode(row++, col, BLUE_COLOR, TRANSPARENT_COLOR, scan, 1);
         //OALLog(L"--------------------------------------------------\r\n");
-        LcdStall(1000);
-    }  
-
-    
+        LcdStall(1);
+    }while((KeypadMatrixStatus(0, 1) & KeypadMatrixStatus(0, 3)) != TRUE);  
+    DisplayShowBackground(0xFF);    
 }
 
 //------------------------------------------------------------------------------
@@ -1509,7 +1519,8 @@ VOID RAMAccessTest(OAL_BLMENU_ITEM *pMenu)
 VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 {
 	HANDLE  hGPIO;
-    UINT8   status, ch, DOING = 1;
+    UINT8   status, ch;
+    //UINT8   DOING = 1;
     int     count, inNum, value = 1,
             row = 0, col = 3;
     //int     i = 0;
@@ -1553,8 +1564,9 @@ VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 	OUTREG8(&pUartRegs->MDR1, UART_MDR1_UART16);
     BCRSetRTS(TRUE);
     
-    while(DOING)
-    {
+    //while(DOING)
+    do{
+        TWLReadRegs(ghTwl, TWL_LOGADDR_FULL_CODE_7_0, gKeypadMatrix, sizeof(gKeypadMatrix));    //cancel
         inNum = 0;
         count = 30;
         LcdSleep(500);
@@ -1601,8 +1613,9 @@ VOID AutoScanFunc(OAL_BLMENU_ITEM *pMenu)
 	    if(value == 10) col=4;
 	        
 		LcdSleep(300);
-	}
+	}while((KeypadMatrixStatus(0, 1) & KeypadMatrixStatus(0, 3)) != TRUE);
 	GPIOClrBit(hGPIO, BCR_ENG_PWEN);
+	DisplayShowBackground(0xFF);
 	GPIOClose(hGPIO);
 }
 

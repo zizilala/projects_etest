@@ -151,7 +151,7 @@ BUILD: [01:0000000148:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOLIBC=1
 BUILD: [01:0000000149:INFO  ] FULLLIBC.LIB found in TARGETLIBS; forcing NOCRTDLL=1
 BUILD: [01:0000000150:INFO  ] 	set LIB=C:\WINCE600\sdk\CE\lib
 BUILD: [01:0000000151:PROGC ] Linking C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe
-BUILD: [01:0000000152:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm73B.tmp
+BUILD: [01:0000000152:INFO  ] 	link /LARGEADDRESSAWARE -out:C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe -machine:thumb @C:\DOCUME~1\RAY~1.HUA\LOCALS~1\Temp\nm70D.tmp
 BUILD: [01:0000000153:INFO  ] Microsoft (R) Incremental Linker Version 8.00.50727.42
 BUILD: [01:0000000154:INFO  ] Copyright (C) Microsoft Corporation.  All rights reserved.
 BUILD: [01:0000000155:INFO  ] 
@@ -1302,69 +1302,71 @@ BUILD: [01:0000001299:INFO  ]
 BUILD: [01:0000001300:INFO  ] Copying C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.exe to C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\nk.exe for debugger
 BUILD: [01:0000001301:INFO  ] Found pTOC at 00006c08
 BUILD: [01:0000001302:INFO  ] No imports for nk.exe
-BUILD: [01:0000001303:INFO  ] Processing EBOOTSD
+BUILD: [01:0000001303:INFO  ] Processing ETEST
 BUILD: [01:0000001304:INFO  ] 
-BUILD: [01:0000001305:INFO  ] Writing C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\EBOOTSD.bin
-BUILD: [01:0000001306:INFO  ] Table of contents  87e316c4  00000020  (        32)
-BUILD: [01:0000001307:INFO  ] Writing ROM signature and TOC pointer at 87e00040
-BUILD: [01:0000001308:INFO  ] Kernel data copy section  87e316e4  00000010  (        16)
-BUILD: [01:0000001309:INFO  ] ROM Header                87e31670  00000054  (        84)
+BUILD: [01:0000001305:INFO  ] Writing C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ETEST.bin
+BUILD: [01:0000001306:INFO  ] Table of contents  800338b0  00000020  (        32)
+BUILD: [01:0000001307:INFO  ] Writing ROM signature and TOC pointer at 80002040
+BUILD: [01:0000001308:INFO  ] Kernel data copy section  800338d0  00000010  (        16)
+BUILD: [01:0000001309:INFO  ] ROM Header                8003385c  00000054  (        84)
 BUILD: [01:0000001310:INFO  ] First DLL Address:       4001c001
 BUILD: [01:0000001311:INFO  ] Last DLL Address:        4001c001
-BUILD: [01:0000001312:INFO  ] Physical Start Address:  87e00000
-BUILD: [01:0000001313:INFO  ] Physical End Address:    87e34194
+BUILD: [01:0000001312:INFO  ] Physical Start Address:  80002000
+BUILD: [01:0000001313:INFO  ] Physical End Address:    80036194
 BUILD: [01:0000001314:INFO  ] Start RAM:               87e80000
 BUILD: [01:0000001315:INFO  ] Start of free RAM:       87ec4000
 BUILD: [01:0000001316:INFO  ] End of RAM:              87ed0000
 BUILD: [01:0000001317:INFO  ] Number of Modules:       1
 BUILD: [01:0000001318:INFO  ] Number of Copy Sections: 1
-BUILD: [01:0000001319:INFO  ] Copy Section Offset:     87e316e4
+BUILD: [01:0000001319:INFO  ] Copy Section Offset:     800338d0
 BUILD: [01:0000001320:INFO  ] FileSys 4K Chunks/Mbyte: 128 <2Mbyte  128 2-4Mbyte  0 4-6Mbyte  0 >6Mbyte
 BUILD: [01:0000001321:INFO  ] CPU Type:                    01c2h
 BUILD: [01:0000001322:INFO  ] Miscellaneous Flags:         0002h
 BUILD: [01:0000001323:INFO  ] Total ROM size:          00034194 (    213396)
-BUILD: [01:0000001324:INFO  ] Starting ip:             87e01000
+BUILD: [01:0000001324:INFO  ] Starting ip:             80003000
 BUILD: [01:0000001325:INFO  ] Raw files size:          00000000
 BUILD: [01:0000001326:INFO  ] Compressed files size:   00000000
 BUILD: [01:0000001327:INFO  ] Compacting bin file...
 BUILD: [01:0000001328:INFO  ] Writing rom file...
-BUILD: [01:0000001329:INFO  ] Start 87e00000 Len 00000004
-BUILD: [01:0000001330:INFO  ] Start 87e00040 Len 00000008
-BUILD: [01:0000001331:INFO  ] Start 87e00048 Len 00000004
-BUILD: [01:0000001332:INFO  ] Start 87e01000 Len 00030670
-BUILD: [01:0000001333:INFO  ] Start 87e31670 Len 00000054
-BUILD: [01:0000001334:INFO  ] Start 87e316c4 Len 00000030
-BUILD: [01:0000001335:INFO  ] Start 87e32000 Len 00002194
-BUILD: [01:0000001336:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\EBOOTSD.nb0
+BUILD: [01:0000001329:INFO  ] Start 80002000 Len 00000004
+BUILD: [01:0000001330:INFO  ] Start 80002040 Len 00000008
+BUILD: [01:0000001331:INFO  ] Start 80002048 Len 00000004
+BUILD: [01:0000001332:INFO  ] Start 80003000 Len 0003085c
+BUILD: [01:0000001333:INFO  ] Start 8003385c Len 00000054
+BUILD: [01:0000001334:INFO  ] Start 800338b0 Len 00000030
+BUILD: [01:0000001335:INFO  ] Start 80034000 Len 00002194
+BUILD: [01:0000001336:INFO  ] Creating rom file C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ETEST.nb0
 BUILD: [01:0000001337:INFO  ] Done!
-BUILD: [01:0000001338:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.bin C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
-BUILD: [01:0000001339:INFO  ] 複製 1 個檔案
-BUILD: [01:0000001340:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\ebootsd.nb0 C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
-BUILD: [01:0000001341:INFO  ] 複製 1 個檔案
-BUILD: [00:0000001342:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
-BUILD: [00:0000001343:INFO  ] Done.
-BUILD: [00:0000001344:PROGC ] Done.
-BUILD: [00:0000001345:PROGC ]                        Files  Warnings  Errors
-BUILD: [00:0000001346:PROGC ] Midl                       0         0       0
-BUILD: [00:0000001347:PROGC ] Message                    0         0       0
-BUILD: [00:0000001348:PROGC ] Precomp Header             0         0       0
-BUILD: [00:0000001349:PROGC ] Resource                   0         0       0
-BUILD: [00:0000001350:PROGC ] MASM                       0         0       0
-BUILD: [00:0000001351:PROGC ] SHASM                      0         0       0
-BUILD: [00:0000001352:PROGC ] ARMASM                     2         0       0
-BUILD: [00:0000001353:PROGC ] MIPSASM                    0         0       0
-BUILD: [00:0000001354:PROGC ] C++                        0         0       0
-BUILD: [00:0000001355:PROGC ] C                         12         0       0
-BUILD: [00:0000001356:PROGC ] Static Libraries           0         0       0
-BUILD: [00:0000001357:PROGC ] Exe's                      1         6       0
-BUILD: [00:0000001358:PROGC ] Dll's                      0         0       0
-BUILD: [00:0000001359:PROGC ] Preprocess deffile         0         0       0
-BUILD: [00:0000001360:PROGC ] Resx                       0         0       0
-BUILD: [00:0000001361:PROGC ] CSharp Compile             0         0       0
-BUILD: [00:0000001362:PROGC ] Other                      0         0       0
-BUILD: [00:0000001363:PROGC ] 
-BUILD: [00:0000001364:PROGC ] Total                     15         6       0
+BUILD: [01:0000001338:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\Z2170PET.bin C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
+BUILD: [01:0000001339:INFO  ] 找不到檔案 - Z2170PET.bin
+BUILD: [01:0000001340:INFO  ] 複製 0 個檔案
+BUILD: [01:0000001341:INFO  ] 	xcopy /Q /I C:\WINCE600\platform\Z2170P\target\ARMV4I\retail\Z2170PET.nb0 C:\WINCE600\OSDesigns\Z2170P\Z2170P\RelDir\Z2170P_ARMV4I_Release
+BUILD: [01:0000001342:INFO  ] 找不到檔案 - Z2170PET.nb0
+BUILD: [01:0000001343:INFO  ] 複製 0 個檔案
+BUILD: [00:0000001344:PROGC ] Saving C:\WINCE600\PLATFORM\Z2170P\Build.dat.
+BUILD: [00:0000001345:INFO  ] Done.
+BUILD: [00:0000001346:PROGC ] Done.
+BUILD: [00:0000001347:PROGC ]                        Files  Warnings  Errors
+BUILD: [00:0000001348:PROGC ] Midl                       0         0       0
+BUILD: [00:0000001349:PROGC ] Message                    0         0       0
+BUILD: [00:0000001350:PROGC ] Precomp Header             0         0       0
+BUILD: [00:0000001351:PROGC ] Resource                   0         0       0
+BUILD: [00:0000001352:PROGC ] MASM                       0         0       0
+BUILD: [00:0000001353:PROGC ] SHASM                      0         0       0
+BUILD: [00:0000001354:PROGC ] ARMASM                     2         0       0
+BUILD: [00:0000001355:PROGC ] MIPSASM                    0         0       0
+BUILD: [00:0000001356:PROGC ] C++                        0         0       0
+BUILD: [00:0000001357:PROGC ] C                         12         0       0
+BUILD: [00:0000001358:PROGC ] Static Libraries           0         0       0
+BUILD: [00:0000001359:PROGC ] Exe's                      1         6       0
+BUILD: [00:0000001360:PROGC ] Dll's                      0         0       0
+BUILD: [00:0000001361:PROGC ] Preprocess deffile         0         0       0
+BUILD: [00:0000001362:PROGC ] Resx                       0         0       0
+BUILD: [00:0000001363:PROGC ] CSharp Compile             0         0       0
+BUILD: [00:0000001364:PROGC ] Other                      0         0       0
 BUILD: [00:0000001365:PROGC ] 
-BUILD: [00:0000001366:PROGC ] 6 Warnings,  0 Errors
-BUILD: [00:0000001367:PROGC ] GetSystemTimes (seconds): Idle: 10    Kernel: 17    User: 8    
-BUILD: [00:0000001368:PROGC ] Elapsed  time  (seconds): 13   
+BUILD: [00:0000001366:PROGC ] Total                     15         6       0
+BUILD: [00:0000001367:PROGC ] 
+BUILD: [00:0000001368:PROGC ] 6 Warnings,  0 Errors
+BUILD: [00:0000001369:PROGC ] GetSystemTimes (seconds): Idle: 13    Kernel: 23    User: 8    
+BUILD: [00:0000001370:PROGC ] Elapsed  time  (seconds): 15   

@@ -26,7 +26,6 @@
 #include "boot_cfg.h"
 #include "oal_alloc.h"
 #include "ceddkex.h"
-
 #include "bsp_cfg.h"
 #include "bsp_padcfg.h"
 #include "tps659xx.h"
@@ -171,7 +170,7 @@ BOOL OEMPlatformInit()
 #else
 	OALLog(L"Version: " BSP_EBLD_NAND_VERSION_STRING L"\r\n");
 #endif*/
-
+      
     // Soft reset GPTIMER1
     OUTREG32(&pTimerRegs->TIOCP, SYSCONFIG_SOFTRESET);
     // While until done
@@ -290,7 +289,7 @@ BOOL OEMPlatformInit()
         gDevice_prefix = BSP_DEVICE_35xx_PREFIX;
     }
     version = TWLReadIDCode(hTwl);
-
+    
     //Bootstrap message(4), Ray
     OALLog(L"TPS659XX Version 0x%02x (%s)\r\n", version,
         version == 0x00 ? L"ES1.0" : 
@@ -299,6 +298,13 @@ BOOL OEMPlatformInit()
         version == 0x30 ? L"ES1.3" : L"Unknown" );
 	
     g_ecctype = (UCHAR)dwEbootECCtype;
+    //Test value, Ray  
+    /*OALLog(L"INPUT_ENABLED (1<<0):%d\r\n", INPUT_ENABLED);
+    OALLog(L"INPUT_DISABLED (0<<0):%d\r\n", INPUT_DISABLED);
+    OALLog(L"PULL_RESISTOR_ENABLED (1<<1):%d\r\n", PULL_RESISTOR_ENABLED);  
+    OALLog(L"PULL_RESISTOR_DISABLED (0<<1):%d\r\n", PULL_RESISTOR_DISABLED);  
+    OALLog(L"PULLUP_RESISTOR (1<<2):%d\r\n", PULLUP_RESISTOR);  
+    OALLog(L"PULLDOWN_RESISTOR (0<<2):%d\r\n", PULLDOWN_RESISTOR);*/
 
 	//Bootstrap message(5), Ray
 	//HotKeyFunction(hTwl);   // Function Locate is right? would to changes it.      

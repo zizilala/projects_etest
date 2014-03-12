@@ -175,7 +175,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\hotkey.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47499| DCD	|$LN5@HotKeyInit|
+|$T47500| DCD	|$LN5@HotKeyInit|
 	DCD	0x40001402
 ; Function compile flags: /Ogspy
 
@@ -188,7 +188,7 @@
   00000		 |$LN5@HotKeyInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47496|
+  00008		 |$M47497|
   00008	e1a04000	 mov         r4, r0
   0000c	e3a05802	 mov         r5, #2, 16
 
@@ -224,14 +224,14 @@
   00044	e28dd004	 add         sp, sp, #4
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M47497|
+  00050		 |$M47498|
 
 			 ENDP  ; |HotKeyInit|
 
 	EXPORT	|matrixStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47510| DCD	|$LN7@matrixStat|
+|$T47511| DCD	|$LN7@matrixStat|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -242,7 +242,7 @@
 ; 88   : {
 
   00000		 |$LN7@matrixStat|
-  00000		 |$M47507|
+  00000		 |$M47508|
 
 ; 89   :     int temp;
 ; 90   :     BOOL event = FALSE;
@@ -271,7 +271,7 @@
   0001c		 |$LN8@matrixStat|
   0001c		 |$LN9@matrixStat|
   0001c	00000000	 DCD         |gMatrix|
-  00020		 |$M47508|
+  00020		 |$M47509|
 
 			 ENDP  ; |matrixStatus|
 
@@ -280,7 +280,7 @@
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47588| DCD	|$LN63@HotKeyFunc|
+|$T47589| DCD	|$LN63@HotKeyFunc|
 	DCD	0x40002501
 ; Function compile flags: /Ogspy
 
@@ -292,7 +292,7 @@
 
   00000		 |$LN63@HotKeyFunc|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47585|
+  00004		 |$M47586|
 
 ; 103  : 	//UINT8 matrix[8];
 ; 104  : 	ULONG ik, ix, row, column;
@@ -428,14 +428,14 @@
   0008c	00000000	 DCD         |hotkeyColdReset|
   00090		 |$LN66@HotKeyFunc|
   00090	00000000	 DCD         |gMatrix|
-  00094		 |$M47586|
+  00094		 |$M47587|
 
 			 ENDP  ; |HotKeyFunction|
 
 	EXPORT	|HotKeyColdReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47599| DCD	|$LN5@HotKeyCold|
+|$T47600| DCD	|$LN5@HotKeyCold|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -447,7 +447,7 @@
 
   00000		 |$LN5@HotKeyCold|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47596|
+  00004		 |$M47597|
 
 ; 177  :    HotKeyFunction(hTwl);
 
@@ -458,7 +458,7 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47597|
+  00010		 |$M47598|
 
 			 ENDP  ; |HotKeyColdReset|
 
@@ -482,8 +482,8 @@
 	IMPORT	|BLShowMenu|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47772| DCD	|$LN141@MenuSelect|
-	DCD	0x40005f01
+|$T47781| DCD	|$LN146@MenuSelect|
+	DCD	0x40006201
 ; Function compile flags: /Ogspy
 
   00000			 AREA	 |.text|, CODE, ARM
@@ -492,12 +492,12 @@
 
 ; 185  : {
 
-  00000		 |$LN141@MenuSelect|
+  00000		 |$LN146@MenuSelect|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47769|
+  00004		 |$M47778|
   00004	e1a06000	 mov         r6, r0
-  00008	e59f4168	 ldr         r4, [pc, #0x168]
-  0000c	e59f5160	 ldr         r5, [pc, #0x160]
+  00008	e59f4174	 ldr         r4, [pc, #0x174]
+  0000c	e59f516c	 ldr         r5, [pc, #0x16C]
   00010	e3a070db	 mov         r7, #0xDB
   00014		 |$SHOW_MENU$47419|
 
@@ -508,7 +508,7 @@
 ; 190  :     BLShowMenu(); 
 
   00014	eb000000	 bl          BLShowMenu
-  00018		 |$LL31@MenuSelect|
+  00018		 |$LL32@MenuSelect|
 
 ; 191  :     for(;;)
 ; 192  :     {
@@ -547,225 +547,230 @@
 ; 217  :         if(matrixStatus(2, 5) ){            //press number 1
 
   00030	e3130020	 tst         r3, #0x20
-  00034	0a000002	 beq         |$LN29@MenuSelect|
+  00034	0a000002	 beq         |$LN30@MenuSelect|
 
 ; 218  :             AllFunctionTest_Z2170P(pMenu);
 
   00038	e5940000	 ldr         r0, [r4]
   0003c	eb000000	 bl          AllFunctionTest_Z2170P
-  00040	ea00001e	 b           |$LN90@MenuSelect|
-  00044		 |$LN29@MenuSelect|
+  00040	ea000021	 b           |$LN95@MenuSelect|
+  00044		 |$LN30@MenuSelect|
   00044	e5d52001	 ldrb        r2, [r5, #1]
 
 ; 219  :         }else if(matrixStatus(1, 1) ){      //press number 2
 
   00048	e3120002	 tst         r2, #2
-  0004c	1a000045	 bne         |$LN110@MenuSelect|
+  0004c	1a000048	 bne         |$LN114@MenuSelect|
 
 ; 221  :             goto SHOW_MENU; 
 ; 222  :         }else if(matrixStatus(1, 3) ){      //press number 3
 
   00050	e3120008	 tst         r2, #8
-  00054	1a000040	 bne         |$LN111@MenuSelect|
+  00054	1a000043	 bne         |$LN115@MenuSelect|
 
 ; 224  :             goto SHOW_MENU; 
 ; 225  :         }else if(matrixStatus(2, 1) ){      //press number 4  
 
   00058	e3130002	 tst         r3, #2
-  0005c	1a00003b	 bne         |$LN112@MenuSelect|
+  0005c	1a00003e	 bne         |$LN116@MenuSelect|
 
 ; 227  :             goto SHOW_MENU; 
 ; 228  :         }else if(matrixStatus(2, 4) ){      //press number 5
 
   00060	e3130010	 tst         r3, #0x10
-  00064	1a000036	 bne         |$LN113@MenuSelect|
+  00064	1a000039	 bne         |$LN117@MenuSelect|
 
 ; 230  :             goto SHOW_MENU; 
 ; 231  :         }else if(matrixStatus(2, 3) ){      //press number 6
 
   00068	e3130008	 tst         r3, #8
-  0006c	1a000031	 bne         |$LN114@MenuSelect|
+  0006c	1a000034	 bne         |$LN118@MenuSelect|
   00070	e5d52003	 ldrb        r2, [r5, #3]
 
 ; 233  :             goto SHOW_MENU; 
 ; 234  :         }else if(matrixStatus(3, 5) ){      //press number 7
 
   00074	e3120020	 tst         r2, #0x20
-  00078	1a00002b	 bne         |$LN115@MenuSelect|
+  00078	1a00002e	 bne         |$LN119@MenuSelect|
 
 ; 236  :             goto SHOW_MENU; 
 ; 237  :         }else if(matrixStatus(2, 0) ){      //press number 8
 
   0007c	e3130001	 tst         r3, #1
-  00080	1a000026	 bne         |$LN116@MenuSelect|
+  00080	1a000029	 bne         |$LN120@MenuSelect|
 
 ; 239  :             goto SHOW_MENU; 
 ; 240  :         }else if(matrixStatus(2, 2) ){      //press number 9
 
   00084	e3130004	 tst         r3, #4
-  00088	1a000021	 bne         |$LN117@MenuSelect|
+  00088	1a000024	 bne         |$LN121@MenuSelect|
 
 ; 242  :             goto SHOW_MENU; 
 ; 243  :         }else if(matrixStatus(3, 3) ){      //press F1
 
   0008c	e3120008	 tst         r2, #8
-  00090	1a00001c	 bne         |$LN118@MenuSelect|
-  00094	e5d53004	 ldrb        r3, [r5, #4]
+  00090	1a00001f	 bne         |$LN122@MenuSelect|
+  00094	e5d51004	 ldrb        r1, [r5, #4]
 
 ; 245  :             goto SHOW_MENU; 
 ; 246  :         }else if(matrixStatus(4, 3) ){      //press F2
 
-  00098	e3130008	 tst         r3, #8
-  0009c	1a000016	 bne         |$LN119@MenuSelect|
+  00098	e3110008	 tst         r1, #8
+  0009c	1a000019	 bne         |$LN123@MenuSelect|
 
 ; 248  :             goto SHOW_MENU; 
 ; 249  :         }else if(matrixStatus(3, 0) ){      //press F3
 
   000a0	e3120001	 tst         r2, #1
-  000a4	1a000011	 bne         |$LN120@MenuSelect|
+  000a4	1a000014	 bne         |$LN124@MenuSelect|
 
 ; 251  :             //break;
 ; 252  :             goto SHOW_MENU; 
-; 253  :         }else if(matrixStatus(3, 2) ){      //press F4
+; 253  :         }else if((matrixStatus(3, 2))||(matrixStatus(0, 4))){   //press Scan or F4
 
   000a8	e3120004	 tst         r2, #4
-  000ac	1a00000c	 bne         |$LN121@MenuSelect|
+  000ac	1a00000f	 bne         |$LN5@MenuSelect|
+  000b0	e5d53000	 ldrb        r3, [r5]
+  000b4	e3130010	 tst         r3, #0x10
+  000b8	1a00000c	 bne         |$LN5@MenuSelect|
 
 ; 255  :             //break;
 ; 256  :             goto SHOW_MENU; 
 ; 257  :         }else if(matrixStatus(4, 2) ){      //press SP
 
-  000b0	e3130004	 tst         r3, #4
-  000b4	1a000007	 bne         |$LN122@MenuSelect|
+  000bc	e3110004	 tst         r1, #4
+  000c0	1a000007	 bne         |$LN126@MenuSelect|
 
 ; 259  :             goto SHOW_MENU; 
 ; 260  :         }else if(matrixStatus(4, 4) ){      //press SF
 
-  000b8	e3130010	 tst         r3, #0x10
-  000bc	1a000002	 bne         |$LN123@MenuSelect|
-  000c0		 |$LN90@MenuSelect|
+  000c4	e3110010	 tst         r1, #0x10
+  000c8	1a000002	 bne         |$LN127@MenuSelect|
+  000cc		 |$LN95@MenuSelect|
 
-; 262  :             goto SHOW_MENU; 
 ; 263  :         }                                   
 ; 264  :         LcdSleep(500);              
 
-  000c0	e3a00f7d	 mov         r0, #0x7D, 30
-  000c4	eb000000	 bl          LcdSleep
+  000cc	e3a00f7d	 mov         r0, #0x7D, 30
+  000d0	eb000000	 bl          LcdSleep
 
 ; 265  :    }
 
-  000c8	eaffffd2	 b           |$LL31@MenuSelect|
-  000cc		 |$LN123@MenuSelect|
+  000d4	eaffffcf	 b           |$LL32@MenuSelect|
+  000d8		 |$LN127@MenuSelect|
 
 ; 261  :             RTCFunc(pMenu);
 
-  000cc	e5940000	 ldr         r0, [r4]
-  000d0	eb000000	 bl          RTCFunc
-  000d4	eaffffce	 b           |$SHOW_MENU$47419|
-  000d8		 |$LN122@MenuSelect|
+  000d8	e5940000	 ldr         r0, [r4]
+  000dc	eb000000	 bl          RTCFunc
+
+; 262  :             goto SHOW_MENU; 
+
+  000e0	eaffffcb	 b           |$SHOW_MENU$47419|
+  000e4		 |$LN126@MenuSelect|
 
 ; 258  :             SecondaryBATFunc(pMenu);
 
-  000d8	e5940000	 ldr         r0, [r4]
-  000dc	eb000000	 bl          SecondaryBATFunc
-  000e0	eaffffcb	 b           |$SHOW_MENU$47419|
-  000e4		 |$LN121@MenuSelect|
+  000e4	e5940000	 ldr         r0, [r4]
+  000e8	eb000000	 bl          SecondaryBATFunc
+  000ec	eaffffc8	 b           |$SHOW_MENU$47419|
+  000f0		 |$LN5@MenuSelect|
 
 ; 254  :             AutoScanFunc(pMenu);
 
-  000e4	e5940000	 ldr         r0, [r4]
-  000e8	eb000000	 bl          AutoScanFunc
-  000ec	eaffffc8	 b           |$SHOW_MENU$47419|
-  000f0		 |$LN120@MenuSelect|
+  000f0	e5940000	 ldr         r0, [r4]
+  000f4	eb000000	 bl          AutoScanFunc
+  000f8	eaffffc5	 b           |$SHOW_MENU$47419|
+  000fc		 |$LN124@MenuSelect|
 
 ; 250  :             RAMAccessTest(pMenu);
 
-  000f0	e5940000	 ldr         r0, [r4]
-  000f4	eb000000	 bl          RAMAccessTest
-  000f8	eaffffc5	 b           |$SHOW_MENU$47419|
-  000fc		 |$LN119@MenuSelect|
+  000fc	e5940000	 ldr         r0, [r4]
+  00100	eb000000	 bl          RAMAccessTest
+  00104	eaffffc2	 b           |$SHOW_MENU$47419|
+  00108		 |$LN123@MenuSelect|
 
 ; 247  :             BurnIn_Z2170P(pMenu);
 
-  000fc	e5940000	 ldr         r0, [r4]
-  00100	eb000000	 bl          BurnIn_Z2170P
-  00104	eaffffc2	 b           |$SHOW_MENU$47419|
-  00108		 |$LN118@MenuSelect|
+  00108	e5940000	 ldr         r0, [r4]
+  0010c	eb000000	 bl          BurnIn_Z2170P
+  00110	eaffffbf	 b           |$SHOW_MENU$47419|
+  00114		 |$LN122@MenuSelect|
 
 ; 244  :             KeypadFunc_Z2170P(pMenu);
 
-  00108	e5940000	 ldr         r0, [r4]
-  0010c	eb000000	 bl          KeypadFunc_Z2170P
-  00110	eaffffbf	 b           |$SHOW_MENU$47419|
-  00114		 |$LN117@MenuSelect|
+  00114	e5940000	 ldr         r0, [r4]
+  00118	eb000000	 bl          KeypadFunc_Z2170P
+  0011c	eaffffbc	 b           |$SHOW_MENU$47419|
+  00120		 |$LN121@MenuSelect|
 
 ; 241  :             BarcodeTest_Z2170P(pMenu);
 
-  00114	e5940000	 ldr         r0, [r4]
-  00118	eb000000	 bl          BarcodeTest_Z2170P
-  0011c	eaffffbc	 b           |$SHOW_MENU$47419|
-  00120		 |$LN116@MenuSelect|
+  00120	e5940000	 ldr         r0, [r4]
+  00124	eb000000	 bl          BarcodeTest_Z2170P
+  00128	eaffffb9	 b           |$SHOW_MENU$47419|
+  0012c		 |$LN120@MenuSelect|
 
 ; 238  :             LEDTest_Z2170P(pMenu);
 
-  00120	e5940000	 ldr         r0, [r4]
-  00124	eb000000	 bl          LEDTest_Z2170P
-  00128	eaffffb9	 b           |$SHOW_MENU$47419|
-  0012c		 |$LN115@MenuSelect|
+  0012c	e5940000	 ldr         r0, [r4]
+  00130	eb000000	 bl          LEDTest_Z2170P
+  00134	eaffffb6	 b           |$SHOW_MENU$47419|
+  00138		 |$LN119@MenuSelect|
 
 ; 235  :             BatteryTest_Z2170P(pMenu);
 
-  0012c	e5940000	 ldr         r0, [r4]
-  00130	eb000000	 bl          BatteryTest_Z2170P
-  00134	eaffffb6	 b           |$SHOW_MENU$47419|
-  00138		 |$LN114@MenuSelect|
+  00138	e5940000	 ldr         r0, [r4]
+  0013c	eb000000	 bl          BatteryTest_Z2170P
+  00140	eaffffb3	 b           |$SHOW_MENU$47419|
+  00144		 |$LN118@MenuSelect|
 
 ; 232  :             TouchPanelTest_Z2170P(pMenu);
 
-  00138	e5940000	 ldr         r0, [r4]
-  0013c	eb000000	 bl          TouchPanelTest_Z2170P
-  00140	eaffffb3	 b           |$SHOW_MENU$47419|
-  00144		 |$LN113@MenuSelect|
+  00144	e5940000	 ldr         r0, [r4]
+  00148	eb000000	 bl          TouchPanelTest_Z2170P
+  0014c	eaffffb0	 b           |$SHOW_MENU$47419|
+  00150		 |$LN117@MenuSelect|
 
 ; 229  :             KeypadBkTest_Z2170P(pMenu);
 
-  00144	e5940000	 ldr         r0, [r4]
-  00148	eb000000	 bl          KeypadBkTest_Z2170P
-  0014c	eaffffb0	 b           |$SHOW_MENU$47419|
-  00150		 |$LN112@MenuSelect|
+  00150	e5940000	 ldr         r0, [r4]
+  00154	eb000000	 bl          KeypadBkTest_Z2170P
+  00158	eaffffad	 b           |$SHOW_MENU$47419|
+  0015c		 |$LN116@MenuSelect|
 
 ; 226  :             DRAMTest_Z2170P(pMenu);
 
-  00150	e5940000	 ldr         r0, [r4]
-  00154	eb000000	 bl          DRAMTest_Z2170P
-  00158	eaffffad	 b           |$SHOW_MENU$47419|
-  0015c		 |$LN111@MenuSelect|
+  0015c	e5940000	 ldr         r0, [r4]
+  00160	eb000000	 bl          DRAMTest_Z2170P
+  00164	eaffffaa	 b           |$SHOW_MENU$47419|
+  00168		 |$LN115@MenuSelect|
 
 ; 223  :             BkTest_Z2170P(pMenu);
 
-  0015c	e5940000	 ldr         r0, [r4]
-  00160	eb000000	 bl          BkTest_Z2170P
-  00164	eaffffaa	 b           |$SHOW_MENU$47419|
-  00168		 |$LN110@MenuSelect|
+  00168	e5940000	 ldr         r0, [r4]
+  0016c	eb000000	 bl          BkTest_Z2170P
+  00170	eaffffa7	 b           |$SHOW_MENU$47419|
+  00174		 |$LN114@MenuSelect|
 
 ; 220  :             DisplayTest_Z2170P(pMenu);
 
-  00168	e5940000	 ldr         r0, [r4]
-  0016c	eb000000	 bl          DisplayTest_Z2170P
-  00170	eaffffa7	 b           |$SHOW_MENU$47419|
-  00174		 |$LN142@MenuSelect|
-  00174		 |$LN143@MenuSelect|
-  00174	00000000	 DCD         |gMatrix|
-  00178		 |$LN144@MenuSelect|
-  00178	00000000	 DCD         |pMenu|
-  0017c		 |$M47770|
+  00174	e5940000	 ldr         r0, [r4]
+  00178	eb000000	 bl          DisplayTest_Z2170P
+  0017c	eaffffa4	 b           |$SHOW_MENU$47419|
+  00180		 |$LN147@MenuSelect|
+  00180		 |$LN148@MenuSelect|
+  00180	00000000	 DCD         |gMatrix|
+  00184		 |$LN149@MenuSelect|
+  00184	00000000	 DCD         |pMenu|
+  00188		 |$M47779|
 
 			 ENDP  ; |MenuSelectFunction|
 
 	EXPORT	|HotkeyMenuSelect|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47785| DCD	|$LN7@HotkeyMenu|
+|$T47794| DCD	|$LN7@HotkeyMenu|
 	DCD	0x40000201
 ; Function compile flags: /Ogspy
 
@@ -777,7 +782,7 @@
 
   00000		 |$LN7@HotkeyMenu|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47782|
+  00004		 |$M47791|
 
 ; 270  : 	
 ; 271  : 	UNREFERENCED_PARAMETER(hTwl);
@@ -786,7 +791,7 @@
   00004	eb000000	 bl          MenuSelectFunction
   00008		 |$LN8@HotkeyMenu|
   00008		 |$LN4@HotkeyMenu|
-  00008		 |$M47783|
+  00008		 |$M47792|
 
 			 ENDP  ; |HotkeyMenuSelect|
 

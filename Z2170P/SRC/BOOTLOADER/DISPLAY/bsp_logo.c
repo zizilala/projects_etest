@@ -1018,7 +1018,8 @@ VOID printInt(int Row, int Col,int fc, int bc, int value)   // Origin 0,0
 //-----------------------------------------------------------------------------
 VOID ShowMenuSelect()
 {
-    char   showMenuSelect[][30] = {   "[1] All Function Test",
+    char   showMenuSelect[][30] = {   ">> Zebex for e-test V0.0.3 <<",
+                                      "[1] All Function Test",
                                       "[2] Display Test",
                                       "[3] LCM Brightness Test", 
                                       "[4] RAM Access Test(quickly)", 
@@ -1039,11 +1040,11 @@ VOID ShowMenuSelect()
     sizeDivTwenty = size /30;       //So that divide by 30. 
     
     //OALLog(L"~~ShowMenuSelect\r\n");
-    
-    for(mode=0; mode<sizeDivTwenty; mode++){
+    printStringMode(0, 0, RED_COLOR, TRANSPARENT_COLOR, showMenuSelect, 0);
+    for(mode=1; mode<sizeDivTwenty; mode++){
         //g_Mode = mode;
         //printString(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showChar);// 320/16(ROW, Max char=20 => y axis), 240/8(COL, Max char = 30=> x axis)          
-        printStringMode(mode+1, 2, RED_COLOR, TRANSPARENT_COLOR, showMenuSelect, mode);
+        printStringMode(mode, 2, BLUE_COLOR, TRANSPARENT_COLOR, showMenuSelect, mode);
     }
     //g_Mode = 0; 
     return ;

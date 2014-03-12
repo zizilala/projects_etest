@@ -295,16 +295,16 @@
 
   00000		 |BSPGetNandIrqWait| PROC
 
-; 112  : {
+; 111  : {
 
   00000		 |$LN5@BSPGetNand|
   00000		 |$M47580|
 
-; 113  :     return BSP_GPMC_IRQ_WAIT_EDGE;
+; 112  :     return BSP_GPMC_IRQ_WAIT_EDGE;
 
   00000	e3a00c01	 mov         r0, #1, 24
 
-; 114  : }
+; 113  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47581|
@@ -322,16 +322,16 @@
 
   00000		 |BSPGetNandCS| PROC
 
-; 117  : {
+; 116  : {
 
   00000		 |$LN5@BSPGetNand@2|
   00000		 |$M47589|
 
-; 118  :     return BSP_GPMC_NAND_CS;
+; 117  :     return BSP_GPMC_NAND_CS;
 
   00000	e3a00000	 mov         r0, #0
 
-; 119  : }
+; 118  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47590|
@@ -364,23 +364,23 @@
 
   00000		 |BSPGetNandInfo| PROC
 
-; 122  : {
+; 121  : {
 
   00000		 |$LN13@BSPGetNand@3|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004		 |$M47605|
   00004	e1a05000	 mov         r5, r0
 
-; 123  :     int i;    
-; 124  :     for (i=0;i< dimof(SupportedNands);i++)
+; 122  :     int i;    
+; 123  :     for (i=0;i< dimof(SupportedNands);i++)
 
   00008	e59f405c	 ldr         r4, [pc, #0x5C]
   0000c	e3a02000	 mov         r2, #0
   00010	e1a0e004	 mov         lr, r4
   00014		 |$LL4@BSPGetNand@3|
 
-; 125  :     {
-; 126  :         if ((SupportedNands[i].manufacturerId == manufacturer) && (SupportedNands[i].deviceId == device))
+; 124  :     {
+; 125  :         if ((SupportedNands[i].manufacturerId == manufacturer) && (SupportedNands[i].deviceId == device))
 
   00014	e5de3000	 ldrb        r3, [lr]
   00018	e1530005	 cmp         r3, r5
@@ -390,42 +390,42 @@
   00028	0a00000a	 beq         |$LN8@BSPGetNand@3|
   0002c		 |$LN3@BSPGetNand@3|
 
-; 123  :     int i;    
-; 124  :     for (i=0;i< dimof(SupportedNands);i++)
+; 122  :     int i;    
+; 123  :     for (i=0;i< dimof(SupportedNands);i++)
 
   0002c	e2822001	 add         r2, r2, #1
   00030	e3520003	 cmp         r2, #3
   00034	e28ee014	 add         lr, lr, #0x14
   00038	3afffff5	 bcc         |$LL4@BSPGetNand@3|
 
-; 131  :         }
-; 132  :     }
-; 133  :     RETAILMSG(1,(TEXT("NAND manufacturer %x device %x : no matching device found\r\n"),manufacturer,device));    
+; 130  :         }
+; 131  :     }
+; 132  :     RETAILMSG(1,(TEXT("NAND manufacturer %x device %x : no matching device found\r\n"),manufacturer,device));    
 
   0003c	e59f0024	 ldr         r0, [pc, #0x24]
   00040	e1a02001	 mov         r2, r1
   00044	e1a01005	 mov         r1, r5
   00048	eb000000	 bl          NKDbgPrintfW
 
-; 134  :     return NULL;
+; 133  :     return NULL;
 
   0004c	e3a00000	 mov         r0, #0
 
-; 135  : }
+; 134  : }
 
   00050	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00054	e12fff1e	 bx          lr
   00058		 |$LN8@BSPGetNand@3|
 
-; 127  :         {
-; 128  :         	//RETAILMSG(1,(TEXT("NAND manufacturer ID: 0x%x  device ID: 0x%x\r\n"),manufacturer,device));
-; 129  :             //OALLog(L"XXX\r\n");
-; 130  :             return &SupportedNands[i];            
+; 126  :         {
+; 127  :         	//RETAILMSG(1,(TEXT("NAND manufacturer ID: 0x%x  device ID: 0x%x\r\n"),manufacturer,device));
+; 128  :             //OALLog(L"XXX\r\n");
+; 129  :             return &SupportedNands[i];            
 
   00058	e0823102	 add         r3, r2, r2, lsl #2
   0005c	e0840103	 add         r0, r4, r3, lsl #2
 
-; 135  : }
+; 134  : }
 
   00060	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   00064	e12fff1e	 bx          lr
@@ -449,36 +449,36 @@
 
   00000		 |BSPInsertGpioDevice| PROC
 
-; 158  : {
+; 157  : {
 
   00000		 |$LN6@BSPInsertG|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004		 |$M47621|
   00004	e1a05000	 mov         r5, r0
 
-; 159  :     int index = BSPGpioTables.nbGpioGrp;
+; 158  :     int index = BSPGpioTables.nbGpioGrp;
 
   00008	e59fe040	 ldr         lr, [pc, #0x40]
   0000c	e59e4004	 ldr         r4, [lr, #4]
 
-; 160  :     if (index >= NB_GPIO_GRP) return FALSE;
+; 159  :     if (index >= NB_GPIO_GRP) return FALSE;
 
   00010	e3540004	 cmp         r4, #4
   00014	a3a00000	 movge       r0, #0
 
-; 166  : }
+; 165  : }
 
   00018	a8bd4030	 ldmgeia     sp!, {r4, r5, lr}
   0001c	a12fff1e	 bxge        lr
 
-; 161  :     BSPGpioTables.rgRanges[index] = range;
+; 160  :     BSPGpioTables.rgRanges[index] = range;
 
   00020	e59e3008	 ldr         r3, [lr, #8]
 
-; 162  :     BSPGpioTables.rgGpioTbls[index] = fnTbl;
-; 163  :     BSPGpioTables.name[index] = name;
-; 164  :     BSPGpioTables.nbGpioGrp++;
-; 165  :     return TRUE;
+; 161  :     BSPGpioTables.rgGpioTbls[index] = fnTbl;
+; 162  :     BSPGpioTables.name[index] = name;
+; 163  :     BSPGpioTables.nbGpioGrp++;
+; 164  :     return TRUE;
 
   00024	e3a00001	 mov         r0, #1
   00028	e7835104	 str         r5, [r3, +r4, lsl #2]
@@ -490,7 +490,7 @@
   00040	e2833001	 add         r3, r3, #1
   00044	e58e3004	 str         r3, [lr, #4]
 
-; 166  : }
+; 165  : }
 
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
@@ -512,16 +512,16 @@
 
   00000		 |BSPGetGpioDevicesTable| PROC
 
-; 169  : {
+; 168  : {
 
   00000		 |$LN5@BSPGetGpio|
   00000		 |$M47632|
 
-; 170  :     return &BSPGpioTables;
+; 169  :     return &BSPGpioTables;
 
   00000	e59f0000	 ldr         r0, [pc]
 
-; 171  : }
+; 170  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$LN6@BSPGetGpio|
@@ -542,16 +542,16 @@
 
   00000		 |BSPGetGpioIrq| PROC
 
-; 173  : {
+; 172  : {
 
   00000		 |$LN5@BSPGetGpio@2|
   00000		 |$M47644|
 
-; 174  :     return id + IRQ_GPIO_0;
+; 173  :     return id + IRQ_GPIO_0;
 
   00000	e2800080	 add         r0, r0, #0x80
 
-; 175  : }
+; 174  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47645|
@@ -569,16 +569,16 @@
 
   00000		 |BSPGetTritonBusID| PROC
 
-; 183  : {
+; 182  : {
 
   00000		 |$LN5@BSPGetTrit|
   00000		 |$M47653|
 
-; 184  :     return TPS659XX_I2C_BUS_ID;
+; 183  :     return TPS659XX_I2C_BUS_ID;
 
   00000	e3a0000c	 mov         r0, #0xC
 
-; 185  : }
+; 184  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47654|
@@ -596,16 +596,16 @@
 
   00000		 |BSPGetTritonSlaveAddress| PROC
 
-; 188  : {
+; 187  : {
 
   00000		 |$LN5@BSPGetTrit@2|
   00000		 |$M47662|
 
-; 189  :     return TPS659XX_I2C_SLAVE_ADDRESS;
+; 188  :     return TPS659XX_I2C_SLAVE_ADDRESS;
 
   00000	e3a00048	 mov         r0, #0x48
 
-; 190  : }
+; 189  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47663|
@@ -623,26 +623,26 @@
 
   00000		 |BSPGetSDHCCardDetect| PROC
 
-; 196  : {
+; 195  : {
 
   00000		 |$LN9@BSPGetSDHC|
   00000		 |$M47672|
 
-; 197  :     switch (slot)
+; 196  :     switch (slot)
 
   00000	e3500001	 cmp         r0, #1
 
-; 200  : 			default: return (DWORD) -1;
+; 199  : 			default: return (DWORD) -1;
 
   00004	13e00000	 mvnne       r0, #0
 
-; 198  :     {
-; 199  : 		case 1: return MMC1_CARDDET_GPIO;
+; 197  :     {
+; 198  : 		case 1: return MMC1_CARDDET_GPIO;
 
   00008	03a00c01	 moveq       r0, #1, 24
 
-; 201  :     }
-; 202  : }
+; 200  :     }
+; 201  : }
 
   0000c	e12fff1e	 bx          lr
   00010		 |$M47673|
@@ -660,16 +660,16 @@
 
   00000		 |BSPGetSysTimerDevice| PROC
 
-; 268  : {
+; 267  : {
 
   00000		 |$LN5@BSPGetSysT|
   00000		 |$M47681|
 
-; 269  :     return OMAP_DEVICE_GPTIMER1;
+; 268  :     return OMAP_DEVICE_GPTIMER1;
 
   00000	e3a00024	 mov         r0, #0x24
 
-; 270  : }
+; 269  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47682|
@@ -687,16 +687,16 @@
 
   00000		 |BSPGetSysTimer32KClock| PROC
 
-; 273  : {
+; 272  : {
 
   00000		 |$LN5@BSPGetSysT@2|
   00000		 |$M47690|
 
-; 274  :     return k32K_FCLK;
+; 273  :     return k32K_FCLK;
 
   00000	e3a0000b	 mov         r0, #0xB
 
-; 275  : }
+; 274  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47691|
@@ -714,16 +714,16 @@
 
   00000		 |BSPGetGPTPerfDevice| PROC
 
-; 281  : {
+; 280  : {
 
   00000		 |$LN5@BSPGetGPTP|
   00000		 |$M47699|
 
-; 282  :     return OMAP_DEVICE_GPTIMER2;
+; 281  :     return OMAP_DEVICE_GPTIMER2;
 
   00000	e3a00035	 mov         r0, #0x35
 
-; 283  : }
+; 282  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47700|
@@ -741,30 +741,30 @@
 
   00000		 |BSPGetGPTPerfHighFreqClock| PROC
 
-; 286  : {
+; 285  : {
 
   00000		 |$LN5@BSPGetGPTP@2|
   00000		 |$M47709|
   00000	e1a02000	 mov         r2, r0
 
-; 287  : #if 1
-; 288  :     //use SYS CLK as the timer source. better precision but cause CETK to fail because of the drift with the 32K clock
-; 289  :     *pFreq = (UINT32) g_dwMeasuredSysClkFreq;        
+; 286  : #if 1
+; 287  :     //use SYS CLK as the timer source. better precision but cause CETK to fail because of the drift with the 32K clock
+; 288  :     *pFreq = (UINT32) g_dwMeasuredSysClkFreq;        
 
   00004	e59f300c	 ldr         r3, [pc, #0xC]
 
-; 290  :     return kSYS_CLK;
+; 289  :     return kSYS_CLK;
 
   00008	e3a0000c	 mov         r0, #0xC
   0000c	e5933000	 ldr         r3, [r3]
   00010	e5823000	 str         r3, [r2]
 
-; 291  : #else
-; 292  :    //use 32K CLK as the timer source.
-; 293  :     *pFreq = 32768;
-; 294  :     return k32K_FCLK;
-; 295  : #endif
-; 296  : }
+; 290  : #else
+; 291  :    //use 32K CLK as the timer source.
+; 292  :     *pFreq = 32768;
+; 293  :     return k32K_FCLK;
+; 294  : #endif
+; 295  : }
 
   00014	e12fff1e	 bx          lr
   00018		 |$LN6@BSPGetGPTP@2|
@@ -785,16 +785,16 @@
 
   00000		 |BSPGetRTCGpioIrq| PROC
 
-; 301  : {
+; 300  : {
 
   00000		 |$LN5@BSPGetRTCG|
   00000		 |$M47720|
 
-; 302  :     return (DWORD)-1;//BSPGetGpioIrq(RTC_IRQ_GPIO);
+; 301  :     return (DWORD)-1;//BSPGetGpioIrq(RTC_IRQ_GPIO);
 
   00000	e3e00000	 mvn         r0, #0
 
-; 303  : }
+; 302  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47721|
@@ -812,16 +812,16 @@
 
   00000		 |BPSGetWatchdogDevice| PROC
 
-; 309  : {
+; 308  : {
 
   00000		 |$LN5@BPSGetWatc|
   00000		 |$M47729|
 
-; 310  :     return OMAP_DEVICE_WDT2;
+; 309  :     return OMAP_DEVICE_WDT2;
 
   00000	e3a00028	 mov         r0, #0x28
 
-; 311  : }
+; 310  : }
 
   00004	e12fff1e	 bx          lr
   00008		 |$M47730|

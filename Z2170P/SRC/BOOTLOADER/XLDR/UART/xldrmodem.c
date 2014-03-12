@@ -42,7 +42,7 @@
 #define START_RESPONSE_TIMEOUT    10  /* sec */
 #define RECEIVE_TIMEOUT           1   /* sec */
 
-extern int XLDRReadCharMaxTime(unsigned char *uc, int num_sec);  /* returns error code {-1, 0, 1} */
+extern int  XLDRReadCharMaxTime(unsigned char *uc, int num_sec);  /* returns error code {-1, 0, 1} */
 extern void XLDRWriteChar(const unsigned char c);
 
 static int xblock_cnt = 0;
@@ -91,7 +91,6 @@ int XWriteChar(const unsigned char c)
     XLDRWriteChar(c);
 	return 0;
 }
-
 
 int XReceive(unsigned char *p_data_buff, int buff_size, unsigned int *p_receive_size)
 {

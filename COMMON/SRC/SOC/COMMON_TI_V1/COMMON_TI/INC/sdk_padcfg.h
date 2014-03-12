@@ -24,12 +24,12 @@ extern "C" {
 #endif
 
 
-#define INPUT_ENABLED           (1<<0)
-#define INPUT_DISABLED          (0<<0)
-#define PULL_RESISTOR_ENABLED   (1<<1)
-#define PULL_RESISTOR_DISABLED  (0<<1)
-#define PULLUP_RESISTOR         (1<<2)
-#define PULLDOWN_RESISTOR       (0<<2)
+#define INPUT_ENABLED           (1<<0)      
+#define INPUT_DISABLED          (0<<0)      
+#define PULL_RESISTOR_ENABLED   (1<<1)      
+#define PULL_RESISTOR_DISABLED  (0<<1)     
+#define PULLUP_RESISTOR         (1<<2)     
+#define PULLDOWN_RESISTOR       (0<<2)      
 
 #define MUXMODE(x)              ((x & 0x7)<<3)
 
@@ -41,7 +41,6 @@ typedef struct {
 } PAD_INFO;
 
 #define END_OF_PAD_ARRAY {(UINT16) -1,0,0}
-
 
 BOOL RequestPad(UINT16 padid);
 BOOL ReleasePad(UINT16 padid);
