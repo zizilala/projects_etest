@@ -124,17 +124,17 @@
 
   00000		 |TWLOpen| PROC
 
-; 38   : {
+; 36   : {
 
   00000		 |$LN8@TWLOpen|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   00004	e24dd010	 sub         sp, sp, #0x10
   00008		 |$M44144|
 
-; 39   :     HANDLE hDevice;
-; 40   :     DEVICE_CONTEXT_TWL *pContext = NULL;
-; 41   : 
-; 42   :     hDevice = CreateFile(TWL_DEVICE_NAME, 0, 0, NULL, 0, 0, NULL);
+; 37   :     HANDLE hDevice;
+; 38   :     DEVICE_CONTEXT_TWL *pContext = NULL;
+; 39   : 
+; 40   :     hDevice = CreateFile(TWL_DEVICE_NAME, 0, 0, NULL, 0, 0, NULL);
 
   00008	e59f00ac	 ldr         r0, [pc, #0xAC]
   0000c	e3a06000	 mov         r6, #0
@@ -148,42 +148,42 @@
   0002c	eb000000	 bl          CreateFileW
   00030	e1a05000	 mov         r5, r0
 
-; 43   :     if (hDevice == INVALID_HANDLE_VALUE) goto cleanUp;
+; 41   :     if (hDevice == INVALID_HANDLE_VALUE) goto cleanUp;
 
   00034	e3750001	 cmn         r5, #1
   00038	0a00001a	 beq         |$cleanUp$43978|
 
-; 44   : 
-; 45   :     // Allocate memory for our handler...
-; 46   :     pContext = (DEVICE_CONTEXT_TWL*)LocalAlloc(
-; 47   :         LPTR, sizeof(DEVICE_CONTEXT_TWL)
-; 48   :         );
+; 42   : 
+; 43   :     // Allocate memory for our handler...
+; 44   :     pContext = (DEVICE_CONTEXT_TWL*)LocalAlloc(
+; 45   :         LPTR, sizeof(DEVICE_CONTEXT_TWL)
+; 46   :         );
 
   0003c	e3a01024	 mov         r1, #0x24
   00040	e3a00040	 mov         r0, #0x40
   00044	eb000000	 bl          LocalAlloc
   00048	e1b04000	 movs        r4, r0
 
-; 49   :     if (pContext == NULL)
-; 50   :         {
-; 51   :         CloseHandle(hDevice);
+; 47   :     if (pContext == NULL)
+; 48   :         {
+; 49   :         CloseHandle(hDevice);
 
   0004c	e1a00005	 mov         r0, r5
   00050	1a000001	 bne         |$LN2@TWLOpen|
   00054	eb000000	 bl          CloseHandle
 
-; 52   :         goto cleanUp;
+; 50   :         goto cleanUp;
 
   00058	ea000012	 b           |$cleanUp$43978|
   0005c		 |$LN2@TWLOpen|
 
-; 53   :         }
-; 54   : 
-; 55   :     // Get function pointers, fail when IOCTL isn't supported...
-; 56   :     if (!DeviceIoControl(
-; 57   :             hDevice, IOCTL_DDK_GET_DRIVER_IFC, (VOID*)&DEVICE_IFC_TWL_GUID,
-; 58   :             sizeof(DEVICE_IFC_TWL_GUID), &pContext->ifc, sizeof(DEVICE_IFC_TWL),
-; 59   :             NULL, NULL))
+; 51   :         }
+; 52   : 
+; 53   :     // Get function pointers, fail when IOCTL isn't supported...
+; 54   :     if (!DeviceIoControl(
+; 55   :             hDevice, IOCTL_DDK_GET_DRIVER_IFC, (VOID*)&DEVICE_IFC_TWL_GUID,
+; 56   :             sizeof(DEVICE_IFC_TWL_GUID), &pContext->ifc, sizeof(DEVICE_IFC_TWL),
+; 57   :             NULL, NULL))
 
   0005c	e59f2054	 ldr         r2, [pc, #0x54]
   00060	e3a03822	 mov         r3, #0x22, 16
@@ -198,38 +198,38 @@
   00084	e3500000	 cmp         r0, #0
   00088	1a000005	 bne         |$LN1@TWLOpen|
 
-; 60   :         {
-; 61   :         CloseHandle(hDevice);
+; 58   :         {
+; 59   :         CloseHandle(hDevice);
 
   0008c	e1a00005	 mov         r0, r5
   00090	eb000000	 bl          CloseHandle
 
-; 62   :         LocalFree(pContext);
+; 60   :         LocalFree(pContext);
 
   00094	e1a00004	 mov         r0, r4
   00098	eb000000	 bl          LocalFree
 
-; 63   :         pContext = NULL;
+; 61   :         pContext = NULL;
 
   0009c	e3a04000	 mov         r4, #0
 
-; 64   :         goto cleanUp;
+; 62   :         goto cleanUp;
 
   000a0	ea000000	 b           |$cleanUp$43978|
   000a4		 |$LN1@TWLOpen|
 
-; 65   :         }
-; 66   : 
-; 67   :     // Save device handle
-; 68   :     pContext->hDevice = hDevice;
+; 63   :         }
+; 64   : 
+; 65   :     // Save device handle
+; 66   :     pContext->hDevice = hDevice;
 
   000a4	e584501c	 str         r5, [r4, #0x1C]
   000a8		 |$cleanUp$43978|
 
-; 69   : 
-; 70   : cleanUp:
-; 71   :     return pContext;
-; 72   : }
+; 67   : 
+; 68   : cleanUp:
+; 69   :     return pContext;
+; 70   : }
 
   000a8	e1a00004	 mov         r0, r4
   000ac	e28dd010	 add         sp, sp, #0x10
@@ -255,25 +255,25 @@
 
   00000		 |TWLClose| PROC
 
-; 79   : {
+; 77   : {
 
   00000		 |$LN5@TWLClose|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
   00004		 |$M44155|
   00004	e1a04000	 mov         r4, r0
 
-; 80   :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
-; 81   :     CloseHandle(pContext->hDevice);
+; 78   :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 79   :     CloseHandle(pContext->hDevice);
 
   00008	e594001c	 ldr         r0, [r4, #0x1C]
   0000c	eb000000	 bl          CloseHandle
 
-; 82   :     LocalFree(pContext);
+; 80   :     LocalFree(pContext);
 
   00010	e1a00004	 mov         r0, r4
   00014	eb000000	 bl          LocalFree
 
-; 83   : }
+; 81   : }
 
   00018	e8bd4010	 ldmia       sp!, {r4, lr}
   0001c	e12fff1e	 bx          lr
@@ -294,7 +294,7 @@
 
   00000		 |TWLReadRegs| PROC
 
-; 87   : {
+; 85   : {
 
   00000		 |$LN8@TWLReadReg|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
@@ -305,17 +305,17 @@
   00010	e1a05001	 mov         r5, r1
   00014	e1a04000	 mov         r4, r0
 
-; 88   :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
-; 89   :   
-; 90   :     if (pContext->ifc.pfnReadRegs != NULL)
+; 86   :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 87   :   
+; 88   :     if (pContext->ifc.pfnReadRegs != NULL)
 
   00018	e594e004	 ldr         lr, [r4, #4]
   0001c	e1b0800e	 movs        r8, lr
   00020	0a000003	 beq         |$LN3@TWLReadReg|
 
-; 91   :     {
-; 92   :         return pContext->ifc.pfnReadRegs(pContext->ifc.context, 
-; 93   :                                          address, pBuffer, size);
+; 89   :     {
+; 90   :         return pContext->ifc.pfnReadRegs(pContext->ifc.context, 
+; 91   :                                          address, pBuffer, size);
 
   00024	e5940000	 ldr         r0, [r4]
   00028	e1a0e00f	 mov         lr, pc
@@ -323,10 +323,10 @@
   00030	ea000012	 b           |$LN2@TWLReadReg|
   00034		 |$LN3@TWLReadReg|
 
-; 94   :     }else{
-; 95   :         DWORD dwCount = 0;
-; 96   :         
-; 97   :         if (pContext->seekAddress != address)
+; 92   :     }else{
+; 93   :         DWORD dwCount = 0;
+; 94   :         
+; 95   :         if (pContext->seekAddress != address)
 
   00034	e5943020	 ldr         r3, [r4, #0x20]
   00038	e3a02000	 mov         r2, #0
@@ -334,8 +334,8 @@
   00040	e1530005	 cmp         r3, r5
   00044	0a000005	 beq         |$LN1@TWLReadReg|
 
-; 98   :         {
-; 99   :             SetFilePointer(pContext->hDevice, address, NULL, FILE_CURRENT);
+; 96   :         {
+; 97   :             SetFilePointer(pContext->hDevice, address, NULL, FILE_CURRENT);
 
   00048	e594001c	 ldr         r0, [r4, #0x1C]
   0004c	e3a03001	 mov         r3, #1
@@ -343,14 +343,14 @@
   00054	e1a01005	 mov         r1, r5
   00058	eb000000	 bl          SetFilePointer
 
-; 100  :             pContext->seekAddress = address;
+; 98   :             pContext->seekAddress = address;
 
   0005c	e5845020	 str         r5, [r4, #0x20]
   00060		 |$LN1@TWLReadReg|
 
-; 101  :         }
-; 102  :         
-; 103  :         ReadFile(pContext->hDevice, pBuffer, size, &dwCount, NULL);
+; 99   :         }
+; 100  :         
+; 101  :         ReadFile(pContext->hDevice, pBuffer, size, &dwCount, NULL);
 
   00060	e594001c	 ldr         r0, [r4, #0x1C]
   00064	e3a0e000	 mov         lr, #0
@@ -360,13 +360,13 @@
   00074	e58de000	 str         lr, [sp]
   00078	eb000000	 bl          ReadFile
 
-; 104  :         return dwCount;
+; 102  :         return dwCount;
 
   0007c	e59d0004	 ldr         r0, [sp, #4]
   00080		 |$LN2@TWLReadReg|
 
-; 105  :     }
-; 106  : }
+; 103  :     }
+; 104  : }
 
   00080	e28dd008	 add         sp, sp, #8
   00084	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
@@ -387,7 +387,7 @@
 
   00000		 |TWLWriteRegs| PROC
 
-; 113  : {
+; 111  : {
 
   00000		 |$LN8@TWLWriteRe|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
@@ -398,17 +398,17 @@
   00010	e1a05001	 mov         r5, r1
   00014	e1a04000	 mov         r4, r0
 
-; 114  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
-; 115  :     if (pContext->ifc.pfnWriteRegs != NULL)
+; 112  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 113  :     if (pContext->ifc.pfnWriteRegs != NULL)
 
   00018	e594e008	 ldr         lr, [r4, #8]
   0001c	e1b0800e	 movs        r8, lr
   00020	0a000003	 beq         |$LN3@TWLWriteRe|
 
-; 116  :         {
-; 117  :         return pContext->ifc.pfnWriteRegs(
-; 118  :             pContext->ifc.context, address, pBuffer, size
-; 119  :             );
+; 114  :         {
+; 115  :         return pContext->ifc.pfnWriteRegs(
+; 116  :             pContext->ifc.context, address, pBuffer, size
+; 117  :             );
 
   00024	e5940000	 ldr         r0, [r4]
   00028	e1a0e00f	 mov         lr, pc
@@ -416,11 +416,11 @@
   00030	ea000011	 b           |$LN2@TWLWriteRe|
   00034		 |$LN3@TWLWriteRe|
 
-; 120  :         }
-; 121  :     else
-; 122  :         {
-; 123  :         DWORD dwCount = 0;
-; 124  :         if (pContext->seekAddress != address)
+; 118  :         }
+; 119  :     else
+; 120  :         {
+; 121  :         DWORD dwCount = 0;
+; 122  :         if (pContext->seekAddress != address)
 
   00034	e5943020	 ldr         r3, [r4, #0x20]
   00038	e3a02000	 mov         r2, #0
@@ -428,8 +428,8 @@
   00040	e1530005	 cmp         r3, r5
   00044	0a000005	 beq         |$LN1@TWLWriteRe|
 
-; 125  :             {
-; 126  :             SetFilePointer(pContext->hDevice, address, NULL, FILE_CURRENT);
+; 123  :             {
+; 124  :             SetFilePointer(pContext->hDevice, address, NULL, FILE_CURRENT);
 
   00048	e594001c	 ldr         r0, [r4, #0x1C]
   0004c	e3a03001	 mov         r3, #1
@@ -437,13 +437,13 @@
   00054	e1a01005	 mov         r1, r5
   00058	eb000000	 bl          SetFilePointer
 
-; 127  :             pContext->seekAddress = address;
+; 125  :             pContext->seekAddress = address;
 
   0005c	e5845020	 str         r5, [r4, #0x20]
   00060		 |$LN1@TWLWriteRe|
 
-; 128  :             }
-; 129  :         return WriteFile(pContext->hDevice, pBuffer, size, &dwCount, NULL);
+; 126  :             }
+; 127  :         return WriteFile(pContext->hDevice, pBuffer, size, &dwCount, NULL);
 
   00060	e594001c	 ldr         r0, [r4, #0x1C]
   00064	e3a0e000	 mov         lr, #0
@@ -454,8 +454,8 @@
   00078	eb000000	 bl          WriteFile
   0007c		 |$LN2@TWLWriteRe|
 
-; 130  :         }
-; 131  : }
+; 128  :         }
+; 129  : }
 
   0007c	e28dd008	 add         sp, sp, #8
   00080	e8bd41f0	 ldmia       sp!, {r4 - r8, lr}
@@ -477,7 +477,7 @@
 
   00000		 |TWLInterruptInitialize| PROC
 
-; 139  : {
+; 137  : {
 
   00000		 |$LN9@TWLInterru|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
@@ -485,19 +485,19 @@
   00008		 |$M44196|
   00008	e1a04000	 mov         r4, r0
 
-; 140  :     IOCTL_TWL_INTRINIT_IN inParam;
-; 141  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
-; 142  : 
-; 143  :     if (pContext->ifc.pfnInterruptInitialize != NULL)
+; 138  :     IOCTL_TWL_INTRINIT_IN inParam;
+; 139  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 140  : 
+; 141  :     if (pContext->ifc.pfnInterruptInitialize != NULL)
 
   0000c	e594300c	 ldr         r3, [r4, #0xC]
   00010	e3530000	 cmp         r3, #0
   00014	0a000003	 beq         |$LN2@TWLInterru|
 
-; 144  :         {
-; 145  :         return pContext->ifc.pfnInterruptInitialize(
-; 146  :             pContext->ifc.context, intrId, hEvent
-; 147  :             );
+; 142  :         {
+; 143  :         return pContext->ifc.pfnInterruptInitialize(
+; 144  :             pContext->ifc.context, intrId, hEvent
+; 145  :             );
 
   00018	e5940000	 ldr         r0, [r4]
   0001c	e1a0e00f	 mov         lr, pc
@@ -505,27 +505,27 @@
   00024	ea00000f	 b           |$LN1@TWLInterru|
   00028		 |$LN2@TWLInterru|
 
-; 148  :         }
-; 149  :     else
-; 150  :         {
-; 151  :         inParam.intrId = intrId;
-; 152  :         inParam.hEvent = hEvent;
-; 153  :         inParam.procId = GetCurrentProcessId();
+; 146  :         }
+; 147  :     else
+; 148  :         {
+; 149  :         inParam.intrId = intrId;
+; 150  :         inParam.hEvent = hEvent;
+; 151  :         inParam.procId = GetCurrentProcessId();
 
   00028	e3a0000c	 mov         r0, #0xC
   0002c	e58d1014	 str         r1, [sp, #0x14]
   00030	e58d2018	 str         r2, [sp, #0x18]
   00034	eb000000	 bl          __GetUserKData
 
-; 154  :         return DeviceIoControl(pContext->hDevice,
-; 155  :                                IOCTL_TWL_INTRINIT,
-; 156  :                                &inParam,
-; 157  :                                sizeof(inParam),
+; 152  :         return DeviceIoControl(pContext->hDevice,
+; 153  :                                IOCTL_TWL_INTRINIT,
+; 154  :                                &inParam,
+; 155  :                                sizeof(inParam),
+; 156  :                                NULL,
+; 157  :                                0,
 ; 158  :                                NULL,
-; 159  :                                0,
-; 160  :                                NULL,
-; 161  :                                NULL 
-; 162  :                                );
+; 159  :                                NULL 
+; 160  :                                );
 
   00038	e59f1034	 ldr         r1, [pc, #0x34]
   0003c	e1a0e000	 mov         lr, r0
@@ -541,8 +541,8 @@
   00064	eb000000	 bl          DeviceIoControl
   00068		 |$LN1@TWLInterru|
 
-; 163  :         }
-; 164  : }
+; 161  :         }
+; 162  : }
 
   00068	e28dd01c	 add         sp, sp, #0x1C
   0006c	e8bd4010	 ldmia       sp!, {r4, lr}
@@ -565,7 +565,7 @@
 
   00000		 |TWLInterruptMask| PROC
 
-; 173  : {
+; 171  : {
 
   00000		 |$LN7@TWLInterru@2|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
@@ -574,18 +574,18 @@
   00008	e1a0e002	 mov         lr, r2
   0000c	e1a04001	 mov         r4, r1
 
-; 174  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
-; 175  : 
-; 176  :     if (pContext->ifc.pfnInterruptMask != NULL)
+; 172  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 173  : 
+; 174  :     if (pContext->ifc.pfnInterruptMask != NULL)
 
   00010	e5903014	 ldr         r3, [r0, #0x14]
   00014	e3530000	 cmp         r3, #0
   00018	0a000003	 beq         |$LN2@TWLInterru@2|
 
-; 177  :         {
-; 178  :         return pContext->ifc.pfnInterruptMask(
-; 179  :             pContext->ifc.context, intrId, bEnable
-; 180  :             );
+; 175  :         {
+; 176  :         return pContext->ifc.pfnInterruptMask(
+; 177  :             pContext->ifc.context, intrId, bEnable
+; 178  :             );
 
   0001c	e5900000	 ldr         r0, [r0]
   00020	e1a0e00f	 mov         lr, pc
@@ -593,22 +593,22 @@
   00028	ea00000b	 b           |$LN1@TWLInterru@2|
   0002c		 |$LN2@TWLInterru@2|
 
-; 181  :         }
-; 182  :     else
-; 183  :         {
-; 184  :         IOCTL_TWL_INTRMASK_IN inParam;
-; 185  :         inParam.intrId = intrId;
-; 186  :         inParam.bEnable = bEnable;
-; 187  : 
-; 188  :         return DeviceIoControl(pContext->hDevice,
-; 189  :                                IOCTL_TWL_INTRMASK,
-; 190  :                                &inParam,
-; 191  :                                sizeof(inParam),
+; 179  :         }
+; 180  :     else
+; 181  :         {
+; 182  :         IOCTL_TWL_INTRMASK_IN inParam;
+; 183  :         inParam.intrId = intrId;
+; 184  :         inParam.bEnable = bEnable;
+; 185  : 
+; 186  :         return DeviceIoControl(pContext->hDevice,
+; 187  :                                IOCTL_TWL_INTRMASK,
+; 188  :                                &inParam,
+; 189  :                                sizeof(inParam),
+; 190  :                                NULL,
+; 191  :                                0,
 ; 192  :                                NULL,
-; 193  :                                0,
-; 194  :                                NULL,
-; 195  :                                NULL 
-; 196  :                                );
+; 193  :                                NULL 
+; 194  :                                );
 
   0002c	e59f1034	 ldr         r1, [pc, #0x34]
   00030	e590001c	 ldr         r0, [r0, #0x1C]
@@ -624,8 +624,8 @@
   00058	eb000000	 bl          DeviceIoControl
   0005c		 |$LN1@TWLInterru@2|
 
-; 197  :         }
-; 198  : }
+; 195  :         }
+; 196  : }
 
   0005c	e28dd01c	 add         sp, sp, #0x1C
   00060	e8bd4030	 ldmia       sp!, {r4, r5, lr}
@@ -648,7 +648,7 @@
 
   00000		 |TWLInterruptDisable| PROC
 
-; 205  : {
+; 203  : {
 
   00000		 |$LN7@TWLInterru@3|
   00000	e1a0c00d	 mov         r12, sp
@@ -658,18 +658,18 @@
   00010		 |$M44223|
   00010	e58d101c	 str         r1, [sp, #0x1C]
 
-; 206  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
-; 207  : 
-; 208  :     if (pContext->ifc.pfnInterruptDisable != NULL)
+; 204  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 205  : 
+; 206  :     if (pContext->ifc.pfnInterruptDisable != NULL)
 
   00014	e5903010	 ldr         r3, [r0, #0x10]
   00018	e3530000	 cmp         r3, #0
   0001c	0a000003	 beq         |$LN2@TWLInterru@3|
 
-; 209  :         {
-; 210  :         return pContext->ifc.pfnInterruptDisable(
-; 211  :             pContext->ifc.context, intrId
-; 212  :             );
+; 207  :         {
+; 208  :         return pContext->ifc.pfnInterruptDisable(
+; 209  :             pContext->ifc.context, intrId
+; 210  :             );
 
   00020	e5900000	 ldr         r0, [r0]
   00024	e1a0e00f	 mov         lr, pc
@@ -677,18 +677,18 @@
   0002c	ea00000a	 b           |$LN1@TWLInterru@3|
   00030		 |$LN2@TWLInterru@3|
 
-; 213  :         }
-; 214  :     else
-; 215  :         {
-; 216  :         return DeviceIoControl(pContext->hDevice,
-; 217  :                                IOCTL_TWL_INTRDISABLE,
-; 218  :                                &intrId,
-; 219  :                                sizeof(DWORD),
+; 211  :         }
+; 212  :     else
+; 213  :         {
+; 214  :         return DeviceIoControl(pContext->hDevice,
+; 215  :                                IOCTL_TWL_INTRDISABLE,
+; 216  :                                &intrId,
+; 217  :                                sizeof(DWORD),
+; 218  :                                NULL,
+; 219  :                                0,
 ; 220  :                                NULL,
-; 221  :                                0,
-; 222  :                                NULL,
-; 223  :                                NULL 
-; 224  :                                );
+; 221  :                                NULL 
+; 222  :                                );
 
   00030	e590001c	 ldr         r0, [r0, #0x1C]
   00034	e3a03822	 mov         r3, #0x22, 16
@@ -703,8 +703,8 @@
   00058	eb000000	 bl          DeviceIoControl
   0005c		 |$LN1@TWLInterru@3|
 
-; 225  :         }
-; 226  : }
+; 223  :         }
+; 224  : }
 
   0005c	e28dd010	 add         sp, sp, #0x10
   00060	e89d6000	 ldmia       sp, {sp, lr}
@@ -724,7 +724,7 @@
 
   00000		 |TWLWakeEnable| PROC
 
-; 235  : {
+; 233  : {
 
   00000		 |$LN7@TWLWakeEna|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
@@ -733,19 +733,19 @@
   00008	e1a0e002	 mov         lr, r2
   0000c	e1a04001	 mov         r4, r1
 
-; 236  :     IOCTL_TWL_WAKEENABLE_IN inParam;
-; 237  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
-; 238  : 
-; 239  :     if (pContext->ifc.pfnEnableWakeup != NULL)
+; 234  :     IOCTL_TWL_WAKEENABLE_IN inParam;
+; 235  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 236  : 
+; 237  :     if (pContext->ifc.pfnEnableWakeup != NULL)
 
   00010	e5903018	 ldr         r3, [r0, #0x18]
   00014	e3530000	 cmp         r3, #0
   00018	0a000003	 beq         |$LN2@TWLWakeEna|
 
-; 240  :         {
-; 241  :         return pContext->ifc.pfnEnableWakeup(
-; 242  :             pContext->ifc.context, intrId, bEnable
-; 243  :             );
+; 238  :         {
+; 239  :         return pContext->ifc.pfnEnableWakeup(
+; 240  :             pContext->ifc.context, intrId, bEnable
+; 241  :             );
 
   0001c	e5900000	 ldr         r0, [r0]
   00020	e1a0e00f	 mov         lr, pc
@@ -753,20 +753,20 @@
   00028	ea00000b	 b           |$LN1@TWLWakeEna|
   0002c		 |$LN2@TWLWakeEna|
 
-; 244  :         }
-; 245  :     else
-; 246  :         {
-; 247  :         inParam.intrId = intrId;
-; 248  :         inParam.bEnable = bEnable;
-; 249  :         return DeviceIoControl(pContext->hDevice,
-; 250  :                                IOCTL_TWL_WAKEENABLE,
-; 251  :                                &inParam,
-; 252  :                                sizeof(inParam),
+; 242  :         }
+; 243  :     else
+; 244  :         {
+; 245  :         inParam.intrId = intrId;
+; 246  :         inParam.bEnable = bEnable;
+; 247  :         return DeviceIoControl(pContext->hDevice,
+; 248  :                                IOCTL_TWL_WAKEENABLE,
+; 249  :                                &inParam,
+; 250  :                                sizeof(inParam),
+; 251  :                                NULL,
+; 252  :                                0,
 ; 253  :                                NULL,
-; 254  :                                0,
-; 255  :                                NULL,
-; 256  :                                NULL 
-; 257  :                                );
+; 254  :                                NULL 
+; 255  :                                );
 
   0002c	e59f1034	 ldr         r1, [pc, #0x34]
   00030	e590001c	 ldr         r0, [r0, #0x1C]
@@ -782,8 +782,8 @@
   00058	eb000000	 bl          DeviceIoControl
   0005c		 |$LN1@TWLWakeEna|
 
-; 258  :         }
-; 259  : }
+; 256  :         }
+; 257  : }
 
   0005c	e28dd018	 add         sp, sp, #0x18
   00060	e8bd4030	 ldmia       sp!, {r4, r5, lr}

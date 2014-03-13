@@ -28,16 +28,14 @@ typedef struct OAL_MENU_ITEM {
     VOID *pParam3;
 } OAL_BLMENU_ITEM;
 
-typedef struct _OAL_MENU_ITEM_TEST{             //Ray
+/*typedef struct _OAL_MENU_ITEM_TEST{             //Ray
     WCHAR key;
     LPCWSTR text;
     VOID (*pfnAction)(struct OAL_MENU_ITEM *);
     VOID *pParam1;
     VOID *pParam2;
     int pParam3;
-} OAL_MENU_ITEM_TEST;
-
-
+} OAL_MENU_ITEM_TEST;*/
 //------------------------------------------------------------------------------
 
 VOID OALBLMenuActivate(UINT32 delay, OAL_BLMENU_ITEM *pMenu);
@@ -50,14 +48,12 @@ VOID OALBLMenuSetMacAddress(OAL_BLMENU_ITEM *pMenu);
 VOID OALBLMenuSetIpAddress(OAL_BLMENU_ITEM *pMenu);
 VOID OALBLMenuSetIpMask(OAL_BLMENU_ITEM *pMenu);
 VOID OALBLMenuSelectDevice(OAL_BLMENU_ITEM *pMenu);
-VOID OALBLMenuShowTest(OAL_BLMENU_ITEM *pMenu);          //Ray   131118
-
+//VOID OALBLMenuShowTest(OAL_BLMENU_ITEM *pMenu);          //Ray   131118
 
 UINT32 OALBLMenuReadLine(LPWSTR buffer, UINT32 charCount);
 WCHAR  OALBLMenuReadKey(BOOL wait);
 
 //------------------------------------------------------------------------------
-
 #if __cplusplus
 }
 #endif

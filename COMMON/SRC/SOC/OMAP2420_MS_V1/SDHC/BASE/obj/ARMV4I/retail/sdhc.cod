@@ -1077,7 +1077,7 @@
 
   00000		 |TWLSetIntrEvent| PROC
 
-; 207  : {
+; 204  : {
 
   00000		 |$LN5@TWLSetIntr|
   00000	e1a0c00d	 mov         r12, sp
@@ -1086,14 +1086,14 @@
   0000c	e24dd00c	 sub         sp, sp, #0xC
   00010		 |$M41968|
 
-; 208  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 205  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
 
   00010	e59d3014	 ldr         r3, [sp, #0x14]
   00014	e58d3000	 str         r3, [sp]
 
-; 209  :     return pContext->ifc.pfnSetIntrEvent(
-; 210  :         pContext->ifc.context, intrId, hEvent
-; 211  :         );
+; 206  :     return pContext->ifc.pfnSetIntrEvent(
+; 207  :         pContext->ifc.context, intrId, hEvent
+; 208  :         );
 
   00018	e59d201c	 ldr         r2, [sp, #0x1C]
   0001c	e59d1018	 ldr         r1, [sp, #0x18]
@@ -1108,7 +1108,7 @@
   00040	e59d3008	 ldr         r3, [sp, #8]
   00044	e58d3004	 str         r3, [sp, #4]
 
-; 212  : }
+; 209  : }
 
   00048	e59d0004	 ldr         r0, [sp, #4]
   0004c	e28dd00c	 add         sp, sp, #0xC
@@ -1129,7 +1129,7 @@
 
   00000		 |TWLIntrEnable| PROC
 
-; 220  : {
+; 217  : {
 
   00000		 |$LN5@TWLIntrEna|
   00000	e1a0c00d	 mov         r12, sp
@@ -1138,12 +1138,12 @@
   0000c	e24dd00c	 sub         sp, sp, #0xC
   00010		 |$M41976|
 
-; 221  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 218  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
 
   00010	e59d3014	 ldr         r3, [sp, #0x14]
   00014	e58d3000	 str         r3, [sp]
 
-; 222  :     return pContext->ifc.pfnIntrEnable(pContext->ifc.context, intrId);
+; 219  :     return pContext->ifc.pfnIntrEnable(pContext->ifc.context, intrId);
 
   00018	e59d1018	 ldr         r1, [sp, #0x18]
   0001c	e59d3000	 ldr         r3, [sp]
@@ -1157,7 +1157,7 @@
   0003c	e59d3008	 ldr         r3, [sp, #8]
   00040	e58d3004	 str         r3, [sp, #4]
 
-; 223  : }
+; 220  : }
 
   00044	e59d0004	 ldr         r0, [sp, #4]
   00048	e28dd00c	 add         sp, sp, #0xC
@@ -1178,7 +1178,7 @@
 
   00000		 |TWLIntrDisable| PROC
 
-; 231  : {
+; 228  : {
 
   00000		 |$LN5@TWLIntrDis|
   00000	e1a0c00d	 mov         r12, sp
@@ -1187,12 +1187,12 @@
   0000c	e24dd00c	 sub         sp, sp, #0xC
   00010		 |$M41984|
 
-; 232  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
+; 229  :     DEVICE_CONTEXT_TWL *pContext = (DEVICE_CONTEXT_TWL*)hContext;
 
   00010	e59d3014	 ldr         r3, [sp, #0x14]
   00014	e58d3000	 str         r3, [sp]
 
-; 233  :     return pContext->ifc.pfnIntrDisable(pContext->ifc.context, intrId);
+; 230  :     return pContext->ifc.pfnIntrDisable(pContext->ifc.context, intrId);
 
   00018	e59d1018	 ldr         r1, [sp, #0x18]
   0001c	e59d3000	 ldr         r3, [sp]
@@ -1206,7 +1206,7 @@
   0003c	e59d3008	 ldr         r3, [sp, #8]
   00040	e58d3004	 str         r3, [sp, #4]
 
-; 234  : }
+; 231  : }
 
   00044	e59d0004	 ldr         r0, [sp, #4]
   00048	e28dd00c	 add         sp, sp, #0xC

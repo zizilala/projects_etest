@@ -16,6 +16,7 @@
 //
 #include <eboot.h>
 #include "omap_cpuver.h"
+#include "Other_def.h"
 
 //------------------------------------------------------------------------------
 //
@@ -199,8 +200,6 @@ static OAL_BLMENU_ITEM g_menuRoot = {
     0, NULL, OALBLMenuShow,
     L"Main Menu", g_menuMain, NULL
 };
-
-
 
 //-----------------------------------------------------------------------------
 //  Function test menu, Ray 131115

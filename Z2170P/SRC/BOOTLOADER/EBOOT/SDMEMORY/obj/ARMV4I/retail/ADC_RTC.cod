@@ -81,7 +81,7 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47355| DCD	|$LN5@TWLWriteBy|
+|$T47343| DCD	|$LN5@TWLWriteBy|
 	DCD	0x40000803
 ; Function compile flags: /Ogspy
 
@@ -95,7 +95,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5000	 stmdb       sp!, {r12, lr}
-  0000c		 |$M47352|
+  0000c		 |$M47340|
 
 ; 52   :     return TWLWriteRegs(hTWL,address,&data,sizeof(data));
 
@@ -107,14 +107,14 @@
 
   00018	e89d6000	 ldmia       sp, {sp, lr}
   0001c	e12fff1e	 bx          lr
-  00020		 |$M47353|
+  00020		 |$M47341|
 
 			 ENDP  ; |TWLWriteByteReg|
 
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47367| DCD	|$LN5@TWLReadByt|
+|$T47355| DCD	|$LN5@TWLReadByt|
 	DCD	0x40000501
 ; Function compile flags: /Ogspy
 
@@ -126,7 +126,7 @@
 
   00000		 |$LN5@TWLReadByt|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47364|
+  00004		 |$M47352|
 
 ; 60   :     return TWLReadRegs(hTWL,address,data,sizeof(*data));
 
@@ -137,7 +137,7 @@
 
   0000c	e49de004	 ldr         lr, [sp], #4
   00010	e12fff1e	 bx          lr
-  00014		 |$M47365|
+  00014		 |$M47353|
 
 			 ENDP  ; |TWLReadByteReg|
 
@@ -146,7 +146,7 @@
 	IMPORT	|GPIOOpen|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47384| DCD	|$LN9@ADCRTCInit|
+|$T47372| DCD	|$LN9@ADCRTCInit|
 	DCD	0x40002e02
 ; Function compile flags: /Ogspy
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\adc_rtc.c
@@ -160,7 +160,7 @@
   00000		 |$LN9@ADCRTCInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd008	 sub         sp, sp, #8
-  00008		 |$M47381|
+  00008		 |$M47369|
 
 ; 27   :     UCHAR   status;   
 ; 28   :     UINT16  channels = 0x4;  // ADCIN2
@@ -244,7 +244,7 @@
   000b0	00000000	 DCD         |ghTwl|
   000b4		 |$LN12@ADCRTCInit|
   000b4	00000000	 DCD         |ghGPIO|
-  000b8		 |$M47382|
+  000b8		 |$M47370|
 
 			 ENDP  ; |ADCRTCInit|
 
@@ -266,11 +266,11 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47405| DCD	|$LN13@ReadBBATVo|
+|$T47393| DCD	|$LN13@ReadBBATVo|
 	DCD	0xc0008502
 
   00000			 AREA	 |.xdata|, DATA
-|$T47401| DCD	0xffffffe4
+|$T47389| DCD	0xffffffe4
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DM@LLBIOLLE@?$AAB?$AAa?$AAc?$AAk?$AAu?$AAp?$AA?5?$AAb?$AAa?$AAt?$AAt?$AAe?$AAr?$AAy?$AA?5?$AAV?$AAa?$AAl?$AAu?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?5?$AAm?$AAV?$AA?$AN?$AA?6?$AA?$AA@| DCB "B"
@@ -287,7 +287,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47401|
+  00004	00000000	 DCD         |$T47389|
 
   00008		 |ReadBBATVoltage| PROC
 
@@ -296,7 +296,7 @@
   00008		 |$LN13@ReadBBATVo|
   00008	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
   0000c	e24dd034	 sub         sp, sp, #0x34
-  00010		 |$M47402|
+  00010		 |$M47390|
   00010	e59f3200	 ldr         r3, [pc, #0x200]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3030	 str         r3, [sp, #0x30]
@@ -548,7 +548,7 @@
   00214	00000000	 DCD         |??_C@_02KMFAIEEM@mV?$AA@|
   00218		 |$LN22@ReadBBATVo|
   00218	00000000	 DCD         |__security_cookie|
-  0021c		 |$M47403|
+  0021c		 |$M47391|
 
 			 ENDP  ; |ReadBBATVoltage|
 
@@ -561,11 +561,11 @@
 ; File c:\wince600\platform\common\src\soc\common_ti_v1\triton\inc\twl.h
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47463| DCD	|$LN30@ReadRTC|
+|$T47451| DCD	|$LN30@ReadRTC|
 	DCD	0xc000be02
 
   00000			 AREA	 |.xdata|, DATA
-|$T47459| DCD	0xffffffd8
+|$T47447| DCD	0xffffffd8
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_04GIBEOBFM@RTC?3?$AA@| DCB "RTC:", 0x0		; `string'
@@ -585,7 +585,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T47459|
+  00004	00000000	 DCD         |$T47447|
 
   00008		 |ReadRTC| PROC
 
@@ -594,7 +594,7 @@
   00008		 |$LN30@ReadRTC|
   00008	e92d4ff0	 stmdb       sp!, {r4 - r11, lr}
   0000c	e24ddf55	 sub         sp, sp, #0x55, 30
-  00010		 |$M47460|
+  00010		 |$M47448|
   00010	e59f32e4	 ldr         r3, [pc, #0x2E4]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3150	 str         r3, [sp, #0x150]
@@ -890,7 +890,7 @@
   002f8	00000000	 DCD         |??_C@_04GIBEOBFM@RTC?3?$AA@|
   002fc		 |$LN36@ReadRTC|
   002fc	00000000	 DCD         |__security_cookie|
-  00300		 |$M47461|
+  00300		 |$M47449|
 
 			 ENDP  ; |ReadRTC|
 

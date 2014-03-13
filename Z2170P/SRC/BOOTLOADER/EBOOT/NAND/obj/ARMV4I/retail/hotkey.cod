@@ -175,7 +175,7 @@
 ; File c:\wince600\platform\z2170p\src\bootloader\eboot\hotkey.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47500| DCD	|$LN5@HotKeyInit|
+|$T47488| DCD	|$LN5@HotKeyInit|
 	DCD	0x40001402
 ; Function compile flags: /Ogspy
 
@@ -188,7 +188,7 @@
   00000		 |$LN5@HotKeyInit|
   00000	e92d4030	 stmdb       sp!, {r4, r5, lr}
   00004	e24dd004	 sub         sp, sp, #4
-  00008		 |$M47497|
+  00008		 |$M47485|
   00008	e1a04000	 mov         r4, r0
   0000c	e3a05802	 mov         r5, #2, 16
 
@@ -224,14 +224,14 @@
   00044	e28dd004	 add         sp, sp, #4
   00048	e8bd4030	 ldmia       sp!, {r4, r5, lr}
   0004c	e12fff1e	 bx          lr
-  00050		 |$M47498|
+  00050		 |$M47486|
 
 			 ENDP  ; |HotKeyInit|
 
 	EXPORT	|matrixStatus|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47511| DCD	|$LN7@matrixStat|
+|$T47499| DCD	|$LN7@matrixStat|
 	DCD	0x40000800
 ; Function compile flags: /Ogspy
 
@@ -242,7 +242,7 @@
 ; 88   : {
 
   00000		 |$LN7@matrixStat|
-  00000		 |$M47508|
+  00000		 |$M47496|
 
 ; 89   :     int temp;
 ; 90   :     BOOL event = FALSE;
@@ -271,7 +271,7 @@
   0001c		 |$LN8@matrixStat|
   0001c		 |$LN9@matrixStat|
   0001c	00000000	 DCD         |gMatrix|
-  00020		 |$M47509|
+  00020		 |$M47497|
 
 			 ENDP  ; |matrixStatus|
 
@@ -280,7 +280,7 @@
 	IMPORT	|TWLReadRegs|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47589| DCD	|$LN63@HotKeyFunc|
+|$T47577| DCD	|$LN63@HotKeyFunc|
 	DCD	0x40002501
 ; Function compile flags: /Ogspy
 
@@ -292,7 +292,7 @@
 
   00000		 |$LN63@HotKeyFunc|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M47586|
+  00004		 |$M47574|
 
 ; 103  : 	//UINT8 matrix[8];
 ; 104  : 	ULONG ik, ix, row, column;
@@ -428,14 +428,14 @@
   0008c	00000000	 DCD         |hotkeyColdReset|
   00090		 |$LN66@HotKeyFunc|
   00090	00000000	 DCD         |gMatrix|
-  00094		 |$M47587|
+  00094		 |$M47575|
 
 			 ENDP  ; |HotKeyFunction|
 
 	EXPORT	|HotKeyColdReset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47600| DCD	|$LN5@HotKeyCold|
+|$T47588| DCD	|$LN5@HotKeyCold|
 	DCD	0x40000401
 ; Function compile flags: /Ogspy
 
@@ -447,7 +447,7 @@
 
   00000		 |$LN5@HotKeyCold|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47597|
+  00004		 |$M47585|
 
 ; 177  :    HotKeyFunction(hTwl);
 
@@ -458,7 +458,7 @@
 
   00008	e49de004	 ldr         lr, [sp], #4
   0000c	e12fff1e	 bx          lr
-  00010		 |$M47598|
+  00010		 |$M47586|
 
 			 ENDP  ; |HotKeyColdReset|
 
@@ -482,7 +482,7 @@
 	IMPORT	|BLShowMenu|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47781| DCD	|$LN146@MenuSelect|
+|$T47769| DCD	|$LN146@MenuSelect|
 	DCD	0x40006201
 ; Function compile flags: /Ogspy
 
@@ -494,12 +494,12 @@
 
   00000		 |$LN146@MenuSelect|
   00000	e92d40f0	 stmdb       sp!, {r4 - r7, lr}
-  00004		 |$M47778|
+  00004		 |$M47766|
   00004	e1a06000	 mov         r6, r0
   00008	e59f4174	 ldr         r4, [pc, #0x174]
   0000c	e59f516c	 ldr         r5, [pc, #0x16C]
   00010	e3a070db	 mov         r7, #0xDB
-  00014		 |$SHOW_MENU$47419|
+  00014		 |$SHOW_MENU$47407|
 
 ; 186  :     //ULONG ik, ix, row, column;
 ; 187  :     //USHORT state;
@@ -666,111 +666,111 @@
 
 ; 262  :             goto SHOW_MENU; 
 
-  000e0	eaffffcb	 b           |$SHOW_MENU$47419|
+  000e0	eaffffcb	 b           |$SHOW_MENU$47407|
   000e4		 |$LN126@MenuSelect|
 
 ; 258  :             SecondaryBATFunc(pMenu);
 
   000e4	e5940000	 ldr         r0, [r4]
   000e8	eb000000	 bl          SecondaryBATFunc
-  000ec	eaffffc8	 b           |$SHOW_MENU$47419|
+  000ec	eaffffc8	 b           |$SHOW_MENU$47407|
   000f0		 |$LN5@MenuSelect|
 
 ; 254  :             AutoScanFunc(pMenu);
 
   000f0	e5940000	 ldr         r0, [r4]
   000f4	eb000000	 bl          AutoScanFunc
-  000f8	eaffffc5	 b           |$SHOW_MENU$47419|
+  000f8	eaffffc5	 b           |$SHOW_MENU$47407|
   000fc		 |$LN124@MenuSelect|
 
 ; 250  :             RAMAccessTest(pMenu);
 
   000fc	e5940000	 ldr         r0, [r4]
   00100	eb000000	 bl          RAMAccessTest
-  00104	eaffffc2	 b           |$SHOW_MENU$47419|
+  00104	eaffffc2	 b           |$SHOW_MENU$47407|
   00108		 |$LN123@MenuSelect|
 
 ; 247  :             BurnIn_Z2170P(pMenu);
 
   00108	e5940000	 ldr         r0, [r4]
   0010c	eb000000	 bl          BurnIn_Z2170P
-  00110	eaffffbf	 b           |$SHOW_MENU$47419|
+  00110	eaffffbf	 b           |$SHOW_MENU$47407|
   00114		 |$LN122@MenuSelect|
 
 ; 244  :             KeypadFunc_Z2170P(pMenu);
 
   00114	e5940000	 ldr         r0, [r4]
   00118	eb000000	 bl          KeypadFunc_Z2170P
-  0011c	eaffffbc	 b           |$SHOW_MENU$47419|
+  0011c	eaffffbc	 b           |$SHOW_MENU$47407|
   00120		 |$LN121@MenuSelect|
 
 ; 241  :             BarcodeTest_Z2170P(pMenu);
 
   00120	e5940000	 ldr         r0, [r4]
   00124	eb000000	 bl          BarcodeTest_Z2170P
-  00128	eaffffb9	 b           |$SHOW_MENU$47419|
+  00128	eaffffb9	 b           |$SHOW_MENU$47407|
   0012c		 |$LN120@MenuSelect|
 
 ; 238  :             LEDTest_Z2170P(pMenu);
 
   0012c	e5940000	 ldr         r0, [r4]
   00130	eb000000	 bl          LEDTest_Z2170P
-  00134	eaffffb6	 b           |$SHOW_MENU$47419|
+  00134	eaffffb6	 b           |$SHOW_MENU$47407|
   00138		 |$LN119@MenuSelect|
 
 ; 235  :             BatteryTest_Z2170P(pMenu);
 
   00138	e5940000	 ldr         r0, [r4]
   0013c	eb000000	 bl          BatteryTest_Z2170P
-  00140	eaffffb3	 b           |$SHOW_MENU$47419|
+  00140	eaffffb3	 b           |$SHOW_MENU$47407|
   00144		 |$LN118@MenuSelect|
 
 ; 232  :             TouchPanelTest_Z2170P(pMenu);
 
   00144	e5940000	 ldr         r0, [r4]
   00148	eb000000	 bl          TouchPanelTest_Z2170P
-  0014c	eaffffb0	 b           |$SHOW_MENU$47419|
+  0014c	eaffffb0	 b           |$SHOW_MENU$47407|
   00150		 |$LN117@MenuSelect|
 
 ; 229  :             KeypadBkTest_Z2170P(pMenu);
 
   00150	e5940000	 ldr         r0, [r4]
   00154	eb000000	 bl          KeypadBkTest_Z2170P
-  00158	eaffffad	 b           |$SHOW_MENU$47419|
+  00158	eaffffad	 b           |$SHOW_MENU$47407|
   0015c		 |$LN116@MenuSelect|
 
 ; 226  :             DRAMTest_Z2170P(pMenu);
 
   0015c	e5940000	 ldr         r0, [r4]
   00160	eb000000	 bl          DRAMTest_Z2170P
-  00164	eaffffaa	 b           |$SHOW_MENU$47419|
+  00164	eaffffaa	 b           |$SHOW_MENU$47407|
   00168		 |$LN115@MenuSelect|
 
 ; 223  :             BkTest_Z2170P(pMenu);
 
   00168	e5940000	 ldr         r0, [r4]
   0016c	eb000000	 bl          BkTest_Z2170P
-  00170	eaffffa7	 b           |$SHOW_MENU$47419|
+  00170	eaffffa7	 b           |$SHOW_MENU$47407|
   00174		 |$LN114@MenuSelect|
 
 ; 220  :             DisplayTest_Z2170P(pMenu);
 
   00174	e5940000	 ldr         r0, [r4]
   00178	eb000000	 bl          DisplayTest_Z2170P
-  0017c	eaffffa4	 b           |$SHOW_MENU$47419|
+  0017c	eaffffa4	 b           |$SHOW_MENU$47407|
   00180		 |$LN147@MenuSelect|
   00180		 |$LN148@MenuSelect|
   00180	00000000	 DCD         |gMatrix|
   00184		 |$LN149@MenuSelect|
   00184	00000000	 DCD         |pMenu|
-  00188		 |$M47779|
+  00188		 |$M47767|
 
 			 ENDP  ; |MenuSelectFunction|
 
 	EXPORT	|HotkeyMenuSelect|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T47794| DCD	|$LN7@HotkeyMenu|
+|$T47782| DCD	|$LN7@HotkeyMenu|
 	DCD	0x40000201
 ; Function compile flags: /Ogspy
 
@@ -782,7 +782,7 @@
 
   00000		 |$LN7@HotkeyMenu|
   00000	e52de004	 str         lr, [sp, #-4]!
-  00004		 |$M47791|
+  00004		 |$M47779|
 
 ; 270  : 	
 ; 271  : 	UNREFERENCED_PARAMETER(hTwl);
@@ -791,7 +791,7 @@
   00004	eb000000	 bl          MenuSelectFunction
   00008		 |$LN8@HotkeyMenu|
   00008		 |$LN4@HotkeyMenu|
-  00008		 |$M47792|
+  00008		 |$M47780|
 
 			 ENDP  ; |HotkeyMenuSelect|
 

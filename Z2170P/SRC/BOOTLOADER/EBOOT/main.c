@@ -30,6 +30,7 @@
 #include "bsp_padcfg.h"
 #include "tps659xx.h"
 #include "omap_cpuver.h"
+
 //#include "sdk_spi.h"
 
 UINT16 DefaultMacAddress[] = DEFAULT_MAC_ADDRESS;

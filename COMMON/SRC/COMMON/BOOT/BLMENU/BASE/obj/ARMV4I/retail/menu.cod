@@ -78,7 +78,7 @@
 ; File c:\wince600\platform\common\src\common\boot\blmenu\menu.c
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43491| DCD	|$LN15@OALBLMenuH|
+|$T43479| DCD	|$LN15@OALBLMenuH|
 	DCD	0x40001d03
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -102,7 +102,7 @@
   00000	e1a0c00d	 mov         r12, sp
   00004	e92d000f	 stmdb       sp!, {r0 - r3}
   00008	e92d5010	 stmdb       sp!, {r4, r12, lr}
-  0000c		 |$M43488|
+  0000c		 |$M43476|
 
 ; 61   :     va_list pArgList;
 ; 62   :     UINT32 i;
@@ -168,7 +168,7 @@
   0006c	00000000	 DCD         |??_C@_13IMODFHAA@?$AA?9?$AA?$AA@|
   00070		 |$LN19@OALBLMenuH|
   00070	00000000	 DCD         |??_C@_17HBLJBP@?$AA?$AN?$AA?6?$AA?5?$AA?$AA@|
-  00074		 |$M43489|
+  00074		 |$M43477|
 
 			 ENDP  ; |OALBLMenuHeader|
 
@@ -176,7 +176,7 @@
 	IMPORT	|OEMReadDebugByte|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43507| DCD	|$LN9@OALBLMenuR|
+|$T43495| DCD	|$LN9@OALBLMenuR|
 	DCD	0x40000f01
 ; Function compile flags: /Ogspy
 
@@ -188,7 +188,7 @@
 
   00000		 |$LN9@OALBLMenuR|
   00000	e92d4010	 stmdb       sp!, {r4, lr}
-  00004		 |$M43504|
+  00004		 |$M43492|
   00004	e1a04000	 mov         r4, r0
   00008		 |$LL3@OALBLMenuR|
 
@@ -223,14 +223,14 @@
 
   00034	e8bd4010	 ldmia       sp!, {r4, lr}
   00038	e12fff1e	 bx          lr
-  0003c		 |$M43505|
+  0003c		 |$M43493|
 
 			 ENDP  ; |OALBLMenuReadKey|
 
 	EXPORT	|??_C@_0N@LKBAFPFA@?$CK?$CK?$CK?5auto?5?$CK?$CK?$CK?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43519| DCD	|$LN7@DeviceId|
+|$T43507| DCD	|$LN7@DeviceId|
 	DCD	0x40000500
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -245,7 +245,7 @@
 ; 455  : {
 
   00000		 |$LN7@DeviceId|
-  00000		 |$M43516|
+  00000		 |$M43504|
 
 ; 456  :     return deviceId[0] == '\0' ? "*** auto ***" : deviceId;
 
@@ -259,7 +259,7 @@
   00010		 |$LN8@DeviceId|
   00010		 |$LN9@DeviceId|
   00010	00000000	 DCD         |??_C@_0N@LKBAFPFA@?$CK?$CK?$CK?5auto?5?$CK?$CK?$CK?$AA@|
-  00014		 |$M43517|
+  00014		 |$M43505|
 
 			 ENDP  ; |DeviceId|
 
@@ -270,7 +270,7 @@
 	EXPORT	|??_C@_15GANGMFKL@?$AA?$CF?$AAs?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43548| DCD	|$LN32@OALBLMenuS|
+|$T43536| DCD	|$LN32@OALBLMenuS|
 	DCD	0x40002f01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -300,7 +300,7 @@
 
   00000		 |$LN32@OALBLMenuS|
   00000	e92d4070	 stmdb       sp!, {r4 - r6, lr}
-  00004		 |$M43545|
+  00004		 |$M43533|
 
 ; 83   :     LPCWSTR title = pMenu->pParam1;
 
@@ -425,7 +425,7 @@
   000b4	00000000	 DCD         |??_C@_1BG@EBHIGBFG@?$AA?5?$AA?$FL?$AA?$CF?$AAc?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
   000b8		 |$LN37@OALBLMenuS|
   000b8	00000000	 DCD         |??_C@_15GANGMFKL@?$AA?$CF?$AAs?$AA?$AA@|
-  000bc		 |$M43546|
+  000bc		 |$M43534|
 
 			 ENDP  ; |OALBLMenuShow|
 
@@ -441,7 +441,7 @@
 	IMPORT	|dpCurSettings|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43585| DCD	|$LN32@OALBLMenuE|
+|$T43573| DCD	|$LN32@OALBLMenuE|
 	DCD	0x40004701
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -502,7 +502,7 @@
 
   00000		 |$LN32@OALBLMenuE|
   00000	e92d43f0	 stmdb       sp!, {r4 - r9, lr}
-  00004		 |$M43582|
+  00004		 |$M43570|
 
 ; 125  :     LPCWSTR title = pMenu->pParam1;
 
@@ -642,7 +642,7 @@
   000e0	e3130001	 tst         r3, #1
   000e4	159f0008	 ldrne       r0, [pc, #8]
   000e8	1b000000	 blne        NKDbgPrintfW
-  000ec		 |$cleanUp$43243|
+  000ec		 |$cleanUp$43231|
 
 ; 163  :     }
 ; 164  : 
@@ -672,7 +672,7 @@
   00114	00000000	 DCD         |??_C@_1DK@PCLKELEH@?$AA?5?$AA?$CF?$AAs?$AA?5?$AA?$CF?$AAs?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AAl?$AAy?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?5?$AA?$FL?$AAy?$AA?1?$AA?9?$AA?$FN?$AA?3?$AA?5?$AA?$AA@|
   00118		 |$LN43@OALBLMenuE|
   00118	00000000	 DCD         |??_C@_1BA@BKMGIBPB@?$AAe?$AAn?$AAa?$AAb?$AAl?$AAe?$AAd?$AA?$AA@|
-  0011c		 |$M43583|
+  0011c		 |$M43571|
 
 			 ENDP  ; |OALBLMenuEnable|
 
@@ -687,7 +687,7 @@
 	IMPORT	|memcpy|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43618| DCD	|$LN24@OALBLMenuS@2|
+|$T43606| DCD	|$LN24@OALBLMenuS@2|
 	DCD	0x40006002
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -746,7 +746,7 @@
   00000		 |$LN24@OALBLMenuS@2|
   00000	e92d47f0	 stmdb       sp!, {r4 - r10, lr}
   00004	e24dd0a0	 sub         sp, sp, #0xA0
-  00008		 |$M43615|
+  00008		 |$M43603|
 
 ; 332  :     LPCWSTR title = pMenu->pParam1;
 
@@ -910,7 +910,7 @@
 ; 403  :     if (key == L'0') goto cleanUp;
 
   000fc	e3540030	 cmp         r4, #0x30
-  00100	0a000013	 beq         |$cleanUp$43347|
+  00100	0a000013	 beq         |$cleanUp$43335|
 
 ; 404  :     
 ; 405  :     memcpy(pDevLoc, &devLoc[key - L'0' - 1], sizeof(DEVICE_LOCATION));
@@ -934,7 +934,7 @@
   00130	e59f0030	 ldr         r0, [pc, #0x30]
   00134	e1a01009	 mov         r1, r9
   00138	eb000000	 bl          NKDbgPrintfW
-  0013c	ea000004	 b           |$cleanUp$43347|
+  0013c	ea000004	 b           |$cleanUp$43335|
   00140		 |$LN11@OALBLMenuS@2|
 
 ; 341  :         OALMSG(OAL_ERROR, (
@@ -946,7 +946,7 @@
   00148	e3130001	 tst         r3, #1
   0014c	159f000c	 ldrne       r0, [pc, #0xC]
   00150	1b000000	 blne        NKDbgPrintfW
-  00154		 |$cleanUp$43347|
+  00154		 |$cleanUp$43335|
 
 ; 409  : 
 ; 410  : cleanUp:;    
@@ -972,7 +972,7 @@
   00178	00000000	 DCD         |??_C@_1BG@LMIBJJCD@?$AA?5?$AA?$FL?$AA?$CF?$AAd?$AA?$FN?$AA?5?$AA?$CF?$AAs?$AA?$AN?$AA?6?$AA?$AA@|
   0017c		 |$LN33@OALBLMenuS@2|
   0017c	00000000	 DCD         |??_C@_1CC@GHCHDPIM@?$AAS?$AAe?$AAl?$AAe?$AAc?$AAt?$AA?5?$AA?$CF?$AAs?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@|
-  00180		 |$M43616|
+  00180		 |$M43604|
 
 			 ENDP  ; |OALBLMenuSelectDevice|
 
@@ -981,7 +981,7 @@
 	EXPORT	|??_C@_17ILCABGPK@?$AA?$AI?$AA?5?$AA?$AI?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43642| DCD	|$LN14@OALBLMenuR@2|
+|$T43630| DCD	|$LN14@OALBLMenuR@2|
 	DCD	0x40002e01
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1000,7 +1000,7 @@
 
   00000		 |$LN14@OALBLMenuR@2|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M43639|
+  00004		 |$M43627|
   00004	e1b07001	 movs        r7, r1
   00008	e1a06000	 mov         r6, r0
 
@@ -1106,7 +1106,7 @@
   000b0	00000000	 DCD         |??_C@_15DAMPJCDE@?$AA?$CF?$AAc?$AA?$AA@|
   000b4		 |$LN18@OALBLMenuR@2|
   000b4	00000000	 DCD         |??_C@_17ILCABGPK@?$AA?$AI?$AA?5?$AA?$AI?$AA?$AA@|
-  000b8		 |$M43640|
+  000b8		 |$M43628|
 
 			 ENDP  ; |OALBLMenuReadLine|
 
@@ -1115,7 +1115,7 @@
 	IMPORT	|OALGetTickCount|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43665| DCD	|$LN19@OALBLMenuA|
+|$T43653| DCD	|$LN19@OALBLMenuA|
 	DCD	0x40002001
 
   00000			 AREA	 |.rdata|, DATA, READONLY
@@ -1138,7 +1138,7 @@
 
   00000		 |$LN19@OALBLMenuA|
   00000	e92d41f0	 stmdb       sp!, {r4 - r8, lr}
-  00004		 |$M43662|
+  00004		 |$M43650|
   00004	e1a07001	 mov         r7, r1
   00008	e1b05000	 movs        r5, r0
 
@@ -1222,7 +1222,7 @@
   0007c		 |$LN20@OALBLMenuA|
   0007c		 |$LN21@OALBLMenuA|
   0007c	00000000	 DCD         |??_C@_1FM@KKEGFMMC@?$AAH?$AAi?$AAt?$AA?5?$AAs?$AAp?$AAa?$AAc?$AAe?$AA?5?$AAt?$AAo?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAc?$AAo?$AAn?$AAf?$AAi?$AAg?$AAu?$AAr?$AAa?$AAt?$AAi?$AAo?$AAn@|
-  00080		 |$M43663|
+  00080		 |$M43651|
 
 			 ENDP  ; |OALBLMenuActivate|
 
@@ -1239,11 +1239,11 @@
 	IMPORT	|__security_check_cookie|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43686| DCD	|$LN11@OALBLMenuS@3|
+|$T43674| DCD	|$LN11@OALBLMenuS@3|
 	DCD	0xc0004202
 
   00000			 AREA	 |.xdata|, DATA
-|$T43682| DCD	0xfffffff0
+|$T43670| DCD	0xfffffff0
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GG@KAOMNNAE@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAB?$AAL?$AAM?$AAe?$AAn?$AAu?$AAS?$AAe?$AAt?$AAM?$AAa?$AAc?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AAI@| DCB "E"
@@ -1287,7 +1287,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43682|
+  00004	00000000	 DCD         |$T43670|
 
   00008		 |OALBLMenuSetMacAddress| PROC
 
@@ -1296,7 +1296,7 @@
   00008		 |$LN11@OALBLMenuS@3|
   00008	e92d4030	 stmdb       sp!, {r4, r5, lr}
   0000c	e24dd030	 sub         sp, sp, #0x30
-  00010		 |$M43683|
+  00010		 |$M43671|
   00010	e59f30f4	 ldr         r3, [pc, #0xF4]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d302c	 str         r3, [sp, #0x2C]
@@ -1356,7 +1356,7 @@
   00068	e28d0008	 add         r0, sp, #8
   0006c	eb000000	 bl          OALBLMenuReadLine
   00070	e3500000	 cmp         r0, #0
-  00074	0a00001a	 beq         |$cleanUp$43270|
+  00074	0a00001a	 beq         |$cleanUp$43258|
 
 ; 197  : 
 ; 198  :     // Convert string to MAC address
@@ -1376,7 +1376,7 @@
 
 ; 201  :         goto cleanUp;
 
-  00098	ea000011	 b           |$cleanUp$43270|
+  00098	ea000011	 b           |$cleanUp$43258|
   0009c		 |$LN1@OALBLMenuS@3|
 
 ; 202  :     }
@@ -1407,7 +1407,7 @@
 
   000c4	e1dd30b4	 ldrh        r3, [sp, #4]
   000c8	e1c430b4	 strh        r3, [r4, #4]
-  000cc	ea000004	 b           |$cleanUp$43270|
+  000cc	ea000004	 b           |$cleanUp$43258|
   000d0		 |$LN3@OALBLMenuS@3|
 
 ; 179  :         OALMSG(OAL_ERROR, (
@@ -1419,7 +1419,7 @@
   000d8	e3130001	 tst         r3, #1
   000dc	159f0014	 ldrne       r0, [pc, #0x14]
   000e0	1b000000	 blne        NKDbgPrintfW
-  000e4		 |$cleanUp$43270|
+  000e4		 |$cleanUp$43258|
   000e4	e59d002c	 ldr         r0, [sp, #0x2C]
   000e8	eb000000	 bl          __security_check_cookie
 
@@ -1443,7 +1443,7 @@
   00108	00000000	 DCD         |??_C@_1EI@KGHANMNL@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAM?$AAA?$AAC?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs@|
   0010c		 |$LN18@OALBLMenuS@3|
   0010c	00000000	 DCD         |__security_cookie|
-  00110		 |$M43684|
+  00110		 |$M43672|
 
 			 ENDP  ; |OALBLMenuSetMacAddress|
 
@@ -1457,11 +1457,11 @@
 	IMPORT	|OALKitlIPtoString|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43712| DCD	|$LN11@OALBLMenuS@4|
+|$T43700| DCD	|$LN11@OALBLMenuS@4|
 	DCD	0xc0003602
 
   00000			 AREA	 |.xdata|, DATA
-|$T43708| DCD	0xffffffec
+|$T43696| DCD	0xffffffec
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GG@LBBLODG@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAB?$AAL?$AAM?$AAe?$AAn?$AAu?$AAS?$AAe?$AAt?$AAI?$AAp?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?3?$AA?5?$AAI?$AAn@| DCB "E"
@@ -1505,7 +1505,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43708|
+  00004	00000000	 DCD         |$T43696|
 
   00008		 |OALBLMenuSetIpAddress| PROC
 
@@ -1514,7 +1514,7 @@
   00008		 |$LN11@OALBLMenuS@4|
   00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M43709|
+  00010		 |$M43697|
   00010	e59f30c4	 ldr         r3, [pc, #0xC4]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
@@ -1564,7 +1564,7 @@
   00050	e28d0000	 add         r0, sp, #0
   00054	eb000000	 bl          OALBLMenuReadLine
   00058	e3500000	 cmp         r0, #0
-  0005c	0a000014	 beq         |$cleanUp$43289|
+  0005c	0a000014	 beq         |$cleanUp$43277|
 
 ; 240  : 
 ; 241  :     // Convert string to IP address
@@ -1586,7 +1586,7 @@
 
 ; 245  :         goto cleanUp;
 
-  0007c	ea00000c	 b           |$cleanUp$43289|
+  0007c	ea00000c	 b           |$cleanUp$43277|
   00080		 |$LN1@OALBLMenuS@4|
 
 ; 246  :     }
@@ -1606,7 +1606,7 @@
 ; 252  :     *pIp = ip;
 
   00098	e5845000	 str         r5, [r4]
-  0009c	ea000004	 b           |$cleanUp$43289|
+  0009c	ea000004	 b           |$cleanUp$43277|
   000a0		 |$LN3@OALBLMenuS@4|
 
 ; 226  :         OALMSG(OAL_ERROR, (
@@ -1618,7 +1618,7 @@
   000a8	e3130001	 tst         r3, #1
   000ac	159f0014	 ldrne       r0, [pc, #0x14]
   000b0	1b000000	 blne        NKDbgPrintfW
-  000b4		 |$cleanUp$43289|
+  000b4		 |$cleanUp$43277|
   000b4	e59d0020	 ldr         r0, [sp, #0x20]
   000b8	eb000000	 bl          __security_check_cookie
 
@@ -1642,7 +1642,7 @@
   000d8	00000000	 DCD         |??_C@_1EG@NJNHINMH@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAI?$AAP?$AA?5?$AAa?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ@|
   000dc		 |$LN18@OALBLMenuS@4|
   000dc	00000000	 DCD         |__security_cookie|
-  000e0		 |$M43710|
+  000e0		 |$M43698|
 
 			 ENDP  ; |OALBLMenuSetIpAddress|
 
@@ -1654,11 +1654,11 @@
 	EXPORT	|??_C@_1EA@LJMJMOFH@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@| [ DATA ] ; `string'
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43738| DCD	|$LN11@OALBLMenuS@5|
+|$T43726| DCD	|$LN11@OALBLMenuS@5|
 	DCD	0xc0003602
 
   00000			 AREA	 |.xdata|, DATA
-|$T43734| DCD	0xffffffec
+|$T43722| DCD	0xffffffec
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1GA@BNPDEIDO@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AAO?$AAA?$AAL?$AAB?$AAL?$AAM?$AAe?$AAn?$AAu?$AAS?$AAe?$AAt?$AAI?$AAp?$AAM?$AAa?$AAs?$AAk?$AA?3?$AA?5?$AAI?$AAn?$AAv?$AAa?$AAl@| DCB "E"
@@ -1699,7 +1699,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43734|
+  00004	00000000	 DCD         |$T43722|
 
   00008		 |OALBLMenuSetIpMask| PROC
 
@@ -1708,7 +1708,7 @@
   00008		 |$LN11@OALBLMenuS@5|
   00008	e92d4070	 stmdb       sp!, {r4 - r6, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M43735|
+  00010		 |$M43723|
   00010	e59f30c4	 ldr         r3, [pc, #0xC4]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
@@ -1758,7 +1758,7 @@
   00050	e28d0000	 add         r0, sp, #0
   00054	eb000000	 bl          OALBLMenuReadLine
   00058	e3500000	 cmp         r0, #0
-  0005c	0a000014	 beq         |$cleanUp$43308|
+  0005c	0a000014	 beq         |$cleanUp$43296|
 
 ; 282  : 
 ; 283  :     // Convert string to MAC address
@@ -1780,7 +1780,7 @@
 
 ; 287  :         goto cleanUp;
 
-  0007c	ea00000c	 b           |$cleanUp$43308|
+  0007c	ea00000c	 b           |$cleanUp$43296|
   00080		 |$LN1@OALBLMenuS@5|
 
 ; 288  :     }
@@ -1800,7 +1800,7 @@
 ; 294  :     *pIp = ip;
 
   00098	e5845000	 str         r5, [r4]
-  0009c	ea000004	 b           |$cleanUp$43308|
+  0009c	ea000004	 b           |$cleanUp$43296|
   000a0		 |$LN3@OALBLMenuS@5|
 
 ; 268  :         OALMSG(OAL_ERROR, (
@@ -1812,7 +1812,7 @@
   000a8	e3130001	 tst         r3, #1
   000ac	159f0014	 ldrne       r0, [pc, #0x14]
   000b0	1b000000	 blne        NKDbgPrintfW
-  000b4		 |$cleanUp$43308|
+  000b4		 |$cleanUp$43296|
   000b4	e59d0020	 ldr         r0, [sp, #0x20]
   000b8	eb000000	 bl          __security_check_cookie
 
@@ -1836,7 +1836,7 @@
   000d8	00000000	 DCD         |??_C@_1EA@LJMJMOFH@?$AA?5?$AAE?$AAn?$AAt?$AAe?$AAr?$AA?5?$AA?$CF?$AAs?$AA?5?$AAI?$AAP?$AA?5?$AAm?$AAa?$AAs?$AAk?$AA?5?$AA?$CI?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA?5?$AA?$CF?$AAs?$AA?$CJ?$AA?3?$AA?5?$AA?$AA@|
   000dc		 |$LN18@OALBLMenuS@5|
   000dc	00000000	 DCD         |__security_cookie|
-  000e0		 |$M43736|
+  000e0		 |$M43724|
 
 			 ENDP  ; |OALBLMenuSetIpMask|
 
@@ -1847,11 +1847,11 @@
 	IMPORT	|memset|
 
   00000			 AREA	 |.pdata|, PDATA
-|$T43777| DCD	|$LN21@OALBLMenuS@6|
+|$T43765| DCD	|$LN21@OALBLMenuS@6|
 	DCD	0xc0003702
 
   00000			 AREA	 |.xdata|, DATA
-|$T43773| DCD	0xfffffff0
+|$T43761| DCD	0xfffffff0
 
   00000			 AREA	 |.rdata|, DATA, READONLY
 |??_C@_1DC@OGIHKHPF@?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAI?$AAd?$AA?5?$AAs?$AAe?$AAt?$AA?5?$AAt?$AAo?$AA?5?$AA?8?$AA?$CF?$AAS?$AA?8?$AA?$AN?$AA?6?$AA?$AA@| DCB " "
@@ -1876,7 +1876,7 @@
   00000			 AREA	 |.text|, CODE, ARM
 
   00000	00000000	 DCD         |__GSHandlerCheck|
-  00004	00000000	 DCD         |$T43773|
+  00004	00000000	 DCD         |$T43761|
 
   00008		 |OALBLMenuSetDeviceId| PROC
 
@@ -1885,7 +1885,7 @@
   00008		 |$LN21@OALBLMenuS@6|
   00008	e92d4030	 stmdb       sp!, {r4, r5, lr}
   0000c	e24dd024	 sub         sp, sp, #0x24
-  00010		 |$M43774|
+  00010		 |$M43762|
   00010	e59f30c8	 ldr         r3, [pc, #0xC8]
   00014	e5933000	 ldr         r3, [r3]
   00018	e58d3020	 str         r3, [sp, #0x20]
@@ -1923,7 +1923,7 @@
   00050	e28d0000	 add         r0, sp, #0
   00054	eb000000	 bl          OALBLMenuReadLine
   00058	e3500000	 cmp         r0, #0
-  0005c	0a000017	 beq         |$cleanUp$43322|
+  0005c	0a000017	 beq         |$cleanUp$43310|
 
 ; 313  : 
 ; 314  :     // Convert unicode to one-byte character string
@@ -1974,7 +1974,7 @@
   000b4	11a05004	 movne       r5, r4
   000b8	e1a01005	 mov         r1, r5
   000bc	eb000000	 bl          NKDbgPrintfW
-  000c0		 |$cleanUp$43322|
+  000c0		 |$cleanUp$43310|
   000c0	e59d0020	 ldr         r0, [sp, #0x20]
   000c4	eb000000	 bl          __security_check_cookie
 
@@ -1994,7 +1994,7 @@
   000dc	00000000	 DCD         |??_C@_0N@LKBAFPFA@?$CK?$CK?$CK?5auto?5?$CK?$CK?$CK?$AA@|
   000e0		 |$LN26@OALBLMenuS@6|
   000e0	00000000	 DCD         |__security_cookie|
-  000e4		 |$M43775|
+  000e4		 |$M43763|
 
 			 ENDP  ; |OALBLMenuSetDeviceId|
 

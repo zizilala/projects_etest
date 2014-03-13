@@ -93,7 +93,7 @@
 |pTOC|	DCD	0xffffffff
 	%	4
 |NKSignon| DCB	0xa, "Microsoft Windows CE Bootloader Common Library Vers"
-	DCB	"ion %d.%d Built Jan 17 2014 16:22:36", 0xd, 0xa, 0x0
+	DCB	"ion %d.%d Built Mar 13 2014 14:37:10", 0xd, 0xa, 0x0
 ; File c:\wince600\platform\common\src\common\boot\blcommon\blcommon.c
 
   00000			 AREA	 |.pdata|, PDATA

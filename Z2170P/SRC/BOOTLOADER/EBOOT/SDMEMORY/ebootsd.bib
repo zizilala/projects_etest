@@ -23,8 +23,7 @@ MEMORY
 ;   Name       Start     Size      Type
 ;   -------    --------  --------  ----
     ARGS       80000000  00001000  RESERVED
-;    EBOOTSD    87E00000  00040000  RAMIMAGE
-	ETEST	   80002000  00040000  RAMIMAGE
+    EBOOTSD    87E00000  00040000  RAMIMAGE
     RAM        87E80000  00050000  RAM
     PTES       87EE0000  00004000  RESERVED
     STACK      87EE4000  0001C000  RESERVED
@@ -46,13 +45,12 @@ CONFIG
     PROFILE=OFF
     KERNELFIXUPS=ON
 
-;    ROMSTART=87E00000
-	ROMSTART=80002000
+	ROMSTART=87E00000
     ROMWIDTH=32
     ROMSIZE=40000
 
 MODULES
 ; Name      Path                                        Memory
 ; --------  ------------------------------------------  ---------
-;   nk.exe    $(_RAWFILETGT)\$(WINCEDEBUG)\ebootsd.exe    EBOOTSD
-  nk.exe    $(_RAWFILETGT)\$(WINCEDEBUG)\ebootsd.exe	ETEST
+  nk.exe    $(_RAWFILETGT)\$(WINCEDEBUG)\ebootsd.exe    EBOOTSD
+;  nk.exe    $(_RAWFILETGT)\$(WINCEDEBUG)\ebootsd.exe	ETEST

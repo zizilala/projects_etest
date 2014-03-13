@@ -214,7 +214,6 @@ VOID AllFunctionTest_Z2170P(OAL_BLMENU_ITEM *pMenu)
     
     RTCFunc(ptr);                               //SF
 	LcdStall(gd1Sec*2);
-
 }
 
 //------------------------------------------------------------------------------
